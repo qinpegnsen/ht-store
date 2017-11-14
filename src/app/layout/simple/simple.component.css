@@ -1,0 +1,33 @@
+.layout-simple{
+  height: 100%;
+  font-family: 'Microsoft YaHei';
+}
+/*logo样式*/
+.layout-simple .logo img{
+  height: 30px;
+  margin-top: 5px;
+}
+/*顶部样式 */
+.layout-simple .ant-layout-header{
+  font-size: 16px;
+  background: white;
+  height: 45px;
+  line-height: 45px;
+  border-bottom: 1px solid #e82d4d;
+}
+.layout-simple .ant-layout-header ul li{
+  display: inline;
+  padding: 0 15px;
+  border-left: 1px solid darkgray;
+}
+.layout-simple .ant-layout-header ul li:hover{
+  color: #e82d4d;
+  cursor: pointer;
+}
+/*中间样式*/
+.layout-simple .ant-layout-content{
+  margin: 20px auto 0 auto;
+  width: 1200px;
+  background: white;
+  font-size: 14px;
+}

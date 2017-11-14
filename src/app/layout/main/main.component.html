@@ -1,0 +1,61 @@
+<nz-layout class="layout">
+  <!--menu 信息 start-->
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="logo">
+      <img *ngIf="!isCollapsed" src="../../../assets/img/logo.png">
+    </div>
+    <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
+      <!--循环显示menu start-->
+      <ng-container *ngFor="let menu of menus">
+        <!--有下级menu start-->
+        <li nz-submenu *ngIf="menu.children && menu.children.length>0">
+          <span title>
+            <i class="anticon anticon-{{menu.icon}} font18"></i>
+            <span class="nav-text">{{menu.name}}</span>
+          </span>
+          <ul>
+            <li nz-menu-item *ngFor="let child of menu.children" (click)="goUrl(child.url)">{{child.name}}</li>
+          </ul>
+        </li>
+        <!--有下级menu end-->
+        <!--无下级menu start-->
+        <li nz-menu-item *ngIf="!menu.children || menu.children.length<1" (click)="goUrl(menu.url)">
+          <span>
+            <i class="anticon anticon-{{menu.icon}} font18"></i>
+            <span class="nav-text">{{menu.name}}</span>
+          </span>
+        </li>
+        <!--无下级menu end-->
+      </ng-container>
+      <!--循环显示menu end-->
+    </ul>
+  </nz-sider>
+  <!--menu 信息 end-->
+  <nz-layout>
+    <!--顶部信息 start-->
+    <nz-header class="p0 bg-white">
+      <i class="anticon trigger" [class.anticon-menu-fold]="!isCollapsed" [class.anticon-menu-unfold]="isCollapsed"
+         (click)="isCollapsed=!isCollapsed"></i>
+      <ul class="fr mr">
+        <li><i class="anticon anticon-home"></i></li>
+        <li><i class="anticon anticon-user"></i></li>
+        <li><i class="anticon anticon-file-text"></i></li>
+        <li><i class="anticon anticon-sound"></i></li>
+        <li><i class="anticon anticon-poweroff"></i></li>
+      </ul>
+    </nz-header>
+    <!--顶部信息 end-->
+    <!--业务中心 start-->
+    <nz-content class="m-15 bg-white">
+      <div class="p">
+        <!--路由嵌套-业务处理区域 start-->
+        <router-outlet></router-outlet>
+        <!--路由嵌套-业务处理区域 end-->
+      </div>
+    </nz-content>
+    <!--业务中心 end-->
+    <!--底部信息 start-->
+    <nz-footer class="footer">{{copyright}}</nz-footer>
+    <!--底部信息 end-->
+  </nz-layout>
+</nz-layout>

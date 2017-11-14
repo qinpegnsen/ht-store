@@ -1,0 +1,30 @@
+<nz-layout class="layout-simple">
+  <!--顶部 start-->
+  <nz-header>
+    <div class="logo fl">
+      <img src="../../../assets/img/logo-dark.png">
+    </div>
+    <ul class="fr mr">
+      <li><i class="anticon anticon-home"></i></li>
+      <li><i class="anticon anticon-user"></i></li>
+      <li><i class="anticon anticon-file-text"></i></li>
+      <li><i class="anticon anticon-sound"></i></li>
+      <li><i class="anticon anticon-poweroff"></i></li>
+    </ul>
+  </nz-header>
+  <!--顶部 end-->
+  <!--业务中心 start-->
+  <nz-content>
+    <div class="p">
+      <!--路由嵌套-业务处理区域 start-->
+      <router-outlet></router-outlet>
+      <!--路由嵌套-业务处理区域 end-->
+    </div>
+  </nz-content>
+  <!--业务中心 end-->
+  <!--底部 copyright start-->
+  <nz-footer style="text-align: center;">
+    {{copyright}}
+  </nz-footer>
+  <!--底部 copyright end-->
+</nz-layout>

@@ -1,0 +1,68 @@
+.layout {
+  height: 100%;
+  font-family: 'Microsoft YaHei';
+}
+
+.layout .ant-layout-header {
+  background: white;
+  font-size: 16px;
+  border-bottom: 1px solid #e82d4d;
+}
+.layout .ant-layout-header ul li{
+  display: inline;
+  padding: 0 15px;
+  border-left: 1px solid darkgray;
+}
+.layout .ant-layout-header ul li:hover{
+  color: #e82d4d;
+  cursor: pointer;
+}
+
+/*menu字体大小*/
+.layout .ant-menu-inline .ant-menu-submenu-title,
+.layout .ant-menu-inline .ant-menu-item {
+  font-size: 14px;
+}
+/*logo样式*/
+.layout .logo {
+  border-radius: 6px;
+  margin: 15px 35px 20px 25px;
+}
+.layout .logo img{
+  width: 100%;
+}
+
+.layout .ant-layout-sider-collapsed .nav-text {
+  display: none;
+}
+
+.layout .ant-layout-sider-collapsed .ant-menu-submenu-title:after {
+  display: none;
+}
+
+.layout .ant-layout-sider-collapsed .anticon {
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+.layout .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: color .3s;
+}
+
+.layout .ant-menu.ant-menu-dark .ant-menu-item-selected{
+  background: #2c2e2f;
+  border-right: 2px #cc1635 solid;
+}
+
+.layout .ant-layout-footer {
+  text-align: center;
+  padding: 5px 20px 15px 20px;
+}
+
+.layout .ant-layout-content{
+  font-size: 14px;
+}
