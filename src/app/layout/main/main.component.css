@@ -20,7 +20,8 @@
 
 /*menu字体大小*/
 .layout .ant-menu-inline .ant-menu-submenu-title,
-.layout .ant-menu-inline .ant-menu-item {
+.layout .ant-menu-inline .ant-menu-item,
+.layout .ant-menu-vertical .ant-menu-item{
   font-size: 14px;
 }
 /*logo样式*/
@@ -41,7 +42,7 @@
 }
 
 .layout .ant-layout-sider-collapsed .anticon {
-  font-size: 16px;
+  font-size: 20px;
   margin-left: 8px;
 }
 

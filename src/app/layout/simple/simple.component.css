@@ -28,6 +28,6 @@
 .layout-simple .ant-layout-content{
   margin: 20px auto 0 auto;
   width: 1200px;
-  background: white;
+  /*background: white;*/
   font-size: 14px;
 }
