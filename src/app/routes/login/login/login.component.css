@@ -1,0 +1,87 @@
+.login-logo {
+  height: 31px;
+  margin: 16px 24px 16px 0;
+}
+.login-layout .login-header{
+  background: #ececec;
+  height:76px;
+}
+.login-layout .login-center{
+  height: 558px;
+  padding: 0;
+  background:#fff;
+}
+.login-layout .login-footer{
+  text-align: center;
+  padding-top: 60px;
+}
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 160px;
+  line-height: 160px;
+  background: #364d79;
+  color: #fff;
+  overflow: hidden;
+}
+.login-layout .login-center .login-center_banner{
+  width: 100%;
+  height: 558px;
+}
+.login-form {
+  width: 23%;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  height: 44px;
+  width: 80%;
+  margin-left: 9%;
+}
+.login-form{
+  width: 20%;
+  height: 472px;
+  background: #ffffff;
+  position: absolute;
+  top: 110px;
+  right: 20%;
+}
+.login-form .login_form_information{
+  width: 80%;
+  height: 44px;
+  margin-left: 9%;
+}
+.headings h1{
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  color: #f56600;
+}
+.layout-simple .ant-layout-header{
+  font-size: 16px;
+  background: white;
+  height: 45px;
+  line-height: 45px;
+  border-bottom: 1px solid #e82d4d;
+}
+.passed ul li{
+  display: inline;
+  padding: 0 15px;
+  border-left: 1px solid darkgray;
+}
+.passed ul li:hover{
+  color: #e82d4d;
+  cursor: pointer;
+}
+.ant-btn-primary{
+  background-color: #f56600;
+  border-color: #f56600;
+}
+.ant-btn-primary:hover, .ant-btn-primary:focus{
+  background-color: #f56600;
+  border-color: #f56600;
+}
+
+

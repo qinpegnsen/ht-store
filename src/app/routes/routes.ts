@@ -23,8 +23,8 @@ export const routes = [
     path: 'page',
     component: PageComponent,
     children: [
-      {path: '', redirectTo: '/page/home', pathMatch: 'full'},
-      {path: 'home', loadChildren: './home/home.module#HomeModule'},
+      {path: '', redirectTo: '/page/login', pathMatch: 'full'},
+      {path: 'login', loadChildren: './login/login.module#LoginModule'},
     ]
   },
   // 路由指向找不到时，指向这里

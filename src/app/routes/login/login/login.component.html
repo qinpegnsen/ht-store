@@ -1,0 +1,75 @@
+<nz-layout class="login-layout">
+  <!--登录页的顶部start-->
+  <nz-header class="login-header">
+    <!--登录页logo start-->
+    <div class="login-logo">
+      <img src="../../../assets/img/logo-dark.png">
+    </div>
+    <!--登录页logo end-->
+  </nz-header>
+  <!--登录页的顶部end-->
+  <!--登录页中心的广告banner start-->
+  <nz-content>
+    <div class="login-center" style="padding: 0;">
+      <nz-carousel [nzAutoPlay]="true">
+        <div class="login-center_banner" nz-carousel-content *ngFor="let index of array">{{index}}</div>
+      </nz-carousel>
+    </div>
+  </nz-content>
+  <!--登录页中心的广告banner end-->
+  <!--登录页底部 start-->
+  <nz-footer class="login-footer">© 2017 - 三楂红-企业管理系统</nz-footer>
+  <!--登录页底 部 end-->
+</nz-layout>
+
+
+<!--登录验证表单start-->
+<div class="login_form">
+  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="_submitForm()">
+    <!--表单头部start-->
+    <div class="headings"><h1>账号登录</h1></div>
+    <!--表单头部end-->
+    <!--表单用户名input框start-->
+    <div nz-form-item class="login_form_information">
+      <div nz-form-control [nzValidateStatus]="validateForm.controls.userName">
+        <nz-input formControlName="userName" [nzPlaceHolder]="'请填写用户名'" [nzSize]="'large'">
+          <ng-template #prefix>
+            <i class="anticon anticon-user"></i>
+          </ng-template>
+        </nz-input>
+        <div nz-form-explain *ngIf="validateForm.controls.userName.dirty&&validateForm.controls.userName.hasError('required')">
+          请填写用户名
+        </div>
+      </div>
+    </div>
+    <!--表单用户名input框end-->
+    <!--表单密码input框start-->
+    <div nz-form-item class="login_form_information">
+      <div nz-form-control [nzValidateStatus]="validateForm.controls.password">
+        <nz-input formControlName="password" [nzType]="'password'" [nzPlaceHolder]="'密码'" [nzSize]="'large'">
+          <ng-template #prefix>
+            <i class="anticon anticon-lock"></i>
+          </ng-template>
+        </nz-input>
+        <div nz-form-explain *ngIf="validateForm.controls.password.dirty&&validateForm.controls.password.hasError('required')">
+          请填写密码
+        </div>
+      </div>
+    </div>
+    <!--表单密码input框end-->
+    <!--表单底部start-->
+    <div nz-form-item>
+      <div nz-form-control>
+        <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">登录</button>
+        <div class="passed">
+          <ul class="fr mr">
+            <li>注册</li>
+            <li>忘记密码？</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--表单底部end-->
+  </form>
+</div>
+<!--登录验证的表单end-->
