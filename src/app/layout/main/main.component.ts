@@ -22,7 +22,6 @@ export class MainComponent implements OnInit {
         children: [
           {
             name: "商品发布",
-            url: "/simple/home",
             icon: ""
           },
           {
@@ -50,9 +49,14 @@ export class MainComponent implements OnInit {
         ]
       },
       {
-        name: "这只是测试",
+        name: "smile布局",
         icon: "smile-o",
         url: "/simple/home"
+      },
+      {
+        name: "page布局",
+        icon: "smile-o",
+        url: "/page/home"
       }
     ]
   }

@@ -1,0 +1,9 @@
+.layout-page{
+  height: 100%;
+  font-family: 'Microsoft YaHei';
+}
+
+/*中间样式*/
+.layout-page .ant-layout-content{
+  font-size: 14px;
+}

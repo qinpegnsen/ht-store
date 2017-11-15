@@ -7,13 +7,15 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { MainComponent } from './layout/main/main.component';
 import {RoutesModule} from "./routes/routes.module";
 import { SimpleComponent } from './layout/simple/simple.component';
+import { PageComponent } from './layout/page/page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    SimpleComponent
+    SimpleComponent,
+    PageComponent
   ],
   imports: [
     BrowserAnimationsModule,//浏览器动画模块
