@@ -51,7 +51,7 @@ export class MainComponent implements OnInit {
       {
         name: "smile布局",
         icon: "smile-o",
-        url: "/simple/home"
+        url: "/simple/reg"
       },
       {
         name: "page布局",

@@ -15,8 +15,8 @@ export const routes = [
     path: 'simple',
     component: SimpleComponent,
     children: [
-      {path: '', redirectTo: '/simple/home', pathMatch: 'full'},
-      {path: 'home', loadChildren: './home/home.module#HomeModule'},
+      {path: '', redirectTo: '/simple/reg', pathMatch: 'full'},
+      {path: 'reg', loadChildren: './simples/simples.module#SimplesModule'},
     ]
   },
   {
