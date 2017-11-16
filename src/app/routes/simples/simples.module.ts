@@ -3,15 +3,17 @@ import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../../shared/shared.module";
 import {StepsComponent} from './steps/steps.component';
 import {RegisterComponent} from "./register/register.component";
-import { CompleteComponent } from './complete/complete.component';
-import { DoneComponent } from './done/done.component';
+import {CompleteComponent} from './complete/complete.component';
+import {DoneComponent} from './done/done.component';
 import {SimplesService} from "./simples.service";
+import {DredgeComponent} from './dredge/dredge.component';
 
 const routes: Routes = [
   {
     path: '', component: StepsComponent, children: [
     {path: 'register', component: RegisterComponent},
     {path: 'complete', component: CompleteComponent},
+    {path: 'dredge', component: DredgeComponent},
     {path: 'done', component: DoneComponent},
   ]
   },
@@ -26,6 +28,7 @@ const routes: Routes = [
     RegisterComponent,
     StepsComponent,
     CompleteComponent,
+    DredgeComponent,
     DoneComponent
   ],
   providers: [

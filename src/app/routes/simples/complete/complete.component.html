@@ -1,3 +1,4 @@
+<!--企业入驻 start-->
 <div nz-row class="p-20">
   <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)" class="p-20">
     <div class="fieldset">
@@ -102,7 +103,7 @@
       <div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('password')" nzHasFeedback>
           <nz-input formControlName="password" [nzPlaceHolder]="'请输入您的密码'" [nzType]="'password'" [nzSize]="'large'"
-                    (ngModelChange)="validateConfirmPassword()">
+                    (ngModelChange)="simplesService.validateConfirmPassword()">
           </nz-input>
           <div nz-form-explain
                *ngIf="getFormControl('password').dirty&&getFormControl('password').hasError('required')">请输入您的密码！
@@ -149,5 +150,15 @@
         <button nz-button [nzSize]="'large'" (click)="resetForm($event)">Reset</button>
       </div>
     </div>-->
+
+    <div nz-row class="text-center p-20 bt">
+      <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="pre()">
+        <span>上一步</span>
+      </button>
+      <button nz-button [nzType]="'default'" [nzSize]="'large'">
+        <span>下一步</span>
+      </button>
+    </div>
   </form>
 </div>
+<!--企业入驻 end-->
