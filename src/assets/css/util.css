@@ -8,6 +8,10 @@
 .mr0 { margin-right: 0 !important; }
 .mt0 { margin-top: 0 !important; }
 .mb0 { margin-bottom: 0 !important; }
+.m-1{margin: 1px !important;}
+.m-2{margin: 2px !important;}
+.m-3{margin: 3px !important;}
+.m-4{margin: 4px !important;}
 .m-5  { margin: 5px !important; }
 .ml-5 { margin-left: 5px !important; }
 .mr-5 { margin-right: 5px !important; }
@@ -28,14 +32,6 @@
 .mr-20 { margin-right: 20px !important; }
 .mt-20 { margin-top: 20px !important; }
 .mb-20 { margin-bottom: 20px !important; }
-.m-1{margin: 1px !important;}
-.m-2{margin: 2px !important;}
-.m-3{margin: 3px !important;}
-.m-4{margin: 4px !important;}
-.mt-1{margin-top: 1px !important;}
-.mt-2{margin-top: 2px !important;}
-.mt-3{margin-top: 3px !important;}
-.mt-4{margin-top: 4px !important;}
 
 
 /*定义padding基础属性*/
@@ -75,7 +71,6 @@
 .br0 { border-right-width: 0 !important; }
 .bt0 { border-top-width: 0 !important; }
 .bb0 { border-bottom-width: 0 !important; }
-
 .br { border-right: 1px solid #e9e9e9;}
 .bl { border-left: 1px solid #e9e9e9;}
 .bt { border-top: 1px solid #e9e9e9;}
@@ -87,36 +82,25 @@
 .clear{clear:both;}
 .display-inherit{display: inherit;}
 
+/*字体加粗*/
+.strong{font-weight: 600}
+
 /*清除浮动*/
-.float-none{
-    float: none;
-}
+.float-none{float: none;}
 
 /*浮动*/
-.fl{
-  float: left;
-}
-.fr{
-  float: right;
-}
+.fl{float: left;}
+.fr{float: right;}
 
 /*鼠标手型*/
-.cursor{
-    cursor: pointer;
-}
+.cursor{cursor: pointer;}
 
 /*背景色*/
-.bg-white{
-  background-color: #ffffff;
-}
-.bg-light-gray{
-  background-color: #fbfbfb;
-}
+.bg-white{background-color: #ffffff;}
+.bg-light-gray{background-color: #fbfbfb;}
 
 /*信息位置*/
-.text-center{
-  text-align: center;
-}
+.text-center{text-align: center;}
 
 /*文字大小*/
 .font12{font-size: 12px}
