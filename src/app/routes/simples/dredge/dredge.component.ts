@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Observable} from "rxjs/Observable";
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 import {SimplesService} from "../simples.service";
 import {StepsComponent} from "../steps/steps.component";
 
 @Component({
-  selector: 'app-complete',
-  templateUrl: './complete.component.html',
-  styleUrls: ['./complete.component.css']
+  selector: 'app-dredge',
+  templateUrl: './dredge.component.html',
+  styleUrls: ['./dredge.component.css']
 })
-export class CompleteComponent implements OnInit {
+export class DredgeComponent implements OnInit {
   validateForm: FormGroup;
 
   constructor(public simplesService: SimplesService,
@@ -18,7 +17,6 @@ export class CompleteComponent implements OnInit {
     this.validateForm = this.simplesService.validateForm;
   }
   ngOnInit() {
-    this.steps.current = 1;
   }
 
   /**

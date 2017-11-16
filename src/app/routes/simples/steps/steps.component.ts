@@ -8,31 +8,15 @@ import {SimplesService} from "../simples.service";
   styleUrls: ['./steps.component.css']
 })
 export class StepsComponent implements OnInit {
-  current = 1;
+  public current = 0;
 
   constructor(public simplesService: SimplesService,
-              private _message: NzMessageService) {
+              public _message: NzMessageService) {
   }
 
   ngOnInit() {
     const _this = this;
     _this.simplesService.routerSkip(_this.current);
-  }
-
-  /**
-   * 回到前一步
-   */
-  pre() {
-    this.current -= 1;
-    this.simplesService.routerSkip(this.current);
-  }
-
-  /**
-   * 下一步
-   */
-  next() {
-    this.current += 1;
-    this.simplesService.routerSkip(this.current);
   }
 
   done() {
