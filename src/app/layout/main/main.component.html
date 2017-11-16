@@ -2,7 +2,7 @@
   <!--menu 信息 start-->
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="logo">
-      <img *ngIf="!isCollapsed" src="../../../assets/img/logo.png">
+      <img *ngIf="!isCollapsed" src="{{app.logo}}">
     </div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
       <!--循环显示menu start-->
@@ -55,7 +55,7 @@
     </nz-content>
     <!--业务中心 end-->
     <!--底部信息 start-->
-    <nz-footer class="footer">{{copyright}}</nz-footer>
+    <nz-footer class="footer">{{app.copyright}}</nz-footer>
     <!--底部信息 end-->
   </nz-layout>
 </nz-layout>

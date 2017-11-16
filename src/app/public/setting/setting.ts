@@ -5,7 +5,9 @@ export class Setting {
   public static APP: any = {                           //平台信息
     name: '三楂红网络技术-企业管理系统',
     description: '企业管理系统',
-    copyright:'© 2017 - 三楂红-企业管理系统'
+    copyright:'© 2017 - 三楂红-企业管理系统',
+    logo:'../../../assets/img/logo.png',
+    logoDark:'../../../assets/img/logo-dark.png'
   };
   public static MENUS: Array<any> = new Array();      //平台菜单
   //定义枚举

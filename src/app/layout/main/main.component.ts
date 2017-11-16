@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class MainComponent implements OnInit {
   public isCollapsed = false; //menu折叠
-  public copyright = Setting.APP.copyright; //平台copyright
+  public app = Setting.APP; //平台信息
   public menus: Array<any> = new Array(); //菜单信息
 
   constructor(public router: Router) {

@@ -8,7 +8,7 @@ import {Setting} from "../../public/setting/setting";
   encapsulation: ViewEncapsulation.None
 })
 export class SimpleComponent implements OnInit {
-  public copyright = Setting.APP.copyright; //平台copyright
+  public app = Setting.APP; //平台信息
 
   constructor() { }
 
