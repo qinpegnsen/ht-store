@@ -1,29 +1,29 @@
-<nz-layout class="login-layout">
-  <!--登录页的顶部start-->
-  <nz-header class="login-header">
-    <!--登录页logo start-->
-    <div class="login-logo">
-      <img [src]="app.logoDark">
-    </div>
-    <!--登录页logo end-->
-  </nz-header>
-  <!--登录页的顶部end-->
-  <!--登录页中心的广告banner start-->
-  <nz-content>
-    <div class="login-center" style="padding: 0;">
-      <nz-carousel [nzAutoPlay]="true">
-        <div class="login-center-banner" nz-carousel-content *ngFor="let index of array">
-          <img [src]="index">
-        </div>
-      </nz-carousel>
-    </div>
-  </nz-content>
-  <!--登录页中心的广告banner end-->
-  <!--登录页底部 start-->
-  <nz-footer class="login-footer">{{app.copyright}}</nz-footer>
-  <!--登录页底 部 end-->
-</nz-layout>
 
+  <nz-layout class="login-layout">
+    <!--登录页的顶部start-->
+    <nz-header class="login-header">
+      <!--登录页logo start-->
+      <div class="login-logo">
+        <img [src]="app.logoDark">
+      </div>
+      <!--登录页logo end-->
+    </nz-header>
+    <!--登录页的顶部end-->
+    <!--登录页中心的广告banner start-->
+    <nz-content>
+      <div class="login-center" style="padding: 0;">
+        <nz-carousel [nzAutoPlay]="true">
+          <div class="login-center-banner" nz-carousel-content *ngFor="let index of array">
+            <img [src]="index">
+          </div>
+        </nz-carousel>
+      </div>
+    </nz-content>
+    <!--登录页中心的广告banner end-->
+    <!--登录页底部 start-->
+    <nz-footer class="login-footer">{{app.copyright}}</nz-footer>
+    <!--登录页底 部 end-->
+  </nz-layout>
 <!--登录验证表单start-->
   <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="_submitForm()">
     <!--表单头部start-->
@@ -64,7 +64,7 @@
         <div class="passed">
           <ul class="fr mr-20 mt-5">
             <li class="br">注册</li>
-            <li>忘记密码？</li>
+            <li routerLink="../forget-password">忘记密码？</li>
           </ul>
         </div>
       </div>
@@ -72,3 +72,4 @@
     <!--表单底部end-->
   </form>
 <!--登录验证的表单end-->
+

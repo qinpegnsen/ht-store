@@ -8,7 +8,7 @@ import {SimplesService} from "../simples.service";
   styleUrls: ['./steps.component.css']
 })
 export class StepsComponent implements OnInit {
-  current = 1;
+  current = 0;
 
   constructor(public simplesService: SimplesService,
               private _message: NzMessageService) {
