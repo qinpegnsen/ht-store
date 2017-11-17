@@ -53,6 +53,7 @@ export class NewPasswordComponent implements OnInit {
       return {confirm: true, error: true};
     }
   };
+
   /**
    * 回到前一步
    */

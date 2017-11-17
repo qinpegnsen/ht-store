@@ -1,75 +1,76 @@
-
-  <nz-layout class="login-layout">
-    <!--登录页的顶部start-->
-    <nz-header class="login-header">
-      <!--登录页logo start-->
-      <div class="login-logo">
-        <img [src]="app.logoDark">
-      </div>
-      <!--登录页logo end-->
-    </nz-header>
-    <!--登录页的顶部end-->
-    <!--登录页中心的广告banner start-->
-    <nz-content>
-      <div class="login-center" style="padding: 0;">
-        <nz-carousel [nzAutoPlay]="true">
-          <div class="login-center-banner" nz-carousel-content *ngFor="let index of array">
-            <img [src]="index">
-          </div>
-        </nz-carousel>
-      </div>
-    </nz-content>
-    <!--登录页中心的广告banner end-->
-    <!--登录页底部 start-->
-    <nz-footer class="login-footer">{{app.copyright}}</nz-footer>
-    <!--登录页底 部 end-->
-  </nz-layout>
+<nz-layout class="login-layout">
+  <!--登录页的顶部start-->
+  <nz-header class="login-header">
+    <!--登录页logo start-->
+    <div class="login-logo">
+      <img [src]="app.logoDark">
+    </div>
+    <!--登录页logo end-->
+  </nz-header>
+  <!--登录页的顶部end-->
+  <!--登录页中心的广告banner start-->
+  <nz-content>
+    <div class="login-center" style="padding: 0;">
+      <nz-carousel [nzAutoPlay]="true">
+        <div class="login-center-banner" nz-carousel-content *ngFor="let index of array">
+          <img [src]="index">
+        </div>
+      </nz-carousel>
+    </div>
+  </nz-content>
+  <!--登录页中心的广告banner end-->
+  <!--登录页底部 start-->
+  <nz-footer class="login-footer">{{app.copyright}}</nz-footer>
+  <!--登录页底 部 end-->
+</nz-layout>
 <!--登录验证表单start-->
-  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="_submitForm()">
-    <!--表单头部start-->
-    <div class="headings"><h1>账号登录</h1></div>
-    <!--表单头部end-->
-    <!--表单用户名input框start-->
-    <div nz-form-item class="login-form-information">
-      <div nz-form-control [nzValidateStatus]="validateForm.controls.userName">
-        <nz-input formControlName="userName" class="font16" [nzPlaceHolder]="'请填写用户名'" [nzSize]="'large'">
-          <ng-template #prefix>
-            <i class="anticon anticon-user font18 pl-5"></i>
-          </ng-template>
-        </nz-input>
-        <div nz-form-explain *ngIf="validateForm.controls.userName.dirty&&validateForm.controls.userName.hasError('required')">
-          请填写用户名
-        </div>
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="_submitForm()">
+  <!--表单头部start-->
+  <div class="headings"><h1>账号登录</h1></div>
+  <!--表单头部end-->
+  <!--表单用户名input框start-->
+  <div nz-form-item class="login-form-information">
+    <div nz-form-control [nzValidateStatus]="validateForm.controls.userName">
+      <nz-input formControlName="userName" class="font16" [nzPlaceHolder]="'请填写用户名'" [nzSize]="'large'">
+        <ng-template #prefix>
+          <i class="anticon anticon-user font18 pl-5"></i>
+        </ng-template>
+      </nz-input>
+      <div nz-form-explain
+           *ngIf="validateForm.controls.userName.dirty&&validateForm.controls.userName.hasError('required')">
+        请填写用户名
       </div>
     </div>
-    <!--表单用户名input框end-->
-    <!--表单密码input框start-->
-    <div nz-form-item class="login-form-information">
-      <div nz-form-control [nzValidateStatus]="validateForm.controls.password">
-        <nz-input formControlName="password" [nzType]="'password'" [nzPlaceHolder]="'密码'" [nzSize]="'large'">
-          <ng-template #prefix>
-            <i class="anticon anticon-lock font18 pl-5"></i>
-          </ng-template>
-        </nz-input>
-        <div nz-form-explain *ngIf="validateForm.controls.password.dirty&&validateForm.controls.password.hasError('required')">
-          请填写密码
-        </div>
+  </div>
+  <!--表单用户名input框end-->
+  <!--表单密码input框start-->
+  <div nz-form-item class="login-form-information">
+    <div nz-form-control [nzValidateStatus]="validateForm.controls.password">
+      <nz-input formControlName="password" [nzType]="'password'" [nzPlaceHolder]="'密码'" [nzSize]="'large'">
+        <ng-template #prefix>
+          <i class="anticon anticon-lock font18 pl-5"></i>
+        </ng-template>
+      </nz-input>
+      <div nz-form-explain
+           *ngIf="validateForm.controls.password.dirty&&validateForm.controls.password.hasError('required')">
+        请填写密码
       </div>
     </div>
-    <!--表单密码input框end-->
-    <!--表单底部start-->
-    <div nz-form-item>
-      <div nz-form-control>
-        <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">登录</button>
-        <div class="passed">
-          <ul class="fr mr-20 mt-5">
-            <li routerLink="/simple/reg/register" class="br">注册</li>
-            <li routerLink="../forget-password">忘记密码？</li>
-          </ul>
-        </div>
+  </div>
+  <!--表单密码input框end-->
+  <!--表单底部start-->
+  <div nz-form-item>
+    <div nz-form-control>
+      <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">登录</button>
+      <div class="passed">
+        <ul class="fr mr-20 mt-5">
+          <li routerLink="/simple/reg/register" class="br">注册</li>
+          <li routerLink="../forget-password">忘记密码？</li>
+        </ul>
       </div>
     </div>
-    <!--表单底部end-->
-  </form>
+  </div>
+  <!--表单底部end-->
+</form>
 <!--登录验证的表单end-->
 

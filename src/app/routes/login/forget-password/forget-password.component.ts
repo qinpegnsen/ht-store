@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Setting} from "../../../public/setting/setting";
 import {LoginService} from "../login.service";
 import {NzMessageService} from "ng-zorro-antd";
@@ -13,12 +13,14 @@ export class ForgetPasswordComponent implements OnInit {
   app = Setting.APP; //平台基本信息
 
 
-  constructor(public loginService: LoginService, public _message: NzMessageService) { }
+  constructor(public loginService: LoginService, public _message: NzMessageService) {
+  }
 
   ngOnInit() {
     const _this = this;
     _this.loginService.routerSkip(_this.current);//根据操作步骤跳到相应页面
   }
+
   /**
    * 回到上一步
    */
