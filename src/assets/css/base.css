@@ -2,8 +2,64 @@
  * 此文件定义公共的全局样式
  */
 
-body{
+body {
   overflow: hidden;
+}
+
+/*表单中label字体大小*/
+._form label {
+  font-size: 14px;
+}
+/*input字体大小*/
+._form .ant-input {
+  font-size: 14px;
+  line-height: 1.6;
+}
+/*单选按钮字体大小*/
+._form .ant-radio-wrapper{
+  font-size: 14px;
+}
+/*单选按钮位置调整（用vatical-align看起来不是很协调）*/
+._form .ant-radio{
+  padding: 2px 0;
+}
+/*联动选择器字体大小*/
+._form .ant-cascader-picker{
+  font-size: 14px;
+}
+
+/*步骤条字体大小，及图标大小*/
+.lg .ant-steps .ant-steps-head-inner {
+  width: 30px;
+  height: 30px;
+  line-height: 28px;
+  border-radius: 30px;
+  font-size: 16px;
+}
+.lg .ant-steps .ant-steps-title {
+  font-size: 16px;
+  line-height: 30px;
+}
+
+/*大号switch开关，给其父元素添加“lg”类名*/
+.lg .ant-switch {
+  height: 26px;
+  min-width: 52px;
+  line-height: 24px;
+  border-radius: 24px;
+}
+.lg .ant-switch:after {
+  width: 24px;
+  height: 24px;
+  top: 0;
+}
+.lg .ant-switch-checked:after {
+  left: 100%;
+  margin-left: -24px;
+}
+.lg .ant-switch-inner {
+  font-size: 13px;
+  padding: 0 4px;
 }
 
 /*遮罩样式*/
@@ -17,29 +73,36 @@ body{
   z-index: 99999;
   background: rgba(0, 0, 0, 0.5)
 }
-.main-mask.ant-spin-nested-loading{
+
+.main-mask.ant-spin-nested-loading {
   position: fixed;
 }
 
 /*平台主色调*/
-.main-color{
+.main-color {
   color: #e82d4d;
 }
-.main-bg{
+
+.main-bg {
   background: #e82d4d;
 }
-.main-border{
+
+.main-border {
   border: 1px solid #e82d4d;
 }
-.main-border-l{
+
+.main-border-l {
   border-left: 1px solid #e82d4d;
 }
-.main-border-b{
+
+.main-border-b {
   border-bottom: 1px solid #e82d4d;
 }
-.main-border-t{
+
+.main-border-t {
   border-top: 1px solid #e82d4d;
 }
-.main-border-r{
+
+.main-border-r {
   border-right: 1px solid #e82d4d;
 }
