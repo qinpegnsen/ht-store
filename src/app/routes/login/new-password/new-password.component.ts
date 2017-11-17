@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
+import {LoginService} from "../login.service";
+import {ForgetPasswordComponent} from "../forget-password/forget-password.component";
 
 @Component({
   selector: 'app-new-password',
@@ -11,7 +13,9 @@ export class NewPasswordComponent implements OnInit {
 
   validateForm: FormGroup;//新密码的表单
 
-  constructor(public fb: FormBuilder) {
+  constructor(public fb: FormBuilder,
+              public loginService: LoginService,
+              public forgetPwd: ForgetPasswordComponent) {
     this.validateForm = this.fb.group({
       password: ['', [Validators.required]],//密码的校验
       passwordConfirmation: ['', [this.passwordConfirmationValidator]],//再次输入密码的校验
@@ -28,6 +32,8 @@ export class NewPasswordComponent implements OnInit {
       this.validateForm.controls[key].markAsDirty();
     }
     console.log(value);
+    this.forgetPwd.current += 1;
+    this.loginService.routerSkip(this.forgetPwd.current);
   };
 
   validateConfirmPassword() {
@@ -47,5 +53,12 @@ export class NewPasswordComponent implements OnInit {
       return {confirm: true, error: true};
     }
   };
+  /**
+   * 回到前一步
+   */
+  pre() {
+    this.forgetPwd.current -= 1;
+    this.loginService.routerSkip(this.forgetPwd.current);
+  }
 
 }

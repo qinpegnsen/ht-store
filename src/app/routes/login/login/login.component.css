@@ -34,7 +34,7 @@
   height: 472px;
   background: #ffffff;
   position: absolute;
-  top: 110px;
+  top: 120px;
   right: 20%;
 }
 .login-form .login-form-information{
@@ -72,5 +72,4 @@
 .login-form  .ant-form-item-with-help{
   margin-bottom: 24px;
 }
-
 

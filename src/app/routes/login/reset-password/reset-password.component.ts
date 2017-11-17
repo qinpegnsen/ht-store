@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Observable} from "rxjs/Observable";
+import {Component, OnInit} from "@angular/core";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {StepsComponent} from "../../simples/steps/steps.component";
+import {LoginService} from "../login.service";
+import {ForgetPasswordComponent} from "../forget-password/forget-password.component";
 
 @Component({
   selector: 'app-reset-password',
@@ -11,7 +13,9 @@ export class ResetPasswordComponent implements OnInit {
 
   validateForm: FormGroup;//重置密码的表单
 
-  constructor(public fb: FormBuilder) {
+  constructor(public fb: FormBuilder,
+              public loginService: LoginService,
+              public forgetPwd: ForgetPasswordComponent) {
     this.validateForm = this.fb.group({
       phone: ['', [this.phoneValidator]],//手机号的校验
       smsCode: ['', [this.samCodeValidator]],//验证码校验
@@ -28,6 +32,8 @@ export class ResetPasswordComponent implements OnInit {
       this.validateForm.controls[key].markAsDirty();
     }
     console.log(value);
+    this.forgetPwd.current += 1;
+    this.loginService.routerSkip(this.forgetPwd.current);
   };
 
 
@@ -53,5 +59,13 @@ export class ResetPasswordComponent implements OnInit {
       return {phone: true, error: true}
     }
   };
+
+  /**
+   * 获取验证码
+   * @param e
+   */
+  getCaptcha(e: MouseEvent) {
+    e.preventDefault();
+  }
 
 }

@@ -5,7 +5,10 @@
 body {
   overflow: hidden;
 }
-
+/*登录页面用户输入*/
+.login-form .login-form-information .ant-input-affix-wrapper .ant-input{
+  padding-left: 40px;
+}
 /*表单中label字体大小*/
 ._form label {
   font-size: 14px;
