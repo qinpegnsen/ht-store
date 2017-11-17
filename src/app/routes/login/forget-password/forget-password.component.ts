@@ -34,11 +34,4 @@ export class ForgetPasswordComponent implements OnInit {
     this.current += 1;
     this.loginService.routerSkip(this.current);
   }
-
-  /**
-   * 完成
-   */
-  // done() {
-  //   this._message.success('done');
-  // }
 }
