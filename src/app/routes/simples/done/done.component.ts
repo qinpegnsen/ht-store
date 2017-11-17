@@ -10,7 +10,9 @@ import {StepsComponent} from "../steps/steps.component";
 export class DoneComponent implements OnInit {
 
   constructor(public simplesService: SimplesService,
-              public steps: StepsComponent,) { }
+              public steps: StepsComponent,) {
+    this.steps.current = 3;
+  }
 
   ngOnInit() {
   }

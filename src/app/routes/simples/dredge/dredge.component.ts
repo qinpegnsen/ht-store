@@ -10,15 +10,23 @@ import {StepsComponent} from "../steps/steps.component";
 })
 export class DredgeComponent implements OnInit {
   validateForm: FormGroup;
-
+  _options: any;//三级联动区域数据
   constructor(public simplesService: SimplesService,
               public steps: StepsComponent,
               public fb: FormBuilder) {
-    this.validateForm = this.simplesService.validateForm;
+    this.steps.current = 2;
+    this._options = this.simplesService.options;
+    this.validateForm = this.simplesService.validateFormDredge;
   }
+
   ngOnInit() {
   }
 
+  _value: any[] = null;
+
+  _console(value) {
+    console.log(value);
+  }
   /**
    * 回到前一步
    */
@@ -44,6 +52,6 @@ export class DredgeComponent implements OnInit {
   };
 
   getFormControl(name) {
-    return this.validateForm.controls[ name ];
+    return this.validateForm.controls[name];
   }
 }

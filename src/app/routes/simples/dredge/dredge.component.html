@@ -1,150 +1,148 @@
 <!--开通店铺 start-->
 <div nz-row class="p-20">
-  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)" class="p-20">
-    <!--<div class="fieldset">
-      <div class="legend bb-dashed">企业基本信息</div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>企业名称</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('epName')" nzHasFeedback>
-          <nz-input formControlName="epName" [nzType]="'text'" [nzPlaceHolder]="'企业名称'" [nzSize]="'large'">
-          </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('epName').dirty&&getFormControl('epName').hasError('required')">
-            请输入企业名称！
-          </div>
-        </div>
-      </div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>企业邮箱</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('email')" nzHasFeedback>
-          <nz-input formControlName="email" [nzPlaceHolder]="'企业邮箱'" [nzType]="'email'" [nzSize]="'large'">
-          </nz-input>
-          <div nz-form-explain *ngIf="getFormControl('email').dirty&&getFormControl('email').hasError('email')">
-            请输入正确的邮箱！</div>
-          <div nz-form-explain *ngIf="getFormControl('email').dirty&&getFormControl('email').hasError('required')">
-            请输入企业邮箱！</div>
-        </div>
-      </div>
-    </div>
-
+  <form nz-form [formGroup]="validateForm" class="p-20 _form">
+    <!--店铺基本信息 start-->
     <div class="fieldset">
-      <div class="legend bb-dashed">营业执照信息</div>
+      <div class="legend bb-dashed">店铺基本信息</div>
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>账户</label>
+          <label nz-form-item-required>店铺名称</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('sellerAcct')" nzHasFeedback>
-          <nz-input formControlName="sellerAcct" [nzType]="'text'" [nzPlaceHolder]="'账户'" [nzSize]="'large'">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storeName')" nzHasFeedback>
+          <nz-input formControlName="storeName" [nzType]="'text'" [nzPlaceHolder]="'店铺名称'" [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain
-               *ngIf="getFormControl('sellerAcct').dirty&&getFormControl('sellerAcct').hasError('required')">
-            请输入您的账户！
-          </div>
-          <div nz-form-explain
-               *ngIf="getFormControl('sellerAcct').dirty&&getFormControl('sellerAcct').hasError('duplicated')">
-            账户已存在！
+               *ngIf="getFormControl('storeName').dirty&&getFormControl('storeName').hasError('required')">
+            请输入店铺名称！
           </div>
         </div>
       </div>
-    </div>
-
-    <div nz-form-item nz-row>
-      <div nz-form-label nz-col [nzSpan]="8">
-        <label nz-form-item-required>店铺编码</label>
-      </div>
-      <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('shopCode')" nzHasFeedback>
-        <nz-input formControlName="shopCode" [nzType]="'text'" [nzPlaceHolder]="'自定义店铺编码'"
-                  [nzSize]="'large'">
-        </nz-input>
-        <div nz-form-explain *ngIf="getFormControl('shopCode').dirty&&getFormControl('shopCode').hasError('required')">
-          请输入店铺编码！
+      <div nz-form-item nz-row>
+        <div nz-col [nzSpan]="8" nz-form-label>
+          <label nz-form-item-required>店铺地址</label>
         </div>
-        <div nz-form-explain
-             *ngIf="getFormControl('shopCode').dirty&&getFormControl('shopCode').hasError('duplicated')">店铺编码已存在！
-        </div>
-      </div>
-    </div>
-
-    <div nz-form-item nz-row>
-      <div nz-form-label nz-col [nzSpan]="8">
-        <label nz-form-item-required>手机号</label>
-      </div>
-      <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('phone')" nzHasFeedback>
-        <nz-input formControlName="phone" [nzPlaceHolder]="'请填写手机号'" [nzType]="'email'" [nzSize]="'large'">
-        </nz-input>
-        <div nz-form-explain *ngIf="getFormControl('phone').dirty&&getFormControl('phone').hasError('required')">
-          请输入手机号码！
-        </div>
-        <div nz-form-explain *ngIf="getFormControl('phone').dirty&&getFormControl('phone').hasError('phone')">手机号码不正确！
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('areaName')"
+             nzHasFeedback>
+          <nz-cascader formControlName="areaName" [nzSize]="'large'"
+                       [nzPlaceHolder]="'请选择'"
+                       [nzExpandTrigger]="'hover'"
+                       [nzChangeOnSelect]="true"
+                       [nzOptions]="_options"
+                       [(ngModel)]="_value"
+                       (ngModelChange)="_console($event)"
+                       (nzChange)="_console($event)">
+          </nz-cascader>
         </div>
       </div>
-    </div>
-
-    <div nz-form-item nz-row>
-      <div nz-col [nzSpan]="8" nz-form-label>
-        <label nz-form-item-required>密码</label>
-      </div>
-      <div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('password')" nzHasFeedback>
-          <nz-input formControlName="password" [nzPlaceHolder]="'请输入您的密码'" [nzType]="'password'" [nzSize]="'large'"
-                    (ngModelChange)="validateConfirmPassword()">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>详细地址</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('address')" nzHasFeedback>
+          <nz-input formControlName="address" [nzRows]="2" [nzType]="'textarea'" [nzPlaceHolder]="'请输入详细地址'" [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain
-               *ngIf="getFormControl('password').dirty&&getFormControl('password').hasError('required')">请输入您的密码！
+               *ngIf="getFormControl('address').dirty&&getFormControl('address').hasError('required')">
+            请输入详细地址！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>邮政编码</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storeZip')" nzHasFeedback>
+          <nz-input formControlName="storeZip" [nzType]="'text'" [nzPlaceHolder]="'请输入邮政编码'" [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain
+               *ngIf="getFormControl('storeZip').dirty&&getFormControl('storeZip').hasError('required')">
+            请输入邮政编码！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>商家电话</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storePhone')" nzHasFeedback>
+          <nz-input formControlName="storePhone" [nzPlaceHolder]="'请填写商家电话'" [nzType]="'tel'" [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain
+               *ngIf="getFormControl('storePhone').dirty&&getFormControl('storePhone').hasError('required')">
+            请输入商家电话！
+          </div>
+          <div nz-form-explain
+               *ngIf="getFormControl('storePhone').dirty&&getFormControl('storePhone').hasError('phone')">手机号码不正确！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>店铺logo</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storeLabel')" nzHasFeedback>
+          <label class="file-upload">
+            <i class="anticon anticon-cloud-upload-o"></i>请上传店铺logo
+            <nz-input formControlName="storeLabel" [nzType]="'file'" [nzPlaceHolder]="'店铺logo'" [nzSize]="'large'">
+            </nz-input>
+          </label>
+          <div nz-form-explain
+               *ngIf="getFormControl('storeLabel').dirty&&getFormControl('storeLabel').hasError('required')">
+            请上传店铺logo！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>店铺头像</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storeAvatar')" nzHasFeedback>
+          <label class="file-upload">
+            <i class="anticon anticon-cloud-upload-o"></i>请上传店铺头像
+            <nz-input formControlName="storeLabel" [nzType]="'file'" [nzPlaceHolder]="'店铺头像'" [nzSize]="'large'">
+            </nz-input>
+          </label>
+          <div nz-form-explain
+               *ngIf="getFormControl('storeAvatar').dirty&&getFormControl('storeAvatar').hasError('required')">
+            请上传店铺头像！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>QQ</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storeQQ')" nzHasFeedback>
+          <nz-input formControlName="storeQQ" [nzType]="'text'" [nzPlaceHolder]="'QQ'" [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain
+               *ngIf="getFormControl('storeQQ').dirty&&getFormControl('storeQQ').hasError('required')">
+            请输入店铺QQ！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>阿里旺旺账号</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storeWW')" nzHasFeedback>
+          <nz-input formControlName="storeWW" [nzType]="'text'" [nzPlaceHolder]="'阿里旺旺账号'" [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain
+               *ngIf="getFormControl('storeWW').dirty&&getFormControl('storeWW').hasError('required')">
+            请输入店铺阿里旺旺账号！
           </div>
         </div>
       </div>
     </div>
-
-    <div nz-form-item nz-row>
-      <div nz-col [nzSpan]="8" nz-form-label>
-        <label nz-form-item-required>确认密码</label>
-      </div>
-      <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('passwordConfirmation')"
-           nzHasFeedback>
-        <nz-input formControlName="passwordConfirmation" [nzType]="'password'" [nzPlaceHolder]="'请再次输入您的密码'"
-                  [nzSize]="'large'">
-        </nz-input>
-        <div nz-form-explain
-             *ngIf="getFormControl('passwordConfirmation').dirty&&getFormControl('passwordConfirmation').hasError('required')">
-          请再次输入您的密码!
-        </div>
-        <div nz-form-explain
-             *ngIf="getFormControl('passwordConfirmation').dirty&&getFormControl('passwordConfirmation').hasError('confirm')">
-          两次密码输入不一致!
-        </div>
-      </div>
-    </div>
-
-    <div nz-form-item nz-row>
-      <div nz-col [nzSpan]="8" nz-form-label>
-        <label nz-form-item-required>我是店主</label>
-      </div>
-      <div nz-col [nzSpan]="8" nz-form-control>
-        <nz-switch formControlName="isBoss">
-          <span checked>是</span>
-          <span unchecked>否</span>
-        </nz-switch>
-      </div>
-    </div>-->
-
-    <!--<div nz-form-item nz-row>
-      <div nz-col [nzOffset]="7" [nzSpan]="8" nz-form-control>
-        <button nz-button [nzType]="'primary'" [nzSize]="'large'" [disabled]="!validateForm.valid">Submit</button>
-        <button nz-button [nzSize]="'large'" (click)="resetForm($event)">Reset</button>
-      </div>
-    </div>-->
+    <!--企业基本信息 end-->
 
     <div nz-row class="text-center p-20 bt">
-      <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="pre()">
+      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-o" (click)="pre()">
         <span>上一步</span>
       </button>
-      <button nz-button [nzType]="'default'" [nzSize]="'large'">
-        <span>下一步</span>
+      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn" (click)="submitForm($event,validateForm.value)" >
+        <span>完成</span>
       </button>
     </div>
   </form>

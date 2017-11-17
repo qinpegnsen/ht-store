@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Observable} from "rxjs/Observable";
+import {Component, OnInit} from "@angular/core";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {SimplesService} from "../simples.service";
 import {StepsComponent} from "../steps/steps.component";
 
@@ -11,14 +10,22 @@ import {StepsComponent} from "../steps/steps.component";
 })
 export class CompleteComponent implements OnInit {
   validateForm: FormGroup;
+  _options:any;//三级联动区域数据
 
   constructor(public simplesService: SimplesService,
               public steps: StepsComponent,
               public fb: FormBuilder) {
-    this.validateForm = this.simplesService.validateForm;
+    this.steps.current = 1;
+    this._options = this.simplesService.options;
+    this.validateForm = this.simplesService.validateFormComplete;
   }
   ngOnInit() {
-    this.steps.current = 1;
+  }
+
+  _value: any[] = null;
+
+  _console(value) {
+    console.log(value);
   }
 
   /**
@@ -40,7 +47,7 @@ export class CompleteComponent implements OnInit {
      this.validateForm.controls[ key ].markAsDirty();
      }*/
     console.log(value);
-    console.log(this.validateForm);
+    // console.log(this.validateForm);
     this.steps.current += 1;
     this.simplesService.routerSkip(this.steps.current);
   };

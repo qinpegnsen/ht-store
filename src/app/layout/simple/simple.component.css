@@ -1,6 +1,11 @@
 .layout-simple{
   height: 100%;
+  overflow: auto;
   font-family: 'Microsoft YaHei';
+  padding-top: 45px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 /*logo样式*/
 .layout-simple .logo img{
@@ -11,9 +16,14 @@
 .layout-simple .ant-layout-header{
   font-size: 16px;
   background: white;
+  width: 100%;
   height: 45px;
   line-height: 45px;
   border-bottom: 1px solid #e82d4d;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
 }
 .layout-simple .ant-layout-header ul li{
   display: inline;
@@ -26,8 +36,13 @@
 }
 /*中间样式*/
 .layout-simple .ant-layout-content{
-  margin: 20px auto 0 auto;
-  width: 1200px;
+  margin: 0 auto;
+  width: 100%;
   /*background: white;*/
   font-size: 14px;
+}
+.layout-simple .content-wrap{
+  width: 1200px;
+  padding-top: 20px;
+  margin: auto;
 }

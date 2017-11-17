@@ -1,0 +1,51 @@
+
+/*主题色步骤条，父级需要有类名"thc"(theme-color)*/
+.thc .ant-steps .ant-steps-item.ant-steps-status-process .ant-steps-head-inner {
+  border-color: #e82d4d;
+  background-color: #e82d4d;
+}
+.thc .ant-steps .ant-steps-item.ant-steps-status-finish .ant-steps-head-inner > .ant-steps-icon {
+  color: #e82d4d;
+}
+.thc .ant-steps .ant-steps-item.ant-steps-status-finish .ant-steps-head-inner {
+  border-color: #e82d4d;
+  background-color: #fff;
+}
+.thc .ant-steps .ant-steps-item.ant-steps-status-finish .ant-steps-tail > i:after {
+  width: 100%;
+  background: #e82d4d;
+  transition: all .6s;
+  opacity: 1;
+  box-shadow: 0 0 0 0 #e82d4d;
+  animation: tailEffect .4s;
+}
+
+/*主题色switch开关*/
+.thc .ant-switch-checked {
+  background-color: #e82d4d;
+}
+
+
+/*空心红色按钮*/
+.thc-btn-o.ant-btn {
+  border-color: #d9d9d9;
+  background-color: #ffffff;
+  color: #999;
+}
+.thc-btn-o.ant-btn:hover, .thc-btn-o.ant-btn:focus {
+  color: #e82d4d;
+  background-color: #fff;
+  border-color: #e82d4d;
+}
+
+/*实心红色按钮*/
+.thc-btn.ant-btn {
+  border-color: #e82d4d;
+  background-color: #fff;
+  color: #e82d4d;
+}
+.thc-btn.ant-btn:hover, .thc-btn.ant-btn:focus {
+  color: #fff;
+  background-color: #e82d4d;
+  border-color: #e82d4d;
+}

@@ -1,8 +1,8 @@
-<div class="bg-white p-20">
+<div class="reg bg-white p-20">
 
   <!--步骤 start-->
   <div class="step">
-    <nz-steps [(nzCurrent)]="current">
+    <nz-steps [(nzCurrent)]="current" class="lg thc">
       <nz-step [nzTitle]="'企业注册'"></nz-step>
       <nz-step [nzTitle]="'企业入驻'"></nz-step>
       <nz-step [nzTitle]="'开通商铺'"></nz-step>
@@ -12,7 +12,7 @@
 
   <!--步骤 end-->
 
-  <section class="reg-content b">
+  <section class="reg-content">
 
     <!--路由嵌套-业务处理区域 start-->
     <router-outlet></router-outlet>

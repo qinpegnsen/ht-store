@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
       this.validateForm.controls[ key ].markAsDirty();
     }*/
     console.log(value);
-    console.log(this.validateForm);
+    // console.log(this.validateForm);
     this.steps.current += 1;
     this.simplesService.routerSkip(this.steps.current);
   };
@@ -38,6 +38,10 @@ export class RegisterComponent implements OnInit {
     return this.validateForm.controls[ name ];
   }
 
+  getCaptcha(event){
+    console.log("█ $event ►►►",  event);
+    alert('你点击了获取验证码')
+  }
 
 
 }

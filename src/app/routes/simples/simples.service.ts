@@ -2,15 +2,53 @@ import { Injectable } from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
+import {PatternService} from "../../public/service/pattern.service";
+
+
+const options = [{
+  value: 'zhejiang',
+  label: 'Zhejiang',
+  children: [{
+    value: 'hangzhou',
+    label: 'Hangzhou',
+    children: [{
+      value: 'xihu',
+      label: 'West Lake',
+      isLeaf: true
+    }],
+  }, {
+    value: 'ningbo',
+    label: 'Ningbo',
+    isLeaf: true
+  }],
+}, {
+  value: 'jiangsu',
+  label: 'Jiangsu',
+  children: [{
+    value: 'nanjing',
+    label: 'Nanjing',
+    children: [{
+      value: 'zhonghuamen',
+      label: 'Zhong Hua Men',
+      isLeaf: true
+    }],
+  }],
+}];
 
 @Injectable()
 export class SimplesService {
-  validateForm: FormGroup;
+  validateForm: FormGroup;          //企业注册表单
+  validateFormComplete: FormGroup;  //企业入驻表单
+  validateFormDredge: FormGroup;    //企业开通店铺表单
+  options:any;
 
   constructor(public router: Router,
+              public patterns: PatternService,
               public fb: FormBuilder) {
+    this.options = options
+
+    //企业注册表单项校验
     this.validateForm = this.fb.group({
-      epName              : [ '', [ Validators.required ], [ this.userNameAsyncValidator ] ],
       sellerAcct          : [ '', [ Validators.required ], [ this.userNameAsyncValidator ] ],
       shopCode            : [ '', [ Validators.required ], [ this.userNameAsyncValidator ] ],
       phone               : [ '', [ this.phoneValidator ] ],
@@ -19,6 +57,65 @@ export class SimplesService {
       passwordConfirmation: [ '', [ this.passwordConfirmationValidator ] ],
       email               : [ '', [ this.emailValidator ] ],
       isBoss              : [ true ]
+    });
+
+    //企业入驻表单项校验
+    this.validateFormComplete = this.fb.group({
+      epName                          : [ '', [ Validators.required ], [ this.userNameAsyncValidator ] ],//企业名称
+      epCode                          : [ '', [ this.stringValidator ] ],//企业编码
+      sellerAcct                      : [ '', [ this.stringValidator ] ],//商家账户
+      sellerCode                      : [ '', [ this.stringValidator ] ],//商家编码
+      contactsName                    : [ '', [ Validators.required ], [ this.userNameAsyncValidator ] ],//联系人姓名
+      contactsPhone                   : [ '', [ this.phoneValidator ] ],//联系人手机号
+      contactsEmail                   : [ '', [ this.emailValidator ] ],//企业邮箱
+      businessLicence                 : [ '', [ this.stringValidator ] ],//营业执照注册号
+      businessLicenceAddress          : [ [], [ this.addressValidator ] ],//地址
+      businessLicenceAreaCode         : [ '', [ this.stringValidator ] ],//营业执照所在地区编码
+      businessLicenceAreaName         : [ '', [ this.stringValidator ] ],//营业执照所在地区名称
+      businessLicenceSphere           : [ '', [ this.stringValidator ] ],//法定经营范围
+      businessLicenceStart            : [ '', [ this.stringValidator ] ],//营业执照有效起始日期
+      businessLicenceEnd              : [ '', [ this.stringValidator ] ],//营业执照有效结束日期
+      businessRegisteredCapital       : [ '', [ this.stringValidator ] ],//注册资本
+      creditCode                      : [ '', [ this.stringValidator ] ],//社会信用代码
+      organizationCode                : [ '', [ this.stringValidator ] ],//组织机构代码
+      legalPersonName                 : [ '', [ this.stringValidator ] ],//法人姓名
+      legalPersonIdcard               : [ '', [ this.stringValidator ] ],//法人身份证号
+      idcardStartTime                 : [ '', [ this.stringValidator ] ],//法人身份证有效起始日期
+      idcardEndTime                   : [ '', [ this.stringValidator ] ],//法人身份证有效结束日期
+      bankAccountName                 : [ '', [ this.stringValidator ] ],//银行开户名
+      bankAccountNumber               : [ '', [ this.stringValidator ] ],//公司银行账号
+      bankName                        : [ '', [ this.stringValidator ] ],//开户行支行名称
+      bankCode                        : [ '', [ this.stringValidator ] ],//开户支行联行号
+      bankAddress                     : [ '', [ this.stringValidator ] ],//开户银行地址
+      bankLicenceElectronic           : [ '', [ this.stringValidator ] ],//组织机构代码
+      isSettlementAccount             : [ '', [ this.stringValidator ] ],//是否为结算账户
+      settlementBankAccountName       : [ '', [ this.stringValidator ] ],//结算银行开户名
+      settlementBankAccountNumber     : [ '', [ this.stringValidator ] ],//结算银行账号
+      settlementBankName              : [ '', [ this.stringValidator ] ],//结算账户开户行支行名称
+      settlementBankCode              : [ '', [ this.stringValidator ] ],//结算账户开户行支行联行号
+      settlementBankAddress           : [ '', [ this.addressValidator ] ],//结算账户开户行所在地
+      taxRegistrationCertificate      : [ '', [ this.stringValidator ] ],//税务登记证号
+      generalTaxPayer                 : [ '', [ this.stringValidator ] ],//一般纳税人证明
+      taxPayerId                      : [ '', [ this.stringValidator ] ],//纳税人识别号
+      taxRegistrationCertificateElectronic: [ '', [ this.stringValidator ] ],//纳税登记证电子版
+      organizationCodeElectronic      : [ null ],//组织机构代码电子版
+      businessLicenceNumberElectronic : [ null ],//电子版营业执照
+      idType                          : [ 1 ],//证件类型
+    });
+
+    //企业开通店铺表单项校验
+    this.validateFormDredge = this.fb.group({
+      storeName            : [ '', [ this.stringValidator ] ],//店铺名称
+      areaName             : [ '', [ this.addressValidator ] ],//店铺所在地区
+      areaCode             : [ '', [ this.stringValidator ] ],//店铺所在区域编码
+      areaFullName         : [ '', [ this.stringValidator ] ],//店铺所在区域全称
+      address              : [ '', [ this.stringValidator ] ],//详细地址
+      storeZip             : [ '', [ this.stringValidator ] ],//邮政编码
+      storeLabel           : [ '', [ this.stringValidator ] ],//店铺logo
+      storeAvatar          : [ '', [ this.stringValidator ] ],//店铺头像
+      storeQQ              : [ '', [ this.stringValidator ] ],//QQ
+      storeWW              : [ '', [ this.stringValidator ] ],//阿里旺旺
+      storePhone           : [ '', [ this.stringValidator ] ]//商家电话
     });
   }
 
@@ -66,10 +163,9 @@ export class SimplesService {
    * @returns {any}
    */
   phoneValidator = (control: FormControl): any => {
-    const PHONE = /^1[0-9]{10}$/;
     if (!control.value) {
       return { required: true }
-    } else if (!PHONE.test(control.value)) {
+    } else if (!this.patterns.PHONE.test(control.value)) {
       return { phone: true, error: true }
     }
   };
@@ -80,10 +176,9 @@ export class SimplesService {
    * @returns {any}
    */
   smsCodeValidator = (control: FormControl): any => {
-    const SMS = /\d{6}/;
     if (!control.value) {
       return { required: true }
-    } else if (!SMS.test(control.value)) {
+    } else if (!this.patterns.SMS.test(control.value)) {
       return { smsCode: true, error: true }
     }
   };
@@ -94,11 +189,21 @@ export class SimplesService {
    * @returns {any}
    */
   pwdValidator = (control: FormControl): any => {
-    const PWD = /[A-Za-z0-9]{6,}/;
     if (!control.value) {
       return { required: true }
-    } else if (!PWD.test(control.value)) {
+    } else if (!this.patterns.PWD.test(control.value)) {
       return { smsCode: true, error: true }
+    }
+  };
+
+  /**
+   * 字符串
+   * @param control
+   * @returns {any}
+   */
+  stringValidator = (control: FormControl): any => {
+    if (!control.value) {
+      return { required: true }
     }
   };
 
@@ -130,11 +235,23 @@ export class SimplesService {
    * @returns {any}
    */
   emailValidator = (control: FormControl): { [s: string]: boolean } => {
-    const EMAIL_REGEXP = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
     if (!control.value) {
       return { required: true }
-    } else if (!EMAIL_REGEXP.test(control.value)) {
+    } else if (!this.patterns.EMAIL_REGEXP.test(control.value)) {
       return { error: true, email: true };
+    }
+  };
+
+  /**
+   * 邮箱校验
+   * @param control
+   * @returns {any}
+   */
+  addressValidator = (control: FormControl): { [s: string]: boolean } => {
+    if (!control.value) {
+      return { required: true }
+    } else if (control.value.length < 3) {
+      return { error: true, address: true };
     }
   };
 
