@@ -38,7 +38,7 @@ export class ForgetPasswordComponent implements OnInit {
   /**
    * 完成
    */
-  done() {
-    this._message.success('done');
-  }
+  // done() {
+  //   this._message.success('done');
+  // }
 }
