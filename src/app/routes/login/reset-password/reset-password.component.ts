@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {StepsComponent} from "../../simples/steps/steps.component";
 import {LoginService} from "../login.service";
 import {ForgetPasswordComponent} from "../forget-password/forget-password.component";
 
@@ -66,6 +65,7 @@ export class ResetPasswordComponent implements OnInit {
    */
   getCaptcha(e: MouseEvent) {
     e.preventDefault();
+    alert('获取验证码')
   }
 
 }
