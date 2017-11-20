@@ -10,7 +10,7 @@ import {AngularEchartsModule} from "ngx-echarts";
     CommonModule,                 //核心模块，必须
     FormsModule,                  //表单支持
     ReactiveFormsModule,          //表单支持
-    AngularEchartsModule,
+    AngularEchartsModule,         //百度echarts图表插件
     NgZorroAntdModule.forRoot()   //zorroUI库
   ],
   declarations: [],
@@ -20,7 +20,7 @@ import {AngularEchartsModule} from "ngx-echarts";
     RouterModule,           //路由依赖模块
     FormsModule,            //表单支持
     ReactiveFormsModule,    //表单支持
-    AngularEchartsModule,
+    AngularEchartsModule,   //百度echarts图表插件
     NgZorroAntdModule       //zorroUI库
   ]
 })
