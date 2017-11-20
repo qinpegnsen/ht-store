@@ -1,9 +1,6 @@
 /**
  * 分页对象
  */
-import {Injectable} from "@angular/core";
-
-@Injectable()
 export class Page {
   curPage: number;
   lastPage: boolean;
