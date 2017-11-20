@@ -31,9 +31,9 @@
   <!--表单用户名input框start-->
   <div nz-form-item class="login-form-information">
     <div nz-form-control [nzValidateStatus]="validateForm.controls.userName">
-      <nz-input formControlName="userName" class="font16" [nzPlaceHolder]="'请填写用户名'" [nzSize]="'large'">
+      <nz-input formControlName="userName" [nzPlaceHolder]="'请填写用户名'" [nzSize]="'large'">
         <ng-template #prefix>
-          <i class="anticon anticon-user font18 pl-5"></i>
+          <i class="anticon anticon-user font18"></i>
         </ng-template>
       </nz-input>
       <div nz-form-explain
@@ -48,7 +48,7 @@
     <div nz-form-control [nzValidateStatus]="validateForm.controls.password">
       <nz-input formControlName="password" [nzType]="'password'" [nzPlaceHolder]="'密码'" [nzSize]="'large'">
         <ng-template #prefix>
-          <i class="anticon anticon-lock font18 pl-5"></i>
+          <i class="anticon anticon-lock font18"></i>
         </ng-template>
       </nz-input>
       <div nz-form-explain

@@ -1,16 +1,19 @@
-
-/*主题色步骤条，父级需要有类名"thc"(theme-color)*/
+/******************当前使用的ng-zorro框架中，内置皮肤与当前项目不符，此处重新定义皮肤 *********************************/
+/*主题色步骤条，父级需要有类名"thc"(theme-color)，用法：<nz-steps class="thc...>*/
 .thc .ant-steps .ant-steps-item.ant-steps-status-process .ant-steps-head-inner {
   border-color: #e82d4d;
   background-color: #e82d4d;
 }
+
 .thc .ant-steps .ant-steps-item.ant-steps-status-finish .ant-steps-head-inner > .ant-steps-icon {
   color: #e82d4d;
 }
+
 .thc .ant-steps .ant-steps-item.ant-steps-status-finish .ant-steps-head-inner {
   border-color: #e82d4d;
   background-color: #fff;
 }
+
 .thc .ant-steps .ant-steps-item.ant-steps-status-finish .ant-steps-tail > i:after {
   width: 100%;
   background: #e82d4d;
@@ -20,11 +23,10 @@
   animation: tailEffect .4s;
 }
 
-/*主题色switch开关*/
+/*主题色switch开关,用法：<nz-switch class="lg ...>*/
 .thc .ant-switch-checked {
   background-color: #e82d4d;
 }
-
 
 /*空心红色按钮*/
 .thc-btn-o.ant-btn {
@@ -32,6 +34,7 @@
   background-color: #ffffff;
   color: #999;
 }
+
 .thc-btn-o.ant-btn:hover, .thc-btn-o.ant-btn:focus {
   color: #e82d4d;
   background-color: #fff;
@@ -44,8 +47,22 @@
   background-color: #fff;
   color: #e82d4d;
 }
+
 .thc-btn.ant-btn:hover, .thc-btn.ant-btn:focus {
-  color: #fff;
+  color: white;
   background-color: #e82d4d;
   border-color: #e82d4d;
+}
+
+/*主题色外发光按钮*/
+.thc-btn-w.ant-btn {
+  border-color: #e82d4d;
+  background-color: #fff;
+  color: #e82d4d;
+}
+
+.thc-btn-w.ant-btn:hover, .thc-btn-w.ant-btn:focus {
+  color: #e82d4d;
+  border-color: #e82d4d;
+  box-shadow: 0 0 10px #a0a0a0;
 }

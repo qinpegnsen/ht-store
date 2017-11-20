@@ -1,6 +1,6 @@
 <!--开通店铺 start-->
 <div nz-row class="p-20">
-  <form nz-form [formGroup]="validateForm" class="p-20 _form">
+  <form nz-form [formGroup]="validateForm" class="p-20">
     <!--店铺基本信息 start-->
     <div class="fieldset">
       <div class="legend bb-dashed">店铺基本信息</div>
@@ -141,7 +141,7 @@
       <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-o" (click)="pre()">
         <span>上一步</span>
       </button>
-      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn" (click)="submitForm($event,validateForm.value)" >
+      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w" (click)="submitForm($event,validateForm.value)" >
         <span>完成</span>
       </button>
     </div>

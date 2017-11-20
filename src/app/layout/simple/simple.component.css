@@ -1,5 +1,5 @@
 .layout-simple{
-  height: 100%;
+  min-height: 100%;
   overflow: auto;
   font-family: 'Microsoft YaHei';
   padding-top: 45px;

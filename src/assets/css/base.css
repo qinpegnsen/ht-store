@@ -1,40 +1,56 @@
 /**
  * 此文件定义公共的全局样式
  */
+html,body{
+  margin:0;
+  padding:0;
+  height: 100%!important;
+}
+.hawthorn-store{
+  height: 100%;
+}
 
-body {
-  overflow: hidden;
-}
-/*登录页面用户输入*/
-.login-form .login-form-information .ant-input-affix-wrapper .ant-input{
-  padding-left: 40px;
-}
-/*表单中label字体大小*/
-._form label {
+/******************当前使用的ng-zorro框架中，很多内置样式与当前项目不符，此处进行覆盖重写 start************************/
+/*重写表单中label字体大小*/
+.hawthorn-store label {
   font-size: 14px;
 }
 
-/*input字体大小*/
-._form .ant-input {
+/*重写input字体大小*/
+.hawthorn-store .ant-input {
   font-size: 14px;
   line-height: 1.6;
 }
 
-/*单选按钮字体大小*/
-._form .ant-radio-wrapper {
+/*重写单选按钮字体大小*/
+.hawthorn-store .ant-radio-wrapper {
   font-size: 14px;
 }
 
 /*单选按钮位置调整（用vatical-align看起来不是很协调）*/
-._form .ant-radio {
+.hawthorn-store .ant-radio {
   padding: 2px 0;
 }
 
-/*联动选择器字体大小*/
-._form .ant-cascader-picker {
+/*下拉选择箭头大小*/
+:root .hawthorn-store .ant-cascader-picker-arrow {
   font-size: 14px;
 }
-/*步骤条字体大小，及图标大小*/
+
+/*联动选择器字体大小*/
+.hawthorn-store .ant-cascader-picker {
+  font-size: 14px;
+}
+
+/*日期插件中图标大小*/
+.hawthorn-store .ant-calendar-picker-icon:after {
+  font-size: 14px;
+}
+
+/******************当前使用的ng-zorro框架中，很多内置样式与当前项目不符，此处进行覆盖重写 end**************************/
+
+/******************当前使用的ng-zorro框架中，很多内置样式与当前项目不符，此处进行扩展 start****************************/
+/*步骤条字体大小，及图标大小，用法：<nz-steps class="lg ...>*/
 .lg .ant-steps .ant-steps-head-inner {
   width: 30px;
   height: 30px;
@@ -48,7 +64,7 @@ body {
   line-height: 30px;
 }
 
-/*大号switch开关，给其父元素添加“lg”类名*/
+/*大号switch开关，给其父元素添加“lg”类名，用法：<nz-switch class="lg ...>*/
 .lg .ant-switch {
   height: 26px;
   min-width: 52px;
@@ -72,6 +88,9 @@ body {
   padding: 0 4px;
 }
 
+/******************当前使用的ng-zorro框架中，很多内置样式与当前项目不符，此处进行扩展 end******************************/
+
+/***************************************公共样式定义 start*************************************************************/
 /*遮罩样式*/
 .main-mask {
   width: 100%;
@@ -163,3 +182,5 @@ label.file-upload > .anticon {
   top: 0;
   z-index: -1;
 }
+
+/***************************************公共样式定义 end***************************************************************/

@@ -1,14 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AppComponent} from './app.component';
 import {SharedModule} from "./shared/shared.module";
 import {PublicModule} from "./public/public.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { MainComponent } from './layout/main/main.component';
+import {MainComponent} from './layout/main/main.component';
 import {RoutesModule} from "./routes/routes.module";
-import { SimpleComponent } from './layout/simple/simple.component';
-import { PageComponent } from './layout/page/page.component';
-
+import {SimpleComponent} from './layout/simple/simple.component';
+import {PageComponent} from './layout/page/page.component';
+declare var $: any;
 
 @NgModule({
   declarations: [
@@ -27,4 +27,11 @@ import { PageComponent } from './layout/page/page.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    //解决页面底部溢出15px问题
+    setTimeout(() => {
+      console.log($("#trans-tooltip").parent().css("margin-top", "-15px"));
+    });
+  }
+}
