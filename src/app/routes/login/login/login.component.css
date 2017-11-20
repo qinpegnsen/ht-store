@@ -54,12 +54,15 @@
   height: 100px;
   line-height: 100px;
   text-align: center;
-  color: #f56600;
+  color: #e82d4d;
 }
 
 .login-form .passed ul li {
   display: inline;
   padding: 0 15px;
+}
+.login-form .passed ul li button{
+  border: 0;
 }
 
 .login-form .passed ul li:hover {
@@ -68,13 +71,13 @@
 }
 
 .login-form .ant-btn-primary {
-  background-color: #f56600;
-  border-color: #f56600;
+  background-color: #e82d4d;
+  border-color:#e82d4d;
 }
 
 .login-form .ant-btn-primary:hover, .ant-btn-primary:focus {
-  background-color: #f56600;
-  border-color: #f56600;
+  background-color: #e82d4d;
+  border-color: #e82d4d;
 }
 
 .login-form nz-input {
@@ -86,3 +89,9 @@
   margin-bottom: 24px;
 }
 
+.login-form .ant-btn-dashed:hover{
+  color: #e82d4d;
+}
+.login-form .ant-btn-dashed:active{
+  color: #e82d4d;
+}
