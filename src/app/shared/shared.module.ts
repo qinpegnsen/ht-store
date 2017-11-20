@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import {NgZorroAntdModule} from "ng-zorro-antd";
 import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AngularEchartsModule} from "ngx-echarts";
 
 @NgModule({
   imports: [
     CommonModule,                 //核心模块，必须
     FormsModule,                  //表单支持
     ReactiveFormsModule,          //表单支持
+    AngularEchartsModule,
     NgZorroAntdModule.forRoot()   //zorroUI库
   ],
   declarations: [],
@@ -18,6 +20,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     RouterModule,           //路由依赖模块
     FormsModule,            //表单支持
     ReactiveFormsModule,    //表单支持
+    AngularEchartsModule,
     NgZorroAntdModule       //zorroUI库
   ]
 })
