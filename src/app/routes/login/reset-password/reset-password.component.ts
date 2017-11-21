@@ -12,24 +12,24 @@ export class ResetPasswordComponent implements OnInit {
 
   validateForm: FormGroup;//重置密码的表单
 
-  constructor(public fb: FormBuilder,
-              public loginService: LoginService,
-              public forgetPwd: ForgetPasswordComponent) {
-    this.validateForm = this.fb.group({
-      phone: ['', [this.phoneValidator]],//手机号的校验
-      smsCode: ['', [this.samCodeValidator]],//验证码校验
-    });
+  constructor(public loginService: LoginService, public forgetPwd: ForgetPasswordComponent) {
+    this.validateForm = this.loginService.validateFormReset;////重置密码的表单
   }
 
   ngOnInit() {
 
   }
 
+  /**
+   * 提交表单（点击下一步按钮时会提交表单，成功后跳转下一步）
+   * @param $event
+   * @param value
+   */
   submitForm = ($event, value) => {
     $event.preventDefault();
-    for (const key in this.validateForm.controls) {
-      this.validateForm.controls[key].markAsDirty();
-    }
+    // for (const key in this.validateForm.controls) {
+    //   this.validateForm.controls[key].markAsDirty();
+    // }
     console.log(value);
     this.forgetPwd.current += 1;
     this.loginService.routerSkip(this.forgetPwd.current);
@@ -41,23 +41,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
 
-  samCodeValidator = (control: FormControl): any => {
-    const SMS = /\d{6}/;
-    if (!control.value) {
-      return {required: true}
-    } else if (!SMS.test(control.value)) {
-      return {smsCode: true, error: true}
-    }
-  };
 
-  phoneValidator = (control: FormControl): any => {
-    const PHONE = /^1[0-9]{10}$/;
-    if (!control.value) {
-      return {required: true}
-    } else if (!PHONE.test(control.value)) {
-      return {phone: true, error: true}
-    }
-  };
 
   /**
    * 获取验证码
