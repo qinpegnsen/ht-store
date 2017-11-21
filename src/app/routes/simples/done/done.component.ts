@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {SimplesService} from "../simples.service";
-import {StepsComponent} from "../steps/steps.component";
 
 @Component({
   selector: 'app-done',
@@ -9,19 +8,11 @@ import {StepsComponent} from "../steps/steps.component";
 })
 export class DoneComponent implements OnInit {
 
-  constructor(public simplesService: SimplesService,
-              public steps: StepsComponent,) {
-    this.steps.current = 3;
+  constructor(public simplesService: SimplesService) {
+    this.simplesService.current = 3;
+    this.simplesService.routerSkip();
   }
 
   ngOnInit() {
-  }
-
-  /**
-   * 回到前一步
-   */
-  pre() {
-    this.steps.current -= 1;
-    this.simplesService.routerSkip(this.steps.current);
   }
 }

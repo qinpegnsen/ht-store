@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
+import {Component, OnInit} from "@angular/core";
+import {FormGroup} from "@angular/forms";
 import {SimplesService} from "../simples.service";
-import {StepsComponent} from "../steps/steps.component";
 
 @Component({
   selector: 'app-dredge',
@@ -11,10 +10,9 @@ import {StepsComponent} from "../steps/steps.component";
 export class DredgeComponent implements OnInit {
   validateForm: FormGroup;
   _options: any;//三级联动区域数据
-  constructor(public simplesService: SimplesService,
-              public steps: StepsComponent,
-              public fb: FormBuilder) {
-    this.steps.current = 2;
+  constructor(public simplesService: SimplesService) {
+    this.simplesService.current = 2;
+    this.simplesService.routerSkip();
     this._options = this.simplesService.options;
     this.validateForm = this.simplesService.validateFormDredge;
   }
@@ -22,17 +20,8 @@ export class DredgeComponent implements OnInit {
   ngOnInit() {
   }
 
-  _value: any[] = null;
-
   _console(value) {
-    console.log(value);
-  }
-  /**
-   * 回到前一步
-   */
-  pre() {
-    this.steps.current -= 1;
-    this.simplesService.routerSkip(this.steps.current);
+    // console.log(value);
   }
 
   /**
@@ -47,8 +36,6 @@ export class DredgeComponent implements OnInit {
      }*/
     console.log(value);
     console.log(this.validateForm);
-    this.steps.current += 1;
-    this.simplesService.routerSkip(this.steps.current);
   };
 
   getFormControl(name) {

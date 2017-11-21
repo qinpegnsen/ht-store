@@ -1,7 +1,6 @@
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormGroup} from "@angular/forms";
 import {SimplesService} from "../simples.service";
-import {StepsComponent} from "../steps/steps.component";
 
 @Component({
   selector: 'app-complete',
@@ -10,30 +9,20 @@ import {StepsComponent} from "../steps/steps.component";
 })
 export class CompleteComponent implements OnInit {
   validateForm: FormGroup;
-  _options:any;//三级联动区域数据
+  _options: any;//三级联动区域数据
 
-  constructor(public simplesService: SimplesService,
-              public steps: StepsComponent,
-              public fb: FormBuilder) {
-    this.steps.current = 1;
+  constructor(public simplesService: SimplesService) {
+    this.simplesService.current = 1;
+    this.simplesService.routerSkip();
     this._options = this.simplesService.options;
     this.validateForm = this.simplesService.validateFormComplete;
   }
+
   ngOnInit() {
   }
 
-  _value: any[] = null;
-
   _console(value) {
-    console.log(value);
-  }
-
-  /**
-   * 回到前一步
-   */
-  pre() {
-    this.steps.current -= 1;
-    this.simplesService.routerSkip(this.steps.current);
+    // console.log(value);
   }
 
   /**
@@ -41,18 +30,17 @@ export class CompleteComponent implements OnInit {
    * @param $event
    * @param value
    */
-  submitForm = ($event, value) => {
+  submitCompleteForm = ($event, value) => {
     $event.preventDefault();
     /*for (const key in this.validateForm.controls) {
      this.validateForm.controls[ key ].markAsDirty();
      }*/
     console.log(value);
-    // console.log(this.validateForm);
-    this.steps.current += 1;
-    this.simplesService.routerSkip(this.steps.current);
+    let formValue = value;
+    this.simplesService.addSeller(formValue);
   };
 
   getFormControl(name) {
-    return this.validateForm.controls[ name ];
+    return this.validateForm.controls[name];
   }
 }

@@ -1,7 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {FormGroup} from "@angular/forms";
 import {SimplesService} from "../simples.service";
-import {StepsComponent} from "../steps/steps.component";
 
 @Component({
   selector: 'app-register',
@@ -11,11 +10,12 @@ import {StepsComponent} from "../steps/steps.component";
 export class RegisterComponent implements OnInit {
   validateForm: FormGroup;
 
-  constructor(public simplesService: SimplesService,
-              public steps:StepsComponent) {
+  constructor(public simplesService: SimplesService) {
     this.validateForm = this.simplesService.validateForm;
+    this.simplesService.current = 0;
   }
   ngOnInit() {
+    this.simplesService.routerSkip();
   }
 
   /**
@@ -23,15 +23,17 @@ export class RegisterComponent implements OnInit {
    * @param $event
    * @param value
    */
-  submitForm = ($event, value) => {
+
+  submitRegisterForm = ($event, value) => {
     $event.preventDefault();
-    /*for (const key in this.validateForm.controls) {
-      this.validateForm.controls[ key ].markAsDirty();
-    }*/
+    for (const key in this.validateForm.controls) {
+     this.validateForm.controls[ key ].markAsDirty();
+     }
     console.log(value);
-    // console.log(this.validateForm);
-    this.steps.current += 1;
-    this.simplesService.routerSkip(this.steps.current);
+    let formValue = value;
+    if(value.isBoss) formValue.isBoss = 'Y';
+    if(!value.isBoss) formValue.isBoss = 'N';
+    this.simplesService.addSeller(formValue);
   };
 
   getFormControl(name) {

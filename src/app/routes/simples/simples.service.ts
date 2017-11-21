@@ -1,8 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
 import {PatternService} from "../../public/service/pattern.service";
+import {isNullOrUndefined} from "util";
+import {AjaxService} from "../../public/service/ajax.service";
+import {SettingUrl} from "../../public/setting/setting_url";
+import {NzMessageService, NzNotificationService} from "ng-zorro-antd";
 
 
 const options = [{
@@ -41,21 +45,23 @@ export class SimplesService {
   validateFormComplete: FormGroup;  //企业入驻表单
   validateFormDredge: FormGroup;    //企业开通店铺表单
   options:any;
+  current:number = 0;
 
   constructor(public router: Router,
               public patterns: PatternService,
+              public _message: NzMessageService,
+              public _notification: NzNotificationService,
               public fb: FormBuilder) {
     this.options = options
 
     //企业注册表单项校验
     this.validateForm = this.fb.group({
       sellerAcct          : [ '', [ Validators.required ], [ this.userNameAsyncValidator ] ],
-      shopCode            : [ '', [ Validators.required ], [ this.userNameAsyncValidator ] ],
-      phone               : [ '', [ this.phoneValidator ] ],
-      smsCode             : [ '', [ this.smsCodeValidator ] ],
-      password            : [ '', [ this.pwdValidator] ],
-      passwordConfirmation: [ '', [ this.passwordConfirmationValidator ] ],
-      email               : [ '', [ this.emailValidator ] ],
+      phone               : [ '', [ Validators.required ], [ this.phoneValidator ] ],
+      smsCode             : [ '', [ Validators.required ], [ this.smsCodeValidator ] ],
+      sellerPwd           : [ '', [ this.pwdValidator] ],
+      rePwd               : [ '', [ this.passwordConfirmationValidator ] ],
+      // email               : [ '', [ this.emailValidator ] ],
       isBoss              : [ true ]
     });
 
@@ -73,16 +79,16 @@ export class SimplesService {
       businessLicenceAreaCode         : [ '', [ this.stringValidator ] ],//营业执照所在地区编码
       businessLicenceAreaName         : [ '', [ this.stringValidator ] ],//营业执照所在地区名称
       businessLicenceSphere           : [ '', [ this.stringValidator ] ],//法定经营范围
-      businessLicenceStart            : [ '', [ this.stringValidator ] ],//营业执照有效起始日期
-      businessLicenceEnd              : [ '', [ this.stringValidator ] ],//营业执照有效结束日期
+      businessLicenceStart            : [ '', [ this.validateTime ] ],//营业执照有效起始日期
+      businessLicenceEnd              : [ '', [ this.validateTime ] ],//营业执照有效结束日期
       businessRegisteredCapital       : [ '', [ this.stringValidator ] ],//注册资本
       creditCode                      : [ '', [ this.stringValidator ] ],//社会信用代码
       organizationCode                : [ '', [ this.stringValidator ] ],//组织机构代码
-      legalPersonName                 : [ '', [ this.stringValidator ] ],//法人姓名
-      legalPersonIdcard               : [ '', [ this.stringValidator ] ],//法人身份证号
-      idcardStartTime                 : [ '', [ this.stringValidator ] ],//法人身份证有效起始日期
-      idcardEndTime                   : [ '', [ this.stringValidator ] ],//法人身份证有效结束日期
-      bankAccountName                 : [ '', [ this.stringValidator ] ],//银行开户名
+      legalPersonName                 : [ '', [ Validators.required ], [ this.userNameAsyncValidator ] ],//法人姓名
+      legalPersonIdcard               : [ '', [ Validators.required ], [ this.idCardNumValidator ] ],//法人身份证号
+      idcardStartTime                 : [ null, [ this.validateTime ] ],//法人身份证有效起始日期
+      idcardEndTime                   : [ null, [ this.validateTime ] ],//法人身份证有效结束日期
+      bankAccountName                 : [ '', [ Validators.required ], [ this.userNameAsyncValidator ] ],//银行开户名
       bankAccountNumber               : [ '', [ this.stringValidator ] ],//公司银行账号
       bankName                        : [ '', [ this.stringValidator ] ],//开户行支行名称
       bankCode                        : [ '', [ this.stringValidator ] ],//开户支行联行号
@@ -124,8 +130,8 @@ export class SimplesService {
    * 根据入驻步骤跳到相应页面
    * @param current （当前步骤）
    */
-  routerSkip(current){
-    switch (current) {
+  routerSkip(){
+    switch (this.current) {
       case 0 :
         this.router.navigate(['/simple/reg/register'], {replaceUrl: true})
         break;
@@ -142,18 +148,59 @@ export class SimplesService {
   }
 
   /**
+   * 注册商户
+   * @param requestDate
+   * @param callback
+   */
+  addSeller(requestDate:any){
+    const me = this;
+    AjaxService.post({
+      url: SettingUrl.URL.seller.add,
+      data: requestDate,
+      success: (res) => {
+        if (res.success) {
+          me.afterSubmit();
+        } else {
+          me._message.create('error', `出错了`)
+        }
+      },
+      error: (res) => {
+        me._notification.create('error', `接口出错了`, '接口出错了接口出错了接口出错了')
+      }
+    });
+  }
+
+  /**
+   * 表单提交成功之后执行的方法
+   */
+  afterSubmit(){
+    this.current += 1;
+    this.routerSkip();
+  }
+
+  /**
+   * 回到前一步
+   */
+  pre() {
+    this.current -= 1;
+    this.routerSkip();
+  }
+
+  /**
    * 用户名异步校验
    * @param control
    * @returns {any}
    */
   userNameAsyncValidator = (control: FormControl): any => {
     return Observable.create(function (observer) {
-      if (control.value === 'JasonWood') {
-        observer.next({ error: true, duplicated: true });
-      } else {
-        observer.next(null);
-      }
-      observer.complete();
+      setTimeout(() => {
+        if (control.value === 'JasonWood') {
+          observer.next({ error: true, duplicated: true });
+        } else {
+          observer.next(null);
+        }
+        observer.complete();
+      }, 500);
     });
   };
 
@@ -163,11 +210,7 @@ export class SimplesService {
    * @returns {any}
    */
   phoneValidator = (control: FormControl): any => {
-    if (!control.value) {
-      return { required: true }
-    } else if (!this.patterns.PHONE.test(control.value)) {
-      return { phone: true, error: true }
-    }
+    return this.asyncPatternsValidate(this.patterns.PHONE_REGEXP, control, { error: true, phone: true });
   };
 
   /**
@@ -176,11 +219,7 @@ export class SimplesService {
    * @returns {any}
    */
   smsCodeValidator = (control: FormControl): any => {
-    if (!control.value) {
-      return { required: true }
-    } else if (!this.patterns.SMS.test(control.value)) {
-      return { smsCode: true, error: true }
-    }
+    return this.asyncPatternsValidate(this.patterns.SMS_REGEXP, control, { error: true, smsCode: true });
   };
 
   /**
@@ -191,8 +230,8 @@ export class SimplesService {
   pwdValidator = (control: FormControl): any => {
     if (!control.value) {
       return { required: true }
-    } else if (!this.patterns.PWD.test(control.value)) {
-      return { smsCode: true, error: true }
+    } else if (!this.patterns.PWD_REGEXP.test(control.value)) {
+      return { pwd: true, error: true }
     }
   };
 
@@ -212,7 +251,7 @@ export class SimplesService {
    */
   validateConfirmPassword() {
     setTimeout(_ => {
-      this.validateForm.controls[ 'passwordConfirmation' ].updateValueAndValidity();
+      this.validateForm.controls[ 'rePwd' ].updateValueAndValidity();
     })
   }
 
@@ -224,7 +263,7 @@ export class SimplesService {
   passwordConfirmationValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return { required: true };
-    } else if (control.value !== this.validateForm.controls[ 'password' ].value) {
+    } else if (control.value !== this.validateForm.controls[ 'sellerPwd' ].value) {
       return { confirm: true, error: true };
     }
   };
@@ -243,7 +282,7 @@ export class SimplesService {
   };
 
   /**
-   * 邮箱校验
+   * 地址校验（地址级别对应数组长度）
    * @param control
    * @returns {any}
    */
@@ -254,5 +293,99 @@ export class SimplesService {
       return { error: true, address: true };
     }
   };
+
+  /**
+   * 身份证号校验
+   * @param control
+   * @returns {any}
+   */
+  idCardNumValidator = (control: FormControl): any => {
+    return this.asyncPatternsValidate(this.patterns.IDCARD_REGEXP, control, { error: true, idCard: true });
+  };
+
+  /**
+   * 日期
+   * @param control
+   * @returns {any}
+   */
+  validateTime = (control: FormControl): any => {
+    if (!control.value) {
+      return { required: true };
+    }
+  };
+
+  /**
+   * 排除不可选的身份证有效开始日期
+   * @param startValue
+   * @returns {boolean}
+   * @private
+   */
+  _disabledIdCardStartDate = (startValue) => {
+    if (!startValue || !this.validateFormComplete.controls[ 'idcardEndTime' ].value) {
+      return false;
+    }
+    return startValue.getTime() >= this.validateFormComplete.controls[ 'idcardEndTime' ].value.getTime();
+  };
+
+  /**
+   * 排除不可选的身份证有效结束日期
+   * @param endValue
+   * @returns {boolean}
+   * @private
+   */
+  _disabledIdCardEndDate = (endValue) => {
+    if (!endValue || !this.validateFormComplete.controls[ 'idcardStartTime' ].value) {
+      return false;
+    }
+    return endValue.getTime() <= this.validateFormComplete.controls[ 'idcardStartTime' ].value.getTime();
+  };
+
+  /**
+   * 排除不可选的营业执照有效开始日期
+   * @param startValue
+   * @returns {boolean}
+   * @private
+   */
+  _disabledBusinessLicenceStartDate = (startValue) => {
+    if (!startValue || !this.validateFormComplete.controls[ 'businessLicenceEnd' ].value) {
+      return false;
+    }
+    return startValue.getTime() >= this.validateFormComplete.controls[ 'businessLicenceEnd' ].value.getTime();
+  };
+
+  /**
+   * 排除不可选的营业执照有效结束日期
+   * @param endValue
+   * @returns {boolean}
+   * @private
+   */
+  _disabledBusinessLicenceEndDate = (endValue) => {
+    if (!endValue || !this.validateFormComplete.controls[ 'businessLicenceStart' ].value) {
+      return false;
+    }
+    return endValue.getTime() <= this.validateFormComplete.controls[ 'businessLicenceStart' ].value.getTime();
+  };
+
+  /**
+   * 输入延迟的异步正则校验方法封装
+   * 用法（this.asyncPatternsValidate(this.patterns.IDCARD_REGEXP, control, { error: true, idCard: true })
+   * @param exp
+   * @param value
+   * @param obj
+   * @returns {any}
+   */
+  asyncPatternsValidate = (exp: RegExp,control: FormControl, obj?: any) => {
+    return Observable.create(function (observer) {
+      setTimeout(() => {
+        if (!exp.test(control.value)) {
+          if(isNullOrUndefined(obj)) obj = {error: true};
+          observer.next(obj);
+        } else {
+          observer.next(null);
+        }
+        observer.complete();
+      }, 1000);
+    });
+  }
 
 }

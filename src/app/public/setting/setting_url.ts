@@ -10,10 +10,25 @@ export class SettingUrl {
       uuid: '/upload/basic/uid'    //获取上传图片的编码
     },
     /**
-     * 企业模块
+     * 企业入驻
      */
-    store: {
-      getStore: ''//获取店铺信息
+    enterpris: {
+      getStore: '/enterpris/load',//企业入驻查询
+      query: '/enterpris/query',//企业查询
+      save: '/enterpris/save',//保存或修改企业信息
+      auditPass: '/enterpris/updateToNormal',//企业审核--通过
+      auditReject: '/enterpris/updateToReject',//企业审核--驳回
+    },
+    /**
+     * 商家
+     */
+    seller: {
+      add: '/seller/addSeller',//注册商户
+      load: '/seller/loadSellerById',//加载基本商户信息
+      queryAccount: '/seller/querySellerBySellerAcc',//判断账户是否已存在
+      queryAllSellers: '/seller/querySellersByShopCode',//根据店铺编码查询店铺下所有商家账户
+      update: '/seller/updateSellerCommon',//修改商家账户基本信息
+      updatePwd: '/seller/updateSellerPwd',//修改商家账户密码
     }
   };
 }
