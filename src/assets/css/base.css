@@ -1,12 +1,13 @@
 /**
  * 此文件定义公共的全局样式
  */
-html,body{
-  margin:0;
-  padding:0;
-  height: 100%!important;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100% !important;
 }
-.hawthorn-store{
+
+.hawthorn-store {
   height: 100%;
 }
 
@@ -16,8 +17,8 @@ html,body{
   font-size: 14px;
 }
 
-/*重写input字体大小*/
-.hawthorn-store .ant-input {
+/*重写input字体大小，button字体大小*/
+.hawthorn-store .ant-input, .hawthorn-store .ant-btn {
   font-size: 14px;
   line-height: 1.6;
 }
@@ -88,9 +89,21 @@ html,body{
   padding: 0 4px;
 }
 
+/*table 隔行变色，为nz-table标签添加class属性‘table-even-bg’，用法：<nz-table class="table-even-bg...*/
+.table-even-bg .ant-table-thead > tr:nth-child(even), .table-even-bg .ant-table-tbody > tr:nth-child(even) {
+  background: #fbfbfb;
+}
+
 /******************当前使用的ng-zorro框架中，很多内置样式与当前项目不符，此处进行扩展 end******************************/
 
 /***************************************公共样式定义 start*************************************************************/
+/*页面顶部信息*/
+.page-title {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #e1e1e1;
+}
+
 /*遮罩样式*/
 .main-mask {
   width: 100%;

@@ -7,13 +7,47 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
-  chartOption: any = {}
+  chartOption: any = {}; //图表配置项
+  //table数据
+  filterNameArray = [
+    { name: 'Joe', value: false },
+    { name: 'Jim', value: false },
+  ];
+  filterAddressArray = [
+    { name: 'London', value: false },
+    { name: 'Sidney', value: false }
+  ];
+  sortMap = {
+    name   : null,
+    age    : null,
+    address: null
+  };
+  data = [
+    {
+      name   : 'John Brown',
+      age    : 32,
+      address: 'New York No. 1 Lake Park',
+    }, {
+      name   : 'Jim Green',
+      age    : 42,
+      address: 'London No. 1 Lake Park',
+    }, {
+      name   : 'Joe Black',
+      age    : 32,
+      address: 'Sidney No. 1 Lake Park',
+    }, {
+      name   : 'Jim Red',
+      age    : 32,
+      address: 'London No. 2 Lake Park',
+    }
+  ];
 
   constructor() {
   }
 
   ngOnInit() {
     let _this = this;
+    //绘制图表
     setTimeout(() => {
       _this.chartOption = {
         tooltip: {
