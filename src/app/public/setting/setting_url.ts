@@ -29,6 +29,12 @@ export class SettingUrl {
       queryAllSellers: '/seller/querySellersByShopCode',//根据店铺编码查询店铺下所有商家账户
       update: '/seller/updateSellerCommon',//修改商家账户基本信息
       updatePwd: '/seller/updateSellerPwd',//修改商家账户密码
+    },
+    /**
+     * 平台对红包账户企业投资记录的操作
+     */
+    rp:{
+      query: '/rpAccountRec/queryRpAccountRecAdmin',//查询企业投资记录列表
     }
   };
 }

@@ -9,6 +9,7 @@ export const routes = [
     children: [
       {path: '', redirectTo: '/store/home', pathMatch: 'full'},
       {path: 'home', loadChildren: './home/home.module#HomeModule'},
+      {path: 'redPacket', loadChildren: './red-packet/red-packet.module#RedPacketModule'},
     ]
   },
   {
