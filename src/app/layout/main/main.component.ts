@@ -66,6 +66,33 @@ export class MainComponent implements OnInit {
         ]
       },
       {
+        name: "订单管理",
+        icon: "book",
+        url: "/store/order",
+        children: [
+          {
+            name: "待发货",
+            icon: "",
+            url: "/store/order/pendingShipment",
+          },
+          {
+            name: "已发货",
+            icon: "",
+            url: "/store/order/beenShipped",
+          },
+          {
+            name: "已完成",
+            icon: "",
+            url: "/store/order/complete",
+          },
+          {
+            name: "已取消",
+            icon: "",
+            url: "/store/order/cancel",
+          }
+        ]
+      },
+      {
         name: "smile布局",
         icon: "smile-o",
         url: "/simple/reg"
