@@ -101,7 +101,7 @@
 .bg-light-gray{background-color: #fbfbfb;}
 
 /*信息位置*/
-.text-center{text-align: center;}
+.text-center{text-align: center !important;}
 
 /*文字大小*/
 .font12{font-size: 12px}

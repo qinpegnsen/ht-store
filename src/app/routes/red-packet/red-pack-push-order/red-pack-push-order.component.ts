@@ -24,8 +24,7 @@ export class RedPackPushOrderComponent implements OnInit {
   qeuryListData(){
     let url = SettingUrl.URL.rp.query;
     let data={
-      curPage: 1,
-      pageSize:10,
+      curPage: 1
     };
     this.redPackPushData = RedPacketService.getNoTip(url,data).voList;
   };
