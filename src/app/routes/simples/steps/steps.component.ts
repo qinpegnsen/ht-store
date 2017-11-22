@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {NzMessageService} from "ng-zorro-antd";
-import {SimplesService} from "../simples.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-steps',
@@ -8,13 +8,13 @@ import {SimplesService} from "../simples.service";
   styleUrls: ['./steps.component.css']
 })
 export class StepsComponent implements OnInit {
-
-  constructor(public simplesService: SimplesService,
+  current = 0;
+  constructor(public router: Router,
               private _message: NzMessageService) {
   }
 
   ngOnInit() {
-    this.simplesService.routerSkip();
+    this.router.navigate(['/simple/reg/register'], {replaceUrl: true})
   }
 
   done() {

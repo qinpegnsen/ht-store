@@ -7,12 +7,14 @@ import {CompleteComponent} from './complete/complete.component';
 import {DoneComponent} from './done/done.component';
 import {SimplesService} from "./simples.service";
 import {DredgeComponent} from './dredge/dredge.component';
+import { AuditingComponent } from './auditing/auditing.component';
 
 const routes: Routes = [
   {
     path: '', component: StepsComponent, children: [
     {path: 'register', component: RegisterComponent},
     {path: 'complete', component: CompleteComponent},
+    {path: 'auditing', component: AuditingComponent},
     {path: 'dredge', component: DredgeComponent},
     {path: 'done', component: DoneComponent},
   ]
@@ -29,9 +31,11 @@ const routes: Routes = [
     StepsComponent,
     CompleteComponent,
     DredgeComponent,
-    DoneComponent
+    DoneComponent,
+    AuditingComponent
   ],
   providers: [
+    StepsComponent,
     SimplesService
   ]
 })

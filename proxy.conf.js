@@ -14,16 +14,19 @@ const csj = 'http://192.168.10.221:';  //测试机
 const PROXY_CONFIG = [
   {
     context: [
+      "/seller",
+      "/sms",
+      "/enterpris",
       "/rpAccountRec"
     ],
-    target: gh + "8084",   //拦截 context配置路径，经过此地址
+    target: zyg + "8087",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
     context: [
       "/res"
     ],
-    target: gh + "8082",   //拦截 context配置路径，经过此地址
+    target: csj + "8082",   //拦截 context配置路径，经过此地址
     secure: false
   }
 ];

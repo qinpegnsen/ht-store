@@ -148,7 +148,7 @@
                   <div nz-form-control [nzValidateStatus]="getFormControl('idcardStartTime')"
                        nzHasFeedback>
                     <nz-datepicker formControlName="idcardStartTime" [nzSize]="'large'"
-                                   [nzDisabledDate]="simplesService._disabledIdCardStartDate"
+                                   [nzDisabledDate]="_disabledIdCardStartDate"
                                    [nzPlaceHolder]="'起始日期'"></nz-datepicker>
                   </div>
                 </div>
@@ -163,7 +163,7 @@
                   <div nz-form-control [nzValidateStatus]="getFormControl('idcardEndTime')"
                        nzHasFeedback>
                     <nz-datepicker formControlName="idcardEndTime" [nzSize]="'large'"
-                                   [nzDisabledDate]="simplesService._disabledIdCardEndDate"
+                                   [nzDisabledDate]="_disabledIdCardEndDate"
                                    [nzPlaceHolder]="'结束日期'"></nz-datepicker>
                   </div>
                 </div>
@@ -277,8 +277,6 @@
                        [nzExpandTrigger]="'hover'"
                        [nzChangeOnSelect]="true"
                        [nzOptions]="_options"
-                       [(ngModel)]="_value"
-                       (ngModelChange)="_console($event)"
                        (nzChange)="_console($event)">
           </nz-cascader>
           <div nz-form-explain
@@ -299,7 +297,7 @@
                   <div nz-form-control [nzValidateStatus]="getFormControl('businessLicenceStart')"
                        nzHasFeedback>
                     <nz-datepicker formControlName="businessLicenceStart" [nzSize]="'large'"
-                                   [nzDisabledDate]="simplesService._disabledBusinessLicenceStartDate"
+                                   [nzDisabledDate]="_disabledBusinessLicenceStartDate"
                                    [nzPlaceHolder]="'起始日期'"></nz-datepicker>
                   </div>
                 </div>
@@ -314,7 +312,7 @@
                   <div nz-form-control [nzValidateStatus]="getFormControl('businessLicenceEnd')"
                        nzHasFeedback>
                     <nz-datepicker formControlName="businessLicenceEnd" [nzSize]="'large'"
-                                   [nzDisabledDate]="simplesService._disabledBusinessLicenceEndDate"
+                                   [nzDisabledDate]="_disabledBusinessLicenceEndDate"
                                    [nzPlaceHolder]="'结束日期'"></nz-datepicker>
                   </div>
                 </div>
@@ -416,8 +414,6 @@
                        [nzExpandTrigger]="'hover'"
                        [nzChangeOnSelect]="true"
                        [nzOptions]="_options"
-                       [(ngModel)]="_value"
-                       (ngModelChange)="_console($event)"
                        (nzChange)="_console($event)">
           </nz-cascader>
           <div nz-form-explain
@@ -513,8 +509,6 @@
                        [nzExpandTrigger]="'hover'"
                        [nzChangeOnSelect]="true"
                        [nzOptions]="_options"
-                       [(ngModel)]="_value"
-                       (ngModelChange)="_console($event)"
                        (nzChange)="_console($event)">
           </nz-cascader>
           <div nz-form-explain
@@ -601,12 +595,12 @@
 
     <!--操作按钮 start-->
     <div nz-row class="text-center p-20 bt">
-      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-o" (click)="simplesService.pre()">
+      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-o" (click)="pre()">
         <span>上一步</span>
       </button>
       <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w"
               (click)="submitCompleteForm($event,validateForm.value)">
-        <span>下一步</span>
+        <span>提交申请</span>
       </button>
     </div>
     <!--操作按钮 end-->

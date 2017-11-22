@@ -7,7 +7,8 @@ export class SettingUrl {
      */
     base: {
       enum: '/res/enum/',            //获取枚举接口
-      uuid: '/upload/basic/uid'    //获取上传图片的编码
+      uuid: '/upload/basic/uid',      //获取上传图片的编码
+      getRegSms: '/sms/registerSms'   //企业注册获取短信验证码
     },
     /**
      * 企业入驻
