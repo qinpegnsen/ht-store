@@ -17,7 +17,7 @@
   <tr>
     <th nz-th>
       <span>Name</span>
-      <nz-table-sort [(nzValue)]="sortMap.name" (nzValueChange)="sort('name',$event)"></nz-table-sort>
+      <nz-table-sort [(nzValue)]="sortMap.name"></nz-table-sort>
       <nz-dropdown [nzTrigger]="'click'">
         <i class="anticon anticon-filter" nz-dropdown></i>
         <ul nz-menu>
@@ -28,18 +28,18 @@
           </li>
         </ul>
         <div nz-table-filter>
-          <span nz-table-filter-confirm (click)="search()">OK</span>
-          <span nz-table-filter-clear (click)="reset(filterNameArray)">Reset</span>
+          <span nz-table-filter-confirm>OK</span>
+          <span nz-table-filter-clear>Reset</span>
         </div>
       </nz-dropdown>
     </th>
     <th nz-th>
       <span>Age</span>
-      <nz-table-sort [(nzValue)]="sortMap.age" (nzValueChange)="sort('age',$event)"></nz-table-sort>
+      <nz-table-sort [(nzValue)]="sortMap.age"></nz-table-sort>
     </th>
     <th nz-th>
       <span>Address</span>
-      <nz-table-sort [(nzValue)]="sortMap.address" (nzValueChange)="sort('address',$event)"></nz-table-sort>
+      <nz-table-sort [(nzValue)]="sortMap.address"></nz-table-sort>
       <nz-dropdown [nzTrigger]="'click'">
         <i class="anticon anticon-filter" nz-dropdown></i>
         <ul nz-menu>
@@ -50,8 +50,8 @@
           </li>
         </ul>
         <div nz-table-filter>
-          <span nz-table-filter-confirm (click)="search()">OK</span>
-          <span nz-table-filter-clear (click)="reset(filterAddressArray)">Reset</span>
+          <span nz-table-filter-confirm>OK</span>
+          <span nz-table-filter-clear>Reset</span>
         </div>
       </nz-dropdown>
     </th>
