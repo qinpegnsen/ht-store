@@ -38,6 +38,16 @@ export class SettingUrl {
       query: '/rpAccountRec/queryRpAccountRecAdmin',//查询企业投资记录列表
     },
     /**
+     * 提现与账单明细
+     */
+    settle:{
+      query: '/finaceDraw/query',//查询企业提现列表
+      plantSettle:'/ord/queryAgentSettle',//查询企业账单列表
+      agentBalance:'/finaceDraw/loadAgentBalance',//查询企业信息
+      insert:'/finaceDraw/insert',//申请提现
+      bankCode:'/datadict/queryAllByTypeCode',//查询银行
+    },
+    /**
      * 订单管理
      */
     order:{

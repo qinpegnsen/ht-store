@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
+import {SettingUrl} from "../../../public/setting/setting_url";
+import {CashSettleService} from "../cash-settle.service";
 
 @Component({
   selector: 'app-cash',
@@ -6,24 +9,33 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./cash.component.css']
 })
 export class CashComponent implements OnInit {
-  _dataSet = [];   //表单数据
-  constructor() {
+  public cashData:any ;                  //账单明细数据
+
+  constructor(public router: Router,) {
   }
 
   ngOnInit() {
-    //表单数据
-    for (let i = 0; i < 46; i++) {
-      this._dataSet.push({
-        key: i,
-        name: `Edward King ${i}`,
-        age: 32,
-        address: `London, Park Lane no. ${i}`,
-      });
-    }
+   this.qeurySettleData();
   }
 
-  back() {
+  /**
+   * 查询提现数据
+   */
+  qeurySettleData(){
+    let url = SettingUrl.URL.settle.query;
+    let data={
+      curPage: 1,
+      agentCode:"552408454438297600"
+    };
+    this.cashData = CashSettleService.getSettle(url,data).voList;
+    console.log("█  this.cashData ►►►",   this.cashData);
+  };
 
+  /**
+   * 返回上一级页面
+   */
+  back() {
+    this.router.navigate(['/store/cash-settle/cash-settle'])
   }
 
 }

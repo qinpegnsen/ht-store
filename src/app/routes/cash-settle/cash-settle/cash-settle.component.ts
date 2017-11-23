@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {SettingUrl} from "../../../public/setting/setting_url";
+import {CashSettleService} from "../cash-settle.service";
 
 @Component({
   selector: 'app-cash-settle',
@@ -6,9 +9,27 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./cash-settle.component.css']
 })
 export class CashSettleComponent implements OnInit {
-  _dataSet = [];   //表单数据
   isVisible = false;
   isConfirmLoading = false;
+  validateForm: FormGroup;
+  public settleData:any ;                   //提现的数据
+  public agentData:any;                     //企业信息
+  public selectBank:any;                     //银行信息
+public selectBanks:any
+  updateConfirmValidator() {
+    /** wait for refresh value */
+    setTimeout(_ => {
+      this.validateForm.controls[ 'checkPassword' ].updateValueAndValidity();
+    });
+  }
+
+  confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
+    if (!control.value) {
+      return { required: true };
+    } else if (control.value !== this.validateForm.controls[ 'password' ].value) {
+      return { confirm: true, error: true };
+    }
+  };
 
   //遮罩层显示
   showModal = () => {
@@ -17,6 +38,15 @@ export class CashSettleComponent implements OnInit {
 
   //确认关闭遮罩层
   handleOk = (e) => {
+    let url = SettingUrl.URL.settle.insert;
+    let data={
+      agentCode:"552408454438297600",
+      drawMoney:'1',
+      acct:'2',
+      bank:'2',
+      bacctName:'2',
+    };
+    CashSettleService.getInsert(url,data);
     this.isConfirmLoading = true;
     setTimeout(() => {
       this.isVisible = false;
@@ -29,19 +59,68 @@ export class CashSettleComponent implements OnInit {
     this.isVisible = false;
   }
 
-  constructor() {
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
+
+    this.validateForm = this.fb.group({
+      // select         : [ 'China' ],
+      email            : [ null, [ Validators.email ] ],
+      password         : [ null, [ Validators.required ] ],
+      nickname         : [ null, [ Validators.required ] ],
+      phoneNumber      : [ null, [ Validators.required ] ],
+      website          : [ null, [ Validators.required ] ],
+      agree            : [ false ]
+    });
     //表单数据
-    for (let i = 0; i < 46; i++) {
-      this._dataSet.push({
-        key: i,
-        name: `Edward King ${i}`,
-        age: 32,
-        address: `London, Park Lane no. ${i}`,
-      });
-    }
+    this.qeurySettleData();
+    this.qeuryAgentData();
+    this.seletAllByTypeCode()
   }
 
+  /**
+   * 查询账单明细数据
+   */
+  qeurySettleData(){
+    let url = SettingUrl.URL.settle.plantSettle;
+    let data={
+      curPage: 1,
+    };
+    this.settleData = CashSettleService.getSettle(url,data).voList;
+    // console.log("█    this.settleData ►►►",     this.settleData);
+  };
+
+  /**
+   * 查询企业信息
+   */
+  qeuryAgentData(){
+    let url = SettingUrl.URL.settle.agentBalance;
+    let data={
+      agentCode:"552408454438297600"
+    };
+    this.agentData = CashSettleService.getSettle(url,data);
+    // console.log("█  this.cashData ►►►",   this.agentData);
+  };
+
+  /*
+   * 选择银行
+   * */
+  seletAllByTypeCode() {
+    let url = SettingUrl.URL.settle.bankCode;
+    let data = {
+      typeCode: 'common_use_bank_name'
+    }
+    this.selectBank =CashSettleService.getSettle(url,data);
+    console.log("█  this.selectBank ►►►",   this.selectBank);
+  }
+
+  _submitForm() {
+  for (const i in this.validateForm.controls) {
+    this.validateForm.controls[ i ].markAsDirty();
+  }
+}
+  getFormControl(name) {
+  return this.validateForm.controls[ name ];
+}
 }
