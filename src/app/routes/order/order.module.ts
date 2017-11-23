@@ -6,6 +6,7 @@ import { OrderCancelComponent } from './order-cancel/order-cancel.component';
 import { OrderCompleteComponent } from './order-complete/order-complete.component';
 import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../../shared/shared.module";
+import {OrderPendingShipmentService} from "./order-pending-shipment/order-pending-shipment.service";
 
 
 const routes: Routes = [
@@ -21,6 +22,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  declarations: [OrderPendingShipmentComponent, OrderBeenShippedComponent, OrderCancelComponent, OrderCompleteComponent]
+  declarations: [OrderPendingShipmentComponent, OrderBeenShippedComponent, OrderCancelComponent, OrderCompleteComponent],
+  providers: [
+    OrderPendingShipmentService
+  ]
 })
 export class OrderModule { }

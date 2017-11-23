@@ -36,6 +36,12 @@ export class SettingUrl {
      */
     rp:{
       query: '/rpAccountRec/queryRpAccountRecAdmin',//查询企业投资记录列表
+    },
+    /**
+     * 订单管理
+     */
+    order:{
+      queryOrdAdmin: '/agentOrd/queryAgentOrdAdmin',//查询订单管理中的待发货订单
     }
   };
 }
