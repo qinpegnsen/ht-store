@@ -1,9 +1,9 @@
 <!--提现详情 -- start-->
 <div>
-  <div style="margin-bottom: 20px;font-size: 16px">
+  <div class="font16 mb-20">
     <span>提现详情</span>
-    <button nz-button [nzType]="'danger'" [nzGhost]="true" class="fr mr" (click)="back()">
-      返回
+    <button nz-button [nzType]="'danger'"  [nzShape]="'circle'" class="page-back" (click)="back()" title="返回">
+      <i class="anticon anticon-rollback font20"></i>
     </button>
   </div>
   <nz-table #nzTable [nzDataSource]="cashData" [nzPageSize]="10" >

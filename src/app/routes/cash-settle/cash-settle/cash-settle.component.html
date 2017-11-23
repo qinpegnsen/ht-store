@@ -1,14 +1,12 @@
 <!--提现部分 -- start-->
 <div nz-row>
-  <div nz-col [nzSpan]="24" class="cash-settle-all" style="">
-    <span style="margin-left: 80px">账户余额：<b class="main-color font18">￥{{agentData.acct}}</b></span>
-    <button nz-button [nzType]="'danger'" [nzGhost]="true" class="fr mr" style="margin-top: 13px;" routerLink="../cash">
-      <span>提现记录</span>
-    </button>
-    <button nz-button class="fr mr main-border main-bg cash-settle-settle" (click)="showModal()">
+  <div class="page-msg mt mb-20 pt-15 pb-15">
+    <span><i class="anticon anticon-red-envelope mr-5 ml font18"></i>余额：<b class="main-color font18">￥{{agentData.acct}}</b></span>
+    <button nz-button  class="ml-20 btn-danger" (click)="showModal()">
       提现
     </button>
-    <nz-modal [nzVisible]="isVisible" [nzTitle]="'提现申请'" [nzContent]="modalContent" (nzOnCancel)="handleCancel($event)"
+    <span class="main-color ml-20 cursor settle-record" routerLink="../cash"><u>提现记录</u></span>
+    <nz-modal [nzVisible]="isVisible" [nzTitle]="'提现申请'" class="thc" [nzContent]="modalContent" (nzOnCancel)="handleCancel($event)"
               (nzOnOk)="handleOk($event)" [nzConfirmLoading]="isConfirmLoading">
       <ng-template #modalContent>
         <!--申请提现 -- start -->
@@ -86,8 +84,8 @@
 </div>
 <!--提现部分 -- end-->
 <!--结算明细 -- start-->
-<div style="margin-top: 35px">
-  <div style="margin-bottom: 20px;font-size: 16px">结算列表</div>
+<div>
+  <div class="font16 mb-20"><i class="anticon anticon-switcher mr"></i>结算信息</div>
   <nz-table #nzTable [nzDataSource]="settleData" [nzPageSize]="10">
     <thead nz-thead>
     <tr>

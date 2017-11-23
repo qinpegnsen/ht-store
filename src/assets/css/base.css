@@ -48,6 +48,31 @@ html, body {
   font-size: 14px;
 }
 
+/*去除弹框圆角属性*/
+.hawthorn-store .ant-modal-content {
+  border-radius: 0;
+}
+
+/*重新弹框中按钮‘取消’*/
+.hawthorn-store .ant-btn-ghost:hover, .hawthorn-store .ant-btn-ghost:focus {
+  border: 1px solid #d9d9d9;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+/*重新弹框中按钮‘确定’*/
+.hawthorn-store .ant-btn-primary {
+  border: 1px solid #e82d4d;
+  color: #e82d4d;
+  background: white;
+}
+
+.hawthorn-store .ant-btn-primary:hover, .hawthorn-store .ant-btn-primary:focus {
+  background: white;
+  border: 1px solid #e82d4d;
+  color: #e82d4d;
+  box-shadow: 0 0 3px #a0a0a0;
+}
+
 /******************当前使用的ng-zorro框架中，很多内置样式与当前项目不符，此处进行覆盖重写 end**************************/
 
 /******************当前使用的ng-zorro框架中，很多内置样式与当前项目不符，此处进行扩展 start****************************/
@@ -105,12 +130,22 @@ html, body {
 }
 
 /*页面提示信息*/
-.page-msg{
+.page-msg {
   background-color: #fffee5;
   border: 1px solid #f7dea3;
   padding: 10px;
   position: relative;
   zoom: 1;
+}
+
+/*返回页面*/
+.page-back.ant-btn-circle {
+  position: fixed;
+  top: 85px;
+  right: 35px;
+  width: 40px;
+  height: 40px;
+  z-index: 101;
 }
 
 /*遮罩样式*/
@@ -207,3 +242,192 @@ label.file-upload > .anticon {
 
 /***************************************公共样式定义 end***************************************************************/
 
+/****************************************************************************************/
+/*空心红色按钮 start*/
+.btn-danger.ant-btn {
+  border-color: #f04134;
+  background-color: #fff;
+  color: #f04134;
+}
+
+.btn-danger.ant-btn:hover, .btn-danger.ant-btn:focus, .btn-danger.ant-btn:active {
+  color: #f04134;
+  background-color: #fff;
+  border-color: #f04134;
+}
+
+/*空心红色按钮 end*/
+
+/*空心绿色按钮 start*/
+.btn-green.ant-btn {
+  border-color: #37bc9b;
+  background-color: #fff;
+  color: #37bc9b;
+}
+
+.btn-green.ant-btn:hover, .btn-green.ant-btn:focus, .btn-green.ant-btn:active {
+  color: #37bc9b;
+  background-color: #fff;
+  border-color: #37bc9b;
+}
+
+/*空心绿色按钮 end*/
+
+/*空心success按钮 start*/
+.btn-success.ant-btn {
+  border-color: #27c24c;
+  background-color: #fff;
+  color: #27c24c;
+}
+
+.btn-success.ant-btn:hover, .btn-success.ant-btn:focus, .btn-success.ant-btn:active {
+  color: #27c24c;
+  background-color: #fff;
+  border-color: #27c24c;
+}
+
+/*空心success按钮 end*/
+
+/*空心橙色按钮 start*/
+.btn-warning.ant-btn {
+  border-color: #ff902b;
+  background-color: #fff;
+  color: #ff902b;
+}
+
+.btn-warning.ant-btn:hover, .btn-warning.ant-btn:focus, .btn-warning.ant-btn:active {
+  color: #ff902b;
+  background-color: #fff;
+  border-color: #F57C00;
+}
+
+/*空心橙色按钮 end*/
+
+/*空心紫色按钮 start*/
+.btn-purple.ant-btn {
+  border-color: #7266ba;
+  background-color: #fff;
+  color: #7266ba;
+}
+
+.btn-purple.ant-btn:hover, .btn-purple.ant-btn:focus, .btn-purple.ant-btn:active {
+  color: #7266ba;
+  background-color: #fff;
+  border-color: #7266ba;
+}
+
+/*空心紫色按钮 end*/
+
+/*主题色按钮，点击状态的水波样式*/
+.thc-btn.ant-btn-clicked:after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  bottom: -1px;
+  right: -1px;
+  border-radius: inherit;
+  border: 0 solid #e82d4d;
+  opacity: 0.4;
+  animation: buttonEffect .4s;
+  display: block;
+}
+
+.thc-btn.ant-btn-clicked:after {
+  border-color: #f04134;
+}
+
+/*danger按钮，点击状态的水波样式*/
+.btn-danger.ant-btn-clicked:after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  bottom: -1px;
+  right: -1px;
+  border-radius: inherit;
+  border: 0 solid #f04134;
+  opacity: 0.4;
+  animation: buttonEffect .4s;
+  display: block;
+}
+
+.btn-danger.ant-btn-clicked:after {
+  border-color: #f05345;
+}
+
+/*绿色按钮，点击状态的水波样式*/
+.btn-green.ant-btn-clicked:after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  bottom: -1px;
+  right: -1px;
+  border-radius: inherit;
+  border: 0 solid #37bc9b;
+  opacity: 0.4;
+  animation: buttonEffect .4s;
+  display: block;
+}
+
+.btn-green.ant-btn-clicked:after {
+  border-color: #37bc9b;
+}
+
+/*success按钮，点击状态的水波样式*/
+.btn-success.ant-btn-clicked:after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  bottom: -1px;
+  right: -1px;
+  border-radius: inherit;
+  border: 0 solid #27c24c;
+  opacity: 0.4;
+  animation: buttonEffect .4s;
+  display: block;
+}
+
+.btn-success.ant-btn-clicked:after {
+  border-color: #27c24c;
+}
+
+/*橙色按钮，点击状态的水波样式*/
+.btn-warning.ant-btn-clicked:after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  bottom: -1px;
+  right: -1px;
+  border-radius: inherit;
+  border: 0 solid #F57C00;
+  opacity: 0.4;
+  animation: buttonEffect .4s;
+  display: block;
+}
+
+.btn-warning.ant-btn-clicked:after {
+  border-color: #F57C00;
+}
+
+/*紫色按钮，点击状态的水波样式*/
+.btn-warning.ant-btn-clicked:after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  bottom: -1px;
+  right: -1px;
+  border-radius: inherit;
+  border: 0 solid #7266ba;
+  opacity: 0.4;
+  animation: buttonEffect .4s;
+  display: block;
+}
+
+.btn-warning.ant-btn-clicked:after {
+  border-color: #8175cd;
+}
