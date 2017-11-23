@@ -66,6 +66,11 @@ export class MainComponent implements OnInit {
         ]
       },
       {
+        name: "提现与结算",
+        icon: "pay-circle-o",
+        url: "/store/cash-settle/cash-settle"
+      },
+      {
         name: "订单管理",
         icon: "book",
         url: "/store/order",
@@ -101,7 +106,7 @@ export class MainComponent implements OnInit {
         name: "page布局",
         icon: "smile-o",
         url: "/page/login"
-      }
+      },
     ]
   }
 

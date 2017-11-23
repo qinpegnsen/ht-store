@@ -1,0 +1,21 @@
+.cash-settle-all{
+  background: #fffee5;
+  height: 55px;
+  border: 2px solid #f7dea3;
+  line-height: 55px;
+}
+.cash-settle-settle{
+  margin-top: 13px;
+  background:#e82d4d;
+  color: white;
+}
+.cash-settle-settle:focus{
+  background:#e82d4d;
+  color: white;
+  border: 1px solid #e82d4d;
+}
+.cash-settle-settle:hover{
+  background:#e82d4d ;
+  color: white;
+   border: 1px solid #e82d4d;
+}
