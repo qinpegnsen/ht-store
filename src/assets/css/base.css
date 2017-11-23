@@ -213,11 +213,11 @@ label.file-upload > .anticon {
 .btn-danger.ant-btn {
   border-color: #f04134;
   background-color: #fff;
-  color: #fff;
+  color: #f04134;
 }
 
 .btn-danger.ant-btn:hover, .btn-danger.ant-btn:focus, .btn-danger.ant-btn:active {
-  color: white;
+  color: #f04134;
   background-color: #fff;
   border-color: #f04134;
 }
@@ -227,11 +227,11 @@ label.file-upload > .anticon {
 .btn-green.ant-btn {
   border-color: #37bc9b;
   background-color: #fff;
-  color: #fff;
+  color: #37bc9b;
 }
 
 .btn-green.ant-btn:hover, .btn-green.ant-btn:focus, .btn-green.ant-btn:active {
-  color: white;
+  color: #37bc9b;
   background-color: #fff;
   border-color: #37bc9b;
 }
@@ -241,11 +241,11 @@ label.file-upload > .anticon {
 .btn-success.ant-btn {
   border-color: #27c24c;
   background-color: #fff;
-  color: #fff;
+  color: #27c24c;
 }
 
 .btn-success.ant-btn:hover, .btn-success.ant-btn:focus, .btn-success.ant-btn:active {
-  color: white;
+  color: #27c24c;
   background-color: #fff;
   border-color: #27c24c;
 }
@@ -255,11 +255,11 @@ label.file-upload > .anticon {
 .btn-warning.ant-btn {
   border-color: #ff902b;
   background-color: #fff;
-  color: #fff;
+  color: #ff902b;
 }
 
 .btn-warning.ant-btn:hover, .btn-warning.ant-btn:focus, .btn-warning.ant-btn:active {
-  color: white;
+  color: #ff902b;
   background-color: #fff;
   border-color: #F57C00;
 }
@@ -269,11 +269,11 @@ label.file-upload > .anticon {
 .btn-purple.ant-btn {
   border-color: #7266ba;
   background-color: #fff;
-  color: #fff;
+  color: #7266ba;
 }
 
 .btn-purple.ant-btn:hover, .btn-purple.ant-btn:focus, .btn-purple.ant-btn:active {
-  color: white;
+  color: #7266ba;
   background-color: #fff;
   border-color: #7266ba;
 }

@@ -43,7 +43,7 @@ export class SettingUrl {
     goods:{
       goodsQuery: "/goodsQuery/query",//商品管理列表
       getGoodsKinds: "/goodsKind/queryGoodsByParentId",//商品分类
-      putawayGoods: "/goodsEdit/appleToNormal",//商品上架
+      putAwayGoods: "/goodsEdit/appleToNormal",//商品上架人民rm
       downGoods: "/goodsEdit/updateStateToDown",//商品下架
       banGoods: "/goodsEdit/updateStateToStop",//商品禁售
       relieveBanGoods: "/goodsEdit/updateStateToNomal",//解除商品禁售
