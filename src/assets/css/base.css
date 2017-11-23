@@ -104,6 +104,15 @@ html, body {
   border-bottom: 1px solid #e1e1e1;
 }
 
+/*页面提示信息*/
+.page-msg{
+  background-color: #fffee5;
+  border: 1px solid #f7dea3;
+  padding: 10px;
+  position: relative;
+  zoom: 1;
+}
+
 /*遮罩样式*/
 .main-mask {
   width: 100%;

@@ -1,8 +1,14 @@
 .layout {
-  height: 100%;
+  min-height: 100%;
   font-family: 'Microsoft YaHei';
 }
-
+/*设置sider背景，为了兼容ie10*/
+.layout .sider{
+  background: #404040;
+  margin-top: -15px;
+  padding-top: 15px;
+  min-height: 100%;
+}
 .layout .ant-layout-header {
   background: white;
   font-size: 16px;

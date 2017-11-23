@@ -10,8 +10,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!--浏览器版本判断及引导 -->
+  <script>
+    //当ie版本小于10时，引导下载谷歌浏览器
+    if (navigator.appName == "Microsoft Internet Explorer" && parseInt(navigator.appVersion.split(";")[1].replace(/[ ]/g, "").replace("MSIE", "")) < 10) {
+      if (window.confirm('三楂红科技智能提醒：大人，系统检测到您的浏览器太老了~ 为了方便您的使用，建议下载谷歌浏览器。去下载？')) window.location.href = "http://rj.baidu.com/soft/detail/14744.html?ald";
+      else alert("您取消了下载，因为您浏览器太老了，已经跑不动了.... 这将影响您的使用");
+    }
+  </script>
 </head>
+
 <body>
-  <app-root></app-root>
+<app-root></app-root>
 </body>
+
 </html>

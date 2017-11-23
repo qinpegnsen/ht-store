@@ -1,34 +1,36 @@
 <nz-layout class="layout">
   <!--menu 信息 start-->
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
-    <div class="logo">
-      <img *ngIf="!isCollapsed" src="{{app.logo}}">
-    </div>
-    <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
-      <!--循环显示menu start-->
-      <ng-container *ngFor="let menu of menus">
-        <!--有下级menu start-->
-        <li nz-submenu *ngIf="menu.children && menu.children.length>0">
+    <div class="sider">
+      <div class="logo">
+        <img *ngIf="!isCollapsed" src="{{app.logo}}">
+      </div>
+      <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
+        <!--循环显示menu start-->
+        <ng-container *ngFor="let menu of menus">
+          <!--有下级menu start-->
+          <li nz-submenu *ngIf="menu.children && menu.children.length>0">
           <span title>
             <i class="anticon anticon-{{menu.icon}} font18"></i>
             <span class="nav-text">{{menu.name}}</span>
           </span>
-          <ul>
-            <li nz-menu-item *ngFor="let child of menu.children" (click)="goUrl(child.url)">{{child.name}}</li>
-          </ul>
-        </li>
-        <!--有下级menu end-->
-        <!--无下级menu start-->
-        <li nz-menu-item *ngIf="!menu.children || menu.children.length<1" (click)="goUrl(menu.url)">
+            <ul>
+              <li nz-menu-item *ngFor="let child of menu.children" (click)="goUrl(child.url)">{{child.name}}</li>
+            </ul>
+          </li>
+          <!--有下级menu end-->
+          <!--无下级menu start-->
+          <li nz-menu-item *ngIf="!menu.children || menu.children.length<1" (click)="goUrl(menu.url)">
           <span>
             <i class="anticon anticon-{{menu.icon}} font18"></i>
             <span class="nav-text">{{menu.name}}</span>
           </span>
-        </li>
-        <!--无下级menu end-->
-      </ng-container>
-      <!--循环显示menu end-->
-    </ul>
+          </li>
+          <!--无下级menu end-->
+        </ng-container>
+        <!--循环显示menu end-->
+      </ul>
+    </div>
   </nz-sider>
   <!--menu 信息 end-->
   <nz-layout>
