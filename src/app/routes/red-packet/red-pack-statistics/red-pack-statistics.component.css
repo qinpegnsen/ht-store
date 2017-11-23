@@ -1,0 +1,9 @@
+.redPackSta .block .blockBg{
+  background: #24B7E5;
+  height: 80px;
+  color:white;
+}
+.redPackSta .block .myIcon{
+  line-height: 80px;
+  font-size: 50px;
+}

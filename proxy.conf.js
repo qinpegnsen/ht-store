@@ -17,6 +17,8 @@ const PROXY_CONFIG = [
       "/seller",
       "/sms",
       "/enterpris",
+      "/rpAccountRec",
+      "/rpStatistics"
     ],
     target: zyg + "8087",   //拦截 context配置路径，经过此地址
     secure: false
@@ -35,7 +37,7 @@ const PROXY_CONFIG = [
     context: [
       "/res"
     ],
-    target: csj + "8082",   //拦截 context配置路径，经过此地址
+    target: gh + "8082",   //拦截 context配置路径，经过此地址
     secure: false
   }
 ];

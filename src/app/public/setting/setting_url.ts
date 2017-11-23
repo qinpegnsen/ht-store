@@ -52,6 +52,8 @@ export class SettingUrl {
      */
     order:{
       queryOrdAdmin: '/agentOrd/queryAgentOrdAdmin',//查询订单管理中的待发货订单
+      queryRec: '/rpAccountRec/queryRpAccountRecAdmin',//查询企业投资记录列表
+      querySta: '/rpStatistics/queryRpStatisticsStore',//查询企业红包统计
     }
   };
 }

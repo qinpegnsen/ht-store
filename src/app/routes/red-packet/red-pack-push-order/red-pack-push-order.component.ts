@@ -22,7 +22,7 @@ export class RedPackPushOrderComponent implements OnInit {
    * 查询红包投放记录列表的数据
    */
   qeuryListData(){
-    let url = SettingUrl.URL.rp.query;
+    let url = SettingUrl.URL.rp.queryRec;
     let data={
       curPage: 1
     };
