@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CashSettleComponent } from './cash-settle/cash-settle.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {CashSettleComponent} from './cash-settle/cash-settle.component';
 import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../../shared/shared.module";
-import { CashComponent } from './cash/cash.component';
+import {CashComponent} from './cash/cash.component';
 
 const routes: Routes = [
-  {path: 'cash-settle', component: CashSettleComponent},
+  {path: 'cashSettle', component: CashSettleComponent},
   {path: 'cash', component: CashComponent},
 
 ];
@@ -18,4 +18,5 @@ const routes: Routes = [
   ],
   declarations: [CashSettleComponent, CashComponent]
 })
-export class CashSettleModule { }
+export class CashSettleModule {
+}

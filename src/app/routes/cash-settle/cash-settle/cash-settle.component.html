@@ -1,12 +1,15 @@
 <!--提现部分 -- start-->
 <div nz-row>
   <div class="page-msg mt mb-20 pt-15 pb-15">
-    <span><i class="anticon anticon-red-envelope mr-5 ml font18"></i>余额：<b class="main-color font18">￥{{agentData.acct}}</b></span>
-    <button nz-button  class="ml-20 btn-danger" (click)="showModal()">
+    <span><i class="anticon anticon-red-envelope mr-5 ml font18"></i>余额：<b
+      class="main-color font18">￥{{agentData.acct}}</b></span>
+    <button nz-button class="ml-20 btn-danger" (click)="showModal()">
       提现
     </button>
     <span class="main-color ml-20 cursor settle-record" routerLink="../cash"><u>提现记录</u></span>
-    <nz-modal [nzVisible]="isVisible" [nzTitle]="'提现申请'" class="thc" [nzContent]="modalContent" (nzOnCancel)="handleCancel($event)"
+    <!--提现记录弹窗 -- start -->
+    <nz-modal [nzVisible]="isVisible" [nzTitle]="'提现申请'" class="thc" [nzContent]="modalContent"
+              (nzOnCancel)="handleCancel($event)"
               (nzOnOk)="handleOk($event)" [nzConfirmLoading]="isConfirmLoading">
       <ng-template #modalContent>
         <!--申请提现 -- start -->
@@ -71,8 +74,8 @@
             </div>
             <div nz-form-control nz-col [nzSpan]="14">
               <!--<nz-select formControlName="select" [nzSize]="'large'" [(ngModel)]="selectBanks">-->
-                <!--<nz-option *ngFor="let item of selectBank" [nzLabel]="'item.code'" [nzValue]="'item.remark'">-->
-                <!--</nz-option>-->
+              <!--<nz-option *ngFor="let item of selectBank" [nzLabel]="'item.code'" [nzValue]="'item.remark'">-->
+              <!--</nz-option>-->
               <!--</nz-select>-->
             </div>
           </div>
@@ -80,13 +83,16 @@
         <!--申请提现 -- end -->
       </ng-template>
     </nz-modal>
+    <!--提现记录弹窗 -- end -->
   </div>
 </div>
 <!--提现部分 -- end-->
 <!--结算明细 -- start-->
 <div>
   <div class="font16 mb-20"><i class="anticon anticon-switcher mr"></i>结算信息</div>
+  <!--结算表格 -- start-->
   <nz-table #nzTable [nzDataSource]="settleData" [nzPageSize]="10">
+    <!--结算头部 --start -->
     <thead nz-thead>
     <tr>
       <th nz-th><span>序号</span></th>
@@ -98,6 +104,8 @@
       <th nz-th><span>申情时间</span></th>
     </tr>
     </thead>
+    <!--结算头部 --end -->
+    <!--结算数据 --start -->
     <tbody nz-tbody>
     <tr nz-tbody-tr *ngFor="let data of nzTable.data;let i=index;">
       <td nz-td>{{i+1}}</td>
@@ -109,6 +117,8 @@
       <td nz-td>{{data.settle}}</td>
     </tr>
     </tbody>
+    <!--结算数据 --end -->
   </nz-table>
+  <!--结算表格 -- end-->
 </div>
 <!--结算明细 -- end-->
