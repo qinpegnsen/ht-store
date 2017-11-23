@@ -1,0 +1,207 @@
+<p>
+  manage works!
+</p>
+<!--搜索 start-->
+<div class="mb-15">
+  <div class="bg-white p-15">
+    <div class="search-group ml-20 mb">
+      <span class="search-title">审核状态：</span>
+      <div class="search-main">
+        <nz-select class="w100" [(ngModel)]="query.goodsAudit" [nzSize]="'large'" (change)="queryDatas()">
+          <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
+          <nz-option
+            *ngFor="let item of goodsAudits"
+            [nzLabel]="item.val"
+            [nzValue]="item.key">
+          </nz-option>
+        </nz-select>
+      </div>
+    </div>
+    <div class="search-group ml-20 mb">
+      <span class="search-title">商品状态：</span>
+      <div class="search-main">
+        <nz-select class="w100" [(ngModel)]="query.state" [nzSize]="'large'" (change)="queryDatas()">
+          <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
+          <nz-option
+            *ngFor="let item of goodsState"
+            [nzLabel]="item.val"
+            [nzValue]="item.key">
+          </nz-option>
+        </nz-select>
+      </div>
+    </div>
+    <div class="search-group ml-20 mb">
+      <span class="search-title">自营：</span>
+      <div class="search-main">
+        <nz-select class="w100" [(ngModel)]="query.isOwnPlat" [nzSize]="'large'" (change)="queryDatas()">
+          <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
+          <nz-option
+            *ngFor="let item of isOwnPlats"
+            [nzLabel]="item.val"
+            [nzValue]="item.key">
+          </nz-option>
+        </nz-select>
+      </div>
+    </div>
+    <div class="search-group ml-20 mb clearfix">
+      <span class="search-title">分类：</span>
+      <div class="search-main">
+        <nz-cascader
+          [(ngModel)]="_value"
+          [nzPlaceHolder]="'分类'"
+          [nzSize]="'large'"
+          (nzChange)="getKind($event)"
+          (nzLoad)="loadData($event)">
+        </nz-cascader>
+      </div>
+    </div>
+    <div class="inline-block align-top">
+      <div class="search-group ml-20 mb align-top">
+        <span class="search-title">商品名：</span>
+        <div class="search-main">
+          <nz-input [(ngModel)]="query.goodsName" [nzPlaceHolder]="'商品名'" [nzSize]="'large'"></nz-input>
+        </div>
+      </div>
+      <div class="search-group ml-20 mb align-top">
+        <span class="search-title">品牌：</span>
+        <div class="search-main">
+          <nz-input [(ngModel)]="query.brandName" [nzPlaceHolder]="'品牌名称'" [nzSize]="'large'"></nz-input>
+        </div>
+      </div>
+      <button nz-button [nzSize]="'large'" class="ml thc-btn" (click)="queryDatas()">
+        <i class="anticon anticon-search"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<!--搜索 end-->
+
+<nz-table #nzTable [nzDataSource]="goodsList" [nzPageSize]="10" class="table-even-bg">
+  <thead nz-thead>
+  <tr>
+    <th nz-th>
+      <span>序号</span>
+    </th>
+    <th nz-th>
+      <span>商品名</span>
+    </th>
+    <th nz-th>
+      <span>规格/规格值</span>
+    </th>
+    <th nz-th>
+      <span>价格（元）</span>
+    </th>
+    <th nz-th>
+      <span>发布时间</span>
+    </th>
+    <th nz-th>
+      <span>重消币抵扣</span>
+    </th>
+    <th nz-th>
+      <span>审核状态</span>
+    </th>
+    <th nz-th>
+      <span>操作</span>
+    </th>
+  </tr>
+  </thead>
+  <tbody nz-tbody>
+  <tr nz-tbody-tr *ngFor="let goods of nzTable.data;let i = index">
+    <td nz-td>{{i+1}}</td>
+    <td nz-td class="relative w30">
+      <div class="mr inline-block">
+        <img [src]="goods.goodsImage" class="goods-img" (mousemove)="showImg($event)"
+             (mouseleave)="hideImg($event)"
+             onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+        <img [src]="goods.goodsImage" class="hover-img"
+             onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+      </div>
+      <div class="mb0 goods-info">
+        <p>
+          <a class="goods-name font14" href="javascript:;">
+                <span class="tag font12"
+                      [class.bg-info]="goods.state=='NORMAL'"
+                      [class.bg-danger]="goods.state=='STOP'"
+                      [class.bg-warning]="goods.state=='DOWN'">
+                  {{goods.state | stateName:'1006'}}</span>
+            {{goods.goodsName}}</a>
+        </p>
+      </div>
+    </td>
+    <td nz-td class="w20">
+      <div class="attr-width">
+        <p class="mb0 font12 one-row omg" *ngFor="let attr of goods.goodsBaseSaList">
+          <span class="inline">{{attr.attrName}}：</span>
+          <span class="inline" *ngFor="let val of attr.goodsBaseSavList">{{val.value}}、</span>
+        </p>
+      </div>
+      <button nz-button [nzType]="'dashed'" [nzSize]="'small'" class="mt-5"
+              (click)="showSkuList(goods.goodsBaseCode,goods.goodsName)">查看所有规格
+      </button>
+    </td>
+    <td nz-td class="text-center main-color">{{goods.minPrice == goods.maxPrice?
+      '¥'+goods.maxPrice:'¥'+goods.minPrice+'∽¥'+goods.maxPrice}}</td>
+    <td nz-td>{{goods.createTime}}</td>
+    <td nz-td>
+      <nz-switch class="thc" [nzSize]="'large'" [ngModel]="goods.isUseCoin=='Y'"
+                 (change)="changeIsUseCoin(goods.isUseCoin=='Y',goods.goodsBaseCode, goodsList.curPage)">
+        <span checked>是</span>
+        <span unchecked>否</span>
+      </nz-switch>
+    </td>
+    <td nz-td>{{goods.goodsAudit | stateName:'1014'}}</td>
+    <td nz-td>
+      <ng-container *ngIf="goods.goodsAudit=='PASS'">
+        <nz-popconfirm *ngIf="goods.state=='NORMAL'" [nzTitle]="'确定要下架这个商品吗？下架后，所有sku商品都将下架，代理商将不能批发该商品'"
+                       (nzOnConfirm)="changeState('DOWN',goods.goodsBaseCode, goodsList.curPage)"
+                       [nzPlacement]="'top'">
+          <button nz-popconfirm nz-button class="btn-warning" title="下架">
+            <i class="anticon anticon-arrow-down"></i>
+          </button>
+        </nz-popconfirm>
+        <nz-popconfirm *ngIf="goods.state=='NORMAL'" [nzTitle]="'确定要禁售这个商品吗？禁售后，所有sku商品都将下架，代理商将不能批发该商品'"
+                       (nzOnConfirm)="changeState('STOP',goods.goodsBaseCode, goodsList.curPage)"
+                       [nzPlacement]="'top'">
+          <button nz-popconfirm nz-button class="btn-danger" title="禁售">
+            <i class="anticon anticon-minus-circle-o"></i>
+          </button>
+        </nz-popconfirm>
+        <button nz-button *ngIf="goods.state=='STOP'" title="解禁" class="btn-green"
+                (click)="changeState('BAN',goods.goodsBaseCode, goodsList.curPage)">
+          <i class="anticon anticon-check-circle"></i>
+        </button>
+        <button nz-button *ngIf="goods.state=='DOWN'" class="btn-success"
+                title="申请上架" (click)="changeState('NORMAL',goods.goodsBaseCode, goodsList.curPage)">
+          <i class="anticon anticon-arrow-up"></i>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="goods.goodsAudit=='UNPASS'">
+        <button nz-button *ngIf="goods.state=='DOWN'" class="btn-success"
+                title="申请上架" (click)="changeState('NORMAL',goods.goodsBaseCode, goodsList.curPage)">
+          <i class="anticon anticon-arrow-up"></i>
+        </button>
+      </ng-container>
+      <button nz-button *ngIf="goods.goodsAudit=='AUDIT'" title="审核"
+              routerLink="audit" class="btn-purple"
+              [queryParams]="{baseCode: goods.goodsBaseCode,page: goodsList.curPage}">
+        <i class="anticon anticon-solution"></i>
+      </button>
+      <ng-container *ngIf="goods.goodsAudit!='REJECT' && goods.state!='NORMAL'">
+        <button nz-button class="mt-5" title="修改/编辑" routerLink="edit"
+                [queryParams]="{page: goodsList.curPage, baseCode:goods.goodsBaseCode}" >
+          <i class="anticon anticon-edit"></i>
+        </button>
+      </ng-container>
+      <button nz-button title="详情" class="btn-green" routerLink="detail"
+              [queryParams]="{baseCode: goods.goodsBaseCode,page: goodsList.curPage,type:'detail'}">
+        <i class="anticon anticon-exception"></i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+<!--路由嵌套 begin-->
+<!--<router-outlet (activate)="activate($event)" (deactivate)='onDeactivate($event)'></router-outlet>-->
+<!--路由嵌套 end-->
+<!--<app-sku-goods [curCode]="curBaseCode" [curName]="curName" [page]="goodsList.curPage"
+               (looked)="getSkuData($event)"></app-sku-goods>-->

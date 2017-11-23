@@ -21,16 +21,14 @@ export class MainComponent implements OnInit {
         icon: "gift",
         children: [
           {
+            name: "管理商品",
+            icon: "",
+            url: "/store/goods/manage"
+          },
+          {
             name: "商品发布",
-            icon: ""
-          },
-          {
-            name: "订单管理",
-            icon: ""
-          },
-          {
-            name: "购物车",
-            icon: ""
+            icon: "",
+            url: ""
           }
         ]
       },

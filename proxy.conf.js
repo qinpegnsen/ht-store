@@ -35,9 +35,19 @@ const PROXY_CONFIG = [
   },
   {
     context: [
+      "/goodsKind",
+      "/goodsEdit",
+      "/goodsQuery",
+      "/goodsAudit",
+    ],
+    target: csj + "8084",   //拦截 context配置路径，经过此地址
+    secure: false
+  },
+  {
+    context: [
       "/res"
     ],
-    target: gh + "8082",   //拦截 context配置路径，经过此地址
+    target: csj + "8082",   //拦截 context配置路径，经过此地址
     secure: false
   }
 ];

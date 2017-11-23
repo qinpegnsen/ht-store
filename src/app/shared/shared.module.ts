@@ -4,6 +4,7 @@ import {NgZorroAntdModule} from "ng-zorro-antd";
 import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AngularEchartsModule} from "ngx-echarts";
+import {StateNamePipe} from "../public/pipes/state-name.pipe";
 
 @NgModule({
   imports: [
@@ -13,7 +14,9 @@ import {AngularEchartsModule} from "ngx-echarts";
     AngularEchartsModule,         //百度echarts图表插件
     NgZorroAntdModule.forRoot()   //zorroUI库
   ],
-  declarations: [],
+  declarations: [
+    StateNamePipe
+  ],
   providers: [],
   exports: [
     CommonModule,           //核心模块，必须
@@ -21,7 +24,8 @@ import {AngularEchartsModule} from "ngx-echarts";
     FormsModule,            //表单支持
     ReactiveFormsModule,    //表单支持
     AngularEchartsModule,   //百度echarts图表插件
-    NgZorroAntdModule       //zorroUI库
+    NgZorroAntdModule,       //zorroUI库
+    StateNamePipe
   ]
 })
 export class SharedModule {

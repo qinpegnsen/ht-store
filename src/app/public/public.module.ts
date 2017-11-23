@@ -5,6 +5,7 @@ import {PatternService} from "./service/pattern.service";
 import {TableService} from "./service/table.service";
 import {throwIfAlreadyLoaded} from "./module-import-guard";
 import {Setting} from "./setting/setting";
+import { StateNamePipe } from './pipes/state-name.pipe';
 
 @NgModule({
   //导入模块
@@ -14,7 +15,7 @@ import {Setting} from "./setting/setting";
     AjaxService,          //ajax服务
     PatternService,       //正则
     TableService,         //表格
-    Setting               //基本属性配置
+    Setting               //基本属�StateNamePipe�配置
   ],
   //声明
   declarations: []

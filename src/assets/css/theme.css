@@ -23,7 +23,7 @@
   animation: tailEffect .4s;
 }
 
-/*主题色switch开关,用法：<nz-switch class="lg ...>*/
+/*主题色switch开关,用法：<nz-switch class="thc ...>*/
 .thc .ant-switch-checked {
   background-color: #e82d4d;
 }
@@ -41,19 +41,6 @@
   border-color: #e82d4d;
 }
 
-/*实心红色按钮*/
-.thc-btn.ant-btn {
-  border-color: #e82d4d;
-  background-color: #fff;
-  color: #e82d4d;
-}
-
-.thc-btn.ant-btn:hover, .thc-btn.ant-btn:focus {
-  color: white;
-  background-color: #e82d4d;
-  border-color: #e82d4d;
-}
-
 /*主题色外发光按钮*/
 .thc-btn-w.ant-btn {
   border-color: #e82d4d;
@@ -66,3 +53,18 @@
   border-color: #e82d4d;
   box-shadow: 0 0 10px #a0a0a0;
 }
+/*实心主题色按钮 start*/
+.thc-btn.ant-btn {
+  border-color: #e82d4d;
+  background-color: #e82d4d;
+  color: #fff;
+}
+
+.thc-btn.ant-btn:hover, .thc-btn.ant-btn:focus, .thc-btn.ant-btn:active {
+  color: white;
+  background-color: #f04134;
+  border-color: #e82d4d;
+}
+/*实心主题色按钮 end*/
+
+

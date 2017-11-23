@@ -24,14 +24,13 @@ export class RegisterComponent implements OnInit {
     //企业注册表单项校验
     this.validateForm = this.fb.group({
       phone               : [ '', [ Validators.required ], [ this.simplesService.phoneValidator ] ],
-      code             : [ '', [ Validators.required ], [ this.simplesService.smsCodeValidator ] ],
+      code                : [ '', [ Validators.required ], [ this.simplesService.smsCodeValidator ] ],
       sellerPwd           : [ '', [ this.pwdValidator] ],
       rePwd               : [ '', [ this.passwordConfirmationValidator ] ],
-      // email               : [ '', [ this.emailValidator ] ],
+      // email            : [ '', [ this.emailValidator ] ],
     });
   }
   ngOnInit() {
-
   }
 
   /**
