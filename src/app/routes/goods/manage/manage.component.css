@@ -36,6 +36,9 @@
 .align-mid {
   vertical-align: middle;
 }
+.underline{
+  text-decoration: underline;
+}
 
 .goods-img {
   display: inline-block;
@@ -46,9 +49,9 @@
 .goods-info {
   position: absolute;
   left: 100px;
-  top: 10px;
+  top: 15px;
   right: 10px;
-  bottom: 10px;
+  bottom: 15px;
 }
 
 .goods-name {

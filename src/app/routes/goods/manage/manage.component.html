@@ -1,13 +1,10 @@
-<p>
-  manage works!
-</p>
 <!--搜索 start-->
 <div class="mb-15">
-  <div class="bg-white p-15">
+  <form nz-form class="bg-white p-15">
     <div class="search-group ml-20 mb">
       <span class="search-title">审核状态：</span>
       <div class="search-main">
-        <nz-select class="w100" [(ngModel)]="query.goodsAudit" [nzSize]="'large'" (change)="queryDatas()">
+        <nz-select class="w100" name="goodsAudit" [(ngModel)]="query.goodsAudit" [nzSize]="'large'" (change)="queryDatas()">
           <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
           <nz-option
             *ngFor="let item of goodsAudits"
@@ -20,7 +17,7 @@
     <div class="search-group ml-20 mb">
       <span class="search-title">商品状态：</span>
       <div class="search-main">
-        <nz-select class="w100" [(ngModel)]="query.state" [nzSize]="'large'" (change)="queryDatas()">
+        <nz-select class="w100" name="state" [(ngModel)]="query.state" [nzSize]="'large'" (change)="queryDatas()">
           <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
           <nz-option
             *ngFor="let item of goodsState"
@@ -33,7 +30,7 @@
     <div class="search-group ml-20 mb">
       <span class="search-title">自营：</span>
       <div class="search-main">
-        <nz-select class="w100" [(ngModel)]="query.isOwnPlat" [nzSize]="'large'" (change)="queryDatas()">
+        <nz-select class="w100" name="isOwnPlat" [(ngModel)]="query.isOwnPlat" [nzSize]="'large'" (change)="queryDatas()">
           <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
           <nz-option
             *ngFor="let item of isOwnPlats"
@@ -48,6 +45,7 @@
       <div class="search-main">
         <nz-cascader
           [(ngModel)]="_value"
+          name="kindId"
           [nzPlaceHolder]="'分类'"
           [nzSize]="'large'"
           (nzChange)="getKind($event)"
@@ -59,27 +57,27 @@
       <div class="search-group ml-20 mb align-top">
         <span class="search-title">商品名：</span>
         <div class="search-main">
-          <nz-input [(ngModel)]="query.goodsName" [nzPlaceHolder]="'商品名'" [nzSize]="'large'"></nz-input>
+          <nz-input name="goodsName" [(ngModel)]="query.goodsName" [nzPlaceHolder]="'商品名'" [nzSize]="'large'"></nz-input>
         </div>
       </div>
       <div class="search-group ml-20 mb align-top">
         <span class="search-title">品牌：</span>
         <div class="search-main">
-          <nz-input [(ngModel)]="query.brandName" [nzPlaceHolder]="'品牌名称'" [nzSize]="'large'"></nz-input>
+          <nz-input name="brandName" [(ngModel)]="query.brandName" [nzPlaceHolder]="'品牌名称'" [nzSize]="'large'"></nz-input>
         </div>
       </div>
-      <button nz-button [nzSize]="'large'" class="ml btn-danger" (click)="queryDatas()">
+      <button nz-button [nzSize]="'large'" class="ml btn-thc" (click)="queryDatas()">
         <i class="anticon anticon-search"></i>
       </button>
     </div>
-  </div>
+  </form>
 </div>
 <!--搜索 end-->
 
 <nz-table #nzTable [nzDataSource]="goodsList" [nzPageSize]="10" class="table-even-bg">
   <thead nz-thead>
   <tr>
-    <th nz-th>
+    <th nz-th class="text-center">
       <span>序号</span>
     </th>
     <th nz-th>
@@ -88,26 +86,26 @@
     <th nz-th>
       <span>规格/规格值</span>
     </th>
-    <th nz-th>
+    <th nz-th class="text-center">
       <span>价格（元）</span>
     </th>
-    <th nz-th>
+    <th nz-th class="text-center">
       <span>发布时间</span>
     </th>
-    <th nz-th>
+    <th nz-th class="text-center">
       <span>重消币抵扣</span>
     </th>
-    <th nz-th>
+    <th nz-th class="text-center">
       <span>审核状态</span>
     </th>
-    <th nz-th>
+    <th nz-th class="text-center">
       <span>操作</span>
     </th>
   </tr>
   </thead>
   <tbody nz-tbody>
   <tr nz-tbody-tr *ngFor="let goods of nzTable.data;let i = index">
-    <td nz-td>{{i+1}}</td>
+    <td nz-td class="text-center">{{i+1}}</td>
     <td nz-td class="relative w30">
       <div class="mr inline-block">
         <img [src]="goods.goodsImage" class="goods-img" (mousemove)="showImg($event)"
@@ -128,29 +126,28 @@
         </p>
       </div>
     </td>
-    <td nz-td class="w20">
+    <td nz-td class="w18">
       <div class="attr-width">
         <p class="mb0 font12 one-row omg" *ngFor="let attr of goods.goodsBaseSaList">
           <span class="inline">{{attr.attrName}}：</span>
           <span class="inline" *ngFor="let val of attr.goodsBaseSavList">{{val.value}}、</span>
         </p>
       </div>
-      <button nz-button [nzType]="'dashed'" [nzSize]="'small'" class="mt-5"
-              (click)="showSkuList(goods.goodsBaseCode,goods.goodsName)">查看所有规格
-      </button>
+      <a class="mt-5 underline" (click)="showSkuList(goods.goodsBaseCode,goods.goodsName)">查看所有规格
+      </a>
     </td>
     <td nz-td class="text-center main-color">{{goods.minPrice == goods.maxPrice?
       '¥'+goods.maxPrice:'¥'+goods.minPrice+'∽¥'+goods.maxPrice}}</td>
-    <td nz-td>{{goods.createTime}}</td>
-    <td nz-td>
+    <td nz-td class="text-center">{{goods.createTime}}</td>
+    <td nz-td class="text-center">
       <nz-switch class="thc" [nzSize]="'large'" [ngModel]="goods.isUseCoin=='Y'"
                  (change)="changeIsUseCoin(goods.isUseCoin=='Y',goods.goodsBaseCode, goodsList.curPage)">
         <span checked>是</span>
         <span unchecked>否</span>
       </nz-switch>
     </td>
-    <td nz-td>{{goods.goodsAudit | stateName:'1014'}}</td>
-    <td nz-td>
+    <td nz-td class="text-center">{{goods.goodsAudit | stateName:'1014'}}</td>
+    <td nz-td class="text-center">
       <ng-container *ngIf="goods.goodsAudit=='PASS'">
         <nz-popconfirm *ngIf="goods.state=='NORMAL'" [nzTitle]="'确定要下架这个商品吗？下架后，所有sku商品都将下架，代理商将不能批发该商品'"
                        (nzOnConfirm)="changeState('DOWN',goods.goodsBaseCode, goodsList.curPage)"
