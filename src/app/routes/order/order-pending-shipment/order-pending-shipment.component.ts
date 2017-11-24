@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {isUndefined} from "util";
 import {Page} from "../../../public/util/page";
-import {OrderPendingShipmentService} from "./order-pending-shipment.service";
+import {OrderService} from "../order.service";
+declare var $: any;
 
 @Component({
   selector: 'app-order-pending-shipment',
@@ -9,13 +9,18 @@ import {OrderPendingShipmentService} from "./order-pending-shipment.service";
   styleUrls: ['./order-pending-shipment.component.css']
 })
 export class OrderPendingShipmentComponent implements OnInit {
-  agentAcct;//代理商账号
-  agentOrdno;//订单号
-  public goodsList: Page = new Page();//分页
+  orderList: Page = new Page();  //待收货订单信息
+  _loading = false;             //查询时锁屏
+  orderquery = {
+    agentAcct: '',//代理商账号
+    agentOrdno: ''//订单号
+  }//查询条件
 
-  constructor(public orderPendingShipmentService:OrderPendingShipmentService) { }
+  constructor() { }
 
   ngOnInit() {
+    const me = this
+    me.queryAgentOrdAdmin()
   }
 
   /**
@@ -23,23 +28,18 @@ export class OrderPendingShipmentComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryAgentOrdAdmin(curPage, event?) {
-
-    let _this = this, activePage = 1;
-    if (typeof event !== 'undefined') {
-      activePage = event.activePage;
-    } else if (!isUndefined(curPage)) {
-      activePage = curPage;
+  public queryAgentOrdAdmin() {
+    let me = this;
+    me._loading = true; //锁屏
+    me.orderList.params = { //查询参数
+      curPage: me.orderList.curPage, //目标页码
+      pageSize: me.orderList.pageSize, //每页条数
+      agentAcct: me.orderquery.agentAcct,//代理商账号
+      agentOrdno: me.orderquery.agentOrdno,//订单号
     }
-    let url = '/agentOrd/queryAgentOrdAdmin';
-
-    let data = {
-      curPage: activePage,
-      pageSize: 10,
-      sortColumns: '',
-      agentAcct: _this.agentAcct,
-      ordno: _this.agentOrdno
-    };
-    _this.goodsList = new Page(_this.orderPendingShipmentService.queryData(url, data));
+    $.when(OrderService.queryOrderList(me.orderList.params)).done(data => {
+      me._loading = false //解除锁屏
+      if(data) me.orderList = data; //赋值
+    })
   }
 }

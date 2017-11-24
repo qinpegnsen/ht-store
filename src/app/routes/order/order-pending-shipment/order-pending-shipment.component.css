@@ -3,3 +3,18 @@
   line-height: 40px;
   background-color: #fafafa;;
 }
+.inline-block {
+  display: inline-block;
+}
+.pending-group .pending-title {
+  width: 40%;
+  line-height: 36px;
+  display: inline-block;
+}
+.pending-group .pending-main {
+  width: 60%;
+}
+.relative {
+  position: relative;
+}
+

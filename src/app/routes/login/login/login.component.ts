@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
   public login() {
     const _this = this;
     AjaxService.post({
-      url: SettingUrl.URL.seller.add,
+      // url: SettingUrl.URL.seller.add,
       data: {
         'account': _this.userName,
         'pwd': _this.userPassword
