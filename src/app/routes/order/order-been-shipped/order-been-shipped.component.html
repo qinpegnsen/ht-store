@@ -1,3 +1,104 @@
-<p>
-  已发货
-</p>
+<!--查询 start-->
+<div class="mb-15">
+  <div class="bg-white p-15">
+    <div class="inline-block">
+      <div class="pending-group ml-20 mb fl">
+        <span class="pending-title text-center">代理商账号：</span>
+        <div class="pending-main fr">
+          <nz-input [(ngModel)]="orderquery.agentAcct"  [nzPlaceHolder]="'请填写代理商账号'" [nzSize]="'large'"></nz-input>
+        </div>
+      </div>
+      <div class="pending-group ml-20 mb fl">
+        <span class="pending-title text-center">订单号：</span>
+        <div class="pending-main fr">
+          <nz-input [(ngModel)]="orderquery.agentOrdno"  [nzPlaceHolder]="'请填写订单号'" [nzSize]="'large'"></nz-input>
+        </div>
+      </div>
+      <button nz-button [nzSize]="'large'" class="ml-15 btn-danger fl" (click)="queryBeen()">
+        <i class="anticon anticon-search"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<!--查询 end-->
+
+<!--table表头 start -->
+<ul class="table-head">
+  <li class="w40 fl text-center">商品</li>
+  <li class="w12 fl text-center">单价</li>
+  <li class="w12 fl text-center">数量</li>
+  <li class="w12 fl text-center">收货人</li>
+  <li class="w12 fl text-center">订单金额（元）</li>
+  <li class="w12 fl text-center">交易状态</li>
+</ul>、
+<!--table表头 end -->
+
+<!--table列表 start-->
+<nz-table #nzTable
+          [nzAjaxData]="orderList.voList"
+          [nzLoading]="_loading"
+          [nzTotal]="orderList.totalRow"
+          [(nzPageIndex)]="orderList.curPage"
+          (nzPageIndexChange)="queryBeen()"
+          [(nzPageSize)]="orderList.pageSize"
+          class="table-even-bg">
+  <tbody>
+  <tr class="b" *ngFor="let orders of nzTable.data;let i = index">
+    <td class="w100">
+      <div class="order-space"></div>
+      <div class="tbody-tr-head">
+        <span class="fl pl-20">订单编号：{{orders.ordno}}</span>
+        <span class="fl pl-20">下单时间：{{orders.createTime}}</span>
+      </div>
+      <table class="w100 b">
+        <tr *ngFor="let name of orders.agentOrdItemList;let j = index">
+          <td class="relative w40 p">
+            <div class="mr inline-block fl">
+              <img [src]="name.goodsImage" class="goods-img" (mousemove)="showImg($event)"
+                   (mouseleave)="hideImg($event)"
+                   onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+              <img [src]="name.goodsImage" class="hover-img"
+                   onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+            </div>
+            <div class="fl pl pt">
+              <p>
+                <a class="font14" href="javascript:;">{{name.goodsName}}</a>
+              </p>
+              <p class="pt-20">
+                <span class="inline">容量：</span>
+                <span class="inline">500ml</span>
+              </p>
+            </div>
+          </td>
+          <td class="w12 text-center">&yen; {{name.batchPrice| number:'1.2-2'}}</td>
+          <td class="w12 text-center">{{name.batchNum}}</td>
+          <td class="w12 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.agentOrdItemList.length">
+            <span class="cursor p-hover" (mouseenter)="showUserInfo(t)" (mouseleave)="hideBuyerInfo(t)">
+              {{name.agentName}}
+            </span>
+            <div class="szh-buyer-info" #t (mouseenter)="showUserInfo(t)" (mouseleave)="hideBuyerInfo(t)">
+              <div class="info-con">
+                <p>收货人信息</p>
+                <dl class="pt-5"><dt>姓名：</dt><dd class="pl">{{orders.linkman}}</dd></dl>
+                <dl><dt>电话：</dt><dd>{{orders.mobile}}</dd></dl>
+                <dl><dt>地址：</dt><dd>{{orders.addr}}</dd></dl>
+              </div>
+            </div>
+          </td>
+          <td class="w12 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.agentOrdItemList.length">
+            <span class="main-color">&yen; {{orders.pay | number:'1.2-2'}}</span><br>
+            <span class="gray-color">运费 &yen;{{orders.freightPrice | number:'1.2-2'}}</span><br>
+            <span class="gray-color">{{orders.payWay | stateName :'1017'}}</span>
+          </td>
+          <td class="w12 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.agentOrdItemList.length">
+            <p class="gray-color">{{orders.state | stateName :'1019'}}</p>
+            <p class="cursor p-hover">查看详情</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+<!--table列表 end-->
+

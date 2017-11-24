@@ -20,7 +20,7 @@ export class OrderPendingShipmentComponent implements OnInit {
 
   ngOnInit() {
     const me = this
-    me.queryAgentOrdAdmin()
+    me.queryPending()
   }
 
   /**
@@ -28,7 +28,7 @@ export class OrderPendingShipmentComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryAgentOrdAdmin() {
+  public queryPending() {
     let me = this;
     me._loading = true; //锁屏
     me.orderList.params = { //查询参数
@@ -36,10 +36,46 @@ export class OrderPendingShipmentComponent implements OnInit {
       pageSize: me.orderList.pageSize, //每页条数
       agentAcct: me.orderquery.agentAcct,//代理商账号
       agentOrdno: me.orderquery.agentOrdno,//订单号
+      state:'PREPARE'
     }
     $.when(OrderService.queryOrderList(me.orderList.params)).done(data => {
       me._loading = false //解除锁屏
       if(data) me.orderList = data; //赋值
     })
+  }
+
+  /**
+   * 鼠标放在图片上时大图随之移动
+   */
+  showImg(event) {
+    let target = event.target.nextElementSibling;
+    target.style.display = 'block';
+    target.style.top = (event.clientY + 20) + 'px';
+    target.style.left = (event.clientX + 30) + 'px';
+  }
+
+  /**
+   * 隐藏大图
+   * @param event
+   */
+  hideImg(event) {
+    let target = event.target.nextElementSibling;
+    target.style.display = 'none';
+  }
+  /**
+   * 显示买家信息
+   * @param event
+   * @param i
+   */
+  showUserInfo(t) {
+    t.style.display = 'block';
+  }
+
+  /**
+   * 隐藏买家信息
+   * @param i
+   */
+  hideBuyerInfo(t) {
+    t.style.display = 'none';
   }
 }
