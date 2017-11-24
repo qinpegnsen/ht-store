@@ -251,7 +251,7 @@ label.file-upload > .anticon {
   letter-spacing: 2px;
 }
 
-.file-upload nz-input {
+.file-upload nz-input, .file-upload input {
   filter: alpha(opacity=0);
   opacity: 0;
   position: absolute;

@@ -81,7 +81,7 @@
           </nz-radio-group>
         </div>
       </div>
-      <div nz-form-item nz-row>
+      <!--<div nz-form-item nz-row>
         <div nz-col [nzSpan]="8" nz-form-label>
           <label nz-form-item-required>地址</label>
         </div>
@@ -95,7 +95,7 @@
                        (nzChange)="_console($event)">
           </nz-cascader>
         </div>
-      </div>
+      </div>-->
     </div>
     <!--企业基本信息 end-->
 
@@ -207,14 +207,16 @@
              nzHasFeedback>
           <label class="file-upload">
             <i class="anticon anticon-cloud-upload-o"></i>请上传组织结构代码电子版
-            <nz-input formControlName="organizationCodeElectronic" [nzType]="'file'" [nzPlaceHolder]="'请上传组织结构代码电子版'"
-                      [nzSize]="'large'">
-            </nz-input>
+            <input class="w100" type="file" name="organizationCodeElectronic" ng2FileSelect [uploader]="organizationCodeUploader"
+                   accept="image/*" (change)="organizationCodeFileChangeListener()"/>
           </label>
           <div nz-form-explain
-               *ngIf="getFormControl('organizationCodeElectronic').dirty&&getFormControl('organizationCodeElectronic').hasError('required')">
+               *ngIf="!organizationCodeUploader.queue[0]&&getFormControl('organizationCodeElectronic').dirty&&getFormControl('organizationCodeElectronic').hasError('required')">
             请上传组织结构代码电子版！
           </div>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <img [src]="organizationCodeUploader.queue[0]?._file | imgPreview" width="120" class="uploaded">
         </div>
       </div>
     </div>
@@ -272,7 +274,7 @@
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('businessLicenceAddress')"
              nzHasFeedback>
-          <nz-cascader formControlName="businessLicenceAreaName" [nzSize]="'large'"
+          <nz-cascader formControlName="businessLicenceAddress" [nzSize]="'large'"
                        [nzPlaceHolder]="'请选择'"
                        [nzExpandTrigger]="'hover'"
                        [nzChangeOnSelect]="true"
@@ -328,15 +330,17 @@
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('businessLicenceNumberElectronic')"
              nzHasFeedback>
           <label class="file-upload">
-            <i class="anticon anticon-cloud-upload-o"></i>请上传组织结构代码电子版
-            <nz-input formControlName="businessLicenceNumberElectronic" [nzType]="'file'" [nzPlaceHolder]="'请上传营业执照电子版'"
-                      [nzSize]="'large'">
-            </nz-input>
+            <i class="anticon anticon-cloud-upload-o"></i>请上传电子版营业执照
+            <input class="w100" type="file" name="businessLicenceNumberElectronic" ng2FileSelect [uploader]="businessLicenceUploader"
+                   accept="image/*" (change)="businessLicenceFileChangeListener()"/>
           </label>
           <div nz-form-explain
-               *ngIf="getFormControl('businessLicenceNumberElectronic').dirty&&getFormControl('businessLicenceNumberElectronic').hasError('required')">
-            营业执照所在地区编码！
+               *ngIf="!businessLicenceUploader.queue[0]&&getFormControl('businessLicenceNumberElectronic').dirty&&getFormControl('businessLicenceNumberElectronic').hasError('required')">
+            请上传电子版营业执照！
           </div>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <img [src]="businessLicenceUploader.queue[0]?._file | imgPreview" width="120" class="uploaded">
         </div>
       </div>
     </div>
@@ -445,7 +449,7 @@
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankAccountName')"
              nzHasFeedback>
-          <nz-input formControlName="bankAccountName" [nzType]="'text'" [nzPlaceHolder]="'结算银行开户名'" [nzSize]="'large'">
+          <nz-input formControlName="settlementBankAccountName" [nzType]="'text'" [nzPlaceHolder]="'结算银行开户名'" [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain
                *ngIf="getFormControl('settlementBankAccountName').dirty&&getFormControl('settlementBankAccountName').hasError('required')">
@@ -545,14 +549,16 @@
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('generalTaxPayer')" nzHasFeedback>
           <label class="file-upload">
             <i class="anticon anticon-cloud-upload-o"></i>请上传一般纳税人证明
-            <nz-input formControlName="generalTaxPayer" [nzType]="'file'" [nzPlaceHolder]="'一般纳税人证明'"
-                      [nzSize]="'large'">
-            </nz-input>
+            <input class="w100" type="file" name="generalTaxPayer" ng2FileSelect [uploader]="generalTaxPayerUploader"
+                   accept="image/*" (change)="generalTaxPayerFileChangeListener()"/>
           </label>
           <div nz-form-explain
-               *ngIf="getFormControl('generalTaxPayer').dirty&&getFormControl('generalTaxPayer').hasError('required')">
+               *ngIf="!generalTaxPayerUploader.queue[0]&&getFormControl('generalTaxPayer').dirty&&getFormControl('generalTaxPayer').hasError('required')">
             请上传一般纳税人证明！
           </div>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <img [src]="generalTaxPayerUploader.queue[0]?._file | imgPreview" width="120" class="uploaded">
         </div>
       </div>
       <div nz-form-item nz-row>
@@ -579,15 +585,16 @@
              nzHasFeedback>
           <label class="file-upload">
             <i class="anticon anticon-cloud-upload-o"></i>请上传纳税登记证电子版
-            <nz-input formControlName="taxRegistrationCertificateElectronic" [nzType]="'file'"
-                      [nzPlaceHolder]="'纳税登记证电子版'"
-                      [nzSize]="'large'">
-            </nz-input>
+            <input class="w100" type="file" name="taxRegistrationCertificateElectronic" ng2FileSelect [uploader]="taxRegistrationUploader"
+                   accept="image/*" (change)="taxRegistrationFileChangeListener()"/>
           </label>
           <div nz-form-explain
-               *ngIf="getFormControl('taxRegistrationCertificateElectronic').dirty&&getFormControl('taxRegistrationCertificateElectronic').hasError('required')">
+               *ngIf="!taxRegistrationUploader.queue[0]&&getFormControl('taxRegistrationCertificateElectronic').dirty&&getFormControl('taxRegistrationCertificateElectronic').hasError('required')">
             请上传纳税登记证电子版！
           </div>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <img [src]="taxRegistrationUploader.queue[0]?._file | imgPreview" width="120" class="uploaded">
         </div>
       </div>
     </div>

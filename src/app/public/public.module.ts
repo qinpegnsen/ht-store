@@ -4,6 +4,7 @@ import {PatternService} from "./service/pattern.service";
 import {throwIfAlreadyLoaded} from "./module-import-guard";
 import {Setting} from "./setting/setting";
 import {Page} from "./util/page";
+import { ImgPreviewPipe } from './pipes/img-preview.pipe';
 
 @NgModule({
   //导入模块
@@ -13,7 +14,7 @@ import {Page} from "./util/page";
     AjaxService,          //ajax服务
     PatternService,       //正则
     Page,                 //分页信息
-    Setting               //基本属�StateNamePipe�配置
+    Setting               //基本属�StateImgPreviewPipeNamePipe�配置
   ],
   //声明
   declarations: []

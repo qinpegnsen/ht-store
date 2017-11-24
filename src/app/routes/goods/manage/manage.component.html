@@ -4,7 +4,7 @@
     <div class="search-group ml-20 mb">
       <span class="search-title">审核状态：</span>
       <div class="search-main">
-        <nz-select class="w100" name="goodsAudit" [(ngModel)]="query.goodsAudit" [nzSize]="'large'" (change)="queryGoodsList()">
+        <nz-select class="w100" name="goodsAudit" [(ngModel)]="query.goodsAudit" [nzSize]="'large'" (ngModelChange)="queryGoodsList()">
           <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
           <nz-option
             *ngFor="let item of goodsAudits"
@@ -17,7 +17,7 @@
     <div class="search-group ml-20 mb">
       <span class="search-title">商品状态：</span>
       <div class="search-main">
-        <nz-select class="w100" name="state" [(ngModel)]="query.state" [nzSize]="'large'" (change)="queryGoodsList()">
+        <nz-select class="w100" name="state" [(ngModel)]="query.state" [nzSize]="'large'" (ngModelChange)="queryGoodsList()">
           <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
           <nz-option
             *ngFor="let item of goodsState"
@@ -30,7 +30,7 @@
     <div class="search-group ml-20 mb">
       <span class="search-title">自营：</span>
       <div class="search-main">
-        <nz-select class="w100" name="isOwnPlat" [(ngModel)]="query.isOwnPlat" [nzSize]="'large'" (change)="queryGoodsList()">
+        <nz-select class="w100" name="isOwnPlat" [(ngModel)]="query.isOwnPlat" [nzSize]="'large'" (ngModelChange)="queryGoodsList()">
           <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
           <nz-option
             *ngFor="let item of isOwnPlats"
@@ -79,7 +79,7 @@
           [nzTotal]="goodsList.totalRow"
           [(nzPageIndex)]="goodsList.curPage"
           (nzPageIndexChange)="queryGoodsList()"
-          [(nzPageSize)]="goodsList.pageSize" class="table-even-bg">
+          [(nzPageSize)]="goodsList.pageSize">
   <thead nz-thead>
   <tr>
     <th nz-th class="text-center">
@@ -122,11 +122,9 @@
       <div class="mb0 goods-info">
         <p>
           <a class="goods-name font14" href="javascript:;">
-                <span class="tag font12"
-                      [class.bg-info]="goods.state=='NORMAL'"
-                      [class.bg-danger]="goods.state=='STOP'"
-                      [class.bg-warning]="goods.state=='DOWN'">
-                  {{goods.state | stateName:'1006'}}</span>
+            <nz-tag *ngIf="goods.state=='NORMAL'" [nzColor]="'green'">{{goods.state | stateName:'1006'}}</nz-tag>
+            <nz-tag *ngIf="goods.state=='STOP'" [nzColor]="'orange'">{{goods.state | stateName:'1006'}}</nz-tag>
+            <nz-tag *ngIf="goods.state=='DOWN'" [nzColor]="'red'">{{goods.state | stateName:'1006'}}</nz-tag>
             {{goods.goodsName}}</a>
         </p>
       </div>

@@ -5,6 +5,7 @@ import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AngularEchartsModule} from "ngx-echarts";
 import {StateNamePipe} from "../public/pipes/state-name.pipe";
+import {ImgPreviewPipe} from "../public/pipes/img-preview.pipe";
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import {StateNamePipe} from "../public/pipes/state-name.pipe";
     NgZorroAntdModule.forRoot()   //zorroUI库
   ],
   declarations: [
-    StateNamePipe
+    StateNamePipe,          //将状态值转为对应状态名得管道
+    ImgPreviewPipe          //本地图片上传预览管道
   ],
   providers: [],
   exports: [
@@ -24,8 +26,9 @@ import {StateNamePipe} from "../public/pipes/state-name.pipe";
     FormsModule,            //表单支持
     ReactiveFormsModule,    //表单支持
     AngularEchartsModule,   //百度echarts图表插件
-    NgZorroAntdModule,       //zorroUI库
-    StateNamePipe
+    NgZorroAntdModule,      //zorroUI库
+    StateNamePipe,          //将状态值转为对应状态名得管道
+    ImgPreviewPipe          //本地图片上传预览管道
   ]
 })
 export class SharedModule {

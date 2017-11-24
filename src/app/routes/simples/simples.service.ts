@@ -127,6 +127,28 @@ export class SimplesService {
   }
 
   /**
+   * 企业入驻
+   * @param data
+   */
+  enterpris(data){
+    const me = this;
+    AjaxService.post({
+      url: SettingUrl.URL.enterpris.save,
+      data: data,
+      success: (res) => {
+        if (res.success) {
+          me.routerSkip(1.5);
+        } else {
+          me._notification.error(`出错了`, '入驻接口出错了接口出错了接口出错了')
+        }
+      },
+      error: (res) => {
+        me._notification.error(`接口出错了`, '入驻接口出错了接口出错了接口出错了')
+      }
+    });
+  }
+
+  /**
    * 用户名异步校验
    * @param control
    * @returns {any}
