@@ -7,30 +7,32 @@
     </button>
   </div>
   <!--提现表格 -- start-->
-  <nz-table #nzTable [nzDataSource]="cashData" [nzPageSize]="10">
+  <!--<nz-table #nzTable [nzDataSource]="cashData" [nzPageSize]="10">-->
+    <nz-table #nzTable [nzAjaxData]="settlePage.voList"
+              [nzLoading]="_loading"
+              [nzTotal]="settlePage.totalRow"
+              [(nzPageIndex)]="settlePage.curPage"
+              (nzPageIndexChange)="qeurySettleData()"
+              [(nzPageSize)]="settlePage.pageSize">
     <!--提现头部 --start -->
     <thead nz-thead>
     <tr>
-      <th nz-th><span>序号</span></th>
-      <th nz-th><span>订单号</span></th>
-      <th nz-th><span>订单总额</span></th>
-      <th nz-th><span>订单退款</span></th>
-      <th nz-th><span>结算比例</span></th>
-      <th nz-th><span>应借款</span></th>
-      <th nz-th><span>结算时间</span></th>
+      <th nz-th class="w10 text-center"><span>序号</span></th>
+      <th nz-th class="w18 text-center"><span>提现金额</span></th>
+      <th nz-th class="w18 text-center"><span>收款开户行</span></th>
+      <th nz-th class="w18 text-center"><span>状态</span></th>
+      <th nz-th class="w18 text-center"><span>申情时间</span></th>
     </tr>
     </thead>
     <!--提现头部 --end -->
     <!--提现数据 --start -->
     <tbody nz-tbody>
-    <tr nz-tbody-tr *ngFor="let data of nzTable.data;let i=index">
+    <tr nz-tbody-tr *ngFor="let data of nzTable.data;let i=index" class="text-center">
       <td nz-td>{{i+1}}</td>
-      <td nz-td>{{data.agentName}}</td>
-      <td nz-td>{{data.agentName}}</td>
-      <td nz-td>{{data.agentName}}</td>
-      <td nz-td>{{data.agentName}}</td>
-      <td nz-td>{{data.agentName}}</td>
-      <td nz-td>{{data.agentName}}</td>
+      <td nz-td>{{data.drawMoney}}</td>
+      <td nz-td>{{data.bank}}</td>
+      <td nz-td>{{data.state}}</td>
+      <td nz-td>{{data.createTime}}</td>
     </tr>
     </tbody>
     <!--提现数据 --end -->

@@ -1,12 +1,13 @@
 import {Injectable} from "@angular/core";
 import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
+import {NzNotificationService} from "ng-zorro-antd";
 declare var $: any;
 
 @Injectable()
 export class CashSettleService {
 
-  constructor() {
+  constructor(public _notification: NzNotificationService) {
   }
 
   /**
@@ -26,55 +27,82 @@ export class CashSettleService {
     return defer.promise(); //返回异步请求休息
   }
 
-
   /**
-   * get方法
-   * @param url
-   * @param data
+   * 查询提现信息列表
+   * @param data （查询参数）
    */
-  public static getSettle(url, data) {
-    let result;
+  static settleList(data:any){
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
     AjaxService.get({
-      url: url,
+      url: SettingUrl.URL.settle.query,
       data: data,
-      async: false,
       success: (data) => {
-        let info = data.info;
-        if (data.success) {
-          result = data.data;
-          console.log("result---",result);
-        } else {
-        }
-      },
-      error: (res) => {
-        console.log("█ \"这里出错了，请注意了！！！！\" ►►►", "这里出错了，请注意了！！！！");
+        if (data.success) defer.resolve(data.data);
       }
     });
-    return result;
+    return defer.promise(); //返回异步请求休息
   }
 
   /**
-   * post方法
-   * @param url
-   * @param data
-   * @returns {any}
+   * 查询查询企业信息
+   * @param data （查询参数）
    */
-  public static getInsert(url, data) {
-    let me = this, result;
-    AjaxService.post({
-      url: url,
+  static bankList(data:any){
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
+    AjaxService.get({
+      url: SettingUrl.URL.settle.bankCode,
       data: data,
-      async: false,
-      success: (res) => {
-        if (res.success) {
-          result = res.data;
-        } else {
-        }
-      },
-      error: (res) => {
-        console.log("█ \"这里出错了，请注意了！！！！\" ►►►", "这里出错了，请注意了！！！！");
+      success: (data) => {
+        if (data.success) defer.resolve(data.data);
       }
-    })
-    return result;
+    });
+    return defer.promise(); //返回异步请求休息
   }
+
+
+  /**
+   * 查询企业信息列表
+   * @param data （查询参数）
+   */
+  static agentData(data:any){
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
+    AjaxService.get({
+      url: SettingUrl.URL.settle.agentBalance,
+      data: data,
+      success: (data) => {
+        if (data.success) defer.resolve(data.data);
+      }
+    });
+    return defer.promise(); //返回异步请求休息
+  }
+
+  /**
+   * 提现信息
+   * @param data （查询参数）
+   */
+  static insertList(data:any){
+    console.log("█ data ►►►",  data);
+    let  me = this;
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
+    AjaxService.get({
+      url: SettingUrl.URL.settle.insert,
+      data: data,
+      // async:false,
+      success: (data) => {
+        console.log("█ data ►►►",  data);
+        if (data.success) defer.resolve(data.data);
+      },
+      error:(data) => {
+        console.log("█ data ►►►",  data);
+
+        // this._notification.error(data.info, data.info)
+      }
+    });
+    return defer.promise(); //返回异步请求休息
+  }
+
 }

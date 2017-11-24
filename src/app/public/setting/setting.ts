@@ -10,6 +10,12 @@ export class Setting {
     logoDark:'../../../assets/img/logo-dark.png'
   };
   public static MENUS: Array<any> = new Array();      //平台菜单
+  public static PAGEMSG:any = {                        //平台信息提示（公式、提示、引导等等...）
+    settleFormula:{
+      one:"入账 =（订单总额 - 订单退款）× 10%",
+      two:"结算 =（订单总额 - 订单退款）×（1-10%）= 订单总额 - 订单退款 - 入账"
+    }
+  }
   //定义枚举
   static ENUM: any = {
     articleState: 1005,  //eg文章状态枚举

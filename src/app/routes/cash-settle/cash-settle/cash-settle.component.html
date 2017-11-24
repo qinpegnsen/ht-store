@@ -1,8 +1,9 @@
 <!--提现部分 -- start-->
 <div nz-row>
   <div class="page-msg mt mb-20 pt-15 pb-15">
-    <span><i class="anticon anticon-red-envelope mr-5 ml font18"></i>余额：<b
-      class="main-color font18">￥{{agentData.acct}}</b></span>
+    <span><i class="anticon anticon-red-envelope mr-5 ml font18"></i>余额：
+      <b class="main-color font18">￥{{agentPage.acct}}</b>
+    </span>
     <button nz-button class="ml-20 btn-thc" (click)="showModal()">
       提现
     </button>
@@ -21,7 +22,7 @@
             <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
                  [nzValidateStatus]="getFormControl('email')">
               <nz-input [nzSize]="'large'" formControlName="email" [nzId]="'email'"
-                        [(ngModel)]="agentData.acct"></nz-input>
+                        [(ngModel)]="agentPage.acct"></nz-input>
               <div nz-form-explain *ngIf="getFormControl('email').dirty&&getFormControl('email').hasError('email')">
                 请输入收款人账号!
               </div>
@@ -38,7 +39,7 @@
             <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
                  [nzValidateStatus]="getFormControl('nickname')">
               <nz-input [nzSize]="'large'" formControlName="nickname" [nzId]="'nickname'"
-                        [(ngModel)]="agentData.bacctName"></nz-input>
+                        [(ngModel)]="agentPage.bacctName"></nz-input>
               <div nz-form-explain
                    *ngIf="getFormControl('nickname').dirty&&getFormControl('nickname').hasError('required')">请输入收款人姓名!
               </div>
@@ -49,7 +50,8 @@
               <label for="email" nz-form-item-required>账户余额</label>
             </div>
             <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-              <nz-input [nzSize]="'large'" formControlName="email" [nzId]="'email'" disabled></nz-input>
+              <nz-input [nzSize]="'large'" formControlName="email" [nzId]="'email'"
+                        [(ngModel)]="agentPage.balance"></nz-input>
             </div>
           </div>
           <div nz-form-item nz-row>
@@ -72,12 +74,16 @@
             <div nz-form-label nz-col [nzSpan]="6">
               <label nz-form-item-required>收款账号开户行</label>
             </div>
-            <div nz-form-control nz-col [nzSpan]="14">
-              <!--<nz-select formControlName="select" [nzSize]="'large'" [(ngModel)]="selectBanks">-->
-              <!--<nz-option *ngFor="let item of selectBank" [nzLabel]="'item.code'" [nzValue]="'item.remark'">-->
-              <!--</nz-option>-->
-              <!--</nz-select>-->
-            </div>
+            <!--<div nz-form-control nz-col [nzSpan]="14">-->
+            <!--<nz-select class="w100" formControlName="code" name="remark" [nzMode]="'remark'"[nzSize]="'large'">-->
+            <!--<nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>-->
+            <!--<nz-option-->
+            <!--*ngFor="let item of bankData"-->
+            <!--[nzLabel]="item.remark"-->
+            <!--[nzValue]="item.code">-->
+            <!--</nz-option>-->
+            <!--</nz-select>-->
+            <!--</div>-->
           </div>
         </form>
         <!--申请提现 -- end -->
@@ -89,36 +95,43 @@
 <!--提现部分 -- end-->
 <!--结算明细 -- start-->
 <div>
-  <div class="font16 mb-20"><i class="anticon anticon-switcher mr"></i>结算信息</div>
+  <div class="font16 mb-20">
+    <i class="anticon anticon-switcher mr"></i><span>结算信息</span>
+    <!--结算公式 -- start -->
+    <nz-popover  [nzPlacement]="'rightTop'" class="ml">
+      <span nz-popover class="main-color cursor"><u>结算公式</u></span>
+      <ng-template #nzTemplate>
+        <div><p>{{settleFormula.one}}</p>
+          <p>{{settleFormula.two}}</p></div>
+      </ng-template>
+    </nz-popover>
+    <!--结算公式 -- end -->
+  </div>
   <!--结算表格 -- start-->
   <nz-table #nzTable [nzAjaxData]="cashPage.voList"
             [nzLoading]="_loading"
             [nzTotal]="cashPage.totalRow"
             [(nzPageIndex)]="cashPage.curPage"
-            (nzPageIndexChange)="qeurySettleData()"
+            (nzPageIndexChange)="qeuryCashData()"
             [(nzPageSize)]="cashPage.pageSize">
     <!--结算头部 --start -->
     <thead nz-thead>
     <tr>
-      <th nz-th><span>序号</span></th>
-      <th nz-th><span>收款人姓名</span></th>
-      <th nz-th><span>收款人账号</span></th>
-      <th nz-th><span>提现金额</span></th>
-      <th nz-th><span>收款开户行</span></th>
-      <th nz-th><span>状态</span></th>
-      <th nz-th><span>申情时间</span></th>
+      <th nz-th class="w10 text-center"><span>序号</span></th>
+      <th nz-th class="w18 text-center"><span>提现总额</span></th>
+      <th nz-th class="w18 text-center"><span>订单退款</span></th>
+      <th nz-th class="w18 text-center"><span>结算比例</span></th>
+      <th nz-th class="w18 text-center"><span>应结款</span></th>
     </tr>
     </thead>
     <!--结算头部 --end -->
     <!--结算数据 --start -->
     <tbody nz-tbody>
-    <tr nz-tbody-tr *ngFor="let data of nzTable.data;let i=index;">
+    <tr nz-tbody-tr *ngFor="let data of nzTable.data;let i=index;" class="text-center">
       <td nz-td>{{i+1}}</td>
       <td nz-td>{{data.ordPay}}</td>
       <td nz-td>{{data.ordRefundPay}}</td>
-      <td nz-td>{{i}}</td>
-      <td nz-td>{{data.settle}}</td>
-      <td nz-td>{{data.settle}}</td>
+      <td nz-td>{{data.settleRate}}</td>
       <td nz-td>{{data.settle}}</td>
     </tr>
     </tbody>

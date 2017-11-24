@@ -56,7 +56,7 @@ export class SettingUrl {
      */
     settle:{
       query: '/finaceDraw/query',//查询企业提现列表
-      plantSettle:'/ord/queryAgentSettle',//查询企业账单列表
+      plantSettle:'/ord/queryAgentSettle',//查询企业结算列表
       agentBalance:'/finaceDraw/loadAgentBalance',//查询企业信息
       insert:'/finaceDraw/insert',//申请提现
       bankCode:'/datadict/queryAllByTypeCode',//查询银行
