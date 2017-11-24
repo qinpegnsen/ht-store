@@ -91,7 +91,12 @@
 <div>
   <div class="font16 mb-20"><i class="anticon anticon-switcher mr"></i>结算信息</div>
   <!--结算表格 -- start-->
-  <nz-table #nzTable [nzDataSource]="settleData" [nzPageSize]="10">
+  <nz-table #nzTable [nzAjaxData]="cashPage.voList"
+            [nzLoading]="_loading"
+            [nzTotal]="cashPage.totalRow"
+            [(nzPageIndex)]="cashPage.curPage"
+            (nzPageIndexChange)="qeurySettleData()"
+            [(nzPageSize)]="cashPage.pageSize">
     <!--结算头部 --start -->
     <thead nz-thead>
     <tr>

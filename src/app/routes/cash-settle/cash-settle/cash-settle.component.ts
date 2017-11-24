@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {SettingUrl} from "../../../public/setting/setting_url";
 import {CashSettleService} from "../cash-settle.service";
+import {Page} from "../../../public/util/page";
+
+declare var $: any;
 
 @Component({
   selector: 'app-cash-settle',
@@ -12,9 +15,11 @@ export class CashSettleComponent implements OnInit {
   isVisible = false;
   isConfirmLoading = false;
   validateForm: FormGroup;
-  public settleData: any;                   //提现的数据
-  public agentData: any;                     //企业信息
-  public selectBank: any;                     //银行信息
+  agentData: any;                     //企业信息
+  selectBank: any;                     //银行信息
+  _loading = false;             //查询时锁屏
+  cashPage: Page = new Page();  //结算信息
+
 
   constructor(private fb: FormBuilder) {
   }
@@ -29,7 +34,7 @@ export class CashSettleComponent implements OnInit {
       website: [null, [Validators.required]],
       agree: [false]
     });
-    //表单数据
+    // //表单数据
     this.qeurySettleData();//查询账单明细数据
     this.qeuryAgentData();//查询企业信息
     this.seletAllByTypeCode();//查询选择银行
@@ -39,12 +44,16 @@ export class CashSettleComponent implements OnInit {
    * 查询账单明细数据
    */
   qeurySettleData() {
-    let url = SettingUrl.URL.settle.plantSettle;
-    let data = {
-      curPage: 1,
-    };
-    this.settleData = CashSettleService.getSettle(url, data).voList;
-    // console.log("█    this.settleData ►►►",     this.settleData);
+    let me = this;
+    me._loading = true; //锁屏
+    me.cashPage.params = { //查询参数
+      curPage: me.cashPage.curPage, //目标页码
+      pageSize: me.cashPage.pageSize //每页条数
+    }
+    $.when(CashSettleService.cashSettleList(me.cashPage.params)).done(data => {
+      me._loading = false //解除锁屏
+      if(data) me.cashPage = data; //赋值
+    })
   };
 
   /**

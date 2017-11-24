@@ -1,44 +1,19 @@
 /**
  * 分页对象
  */
+import {Injectable} from "@angular/core";
+
+@Injectable()
 export class Page {
-  curPage: number;
-  lastPage: boolean;
-  needCountQuery: boolean;
-  pageSize: number;
-  params: any;
-  sortColumns: string;
-  totalPage: number;
-  totalRow: number;
-  voList: any;
+  curPage: number = 1; //当前页
+  lastPage: boolean = true; //是否最后一页
+  pageSize: number = 10; //每页条数
+  params: any = null; //查询参数
+  sortColumns: string = null;
+  totalPage: number = 0; //总页数
+  totalRow: number = 0; //总条数
+  voList: Array<any> = new Array(); //查询结果
 
-  constructor(data?: any) {
-    if (!data) data = {};
-    this.curPage = data.curPage || 1;
-    this.needCountQuery = data.needCountQuery || null;
-    this.pageSize = data.pageSize || 10;
-    this.params = data.params || null;
-    this.sortColumns = data.sortColumns || null;
-    this.totalRow = data.totalRow || 0;
-    this.totalPage = data.totalPage || Math.ceil(this.totalRow / this.pageSize);
-    this.voList = data.voList || null;
-    this.lastPage = data.lastPage || this.isLastPage();
-  }
-
-  /**
-   * 是否是最后一页
-   * @returns {boolean}
-   */
-  isLastPage() {
-    if (!this.totalRow || !this.pageSize) return true;
-    else return Math.ceil(this.totalRow / this.pageSize) == this.curPage;
-  }
-
-  public genStartRow() {
-    return (this.curPage - 1) * this.pageSize + 1;
-  }
-
-  public genEndRow() {
-    return this.curPage * this.pageSize;
+  constructor() {
   }
 }
