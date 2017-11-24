@@ -100,4 +100,28 @@ export class Util {
     });
   }
 
+  /**
+   *最近十年
+   * @returns {Array}
+   */
+  public static tenYear = function () {
+    let nowYear: number = new Date().getFullYear(),tenYearArr:any;
+    for (let i = 0; i < 10; i++) {
+      tenYearArr.push(nowYear.toString());
+      nowYear--;
+    };
+    return tenYearArr;
+  }
+
+  /**
+   * 获取月份
+   */
+  public static getMonth = function () {
+    let nowYear: number = new Date().getFullYear(),monthArr:any;
+    for (let i = 0; i < 12; i++) {
+      if (i < 9) monthArr.push("0" + (i + 1).toString());
+      else monthArr.push((i + 1).toString());
+    }
+  }
+
 }

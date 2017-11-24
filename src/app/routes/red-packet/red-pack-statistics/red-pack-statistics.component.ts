@@ -18,6 +18,8 @@ export class RedPackStatisticsComponent implements OnInit {
   public queryTime: string;//查询的时间
   public staTypes=MainService.getEnumDataList('1401'); //枚举所有统计时间的类型
   public showType: any = {DAY: true, WEEK: false, MONTH: false}; //展示不同的统计条件的组合
+  public yearInfo: any = Util.tenYear; //获取最近十年年份信息
+  public month: any = Util.getMonth; //获取月份信息
   public nowDate :Date = new Date();      //当前的日期
   public select: any = {
     'year':'',
@@ -38,11 +40,11 @@ export class RedPackStatisticsComponent implements OnInit {
    * 根据查询条件查询出统计图
    */
   getStaByQueryTime() {
-    // let me = this;
+    let me = this;
     // let url = SettingUrl.URL.rpAccountRec.querySta;
     // let data = {
     // }
-    // // let result = RedPacketService.getNoTip(url,data).voList;
+    // let result = RedPacketService.getNoTip(url,data).voList;
     // if(result){
     //   me.redPackStatic = result;
     //   me.now = me.redPackStatic.agentAllOrdList;
