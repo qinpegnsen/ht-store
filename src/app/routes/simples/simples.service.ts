@@ -88,15 +88,15 @@ export class SimplesService {
       url: SettingUrl.URL.seller.add,
       data: requestDate,
       success: (res) => {
-        // me.routerSkip(1);
+        me.routerSkip(1);
         if (res.success) {
-          me.routerSkip(1)
+          // me.routerSkip(1)
         } else {
-          me._notification.error(`出错了`, '接口出错了接口出错了接口出错了')
+          me._notification.error(`出错了`, '注册接口出错了接口出错了接口出错了')
         }
       },
       error: (res) => {
-        me._notification.error(`接口出错了`, '接口出错了接口出错了接口出错了')
+        me._notification.error(`接口出错了`, '注册接口出错了接口出错了接口出错了')
       }
     });
   }

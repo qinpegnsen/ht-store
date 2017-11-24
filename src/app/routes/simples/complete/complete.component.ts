@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SimplesService} from "../simples.service";
 import {StepsComponent} from "../steps/steps.component";
+import {FileUploader} from "ng2-file-upload";
 
 @Component({
   selector: 'app-complete',
@@ -11,6 +12,11 @@ import {StepsComponent} from "../steps/steps.component";
 export class CompleteComponent implements OnInit {
   validateForm: FormGroup;
   _options: any;//三级联动区域数据
+  public uploader:FileUploader = new FileUploader({
+    url: 'upload/basic/upload',
+    itemAlias:"limitFile",
+    allowedFileType: ["image"]
+  }); //初始化上传方法
 
   constructor(public simplesService: SimplesService,
               public steps: StepsComponent,

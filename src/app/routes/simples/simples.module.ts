@@ -8,6 +8,7 @@ import {DoneComponent} from './done/done.component';
 import {SimplesService} from "./simples.service";
 import {DredgeComponent} from './dredge/dredge.component';
 import { AuditingComponent } from './auditing/auditing.component';
+import {FileUploadModule} from "ng2-file-upload";
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     SharedModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FileUploadModule
   ],
   declarations: [
     RegisterComponent,

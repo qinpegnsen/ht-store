@@ -1,11 +1,13 @@
 import {Component, OnInit} from "@angular/core";
 import {Page} from "../../../public/util/page";
-import {isNullOrUndefined, isUndefined} from "util";
+import {isUndefined} from "util";
 import {GoodsService} from "../goods.service";
 import {MainService} from "../../../public/service/main.service";
 import {SettingUrl} from "../../../public/setting/setting_url";
 import {AjaxService} from "../../../public/service/ajax.service";
 import {NzMessageService, NzNotificationService} from "ng-zorro-antd";
+
+declare var $: any;
 
 @Component({
   selector: 'app-manage',
@@ -14,6 +16,8 @@ import {NzMessageService, NzNotificationService} from "ng-zorro-antd";
 })
 export class ManageComponent implements OnInit {
   public goodsList: Page = new Page();
+  public _loading = false;             //查询时锁屏
+
   public kindList;// 分类列表
   public goodsAudits: any;  // 商品审核状态列表
   public goodsState: any;  // 商品状态列表
@@ -26,20 +30,17 @@ export class ManageComponent implements OnInit {
     brandName: '',
     state: '',
     isOwnPlat: '',
-    curPage: 1,
-    pageSize: 10,
-    sortColumns: '',
     goodsAudit: '',
   }; // 查询条件
-  constructor(public goodsService: GoodsService,
-              public _message: NzMessageService,
+  constructor(public _message: NzMessageService,
+              public goodsService: GoodsService,
               public _notification: NzNotificationService) {
   }
 
   ngOnInit() {
     let me = this;
-    me.queryDatas(); //查询商品列表
-    me.kindList = this.goodsService.getKindList(); //获取分类列表
+    me.queryGoodsList(); //查询商品列表
+    me.kindList = me.goodsService.getKindList(); //获取分类列表
     me.goodsAudits = MainService.getEnumDataList('1014');  // 商品审核状态列表
     me.goodsState = MainService.getEnumDataList('1006');  // 商品状态列表
     me.isOwnPlats = MainService.getEnumDataList('1001');  // 店铺是否自营
@@ -58,16 +59,23 @@ export class ManageComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryDatas(curPage?, event?) {
-    let me = this, activePage = 1;
-    if (typeof event !== 'undefined') {
-      activePage = event.activePage;
-    } else if (!isUndefined(curPage)) {
-      activePage = curPage;
+  public queryGoodsList() {
+    let me = this;
+    me._loading = true; //锁屏
+    me.goodsList.params = { //查询参数
+      curPage: me.goodsList.curPage, //目标页码
+      pageSize: me.goodsList.pageSize, //每页条数
+      kindId: me.query.kindId, //商品分类
+      goodsName: me.query.goodsName, //商品名称
+      brandName: me.query.brandName, //品牌名称
+      state: me.query.state, //商品状态
+      isOwnPlat: me.query.isOwnPlat,//是否自营
+      goodsAudit: me.query.goodsAudit//审核状态
     }
-    me.query.curPage = activePage;
-    let list = new Page(this.goodsService.queryGoodsList(me.query));
-    if (!isNullOrUndefined(list) && !isNullOrUndefined(list.voList)) this.goodsList = list.voList;
+    $.when(GoodsService.queryGoodsList(me.goodsList.params)).done(data => {
+      me._loading = false; //解除锁屏
+      if (data) me.goodsList = data; //赋值
+    })
   }
 
   /**
@@ -76,7 +84,7 @@ export class ManageComponent implements OnInit {
    */
   getKind(data) {
     this.query.kindId = data[data.length - 1];
-    this.queryDatas()
+    this.queryGoodsList()
   }
 
   /**
@@ -107,7 +115,7 @@ export class ManageComponent implements OnInit {
         me._notification.error(res.status, res.statusText)
       }
     })
-    this.queryDatas(curPage);
+    this.queryGoodsList();
   }
 
   /**
@@ -117,24 +125,10 @@ export class ManageComponent implements OnInit {
    * @param pPage  当前页码
    */
   changeState(type: string, baseCode: string, pPage: number) {
-    let me = this, myUrl;
+    let me = this;
     if (isUndefined(pPage)) pPage = 1;
-    switch (type) {
-      case 'DOWN':    // 下架
-        myUrl = SettingUrl.URL.goods.downGoods;
-        break;
-      case 'STOP':    // 禁售
-        myUrl = SettingUrl.URL.goods.banGoods;
-        break;
-      case 'NORMAL':  // 申请上架
-        myUrl = SettingUrl.URL.goods.putawayGoods;
-        break;
-      case 'BAN':     // 解除禁售
-        myUrl = SettingUrl.URL.goods.relieveBanGoods;
-        break;
-    }
-    let res = me.goodsService.changeGoodsState(myUrl, baseCode);
-    if (res) me.queryDatas(pPage);// 刷新当前页数据
+    let res = me.goodsService.changeGoodsState(type, baseCode);
+    if (res) me.queryGoodsList();// 刷新当前页数据
   }
 
   /**

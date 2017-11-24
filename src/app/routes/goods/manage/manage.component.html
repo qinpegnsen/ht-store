@@ -4,7 +4,7 @@
     <div class="search-group ml-20 mb">
       <span class="search-title">审核状态：</span>
       <div class="search-main">
-        <nz-select class="w100" name="goodsAudit" [(ngModel)]="query.goodsAudit" [nzSize]="'large'" (change)="queryDatas()">
+        <nz-select class="w100" name="goodsAudit" [(ngModel)]="query.goodsAudit" [nzSize]="'large'" (change)="queryGoodsList()">
           <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
           <nz-option
             *ngFor="let item of goodsAudits"
@@ -17,7 +17,7 @@
     <div class="search-group ml-20 mb">
       <span class="search-title">商品状态：</span>
       <div class="search-main">
-        <nz-select class="w100" name="state" [(ngModel)]="query.state" [nzSize]="'large'" (change)="queryDatas()">
+        <nz-select class="w100" name="state" [(ngModel)]="query.state" [nzSize]="'large'" (change)="queryGoodsList()">
           <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
           <nz-option
             *ngFor="let item of goodsState"
@@ -30,7 +30,7 @@
     <div class="search-group ml-20 mb">
       <span class="search-title">自营：</span>
       <div class="search-main">
-        <nz-select class="w100" name="isOwnPlat" [(ngModel)]="query.isOwnPlat" [nzSize]="'large'" (change)="queryDatas()">
+        <nz-select class="w100" name="isOwnPlat" [(ngModel)]="query.isOwnPlat" [nzSize]="'large'" (change)="queryGoodsList()">
           <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
           <nz-option
             *ngFor="let item of isOwnPlats"
@@ -66,7 +66,7 @@
           <nz-input name="brandName" [(ngModel)]="query.brandName" [nzPlaceHolder]="'品牌名称'" [nzSize]="'large'"></nz-input>
         </div>
       </div>
-      <button nz-button [nzSize]="'large'" class="ml btn-thc" (click)="queryDatas()">
+      <button nz-button [nzSize]="'large'" class="ml btn-thc" (click)="queryGoodsList()">
         <i class="anticon anticon-search"></i>
       </button>
     </div>
@@ -74,7 +74,12 @@
 </div>
 <!--搜索 end-->
 
-<nz-table #nzTable [nzDataSource]="goodsList" [nzPageSize]="10" class="table-even-bg">
+<nz-table #nzTable [nzAjaxData]="goodsList.voList"
+          [nzLoading]="_loading"
+          [nzTotal]="goodsList.totalRow"
+          [(nzPageIndex)]="goodsList.curPage"
+          (nzPageIndexChange)="queryGoodsList()"
+          [(nzPageSize)]="goodsList.pageSize" class="table-even-bg">
   <thead nz-thead>
   <tr>
     <th nz-th class="text-center">
