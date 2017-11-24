@@ -1,11 +1,8 @@
 import {NgModule, Optional, SkipSelf} from '@angular/core';
 import {AjaxService} from "./service/ajax.service";
-import {MainService} from "./service/main.service";
 import {PatternService} from "./service/pattern.service";
-import {TableService} from "./service/table.service";
 import {throwIfAlreadyLoaded} from "./module-import-guard";
 import {Setting} from "./setting/setting";
-import { StateNamePipe } from './pipes/state-name.pipe';
 import {Page} from "./util/page";
 
 @NgModule({
@@ -15,7 +12,6 @@ import {Page} from "./util/page";
   providers: [
     AjaxService,          //ajax服务
     PatternService,       //正则
-    TableService,         //表格
     Page,                 //分页信息
     Setting               //基本属�StateNamePipe�配置
   ],

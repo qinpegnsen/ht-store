@@ -46,7 +46,7 @@
           <li nz-dropdown>
             <nz-badge [nzCount]="5">
               <ng-template #content>
-                <i class="anticon anticon-sound" title="消息通知"></i>
+                <i class="anticon anticon-bell" title="消息通知"></i>
               </ng-template>
             </nz-badge>
           </li>
@@ -74,6 +74,7 @@
         <router-outlet></router-outlet>
         <!--路由嵌套-业务处理区域 end-->
       </div>
+      <nz-back-top [nzVisibilityHeight]="100"></nz-back-top>
     </nz-content>
     <!--业务中心 end-->
     <!--底部信息 start-->
