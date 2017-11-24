@@ -24,12 +24,12 @@ html, body {
 }
 
 /*button边角改为方角*/
-.hawthorn-store .ant-btn{
+.hawthorn-store .ant-btn {
   border-radius: 2px;
 }
 
 /*修改button边角样式时，影响到了这里，故再次设定*/
-.hawthorn-store .ant-btn-circle, .hawthorn-store .ant-btn-circle-outline{
+.hawthorn-store .ant-btn-circle, .hawthorn-store .ant-btn-circle-outline {
   border-radius: 50%;
 }
 
@@ -84,8 +84,13 @@ html, body {
 }
 
 /*重新弹框头部的下边框样式*/
-.hawthorn-store .ant-modal-header{
+.hawthorn-store .ant-modal-header {
   border-bottom: 1px solid #e82d4d;
+}
+
+/*重新下拉列表中字体大小*/
+#cdk-overlay-0 .ant-dropdown-menu-item, #cdk-overlay-0 .ant-dropdown-menu-submenu-title {
+  font-size: 14px;
 }
 
 /******************当前使用的ng-zorro框架中，很多内置样式与当前项目不符，此处进行覆盖重写 end**************************/

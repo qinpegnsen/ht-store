@@ -39,11 +39,31 @@
       <i class="anticon trigger" [class.anticon-menu-fold]="!isCollapsed" [class.anticon-menu-unfold]="isCollapsed"
          (click)="isCollapsed=!isCollapsed"></i>
       <ul class="fr mr">
-        <li><i class="anticon anticon-home"></i></li>
-        <li><i class="anticon anticon-user"></i></li>
-        <li><i class="anticon anticon-file-text"></i></li>
-        <li><i class="anticon anticon-sound"></i></li>
-        <li><i class="anticon anticon-poweroff"></i></li>
+        <li><i class="anticon anticon-home" title="去首页"></i></li>
+        <li><i class="anticon anticon-user" title="企业信息"></i></li>
+
+        <nz-dropdown [nzTrigger]="'click'">
+          <li nz-dropdown>
+            <nz-badge [nzCount]="5">
+              <ng-template #content>
+                <i class="anticon anticon-sound" title="消息通知"></i>
+              </ng-template>
+            </nz-badge>
+          </li>
+          <ul nz-menu>
+            <li nz-menu-item>
+              <i class="anticon anticon-edit mr-5"></i> 建议修改密码
+              （<span class="main-color">1</span>）
+            </li>
+            <li nz-menu-item class="color-a">
+              <i class="anticon anticon-export mr-5"></i> 待发货商品
+              （<span class="main-color">4</span>）
+            </li>
+          </ul>
+        </nz-dropdown>
+
+        <li><i class="anticon anticon-edit" title="修改密码"></i></li>
+        <li><i class="anticon anticon-logout" title="退出登录"></i></li>
       </ul>
     </nz-header>
     <!--顶部信息 end-->

@@ -89,6 +89,11 @@
 /*清除浮动*/
 .float-none{float: none;}
 
+/*字体颜色*/
+.color-a{
+  color: #108ee9;
+}
+
 /*浮动*/
 .fl{float: left;}
 .fr{float: right;}

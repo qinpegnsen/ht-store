@@ -16,7 +16,8 @@
 }
 .layout .ant-layout-header ul li{
   display: inline;
-  padding: 0 15px;
+  padding: 0 20px;
+  font-size: 20px;
   border-left: 1px solid darkgray;
 }
 .layout .ant-layout-header ul li:hover{
@@ -53,7 +54,7 @@
 }
 
 .layout .trigger {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 64px;
   padding: 0 16px;
   cursor: pointer;
