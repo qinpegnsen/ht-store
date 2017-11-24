@@ -39,7 +39,7 @@ export class RedPackStatisticsComponent implements OnInit {
    */
   getStaByQueryTime() {
     // let me = this;
-    // let url = SettingUrl.URL.rp.querySta;
+    // let url = SettingUrl.URL.rpAccountRec.querySta;
     // let data = {
     // }
     // // let result = RedPacketService.getNoTip(url,data).voList;
