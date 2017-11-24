@@ -23,6 +23,11 @@ html, body {
   line-height: 1.6;
 }
 
+/*button边角改为方角*/
+.hawthorn-store .ant-btn{
+  border-radius: 2px;
+}
+
 /*重写单选按钮字体大小*/
 .hawthorn-store .ant-radio-wrapper {
   font-size: 14px;
