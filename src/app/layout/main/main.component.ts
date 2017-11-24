@@ -46,23 +46,23 @@ export class MainComponent implements OnInit {
           }
         ]
       },
-      // {
-      //   name: "红包",
-      //   icon: "red-envelope",
-      //   url: "/store/redPacket",
-      //   children: [
-      //     {
-      //       name: "红包投放记录",
-      //       icon: "",
-      //       url: "/store/redPacket/pushOrder",
-      //     },
-      //     {
-      //       name: "红包统计",
-      //       icon: "",
-      //       url: "/store/redPacket/statistics",
-      //     }
-      //   ]
-      // },
+      {
+        name: "红包",
+        icon: "red-envelope",
+        url: "/store/redPacket",
+        children: [
+          {
+            name: "红包投放记录",
+            icon: "",
+            url: "/store/redPacket/pushOrder",
+          },
+          {
+            name: "红包统计",
+            icon: "",
+            url: "/store/redPacket/statistics",
+          }
+        ]
+      },
       {
         name: "提现与结算",
         icon: "pay-circle-o",
