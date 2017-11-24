@@ -136,110 +136,32 @@
 
 /*主题色按钮，点击状态的水波样式*/
 .btn-thc.ant-btn-clicked:after {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  bottom: -1px;
-  right: -1px;
-  border-radius: inherit;
   border: 0 solid #e82d4d;
-  opacity: 0.4;
-  animation: buttonEffect .4s;
-  display: block;
-}
-.btn-thc.ant-btn-clicked:after {
-  border-color: #e82d4d;
 }
 
 /*danger按钮，点击状态的水波样式*/
 .btn-danger.ant-btn-clicked:after {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  bottom: -1px;
-  right: -1px;
-  border-radius: inherit;
   border: 0 solid #f04134;
-  opacity: 0.4;
-  animation: buttonEffect .4s;
-  display: block;
-}
-.btn-danger.ant-btn-clicked:after {
-  border-color: #f05345;
 }
 
 /*绿色按钮，点击状态的水波样式*/
 .btn-green.ant-btn-clicked:after {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  bottom: -1px;
-  right: -1px;
-  border-radius: inherit;
   border: 0 solid #37bc9b;
-  opacity: 0.4;
-  animation: buttonEffect .4s;
-  display: block;
-}
-.btn-green.ant-btn-clicked:after {
-  border-color: #37bc9b;
 }
 
 /*success按钮，点击状态的水波样式*/
 .btn-success.ant-btn-clicked:after {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  bottom: -1px;
-  right: -1px;
-  border-radius: inherit;
   border: 0 solid #27c24c;
-  opacity: 0.4;
-  animation: buttonEffect .4s;
-  display: block;
-}
-.btn-success.ant-btn-clicked:after {
-  border-color: #27c24c;
 }
 
 /*橙色按钮，点击状态的水波样式*/
 .btn-warning.ant-btn-clicked:after {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  bottom: -1px;
-  right: -1px;
-  border-radius: inherit;
   border: 0 solid #F57C00;
-  opacity: 0.4;
-  animation: buttonEffect .4s;
-  display: block;
-}
-.btn-warning.ant-btn-clicked:after {
-  border-color: #F57C00;
 }
 
 /*紫色按钮，点击状态的水波样式*/
 .btn-warning.ant-btn-clicked:after {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  bottom: -1px;
-  right: -1px;
-  border-radius: inherit;
   border: 0 solid #7266ba;
-  opacity: 0.4;
-  animation: buttonEffect .4s;
-  display: block;
-}
-.btn-warning.ant-btn-clicked:after {
-  border-color: #8175cd;
 }
 
 
