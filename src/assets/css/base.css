@@ -28,6 +28,11 @@ html, body {
   border-radius: 2px;
 }
 
+/*修改button边角样式时，影响到了这里，故再次设定*/
+.hawthorn-store .ant-btn-circle, .hawthorn-store .ant-btn-circle-outline{
+  border-radius: 50%;
+}
+
 /*重写单选按钮字体大小*/
 .hawthorn-store .ant-radio-wrapper {
   font-size: 14px;
