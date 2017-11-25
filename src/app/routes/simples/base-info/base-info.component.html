@@ -69,16 +69,46 @@
         </div>
         <div nz-form-control nz-col [nzSpan]="8">
           <nz-radio-group formControlName="idType">
-            <label nz-radio [nzValue]="1">
-              <span>item 1</span>
-            </label>
-            <label nz-radio [nzValue]="2">
-              <span>item 2</span>
-            </label>
-            <label nz-radio [nzValue]="3">
-              <span>item 3</span>
+            <label *ngFor="let item of papersTypes" nz-radio [nzValue]="item.key">
+              <span>{{item.val}}</span>
             </label>
           </nz-radio-group>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>税务登记证号</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('taxRegistrationCertificate')"
+             nzHasFeedback>
+          <nz-input formControlName="taxRegistrationCertificate" [nzType]="'text'" [nzPlaceHolder]="'税务登记证号'"
+                    [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain
+               *ngIf="getFormControl('taxRegistrationCertificate').dirty&&getFormControl('taxRegistrationCertificate').hasError('required')">
+            请输入税务登记证号！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>纳税登记证电子版</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control
+             [nzValidateStatus]="getFormControl('taxRegistrationCertificateElectronic')"
+             nzHasFeedback>
+          <label class="file-upload">
+            <i class="anticon anticon-cloud-upload-o"></i>请上传纳税登记证电子版
+            <input class="w100" type="file" name="taxRegistrationCertificateElectronic" ng2FileSelect [uploader]="taxRegistrationUploader"
+                   accept="image/*" (change)="taxRegistrationFileChangeListener()"/>
+          </label>
+          <div nz-form-explain
+               *ngIf="!taxRegistrationUploader.queue[0]&&getFormControl('taxRegistrationCertificateElectronic').dirty&&getFormControl('taxRegistrationCertificateElectronic').hasError('required')">
+            请上传纳税登记证电子版！
+          </div>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <img [src]="taxRegistrationUploader.queue[0]?._file | imgPreview" width="120" class="uploaded">
         </div>
       </div>
     </div>
@@ -139,9 +169,7 @@
                 </div>
               </div>
             </div>
-            <div nz-col [nzSpan]="1">
-              <p nz-form-split>-</p>
-            </div>
+            <span class="left pl-5 pr-5">-</span>
             <div nz-col [nzSpan]="4">
               <div nz-form-item nz-row>
                 <div>
@@ -305,9 +333,7 @@
                 </div>
               </div>
             </div>
-            <div nz-col [nzSpan]="1">
-              <p nz-form-split>-</p>
-            </div>
+            <span class="left pl-5 pr-5">-</span>
             <div nz-col [nzSpan]="4">
               <div nz-form-item nz-row>
                 <div>
@@ -346,291 +372,16 @@
     </div>
     <!--营业执照信息 end-->
 
-    <!--开户行信息 start-->
-    <div class="fieldset">
-      <div class="legend bb-dashed">开户行信息</div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>银行开户名</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankAccountName')" nzHasFeedback>
-          <nz-input formControlName="bankAccountName" [nzType]="'text'" [nzPlaceHolder]="'银行开户名'" [nzSize]="'large'">
-          </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('bankAccountName').dirty&&getFormControl('bankAccountName').hasError('required')">
-            请输入银行开户名！
-          </div>
-        </div>
-      </div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>公司银行账号</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankAccountNumber')"
-             nzHasFeedback>
-          <nz-input formControlName="bankAccountNumber" [nzType]="'text'" [nzPlaceHolder]="'公司银行账号'"
-                    [nzSize]="'large'">
-          </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('bankAccountNumber').dirty&&getFormControl('bankAccountNumber').hasError('required')">
-            请输入公司银行账号！
-          </div>
-        </div>
-      </div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>开户行支行名称</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankName')"
-             nzHasFeedback>
-          <nz-input formControlName="bankName" [nzType]="'text'" [nzPlaceHolder]="'开户行支行名称'"
-                    [nzSize]="'large'">
-          </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('bankName').dirty&&getFormControl('bankName').hasError('required')">
-            请输入开户行支行名称！
-          </div>
-        </div>
-      </div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>开户支行联行号</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankCode')"
-             nzHasFeedback>
-          <nz-input formControlName="bankCode" [nzType]="'text'" [nzPlaceHolder]="'开户支行联行号'"
-                    [nzSize]="'large'">
-          </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('bankCode').dirty&&getFormControl('bankCode').hasError('required')">
-            请输入开户支行联行号！
-          </div>
-        </div>
-      </div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>开户银行地址</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankAddress')"
-             nzHasFeedback>
-          <nz-cascader formControlName="bankAddress" [nzSize]="'large'"
-                       [nzPlaceHolder]="'请选择'"
-                       [nzExpandTrigger]="'hover'"
-                       [nzChangeOnSelect]="true"
-                       [nzOptions]="_options"
-                       (nzChange)="_console($event)">
-          </nz-cascader>
-          <div nz-form-explain
-               *ngIf="getFormControl('bankAddress').dirty&&getFormControl('bankAddress').hasError('required')">
-            请选择开户银行地址！
-          </div>
-        </div>
-      </div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>开户银行许可证电子版</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankLicenceElectronic')"
-             nzHasFeedback>
-          <label class="file-upload">
-            <i class="anticon anticon-cloud-upload-o"></i>请上传开户银行许可证电子版
-            <input class="w100" type="file" name="bankLicenceElectronic" ng2FileSelect [uploader]="bankLicenceUploader"
-                   accept="image/*" (change)="bankLicenceFileChangeListener()"/>
-          </label>
-          <div nz-form-explain
-               *ngIf="!bankLicenceUploader.queue[0]&&getFormControl('bankLicenceElectronic').dirty&&getFormControl('bankLicenceElectronic').hasError('required')">
-            请上传开户银行许可证电子版！
-          </div>
-        </div>
-        <div nz-col [nzSpan]="8">
-          <img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" width="120" class="uploaded">
-        </div>
-      </div>
-      <div nz-form-item nz-row>
-        <div nz-col [nzSpan]="8" nz-form-label>
-          <label nz-form-item-required>是否为结算账户</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control>
-          <nz-switch formControlName="isSettlementAccount" class="lg thc" (ngModelChange)="addFormControls($event)">
-            <span checked>是</span>
-            <span unchecked>否</span>
-          </nz-switch>
-        </div>
-      </div>
-    </div>
-    <!--开户行信息 end-->
-
-    <!--结算账户信息 start-->
-    <div class="fieldset" *ngIf="!validateForm.controls['isSettlementAccount'].value">
-      <div class="legend bb-dashed">结算账户信息</div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>结算银行开户名</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankAccountName')"
-             nzHasFeedback>
-          <nz-input formControlName="settlementBankAccountName" [nzType]="'text'" [nzPlaceHolder]="'结算银行开户名'" [nzSize]="'large'">
-          </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('settlementBankAccountName').dirty&&getFormControl('settlementBankAccountName').hasError('required')">
-            请输入结算银行开户名！
-          </div>
-        </div>
-      </div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>结算银行账号</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankAccountNumber')"
-             nzHasFeedback>
-          <nz-input formControlName="settlementBankAccountNumber" [nzType]="'text'" [nzPlaceHolder]="'结算银行账号'"
-                    [nzSize]="'large'">
-          </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('settlementBankAccountNumber').dirty&&getFormControl('settlementBankAccountNumber').hasError('required')">
-            请输入结算银行账号！
-          </div>
-        </div>
-      </div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>结算账户开户行支行名称</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankName')"
-             nzHasFeedback>
-          <nz-input formControlName="settlementBankName" [nzType]="'text'" [nzPlaceHolder]="'结算账户开户行支行名称'"
-                    [nzSize]="'large'">
-          </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('settlementBankName').dirty&&getFormControl('settlementBankName').hasError('required')">
-            请输入结算账户开户行支行名称！
-          </div>
-        </div>
-      </div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>结算账户开户行支行联行号</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankCode')"
-             nzHasFeedback>
-          <nz-input formControlName="settlementBankCode" [nzType]="'text'" [nzPlaceHolder]="'结算账户开户行支行联行号'"
-                    [nzSize]="'large'">
-          </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('settlementBankCode').dirty&&getFormControl('settlementBankCode').hasError('required')">
-            请输入结算账户开户行支行联行号！
-          </div>
-        </div>
-      </div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>结算账户开户行所在地</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankAddress')"
-             nzHasFeedback>
-          <nz-cascader formControlName="settlementBankAddress" [nzSize]="'large'"
-                       [nzPlaceHolder]="'请选择'"
-                       [nzExpandTrigger]="'hover'"
-                       [nzChangeOnSelect]="true"
-                       [nzOptions]="_options"
-                       (nzChange)="_console($event)">
-          </nz-cascader>
-          <div nz-form-explain
-               *ngIf="getFormControl('settlementBankAddress').dirty&&getFormControl('settlementBankAddress').hasError('required')">
-            请选择结算账户开户行所在地！
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--结算账户信息 end-->
-
-    <!--纳税信息 start-->
-    <div class="fieldset">
-      <div class="legend bb-dashed">纳税信息</div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>税务登记证号</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('taxRegistrationCertificate')"
-             nzHasFeedback>
-          <nz-input formControlName="taxRegistrationCertificate" [nzType]="'text'" [nzPlaceHolder]="'税务登记证号'"
-                    [nzSize]="'large'">
-          </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('taxRegistrationCertificate').dirty&&getFormControl('taxRegistrationCertificate').hasError('required')">
-            请输入税务登记证号！
-          </div>
-        </div>
-      </div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>一般纳税人证明</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('generalTaxPayer')" nzHasFeedback>
-          <label class="file-upload">
-            <i class="anticon anticon-cloud-upload-o"></i>请上传一般纳税人证明
-            <input class="w100" type="file" name="generalTaxPayer" ng2FileSelect [uploader]="generalTaxPayerUploader"
-                   accept="image/*" (change)="generalTaxPayerFileChangeListener()"/>
-          </label>
-          <div nz-form-explain
-               *ngIf="!generalTaxPayerUploader.queue[0]&&getFormControl('generalTaxPayer').dirty&&getFormControl('generalTaxPayer').hasError('required')">
-            请上传一般纳税人证明！
-          </div>
-        </div>
-        <div nz-col [nzSpan]="8">
-          <img [src]="generalTaxPayerUploader.queue[0]?._file | imgPreview" width="120" class="uploaded">
-        </div>
-      </div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>纳税人识别号</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('taxPayerId')"
-             nzHasFeedback>
-          <nz-input formControlName="taxPayerId" [nzType]="'text'" [nzPlaceHolder]="'纳税人识别号'"
-                    [nzSize]="'large'">
-          </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('taxPayerId').dirty&&getFormControl('taxPayerId').hasError('required')">
-            请输入纳税人识别号！
-          </div>
-        </div>
-      </div>
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>纳税登记证电子版</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control
-             [nzValidateStatus]="getFormControl('taxRegistrationCertificateElectronic')"
-             nzHasFeedback>
-          <label class="file-upload">
-            <i class="anticon anticon-cloud-upload-o"></i>请上传纳税登记证电子版
-            <input class="w100" type="file" name="taxRegistrationCertificateElectronic" ng2FileSelect [uploader]="taxRegistrationUploader"
-                   accept="image/*" (change)="taxRegistrationFileChangeListener()"/>
-          </label>
-          <div nz-form-explain
-               *ngIf="!taxRegistrationUploader.queue[0]&&getFormControl('taxRegistrationCertificateElectronic').dirty&&getFormControl('taxRegistrationCertificateElectronic').hasError('required')">
-            请上传纳税登记证电子版！
-          </div>
-        </div>
-        <div nz-col [nzSpan]="8">
-          <img [src]="taxRegistrationUploader.queue[0]?._file | imgPreview" width="120" class="uploaded">
-        </div>
-      </div>
-    </div>
-    <!--纳税信息 end-->
-
     <!--操作按钮 start-->
     <div nz-row class="text-center p-20 bt">
       <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="pre()">
         <span>上一步</span>
       </button>
       <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w"
-              (click)="submitCompleteForm($event)">
-        <span>提交申请</span>
+              (click)="submitBaseInfoForm($event)">
+        <span>下一步</span>
       </button>
     </div>
     <!--操作按钮 end-->
   </form>
 </div>
-<!--企业入驻 end-->

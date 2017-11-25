@@ -9,11 +9,13 @@ import {SimplesService} from "./simples.service";
 import {DredgeComponent} from './dredge/dredge.component';
 import { AuditingComponent } from './auditing/auditing.component';
 import {FileUploadModule} from "ng2-file-upload";
+import { BaseInfoComponent } from './base-info/base-info.component';
 
 const routes: Routes = [
   {
     path: '', component: StepsComponent, children: [
     {path: 'register', component: RegisterComponent},
+    {path: 'baseInfo', component: BaseInfoComponent},
     {path: 'complete', component: CompleteComponent},
     {path: 'auditing', component: AuditingComponent},
     {path: 'dredge', component: DredgeComponent},
@@ -34,7 +36,8 @@ const routes: Routes = [
     CompleteComponent,
     DredgeComponent,
     DoneComponent,
-    AuditingComponent
+    AuditingComponent,
+    BaseInfoComponent
   ],
   providers: [
     StepsComponent,

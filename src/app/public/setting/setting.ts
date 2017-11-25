@@ -18,11 +18,20 @@ export class Setting {
   }
   //定义枚举
   public static ENUM: any = {
-    articleState: 1005,  //eg文章状态枚举
-  };
+    yesOrNo: 1001,  // 是否
+    goodsState: 1006,  //商品状态列表
+    goodsAudits: 1006,  //商品审核状态列表
+    enterpriseState: 2001, //企业入驻状态
+    papersType: 2002, //证件类型
+    stepsState: 2003, //企业入驻流程状态
+    shopState: 2004   //店铺状态
+  }
+  ;
 
-  //定义枚举状态名
+//定义枚举状态名
   public static ENUMSTATE: any = {
+    yes: 'Y',
+    no: 'N',
     goodsState: {
       normal: 'NORMAL', //已上架
       down: 'DOWN', //下架
@@ -33,6 +42,10 @@ export class Setting {
       pass: 'PASS',   //审核通过
       unPass: 'UNPASS',//审核未通过
       reject: 'REJECT',//彻底驳回
+    },
+    papersType: {
+      normal: 'NORMAL', //普通营业执照
+      unity: 'UNITY'    //多证合一营业执照
     }
   };
 

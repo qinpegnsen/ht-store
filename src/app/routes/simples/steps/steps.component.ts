@@ -14,7 +14,8 @@ export class StepsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.navigate(['/simple/reg/register'], {replaceUrl: true})
+    // this.router.navigate(['/simple/reg/register'], {replaceUrl: true})
+    this.router.navigate(['/simple/reg/baseInfo'], {replaceUrl: true})
     // this.router.navigate(['/simple/reg/complete'], {replaceUrl: true})
   }
 

@@ -11,13 +11,13 @@ import {StepsComponent} from "./steps/steps.component";
 
 
 const options = [{
-  value: 'zhejiang',
+  value: '630000',
   label: 'Zhejiang',
   children: [{
-    value: 'hangzhou',
+    value: '631200',
     label: 'Hangzhou',
     children: [{
-      value: 'xihu',
+      value: '631201',
       label: 'West Lake',
       isLeaf: true
     }],
@@ -63,15 +63,18 @@ export class SimplesService {
         this.router.navigate(['/simple/reg/register'], {replaceUrl: true})
         break;
       case 1 :
-        this.router.navigate(['/simple/reg/complete'], {replaceUrl: true})
-        break;
-      case 1.5 :
-        this.router.navigate(['/simple/reg/auditing'], {replaceUrl: true})
+        this.router.navigate(['/simple/reg/baseInfo'], {replaceUrl: true})
         break;
       case 2 :
-        this.router.navigate(['/simple/reg/dredge'], {replaceUrl: true})
+        this.router.navigate(['/simple/reg/complete'], {replaceUrl: true})
+        break;
+      case 2.5 :
+        this.router.navigate(['/simple/reg/auditing'], {replaceUrl: true})
         break;
       case 3 :
+        this.router.navigate(['/simple/reg/dredge'], {replaceUrl: true})
+        break;
+      case 4 :
         this.router.navigate(['/simple/reg/done'], {replaceUrl: true})
         break;
     }
@@ -84,11 +87,12 @@ export class SimplesService {
    */
   addSeller(requestDate: any) {
     const me = this;
+    me.routerSkip(1);
     AjaxService.post({
       url: SettingUrl.URL.seller.add,
       data: requestDate,
       success: (res) => {
-        me.routerSkip(1);
+        // me.routerSkip(1);
         if (res.success) {
           // me.routerSkip(1)
         } else {
@@ -135,6 +139,8 @@ export class SimplesService {
     AjaxService.post({
       url: SettingUrl.URL.enterpris.save,
       data: data,
+      mask: true,
+      contentType: "application/json",
       success: (res) => {
         if (res.success) {
           me.routerSkip(1.5);

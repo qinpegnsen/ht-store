@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SimplesService} from "../simples.service";
 import {StepsComponent} from "../steps/steps.component";
 import {FileUploader} from "ng2-file-upload";
@@ -25,6 +25,11 @@ export class CompleteComponent implements OnInit {
     itemAlias: "limitFile",
     allowedFileType: ["image"]
   }); //电子版营业执照,初始化上传方法
+  public bankLicenceUploader: FileUploader = new FileUploader({
+    url: SettingUrl.URL.base.upload,
+    itemAlias: "limitFile",
+    allowedFileType: ["image"]
+  }); //银行开户许可证电子版,初始化上传方法
   public taxRegistrationUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.base.upload,
     itemAlias: "limitFile",
@@ -40,21 +45,21 @@ export class CompleteComponent implements OnInit {
               public steps: StepsComponent,
               public _notification: NzNotificationService,
               public fb: FormBuilder) {
-    this.steps.current = 1;
+    this.steps.current = 2;
     this.simplesService.routerSkip(this.steps.current);
     this._options = this.simplesService.options;
     this.validateForm = this.fb.group({
       epName                              : ['', [Validators.required], [this.simplesService.userNameAsyncValidator]],//企业名称
-      epCode                              : ['', [this.simplesService.stringValidator]],//企业编码
-      sellerAcct                          : ['', [this.simplesService.stringValidator]],//商家账户
-      sellerCode                          : ['', [this.simplesService.stringValidator]],//商家编码
+      // epCode                              : ['', [this.simplesService.stringValidator]],//企业编码
+      // sellerAcct                          : ['', [this.simplesService.stringValidator]],//商家账户
+      // sellerCode                          : ['', [this.simplesService.stringValidator]],//商家编码
       contactsName                        : ['', [Validators.required], [this.simplesService.userNameAsyncValidator]],//联系人姓名
       contactsPhone                       : ['', [Validators.required], [this.simplesService.phoneValidator]],//联系人手机号
       contactsEmail                       : ['', [this.simplesService.emailValidator]],//企业邮箱
       businessLicence                     : ['', [this.simplesService.stringValidator]],//营业执照注册号
-      businessLicenceAddress              : [[], [this.simplesService.addressValidator]],//地址
-      businessLicenceAreaCode             : ['', [this.simplesService.stringValidator]],//营业执照所在地区编码
-      businessLicenceAreaName             : ['', [this.simplesService.stringValidator]],//营业执照所在地区名称
+      businessLicenceAddress              : [null, [this.simplesService.addressValidator]],//详细地址
+      businessLicenceAreaCode             : ['', [this.simplesService.stringValidator]],//营业执照所在地区编码//TODO：选择器数组最后一个
+      businessLicenceAreaName             : ['', [this.simplesService.stringValidator]],//营业执照所在地区名称//TODO：选择器数组最后一个
       businessLicenceSphere               : ['', [this.simplesService.stringValidator]],//法定经营范围
       businessLicenceStart                : ['', [this.simplesService.validateRequired]],//营业执照有效起始日期
       businessLicenceEnd                  : ['', [this.simplesService.validateRequired]],//营业执照有效结束日期
@@ -69,26 +74,35 @@ export class CompleteComponent implements OnInit {
       bankAccountNumber                   : ['', [this.simplesService.stringValidator]],//公司银行账号
       bankName                            : ['', [this.simplesService.stringValidator]],//开户行支行名称
       bankCode                            : ['', [this.simplesService.stringValidator]],//开户支行联行号
-      bankAddress                         : ['', [this.simplesService.stringValidator]],//开户银行地址
-      bankLicenceElectronic               : ['', [this.simplesService.stringValidator]],//组织机构代码
-      isSettlementAccount                 : ['', [this.simplesService.stringValidator]],//是否为结算账户
+      bankAddress                         : [null, [this.simplesService.addressValidator]],//开户银行地址
+      isSettlementAccount                 : [true, [this.simplesService.stringValidator]],//是否为结算账户
       settlementBankAccountName           : ['', [this.simplesService.stringValidator]],//结算银行开户名
       settlementBankAccountNumber         : ['', [this.simplesService.stringValidator]],//结算银行账号
       settlementBankName                  : ['', [this.simplesService.stringValidator]],//结算账户开户行支行名称
       settlementBankCode                  : ['', [this.simplesService.stringValidator]],//结算账户开户行支行联行号
-      settlementBankAddress               : ['', [this.simplesService.addressValidator]],//结算账户开户行所在地
+      settlementBankAddress               : [null, [this.simplesService.addressValidator]],//结算账户开户行所在地
       taxRegistrationCertificate          : ['', [this.simplesService.stringValidator]],//税务登记证号
       taxPayerId                          : ['', [this.simplesService.stringValidator]],//纳税人识别号
       generalTaxPayer                     : [null, [this.simplesService.stringValidator]],//一般纳税人证明
       taxRegistrationCertificateElectronic: [null, [this.simplesService.stringValidator]],//纳税登记证电子版
       organizationCodeElectronic          : [null, [this.simplesService.stringValidator]],//组织机构代码电子版
       businessLicenceNumberElectronic     : [null, [this.simplesService.stringValidator]],//电子版营业执照
+      bankLicenceElectronic               : [null, [this.simplesService.stringValidator]],//开户银行许可证电子版
       idType                              :  [1],//证件类型
     });
   }
 
   ngOnInit() {
 
+
+  }
+
+  addFormControls(event){
+    /*let con = new FormControl();
+    con.validator = this.simplesService.stringValidator;
+    if(event){
+      this.validateForm.addControl('adfdsgs',con);
+    }*/
   }
 
   /**
@@ -105,6 +119,11 @@ export class CompleteComponent implements OnInit {
     if (this.businessLicenceUploader.queue.length > 1) this.businessLicenceUploader.queue[0].remove();
   }
 
+  bankLicenceFileChangeListener() {
+    // 当选择了新的图片的时候，把老图片从待上传列表中移除
+    if (this.bankLicenceUploader.queue.length > 1) this.bankLicenceUploader.queue[0].remove();
+  }
+
   generalTaxPayerFileChangeListener() {
     // 当选择了新的图片的时候，把老图片从待上传列表中移除
     if (this.generalTaxPayerUploader.queue.length > 1) this.generalTaxPayerUploader.queue[0].remove();
@@ -114,6 +133,7 @@ export class CompleteComponent implements OnInit {
     // 当选择了新的图片的时候，把老图片从待上传列表中移除
     if (this.taxRegistrationUploader.queue.length > 1) this.taxRegistrationUploader.queue[0].remove();
   }
+
   /**
    * 点击下一步按钮时会提交表单，成功后跳转下一步
    * 1.先上传图片，获得图片暗码
@@ -127,11 +147,16 @@ export class CompleteComponent implements OnInit {
     let me = this, uploadedNum = 0, allUploaders = [
       this.organizationCodeUploader,
       this.businessLicenceUploader,
+      this.bankLicenceUploader,
       this.generalTaxPayerUploader,
       this.taxRegistrationUploader
     ];
     allUploaders.forEach((uploader, i) => {
       let uuid = '';//置空暗码
+
+      //如果该组不需要上传图片则uploadedNum+1
+      //需要上传图片的则在图片上传完成后uploadedNum+1
+      if(uploader.getNotUploadedItems().length == 0) uploadedNum += 1;
       //上传之前，获取暗码
       uploader.onBuildItemForm = function (fileItem, form) {
         uuid = MainService.uploadUid();
@@ -143,7 +168,6 @@ export class CompleteComponent implements OnInit {
         let res = JSON.parse(response);
         if (res.success) {
           if (uuid) me.patchValues(i, uuid);
-          uploadedNum += 1;  //如果该组不需要上传图片则uploadedNum+1
         } else {
           me._notification.error(`上传失败`, '图片' + item._file.name + res.info)
         }
@@ -166,6 +190,7 @@ export class CompleteComponent implements OnInit {
       }
     })
   }
+
   /**
    * 提交上传图片之后的表单数据
    * @param $event
@@ -175,9 +200,14 @@ export class CompleteComponent implements OnInit {
     for (const key in this.validateForm.controls) {
       this.validateForm.controls[key].markAsDirty();
     }
+    console.log("█ this.validateForm ►►►",  this.validateForm);
     let formValue = this.validateForm.value;
+    //转换地址格式
+   /* formValue.businessLicenceAddress = formValue.businessLicenceAddress[2];
+    formValue.bankAddress = formValue.bankAddress[2];
+    formValue.settlementBankAddress = formValue.settlementBankAddress[2];*/
     console.log(formValue);
-    this.simplesService.enterpris(formValue);
+    // this.simplesService.enterpris(formValue);
   };
 
 
@@ -193,9 +223,12 @@ export class CompleteComponent implements OnInit {
         this.validateForm.patchValue({businessLicenceNumberElectronic: uuid});
         break;
       case 2:
-        this.validateForm.patchValue({generalTaxPayer: uuid});
+        this.validateForm.patchValue({bankLicenceElectronic: uuid});
         break;
       case 3:
+        this.validateForm.patchValue({generalTaxPayer: uuid});
+        break;
+      case 4:
         this.validateForm.patchValue({taxRegistrationCertificateElectronic: uuid});
         break;
     }

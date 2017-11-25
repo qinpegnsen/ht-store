@@ -6,6 +6,7 @@ import {MainService} from "../../../public/service/main.service";
 import {SettingUrl} from "../../../public/setting/setting_url";
 import {AjaxService} from "../../../public/service/ajax.service";
 import {NzMessageService, NzNotificationService} from "ng-zorro-antd";
+import {Setting} from "../../../public/setting/setting";
 
 declare var $: any;
 
@@ -17,6 +18,7 @@ declare var $: any;
 export class ManageComponent implements OnInit {
   public goodsList: Page = new Page();
   public _loading = false;             //查询时锁屏
+  public enumState = Setting.ENUMSTATE;
 
   public kindList;// 分类列表
   public goodsAudits: any;  // 商品审核状态列表
@@ -41,9 +43,9 @@ export class ManageComponent implements OnInit {
     let me = this;
     me.queryGoodsList(); //查询商品列表
     me.kindList = me.goodsService.getKindList(); //获取分类列表
-    me.goodsAudits = MainService.getEnumDataList('1014');  // 商品审核状态列表
-    me.goodsState = MainService.getEnumDataList('1006');  // 商品状态列表
-    me.isOwnPlats = MainService.getEnumDataList('1001');  // 店铺是否自营
+    me.goodsAudits = MainService.getEnumDataList(Setting.ENUM.goodsAudits);  // 商品审核状态列表
+    me.goodsState = MainService.getEnumDataList(Setting.ENUM.goodsState);  // 商品状态列表
+    me.isOwnPlats = MainService.getEnumDataList(Setting.ENUM.yesOrNo);  // 店铺是否自营
   }
 
   /**
