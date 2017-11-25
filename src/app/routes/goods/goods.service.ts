@@ -70,20 +70,20 @@ export class GoodsService {
   /**
    * 修改商品状态
    */
-  changeGoodsState(type, baseCode) {
+  changeGoodsState(type:string, baseCode:string) {
     let result: boolean = false, me = this, requestUrl;
     switch (type) {
-      case 'DOWN':    // 下架
+      case 'down':    // 下架
         requestUrl = SettingUrl.URL.goods.downGoods;
         break;
-      case 'STOP':    // 禁售
-        requestUrl = SettingUrl.URL.goods.banGoods;
+      case 'stop':    // 禁售
+        requestUrl = SettingUrl.URL.goods.stopGoods;
         break;
-      case 'NORMAL':  // 申请上架
+      case 'normal':  // 申请上架
         requestUrl = SettingUrl.URL.goods.putAwayGoods;
         break;
-      case 'BAN':     // 解除禁售
-        requestUrl = SettingUrl.URL.goods.relieveBanGoods;
+      case 'relieve':     // 解除禁售
+        requestUrl = SettingUrl.URL.goods.relieveGoods;
         break;
     }
     var defer = $.Deferred(); //封装异步请求结果
