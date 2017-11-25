@@ -18,7 +18,8 @@ const PROXY_CONFIG = [
       "/sms",
       "/enterpris",
       "/rpAccountRec",
-      "/rpStatistics"
+      "/rpStatistics",
+      "/enterpris"
     ],
     target: zyg + "8087",   //拦截 context配置路径，经过此地址
     secure: false
@@ -39,17 +40,19 @@ const PROXY_CONFIG = [
       "/goodsEdit",
       "/goodsQuery",
       "/goodsAudit",
+      "/agentOrd",
+      "/rpAccountRec"
     ],
-    target: csj + "8084",   //拦截 context配置路径，经过此地址
+    target: gh + "8084",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
     context: [
       "/res"
     ],
-    target: csj + "8082",   //拦截 context配置路径，经过此地址
+    target: gh + "8082",   //拦截 context配置路径，经过此地址
     secure: false
-  }
+  },
 ];
 
 module.exports = PROXY_CONFIG;
