@@ -71,8 +71,8 @@
               </p>
             </div>
           </td>
-         <td class="w10 text-center">&yen; {{name.batchPrice| number:'1.2-2'}}</td>
-          <td class="w10 text-center">{{name.batchNum}}</td>
+         <td class="w10 text-center bl">&yen; {{name.batchPrice| number:'1.2-2'}}</td>
+          <td class="w10 text-center bl">{{name.batchNum}}</td>
           <td class="w10 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.agentOrdItemList.length">
             <span class="cursor p-hover" (mouseenter)="showUserInfo(t)" (mouseleave)="hideBuyerInfo(t)">
               {{name.agentName}}
@@ -96,7 +96,7 @@
             <p class="cursor p-hover">查看详情</p>
           </td>
           <td class="w10 text-center bl">
-            <button nz-button [nzSize]="'large'" class="btn-danger" title="设置发货">
+            <button nz-button [nzSize]="'large'" class="btn-danger" title="设置发货" (click)="showOrderPend()">
               <i class="anticon anticon-car"></i>
             </button>
           </td>
@@ -108,7 +108,50 @@
 </nz-table>
 <!--table列表 end-->
 
-<!--设置发货组件 start-->
-<!--<app-order-logistics [orderId]="curCancelOrderId" (cancelOrder)="getCancelOrderData($event)"></app-order-logistics>-->
-<!--设置发货组件 end-->
+
+<!--设置发货弹窗 -- start -->
+<nz-modal [nzVisible]="isOrderPend" [nzTitle]="'设置发货'" class="thc" [nzContent]="modalContent"
+          (nzOnCancel)="hideMask($event)"
+          (nzOnOk)="hideleOk($event)" [nzConfirmLoading]="isConfirm">
+  <ng-template #modalContent>
+    <!--申请提现 -- start -->
+    <form nz-form [formGroup]="validateForm">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+          <label>订单号</label>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+          <label nz-form-item-required>快递公司快递号</label>
+        </div>
+        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
+             [nzValidateStatus]="getFormControl('email')">
+          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请快递公司快递号'" formControlName="email" [nzId]="'email'"></nz-input>
+          <div nz-form-explain *ngIf="getFormControl('email').dirty&&getFormControl('email').hasError('email')">
+            请快递公司快递号!
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6">
+          <label nz-form-item-required>选择快递公司</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="14">
+          <nz-select class="w100" formControlName="audits" name="audits" [nzSize]="'large'">
+            <nz-option [nzLabel]="''" [nzValue]="''"></nz-option>
+            <nz-option
+              *ngFor="let item of auditsDataList"
+              [nzLabel]="item.expressName"
+              [nzValue]="item.expressCode">
+            </nz-option>
+          </nz-select>
+        </div>
+      </div>
+    </form>
+    <!--申请提现 -- end -->
+  </ng-template>
+</nz-modal>
+<!--设置发货弹窗 -- end -->
+
 

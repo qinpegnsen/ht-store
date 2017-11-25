@@ -52,7 +52,7 @@
   border-radius: 4px;
   position: absolute;
   z-index: 2;
-  right: 39%;
+  right: 37%;
   box-shadow: 1px 1px 1px 3px #FFFCE9;
 }
 .szh-buyer-info .info-con {
@@ -86,4 +86,10 @@
 }
 .p-hover:hover{
   color: #e82d4d;
+}
+.order-select{
+  width: 99%;
+  height: 33px;
+  border-radius: 3px;
+  border: 1px solid #d9d9d9;
 }

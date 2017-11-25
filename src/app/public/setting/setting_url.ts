@@ -66,6 +66,7 @@ export class SettingUrl {
      */
     order:{
       queryOrdAdmin: '/agentOrd/queryAgentOrdAdmin',//查询订单管理中的待发货订单
+      getKeywords: '/basicExpress/queryBasicExpressIsUseList',//查询订单管理中的待发货订单
     }
   };
 }

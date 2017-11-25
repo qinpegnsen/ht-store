@@ -70,8 +70,8 @@
               </p>
             </div>
           </td>
-          <td class="w12 text-center">&yen; {{name.batchPrice| number:'1.2-2'}}</td>
-          <td class="w12 text-center">{{name.batchNum}}</td>
+          <td class="w12 text-center bl">&yen; {{name.batchPrice| number:'1.2-2'}}</td>
+          <td class="w12 text-center bl">{{name.batchNum}}</td>
           <td class="w12 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.agentOrdItemList.length">
             <span class="cursor p-hover" (mouseenter)="showUserInfo(t)" (mouseleave)="hideBuyerInfo(t)">
               {{name.agentName}}

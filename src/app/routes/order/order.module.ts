@@ -7,7 +7,6 @@ import { OrderCompleteComponent } from './order-complete/order-complete.componen
 import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../../shared/shared.module";
 import {OrderService} from "./order.service";
-import { OrderLogisticsComponent } from './order-logistics/order-logistics.component';
 
 
 const routes: Routes = [
@@ -23,7 +22,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  declarations: [OrderPendingShipmentComponent, OrderBeenShippedComponent, OrderCancelComponent, OrderCompleteComponent, OrderLogisticsComponent],
+  declarations: [OrderPendingShipmentComponent, OrderBeenShippedComponent, OrderCancelComponent, OrderCompleteComponent],
   providers: [
     OrderService
   ]

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Page} from "../../../public/util/page";
 import {OrderService} from "../order.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 declare var $: any;
 
 @Component({
@@ -15,12 +16,23 @@ export class OrderPendingShipmentComponent implements OnInit {
     agentAcct: '',//代理商账号
     agentOrdno: ''//订单号
   }//查询条件
+  isOrderPend = false;//设置发货弹窗
+  isConfirm = false;
+  pendingData:any={};  //申请提现信息
+  validateForm: FormGroup;//设置发货的表单
+  auditsDataList=[];  //物流信息
 
-  constructor() { }
+
+  constructor(public fb: FormBuilder) { }
 
   ngOnInit() {
     const me = this
-    me.queryPending()
+    me.queryPending()//查询待发货订单列表
+
+    me.validateForm = this.fb.group({
+      email: [null, [Validators.required]],
+      audits: [null, [Validators.required]],
+    });
   }
 
   /**
@@ -78,4 +90,55 @@ export class OrderPendingShipmentComponent implements OnInit {
   hideBuyerInfo(t) {
     t.style.display = 'none';
   }
+
+  /**
+   * 遮罩层显示
+   */
+  showOrderPend = () => {
+    this.isOrderPend = true;
+    this.queryAuditsDatas();//获取物流列表
+  }
+
+  /**
+   * 确认关闭遮罩层
+   * @param e
+   */
+  hideleOk = (e) => {
+    let me = this;
+    me.pendingData= { //查询参数
+
+    }
+    me.isConfirm = true;
+    setTimeout(() => {
+      this.isOrderPend = false;
+      this.isConfirm = false;
+    }, 500);
+  };
+
+  /**
+   * 取消关闭遮罩层
+   * @param e
+   */
+  hideMask = (e) => {
+    this.isOrderPend = false;
+    this._loading = false //解除锁屏
+  }
+
+  //设置发货的表单
+  getFormControl(name) {
+    return this.validateForm.controls[ name ];
+  }
+
+  /**
+   * 获取物流列表
+   */
+  queryAuditsDatas() {
+    let me = this;
+    me._loading = true; //锁屏
+    $.when(OrderService.auditsList()).done(data => {
+      me._loading = false //解除锁屏
+      if (data) me.auditsDataList = data; //赋值
+    })
+  }
+
 }
