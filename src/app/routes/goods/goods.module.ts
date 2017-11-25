@@ -3,9 +3,11 @@ import {SharedModule} from "../../shared/shared.module";
 import {RouterModule, Routes} from "@angular/router";
 import {ManageComponent} from "./manage/manage.component";
 import {GoodsService} from "./goods.service";
+import { EvaluateComponent } from './evaluate/evaluate.component';
 
 const routes: Routes = [
   {path: 'manage', component: ManageComponent},
+  {path: 'eval', component: EvaluateComponent},
 ];
 
 @NgModule({
@@ -14,7 +16,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    ManageComponent
+    ManageComponent,
+    EvaluateComponent
   ],
   providers: [
     GoodsService

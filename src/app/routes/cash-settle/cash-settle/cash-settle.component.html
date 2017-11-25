@@ -2,7 +2,7 @@
 <div nz-row>
   <div class="page-msg mt mb-20 pt-15 pb-15">
     <span><i class="anticon anticon-red-envelope mr-5 ml font18"></i>余额：
-      <b class="main-color font18">￥{{agentPage.acct}}</b>
+      <b class="main-color font18">￥{{storeInfo.acct}}</b>
     </span>
     <button nz-button class="ml-20 btn-thc" (click)="showModal()">
       提现
@@ -17,35 +17,23 @@
         <form nz-form [formGroup]="validateForm" (ngSubmit)="_submitForm()">
           <div nz-form-item nz-row>
             <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-              <label for="email" nz-form-item-required>收款人账号</label>
-            </div>
-            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
-                 [nzValidateStatus]="getFormControl('email')">
-              <nz-input [nzSize]="'large'" formControlName="email" [nzId]="'email'"></nz-input>
-              <div nz-form-explain *ngIf="getFormControl('email').dirty&&getFormControl('email').hasError('email')">
-                请输入收款人账号!
-              </div>
-            </div>
-          </div>
-          <div nz-form-item nz-row>
-            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-              <label for="nickname" nz-form-item-required>
+              <label nz-form-item-required>
             <span>
              收款人姓名
             </span>
               </label>
             </div>
             <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
-                 [nzValidateStatus]="getFormControl('nickname')">
-              <nz-input [nzSize]="'large'" formControlName="nickname" [nzId]="'nickname'"></nz-input>
+                 [nzValidateStatus]="getFormControl('bacctName')">
+              <nz-input [nzSize]="'large'" formControlName="bacctName" [nzId]="'bacctName'"></nz-input>
               <div nz-form-explain
-                   *ngIf="getFormControl('nickname').dirty&&getFormControl('nickname').hasError('required')">请输入收款人姓名!
+                   *ngIf="getFormControl('bacctName').dirty&&getFormControl('bacctName').hasError('required')">请输入收款人姓名!
               </div>
             </div>
           </div>
           <div nz-form-item nz-row>
             <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-              <label for="email" nz-form-item-required>账户余额</label>
+              <label nz-form-item-required>账户余额</label>
             </div>
             <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
               <nz-input [nzSize]="'large'" formControlName="balance" [nzId]="'email'"></nz-input>
@@ -53,7 +41,7 @@
           </div>
           <div nz-form-item nz-row>
             <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-              <label for="nickname" nz-form-item-required>
+              <label nz-form-item-required>
             <span>
              申请提现金额
             </span>
@@ -73,11 +61,10 @@
             </div>
             <div nz-form-control nz-col [nzSpan]="14">
               <nz-select class="w100" formControlName="bank" name="bank" [nzSize]="'large'">
-                <nz-option [nzLabel]="''" [nzValue]="''"></nz-option>
                 <nz-option
                   *ngFor="let item of bankDataList"
                   [nzLabel]="item.remark"
-                  [nzValue]="item.code">
+                  [nzValue]="item.remark">
                 </nz-option>
               </nz-select>
             </div>

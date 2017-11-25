@@ -36,6 +36,11 @@ export class Setting {
     }
   };
 
+  //數據字典健名
+  public static SETTINGINFO:any = {
+    bankTypeCode:"common_use_bank_name"
+  }
+
   constructor() {
     const _this = this;
   }

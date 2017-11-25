@@ -10,34 +10,33 @@ declare var $: any;
   selector: 'app-cash-settle',
   templateUrl: './cash-settle.component.html',
   styleUrls: ['./cash-settle.component.css'],
-  providers:[CashSettleService]
+  providers: [CashSettleService]
 })
 export class CashSettleComponent implements OnInit {
-  isVisible = false;
-  isConfirmLoading = false;
+  isVisible: boolean = false;
+  isConfirmLoading: boolean = false;
   validateForm: FormGroup;
-  _loading = false;             //查询时锁屏
+  _loading: boolean = false;             //查询时锁屏
   cashPage: Page = new Page();  //结算信息
-  agentPage: any = {};  //企业信息
-  bankData: any = {};  //银行传参
-  bankDataList=[];  //银行信息
-  insertData: any = {};  //申请提现信息
+  storeInfo: any = {};  //企业信息
+  bankDataList: Array<any> = new Array();  //银行信息
+  insertData: any = {};  //申请提现时传入的信息
   settleFormula: any = Setting.PAGEMSG.settleFormula; //结算公式
 
-  constructor(private fb: FormBuilder,public cashSettleService:CashSettleService ) {
+  constructor(private fb: FormBuilder, public cashSettleService: CashSettleService) {
     this.validateForm = this.fb.group({ //表单数据
       acct: [null, [Validators.email]],
-      email: ['', [this.emailValidator]],
-      nickname: [null, [Validators.required]],
+      bacctName: [null, [Validators.required]],
       bank: [null, [Validators.required]],
-      balance: [null, [Validators.required]],
+      balance: [null, [Validators.required]]
     });
   }
 
   ngOnInit() {
-    this.qeuryCashData();//查询账单明细数据
-    this.qeuryAgentData();//查询企业信息
-    this.seletAllByTypeCode();//查询选择银行
+    let me = this;
+    me.qeuryCashData();//查询账单明细数据
+    me.qeuryAgentData();//查询企业信息
+    me.seletAllByTypeCode();//查询选择银行
   }
 
   /**
@@ -67,11 +66,10 @@ export class CashSettleComponent implements OnInit {
     }
     $.when(CashSettleService.agentData(data)).done(data => {
       me._loading = false //解除锁屏
-      if (data) me.agentPage = data; //赋值
-      this.validateForm.patchValue({email: this.agentPage.acct});//获取收款人账号
-      this.validateForm.patchValue({nickname: this.agentPage.bacctName});//获取收款人名字
-      this.validateForm.patchValue({balance: this.agentPage.balance});//获取收款人账户余额
-      this.validateForm.patchValue({bank: this.agentPage.bank});//获取收款人名字
+      if (data) {
+        me.storeInfo = data;
+        me.validateForm.patchValue(me.storeInfo);//回显提现信息
+      }
     })
   };
 
@@ -79,24 +77,23 @@ export class CashSettleComponent implements OnInit {
    * 选择银行
    */
   seletAllByTypeCode() {
-    let me = this;
+    let me = this, bankData: any = {typeCode: Setting.SETTINGINFO.bankTypeCode};  //查詢銀行信息時傳入的參數
     me._loading = true; //锁屏
-    me.bankData.typeCode = 'common_use_bank_name';
-    $.when(CashSettleService.bankList(me.bankData)).done(data => {
+    $.when(CashSettleService.bankList(bankData)).done(data => {
       me._loading = false //解除锁屏
       if (data) me.bankDataList = data; //赋值
     })
   }
 
   /**
-   * 遮罩层显示
+   * 提现申请弹窗显示
    */
   showModal = () => {
     this.isVisible = true;
   }
 
   /**
-   * 确认提现---确认关闭遮罩层
+   * 确认提现---确认关闭提现弹窗
    * @param e
    */
   handleOk = (e) => {
@@ -112,7 +109,7 @@ export class CashSettleComponent implements OnInit {
   }
 
   /**
-   * 取消关闭遮罩层
+   * 取消关闭提现弹窗
    * @param e
    */
   handleCancel = (e) => {
@@ -128,17 +125,5 @@ export class CashSettleComponent implements OnInit {
     return this.validateForm.controls[name];
   }
 
-  /**
-   * 邮箱验证
-   * @param control
-   * @returns {any}
-   */
-  emailValidator = (control: FormControl): { [s: string]: boolean } => {
-    const EMAIL_REGEXP = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
-    if (!control.value) {
-      return {required: true}
-    } else if (!EMAIL_REGEXP.test(control.value)) {
-      return {error: true, email: true};
-    }
-  };
+
 }

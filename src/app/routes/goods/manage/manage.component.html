@@ -2,7 +2,7 @@
 <div class="mb-15">
   <form nz-form class="bg-white p-15">
     <div class="search-group ml-20 mb">
-      <span class="search-title">审核状态：</span>
+      <span class="search-title" routerLink="../eval">审核状态：</span>
       <div class="search-main">
         <nz-select class="w100" name="goodsAudit" [(ngModel)]="query.goodsAudit" [nzSize]="'large'"
                    (ngModelChange)="queryGoodsList()">
