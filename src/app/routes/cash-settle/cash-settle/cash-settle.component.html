@@ -21,8 +21,7 @@
             </div>
             <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
                  [nzValidateStatus]="getFormControl('email')">
-              <nz-input [nzSize]="'large'" formControlName="email" [nzId]="'email'"
-                        [(ngModel)]="agentPage.acct"></nz-input>
+              <nz-input [nzSize]="'large'" formControlName="email" [nzId]="'email'"></nz-input>
               <div nz-form-explain *ngIf="getFormControl('email').dirty&&getFormControl('email').hasError('email')">
                 请输入收款人账号!
               </div>
@@ -38,8 +37,7 @@
             </div>
             <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
                  [nzValidateStatus]="getFormControl('nickname')">
-              <nz-input [nzSize]="'large'" formControlName="nickname" [nzId]="'nickname'"
-                        [(ngModel)]="agentPage.bacctName"></nz-input>
+              <nz-input [nzSize]="'large'" formControlName="nickname" [nzId]="'nickname'"></nz-input>
               <div nz-form-explain
                    *ngIf="getFormControl('nickname').dirty&&getFormControl('nickname').hasError('required')">请输入收款人姓名!
               </div>
@@ -50,8 +48,7 @@
               <label for="email" nz-form-item-required>账户余额</label>
             </div>
             <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-              <nz-input [nzSize]="'large'" formControlName="email" [nzId]="'email'"
-                        [(ngModel)]="agentPage.balance"></nz-input>
+              <nz-input [nzSize]="'large'" formControlName="balance" [nzId]="'email'"></nz-input>
             </div>
           </div>
           <div nz-form-item nz-row>
@@ -63,10 +60,10 @@
               </label>
             </div>
             <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
-                 [nzValidateStatus]="getFormControl('nickname')">
-              <nz-input [nzSize]="'large'" formControlName="nickname" [nzId]="'nickname'"></nz-input>
+                 [nzValidateStatus]="getFormControl('acct')">
+              <nz-input [nzSize]="'large'" formControlName="acct" [nzId]="'acct'"></nz-input>
               <div nz-form-explain
-                   *ngIf="getFormControl('nickname').dirty&&getFormControl('nickname').hasError('required')">请输入申请提现的金额
+                   *ngIf="getFormControl('acct').dirty&&getFormControl('acct').hasError('required')">请输入申请提现的金额
               </div>
             </div>
           </div>
@@ -74,16 +71,16 @@
             <div nz-form-label nz-col [nzSpan]="6">
               <label nz-form-item-required>收款账号开户行</label>
             </div>
-            <!--<div nz-form-control nz-col [nzSpan]="14">-->
-            <!--<nz-select class="w100" formControlName="code" name="remark" [nzMode]="'remark'"[nzSize]="'large'">-->
-            <!--<nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>-->
-            <!--<nz-option-->
-            <!--*ngFor="let item of bankData"-->
-            <!--[nzLabel]="item.remark"-->
-            <!--[nzValue]="item.code">-->
-            <!--</nz-option>-->
-            <!--</nz-select>-->
-            <!--</div>-->
+            <div nz-form-control nz-col [nzSpan]="14">
+              <nz-select class="w100" formControlName="bank" name="bank" [nzSize]="'large'">
+                <nz-option [nzLabel]="''" [nzValue]="''"></nz-option>
+                <nz-option
+                  *ngFor="let item of bankDataList"
+                  [nzLabel]="item.remark"
+                  [nzValue]="item.code">
+                </nz-option>
+              </nz-select>
+            </div>
           </div>
         </form>
         <!--申请提现 -- end -->
@@ -98,7 +95,7 @@
   <div class="font16 mb-20">
     <i class="anticon anticon-switcher mr"></i><span>结算信息</span>
     <!--结算公式 -- start -->
-    <nz-popover  [nzPlacement]="'rightTop'" class="ml">
+    <nz-popover [nzPlacement]="'leftTop'" class="ml fr">
       <span nz-popover class="main-color cursor"><u>结算公式</u></span>
       <ng-template #nzTemplate>
         <div><p>{{settleFormula.one}}</p>

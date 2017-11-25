@@ -83,23 +83,20 @@ export class CashSettleService {
    * 提现信息
    * @param data （查询参数）
    */
-  static insertList(data:any){
-    console.log("█ data ►►►",  data);
+  insertList(data:any){
     let  me = this;
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
-    AjaxService.get({
+    AjaxService.post({
       url: SettingUrl.URL.settle.insert,
       data: data,
-      // async:false,
+      async:false,
       success: (data) => {
-        console.log("█ data ►►►",  data);
-        if (data.success) defer.resolve(data.data);
+        if (data.success) me._notification.success('提现成功',data.info);
+        else{me._notification.error('提现失败',data.info)}
       },
       error:(data) => {
-        console.log("█ data ►►►",  data);
-
-        // this._notification.error(data.info, data.info)
+        me._notification.error('提现失败', data.info)
       }
     });
     return defer.promise(); //返回异步请求休息
