@@ -62,10 +62,6 @@
   overflow: hidden;
 }
 
-.goods-name .ant-tag {
-  margin-right: 0;
-}
-
 .hover-img {
   width: 180px !important;
   max-width: 220px;

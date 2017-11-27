@@ -12,7 +12,8 @@
         <div nz-form-explain *ngIf="getFormControl('phone').dirty&&getFormControl('phone').hasError('required')">
           请输入手机号码！
         </div>
-        <div nz-form-explain *ngIf="getFormControl('phone').dirty&&getFormControl('phone').hasError('phone')">手机号码不正确！
+        <div nz-form-explain
+             *ngIf="getFormControl('phone').dirty&&getFormControl('phone').hasError(valitate.isPhone)">手机号码不正确！
         </div>
         <div class="has-error"><p nz-form-explain *ngIf="!getFormControl('phone').dirty&&phoneState == 'error'">
           手机号码不正确！</p></div>
@@ -33,7 +34,7 @@
         <div nz-form-explain *ngIf="getFormControl('code').dirty&&getFormControl('code').hasError('required')">
           请输入短信验证码！
         </div>
-        <div nz-form-explain *ngIf="getFormControl('code').dirty&&getFormControl('code').hasError('smsCode')">
+        <div nz-form-explain *ngIf="getFormControl('code').dirty&&getFormControl('code').hasError(valitate.isSmsCode)">
           短信验证码错误！
         </div>
       </div>
@@ -57,7 +58,7 @@
                *ngIf="getFormControl('sellerPwd').dirty&&getFormControl('sellerPwd').hasError('required')">请输入您的密码！
           </div>
           <div nz-form-explain
-               *ngIf="getFormControl('sellerPwd').dirty&&getFormControl('sellerPwd').hasError('pwd')">
+               *ngIf="getFormControl('sellerPwd').dirty&&getFormControl('sellerPwd').hasError(valitate.isPwd)">
             请输入6位以上含数字、字母组成的密码！
           </div>
         </div>

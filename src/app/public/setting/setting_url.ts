@@ -25,7 +25,7 @@ export class SettingUrl {
      * 商家
      */
     seller: {
-      add: '/seller/addSeller',//注册商户
+      add: '/seller/addSeller',//(post)注册商户
       load: '/seller/loadSellerById',//加载基本商户信息
       queryAccount: '/seller/querySellerBySellerAcc',//判断账户是否已存在
       queryAllSellers: '/seller/querySellersByShopCode',//根据店铺编码查询店铺下所有商家账户
@@ -49,13 +49,14 @@ export class SettingUrl {
      * 商品管理
      */
     goods:{
-      goodsQuery: "/goodsQuery/query",//商品管理列表
-      getGoodsKinds: "/goodsKind/queryGoodsByParentId",//商品分类
-      putAwayGoods: "/goodsEdit/appleToNormal",//商品上架人民rm
-      downGoods: "/goodsEdit/updateStateToDown",//商品下架
-      stopGoods: "/goodsEdit/updateStateToStop",//商品禁售
-      relieveGoods: "/goodsEdit/updateStateToNomal",//解除商品禁售
-      updateIsUseCoin: "/goodsEdit/updateIsUseCoin",//更改是否可用重消币
+      goodsQuery: "/goodsQuery/query",//(get)商品管理列表
+      loadSkuGoods: "/goodsQuery/load", //(get)查看所有商品规格
+      getGoodsKinds: "/goodsKind/queryGoodsByParentId",//(get)商品分类
+      putAwayGoods: "/goodsEdit/appleToNormal",//(put)商品上架
+      downGoods: "/goodsEdit/updateStateToDown",//(put)商品下架
+      stopGoods: "/goodsEdit/updateStateToStop",//(put)商品禁售
+      relieveGoods: "/goodsEdit/updateStateToNomal",//(put)解除商品禁售
+      updateIsUseCoin: "/goodsEdit/updateIsUseCoin",//(put)更改是否可用重消币
     },
     /**
      * 提现与账单明细

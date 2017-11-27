@@ -5,8 +5,9 @@ import {GoodsService} from "../goods.service";
 import {MainService} from "../../../public/service/main.service";
 import {SettingUrl} from "../../../public/setting/setting_url";
 import {AjaxService} from "../../../public/service/ajax.service";
-import {NzMessageService, NzNotificationService} from "ng-zorro-antd";
+import {NzMessageService, NzModalService, NzNotificationService} from "ng-zorro-antd";
 import {Setting} from "../../../public/setting/setting";
+import {SkuGoodsComponent} from "../sku-goods/sku-goods.component";
 
 declare var $: any;
 
@@ -19,6 +20,8 @@ export class ManageComponent implements OnInit {
   public goodsList: Page = new Page();
   public _loading = false;             //查询时锁屏
   public enumState = Setting.ENUMSTATE;
+  public currentModal;
+  public currentContent;
 
   public kindList;// 分类列表
   public goodsAudits: any;  // 商品审核状态列表
@@ -36,7 +39,9 @@ export class ManageComponent implements OnInit {
   }; // 查询条件
   constructor(public _message: NzMessageService,
               public goodsService: GoodsService,
+              public modalService: NzModalService,
               public _notification: NzNotificationService) {
+    this.goodsList.pageSize = 10
   }
 
   ngOnInit() {
@@ -52,8 +57,14 @@ export class ManageComponent implements OnInit {
    * 显示窗口组件，加载sku列表
    */
   showSkuList(baseCode, name) {
-    this.curBaseCode = baseCode;
-    this.curName = name;
+    this.modalService.open({
+      title          : `"${name}"的所有规格`,
+      content        : SkuGoodsComponent,
+      footer         : false,
+      componentParams: {
+        baseCode: baseCode
+      }
+    });
   }
 
   /**
@@ -95,51 +106,29 @@ export class ManageComponent implements OnInit {
    * @param baseCode
    * @param curPage
    */
-  changeIsUseCoin(type, baseCode, curPage) {
-    let me = this, isUseCoin, requestData;
+  changeIsUseCoin(type, baseCode) {
+    let me = this, isUseCoin;
     isUseCoin = type ? 'N' : 'Y';
-    requestData = {
-      goodsBaseCode: baseCode,
-      isUseCoin: isUseCoin
-    };
-    AjaxService.get({
-      url: SettingUrl.URL.goods.updateIsUseCoin,
-      data: requestData,
-      async: false,
-      success: (res) => {
-        if (res.success) {
-          me._message.success(res.info)
-        } else {
-          me._notification.error(res.info, res.info)
-        }
-      },
-      error: (res) => {
-        me._notification.error(res.status, res.statusText)
+    $.when(me.goodsService.changeIsUseCoin(isUseCoin,baseCode)).done(data => {
+      if (data.success) {
+        me.queryGoodsList();
+      } else {
+        me._notification.error(data.info, data.info)
       }
     })
-    this.queryGoodsList();
   }
 
   /**
    * 修改商品状态
    * @param type  状态类型
    * @param baseCode   商品基本编码
-   * @param pPage  当前页码
    */
-  changeState(type: string, baseCode: string, pPage: number) {
+  changeState(type: string, baseCode: string) {
     let me = this;
-    if (isUndefined(pPage)) pPage = 1;
-    let res = me.goodsService.changeGoodsState(type, baseCode);
-    if (res) me.queryGoodsList();// 刷新当前页数据
+    $.when(me.goodsService.changeGoodsState(type,baseCode)).done(data => {
+      if (data) me.queryGoodsList();
+    })
   }
-
-  /**
-   * 确认窗口确认事件
-   */
-  confirm = (type: string, baseCode: string, pPage: number) => {
-    this.changeState(type, baseCode, pPage);
-  }
-
 
   /**
    * 鼠标放在图片上时大图随之移动

@@ -6,6 +6,7 @@ import {FileUploader} from "ng2-file-upload";
 import {SettingUrl} from "../../../public/setting/setting_url";
 import {MainService} from "../../../public/service/main.service";
 import {NzNotificationService} from "ng-zorro-antd";
+import {Util} from "../../../public/util/util";
 
 @Component({
   selector: 'app-complete',
@@ -54,8 +55,8 @@ export class CompleteComponent implements OnInit {
       // sellerAcct                          : ['', [this.simplesService.stringValidator]],//商家账户
       // sellerCode                          : ['', [this.simplesService.stringValidator]],//商家编码
       contactsName                        : ['', [Validators.required], [this.simplesService.userNameAsyncValidator]],//联系人姓名
-      contactsPhone                       : ['', [Validators.required], [this.simplesService.phoneValidator]],//联系人手机号
-      contactsEmail                       : ['', [this.simplesService.emailValidator]],//企业邮箱
+      contactsPhone                       : ['', [Validators.required], [Util.phoneValidator]],//联系人手机号
+      contactsEmail                       : ['', [Util.emailValidator]],//企业邮箱
       businessLicence                     : ['', [this.simplesService.stringValidator]],//营业执照注册号
       businessLicenceAddress              : [null, [this.simplesService.addressValidator]],//详细地址
       businessLicenceAreaCode             : ['', [this.simplesService.stringValidator]],//营业执照所在地区编码//TODO：选择器数组最后一个
@@ -67,7 +68,7 @@ export class CompleteComponent implements OnInit {
       creditCode                          : ['', [this.simplesService.stringValidator]],//社会信用代码
       organizationCode                    : ['', [this.simplesService.stringValidator]],//组织机构代码
       legalPersonName                     : ['', [Validators.required], [this.simplesService.userNameAsyncValidator]],//法人姓名
-      legalPersonIdcard                   : ['', [Validators.required], [this.simplesService.idCardNumValidator]],//法人身份证号
+      legalPersonIdcard                   : ['', [Validators.required], [Util.idCardNumValidator]],//法人身份证号
       idcardStartTime                     : [null, [this.simplesService.validateRequired]],//法人身份证有效起始日期
       idcardEndTime                       : [null, [this.simplesService.validateRequired]],//法人身份证有效结束日期
       bankAccountName                     : ['', [Validators.required], [this.simplesService.userNameAsyncValidator]],//银行开户名
