@@ -93,7 +93,9 @@ export class BaseInfoComponent implements OnInit {
     // this.simplesService.enterpris(formValue);
   };
 
-
+  _console(value) {
+    // console.log(value);
+  }
 
   /**
    * 监听图片选择
@@ -112,7 +114,58 @@ export class BaseInfoComponent implements OnInit {
   taxRegistrationFileChangeListener() {
     // 当选择了新的图片的时候，把老图片从待上传列表中移除
     if (this.taxRegistrationUploader.queue.length > 1) this.taxRegistrationUploader.queue[0].remove();
+  } /**
+ * 排除不可选的身份证有效开始日期
+ * @param startValue
+ * @returns {boolean}
+ * @private
+ */
+_disabledIdCardStartDate = (startValue) => {
+  if (!startValue || !this.validateForm.controls['idcardEndTime'].value) {
+    return false;
   }
+  return startValue.getTime() >= this.validateForm.controls['idcardEndTime'].value.getTime();
+};
+
+  /**
+   * 排除不可选的身份证有效结束日期
+   * @param endValue
+   * @returns {boolean}
+   * @private
+   */
+  _disabledIdCardEndDate = (endValue) => {
+    if (!endValue || !this.validateForm.controls['idcardStartTime'].value) {
+      return false;
+    }
+    return endValue.getTime() <= this.validateForm.controls['idcardStartTime'].value.getTime();
+  };
+
+  /**
+   * 排除不可选的营业执照有效开始日期
+   * @param startValue
+   * @returns {boolean}
+   * @private
+   */
+  _disabledBusinessLicenceStartDate = (startValue) => {
+    if (!startValue || !this.validateForm.controls['businessLicenceEnd'].value) {
+      return false;
+    }
+    return startValue.getTime() >= this.validateForm.controls['businessLicenceEnd'].value.getTime();
+  };
+
+  /**
+   * 排除不可选的营业执照有效结束日期
+   * @param endValue
+   * @returns {boolean}
+   * @private
+   */
+  _disabledBusinessLicenceEndDate = (endValue) => {
+    if (!endValue || !this.validateForm.controls['businessLicenceStart'].value) {
+      return false;
+    }
+    return endValue.getTime() <= this.validateForm.controls['businessLicenceStart'].value.getTime();
+  };
+
 
 
   /**
