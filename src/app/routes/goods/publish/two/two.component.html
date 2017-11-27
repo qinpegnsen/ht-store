@@ -1,0 +1,73 @@
+<form nz-form class="p-20" [formGroup]="validateForm">
+  <!--商品基本信息 start-->
+  <fieldset class="m0 p0">
+    <legend class="m0">商品基本信息</legend>
+    <dl nz-form-item nz-row>
+      <dt nz-form-label nz-col [nzSpan]="4">商品分类：</dt>
+      <dd nz-col [nzSpan]="20">
+        <span>{{publishData.kindSelectName}}</span>
+        <nz-popconfirm [nzPlacement]="'top'" [nzTitle]="'重新选择分类，本页面数据将不会保留'"
+                       (nzOnConfirm)="location.back()">
+          <button nz-popconfirm nz-button class="btn-warning" title="选择分类">选择分类</button>
+        </nz-popconfirm>
+      </dd>
+    </dl>
+    <dl nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item-required>商品名称</label>
+      </div>
+      <dd nz-col [nzSpan]="20">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('goodsName')" nzHasFeedback>
+          <nz-input formControlName="goodsName" [nzType]="'text'" [nzPlaceHolder]="'商品名称'"
+                    [nzSize]="'large'">
+          </nz-input>
+        </div>
+        <p nz-col [nzSpan]="20" class="tip">商品标题名称长度至少3个字符，最长50个汉字</p>
+      </dd>
+    </dl>
+    <dl nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item-required>商品卖点</label>
+      </div>
+      <dd nz-col [nzSpan]="20">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('goodsJingle')" nzHasFeedback>
+          <nz-input formControlName="goodsJingle" [nzType]="'textarea'" [nzPlaceHolder]="'商品卖点'"
+                    [nzSize]="'large'">
+          </nz-input>
+        </div>
+        <p  nz-col [nzSpan]="20" class="tip">商品卖点可填写商品的简介或特点，最长不能超过140个汉字</p>
+      </dd>
+    </dl>
+    <dl nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item-required>商品品牌</label>
+      </div>
+      <dd nz-col [nzSpan]="20">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('brandCode')" nzHasFeedback>
+          <nz-select formControlName="brandCode" [nzSize]="'large'" [nzPlaceHolder]="'商品品牌'">
+            <nz-option *ngFor="let brand of publishData.brandsList" [nzLabel]="brand.brandName" [nzValue]="brand.id"></nz-option>
+          </nz-select>
+        </div>
+        <p  nz-col [nzSpan]="20" class="tip">选择您的商品品牌，有利于商品通过品牌索引方式被找到；如没有您想要的品牌，可从“品牌管理”功能中添加并提交后台审核后再选择。</p>
+      </dd>
+    </dl>
+    <dl nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item-required>商品属性</label>
+      </div>
+      <dd nz-col [nzSpan]="20">
+        <nz-input-group nz-col [nzSpan]="8" [nzSize]="'large'" [nzCompact]="true"  *ngFor="let attrType of baseAttrList;let i = index">
+          <p class="w30">{{attrType.name}}</p>
+          <div nz-form-control [nzValidateStatus]="getFormControl('baseAttr')" nzHasFeedback>
+            <nz-select formControlName="baseAttr" [nzSize]="'large'" [nzPlaceHolder]="'商品品牌'">
+              <nz-option *ngFor="let attr of attrType.goodsEnumValList" [nzLabel]="attr.enumValue" [nzValue]="attr.id" [class]="attr.idx"></nz-option>
+            </nz-select>
+          </div>
+        </nz-input-group>
+        <p  nz-col [nzSpan]="20" class="tip">正确选择商品属性直接影响搜索筛选的准确与否，请根据实际情况认真选择填写。</p>
+      </dd>
+    </dl>
+  </fieldset>
+  <!--商品基本信息 end-->
+
+</form>

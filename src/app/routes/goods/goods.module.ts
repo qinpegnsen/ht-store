@@ -5,10 +5,20 @@ import {ManageComponent} from "./manage/manage.component";
 import {GoodsService} from "./goods.service";
 import { EvaluateComponent } from './evaluate/evaluate.component';
 import {SkuGoodsComponent} from "./sku-goods/sku-goods.component";
+import { PublishComponent } from './publish/publish.component';
+import { OneComponent } from './publish/one/one.component';
+import { TwoComponent } from './publish/two/two.component';
+import { ThreeComponent } from './publish/three/three.component';
 
 const routes: Routes = [
   {path: 'manage', component: ManageComponent},
   {path: 'eval', component: EvaluateComponent},
+  {path: 'publish', component: PublishComponent, children: [
+    {path: '', redirectTo: 'one'},
+    {path: 'one', component: OneComponent},
+    {path: 'two', component: TwoComponent},
+    {path: 'three', component: ThreeComponent},
+  ]},
 ];
 
 @NgModule({
@@ -19,7 +29,11 @@ const routes: Routes = [
   declarations: [
     ManageComponent,
     EvaluateComponent,
-    SkuGoodsComponent
+    SkuGoodsComponent,
+    PublishComponent,
+    OneComponent,
+    TwoComponent,
+    ThreeComponent
   ],
   providers: [
     GoodsService

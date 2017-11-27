@@ -1,0 +1,13 @@
+<!--步骤 start-->
+<div class="step">
+  <nz-steps [(nzCurrent)]="step" class="lg thc">
+    <nz-step [nzTitle]="'选择分类'" [nzDescription]="'确定商品所属分类，选择最后一级分类后进入下一步。'"></nz-step>
+    <nz-step [nzTitle]="'商品详情'" [nzDescription]="'填写商品信息，上传相关图片。'"></nz-step>
+    <nz-step [nzTitle]="'发布成功'" [nzDescription]="'完成商品发布，选择跳转页面。'"></nz-step>
+  </nz-steps>
+</div>
+<!--步骤 end-->
+
+<!--路由嵌套 start-->
+<router-outlet></router-outlet>
+<!--路由嵌套 end-->

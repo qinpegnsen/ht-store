@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
           {
             name: "商品发布",
             icon: "",
-            url: ""
+            url: "/store/goods/publish"
           }
         ]
       },

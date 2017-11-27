@@ -51,6 +51,8 @@ export class SettingUrl {
     goods:{
       goodsQuery: "/goodsQuery/query",//(get)商品管理列表
       loadSkuGoods: "/goodsQuery/load", //(get)查看所有商品规格
+      pageDataAdd: "/goodsQuery/pageDataAdd", //(get)发布商品之前获取基础数据
+      pageDataEdit: "/goodsQuery/pageDataEdit", //(get)修改商品之前获取基础数据
       getGoodsKinds: "/goodsKind/queryGoodsByParentId",//(get)商品分类
       putAwayGoods: "/goodsEdit/appleToNormal",//(put)商品上架
       downGoods: "/goodsEdit/updateStateToDown",//(put)商品下架

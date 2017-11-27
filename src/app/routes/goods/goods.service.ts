@@ -50,6 +50,44 @@ export class GoodsService {
   }
 
   /**
+   * 商品发布，获取基本数据
+   */
+  getPageDataAdd(kindId) {
+    let result, me = this;
+    AjaxService.get({
+      url: SettingUrl.URL.goods.pageDataAdd,
+      data: {kindId: kindId},
+      success: (res) => {
+        if (res.success) {
+          result = res.data;
+        } else {
+          me._notification.error(res.info, res.info)
+        }
+      }
+    })
+    return result; //返回异步请求信息
+  }
+
+  /**
+   * 商品发布，获取基本数据
+   */
+  getPageDataEdit(goodsBaseCode) {
+    let result, me = this;
+    AjaxService.get({
+      url: SettingUrl.URL.goods.pageDataEdit,
+      data: {goodsBaseCode: goodsBaseCode},
+      success: (res) => {
+        if (res.success) {
+          result = res.data;
+        } else {
+          me._notification.error(res.info, res.info)
+        }
+      }
+    })
+    return result; //返回异步请求信息
+  }
+
+  /**
    * 将分类数据转成级联选择数据的格式
    * @param list
    */
