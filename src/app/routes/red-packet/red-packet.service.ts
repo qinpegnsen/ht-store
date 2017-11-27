@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AjaxService} from "../../public/service/ajax.service";
+import {SettingUrl} from "../../public/setting/setting_url";
+declare var $: any;
 
 @Injectable()
 export class RedPacketService {
@@ -7,29 +9,39 @@ export class RedPacketService {
   constructor() { }
 
   /**
-   * get  成功不带提示
-   * @param url
+   * 查询投放记录列表
    * @param data
+   * @returns {any<T>} （查询参数）
    */
-  public static getNoTip(url,data){
-    let result;
+   static pushOrDerList(data:any){
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
     AjaxService.get({
-      url: url,
+      url: SettingUrl.URL.rpAccountRec.queryRec,
       data: data,
-      async:false,
       success: (data) => {
-        let info=data.info;
-        if(data.success){
-          result=data.data;
-        }else{
-
-        }
-      },
-      error: (res) => {
-
+        if (data.success) defer.resolve(data.data);
       }
     });
-    return result;
+    return defer.promise(); //返回异步请求休息
+  }
+
+  /**
+   * 获取指定年月下的周集合
+   * @param data
+   * @returns {any<T>}
+   */
+  static getWeekListByMonth(data:any) {
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
+    AjaxService.get({
+      url: SettingUrl.URL.statistical.getWeekList,
+      data: data,
+      success: (data) => {
+        if (data.success) defer.resolve(data.data);
+      }
+    });
+    return defer.promise(); //返回异步请求休息
   }
 
 }

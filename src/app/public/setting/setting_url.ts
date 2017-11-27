@@ -40,6 +40,12 @@ export class SettingUrl {
       querySta: '/rpStatistics/queryRpStatisticsStore',//查询企业红包统计
     },
     /**
+     * 统计接口
+     */
+    statistical:{
+      getWeekList: '/statistical/getWeekList',//获取某年某月的“周起始日~周结束日”的列表
+    },
+    /**
      * 商品管理
      */
     goods:{

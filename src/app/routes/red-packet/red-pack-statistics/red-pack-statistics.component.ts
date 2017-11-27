@@ -4,6 +4,7 @@ import {RedPacketService} from "../red-packet.service";
 import {MainService} from "../../../public/service/main.service";
 import {Util} from "../../../public/util/util";
 import {isNullOrUndefined} from "util";
+declare var $: any;
 
 @Component({
   selector: 'app-red-pack-statistics',
@@ -20,7 +21,10 @@ export class RedPackStatisticsComponent implements OnInit {
   public showType: any = {DAY: true, WEEK: false, MONTH: false}; //展示不同的统计条件的组合
   public yearInfo: any = Util.tenYear; //获取最近十年年份信息
   public month: any = Util.getMonth; //获取月份信息
-  public nowDate :Date = new Date();      //当前的日期
+  public week: any = Util.getMonth; //获取月份信息
+  public nowDate :Date = new Date(); //当前的日期
+  public weekForMonth: Array<string> = new Array(); //指定年月下的日期; //当前的日期
+  public _loading = false;             //查询时锁屏,默认关闭
   public select: any = {
     'year':'',
     'month':'',
@@ -33,6 +37,14 @@ export class RedPackStatisticsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    let queryData={
+      queryYear:this.select.year,
+      queryMonth:this.select.month,
+    }
+    $.when(RedPacketService.pushOrDerList(queryData)).done(data => {
+      this._loading = false //解除锁屏
+      if(data) this.weekForMonth = data; //赋值
+    })
     this.getStaByQueryTime()
   }
 
@@ -40,7 +52,7 @@ export class RedPackStatisticsComponent implements OnInit {
    * 根据查询条件查询出统计图
    */
   getStaByQueryTime() {
-    let me = this;
+    // let me = this;
     // let url = SettingUrl.URL.rpAccountRec.querySta;
     // let data = {
     // }

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {RedPacketService} from "../red-packet.service";
 import {SettingUrl} from "../../../public/setting/setting_url";
+import {Page} from "../../../public/util/page";
+declare var $: any;
 
 @Component({
   selector: 'app-red-pack-push-order',
@@ -10,24 +12,27 @@ import {SettingUrl} from "../../../public/setting/setting_url";
 })
 export class RedPackPushOrderComponent implements OnInit {
 
-  public redPackPushData:any ;                  //红包投放记录的数据
-
+  public PushOrderPage: Page = new Page();  //红包投放记录的数据
+  public _loading = false;             //查询时锁屏,默认关闭
   constructor() { }
 
   ngOnInit() {
-    this.qeuryListData();
+    this.qeuryPushOrderData();
   }
 
   /**
    * 查询红包投放记录列表的数据
    */
-  qeuryListData(){
-    let url = SettingUrl.URL.rpAccountRec.queryRec;
-    let data={
-      curPage: 1,
-      pageSize:10
+  qeuryPushOrderData(){
+    this._loading=true;//锁屏
+    this.PushOrderPage.params = { //查询参数
+      curPage: this.PushOrderPage.curPage, //目标页码
+      pageSize: this.PushOrderPage.pageSize //每页条数
     };
-    this.redPackPushData = RedPacketService.getNoTip(url,data).voList;
+    $.when(RedPacketService.pushOrDerList(this.PushOrderPage.params)).done(data => {
+      this._loading = false //解除锁屏
+      if(data) this.PushOrderPage = data; //赋值
+    })
   };
 
 }

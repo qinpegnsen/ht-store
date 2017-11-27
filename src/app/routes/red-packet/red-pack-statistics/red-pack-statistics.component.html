@@ -55,20 +55,20 @@
   <!--红包块状统计 end-->
 
   <!--搜索 start-->
-  <div nz-row [nzJustify]="'end'" [nzType]="'flex'">
+  <!--<div nz-row [nzJustify]="'end'" [nzType]="'flex'">-->
 
     <!--统计时间类型 start-->
-    <div nz-col *ngIf="showType.DAY">
-      <select class="sel form-control pull-right" name="queryType"
-              [(ngModel)]='staType' (change)="changeStaType()">
-        <option *ngFor="let item of staTypes" [value]="item.key">{{item.val}}</option>
-      </select>
+    <!--<div nz-col *ngIf="showType.DAY">-->
+      <!--<select class="sel form-control pull-right" name="queryType"-->
+              <!--[(ngModel)]='staType' (change)="changeStaType()">-->
+        <!--<option *ngFor="let item of staTypes" [value]="item.key">{{item.val}}</option>-->
+      <!--</select>-->
     </div>
     <!--统计时间类型 end-->
 
     <!--搜索条件 start-->
-    <div nz-col>
-      <div>
+    <!--<div nz-col>-->
+      <!--<div>-->
         <!--<div *ngIf="showType.MONTH">-->
         <!--<select [(ngModel)]="select.year" class="pull-left w43 form-control d-play" style="margin-right: 20px">-->
         <!--<option *ngFor="let info of yearInfo" value="{{info}}">{{info}}</option>-->
@@ -77,31 +77,31 @@
         <!--<option *ngFor="let info of month" value="{{info}}">{{info}}</option>-->
         <!--</select>-->
         <!--</div>-->
-        <div *ngIf="showType.WEEK">
-          <select [(ngModel)]="select.year" class="form-control w22 pull-left mr5">
-            <option *ngFor="let info of yearInfo" value="{{info}}">{{info}}</option>
-          </select>
-          <select [(ngModel)]="select.month" (change)="getWeekListByMonth()" class="form-control w21 pull-left mr5">
-            <option *ngFor="let info of month" value="{{info}}">{{info}}</option>
-          </select>
-          <select [(ngModel)]="select.week" class="form-control w53">
-            <option *ngFor="let info of weekForMonth" value="{{info}}">{{info}}</option>
-          </select>
-        </div>
-        <div *ngIf="showType.DAY">
-          <nz-datepicker [(ngModel)]="nowDate" [nzPlaceHolder]="'请选择日期'"></nz-datepicker>
-        </div>
-      </div>
-    </div>
+        <!--<div *ngIf="showType.WEEK">-->
+          <!--<select [(ngModel)]="select.year" class="form-control w22 pull-left mr5">-->
+            <!--<option *ngFor="let info of yearInfo" value="{{info}}">{{info}}</option>-->
+          <!--</select>-->
+          <!--<select [(ngModel)]="select.month" (change)="getWeekListByMonth()" class="form-control w21 pull-left mr5">-->
+            <!--<option *ngFor="let info of month" value="{{info}}">{{info}}</option>-->
+          <!--</select>-->
+          <!--<select [(ngModel)]="select.week" class="form-control w53">-->
+            <!--<option *ngFor="let info of week" value="{{info}}">{{info}}</option>-->
+          <!--</select>-->
+        <!--</div>-->
+        <!--<div *ngIf="showType.DAY">-->
+          <!--<nz-datepicker [(ngModel)]="nowDate" [nzPlaceHolder]="'请选择日期'"></nz-datepicker>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
     <!--搜索条件 end-->
 
     <!--搜索图标 start-->
-    <div nz-col (click)="goSearch()">
-      <i class="anticon anticon-search"></i>
-    </div>
+    <!--<div nz-col (click)="goSearch()">-->
+      <!--<i class="anticon anticon-search"></i>-->
+    <!--</div>-->
     <!--搜索图标 end-->
 
-  </div>
+  <!--</div>-->
   <!--搜索 end-->
 
   <!--红包统计图 start-->

@@ -1,10 +1,16 @@
-<nz-table #nzTable [nzDataSource]="redPackPushData" [nzPageSize]="10">
+<nz-table #nzTable
+          [nzAjaxData]="PushOrderPage.voList"
+          [nzLoading]="_loading"
+          [nzTotal]="PushOrderPage.totalRow"
+          [(nzPageIndex)]="PushOrderPage.curPage"
+          (nzPageIndexChange)="qeuryPushOrderData()"
+          [(nzPageSize)]="PushOrderPage.pageSize">
   <thead nz-thead>
   <tr>
-    <th nz-th [nzWidth]="col-9"><span>序号</span></th>
-    <th nz-th [nzWidth]="col-7"><span>充值金额</span></th>
-    <th nz-th [nzWidth]="col-7"><span>创建时间</span></th>
-    <th nz-th [nzWidth]="col-1"><span>操作</span></th>
+    <th nz-th><span>序号</span></th>
+    <th nz-th><span>充值金额</span></th>
+    <th nz-th><span>创建时间</span></th>
+    <th nz-th><span>操作</span></th>
   </tr>
   </thead>
   <tbody nz-tbody>
