@@ -1,12 +1,31 @@
 /*公共JS库*/
 import {Injectable} from "@angular/core";
-import {isUndefined} from "util";
+import {isNullOrUndefined, isUndefined} from "util";
+import {FormControl} from "@angular/forms";
+import {Observable} from "rxjs/Observable";
+import {PatternService} from "../service/pattern.service";
 
 declare var $: any;
 
 @Injectable()
 export class Util {
   public static enumData = {};
+
+  /**
+   * ***********************表单验证取值字符串定义**********************
+   * 用于代替表单常用校验方法取错字段hasError(string)中的string
+   * 请保证这些值与下面具体校验方法中的参数返回字段key相同
+   **/
+  public static validate = {
+    isPhone:  'phone',
+    isEmail:  'email',
+    isPwd:  'pwd',
+    isSmsCode:  'smsCode',
+    isIdCard:  'idCard',
+  }
+
+  constructor(public patterns: PatternService) {
+  }
 
   /**
    * 格式化日期
@@ -105,11 +124,12 @@ export class Util {
    * @returns {Array}
    */
   public static tenYear = function () {
-    let nowYear: number = new Date().getFullYear(),tenYearArr:any;
+    let nowYear: number = new Date().getFullYear(), tenYearArr: any;
     for (let i = 0; i < 10; i++) {
       tenYearArr.push(nowYear.toString());
       nowYear--;
-    };
+    }
+    ;
     return tenYearArr;
   }
 
@@ -117,11 +137,94 @@ export class Util {
    * 获取月份
    */
   public static getMonth = function () {
-    let nowYear: number = new Date().getFullYear(),monthArr:any;
+    let nowYear: number = new Date().getFullYear(), monthArr: any;
     for (let i = 0; i < 12; i++) {
       if (i < 9) monthArr.push("0" + (i + 1).toString());
       else monthArr.push((i + 1).toString());
     }
   }
+
+
+  /**
+   * ************************************表单验证方法**************************************
+   * 请保证变量的状态参数与定义的validate中的字符串一致
+   * eg:{error: true, phone: true}中phone等于Util.validate.isPhone;
+   **/
+
+  /**
+   * 手机号异步校验
+   * @param control
+   * @returns {any}
+   */
+  public static phoneValidator = (control: FormControl): any => {
+    return Util.asyncPatternsValidate(PatternService.PHONE_REGEXP, control, {error: true, phone: true});
+  };
+
+  /**
+   * 短信验证码异步校验
+   * @param control
+   * @returns {any}
+   */
+  public static smsCodeValidator = (control: FormControl): any => {
+    return Util.asyncPatternsValidate(PatternService.SMS_REGEXP, control, {error: true, smsCode: true});
+  };
+
+  /**
+   * 邮箱校验
+   * @param control
+   * @returns {any}
+   */
+  public static emailValidator = (control: FormControl): { [s: string]: boolean } => {
+    if (!control.value) {
+      return {required: true}
+    } else if (!PatternService.EMAIL_REGEXP.test(control.value)) {
+      return {error: true, email: true};
+    }
+  };
+
+  /**
+   * 密码异步校验
+   * @param control
+   * @returns {any}
+   */
+  public static pwdValidator = (control: FormControl): any => {
+    if (!control.value) {
+      return { required: true }
+    } else if (!PatternService.PWD_REGEXP.test(control.value)) {
+      return { pwd: true, error: true }
+    }
+  };
+
+  /**
+   * 身份证号校验
+   * @param control
+   * @returns {any}
+   */
+  public static idCardNumValidator = (control: FormControl): any => {
+    return Util.asyncPatternsValidate(PatternService.IDCARD_REGEXP, control, {error: true, idCard: true});
+  };
+
+  /**
+   * 输入延迟的异步正则校验方法封装
+   * 用法（this.asyncPatternsValidate(this.patterns.IDCARD_REGEXP, control, { error: true, idCard: true })
+   * @param exp （正则表达式）
+   * @param value
+   * @param obj （eg:{ error: true, idCard: true }）
+   * @returns {any}
+   */
+  public static asyncPatternsValidate = (exp: RegExp, control: FormControl, obj?: any) => {
+    return Observable.create(function (observer) {
+      setTimeout(() => {
+        if (!exp.test(control.value)) {
+          if (isNullOrUndefined(obj)) obj = {error: true};
+          observer.next(obj);
+        } else {
+          observer.next(null);
+        }
+        observer.complete();
+      }, 1000);
+    });
+  }
+
 
 }

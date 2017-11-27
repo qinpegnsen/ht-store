@@ -7,13 +7,12 @@
     </button>
   </div>
   <!--提现表格 -- start-->
-  <!--<nz-table #nzTable [nzDataSource]="cashData" [nzPageSize]="10">-->
-    <nz-table #nzTable [nzAjaxData]="settlePage.voList"
-              [nzLoading]="_loading"
-              [nzTotal]="settlePage.totalRow"
-              [(nzPageIndex)]="settlePage.curPage"
-              (nzPageIndexChange)="qeurySettleData()"
-              [(nzPageSize)]="settlePage.pageSize">
+  <nz-table #nzTable [nzAjaxData]="cashPage.voList"
+            [nzLoading]="_loading"
+            [nzTotal]="cashPage.totalRow"
+            [(nzPageIndex)]="cashPage.curPage"
+            (nzPageIndexChange)="qeuryCashData()"
+            [(nzPageSize)]="cashPage.pageSize">
     <!--提现头部 --start -->
     <thead nz-thead>
     <tr>

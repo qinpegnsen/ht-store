@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
-import {NzNotificationService} from "ng-zorro-antd";
+import {NzMessageService, NzNotificationService} from "ng-zorro-antd";
 import {isUndefined} from "util";
 
 declare var $: any;
@@ -9,7 +9,8 @@ declare var $: any;
 @Injectable()
 export class GoodsService {
 
-  constructor(public _notification: NzNotificationService) {
+  constructor(public _notification: NzNotificationService,
+              public _message: NzMessageService) {
   }
 
   /**
@@ -70,8 +71,8 @@ export class GoodsService {
   /**
    * 修改商品状态
    */
-  changeGoodsState(type:string, baseCode:string) {
-    let result: boolean = false, me = this, requestUrl;
+  changeGoodsState(type: string, baseCode: string) {
+    let me = this, requestUrl;
     switch (type) {
       case 'down':    // 下架
         requestUrl = SettingUrl.URL.goods.downGoods;
@@ -96,6 +97,49 @@ export class GoodsService {
         } else {
           me._notification.error(res.info, res.info)
         }
+      }
+    })
+    return defer.promise(); //返回异步请求信息
+  }
+
+  /**
+   * 查看商品所有规格
+   */
+  loadSkuGoods(baseCode) {
+    let defer = $.Deferred(); //封装异步请求结果
+    AjaxService.get({
+      url: SettingUrl.URL.goods.loadSkuGoods,
+      data: {goodsBaseCode: baseCode},
+      success: (res) => {
+        if (res.success) {
+          defer.resolve(res.data);
+        }
+      }
+    })
+    return defer.promise(); //返回异步请求信息
+  }
+
+
+  /**
+   *更改商品是否可用重消币
+   * @param type
+   * @param baseCode
+   * @param curPage
+   */
+  changeIsUseCoin(isUseCoin, baseCode) {
+    let me = this, defer = $.Deferred(), //封装异步请求结果,
+      requestData = {
+        goodsBaseCode: baseCode,
+        isUseCoin: isUseCoin
+      };
+    AjaxService.put({
+      url: SettingUrl.URL.goods.updateIsUseCoin,
+      data: requestData,
+      success: (res) => {
+        defer.resolve(res);
+      },
+      error: (res) => {
+        me._notification.error(res.status, res.statusText)
       }
     })
     return defer.promise(); //返回异步请求信息

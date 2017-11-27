@@ -1,0 +1,39 @@
+.goods-sku-img {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+}
+
+.goods-sku-info {
+  position: absolute;
+  left: 80px;
+  top: 15px;
+  right: 10px;
+  bottom: 15px;
+}
+
+.goods-name {
+  line-height: 1.36;
+  display: block;
+  overflow: hidden;
+}
+
+.hover-sku-img {
+  width: 180px !important;
+  max-width: 220px;
+  max-height: 220px;
+  position: fixed;
+  z-index: 100;
+  display: none;
+  -webkit-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
+}
+
+.relative {
+  position: relative;
+}
+
+.inline{
+  display: inline;
+}

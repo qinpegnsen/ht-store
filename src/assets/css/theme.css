@@ -119,49 +119,70 @@
 }
 /*空心橙色按钮 end*/
 
-/*空心紫色按钮 start*/
+/*空心蓝色按钮 start*/
 .btn-purple.ant-btn {
-  border-color: #7266ba;
+  border-color: #7265e6;
   background-color: #fff;
-  color: #7266ba;
+  color: #7265e6;
 }
 
 .btn-purple.ant-btn:hover, .btn-purple.ant-btn:focus, .btn-purple.ant-btn:active {
-  color: #7266ba;
+  color: #7265e6;
   background-color: #fff;
-  border-color: #7266ba;
+  border-color: #7265e6;
   box-shadow: 0 0 2px #836fba inset;
 }
-/*空心紫色按钮 end*/
+/*空心蓝色按钮 end*/
 
-/*主题色按钮，点击状态的水波样式*/
+/*空心蓝色按钮 start*/
+.btn-blue.ant-btn {
+  border-color: #108ee9;
+  background-color: #fff;
+  color: #108ee9;
+}
+
+.btn-blue.ant-btn:hover, .btn-blue.ant-btn:focus, .btn-blue.ant-btn:active {
+  color: #108ee9;
+  background-color: #fff;
+  border-color: #108ee9;
+  box-shadow: 0 0 2px #49b0e9 inset;
+}
+/*空心蓝色按钮 end*/
+
+
+/*主题色按钮，点击状态的水波颜色*/
 .btn-thc.ant-btn-clicked:after {
   border: 0 solid #e82d4d;
 }
 
-/*danger按钮，点击状态的水波样式*/
+/*danger按钮，点击状态的水波颜色*/
 .btn-danger.ant-btn-clicked:after {
   border: 0 solid #f04134;
 }
 
-/*绿色按钮，点击状态的水波样式*/
+/*绿色按钮，点击状态的水波颜色*/
 .btn-green.ant-btn-clicked:after {
   border: 0 solid #37bc9b;
 }
 
-/*success按钮，点击状态的水波样式*/
+/*success按钮，点击状态的水波颜色*/
 .btn-success.ant-btn-clicked:after {
   border: 0 solid #27c24c;
 }
 
-/*橙色按钮，点击状态的水波样式*/
+/*橙色按钮，点击状态的水波颜色*/
 .btn-warning.ant-btn-clicked:after {
   border: 0 solid #F57C00;
 }
 
-/*紫色按钮，点击状态的水波样式*/
+/*紫色按钮，点击状态的水波颜色*/
 .btn-warning.ant-btn-clicked:after {
-  border: 0 solid #7266ba;
+  border: 0 solid #7265e6;
+}
+
+/*蓝色按钮，点击状态的水波颜色*/
+.btn-blue.ant-btn-clicked:after {
+  border: 0 solid #108ee9;
 }
 
 

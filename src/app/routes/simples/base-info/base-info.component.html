@@ -25,7 +25,7 @@
           <nz-input formControlName="contactsEmail" [nzPlaceHolder]="'请输入企业邮箱'" [nzType]="'email'" [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain
-               *ngIf="getFormControl('contactsEmail').dirty&&getFormControl('contactsEmail').hasError('email')">
+               *ngIf="getFormControl('contactsEmail').dirty&&getFormControl('contactsEmail').hasError(valitate.isEmail)">
             请输入正确的邮箱！
           </div>
           <div nz-form-explain
@@ -146,7 +146,7 @@
                *ngIf="getFormControl('legalPersonIdcard').dirty&&getFormControl('legalPersonIdcard').pending">正在输入……
           </div>
           <div nz-form-explain
-               *ngIf="getFormControl('legalPersonIdcard').dirty&&getFormControl('legalPersonIdcard').hasError('idCard')">
+               *ngIf="getFormControl('legalPersonIdcard').dirty&&getFormControl('legalPersonIdcard').hasError(valitate.isIdCard)">
             身份证号码错误！
           </div>
         </div>

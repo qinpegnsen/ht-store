@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {SimplesService} from "../simples.service";
 import {StepsComponent} from "../steps/steps.component";
 import {PatternService} from "../../../public/service/pattern.service";
+import {Util} from "../../../public/util/util";
 
 @Component({
   selector: 'app-register',
@@ -14,18 +15,18 @@ export class RegisterComponent implements OnInit {
   msgText: string = '获取验证码';
   phoneState: string;
   isSending: boolean = false;
+  valitate = Util.validate; //表单验证
 
   constructor(public simplesService: SimplesService,
               public steps: StepsComponent,
-              public fb: FormBuilder,
-              public patterns: PatternService) {
+              public fb: FormBuilder) {
     this.steps.current = 0;
     this.simplesService.routerSkip(this.steps.current);
     //企业注册表单项校验
     this.validateForm = this.fb.group({
-      phone               : [ '', [ Validators.required ], [ this.simplesService.phoneValidator ] ],
-      code                : [ '', [ Validators.required ], [ this.simplesService.smsCodeValidator ] ],
-      sellerPwd           : [ '', [ this.pwdValidator] ],
+      phone               : [ '', [ Validators.required ], [ Util.phoneValidator ] ],
+      code                : [ '', [ Validators.required ], [ Util.smsCodeValidator ] ],
+      sellerPwd           : [ '', [ Util.pwdValidator] ],
       rePwd               : [ '', [ this.passwordConfirmationValidator ] ],
       // email            : [ '', [ this.emailValidator ] ],
     });
@@ -49,19 +50,6 @@ export class RegisterComponent implements OnInit {
     if(value.isBoss) formValue.isBoss = 'Y';
     if(!value.isBoss) formValue.isBoss = 'N';
     this.simplesService.addSeller(formValue);
-  };
-
-  /**
-   * 密码异步校验
-   * @param control
-   * @returns {any}
-   */
-  pwdValidator = (control: FormControl): any => {
-    if (!control.value) {
-      return { required: true }
-    } else if (!this.patterns.PWD_REGEXP.test(control.value)) {
-      return { pwd: true, error: true }
-    }
   };
 
   /**
@@ -96,7 +84,7 @@ export class RegisterComponent implements OnInit {
    */
   getCaptcha(){
     let me = this, phone = me.validateForm.controls[ 'phone' ].value;
-    if(!me.isSending && me.patterns.PHONE_REGEXP.test(phone)){
+    if(!me.isSending && PatternService.PHONE_REGEXP.test(phone)){
       let res = me.simplesService.getSmsCode(phone);
       if(res){
         me.isSending = true;
