@@ -13,11 +13,11 @@ declare var $: any;
   providers: [CashSettleService]
 })
 export class CashSettleComponent implements OnInit {
-  isVisible: boolean = false;
-  isConfirmLoading: boolean = false;
+  isVisible: boolean = false;//提现弹窗默认不可见
+  isConfirmLoading: boolean = false;//提现确认按钮的加载小圈默认不可见
   validateForm: FormGroup;
   _loading: boolean = false;             //查询时锁屏
-  cashPage: Page = new Page();  //结算信息
+  settlePage: Page = new Page();  //结算信息
   storeInfo: any = {};  //企业信息
   bankDataList: Array<any> = new Array();  //银行信息
   insertData: any = {};  //申请提现时传入的信息
@@ -45,13 +45,13 @@ export class CashSettleComponent implements OnInit {
   qeuryCashData() {
     let me = this;
     me._loading = true; //锁屏
-    me.cashPage.params = { //查询参数
-      curPage: me.cashPage.curPage, //目标页码
-      pageSize: me.cashPage.pageSize //每页条数
+    me.settlePage.params = { //查询参数
+      curPage: me.settlePage.curPage, //目标页码
+      pageSize: me.settlePage.pageSize //每页条数
     }
-    $.when(CashSettleService.cashSettleList(me.cashPage.params)).done(data => {
+    $.when(CashSettleService.cashSettleList(me.settlePage.params)).done(data => {
       me._loading = false //解除锁屏
-      if (data) me.cashPage = data; //赋值
+      if (data) me.settlePage = data; //赋值
     })
   };
 
@@ -101,7 +101,7 @@ export class CashSettleComponent implements OnInit {
     me.insertData = me.validateForm.value;
     me.insertData.agentCode = "552408454438297600";
     me.cashSettleService.insertList(me.insertData);
-    this.isConfirmLoading = true;
+    this.isConfirmLoading = true;//点击确认按钮加载小圈
     setTimeout(() => {
       this.isVisible = false;
       this.isConfirmLoading = false;
@@ -124,6 +124,5 @@ export class CashSettleComponent implements OnInit {
   getFormControl(name) {
     return this.validateForm.controls[name];
   }
-
 
 }

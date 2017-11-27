@@ -92,12 +92,12 @@
     <!--结算公式 -- end -->
   </div>
   <!--结算表格 -- start-->
-  <nz-table #nzTable [nzAjaxData]="cashPage.voList"
+  <nz-table #nzTable [nzAjaxData]="settlePage.voList"
             [nzLoading]="_loading"
-            [nzTotal]="cashPage.totalRow"
-            [(nzPageIndex)]="cashPage.curPage"
+            [nzTotal]="settlePage.totalRow"
+            [(nzPageIndex)]="settlePage.curPage"
             (nzPageIndexChange)="qeuryCashData()"
-            [(nzPageSize)]="cashPage.pageSize">
+            [(nzPageSize)]="settlePage.pageSize">
     <!--结算头部 --start -->
     <thead nz-thead>
     <tr>
