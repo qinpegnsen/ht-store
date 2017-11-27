@@ -1,76 +1,65 @@
-<!--头部信息 start-->
-<div class="mb page-title">
-  <h3 class="fl">这是一个测试</h3>
-  <button class="fr m" nz-button [nzType]="'danger'" [nzGhost]="true">
-    <span>测试信息</span>
-  </button>
+<div class="hawthorn-home p">
+  <!--商铺信息 start-->
+  <div class="store-info">
+    <ul>
+      <li class="fl">
+        <img height="60" [src]="defaultImg">
+      </li>
+      <li class="fl ml">
+        <p class="font18 strong">坤先生的小店</p>
+        <p class="mt-5 font12">
+          <span><i class="anticon anticon-check-circle color-success"></i> 企业认证</span>
+          <span class="ml-5"><i class="anticon anticon-check-circle color-success"></i> 店铺认证</span>
+        </p>
+      </li>
+      <li class="fr mt-20">
+        <button nz-button [nzType]="'default'" [nzSize]="'large'">
+          <span>企业信息</span>
+        </button>
+      </li>
+      <li class="fr mt-20 mr">
+        <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w">
+          <span>店铺信息</span>
+        </button>
+      </li>
+    </ul>
+    <div class="clear"></div>
+  </div>
+  <!--商铺信息 end-->
+  <!--统计信息 start-->
+  <div class="store-count mt-20 bg-f8 pt-20 pb-20" nz-row>
+    <ng-container *ngFor="let count of storeCount;index as i;">
+      <div nz-col [nzSpan]="4" [ngClass]="{'border-right':i != (storeCount.length-1)}" class="text-center">
+        <p class="font22 main-color">{{count.num}}</p>
+        <p>{{count.info}}</p>
+      </div>
+    </ng-container>
+  </div>
+  <!--统计信息 end-->
+  <!--常用功能 start-->
+  <div class="common-functions mt-20" nz-row>
+    <p class="font16 strong mb title">常用功能</p>
+    <ng-container *ngFor="let cf of commonFunctions">
+      <div nz-col [nzSpan]="4" class="bg-f8 pt-20 pb-20 pl-20 font16 cursor" *ngIf="cf.isShow">
+        <i class="{{cf.icon}} font20 mr"></i>{{cf.info}}
+      </div>
+    </ng-container>
+  </div>
+  <!--常用功能 end-->
+  <!--订单流量统计 start-->
+  <div class="order-count mt-20">
+    <p class="font16 strong mb title">订单流量统计</p>
+    <!--图表绘制 start-->
+    <div echarts [options]="chartOption" class="order-chart"></div>
+    <!--图表绘制 end-->
+  </div>
+  <!--订单流量统计 end-->
+  <!--联系我们 start-->
+  <div class="contact-us mt-20" nz-row>
+    <p class="font16 strong mb title">联系我们</p>
+    <div nz-col [nzSpan]="6" class="pt-20 pb-20 pl-20 font16 cursor" *ngFor="let cUs of contactUs">
+      <i class="{{cUs.icon}} font24 mr"></i>{{cUs.info}}
+    </div>
+  </div>
+  <!--联系我们 end-->
 </div>
-<!--头部信息 end-->
-
-<!--页面提示信息 start-->
-<div class="page-msg mt-20 mb-20">
-  这是一个完美的测试信息
-</div>
-<!--页面提示信息 end-->
-
-<!--图表绘制 start-->
-<div echarts [options]="chartOption" class="demo-chart"></div>
-<!--图表绘制 end-->
-
-<!--table 样式demo start-->
-<nz-table #nzTable [nzDataSource]="data" [nzPageSize]="10" class="table-even-bg">
-  <thead nz-thead>
-  <tr>
-    <th nz-th>
-      <span>Name</span>
-      <nz-table-sort [(nzValue)]="sortMap.name"></nz-table-sort>
-      <nz-dropdown [nzTrigger]="'click'">
-        <i class="anticon anticon-filter" nz-dropdown></i>
-        <ul nz-menu>
-          <li nz-menu-item *ngFor="let filter of filterNameArray">
-            <label nz-checkbox [(ngModel)]="filter.value">
-              <span>{{filter.name}}</span>
-            </label>
-          </li>
-        </ul>
-        <div nz-table-filter>
-          <span nz-table-filter-confirm>OK</span>
-          <span nz-table-filter-clear>Reset</span>
-        </div>
-      </nz-dropdown>
-    </th>
-    <th nz-th>
-      <span>Age</span>
-      <nz-table-sort [(nzValue)]="sortMap.age"></nz-table-sort>
-    </th>
-    <th nz-th>
-      <span>Address</span>
-      <nz-table-sort [(nzValue)]="sortMap.address"></nz-table-sort>
-      <nz-dropdown [nzTrigger]="'click'">
-        <i class="anticon anticon-filter" nz-dropdown></i>
-        <ul nz-menu>
-          <li nz-menu-item *ngFor="let filter of filterAddressArray">
-            <label nz-checkbox [(ngModel)]="filter.value">
-              <span>{{filter.name}}</span>
-            </label>
-          </li>
-        </ul>
-        <div nz-table-filter>
-          <span nz-table-filter-confirm>OK</span>
-          <span nz-table-filter-clear>Reset</span>
-        </div>
-      </nz-dropdown>
-    </th>
-  </tr>
-  </thead>
-  <tbody nz-tbody>
-  <tr nz-tbody-tr *ngFor="let data of nzTable.data">
-    <td nz-td>
-      <a>{{data.name}}</a>
-    </td>
-    <td nz-td>{{data.age}}</td>
-    <td nz-td>{{data.address}}</td>
-  </tr>
-  </tbody>
-</nz-table>
-<!--table 样式demo end-->

@@ -1,3 +1,26 @@
-.demo-chart {
+.hawthorn-home .title{
+  border-left: 4px solid #f70;
+  padding-left: 10px;
+}
+
+/*信息统计*/
+.hawthorn-home .store-count .border-right{
+  border-right: 1px dashed #ccc;
+}
+
+/*常用功能*/
+.hawthorn-home .common-functions .bg-f8:hover{
+  background: #F2F2F2;
+}
+.hawthorn-home .common-functions .bg-f8{
+  border: 1px solid white;
+}
+
+/*订单流量统计*/
+.hawthorn-home .order-count .order-chart{
   height: 400px;
+  background: #f8f8f8;
+}
+.hawthorn-home .contact-us .font20{
+  font-size: 20px;
 }
