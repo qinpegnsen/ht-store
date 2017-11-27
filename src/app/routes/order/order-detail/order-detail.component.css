@@ -1,0 +1,21 @@
+.order-detail{
+  width: 98%;
+  margin: 10px auto;
+  height: 300px;
+}
+.order-detail .detail{
+  height: 300px;
+}
+.order-detail .detail .order-head{
+  height: 40px;
+  background: #f5f5f5;
+  line-height: 40px;
+}
+.order-detail .detail .order-main{
+  height: 260px;
+  color: #888;
+  font-size: 12px;
+}
+.order-detail .detail .order-main dl{
+  padding-top: 16px;
+}

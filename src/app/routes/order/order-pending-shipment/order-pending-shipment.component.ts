@@ -21,6 +21,7 @@ export class OrderPendingShipmentComponent implements OnInit {
   pendingData:any={};  //申请提现信息
   validateForm: FormGroup;//设置发货的表单
   auditsDataList=[];  //物流信息
+  showOrderList: boolean = true;//判断子组件的显示/隐藏
 
 
   constructor(public fb: FormBuilder) { }
@@ -36,6 +37,22 @@ export class OrderPendingShipmentComponent implements OnInit {
   }
 
   /**
+   * 子组件加载时
+   * @param event
+   */
+  isactivate(event) {
+    this.showOrderList = false;
+  }
+
+  /**
+   * 子组件注销时
+   * @param event
+   */
+  isDeactivate(event) {
+    this.showOrderList = true;
+  }
+
+  /**
    * 查询待发货订单列表
    * @param event
    * @param curPage
@@ -47,7 +64,7 @@ export class OrderPendingShipmentComponent implements OnInit {
       curPage: me.orderList.curPage, //目标页码
       pageSize: me.orderList.pageSize, //每页条数
       agentAcct: me.orderquery.agentAcct,//代理商账号
-      agentOrdno: me.orderquery.agentOrdno,//订单号
+      ordno: me.orderquery.agentOrdno,//订单号
       state:'PREPARE'
     }
     $.when(OrderService.queryOrderList(me.orderList.params)).done(data => {

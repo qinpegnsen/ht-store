@@ -16,12 +16,29 @@ export class OrderBeenShippedComponent implements OnInit {
     agentAcct: '',//代理商账号
     agentOrdno: ''//订单号
   }//查询条件
+  showOrderList: boolean = true;//判断子组件的显示/隐藏
 
   constructor() { }
 
   ngOnInit() {
     const me = this
     me.queryBeen()
+  }
+
+  /**
+   * 子组件加载时
+   * @param event
+   */
+  isactivate(event) {
+    this.showOrderList = false;
+  }
+
+  /**
+   * 子组件注销时
+   * @param event
+   */
+  isDeactivate(event) {
+    this.showOrderList = true;
   }
 
   /**
@@ -36,7 +53,7 @@ export class OrderBeenShippedComponent implements OnInit {
       curPage: me.orderList.curPage, //目标页码
       pageSize: me.orderList.pageSize, //每页条数
       agentAcct: me.orderquery.agentAcct,//代理商账号
-      agentOrdno: me.orderquery.agentOrdno,//订单号
+      ordno: me.orderquery.agentOrdno,//订单号
       state:'DELIVERY'
     }
     $.when(OrderService.queryOrderList(me.orderList.params)).done(data => {

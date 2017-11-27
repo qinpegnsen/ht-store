@@ -7,13 +7,22 @@ import { OrderCompleteComponent } from './order-complete/order-complete.componen
 import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../../shared/shared.module";
 import {OrderService} from "./order.service";
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 
 const routes: Routes = [
-  {path: 'pendingShipment', component: OrderPendingShipmentComponent},
-  {path: 'beenShipped', component:OrderBeenShippedComponent },
-  {path: 'cancel', component:OrderCancelComponent },
-  {path: 'complete', component:OrderCompleteComponent },
+  {path: 'pendingShipment', component: OrderPendingShipmentComponent,children: [
+    {path: 'order-detail', component: OrderDetailComponent}
+  ]},
+  {path: 'beenShipped', component:OrderBeenShippedComponent,children: [
+    {path: 'order-detail', component: OrderDetailComponent}
+  ]},
+  {path: 'cancel', component:OrderCancelComponent,children: [
+    {path: 'order-detail', component: OrderDetailComponent}
+  ]},
+  {path: 'complete', component:OrderCompleteComponent,children: [
+    {path: 'order-detail', component: OrderDetailComponent}
+  ]},
 ];
 
 @NgModule({
@@ -22,7 +31,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  declarations: [OrderPendingShipmentComponent, OrderBeenShippedComponent, OrderCancelComponent, OrderCompleteComponent],
+  declarations: [OrderPendingShipmentComponent, OrderBeenShippedComponent, OrderCancelComponent, OrderCompleteComponent, OrderDetailComponent],
   providers: [
     OrderService
   ]

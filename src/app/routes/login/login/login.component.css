@@ -33,8 +33,14 @@
   height: 44px;
   width: 80%;
   margin-left: 9%;
+  color: white;
 }
-
+.ant-btn-primary:hover{
+  color: white;
+}
+.ant-btn-primary:focus{
+  color: white;
+}
 .login-form {
   width: 22%;
   height: 472px;
