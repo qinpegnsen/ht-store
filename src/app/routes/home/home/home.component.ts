@@ -55,11 +55,11 @@ export class HomeComponent implements OnInit {
       },
       {
         num:3,
-        info:"红包发放次数"
+        info:"红包广告发放次数"
       },
       {
         num:21560,
-        info:"红包推广量"
+        info:"红包广告点击量"
       },
       {
         num:6,
