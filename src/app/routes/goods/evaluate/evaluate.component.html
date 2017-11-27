@@ -1,3 +1,58 @@
-<p>
-  evaluate works!
-</p>
+<!--提现详情 -- start-->
+<div>
+  <div class="font16 mb-20">
+    <span>评价列表</span>
+    <button nz-button [nzType]="'danger'" [nzShape]="'circle'" class="page-back" (click)="back()" title="返回">
+      <i class="anticon anticon-rollback font20"></i>
+    </button>
+  </div>
+  <nz-table #nzTable [nzAjaxData]="evalPage.voList"
+            [nzLoading]="_loading"
+            [nzTotal]="evalPage.totalRow"
+            [(nzPageIndex)]="evalPage.curPage"
+            (nzPageIndexChange)="qeuryEvalData()"
+            [(nzPageSize)]="evalPage.pageSize">
+    <tbody>
+    <tr class="b" *ngFor="let data of nzTable.data;let i = index">
+      <td class="w100 mb-15">
+        <div class="eval-head">
+          <span class="fl pl-20">评价人：{{data.custName}}</span>
+          <span class="fl pl-20">评价时间：{{data.custName}}</span>
+          <span class="fl pl-20">订单编号：{{data.ordno}}</span>
+          <!--<span class="fl pl-20">评价商品：{{data.goodsName}}</span>-->
+          <span class="fl pl-20">评分：
+              <nz-rate [ngModel]="data.commentStar" nzAllowHalf [nzDisabled]="true" class="eval-score"></nz-rate>
+            </span>
+        </div>
+        <div class="w100 b eval-border mb-20">
+      <td class="relative p">
+        <div class="mr inline-block fl">
+          <img [src]="data.custAvatar" class="goods-img" (mousemove)="showImg($event)"
+               (mouseleave)="hideImg($event)"
+               onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+          <img [src]="data.custAvatar" class="hover-img"
+               onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+        </div>
+      </td>
+      <td class="w100 text-center bl">
+        <div class="fl pl">
+          <div class="eval-conment">
+            <span>{{data.commentText}}</span>
+          </div>
+          <div class="fl pl pt" *ngFor="let comment of data.commentGoodsPicList">
+            <img [src]="comment.pic" class="good-img" (mousemove)="showImg($event)"
+                 (mouseleave)="hideImg($event)"
+                 onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+            <img [src]="comment.pic" class="hover-img"
+                 onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+          </div>
+        </div>
+      </td>
+</div>
+</td>
+</tr>
+</tbody>
+</nz-table>
+<!--结算表格 --end -->
+</div>
+<!--提现详情 -- end-->

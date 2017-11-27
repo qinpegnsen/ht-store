@@ -64,7 +64,7 @@ export class CashSettleComponent implements OnInit {
     let data = { //查询参数
       agentCode: "552408454438297600"
     }
-    $.when(CashSettleService.agentData(data)).done(data => {
+    $.when(CashSettleService.storeData(data)).done(data => {
       me._loading = false //解除锁屏
       if (data) {
         me.storeInfo = data;

@@ -66,7 +66,7 @@ export class CashSettleService {
    * 查询企业信息列表
    * @param data （查询参数）
    */
-  static agentData(data:any){
+  static storeData(data:any){
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({

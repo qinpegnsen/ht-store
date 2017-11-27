@@ -57,6 +57,7 @@ export class SettingUrl {
       stopGoods: "/goodsEdit/updateStateToStop",//(put)商品禁售
       relieveGoods: "/goodsEdit/updateStateToNomal",//(put)解除商品禁售
       updateIsUseCoin: "/goodsEdit/updateIsUseCoin",//(put)更改是否可用重消币
+      commnetGoods:" /commentGoods/queryCommnetGoodsAdmin",//(get)查询商品评价
     },
     /**
      * 提现与账单明细
