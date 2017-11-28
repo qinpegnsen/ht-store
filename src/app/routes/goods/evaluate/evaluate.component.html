@@ -15,14 +15,14 @@
     <tbody>
     <tr class="b" *ngFor="let data of nzTable.data;let i = index">
       <td class="w100 mb-15">
-        <div class="eval-head">
-          <span class="fl pl-20">评价人：{{data.custName}}</span>
+        <div class="eval-head bg-f8">
+          <!--<span class="fl pl-20">评价人：{{data.custName}}</span>-->
+          <span class="fl pl-20">评价商品：{{data.goodsName}}</span>
           <span class="fl pl-20">评价时间：{{data.custName}}</span>
           <span class="fl pl-20">订单编号：{{data.ordno}}</span>
-          <!--<span class="fl pl-20">评价商品：{{data.goodsName}}</span>-->
           <span class="fl pl-20">评分：
               <nz-rate [ngModel]="data.commentStar" nzAllowHalf [nzDisabled]="true" class="eval-score"></nz-rate>
-            </span>
+          </span>
         </div>
         <div class="w100 b eval-border mb-20">
       <td class="relative p">
@@ -32,6 +32,7 @@
                onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
           <img [src]="data.custAvatar" class="hover-img"
                onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+          <p>{{data.custName}}</p>
         </div>
       </td>
       <td class="w100 text-center bl">

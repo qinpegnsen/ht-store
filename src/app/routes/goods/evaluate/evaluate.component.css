@@ -4,11 +4,10 @@
 .eval-head {
   height: 40px;
   line-height: 40px;
-  background: #f5f5f5;
 }
 .eval-score{
-  height: 38px;
-  line-height: 38px;
+  height: 39px;
+  line-height: 39px;
 }
 .eval-border{
   border: 1px solid #d9d9d9;
