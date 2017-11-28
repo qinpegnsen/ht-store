@@ -13,6 +13,7 @@ export class MainComponent implements OnInit {
   public app = Setting.APP; //平台信息
   public menus: Array<any> = new Array(); //菜单信息
   public msg: Array<any> = new Array(); //消息通知
+  public msgNum: number = 0; //消息通知总条数
 
   constructor(public router: Router) {
     //菜单信息
@@ -32,42 +33,6 @@ export class MainComponent implements OnInit {
             url: "/store/goods/publish"
           }
         ]
-      },
-      {
-        name: "文章管理",
-        icon: "file-text",
-        children: [
-          {
-            name: "文章发布",
-            icon: ""
-          },
-          {
-            name: "文章审核",
-            icon: ""
-          }
-        ]
-      },
-      {
-        name: "红包",
-        icon: "red-envelope",
-        url: "/store/redPacket",
-        children: [
-          {
-            name: "红包投放记录",
-            icon: "",
-            url: "/store/redPacket/pushOrder",
-          },
-          {
-            name: "红包统计",
-            icon: "",
-            url: "/store/redPacket/statistics",
-          }
-        ]
-      },
-      {
-        name: "提现与结算",
-        icon: "pay-circle-o",
-        url: "/store/cashSettle/cashSettle"
       },
       {
         name: "订单管理",
@@ -97,12 +62,66 @@ export class MainComponent implements OnInit {
         ]
       },
       {
-        name: "smile布局",
+        name: "售前售后",
+        icon: "customer-service",
+        url: "",
+        children: [
+          {
+            name: "退款",
+            icon: "",
+            url: "",
+          },
+          {
+            name: "退货",
+            icon: "",
+            url: "",
+          },
+          {
+            name: "已完成",
+            icon: "",
+            url: "/store/order/complete",
+          },
+          {
+            name: "已取消",
+            icon: "",
+            url: "/store/order/cancel",
+          }
+        ]
+      },
+      {
+        name: "红包",
+        icon: "red-envelope",
+        url: "/store/redPacket",
+        children: [
+          {
+            name: "红包投放记录",
+            icon: "",
+            url: "/store/redPacket/pushOrder",
+          },
+          {
+            name: "红包统计",
+            icon: "",
+            url: "/store/redPacket/statistics",
+          }
+        ]
+      },
+      {
+        name: "提现与结算",
+        icon: "pay-circle-o",
+        url: "/store/cashSettle/cashSettle"
+      },
+      {
+        name: "员工管理",
+        icon: "usergroup-add",
+        url: ""
+      },
+      {
+        name: "企业信息（TODO）",
         icon: "smile-o",
         url: "/simple/reg"
       },
       {
-        name: "page布局",
+        name: "登录页面（TODO）",
         icon: "smile-o",
         url: "/page/login"
       },
@@ -115,26 +134,30 @@ export class MainComponent implements OnInit {
     //设置消息通知
     _this.msg = [
       {
-        icon:"anticon anticon-edit",
-        info:"建议修改密码",
-        num:1
+        icon: "anticon anticon-edit",
+        info: "建议修改密码",
+        num: 1
       },
       {
-        icon:"anticon anticon-export",
-        info:"待发货商品",
-        num:4
+        icon: "anticon anticon-export",
+        info: "待发货商品",
+        num: 4
       },
       {
-        icon:"anticon anticon-pay-circle-o",
-        info:"申请退款",
-        num:2
+        icon: "anticon anticon-pay-circle-o",
+        info: "申请退款",
+        num: 2
       },
       {
-        icon:"icon icon-tuihuo",
-        info:"申请退货",
-        num:3
+        icon: "icon icon-tuihuo",
+        info: "申请退货",
+        num: 3
       }
     ]
+    //设置消息通知总条数
+    _this.msg.forEach(res => {
+      _this.msgNum += res.num;
+    })
   }
 
   /**
