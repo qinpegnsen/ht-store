@@ -75,16 +75,6 @@ export class MainComponent implements OnInit {
             name: "退货",
             icon: "",
             url: "",
-          },
-          {
-            name: "已完成",
-            icon: "",
-            url: "/store/order/complete",
-          },
-          {
-            name: "已取消",
-            icon: "",
-            url: "/store/order/cancel",
           }
         ]
       },
