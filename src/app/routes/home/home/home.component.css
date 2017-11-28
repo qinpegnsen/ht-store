@@ -14,6 +14,8 @@
 }
 .hawthorn-home .common-functions .bg-f8{
   border: 1px solid white;
+  height: 65px;
+  line-height: 65px;
 }
 
 /*订单流量统计*/

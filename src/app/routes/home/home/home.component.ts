@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
         isShow:true
       },
       {
-        icon:"anticon anticon-shopping-cart color-purple",
+        icon:"icon icon-fahuo color-purple",
         info:"去发货",
         url:"",
         isShow:true
@@ -99,13 +99,13 @@ export class HomeComponent implements OnInit {
         isShow:true
       },
       {
-        icon:"anticon anticon-edit color-blue",
+        icon:"icon icon-tuikuan color-blue",
         info:"处理退款",
         url:"",
         isShow:true
       },
       {
-        icon:"anticon anticon-inbox color-blue",
+        icon:"icon icon-tuihuo color-blue",
         info:"处理退货",
         url:"",
         isShow:true

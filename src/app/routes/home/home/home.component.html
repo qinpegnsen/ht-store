@@ -40,7 +40,7 @@
   <div class="common-functions mt-20" nz-row>
     <p class="font16 strong mb title">常用功能</p>
     <ng-container *ngFor="let cf of commonFunctions">
-      <div nz-col [nzSpan]="4" class="bg-f8 pt-20 pb-20 pl-20 font16 cursor" *ngIf="cf.isShow">
+      <div nz-col [nzSpan]="4" class="bg-f8 pl-20 font16 cursor" *ngIf="cf.isShow">
         <i class="{{cf.icon}} font20 mr"></i>{{cf.info}}
       </div>
     </ng-container>
