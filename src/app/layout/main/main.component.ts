@@ -12,6 +12,7 @@ export class MainComponent implements OnInit {
   public isCollapsed = false; //menu折叠
   public app = Setting.APP; //平台信息
   public menus: Array<any> = new Array(); //菜单信息
+  public msg: Array<any> = new Array(); //消息通知
 
   constructor(public router: Router) {
     //菜单信息
@@ -111,6 +112,29 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     const _this = this;
     _this.menus = Setting.MENUS; //菜单信息
+    //设置消息通知
+    _this.msg = [
+      {
+        icon:"anticon anticon-edit",
+        info:"建议修改密码",
+        num:1
+      },
+      {
+        icon:"anticon anticon-export",
+        info:"待发货商品",
+        num:4
+      },
+      {
+        icon:"anticon anticon-pay-circle-o",
+        info:"申请退款",
+        num:2
+      },
+      {
+        icon:"icon icon-tuihuo",
+        info:"申请退货",
+        num:3
+      }
+    ]
   }
 
   /**
