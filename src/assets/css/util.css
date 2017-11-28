@@ -49,6 +49,7 @@
 .pt-5 { padding-top: 5px !important; }
 .pb-5 { padding-bottom: 5px !important; }
 .p  { padding: 10px !important; }
+.p-20  { padding: 20px !important; }
 .pl { padding-left: 10px !important; }
 .pr { padding-right: 10px !important; }
 .pt { padding-top: 10px !important; }
@@ -59,7 +60,6 @@
 .pt-15 { padding-top: 15px !important; }
 .pt-30 { padding-top: 30px !important; }
 .pb-15 { padding-bottom: 15px !important; }
-.p-20  { padding: 20px !important; }
 .pl-20 { padding-left: 20px !important; }
 .pl-30 { padding-left: 30px !important; }
 .pl-54 { padding-left: 54px !important; }

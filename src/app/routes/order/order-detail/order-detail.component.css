@@ -18,4 +18,34 @@
 }
 .order-detail .detail .order-main dl{
   padding-top: 16px;
+  padding-left: 20px;
+  position: relative;
+
+}
+.order-detail .detail .order-main dl dt{
+  width: 24%;
+}
+.order-detail .detail .order-main dl dd{
+  width: 72%;
+  position: absolute;
+  left:80px;
+  top: 16px;
+}
+.order-state{
+  width: 82%;
+  height: 154px;
+  margin: auto;
+}
+.order-state-steps{
+  padding-top: 30px;
+}
+.order-information{
+  width: 98%;
+  margin: auto;
+  height: 200px;
+}
+.order-information .order-information-head{
+  height: 40px;
+  background: #f8f8f8;
+  line-height: 40px;
 }

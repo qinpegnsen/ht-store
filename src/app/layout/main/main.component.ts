@@ -29,6 +29,11 @@ export class MainComponent implements OnInit {
             name: "商品发布",
             icon: "",
             url: ""
+          },
+          {
+            name: "运费模板",
+            icon: "",
+            url: "/store/goods/freightTemplate"
           }
         ]
       },

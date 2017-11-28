@@ -1,4 +1,5 @@
-<div class="order-detail b  ">
+<!--订单基本信息 start-->
+<div class="order-detail b">
   <div class="detail w20 fl">
     <div class="order-head bb">
       <span class="main-color pl"><i class="anticon anticon-file-text"></i></span>
@@ -6,23 +7,23 @@
     </div>
     <div class="order-main">
       <dl>
-        <dt class="fl pl-30">买家留言：</dt>
-        <dd class="qpsP">哈哈哈</dd>
+        <dt>买家留言：</dt>
+        <dd>哈哈哈</dd>
       </dl>
       <dl>
-        <dt class="fl pl-30">支付方式：</dt>
+        <dt>支付方式：</dt>
         <dd>银行汇款</dd>
       </dl>
       <dl>
-        <dt class="fl pl-54">运费：</dt>
+        <dt>运费：</dt>
         <dd><span>￥ 12.00</span></dd>
       </dl>
       <dl>
-        <dt class="fl pl-30">应付总额：</dt>
+        <dt>应付总额：</dt>
         <dd><span>￥ 12.00</span></dd>
       </dl>
       <dl>
-        <dt class="fl pl-30">订单编号：</dt>
+        <dt>订单编号：</dt>
         <dd>1345445481024562.063652</dd>
       </dl>
     </div>
@@ -34,15 +35,15 @@
     </div>
     <div class="order-main">
       <dl>
-        <dt class="fl pl-30">收货人：</dt>
-        <dd class="qpsP">高辉</dd>
+        <dt>收货人：</dt>
+        <dd>高辉</dd>
       </dl>
       <dl class="line">
-        <dt class="fl pl-30">联系电话：</dt>
+        <dt>联系电话：</dt>
         <dd> 15901019392</dd>
       </dl>
       <dl>
-        <dt class="fl pl-54">收货地址：</dt>
+        <dt>收货地址：</dt>
         <dd><span>河北省秦皇岛市山海关区西关街道办事处荣邦城</span></dd>
       </dl>
     </div>
@@ -52,27 +53,35 @@
       <span class="main-color pl"><i class="anticon anticon-car"></i></span>
       <span class="main-color font14 pl">包裹信息</span>
     </div>
-    <div class="order-main">
-      <dl>
-        <dt class="fl pl-30">买家留言：</dt>
-        <dd class="qpsP">哈哈哈</dd>
-      </dl>
-      <dl class="line">
-        <dt class="fl pl-30">支付方式：</dt>
-        <dd>银行汇款</dd>
-      </dl>
-      <dl>
-        <dt class="fl pl-54">运费：</dt>
-        <dd><span>￥ 12.00</span></dd>
-      </dl>
-      <dl>
-        <dt class="fl pl-30">应付总额：</dt>
-        <dd><span>￥ 12.00</span></dd>
-      </dl>
-      <dl class="line">
-        <dt class="fl pl-30">订单编号：</dt>
-        <dd>1345445481024562.063652</dd>
-      </dl>
-    </div>
+
   </div>
 </div>
+<!--订单基本信息 end-->
+
+<!--其他状态 start-->
+<div class="order-state">
+  <div class="order-state-steps">
+    <nz-steps  [(nzCurrent)]="current" class="lg thc">
+      <nz-step [nzTitle]="'待发货'"></nz-step>
+      <nz-step [nzTitle]="'已发货'"></nz-step>
+      <nz-step [nzTitle]="'已完成'"></nz-step>
+      <nz-step [nzTitle]="'已取消'"></nz-step>
+    </nz-steps>
+  </div>
+</div>
+<!--其他状态 end-->
+
+<!--订单信息 start-->
+<div class="order-information">
+  <table class="w100 b">
+    <thead class="order-information-head w100">
+      <tr>
+        <th class="w45 text-center">商品</th>
+        <th class="w20 text-center">单价</th>
+        <th class="w15 text-center">数量</th>
+        <th class="w20 text-center">订单金额</th>
+     </tr>
+    </thead>
+  </table>
+</div>
+<!--订单信息 end-->

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-detail.component.css']
 })
 export class OrderDetailComponent implements OnInit {
+  current = 0;//步骤条
 
   constructor() { }
 

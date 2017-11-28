@@ -12,16 +12,16 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 const routes: Routes = [
   {path: 'pendingShipment', component: OrderPendingShipmentComponent,children: [
-    {path: 'order-detail', component: OrderDetailComponent}
+    {path: 'orderDetail', component: OrderDetailComponent}
   ]},
   {path: 'beenShipped', component:OrderBeenShippedComponent,children: [
-    {path: 'order-detail', component: OrderDetailComponent}
+    {path: 'orderDetail', component: OrderDetailComponent}
   ]},
   {path: 'cancel', component:OrderCancelComponent,children: [
-    {path: 'order-detail', component: OrderDetailComponent}
+    {path: 'orderDetail', component: OrderDetailComponent}
   ]},
   {path: 'complete', component:OrderCompleteComponent,children: [
-    {path: 'order-detail', component: OrderDetailComponent}
+    {path: 'orderDetail', component: OrderDetailComponent}
   ]},
 ];
 
