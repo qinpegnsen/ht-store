@@ -40,6 +40,12 @@ export class SettingUrl {
       querySta: '/rpStatistics/queryRpStatisticsStore',//查询企业红包统计
     },
     /**
+     * 售后接口
+     */
+    after:{
+      RefundOrd: '/after/queryAfterGoodsReqPages',//查询退款订单
+    },
+    /**
      * 统计接口
      */
     statistical:{

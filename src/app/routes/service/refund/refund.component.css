@@ -1,0 +1,35 @@
+.page-msg li{
+  line-height: 20px;
+  margin-bottom: 5px;
+  padding-left: 30px;
+  position: relative;
+}
+.page-msg li:before{
+  position: absolute;
+  content: '●';
+  line-height: 20px;
+  left: 18px;
+}
+
+.search-group {
+  width: 240px;
+  display: inline-block;
+}
+
+.search-group .search-title {
+  width: 40%;
+  line-height: 36px;
+  text-align: right;
+  display: inline-block;
+}
+
+.search-group .search-main {
+  width: 60%;
+  float: right;
+}
+._special .search-title{
+  width: 40%;
+}
+._special .search-main{
+  width: 50%;
+}
