@@ -6,6 +6,9 @@
       <i class="anticon anticon-rollback font20"></i>
     </button>
   </div>
+  <div class="mb-15">
+    评价商品：{{goodsName}}
+  </div>
   <nz-table #nzTable [nzAjaxData]="evalPage.voList"
             [nzLoading]="_loading"
             [nzTotal]="evalPage.totalRow"
@@ -16,35 +19,29 @@
     <tr class="b" *ngFor="let data of nzTable.data;let i = index">
       <td class="w100 mb-15">
         <div class="eval-head bg-f8">
-          <!--<span class="fl pl-20">评价人：{{data.custName}}</span>-->
-          <span class="fl pl-20">评价商品：{{data.goodsName}}</span>
-          <span class="fl pl-20">评价时间：{{data.custName}}</span>
-          <span class="fl pl-20">订单编号：{{data.ordno}}</span>
+          <!--<span class="fl pl-20">评价商品：{{data.goodsName}}</span>-->
           <span class="fl pl-20">评分：
               <nz-rate [ngModel]="data.commentStar" nzAllowHalf [nzDisabled]="true" class="eval-score"></nz-rate>
           </span>
+          <span class="fr pr-20">评价时间：{{data.createTime}}</span>
         </div>
         <div class="w100 b eval-border mb-20">
-      <td class="relative p">
-        <div class="mr inline-block fl">
-          <img [src]="data.custAvatar" class="goods-img" (mousemove)="showImg($event)"
-               (mouseleave)="hideImg($event)"
-               onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
-          <img [src]="data.custAvatar" class="hover-img"
-               onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
-          <p>{{data.custName}}</p>
+      <td class="relative">
+        <div class="inline-block fl text-center eval-user-img pt-15">
+        <i class="icon icon-user font30"></i>
+          <p class="">{{data.custName}}</p>
         </div>
       </td>
-      <td class="w100 text-center bl">
-        <div class="fl pl">
-          <div class="eval-conment">
+      <td class="w100 text-center eval-bl">
+        <div class="fl pl ">
+          <div class="eval-conment pt-5 ">
+            <span>订单:{{data.ordno}}</span>
+          </div>
+          <div class="eval-conment pt-5">
             <span>{{data.commentText}}</span>
           </div>
-          <div class="fl pl pt" *ngFor="let comment of data.commentGoodsPicList">
-            <img [src]="comment.pic" class="good-img" (mousemove)="showImg($event)"
-                 (mouseleave)="hideImg($event)"
-                 onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
-            <img [src]="comment.pic" class="hover-img"
+          <div class="fl pl pt-5 pb-5" *ngFor="let comment of data.commentGoodsPicList">
+            <img [src]="comment.pic" class="good-img"
                  onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
           </div>
         </div>

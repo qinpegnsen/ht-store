@@ -224,7 +224,7 @@
               [queryParams]="{baseCode: goods.goodsBaseCode,page: goodsList.curPage,type:'detail'}">
         <i class="anticon anticon-info-circle-o"></i>
       </button>
-      <button  nz-button class="btn-warning" title="查看评价" routerLink="../eval">
+      <button  nz-button class="btn-warning" title="查看评价" routerLink="../eval" [queryParams]="{goodsName:goods.goodsName}" >
         <i class="anticon anticon-search"></i>
       </button>
     </td>

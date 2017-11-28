@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Page} from "../../../public/util/page";
 import {GoodsService} from "../goods.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 declare var $: any;
 @Component({
   selector: 'app-evaluate',
@@ -11,10 +11,13 @@ declare var $: any;
 export class EvaluateComponent implements OnInit {
   evalPage: Page = new Page();          //提现信息
   _loading = false;             //查询时锁屏
-  constructor(public router: Router) { }
+  public goodsName:string;     //评价的商品名称
+  constructor(public router: Router, public routeInfo: ActivatedRoute) { }
 
   ngOnInit() {
-    this.qeuryEvalData();//查询评价信息
+    let _this=this;
+    _this.goodsName = _this.routeInfo.snapshot.queryParams['goodsName'];//评价的商品名称
+    _this.qeuryEvalData();//查询评价信息
   }
 
   /**
@@ -40,23 +43,5 @@ export class EvaluateComponent implements OnInit {
     this.router.navigate(['/store/goods/manage'])
   }
 
-  /**
-   * 鼠标放在图片上时大图随之移动
-   */
-  showImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'block';
-    target.style.top = (event.clientY + 20) + 'px';
-    target.style.left = (event.clientX + 30) + 'px';
-  }
-
-  /**
-   * 隐藏大图
-   * @param event
-   */
-  hideImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'none';
-  }
 
 }
