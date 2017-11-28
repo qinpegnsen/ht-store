@@ -1,57 +1,25 @@
 <div class="redPackSta">
   <!--红包块状统计 start-->
-  <div nz-row class="block" [nzJustify]="'space-around'" [nzType]="'flex'" [nzAlign]="'middle'">
-    <div nz-col [nzSpan]="6" class="bg-f8 font18">
-      <div nz-row [nzAlign]="'middle'" [nzType]="'flex'">
-        <div nz-col [nzSpan]="17" [nzOffset]="1">
-          <div>投放总金额（元）</div>
-          <p *ngIf="redPackStatic?.amount!=null">{{redPackStatic?.amount}}</p>
-          <p class="text-md m0" *ngIf="redPackStatic?.amount==null">0.00</p>
-        </div>
-        <div nz-col [nzSpan]="5" [nzOffset]="1">
-          <i class="anticon anticon-pay-circle-o myIcon"></i>
-        </div>
-      </div>
+  <div class="mt-20 bg-f8 pt-20 pb-20" nz-row>
+    <div nz-col [nzSpan]="8" [ngClass]="{'border-right':true}" class="text-center">
+      <p class="font22 main-color">{{redPackStatic?.amount}}</p>
+      <p>投放总金额（元）</p>
     </div>
-    <div nz-col [nzSpan]="5" class="bg-f8 font18">
-      <div nz-row [nzAlign]="'middle'" [nzType]="'flex'">
-        <div nz-col [nzSpan]="17" [nzOffset]="1">
-          <div>总点击数</div>
-          <p class="text-md m0" *ngIf="redPackStatic?.totalClickNum!=null">{{redPackStatic?.totalClickNum}}</p>
-          <p class="text-md m0" *ngIf="redPackStatic?.totalClickNum==null">0.00</p>
-        </div>
-        <div nz-col [nzSpan]="5" [nzOffset]="1">
-          <i class="icon icon-dianjishu myIcon"></i>
-        </div>
-      </div>
+    <div nz-col [nzSpan]="8" [ngClass]="{'border-right':true}" class="text-center">
+      <p class="font22 main-color">{{redPackStatic?.totalClickNum}}</p>
+      <p>总点击数</p>
     </div>
-    <div nz-col [nzSpan]="5" class="bg-f8 font18">
-      <div nz-row [nzAlign]="'middle'" [nzType]="'flex'">
-        <div nz-col [nzSpan]="17" [nzOffset]="1">
-          <div>今日点击数</div>
-          <p class="text-md m0" *ngIf="redPackStatic?.clickTodayNum!=null">{{redPackStatic?.clickTodayNum}}</p>
-          <p class="text-md m0" *ngIf="redPackStatic?.clickTodayNum==null">0.00</p>
-        </div>
-        <div nz-col [nzSpan]="5" [nzOffset]="1">
-          <i class="icon icon-handtouch myIcon"></i>
-        </div>
-      </div>
+    <div nz-col [nzSpan]="8" [ngClass]="{'border-right':false}" class="text-center">
+      <p class="font22 main-color">{{redPackStatic?.clickTodayNum}}</p>
+      <p>今日点击数</p>
     </div>
-    <!--to do-->
-    <!--<div nz-col [nzSpan]="5" class="blockBg font18">-->
-    <!--<div nz-row [nzAlign]="'middle'" [nzType]="'flex'">-->
-    <!--<div nz-col [nzSpan]="17" [nzOffset]="1">-->
-    <!--<div>用户点击中奖金额</div>-->
-    <!--<p class="text-md m0" *ngIf="redPackStatic?.ordSum!=null">{{redPackStatic?.ordSum}}</p>-->
-    <!--<p class="text-md m0" *ngIf="redPackStatic?.ordSum==null">0.00</p>-->
+    <!--to do -->
+    <!--<div nz-col [nzSpan]="8" [ngClass]="{'border-right':true}" class="text-center">-->
+    <!--<p class="font22 main-color">{{count.num}}</p>-->
+    <!--<p>用户点击中奖金额</p>-->
     <!--</div>-->
-    <!--<div nz-col [nzSpan]="5" [nzOffset]="1">-->
-    <!--<i class="anticon anticon-flag myIcon"></i>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--红包统计 end-->
   </div>
+
   <!--红包块状统计 end-->
 
   <!--搜索 start-->

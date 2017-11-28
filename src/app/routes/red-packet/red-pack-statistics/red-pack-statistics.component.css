@@ -16,3 +16,6 @@
 .redPackSta .rp-chart{
   height:400px;
 }
+.redPackSta .border-right{
+  border-right: 1px dashed #ccc;
+}

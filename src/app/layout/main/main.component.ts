@@ -64,17 +64,17 @@ export class MainComponent implements OnInit {
       {
         name: "售前售后",
         icon: "customer-service",
-        url: "",
+        url: "/store/service",
         children: [
           {
             name: "退款",
             icon: "",
-            url: "",
+            url: "/store/service/refund",
           },
           {
             name: "退货",
             icon: "",
-            url: "",
+            url: "/store/service/returnGoods",
           }
         ]
       },

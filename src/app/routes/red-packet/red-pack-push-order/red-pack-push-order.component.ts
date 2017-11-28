@@ -15,6 +15,9 @@ export class RedPackPushOrderComponent implements OnInit {
   public _loading = false;                    //查询时锁屏,默认关闭
   constructor() { }
 
+  /**
+   * 调用投放记录列表
+   */
   ngOnInit() {
     this.qeuryPushOrderData();
   }
