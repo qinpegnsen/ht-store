@@ -26,16 +26,17 @@ export class RedPacketService {
     return defer.promise(); //返回异步请求休息
   }
 
+
   /**
-   * 获取指定年月下的周集合
+   * 企业红包的统计
    * @param data
-   * @returns {any<T>}
+   * @returns {any<T>} （查询参数）
    */
-  static getWeekListByMonth(data:any) {
+  static rpStatistics(data:any){
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
-      url: SettingUrl.URL.statistical.getWeekList,
+      url: SettingUrl.URL.rpAccountRec.querySta,
       data: data,
       success: (data) => {
         if (data.success) defer.resolve(data.data);

@@ -2,3 +2,4 @@
 @import "../src/assets/css/base.css"; /*全局公共样式*/
 @import "../src/assets/css/util.css"; /*主样式*/
 @import "../src/assets/css/theme.css"; /*设置主题色相关样式*/
+@import "../src/assets/css/fonts.css"; /*扩展字体图标*/

@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {SettingUrl} from "../../../public/setting/setting_url";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {RedPacketService} from "../red-packet.service";
 import {MainService} from "../../../public/service/main.service";
 import {Util} from "../../../public/util/util";
-import {isNullOrUndefined} from "util";
+import {Setting} from "../../../public/setting/setting";
 declare var $: any;
 
 @Component({
@@ -14,61 +13,87 @@ declare var $: any;
 })
 export class RedPackStatisticsComponent implements OnInit {
 
-  public redPackStatic: any;                    //红包统计
-  public staType: any = 'DAY';                  //统计时间的类型，默认是按天统计
-  public queryTime: string;//查询的时间
-  public staTypes=MainService.getEnumDataList('1401'); //枚举所有统计时间的类型
+  public redPackStatic: any;                        //红包统计数据
+  public staType: String = "DAY";                   //统计时间的类型，默认是按天统计
+  public queryTime: any = new Date();               //查询的时间
+  public staTypes: any;                              //枚举所有统计时间的类型
   public showType: any = {DAY: true, WEEK: false, MONTH: false}; //展示不同的统计条件的组合
-  public yearInfo: any = Util.tenYear; //获取最近十年年份信息
-  public month: any = Util.getMonth; //获取月份信息
-  public week: any = Util.getMonth; //获取月份信息
-  public nowDate :Date = new Date(); //当前的日期
+  public yearInfo: any = Util.tenYear();            //获取最近十年年份信息
+  public month: any = Util.getMonth();              //获取月份信息
+  public nowDate: Date = new Date();                //当前的日期
   public weekForMonth: Array<string> = new Array(); //指定年月下的日期; //当前的日期
-  public _loading = false;             //查询时锁屏,默认关闭
+  public setOption: any;                            //统计图的配置
   public select: any = {
-    'year':'',
-    'month':'',
-    'week':'',
+    'year': '',
+    'month': '',
+    'week': '',
   }; //选择的年份、月份、周信息
 
-  public now: any;
-  public prev: any;
-  public optionPrev:any;                        //统计图的配置
-  constructor() { }
+  constructor() {
+  }
 
+
+  /**
+   * 1.获取统计时间的类型
+   * 2.格式化默认的日期
+   * 3.根据搜索条件进行查询
+   */
   ngOnInit() {
-    let queryData={
-      queryYear:this.select.year,
-      queryMonth:this.select.month,
-    }
-    $.when(RedPacketService.pushOrDerList(queryData)).done(data => {
-      this._loading = false //解除锁屏
-      if(data) this.weekForMonth = data; //赋值
-    })
-    this.getStaByQueryTime()
+    this.staTypes = MainService.getEnumDataList(Setting.ENUM.staTimeType);//枚举所有统计时间的类型
+    this.queryTime=Util.dataFormat(this.queryTime,'yyyy-MM-dd');//获取格式化话默认的日期
+    this.getStaByQueryTime();
+  }
+
+  /**
+   * 根据指定年月获取周列表
+   */
+  getWeekListByMonth() {
+    let _this = this, time = _this.select.year + "-" + _this.select.month;
+    let queryData = {
+      queryYear: time.split("-")[0],
+      queryMonth: time.split("-")[1]
+    };
+    $.when(Util.getWeekListByMonth(queryData)).done(data => {
+      if (data) _this.weekForMonth = data; //赋值获取周列表
+      _this.weekForMonth.forEach(ele => {//为了默认显示当前日期所在的周
+        let start = new Date(ele.split('~')[0]).getDate();
+        let end = new Date(ele.split('~')[1]).getDate();
+        let now = new Date().getDate();
+        if (now > start && now < end) {
+          _this.select.week = ele;//获取默认周
+        } else if (now == start || now == end) {
+          _this.select.week = ele;//获取默认周
+        } else if (now > start || now > end) {//两个月的交界处
+          _this.select.week = ele;//获取默认周
+        }
+      });
+    });
   }
 
   /**
    * 根据查询条件查询出统计图
    */
   getStaByQueryTime() {
-    // let me = this;
-    // let url = SettingUrl.URL.rpAccountRec.querySta;
-    // let data = {
-    // }
-    // let result = RedPacketService.getNoTip(url,data).voList;
-    // if(result){
-    //   me.redPackStatic = result;
-    //   me.now = me.redPackStatic.agentAllOrdList;
-    //   me.prev = me.redPackStatic.agentDealOrdList;
-    //   me.optionPrevInfo();
-    // }
+    let me = this;
+    let queryparams = { //查询参数
+      queryType: this.staType, //查询的类型
+      queryTime: this.queryTime //查询的时间
+    };
+    $.when(RedPacketService.rpStatistics(queryparams)).done(data => {
+      if (data) {
+        this.redPackStatic = data;
+      } //赋值
+      me.optionPrevInfo();
+    })
   }
 
   /**
    * 改变统计类型的状态
    */
-  changeStaType(){
+  changeStaType() {
+    this.select.year = new Date().getFullYear().toString();//获取默认年
+    this.select.month = (new Date().getMonth() + 1).toString();//获取默认月
+    this.getWeekListByMonth();
     if (this.staType == "MONTH") this.showType = {DAY: false, WEEK: false, MONTH: true};
     else if (this.staType == "WEEK") this.showType = {DAY: false, WEEK: true, MONTH: false};
     else if (this.staType == "DAY") this.showType = {DAY: true, WEEK: false, MONTH: false};
@@ -77,8 +102,8 @@ export class RedPackStatisticsComponent implements OnInit {
   /**
    * 根据搜索条件搜索相应的统计图
    */
-  goSearch(){
-    let  type = this.staType;
+  goSearch() {
+    let type = this.staType;
     switch (type) {
       case 'DAY':
         this.queryTime = Util.dataFormat(new Date(this.nowDate), "yyyy-MM-dd");
@@ -89,7 +114,8 @@ export class RedPackStatisticsComponent implements OnInit {
       case 'WEEK':
         this.queryTime = this.select.week;
         break;
-    };
+    }
+    ;
     this.getStaByQueryTime()
   }
 
@@ -98,28 +124,32 @@ export class RedPackStatisticsComponent implements OnInit {
    */
   private optionPrevInfo() {
     let _this = this;
-    _this.optionPrev = {
+    _this.setOption = {
+      backgroundColor: "#f8f8f8",
       title: {
-        text: '一月点击数统计',
-        left:"46%"
+        text: '红包击数统计',
+        left: "center",
+        top:'1%'
       },
       legend: {
-        data: ['派单', '接单'],
+        data: ['点击数'],
         align: 'left',
-        left:"46%",
-        top:"10%",
-        bottom:"10%"
+        left: "center",
+        top: "8%",
       },
-      color: ['#3398DB', '#42DBB1'],
+      color: ['#C23531'],
       tooltip: {
         trigger: 'axis',
         axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-          type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+          type: 'cross',
+          crossStyle: {
+            color: '#999'
+          }
         }
       },
       toolbox: {
         show: true,
-        right:"3%",
+        right: "3%",
         feature: {
           magicType: {show: true, type: ['line', 'bar']},
           restore: {show: true},
@@ -135,9 +165,12 @@ export class RedPackStatisticsComponent implements OnInit {
       xAxis: [
         {
           type: 'category',
-          data: _this.now.keys,
+          data: _this.redPackStatic[this.queryTime].keys,
           axisTick: {
             alignWithLabel: true
+          },
+          axisPointer: {
+            type: 'shadow'
           }
         }
       ],
@@ -148,19 +181,12 @@ export class RedPackStatisticsComponent implements OnInit {
       ],
       series: [
         {
-          name: '派单',
+          name: '点击数',
           type: 'bar',
           barWidth: '30%',
-          data: _this.now.yaxis
-        },
-        {
-          name:'接单' ,
-          type: 'bar',
-          barWidth: '30%',
-          data: _this.prev.yaxis
+          data: _this.redPackStatic[this.queryTime].yaxis
         }
       ]
     };
   }
-
 }

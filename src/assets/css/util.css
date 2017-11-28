@@ -95,6 +95,30 @@
 .color-a{
   color: #108ee9;
 }
+.color-success{
+  color: #6c2;
+}
+.color-pink{
+  color: #f5317f;
+}
+.color-red{
+  color: #f04134;
+}
+.color-orange{
+  color: #f56a00;
+}
+.color-green{
+  color: #00a854;
+}
+.color-cyan{
+  color: #00a2ae;
+}
+.color-blue{
+  color: #108ee9;
+}
+.color-purple{
+  color: #7265e6;
+}
 
 /*浮动*/
 .fl{float: left;}
@@ -106,21 +130,43 @@
 /*背景色*/
 .bg-white{background-color: #ffffff;}
 .bg-light-gray{background-color: #fbfbfb;}
+.bg-f8{background: #f8f8f8 }
+.bg-pink{
+  background: #f5317f;
+}
+.bg-red{
+  background: #f04134;
+}
+.bg-orange{
+  background: #f56a00;
+}
+.bg-green{
+  background: #00a854;
+}
+.bg-cyan{
+  background: #00a2ae;
+}
+.bg-blue{
+  background: #108ee9;
+}
+.bg-purple{
+  background: #7265e6;
+}
 
 /*信息位置*/
 .text-center{text-align: center !important;}
 
 /*文字大小*/
-.font12{font-size: 12px}
-.font14{font-size: 14px}
-.font16{font-size: 16px}
-.font18{font-size: 18px}
-.font20{font-size: 20px}
-.font22{font-size: 22px}
-.font24{font-size: 24px}
-.font26{font-size: 26px}
-.font28{font-size: 28px}
-.font30{font-size: 30px}
+.font12{font-size: 12px !important;}
+.font14{font-size: 14px !important;}
+.font16{font-size: 16px !important;}
+.font18{font-size: 18px !important;}
+.font20{font-size: 20px !important;}
+.font22{font-size: 22px !important;}
+.font24{font-size: 24px !important;}
+.font26{font-size: 26px !important;}
+.font28{font-size: 28px !important;}
+.font30{font-size: 30px !important;}
 
 /*宽度定义（百分比）*/
 .w1{width: 1%}

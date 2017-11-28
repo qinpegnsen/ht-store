@@ -1,117 +1,101 @@
 <div class="redPackSta">
-
   <!--红包块状统计 start-->
-  <div nz-row class="block" [nzJustify]="'space-around'" [nzType]="'flex'" [nzAlign]="'middle'">
-    <div nz-col [nzSpan]="6" class="blockBg font18">
-      <div nz-row [nzAlign]="'middle'" [nzType]="'flex'">
-        <div nz-col [nzSpan]="17" [nzOffset]="1">
-          <div>投放总金额（元）</div>
-          <p *ngIf="redPackStatic?.ordSum!=null">{{redPackStatic?.ordSum}}</p>
-          <p class="text-md m0" *ngIf="redPackStatic?.ordSum==null">0.00</p>
-        </div>
-        <div nz-col [nzSpan]="5" [nzOffset]="1">
-          <i class="anticon anticon-code-o myIcon"></i>
-        </div>
-      </div>
+  <div class="mt-20 bg-f8 pt-20 pb-20" nz-row>
+    <div nz-col [nzSpan]="8" [ngClass]="{'border-right':true}" class="text-center">
+      <p class="font22 main-color">{{redPackStatic?.amount}}</p>
+      <p>投放总金额（元）</p>
     </div>
-    <div nz-col [nzSpan]="5" class="blockBg font18">
-      <div nz-row [nzAlign]="'middle'" [nzType]="'flex'">
-        <div nz-col [nzSpan]="17" [nzOffset]="1">
-          <div>总点击数</div>
-          <p class="text-md m0" *ngIf="redPackStatic?.ordSum!=null">{{redPackStatic?.ordSum}}</p>
-          <p class="text-md m0" *ngIf="redPackStatic?.ordSum==null">0.00</p>
-        </div>
-        <div nz-col [nzSpan]="5" [nzOffset]="1">
-          <i class="anticon anticon-link myIcon"></i>
-        </div>
-      </div>
+    <div nz-col [nzSpan]="8" [ngClass]="{'border-right':true}" class="text-center">
+      <p class="font22 main-color">{{redPackStatic?.totalClickNum}}</p>
+      <p>总点击数</p>
     </div>
-    <div nz-col [nzSpan]="5" class="blockBg font18">
-      <div nz-row [nzAlign]="'middle'" [nzType]="'flex'">
-        <div nz-col [nzSpan]="17" [nzOffset]="1">
-          <div>今日点击数</div>
-          <p class="text-md m0" *ngIf="redPackStatic?.ordSum!=null">{{redPackStatic?.ordSum}}</p>
-          <p class="text-md m0" *ngIf="redPackStatic?.ordSum==null">0.00</p>
-        </div>
-        <div nz-col [nzSpan]="5" [nzOffset]="1">
-          <i class="anticon anticon-user-add myIcon"></i>
-        </div>
-      </div>
+    <div nz-col [nzSpan]="8" [ngClass]="{'border-right':false}" class="text-center">
+      <p class="font22 main-color">{{redPackStatic?.clickTodayNum}}</p>
+      <p>今日点击数</p>
     </div>
-    <div nz-col [nzSpan]="5" class="blockBg font18">
-      <div nz-row [nzAlign]="'middle'" [nzType]="'flex'">
-        <div nz-col [nzSpan]="17" [nzOffset]="1">
-          <div>用户点击中奖金额</div>
-          <p class="text-md m0" *ngIf="redPackStatic?.ordSum!=null">{{redPackStatic?.ordSum}}</p>
-          <p class="text-md m0" *ngIf="redPackStatic?.ordSum==null">0.00</p>
-        </div>
-        <div nz-col [nzSpan]="5" [nzOffset]="1">
-          <i class="anticon anticon-flag myIcon"></i>
-        </div>
-      </div>
-    </div>
-    <!--红包统计 end-->
+    <!--to do -->
+    <!--<div nz-col [nzSpan]="8" [ngClass]="{'border-right':true}" class="text-center">-->
+    <!--<p class="font22 main-color">{{count.num}}</p>-->
+    <!--<p>用户点击中奖金额</p>-->
+    <!--</div>-->
   </div>
+
   <!--红包块状统计 end-->
 
   <!--搜索 start-->
-  <!--<div nz-row [nzJustify]="'end'" [nzType]="'flex'">-->
-
+  <div nz-row [nzJustify]="'end'" [nzType]="'flex'" class="mt-20 mb-20">
     <!--统计时间类型 start-->
-    <!--<div nz-col *ngIf="showType.DAY">-->
-      <!--<select class="sel form-control pull-right" name="queryType"-->
-              <!--[(ngModel)]='staType' (change)="changeStaType()">-->
-        <!--<option *ngFor="let item of staTypes" [value]="item.key">{{item.val}}</option>-->
-      <!--</select>-->
-    <!--</div>-->
+    <nz-select class="w160 mr" [(ngModel)]="staType" nzAllowClear (ngModelChange)="changeStaType()" [nzSize]="'large'">
+      <nz-option
+        *ngFor="let option of staTypes"
+        [nzLabel]="option.val"
+        [nzValue]="option.key">
+      </nz-option>
+    </nz-select>
     <!--统计时间类型 end-->
-
     <!--搜索条件 start-->
-    <!--<div nz-col>-->
-      <!--<div>-->
-        <!--<div *ngIf="showType.MONTH">-->
-        <!--<select [(ngModel)]="select.year" class="pull-left w43 form-control d-play" style="margin-right: 20px">-->
-        <!--<option *ngFor="let info of yearInfo" value="{{info}}">{{info}}</option>-->
-        <!--</select>-->
-        <!--<select [(ngModel)]="select.month" class="w43 form-control">-->
-        <!--<option *ngFor="let info of month" value="{{info}}">{{info}}</option>-->
-        <!--</select>-->
-        <!--</div>-->
-        <!--<div *ngIf="showType.WEEK">-->
-          <!--<select [(ngModel)]="select.year" class="form-control w22 pull-left mr5">-->
-            <!--<option *ngFor="let info of yearInfo" value="{{info}}">{{info}}</option>-->
-          <!--</select>-->
-          <!--<select [(ngModel)]="select.month" (change)="getWeekListByMonth()" class="form-control w21 pull-left mr5">-->
-            <!--<option *ngFor="let info of month" value="{{info}}">{{info}}</option>-->
-          <!--</select>-->
-          <!--<select [(ngModel)]="select.week" class="form-control w53">-->
-            <!--<option *ngFor="let info of week" value="{{info}}">{{info}}</option>-->
-          <!--</select>-->
-        <!--</div>-->
-        <!--<div *ngIf="showType.DAY">-->
-          <!--<nz-datepicker [(ngModel)]="nowDate" [nzPlaceHolder]="'请选择日期'"></nz-datepicker>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+    <div nz-col>
+      <div>
+        <div *ngIf="showType.MONTH">
+          <nz-select class="w160 mr" [(ngModel)]="select.year" nzAllowClear [nzSize]="'large'">
+            <nz-option
+              *ngFor="let option of yearInfo"
+              [nzLabel]="option"
+              [nzValue]="option">
+            </nz-option>
+          </nz-select>
+          <nz-select class="w160 mr" [(ngModel)]="select.month" nzAllowClear [nzSize]="'large'">
+            <nz-option
+              *ngFor="let option of month"
+              [nzLabel]="option"
+              [nzValue]="option">
+            </nz-option>
+          </nz-select>
+        </div>
+        <div *ngIf="showType.WEEK">
+          <nz-select class="w160 mr" [(ngModel)]="select.year" nzAllowClear [nzSize]="'large'">
+            <nz-option
+              *ngFor="let option of yearInfo"
+              [nzLabel]="option"
+              [nzValue]="option">
+            </nz-option>
+          </nz-select>
+          <nz-select class="w160 mr" [(ngModel)]="select.month" nzAllowClear [nzSize]="'large'"
+                     (ngModelChange)="getWeekListByMonth()">
+            <nz-option
+              *ngFor="let option of month"
+              [nzLabel]="option"
+              [nzValue]="option">
+            </nz-option>
+          </nz-select>
+          <nz-select class="w200 mr" [(ngModel)]="select.week" nzAllowClear [nzSize]="'large'">
+            <nz-option
+              *ngFor="let option of weekForMonth"
+              [nzLabel]="option"
+              [nzValue]="option">
+            </nz-option>
+          </nz-select>
+        </div>
+        <div *ngIf="showType.DAY">
+          <nz-datepicker [(ngModel)]="nowDate" [nzPlaceHolder]="'请选择日期'" [nzSize]="'large'"></nz-datepicker>
+        </div>
+      </div>
+    </div>
     <!--搜索条件 end-->
-
     <!--搜索图标 start-->
-    <!--<div nz-col (click)="goSearch()">-->
-      <!--<i class="anticon anticon-search"></i>-->
-    <!--</div>-->
+    <div nz-col>
+      <button nz-button [nzSize]="'large'" class="ml btn-thc" (click)="goSearch()">
+        <i class="anticon anticon-search"></i>
+      </button>
+    </div>
     <!--搜索图标 end-->
-
-  <!--</div>-->
+  </div>
   <!--搜索 end-->
 
   <!--红包统计图 start-->
-  <!--<div class="panel m-auto">-->
-  <!--<div echarts [options]="optionPrev" class="demo-chart w100"></div>-->
-  <!--</div>-->
+  <div echarts [options]="setOption" class="rp-chart"></div>
   <!--红包统计图 end-->
-
 </div>
-
 
 
 

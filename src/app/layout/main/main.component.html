@@ -44,20 +44,16 @@
 
         <nz-dropdown [nzTrigger]="'click'">
           <li nz-dropdown>
-            <nz-badge [nzCount]="5">
+            <nz-badge [nzCount]="msgNum">
               <ng-template #content>
                 <i class="anticon anticon-bell" title="消息通知"></i>
               </ng-template>
             </nz-badge>
           </li>
           <ul nz-menu>
-            <li nz-menu-item>
-              <i class="anticon anticon-edit mr-5"></i> 建议修改密码
-              （<span class="main-color">1</span>）
-            </li>
-            <li nz-menu-item class="color-a">
-              <i class="anticon anticon-export mr-5"></i> 待发货商品
-              （<span class="main-color">4</span>）
+            <li nz-menu-item *ngFor="let news of msg">
+              <i class="{{news.icon}} mr-5"></i> {{news.info}}
+              （<span class="main-color">{{news.num}}</span>）
             </li>
           </ul>
         </nz-dropdown>

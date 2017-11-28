@@ -7,7 +7,8 @@ export class Setting {
     description: '企业管理系统',
     copyright: '© 2017 - 三楂红-企业管理系统',
     logo: '../../../assets/img/logo.png',
-    logoDark: '../../../assets/img/logo-dark.png'
+    logoDark: '../../../assets/img/logo-dark.png',
+    defaultImg: '../../../assets/img/dummy.png'
   };
   public static MENUS: Array<any> = new Array();      //平台菜单
   public static PAGEMSG: any = {                        //平台信息提示（公式、提示、引导等等...）
@@ -24,7 +25,8 @@ export class Setting {
     enterpriseState: 2001, //企业入驻状态
     papersType: 2002, //证件类型
     stepsState: 2003, //企业入驻流程状态
-    shopState: 2004   //店铺状态
+    shopState: 2004,   //店铺状态
+    staTimeType: 1401   //统计时间类型
   }
   ;
 

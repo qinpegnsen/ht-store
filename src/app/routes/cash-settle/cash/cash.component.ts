@@ -12,7 +12,7 @@ declare var $: any;
 export class CashComponent implements OnInit {
   cashPage: Page = new Page();          //提现信息
   _loading = false;             //查询时锁屏
-  constructor(public router: Router,) {
+  constructor(public router: Router) {
   }
 
   ngOnInit() {

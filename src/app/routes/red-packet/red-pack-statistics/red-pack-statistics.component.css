@@ -7,3 +7,15 @@
   line-height: 80px;
   font-size: 50px;
 }
+.redPackSta .w160{
+  width:120px !important;
+}
+.redPackSta .w200{
+  width:200px !important;
+}
+.redPackSta .rp-chart{
+  height:400px;
+}
+.redPackSta .border-right{
+  border-right: 1px dashed #ccc;
+}

@@ -1,0 +1,65 @@
+.page-msg li{
+  line-height: 20px;
+  margin-bottom: 5px;
+  padding-left: 30px;
+  position: relative;
+}
+.page-msg li:before{
+  position: absolute;
+  content: '●';
+  line-height: 20px;
+  left: 18px;
+}
+
+.step-one{
+  border: 1px solid #f2f2f2;
+}
+
+.kind-zone ul {
+  height: 320px;
+  padding: 10px;
+  list-style: none;
+  overflow: auto;
+  border: 1px solid #f5f5f5;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.kind-zone li {
+  padding: 0 10px;
+  line-height: 36px;
+  cursor: pointer;
+  position: relative;
+}
+
+.kind-zone li:hover {
+  background-color: #f8f8f8;
+}
+
+.kind-zone li.current {
+  color: #e82d4d;
+  background-color: #fdeff2;
+  border: solid 1px #fdd8e7;
+  border-radius: 3px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.kind-zone li.current:after {
+  content: '》';
+  height: 36px;
+  line-height: 36px;
+  position: absolute;
+  right: 0;
+  color: #e82d4d;
+}
+
+.unchoosed{
+  color: #FF4E4E;
+}
+
+.right{
+  float: right;
+}

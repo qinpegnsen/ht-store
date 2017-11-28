@@ -12,6 +12,8 @@ export class MainComponent implements OnInit {
   public isCollapsed = false; //menu折叠
   public app = Setting.APP; //平台信息
   public menus: Array<any> = new Array(); //菜单信息
+  public msg: Array<any> = new Array(); //消息通知
+  public msgNum: number = 0; //消息通知总条数
 
   constructor(public router: Router) {
     //菜单信息
@@ -28,7 +30,7 @@ export class MainComponent implements OnInit {
           {
             name: "商品发布",
             icon: "",
-            url: ""
+            url: "/store/goods/publish"
           },
           {
             name: "运费模板",
