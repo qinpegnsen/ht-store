@@ -30,7 +30,7 @@ export class OneComponent implements OnInit {
         for (let i = 0; i < $('.step-one .current').length; i++) {
           me.choosedKindStr += $('.step-one .current')[i].innerText + ' > ';
         }
-        me.choosedKindStr = me.choosedKindStr.substring(0, me.choosedKindStr.length - 4)
+        me.choosedKindStr = me.choosedKindStr.substring(0, me.choosedKindStr.length - 3)
       })
     }, 0)
   }

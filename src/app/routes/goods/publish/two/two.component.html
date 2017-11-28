@@ -1,11 +1,13 @@
-<form nz-form class="p-20" [formGroup]="validateForm">
+<form nz-form class="p-20 step-two">
   <!--商品基本信息 start-->
-  <fieldset class="m0 p0">
-    <legend class="m0">商品基本信息</legend>
+  <div class="fieldset">
+    <div class="legend bb">商品基本信息</div>
     <dl nz-form-item nz-row>
-      <dt nz-form-label nz-col [nzSpan]="4">商品分类：</dt>
+      <dt nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item-required>商品分类</label>
+      </dt>
       <dd nz-col [nzSpan]="20">
-        <span>{{publishData.kindSelectName}}</span>
+        <span class="mr">{{kindSelectName}}</span>
         <nz-popconfirm [nzPlacement]="'top'" [nzTitle]="'重新选择分类，本页面数据将不会保留'"
                        (nzOnConfirm)="location.back()">
           <button nz-popconfirm nz-button class="btn-warning" title="选择分类">选择分类</button>
@@ -13,61 +15,390 @@
       </dd>
     </dl>
     <dl nz-form-item nz-row>
-      <div nz-form-label nz-col [nzSpan]="4">
+      <dt nz-form-label nz-col [nzSpan]="4">
         <label nz-form-item-required>商品名称</label>
-      </div>
+      </dt>
       <dd nz-col [nzSpan]="20">
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('goodsName')" nzHasFeedback>
-          <nz-input formControlName="goodsName" [nzType]="'text'" [nzPlaceHolder]="'商品名称'"
-                    [nzSize]="'large'">
+        <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
+             [nzValidateStatus]="ngGoodsName.valid && !ngGoodsName.pristine?'success':ngGoodsName.invalid?'error':null">
+          <nz-input name="goodsName" [(ngModel)]="publishData.goodsName" [nzType]="'text'" [nzPlaceHolder]="'商品名称'"
+                    [nzSize]="'large'" minlength="3" maxlength="50" #ngGoodsName="ngModel">
           </nz-input>
         </div>
-        <p nz-col [nzSpan]="20" class="tip">商品标题名称长度至少3个字符，最长50个汉字</p>
+        <p nz-col [nzSpan]="24" class="tip">商品标题名称长度至少3个字符，最长50个汉字</p>
       </dd>
     </dl>
     <dl nz-form-item nz-row>
-      <div nz-form-label nz-col [nzSpan]="4">
+      <dt nz-form-label nz-col [nzSpan]="4">
         <label nz-form-item-required>商品卖点</label>
-      </div>
+      </dt>
       <dd nz-col [nzSpan]="20">
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('goodsJingle')" nzHasFeedback>
-          <nz-input formControlName="goodsJingle" [nzType]="'textarea'" [nzPlaceHolder]="'商品卖点'"
-                    [nzSize]="'large'">
+        <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
+             [nzValidateStatus]="ngGoodsJingle.valid && !ngGoodsJingle.pristine?'success':ngGoodsJingle.invalid?'error':null">
+          <nz-input name="goodsJingle" [(ngModel)]="publishData.goodsJingle" [nzType]="'textarea'"
+                    [nzPlaceHolder]="'商品卖点'"
+                    [nzSize]="'large'" minlength="1" maxlength="140" #ngGoodsJingle="ngModel">
           </nz-input>
         </div>
-        <p  nz-col [nzSpan]="20" class="tip">商品卖点可填写商品的简介或特点，最长不能超过140个汉字</p>
+        <p nz-col [nzSpan]="24" class="tip">商品卖点可填写商品的简介或特点，最长不能超过140个汉字</p>
       </dd>
     </dl>
     <dl nz-form-item nz-row>
-      <div nz-form-label nz-col [nzSpan]="4">
+      <dt nz-form-label nz-col [nzSpan]="4">
         <label nz-form-item-required>商品品牌</label>
-      </div>
+      </dt>
       <dd nz-col [nzSpan]="20">
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('brandCode')" nzHasFeedback>
-          <nz-select formControlName="brandCode" [nzSize]="'large'" [nzPlaceHolder]="'商品品牌'">
-            <nz-option *ngFor="let brand of publishData.brandsList" [nzLabel]="brand.brandName" [nzValue]="brand.id"></nz-option>
+        <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
+             [nzValidateStatus]="ngBrandCode.valid && !ngBrandCode.pristine?'success':null">
+          <nz-select name="brandCode" [(ngModel)]="publishData.brandCode" [nzSize]="'large'" [nzPlaceHolder]="'商品品牌'"
+                     #ngBrandCode="ngModel">
+            <nz-option *ngFor="let brand of publishData.brandList" [nzLabel]="brand.brandName"
+                       [nzValue]="brand.id"></nz-option>
           </nz-select>
         </div>
-        <p  nz-col [nzSpan]="20" class="tip">选择您的商品品牌，有利于商品通过品牌索引方式被找到；如没有您想要的品牌，可从“品牌管理”功能中添加并提交后台审核后再选择。</p>
+        <p nz-col [nzSpan]="24" class="tip">选择您的商品品牌，有利于商品通过品牌索引方式被找到；如没有您想要的品牌，可从“品牌管理”功能中添加并提交后台审核后再选择。</p>
       </dd>
     </dl>
     <dl nz-form-item nz-row>
-      <div nz-form-label nz-col [nzSpan]="4">
+      <dt nz-form-label nz-col [nzSpan]="4">
         <label nz-form-item-required>商品属性</label>
-      </div>
+      </dt>
       <dd nz-col [nzSpan]="20">
-        <nz-input-group nz-col [nzSpan]="8" [nzSize]="'large'" [nzCompact]="true"  *ngFor="let attrType of baseAttrList;let i = index">
-          <p class="w30">{{attrType.name}}</p>
-          <div nz-form-control [nzValidateStatus]="getFormControl('baseAttr')" nzHasFeedback>
-            <nz-select formControlName="baseAttr" [nzSize]="'large'" [nzPlaceHolder]="'商品品牌'">
-              <nz-option *ngFor="let attr of attrType.goodsEnumValList" [nzLabel]="attr.enumValue" [nzValue]="attr.id" [class]="attr.idx"></nz-option>
-            </nz-select>
+        <div nz-col [nzSpan]="8" *ngFor="let attrType of publishData.baseAttrList;let i = index">
+          <div nz-form-item>
+            <div nz-form-label nz-col [nzSpan]="6">
+              <label [attr.for]="'field'+i">{{attrType.name}}</label>
+            </div>
+            <div nz-form-control nz-col [nzSpan]="18">
+              <nz-select name="baseAttr" [nzSize]="'large'">
+                <nz-option *ngFor="let attr of attrType.goodsEnumValList" [nzLabel]="attr.enumValue" [nzValue]="attr.id"
+                           [class]="attr.idx"></nz-option>
+              </nz-select>
+            </div>
           </div>
-        </nz-input-group>
-        <p  nz-col [nzSpan]="20" class="tip">正确选择商品属性直接影响搜索筛选的准确与否，请根据实际情况认真选择填写。</p>
+        </div>
+        <p nz-col [nzSpan]="24" class="tip">正确选择商品属性直接影响搜索筛选的准确与否，请根据实际情况认真选择填写。</p>
       </dd>
     </dl>
-  </fieldset>
+  </div>
   <!--商品基本信息 end-->
 
+  <!--商品交易信息 start-->
+  <div class="fieldset">
+    <div class="legend bb">商品基本信息</div>
+    <dl nz-form-item nz-row>
+      <dt nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item-required>计量单位</label>
+      </dt>
+      <dd nz-col [nzSpan]="20">
+        <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
+             [nzValidateStatus]="ngUnit.valid && !ngUnit.pristine?'success':null">
+          <nz-select name="unit" [(ngModel)]="publishData.unit" [nzSize]="'large'" #ngUnit="ngModel"
+                     [nzPlaceHolder]="'商品品牌'">
+            <nz-option *ngFor="let unit of publishData.unitList" [nzLabel]="unit.unitName"
+                       [nzValue]="unit.unitName"></nz-option>
+          </nz-select>
+        </div>
+        <p nz-col [nzSpan]="24" class="tip">请正确选择该商品的单位，确保购买者明确商品对应单价/计量单位。</p>
+      </dd>
+    </dl>
+  </div>
+  <!--商品交易信息 end-->
+
+  <!--商品规格及图片 start-->
+  <div class="fieldset">
+    <div class="legend bb">商品基本信息</div>
+    <!--商品规格-->
+    <dl nz-form-item nz-row>
+      <dt nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item-required>商品规格</label>
+      </dt>
+      <dd nz-col [nzSpan]="20" class="specs">
+        <h5 class="clearfix">
+          <span nz-col [nzSpan]="4" class="text-right pr">规格</span>
+          <span nz-col [nzSpan]="20" class="pl">规格值 <em>（通过选择规格值建立商品与商品规格的关系）</em></span>
+        </h5>
+        <div class="enumType" *ngFor="let saleAttr of publishData.saleAttrList;let i = index" [attr.id]="i+1">
+          <h6 nz-col [nzSpan]="4" class="text-right p">
+            <span nz-col [nzSpan]="24" class="attr-name pr" *ngIf="!saleAttr.used">{{saleAttr.name}}</span>
+            <div nz-form-control nz-col [nzSpan]="24" *ngIf="saleAttr.used">
+              <nz-input [nzType]="'text'" [nzSize]="'large'" [ngModelOptions]="{standalone: true}" [attr.id]="i+1"
+                        minlength="1" maxlength="6"
+                        [(ngModel)]="saleAttr.name" (ngModelChange)="changeSpecVal(i)"></nz-input>
+            </div>
+          </h6>
+          <ul nz-col [nzSpan]="20" class="p vals">
+            <li nz-col [nzSpan]="6" *ngFor="let val of saleAttr.goodsEnumValList;">
+              <label nz-col [nzSpan]="3" nz-checkbox [(ngModel)]="val.checked" class="relative"
+                     [ngModelOptions]="{standalone: true}" (ngModelChange)="checkSpecVal($event,i)">
+                <span class="absolute" *ngIf="!val.checked">{{val.enumValue}}</span>
+              </label>
+              <div nz-form-control nz-col [nzSpan]="18" *ngIf="val.checked">
+                <nz-input [nzType]="'text'" [nzSize]="'large'" [ngModelOptions]="{standalone: true}"
+                          [(ngModel)]="val.enumValue" (ngModelChange)="changeSpecVal(i)"></nz-input>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p nz-col [nzSpan]="24" class="tip">
+          1、可勾选商品对应的规格及规格值，规格及规格值名称都可以自定义；<br>
+          2、自定义规格不得大于6个字符，自定义规格值不得大于16个字符；<br>
+          3、当勾选两种不同规格的规格值后将组合成一种商品SKU，可从下方表格中进行具体设定。
+        </p>
+      </dd>
+    </dl>
+    <!--sku表格-->
+    <dl nz-form-item nz-row>
+      <dt nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item-required>商品价格及库存</label>
+      </dt>
+      <dd nz-col [nzSpan]="20">
+        <table class="sku-table w100">
+          <thead>
+          <tr class="text-center">
+            <th class="w12" *ngFor="let attr of skuAttr"
+                [id]="attr.attrCode">{{attr.attrName}}
+            </th>
+            <th class="relative w20">
+              <div class="s-menu mb0 cursor"><i class="main-color">* </i>市场价
+                <em class="anticon anticon-edit"></em></div>
+              <div class="cdk-overlay-pane setAll hide" #setMarketPriceWindow>
+                <div class="ant-popover ng-trigger ng-trigger-fadeAnimation ant-popover-placement-bottom">
+                  <div class="ant-popover-content">
+                    <div class="ant-popover-arrow"></div>
+                    <div class="ant-popover-inner">
+                      <div>
+                        <div class="ant-popover-inner-content p">
+                          <p>批量设置市场价</p>
+                          <div class="ant-popover-message pb">
+                            <nz-input [nzType]="'text'" name="setMarketPrice" [(ngModel)]="set.marketPrice"
+                                      #setMarketPrice="ngModel"></nz-input>
+                          </div>
+                          <div class="ant-popover-buttons mb0">
+                            <button nz-button [nzSize]="'small'" (click)="onCancel(setMarketPriceWindow)">
+                              <span>取消</span>
+                            </button>
+                            <button nz-button [nzSize]="'small'" class="btn-green"
+                                    (click)="setPrice('marketPrice',setMarketPrice.value,setMarketPriceWindow)">
+                              <span>确认</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </th>
+            <th class="relative w20">
+              <div class="s-menu mb0 cursor"><i class="main-color">* </i>销售价
+                <em class="anticon anticon-edit"></em></div>
+              <div class="cdk-overlay-pane setAll hide" #setSalePriceWindow>
+                <div class="ant-popover ng-trigger ng-trigger-fadeAnimation ant-popover-placement-bottom">
+                  <div class="ant-popover-content">
+                    <div class="ant-popover-arrow"></div>
+                    <div class="ant-popover-inner">
+                      <div>
+                        <div class="ant-popover-inner-content p">
+                          <p>批量设置销售价</p>
+                          <div class="ant-popover-message pb">
+                            <nz-input [nzType]="'text'" name="setSalePrice" [(ngModel)]="set.salePrice"
+                                      #setSalePrice="ngModel"></nz-input>
+                          </div>
+                          <div class="ant-popover-buttons mb0">
+                            <button nz-button [nzSize]="'small'" (click)="onCancel(setSalePriceWindow)">
+                              <span>取消</span>
+                            </button>
+                            <button nz-button [nzSize]="'small'" class="btn-green"
+                                    (click)="setPrice('marketPrice',setSalePrice.value,setSalePriceWindow)">
+                              <span>确认</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </th>
+            <th class="relative w20">
+              <div class="s-menu mb0 cursor"><i class="main-color">* </i>会员价
+                <em class="anticon anticon-edit"></em></div>
+              <div class="cdk-overlay-pane setAll hide" #setMemberPriceWindow>
+                <div class="ant-popover ng-trigger ng-trigger-fadeAnimation ant-popover-placement-bottom">
+                  <div class="ant-popover-content">
+                    <div class="ant-popover-arrow"></div>
+                    <div class="ant-popover-inner">
+                      <div>
+                        <div class="ant-popover-inner-content p">
+                          <p>批量设置会员价</p>
+                          <div class="ant-popover-message pb">
+                            <nz-input [nzType]="'text'" name="setMemberPrice" [(ngModel)]="set.memberPrice"
+                                      #setMemberPrice="ngModel"></nz-input>
+                          </div>
+                          <div class="ant-popover-buttons mb0">
+                            <button nz-button [nzSize]="'small'" (click)="onCancel(setMemberPriceWindow)">
+                              <span>取消</span>
+                            </button>
+                            <button nz-button [nzSize]="'small'" class="btn-green"
+                                    (click)="setPrice('marketPrice',setMemberPrice.value,setMemberPriceWindow)">
+                              <span>确认</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </th>
+            <th class="relative w20">
+              <div class="s-menu mb0 cursor"><i class="main-color">* </i>库存
+                <em class="anticon anticon-edit"></em></div>
+              <div class="cdk-overlay-pane setAll hide" #setStorageNumWindow>
+                <div class="ant-popover ng-trigger ng-trigger-fadeAnimation ant-popover-placement-bottom">
+                  <div class="ant-popover-content">
+                    <div class="ant-popover-arrow"></div>
+                    <div class="ant-popover-inner">
+                      <div>
+                        <div class="ant-popover-inner-content p">
+                          <p>批量设置库存</p>
+                          <div class="ant-popover-message pb">
+                            <nz-input [nzType]="'text'" name="setStorageNum" [(ngModel)]="set.storageNum"
+                                      #setStorageNum="ngModel"></nz-input>
+                          </div>
+                          <div class="ant-popover-buttons mb0">
+                            <button nz-button [nzSize]="'small'" (click)="onCancel(setStorageNumWindow)">
+                              <span>取消</span>
+                            </button>
+                            <button nz-button [nzSize]="'small'" class="btn-green"
+                                    (click)="setPrice('marketPrice',setStorageNum.value,setStorageNumWindow)">
+                              <span>确认</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let sku of publishData.goodsSkuList;let i = index">
+            <td [hidden]="true"><input type="text" name="saGroupCode" [(ngModel)]="sku.saGroupCode"></td>
+            <td *ngFor="let val of sku.attrsList" [id]="val.valCode" [class]="val.idx"><p>{{val.value}}</p></td>
+            <td>
+              <div nz-form-control
+                   [nzValidateStatus]="ngMarketPrice.valid && !ngMarketPrice.pristine?'success':ngMarketPrice.invalid?'error':null">
+                <nz-input [(ngModel)]="sku.marketPrice" [ngModelOptions]="{standalone: true}"
+                          [pattern]="patterns.twodecimal" [nzSize]="'large'"
+                          #ngMarketPrice="ngModel">
+                  <ng-template #addOnAfter>元</ng-template>
+                </nz-input>
+              </div>
+              <span [hidden]="ngMarketPrice.value != 0" class="text-danger font12"> 市场价>0 </span>
+            </td>
+            <td>
+              <div nz-form-control
+                   [nzValidateStatus]="ngPrice.valid && !ngPrice.pristine?'success':ngPrice.invalid?'error':null">
+                <nz-input [(ngModel)]="sku.price" [ngModelOptions]="{standalone: true}" [pattern]="patterns.twodecimal"
+                          [nzSize]="'large'"
+                          #ngPrice="ngModel">
+                  <ng-template #addOnAfter>元</ng-template>
+                </nz-input>
+              </div>
+              <ng-container *ngIf="ngMarketPrice.value > 0 && ngPrice.value >0">
+                <span [hidden]="compareNumber(ngPrice.value,ngMarketPrice.value)"
+                      class="text-danger font12"> 销售价<=市场价
+                </span>
+              </ng-container>
+              <span [hidden]="ngPrice.value != 0" class="text-danger font12"> 销售价>0 </span>
+            </td>
+            <td>
+              <div nz-form-control
+                   [nzValidateStatus]="ngMemberPrice.valid && !ngMemberPrice.pristine?'success':ngMemberPrice.invalid?'error':null">
+                <nz-input [(ngModel)]="sku.memberPrice" [ngModelOptions]="{standalone: true}" [nzSize]="'large'"
+                          [pattern]="patterns.twodecimal" #ngMemberPrice="ngModel">
+                  <ng-template #addOnAfter>元</ng-template>
+                </nz-input>
+              </div>
+              <ng-container *ngIf="ngPrice.value > 0 && ngMemberPrice.value>0">
+                <span [hidden]="compareNumber(ngMemberPrice.value,ngPrice.value)"
+                      class="text-danger font12"> 会员价<=销售价
+                </span>
+              </ng-container>
+              <span [hidden]="ngMemberPrice.value != 0" class="text-danger font12"> 会员价>0 </span>
+            </td>
+            <td>
+              <div nz-form-control
+                   [nzValidateStatus]="ngStorageNum.valid && !ngStorageNum.pristine?'success':ngStorageNum.invalid?'error':null">
+                <nz-input [(ngModel)]="sku.storageNum" [ngModelOptions]="{standalone: true}" [nzSize]="'large'"
+                          [pattern]="patterns.storage" #ngStorageNum="ngModel">
+                </nz-input>
+              </div>
+              <span [hidden]="!ngStorageNum.value || ngStorageNum.value > 9"
+                    class="text-danger font12"> 库存>=10
+              </span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <p nz-col [nzSpan]="24" class="tip"> 点击 <i class="anticon anticon-edit"></i> 可批量修改所在列的值。 <br>
+          当规格值较多时，可在操作区域通过滑动滚动条查看超出隐藏区域。</p>
+      </dd>
+    </dl>
+    <!--商品图片-->
+    <!--<dl class="clearfix">
+      <dt class="col-xs-2"><i class="main-red">*</i>商品图片：</dt>
+      <dd class="col-xs-10 pic-list">
+        &lt;!&ndash;当没有选择第一规格时&ndash;&gt;
+        <div class="goodspics" *ngIf="skuImg.vals.length == 0">
+          <div class="color-value mr">
+            <h4>默认：</h4>
+            <label class="btn btn-sm btn-info file-upload" (click)="noAttrTip()">
+              <em class="fa fa-picture-o"></em>
+              打开相册图片
+              &lt;!&ndash;<input class="w100" type="file" accept="image/*" name="" ng2FileSelect [uploader]="defaultUploader" multiple/>&ndash;&gt;
+            </label>
+            <p class="tip" myHoverColor>默认第一张图片为主图</p>
+          </div>
+        </div>
+
+        &lt;!&ndash;当选择了第一规格时&ndash;&gt;
+        <div class="goodspics" *ngFor="let val of skuImg.vals;let idx = index;" [id]="val.valCode">
+          <div class="color-value">
+            <h4>{{skuImg.attrName}}：<span>{{val.valName}}</span></h4>
+            <label class="btn btn-sm btn-info file-upload">
+              <em class="fa fa-picture-o"></em>
+              打开相册图片
+              <input class="w100" type="file" name="" ng2FileSelect
+                     accept="image/*"
+                     [uploader]="val.uploader" multiple/>
+            </label>
+            <p class="tip" myHoverColor>默认第一张图片为主图</p>
+          </div>
+          <ul class="goods-pic-list ml">
+            <li class="ui-state-disabled img-box" *ngFor="let src of oldImgs[val.valCode];let i = index">
+              <div class="close" (click)="removeImgSrc(val.valCode,i)">×</div>
+              <div class="upload-thumb">
+                <div class="up-success"><em class="fa fa-check"></em></div>
+                <img [src]="src" (error)="removeImgSrc(val.valCode,i)">
+              </div>
+            </li>
+            <li class="ui-state-disabled img-box" *ngFor="let item of val.uploader.queue">
+              <div class="close" *ngIf="!item.isSuccess" (click)="item.remove()">×</div>
+              <div class="close" *ngIf="item.isSuccess" (click)="removeImgSrc(val.valCode,i)">×</div>
+              <div class="upload-thumb">
+                <div class="up-success" *ngIf="item.isSuccess"><em class="fa fa-check"></em></div>
+                <img *ngIf="item" [src]="item._file | imgUrl"
+                     (error)="item.remove()" [alt]="item?.file?.name">
+              </div>
+            </li>
+          </ul>
+        </div>
+      </dd>
+    </dl>-->
+  </div>
 </form>

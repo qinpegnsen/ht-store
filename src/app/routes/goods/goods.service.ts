@@ -57,6 +57,7 @@ export class GoodsService {
     AjaxService.get({
       url: SettingUrl.URL.goods.pageDataAdd,
       data: {kindId: kindId},
+      async: false,
       success: (res) => {
         if (res.success) {
           result = res.data;
@@ -157,6 +158,31 @@ export class GoodsService {
     return defer.promise(); //返回异步请求信息
   }
 
+  /**
+   * 根据所选商品规格获得规格组合
+   * @param requestData
+   * @returns {any<T>}
+   */
+  getSkuData(requestData: any) {
+    let me = this, defer = $.Deferred(); //封装异步请求结果
+    AjaxService.post({
+      url: SettingUrl.URL.goods.geneSku,
+      data: JSON.stringify(requestData),
+      contentType: "application/json",
+      success: (res) => {
+        if (res.success) {
+          defer.resolve(res.data);
+        } else {
+          me._notification.error(res.status, res.statusText)
+        }
+      },
+      error: (res) => {
+        me._notification.error(res.status, res.statusText)
+      }
+    });
+    return defer.promise(); //返回异步请求信息
+  }
+
 
   /**
    *更改商品是否可用重消币
@@ -183,12 +209,11 @@ export class GoodsService {
     return defer.promise(); //返回异步请求信息
   }
 
-
   /**
    * 查询提现信息列表
    * @param data （查询参数）
    */
-  static settleList(data:any){
+  static settleList(data: any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
@@ -199,5 +224,11 @@ export class GoodsService {
       }
     });
     return defer.promise(); //返回异步请求休息
+  }
+
+  // 阻止冒泡
+  stopPro(e) {
+    e = event || window.event;
+    window.event ? e.cancelBubble = true : e.stopPropagation();
   }
 }
