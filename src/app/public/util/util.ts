@@ -4,8 +4,6 @@ import {isNullOrUndefined, isUndefined} from "util";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
 import {PatternService} from "../service/pattern.service";
-import {SettingUrl} from "../setting/setting_url";
-import {AjaxService} from "../service/ajax.service";
 
 declare var $: any;
 
@@ -145,25 +143,6 @@ export class Util {
     }
     return monthArr;
   }
-
-  /**
-   * 获取指定年月下的周集合
-   * @param data
-   * @returns {any<T>}
-   */
-  static getWeekListByMonth(data:any) {
-    var defer = $.Deferred(); //封装异步请求结果
-    //执行查询（异步）
-    AjaxService.get({
-      url: SettingUrl.URL.statistical.getWeekList,
-      data: data,
-      success: (data) => {
-        if (data.success) defer.resolve(data.data);
-      }
-    });
-    return defer.promise(); //返回异步请求休息
-  }
-
 
   /**
    * ************************************表单验证方法**************************************
