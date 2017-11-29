@@ -40,6 +40,12 @@ export class SettingUrl {
       querySta: '/rpStatistics/queryRpStatisticsStore',//查询企业红包统计
     },
     /**
+     * 售后接口
+     */
+    after:{
+      RefundOrd: '/after/queryAfterGoodsReqPages',//查询退款订单
+    },
+    /**
      * 统计接口
      */
     statistical:{
@@ -53,6 +59,7 @@ export class SettingUrl {
       loadSkuGoods: "/goodsQuery/load", //(get)查看所有商品规格
       pageDataAdd: "/goodsQuery/pageDataAdd", //(get)发布商品之前获取基础数据
       pageDataEdit: "/goodsQuery/pageDataEdit", //(get)修改商品之前获取基础数据
+      geneSku: "/goodsEdit/genesku", //(post)根据所选商品规格获得规格组合
       getGoodsKinds: "/goodsKind/queryGoodsByParentId",//(get)商品分类
       putAwayGoods: "/goodsEdit/appleToNormal",//(put)商品上架
       downGoods: "/goodsEdit/updateStateToDown",//(put)商品下架

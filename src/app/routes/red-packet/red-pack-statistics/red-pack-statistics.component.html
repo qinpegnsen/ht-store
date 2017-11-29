@@ -19,11 +19,10 @@
     <!--<p>用户点击中奖金额</p>-->
     <!--</div>-->
   </div>
-
   <!--红包块状统计 end-->
 
   <!--搜索 start-->
-  <div nz-row [nzJustify]="'end'" [nzType]="'flex'" class="mt-20 mb-20">
+  <div nz-row [nzJustify]="'start'" [nzType]="'flex'" class="mt-20 mb-20">
     <!--统计时间类型 start-->
     <nz-select class="w160 mr" [(ngModel)]="staType" nzAllowClear (ngModelChange)="changeStaType()" [nzSize]="'large'">
       <nz-option

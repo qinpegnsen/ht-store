@@ -19,6 +19,7 @@ export class PatternService {
   public _URL: string; //网址
   public twodecimal: string;//两位小数
   public integer: string;//正整数
+  public storage: string;//库存，十以上正整数
   public static EMAIL_REGEXP: RegExp;//邮箱
   public static PWD_REGEXP: RegExp;//密码
   public static SMS_REGEXP: RegExp;//短信验证码
@@ -40,6 +41,7 @@ export class PatternService {
     this.twodecimal = '^[0-9]+(.[0-9]{1,2})?$';    //两位小数
     this.doubleDigit = '^[0-9]{1,2}$';      // 两位整数（0-99）
     this.integer = '^[0-9]*[1-9][0-9]*$';   //只能正整数
+    this.storage = '^[1-9]{1}[0-9]+';//库存，十以上正整数
 
     PatternService.IDCARD_REGEXP = /^(^[1-9][0-9]{7}((0[0-9])|(1[0-2]))(([0|1|2][0-9])|3[0-1])[0-9]{3}$)|(^[1-9][0-9]{5}[1-9][0-9]{3}((0[0-9])|(1[0-2]))(([0|1|2][0-9])|3[0-1])(([0-9]{4})|[0-9]{3}[Xx])$)$/;
     PatternService.EMAIL_REGEXP = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;

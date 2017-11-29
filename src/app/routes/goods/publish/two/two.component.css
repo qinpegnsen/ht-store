@@ -1,32 +1,12 @@
-.fieldset {
-  margin-bottom: 20px;
-}
-
 .legend {
   padding: 5px 20px;
-  margin-bottom: 20px;
-  font-size: 20px;
-}
-
-.uploaded {
-  margin-top: -30px;
-  margin-bottom: -30px;
-  margin-left: 50px;
+  font-size: 18px;
+  background-color: #f5f5f5;
+  line-height: 30px;
 }
 
 .step-two {
   min-width: 800px;
-}
-
-.step-two fieldset {
-  border-bottom: 1px solid #eee;
-}
-
-.step-two legend {
-  font-size: 18px;
-  background-color: #f5f5f5;
-  line-height: 30px;
-  padding: 5px 0 5px 15px;
 }
 
 .step-two dl {
@@ -36,19 +16,11 @@
 }
 
 .step-two dt {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 30px;
   font-weight: normal;
   padding: 15px 10px;
   text-align: right;
-}
-
-.step-two i {
-  color: #cc1635;
-  font-size: 14px;
-  margin-right: 3px;
-  font-weight: normal;
-  font-style: normal;
 }
 
 .step-two dd {
@@ -57,7 +29,7 @@
   vertical-align: top;
   letter-spacing: normal;
   word-spacing: normal;
-  padding: 15px 4% 15px 1%;
+  padding: 15px;
   border-left: 1px solid #f0f0f0;
 }
 
@@ -65,7 +37,7 @@
   font-size: 12px;
   line-height: 16px;
   color: #bbb;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 0;
 }
 
@@ -86,15 +58,33 @@
   padding-bottom: 8px;
 }
 
+.hide{
+  display: none;
+}
+
+.step-two label {
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.step-two .setAll{
+  width: 140px;
+}
+
 .specs h5 {
   line-height: 24px;
   font-size: 12px;
   font-weight: bold;
+  color: #888;
   border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 5px;
 }
 
 .specs h6 {
-  line-height: 36px;
+  line-height: 24px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #888;
 }
 
 .specs ul {
@@ -104,8 +94,8 @@
 }
 
 .specs li {
-  line-height: 36px;
-  height: 36px;
+  line-height: 32px;
+  height: 32px;
   padding-left: 5px;
   padding-right: 5px;
   margin-bottom: 5px;
@@ -117,16 +107,6 @@
 
 .specs form {
   border-bottom: 1px dashed #f0f0f0;
-}
-
-.specs h6 {
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.step-two label {
-  font-weight: normal;
-  font-size: 12px;
 }
 
 .specs input {
@@ -194,7 +174,6 @@
   color: #3A87AD;
   background: #D9EDF7;
   white-space: nowrap;
-  height: 24px;
   padding: 5px 10px;
   position: relative;
   text-align: center;

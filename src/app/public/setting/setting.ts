@@ -26,7 +26,8 @@ export class Setting {
     papersType: 2002, //证件类型
     stepsState: 2003, //企业入驻流程状态
     shopState: 2004,   //店铺状态
-    staTimeType: 1401   //统计时间类型
+    staTimeType: 1401,   //统计时间类型
+    saleAfterState: 1602,  //售后单类型
   }
   ;
 
