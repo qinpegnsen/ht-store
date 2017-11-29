@@ -53,7 +53,7 @@ export class RedPackStatisticsComponent implements OnInit {
       queryYear: time.split("-")[0],
       queryMonth: time.split("-")[1]
     };
-    $.when(Util.getWeekListByMonth(queryData)).done(data => {
+    $.when(MainService.getWeekListByMonth(queryData)).done(data => {
       if (data) _this.weekForMonth = data; //赋值获取周列表
       _this.weekForMonth.forEach(ele => {//为了默认显示当前日期所在的周
         let start = new Date(ele.split('~')[0]).getDate();
