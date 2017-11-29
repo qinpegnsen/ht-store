@@ -37,7 +37,8 @@
           <label nz-form-item-required>详细地址</label>
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('address')" nzHasFeedback>
-          <nz-input formControlName="address" [nzRows]="2" [nzType]="'textarea'" [nzPlaceHolder]="'请输入详细地址'" [nzSize]="'large'">
+          <nz-input formControlName="address" [nzRows]="2" [nzType]="'textarea'" [nzPlaceHolder]="'请输入详细地址'"
+                    [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain
                *ngIf="getFormControl('address').dirty&&getFormControl('address').hasError('required')">
@@ -81,13 +82,18 @@
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storeLabel')" nzHasFeedback>
           <label class="file-upload">
             <i class="anticon anticon-cloud-upload-o"></i>请上传店铺logo
-            <nz-input formControlName="storeLabel" [nzType]="'file'" [nzPlaceHolder]="'店铺logo'" [nzSize]="'large'">
-            </nz-input>
+            <input class="w100" type="file" name="storeLabel" ng2FileSelect accept="image/*"
+                   [uploader]="storeLabelUploader" (change)="storeLabelFileChangeListener()"/>
           </label>
           <div nz-form-explain
-               *ngIf="getFormControl('storeLabel').dirty&&getFormControl('storeLabel').hasError('required')">
+               *ngIf="!storeLabelUploader.queue[0]&&getFormControl('storeLabel').dirty&&getFormControl('storeLabel').hasError('required')">
             请上传店铺logo！
           </div>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <img [src]="storeLabelUploader.queue[0]?._file | imgPreview" (mousemove)="showImg($event)"
+               (mouseleave)="hideImg($event)" class="uploaded">
+          <img [src]="storeLabelUploader.queue[0]?._file | imgPreview" class="uploaded-big">
         </div>
       </div>
       <div nz-form-item nz-row>
@@ -97,13 +103,18 @@
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storeAvatar')" nzHasFeedback>
           <label class="file-upload">
             <i class="anticon anticon-cloud-upload-o"></i>请上传店铺头像
-            <nz-input formControlName="storeLabel" [nzType]="'file'" [nzPlaceHolder]="'店铺头像'" [nzSize]="'large'">
-            </nz-input>
+            <input class="w100" type="file" name="storeAvatar" ng2FileSelect accept="image/*"
+                   [uploader]="storeAvatarUploader" (change)="storeAvatarFileChangeListener()"/>
           </label>
           <div nz-form-explain
-               *ngIf="getFormControl('storeAvatar').dirty&&getFormControl('storeAvatar').hasError('required')">
+               *ngIf="!storeAvatarUploader.queue[0]&&getFormControl('storeAvatar').dirty&&getFormControl('storeAvatar').hasError('required')">
             请上传店铺头像！
           </div>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <img [src]="storeAvatarUploader.queue[0]?._file | imgPreview" (mousemove)="showImg($event)"
+               (mouseleave)="hideImg($event)" class="uploaded">
+          <img [src]="storeAvatarUploader.queue[0]?._file | imgPreview" class="uploaded-big">
         </div>
       </div>
       <div nz-form-item nz-row>
@@ -136,11 +147,8 @@
     <!--企业基本信息 end-->
 
     <div nz-row class="text-center p-20 bt">
-      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="pre()">
-        <span>上一步</span>
-      </button>
-      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w" (click)="submitForm($event,validateForm.value)" >
-        <span>完成</span>
+      <button nz-button [nzSize]="'large'" class="btn-thc" (click)="skipTo(5)">
+        <span>提交</span>
       </button>
     </div>
   </form>

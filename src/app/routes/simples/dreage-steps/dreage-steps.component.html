@@ -1,0 +1,20 @@
+<div class="reg bg-white p-20">
+
+  <!--步骤 start-->
+  <div class="step">
+    <nz-steps [(nzCurrent)]="step" class="lg thc">
+      <nz-step [nzTitle]="'填写店铺信息'"></nz-step>
+      <nz-step [nzTitle]="'提交成功'"></nz-step>
+    </nz-steps>
+  </div>
+  <!--步骤 end-->
+
+  <section class="reg-content">
+
+    <!--路由嵌套-业务处理区域 start-->
+    <router-outlet></router-outlet>
+    <!--路由嵌套-业务处理区域 end-->
+
+  </section>
+
+</div>

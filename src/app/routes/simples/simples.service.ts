@@ -5,51 +5,16 @@ import {Observable} from "rxjs/Observable";
 import {PatternService} from "../../public/service/pattern.service";
 import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
-import {NzMessageService, NzNotificationService} from "ng-zorro-antd";
-import {StepsComponent} from "./steps/steps.component";
-import {Util} from "../../public/util/util";
-
-
-const options = [{
-  value: '630000',
-  label: 'Zhejiang',
-  children: [{
-    value: '631200',
-    label: 'Hangzhou',
-    children: [{
-      value: '631201',
-      label: 'West Lake',
-      isLeaf: true
-    }],
-  }, {
-    value: 'ningbo',
-    label: 'Ningbo',
-    isLeaf: true
-  }],
-}, {
-  value: 'jiangsu',
-  label: 'Jiangsu',
-  children: [{
-    value: 'nanjing',
-    label: 'Nanjing',
-    children: [{
-      value: 'zhonghuamen',
-      label: 'Zhong Hua Men',
-      isLeaf: true
-    }],
-  }],
-}];
+import {NzNotificationService} from "ng-zorro-antd";
+import {StepsComponent} from "./settle-steps/steps.component";
 
 @Injectable()
 export class SimplesService {
-  options: any;
 
   constructor(public router: Router,
               public patterns: PatternService,
               public steps: StepsComponent,
-              public _message: NzMessageService,
               public _notification: NzNotificationService) {
-    this.options = options
   }
 
 
@@ -57,8 +22,8 @@ export class SimplesService {
    * 根据入驻步骤跳到相应页面
    * @param current （当前步骤）
    */
-  routerSkip(current) {
-    switch (current) {
+  routerSkip(step) {
+    switch (step) {
       case 0 :
         this.router.navigate(['/simple/reg/register'], {replaceUrl: true})
         break;
@@ -66,16 +31,25 @@ export class SimplesService {
         this.router.navigate(['/simple/reg/baseInfo'], {replaceUrl: true})
         break;
       case 2 :
-        this.router.navigate(['/simple/reg/complete'], {replaceUrl: true})
-        break;
-      case 2.5 :
-        this.router.navigate(['/simple/reg/auditing'], {replaceUrl: true})
+        this.router.navigate(['/simple/reg/accountInfo'], {replaceUrl: true})
         break;
       case 3 :
-        this.router.navigate(['/simple/reg/dredge'], {replaceUrl: true})
+        this.router.navigate(['/simple/reg/auditing'], {replaceUrl: true})
+        break;
+      case 3.1 :
+        this.router.navigate(['/simple/reg/settlePass'], {replaceUrl: true})
+        break;
+      case 3.2 :
+        this.router.navigate(['/simple/reg/settleReject'], {replaceUrl: true})
         break;
       case 4 :
-        this.router.navigate(['/simple/reg/done'], {replaceUrl: true})
+        this.router.navigate(['/simple/reg/shop/dredge'], {replaceUrl: true})
+        break;
+      case 5 :
+        this.router.navigate(['/simple/reg/shop/done'], {replaceUrl: true})
+        break;
+      case 5.1 :
+        this.router.navigate(['/simple/reg/shop/dredgeReject'], {replaceUrl: true})
         break;
     }
   }
@@ -134,7 +108,7 @@ export class SimplesService {
    * 企业入驻
    * @param data
    */
-  enterpris(data){
+  enterpris(data) {
     const me = this;
     AjaxService.post({
       url: SettingUrl.URL.enterpris.save,
@@ -173,17 +147,6 @@ export class SimplesService {
   };
 
   /**
-   * 字符串
-   * @param control
-   * @returns {any}
-   */
-  stringValidator = (control: FormControl): any => {
-    if (!control.value) {
-      return {required: true}
-    }
-  };
-
-  /**
    * 地址校验（地址级别对应数组长度）
    * @param control
    * @returns {any}
@@ -206,7 +169,6 @@ export class SimplesService {
       return {required: true};
     }
   };
-
 
 
 }

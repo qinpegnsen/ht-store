@@ -1,0 +1,217 @@
+<!--企业银行账户信息 start-->
+<div nz-row class="p-20">
+  <form nz-form [formGroup]="validateForm" class="p-20">
+    <!--开户行信息 start-->
+    <div class="fieldset">
+      <div class="legend bb-dashed">开户行信息</div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>银行开户名</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankAccountName')" nzHasFeedback>
+          <nz-input formControlName="bankAccountName" [nzType]="'text'" [nzPlaceHolder]="'银行开户名'" [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain
+               *ngIf="getFormControl('bankAccountName').dirty&&getFormControl('bankAccountName').hasError('required')">
+            请输入银行开户名！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>公司银行账号</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankAccountNumber')"
+             nzHasFeedback>
+          <nz-input formControlName="bankAccountNumber" [nzType]="'text'" [nzPlaceHolder]="'公司银行账号'"
+                    [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain
+               *ngIf="getFormControl('bankAccountNumber').dirty&&getFormControl('bankAccountNumber').hasError('required')">
+            请输入公司银行账号！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>开户行支行名称</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankName')"
+             nzHasFeedback>
+          <nz-input formControlName="bankName" [nzType]="'text'" [nzPlaceHolder]="'开户行支行名称'"
+                    [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain
+               *ngIf="getFormControl('bankName').dirty&&getFormControl('bankName').hasError('required')">
+            请输入开户行支行名称！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>开户支行联行号</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankCode')"
+             nzHasFeedback>
+          <nz-input formControlName="bankCode" [nzType]="'text'" [nzPlaceHolder]="'开户支行联行号'"
+                    [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain
+               *ngIf="getFormControl('bankCode').dirty&&getFormControl('bankCode').hasError('required')">
+            请输入开户支行联行号！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>开户银行地址</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankAddress')"
+             nzHasFeedback>
+          <nz-cascader formControlName="bankAddress" [nzSize]="'large'"
+                       [nzPlaceHolder]="'请选择'"
+                       [nzExpandTrigger]="'hover'"
+                       [nzChangeOnSelect]="true"
+                       [nzOptions]="_options"
+                       (nzChange)="_console($event)">
+          </nz-cascader>
+          <div nz-form-explain
+               *ngIf="getFormControl('bankAddress').dirty&&getFormControl('bankAddress').hasError('required')">
+            请选择开户银行地址！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>开户银行许可证电子版</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankLicenceElectronic')"
+             nzHasFeedback>
+          <label class="file-upload">
+            <i class="anticon anticon-cloud-upload-o"></i>上传开户银行许可证电子版
+            <input class="w100" type="file" name="bankLicenceElectronic" ng2FileSelect [uploader]="bankLicenceUploader"
+                   accept="image/*" (change)="bankLicenceFileChangeListener()"/>
+          </label>
+          <div nz-form-explain
+               *ngIf="!bankLicenceUploader.queue[0]&&getFormControl('bankLicenceElectronic').dirty&&getFormControl('bankLicenceElectronic').hasError('required')">
+            请上传开户银行许可证电子版！
+          </div>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" (mousemove)="showImg($event)"
+               (mouseleave)="hideImg($event)" class="uploaded">
+          <img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" class="uploaded-big">
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-col [nzSpan]="8" nz-form-label>
+          <label nz-form-item-required>是否为结算账户</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control>
+          <nz-switch formControlName="isSettlementAccount" class="lg thc">
+            <span checked>是</span>
+            <span unchecked>否</span>
+          </nz-switch>
+        </div>
+      </div>
+    </div>
+    <!--开户行信息 end-->
+
+    <!--结算账户信息 start-->
+    <div class="fieldset" *ngIf="!validateForm.controls['isSettlementAccount'].value">
+      <div class="legend bb-dashed">结算账户信息</div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>结算银行开户名</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankAccountName')"
+             nzHasFeedback>
+          <nz-input formControlName="settlementBankAccountName" [nzType]="'text'" [nzPlaceHolder]="'结算银行开户名'" [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain
+               *ngIf="getFormControl('settlementBankAccountName').dirty&&getFormControl('settlementBankAccountName').hasError('required')">
+            请输入结算银行开户名！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>结算银行账号</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankAccountNumber')"
+             nzHasFeedback>
+          <nz-input formControlName="settlementBankAccountNumber" [nzType]="'text'" [nzPlaceHolder]="'结算银行账号'"
+                    [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain
+               *ngIf="getFormControl('settlementBankAccountNumber').dirty&&getFormControl('settlementBankAccountNumber').hasError('required')">
+            请输入结算银行账号！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>结算账户开户行支行名称</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankName')"
+             nzHasFeedback>
+          <nz-input formControlName="settlementBankName" [nzType]="'text'" [nzPlaceHolder]="'结算账户开户行支行名称'"
+                    [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain
+               *ngIf="getFormControl('settlementBankName').dirty&&getFormControl('settlementBankName').hasError('required')">
+            请输入结算账户开户行支行名称！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>结算账户开户行支行联行号</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankCode')"
+             nzHasFeedback>
+          <nz-input formControlName="settlementBankCode" [nzType]="'text'" [nzPlaceHolder]="'结算账户开户行支行联行号'"
+                    [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain
+               *ngIf="getFormControl('settlementBankCode').dirty&&getFormControl('settlementBankCode').hasError('required')">
+            请输入结算账户开户行支行联行号！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>结算账户开户行所在地</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankAddress')"
+             nzHasFeedback>
+          <nz-cascader formControlName="settlementBankAddress" [nzSize]="'large'"
+                       [nzPlaceHolder]="'请选择'"
+                       [nzExpandTrigger]="'hover'"
+                       [nzChangeOnSelect]="true"
+                       [nzOptions]="_options"
+                       (nzChange)="_console($event)">
+          </nz-cascader>
+          <div nz-form-explain
+               *ngIf="getFormControl('settlementBankAddress').dirty&&getFormControl('settlementBankAddress').hasError('required')">
+            请选择结算账户开户行所在地！
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--结算账户信息 end-->
+
+    <!--操作按钮 start-->
+    <div nz-row class="text-center p-20 bt">
+      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="skipTo(1)">
+        <span>上一步</span>
+      </button>
+      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w"
+              (click)="skipTo(3)">
+        <span>提交申请</span>
+      </button>
+    </div>
+    <!--操作按钮 end-->
+  </form>
+</div>
+<!--企业银行账户信息 end-->

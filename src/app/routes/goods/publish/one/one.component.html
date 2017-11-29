@@ -1,15 +1,11 @@
 
-<div class="step-one clearfix">
-  <!--页面提示信息 start-->
-  <div class="page-msg m">
-    <p class="font16 mb">操作提示</p>
-    <ul class="list-style">
-      <li>请慎重选择商品分类，商品发布后将不可修改</li>
-    </ul>
-  </div>
-  <!--页面提示信息 end-->
-
-  <div nz-row class="clearfix kind-zone">
+<!--页面提示信息 start-->
+<nz-alert [nzType]="'error'" [nzMessage]="'操作提示'"
+          [nzDescription]="'请慎重选择商品分类，商品发布后将不可修改'">
+</nz-alert>
+<!--页面提示信息 end-->
+<div class="step-one mt">
+  <div nz-row class="kind-zone">
     <div nz-col [nzSpan]="8" class="p">
       <ul>
         <li *ngFor="let item of firstList" (click)="getKinds(item.id,item.level,this)">

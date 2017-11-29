@@ -1,8 +1,30 @@
-.fieldset{
+.fieldset {
   margin-bottom: 20px;
 }
-.legend{
-  padding: 5px 20px;
+
+.legend {
+  padding: 0px 20px;
   margin-bottom: 20px;
-  font-size: 20px;
+  font-size: 16px;
+  border-left: 3px solid #f40;
+  border-bottom: 1px dashed #e9e9e9;
+  font-weight: 600;
+}
+
+.uploaded {
+  width: 100px;
+  margin-top: -20px;
+  margin-bottom: -20px;
+  margin-left: 50px;
+  vertical-align: middle;
+}
+
+.uploaded-big {
+  width: 200px;
+  position: fixed;
+  z-index: 100;
+  display: none;
+  -webkit-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
 }

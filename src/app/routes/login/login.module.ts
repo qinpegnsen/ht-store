@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'forget-password', component: ForgetPasswordComponent, children: [
     {path: 'reset-password', component: ResetPasswordComponent},
     {path: 'new-password', component: NewPasswordComponent},
-    {path: 'complete-password', component: CompletePasswordComponent},
+    {path: 'account-info-password', component: CompletePasswordComponent},
   ]}
 ];
 

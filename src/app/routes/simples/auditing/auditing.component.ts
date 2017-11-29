@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SimplesService} from "../simples.service";
-import {StepsComponent} from "../steps/steps.component";
+import {StepsComponent} from "../settle-steps/steps.component";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-auditing',
@@ -8,22 +9,27 @@ import {StepsComponent} from "../steps/steps.component";
   styleUrls: ['./auditing.component.css']
 })
 export class AuditingComponent implements OnInit {
+  public path: string;   //当前路由
 
   constructor(public simplesService: SimplesService,
+              public route: ActivatedRoute,
               public steps: StepsComponent) {
-    this.steps.current = 1.5;
-    this.simplesService.routerSkip(this.steps.current);
+    this.steps.current = 3;
   }
 
   ngOnInit() {
+    let me = this;
+    //获取当前路由
+    me.route.url.subscribe(urls => {
+      me.path = urls[0].path;
+    })
   }
 
-  /**
-   * 回到前一步
-   */
-  pre() {
-    this.steps.current = 1;
-    this.simplesService.routerSkip(this.steps.current);
-  }
+    /**
+     * 组件跳转
+     */
+    skipTo(stepNum:number){
+      this.simplesService.routerSkip(stepNum);
+    }
 
-}
+  }

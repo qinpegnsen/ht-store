@@ -1,12 +1,50 @@
-<div class="ing">
-  <i class="anticon anticon-clock-circle font24 main-color"></i>
-  <p>您已提交入驻申请，请等待平台审核通过</p>
-</div>
+<!--提交成功-->
+<ng-container *ngIf="path == 'auditing'">
+  <div class="ing">
+    <i class="anticon anticon-clock-circle-o color-green"></i>
+    <p>您已成功提交申请，请等待平台审核通过</p>
+  </div>
+</ng-container>
+
+<!--入驻审核通过-->
+<ng-container *ngIf="path == 'settlePass'">
+  <div class="ing">
+    <i class="anticon anticon-check-circle-o color-green"></i>
+    <p>您的入驻申请已审核通过，快去开通店铺吧</p>
+  </div>
+  <div nz-row class="text-center p-20 bt">
+    <button nz-button [nzSize]="'large'" class="btn-thc" (click)="skipTo(4)">
+      <span>开通店铺</span>
+    </button>
+  </div>
+</ng-container>
+
+<!--入驻申请驳回-->
+<ng-container *ngIf="path == 'settleReject'">
+  <div class="ing">
+    <i class="anticon anticon-exclamation-circle-o color-orange"></i>
+    <p>您提交的申请信息有误，请重新申请</p>
+  </div>
+  <div nz-row class="text-center p-20 bt">
+    <button nz-button [nzSize]="'large'" class="btn-blue" (click)="skipTo(1)">
+      <span>修改信息</span>
+    </button>
+  </div>
+</ng-container>
+
 
 <!--操作按钮 start-->
-<div nz-row class="text-center p-20 bt">
-  <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="pre()">
-    <span>上一步</span>
+<div class="mt text-center">
+  <p>临时按钮，查看页面状态用</p>
+  <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="skipTo(3)">
+    <span>提交成功</span>
+  </button>
+  <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="skipTo(3.1)">
+    <span>审核通过</span>
+  </button>
+  <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w"
+          (click)="skipTo(3.2)">
+    <span>审核驳回</span>
   </button>
 </div>
 <!--操作按钮 end-->

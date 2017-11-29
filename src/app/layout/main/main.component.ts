@@ -52,7 +52,7 @@ export class MainComponent implements OnInit {
           {
             name: "已完成",
             icon: "",
-            url: "/store/order/complete",
+            url: "/store/order/account-info",
           },
           {
             name: "已取消",
