@@ -67,6 +67,7 @@ export class SettingUrl {
       relieveGoods: "/goodsEdit/updateStateToNomal",//(put)解除商品禁售
       updateIsUseCoin: "/goodsEdit/updateIsUseCoin",//(put)更改是否可用重消币
       commnetGoods:" /commentGoods/queryCommnetGoodsAdmin",//(get)查询商品评价
+      expressTpl:" /expressTpl/queryByStoreCode",//(get)查询运费模板/模板值列表
     },
     /**
      * 提现与账单明细
@@ -82,8 +83,8 @@ export class SettingUrl {
      * 订单管理
      */
     order:{
-      queryOrdAdmin: '/agentOrd/queryAgentOrdAdmin',//查询订单管理中的待发货订单
-      getKeywords: '/basicExpress/queryBasicExpressIsUseList',//查询订单管理中的待发货订单
+      queryOrdAdmin: '/agentOrd/queryAgentOrdAdmin',//(get)查询订单管理中的待发货订单
+      getKeywords: '/basicExpress/queryBasicExpressIsUseList',//(get)查询物流公司列表
     }
   };
 }

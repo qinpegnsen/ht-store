@@ -39,7 +39,7 @@ const routes: Routes = [
     ThreeComponent
   ],
   providers: [
-    GoodsService
+    GoodsService,
   ],
   entryComponents: [ SkuGoodsComponent ]
 })

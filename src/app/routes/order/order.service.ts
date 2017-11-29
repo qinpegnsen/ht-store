@@ -22,7 +22,7 @@ export class OrderService {
   }
 
   /**
-   * 查询查询企业信息
+   * 查询获取物流gon列表
    * @param data （查询参数）
    */
   static auditsList(){

@@ -41,7 +41,9 @@ const PROXY_CONFIG = [
       "/goodsQuery",
       "/goodsAudit",
       "/agentOrd",
-      "/rpAccountRec"
+      "/rpAccountRec",
+      "/expressTpl",
+      "/storeExpressTpl"
     ],
     target: csj + "8084",   //拦截 context配置路径，经过此地址
     secure: false

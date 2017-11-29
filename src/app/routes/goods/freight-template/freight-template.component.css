@@ -1,0 +1,8 @@
+.table-thead-header{
+  height: 40px;
+  line-height: 40px;
+}
+.table-hides{
+  height: 40px;
+  overflow: auto;
+}

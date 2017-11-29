@@ -231,4 +231,23 @@ export class GoodsService {
     e = event || window.event;
     window.event ? e.cancelBubble = true : e.stopPropagation();
   }
+
+
+  /**
+   * 查询模板/模板值列表
+   * @param data
+   * @returns {any<T>}
+   */
+  static freightList(data:any) {
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
+    AjaxService.get({
+      url: SettingUrl.URL.goods.expressTpl,
+      data: data,
+      success: (data) => {
+        if (data.success) defer.resolve(data.data);
+      }
+    });
+    return defer.promise(); //返回异步请求休息
+  }
 }
