@@ -1,6 +1,6 @@
 <!--企业入驻 start-->
 <div nz-row class="p-20">
-  <form nz-form [formGroup]="validateForm" class="p-20">
+  <form nz-form class="p-20">
     <!--企业基本信息 start-->
     <div class="fieldset">
       <div class="legend bb-dashed">企业基本信息</div>
@@ -8,12 +8,15 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>企业名称</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('epName')" nzHasFeedback>
-          <nz-input formControlName="epName" [nzType]="'text'" [nzPlaceHolder]="'企业名称'" [nzSize]="'large'">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngEpName)" nzHasFeedback>
+          <nz-input name="epName" [(ngModel)]="validateForm.epName" required [nzType]="'text'" [nzPlaceHolder]="'企业名称'"
+                    [nzSize]="'large'" #ngEpName="ngModel" minlength="2">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('epName').dirty&&getFormControl('epName').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngEpName) == 'empty'">
             请输入企业名称！
+          </div>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngEpName) == 'error'">
+            请输入正确的企业名称！
           </div>
         </div>
       </div>
@@ -21,16 +24,12 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>企业邮箱</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('contactsEmail')" nzHasFeedback>
-          <nz-input formControlName="contactsEmail" [nzPlaceHolder]="'请输入企业邮箱'" [nzType]="'email'" [nzSize]="'large'">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngContactsEmail)" nzHasFeedback>
+          <nz-input name="contactsEmail" [(ngModel)]="validateForm.contactsEmail" [nzPlaceHolder]="'请输入企业邮箱'"
+                    [nzType]="'email'" [nzSize]="'large'" required #ngContactsEmail="ngModel">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('contactsEmail').dirty&&getFormControl('contactsEmail').hasError(valitate.isEmail)">
-            请输入正确的邮箱！
-          </div>
-          <div nz-form-explain
-               *ngIf="getFormControl('contactsEmail').dirty&&getFormControl('contactsEmail').hasError('required')">
-            请输入企业邮箱！
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngContactsEmail) == 'error'">
+            不是正确的邮箱！
           </div>
         </div>
       </div>
@@ -38,28 +37,22 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label>联系人姓名</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('contactsName')" nzHasFeedback>
-          <nz-input formControlName="contactsName" [nzType]="'text'" [nzPlaceHolder]="'请输入联系人姓名'" [nzSize]="'large'">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngContactsName)" nzHasFeedback>
+          <nz-input [nzType]="'text'" name="contactsName" [(ngModel)]="validateForm.contactsName"
+                    #ngContactsName="ngModel" [nzPlaceHolder]="'请输入联系人姓名'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('contactsName').dirty&&getFormControl('contactsName').hasError('required')">
-            请输入联系人姓名！
-          </div>
         </div>
       </div>
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
           <label>联系人手机号</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('contactsPhone')" nzHasFeedback>
-          <nz-input formControlName="contactsPhone" [nzPlaceHolder]="'请填写联系人手机号'" [nzType]="'email'" [nzSize]="'large'">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngContactsPhone)" nzHasFeedback>
+          <nz-input name="contactsPhone" [(ngModel)]="validateForm.contactsPhone"
+                    [nzType]="'tel'" [pattern]="patterns.phone"
+                    #ngContactsPhone="ngModel" [nzPlaceHolder]="'联系人手机号'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('contactsPhone').dirty&&getFormControl('contactsPhone').hasError('required')">
-            请输入联系人手机号！
-          </div>
-          <div nz-form-explain
-               *ngIf="getFormControl('contactsPhone').dirty&&getFormControl('contactsPhone').hasError('phone')">手机号码不正确！
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngContactsPhone) == 'error'">手机号码不正确！
           </div>
         </div>
       </div>
@@ -68,7 +61,7 @@
           <label nz-form-item-required>证件类型</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="8">
-          <nz-radio-group formControlName="idType">
+          <nz-radio-group name="idType" [(ngModel)]="validateForm.idType">
             <label *ngFor="let item of papersTypes" nz-radio [nzValue]="item.key">
               <span>{{item.val}}</span>
             </label>
@@ -76,16 +69,18 @@
         </div>
       </div>
       <!-- 三证合一 -->
-      <ng-container *ngIf="validateForm.controls['idType'].value==enumStates.papersType.unity">
+      <ng-container *ngIf="validateForm.idType==enumStates.papersType.unity">
         <div nz-form-item nz-row>
           <div nz-form-label nz-col [nzSpan]="8">
             <label nz-form-item-required>社会信用代码</label>
           </div>
-          <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('creditCode')" nzHasFeedback>
-            <nz-input formControlName="creditCode" [nzType]="'text'" [nzPlaceHolder]="'请输入社会信用代码'" [nzSize]="'large'">
+          <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngCreditCode)" nzHasFeedback>
+            <nz-input name="creditCode" [(ngModel)]="validateForm.creditCode" #ngCreditCode="ngModel"
+                      [required]="validateForm.idType==enumStates.papersType.unity" [nzType]="'text'"
+                      [nzPlaceHolder]="'请输入社会信用代码'" [nzSize]="'large'">
             </nz-input>
             <div nz-form-explain
-                 *ngIf="getFormControl('creditCode').dirty&&getFormControl('creditCode').hasError('required')">
+                 *ngIf="ngValidateErrorMsg(ngContactsPhone) == 'empty'">
               请输入社会信用代码！
             </div>
           </div>
@@ -93,18 +88,19 @@
       </ng-container>
 
       <!-- 普通营业执照 -->
-      <ng-container *ngIf="validateForm.controls['idType'].value==enumStates.papersType.normal">
+      <ng-container *ngIf="validateForm.idType==enumStates.papersType.normal">
         <div nz-form-item nz-row>
           <div nz-form-label nz-col [nzSpan]="8">
             <label nz-form-item-required>税务登记证号</label>
           </div>
-          <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('taxRegistrationCertificate')"
+          <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngTaxRegistrationCertificate)"
                nzHasFeedback>
-            <nz-input formControlName="taxRegistrationCertificate" [nzType]="'text'" [nzPlaceHolder]="'税务登记证号'"
-                      [nzSize]="'large'">
+            <nz-input name="taxRegistrationCertificate" [(ngModel)]="validateForm.taxRegistrationCertificate"
+                      #ngTaxRegistrationCertificate="ngModel" [nzType]="'text'" required
+                      [nzPlaceHolder]="'税务登记证号'" [nzSize]="'large'">
             </nz-input>
             <div nz-form-explain
-                 *ngIf="getFormControl('taxRegistrationCertificate').dirty&&getFormControl('taxRegistrationCertificate').hasError('required')">
+                 *ngIf="ngValidateErrorMsg(ngTaxRegistrationCertificate)=='empty'">
               请输入税务登记证号！
             </div>
           </div>
@@ -113,16 +109,15 @@
           <div nz-form-label nz-col [nzSpan]="8">
             <label nz-form-item-required>纳税登记证电子版</label>
           </div>
-          <div nz-col [nzSpan]="8" nz-form-control
-               [nzValidateStatus]="getFormControl('taxRegistrationCertificateElectronic')"
-               nzHasFeedback>
+          <div nz-col [nzSpan]="8" nz-form-control>
             <label class="file-upload">
               <i class="anticon anticon-cloud-upload-o"></i>上传纳税登记证电子版
-              <input class="w100" type="file" name="taxRegistrationCertificateElectronic" ng2FileSelect [uploader]="taxRegistrationUploader"
+              <input class="w100" type="file" name="taxRegistrationCertificateElectronic" ng2FileSelect
+                     [uploader]="taxRegistrationUploader" required
                      accept="image/*" (change)="taxRegistrationFileChangeListener()"/>
             </label>
             <div nz-form-explain
-                 *ngIf="!taxRegistrationUploader.queue[0]&&getFormControl('taxRegistrationCertificateElectronic').dirty&&getFormControl('taxRegistrationCertificateElectronic').hasError('required')">
+                 *ngIf="!validateForm.taxRegistrationCertificateElectronic && !taxRegistrationUploader.queue[0]">
               请上传纳税登记证电子版！
             </div>
           </div>
@@ -136,12 +131,14 @@
           <div nz-form-label nz-col [nzSpan]="8">
             <label nz-form-item-required>组织结构代码</label>
           </div>
-          <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('organizationCode')" nzHasFeedback>
-            <nz-input formControlName="organizationCode" [nzType]="'text'" [nzPlaceHolder]="'请输入组织结构代码'"
+          <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngOrganizationCode)"
+               nzHasFeedback>
+            <nz-input name="organizationCode" [(ngModel)]="validateForm.organizationCode" required
+                      #ngOrganizationCode="ngModel" [nzType]="'text'" [nzPlaceHolder]="'请输入组织结构代码'"
                       [nzSize]="'large'">
             </nz-input>
             <div nz-form-explain
-                 *ngIf="getFormControl('organizationCode').dirty&&getFormControl('organizationCode').hasError('required')">
+                 *ngIf="ngValidateErrorMsg(ngOrganizationCode)=='empty'">
               请输入组织结构代码！
             </div>
           </div>
@@ -150,15 +147,15 @@
           <div nz-form-label nz-col [nzSpan]="8">
             <label nz-form-item-required>组织结构代码证电子版</label>
           </div>
-          <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('organizationCodeElectronic')"
-               nzHasFeedback>
+          <div nz-col [nzSpan]="8" nz-form-control>
             <label class="file-upload">
               <i class="anticon anticon-cloud-upload-o"></i>上传组织结构代码电子版
-              <input class="w100" type="file" name="organizationCodeElectronic" ng2FileSelect [uploader]="organizationCodeUploader"
+              <input class="w100" type="file" name="organizationCodeElectronic" ng2FileSelect
+                     [uploader]="organizationCodeUploader"
                      accept="image/*" (change)="organizationCodeFileChangeListener()"/>
             </label>
             <div nz-form-explain
-                 *ngIf="!organizationCodeUploader.queue[0]&&getFormControl('organizationCodeElectronic').dirty&&getFormControl('organizationCodeElectronic').hasError('required')">
+                 *ngIf="!validateForm.organizationCodeElectronic && !organizationCodeUploader.queue[0]">
               请上传组织结构代码电子版！
             </div>
           </div>
@@ -179,11 +176,12 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>法人姓名</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('legalPersonName')" nzHasFeedback>
-          <nz-input formControlName="legalPersonName" [nzType]="'text'" [nzPlaceHolder]="'请输入法人姓名'" [nzSize]="'large'">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngLegalPersonName)" nzHasFeedback>
+          <nz-input name="legalPersonName" [(ngModel)]="validateForm.legalPersonName"
+                    [nzType]="'text'" #ngLegalPersonName="ngModel" required minlength="1"
+                    [nzPlaceHolder]="'请输入法人姓名'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('legalPersonName').dirty&&getFormControl('legalPersonName').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngLegalPersonName)=='empty'">
             请输入法人姓名！
           </div>
         </div>
@@ -192,19 +190,17 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>法人身份证号</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('legalPersonIdcard')" nzHasFeedback>
-          <nz-input formControlName="legalPersonIdcard" [nzType]="'text'" [nzPlaceHolder]="'请输入法人身份证号'"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngLegalPersonIdcard)"
+             nzHasFeedback>
+          <nz-input name="legalPersonIdcard" [(ngModel)]="validateForm.legalPersonIdcard"
+                    #ngLegalPersonIdcard="ngModel" [nzType]="'text'" required
+                    [nzPlaceHolder]="'请输入法人身份证号'" [pattern]="patterns.idcard"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('legalPersonIdcard').dirty&&getFormControl('legalPersonIdcard').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngLegalPersonIdcard)=='empty'">
             请输入法人身份证号！
           </div>
-          <div nz-form-explain
-               *ngIf="getFormControl('legalPersonIdcard').dirty&&getFormControl('legalPersonIdcard').pending">正在输入……
-          </div>
-          <div nz-form-explain
-               *ngIf="getFormControl('legalPersonIdcard').dirty&&getFormControl('legalPersonIdcard').hasError(valitate.isIdCard)">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngLegalPersonIdcard)=='error'">
             身份证号码错误！
           </div>
         </div>
@@ -214,7 +210,7 @@
           <label nz-form-item-required>是否长期有效</label>
         </div>
         <div nz-col [nzSpan]="8" nz-form-control>
-          <nz-switch formControlName="isForever" class="thc lg" [nzSize]="'large'">
+          <nz-switch name="isForever" class="thc lg" [nzSize]="'large'" [(ngModel)]="validateForm.isForever">
             <span checked>是</span>
             <span unchecked>否</span>
           </nz-switch>
@@ -229,23 +225,25 @@
             <div nz-col [nzSpan]="4">
               <div nz-form-item nz-row>
                 <div>
-                  <div nz-form-control [nzValidateStatus]="getFormControl('idcardStartTime')"
+                  <div nz-form-control [nzValidateStatus]="ngValidateStatus(ngIdcardStartTime)"
                        nzHasFeedback>
-                    <nz-datepicker formControlName="idcardStartTime" [nzSize]="'large'"
+                    <nz-datepicker name="idcardStartTime" [(ngModel)]="validateForm.idcardStartTime"
+                                   #ngIdcardStartTime="ngModel" [nzSize]="'large'" required
                                    [nzDisabledDate]="_disabledIdCardStartDate"
                                    [nzPlaceHolder]="'起始日期'"></nz-datepicker>
                   </div>
                 </div>
               </div>
             </div>
-            <ng-container *ngIf="!validateForm.controls['isForever'].value">
+            <ng-container *ngIf="!validateForm.isForever">
               <span class="fl pl-5 pr-5">-</span>
               <div nz-col [nzSpan]="4">
                 <div nz-form-item nz-row>
                   <div>
-                    <div nz-form-control [nzValidateStatus]="getFormControl('idcardEndTime')"
+                    <div nz-form-control [nzValidateStatus]="ngValidateStatus(ngIdcardEndTime)"
                          nzHasFeedback>
-                      <nz-datepicker formControlName="idcardEndTime" [nzSize]="'large'"
+                      <nz-datepicker name="idcardEndTime" [(ngModel)]="validateForm.idcardEndTime"
+                                     #ngIdcardEndTime="ngModel" [nzSize]="'large'" required
                                      [nzDisabledDate]="_disabledIdCardEndDate"
                                      [nzPlaceHolder]="'结束日期'"></nz-datepicker>
                     </div>
@@ -253,7 +251,6 @@
                 </div>
               </div>
             </ng-container>
-
           </div>
         </div>
       </div>
@@ -264,15 +261,19 @@
     <div class="fieldset">
       <div class="legend bb-dashed">营业执照信息</div>
       <!-- 普通营业执照需要填注册号 -->
-      <div nz-form-item nz-row *ngIf="validateForm.controls['idType'].value==enumStates.papersType.normal">
+      <div nz-form-item nz-row *ngIf="validateForm.idType==enumStates.papersType.normal">
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>营业执照注册号</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('businessLicence')" nzHasFeedback>
-          <nz-input formControlName="businessLicence" [nzType]="'text'" [nzPlaceHolder]="'营业执照注册号'" [nzSize]="'large'">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBusinessLicence)"
+             nzHasFeedback>
+          <nz-input name="businessLicence" [(ngModel)]="validateForm.businessLicence" [nzType]="'text'"
+                    [nzPlaceHolder]="'营业执照注册号'"
+                    #ngBusinessLicence="ngModel" [nzType]="'text'" required
+                    [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain
-               *ngIf="getFormControl('businessLicence').dirty&&getFormControl('businessLicence').hasError('required')">
+               *ngIf="ngValidateErrorMsg(ngBusinessLicence)=='empty'">
             请输入营业执照注册号！
           </div>
         </div>
@@ -281,14 +282,14 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>注册资本</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('businessRegisteredCapital')"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBusinessRegisteredCapital)"
              nzHasFeedback>
-          <nz-input formControlName="businessRegisteredCapital" [nzType]="'text'" [nzPlaceHolder]="'注册资本'"
+          <nz-input name="businessRegisteredCapital" [(ngModel)]="validateForm.businessRegisteredCapital"
+                    #ngBusinessRegisteredCapital="ngModel" [nzType]="'text'" required [nzPlaceHolder]="'注册资本'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('businessRegisteredCapital').dirty&&getFormControl('businessRegisteredCapital').hasError('required')">
-            注册资本！
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBusinessRegisteredCapital)=='empty'">
+            请填写注册资本！
           </div>
         </div>
       </div>
@@ -296,13 +297,13 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>法定经营范围</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('businessLicenceSphere')"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBusinessSphere)"
              nzHasFeedback>
-          <nz-input formControlName="businessLicenceSphere" [nzType]="'text'" [nzPlaceHolder]="'法定经营范围'"
-                    [nzSize]="'large'">
+          <nz-input name="businessSphere" [(ngModel)]="validateForm.businessSphere"
+                    #ngBusinessSphere="ngModel" [nzType]="'text'" required
+                    [nzPlaceHolder]="'法定经营范围'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('businessLicenceSphere').dirty&&getFormControl('businessLicenceSphere').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBusinessSphere)=='empty'">
             请输入法定经营范围！
           </div>
         </div>
@@ -311,16 +312,17 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>营业执照所在地</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('businessLicenceAreaCode')"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBusinessLicenceAreaCode)"
              nzHasFeedback>
-          <nz-cascader formControlName="businessLicenceAreaCode" [nzSize]="'large'"
+          <nz-cascader name="businessLicenceAreaCode" [(ngModel)]="validateForm.businessLicenceAreaCode"
+                       #ngBusinessLicenceAreaCode="ngModel" required
+                       [nzSize]="'large'"
                        [nzPlaceHolder]="'请选择'"
                        [nzExpandTrigger]="'hover'"
                        [nzChangeOnSelect]="true"
                        [nzOptions]="_options">
           </nz-cascader>
-          <div nz-form-explain
-               *ngIf="getFormControl('businessLicenceAreaCode').dirty&&getFormControl('businessLicenceAreaCode').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBusinessLicenceAreaCode)=='empty'">
             请选择营业执照地区！
           </div>
         </div>
@@ -329,13 +331,14 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>详细地址</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('businessLicenceAddress')"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBusinessLicenceAddress)"
              nzHasFeedback>
-          <nz-input formControlName="businessLicenceAddress" [nzType]="'textarea'" [nzPlaceHolder]="'详细地址'"
+          <nz-input name="businessLicenceAddress" [(ngModel)]="validateForm.businessLicenceAddress" required
+                    [nzType]="'textarea'" [nzPlaceHolder]="'详细地址'" #ngBusinessLicenceAddress="ngModel"
                     [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain
-               *ngIf="getFormControl('businessLicenceAddress').dirty&&getFormControl('businessLicenceAddress').hasError('required')">
+               *ngIf="ngValidateErrorMsg(ngBusinessLicenceAddress)=='empty'">
             请输入详细地址！
           </div>
         </div>
@@ -349,9 +352,10 @@
             <div nz-col [nzSpan]="4">
               <div nz-form-item nz-row>
                 <div>
-                  <div nz-form-control [nzValidateStatus]="getFormControl('businessLicenceStart')"
+                  <div nz-form-control [nzValidateStatus]="ngValidateStatus(ngBusinessLicenceStart)"
                        nzHasFeedback>
-                    <nz-datepicker formControlName="businessLicenceStart" [nzSize]="'large'"
+                    <nz-datepicker name="businessLicenceStart" [(ngModel)]="validateForm.businessLicenceStart"
+                                   [nzSize]="'large'" #ngBusinessLicenceStart="ngModel" required
                                    [nzDisabledDate]="_disabledBusinessLicenceStartDate"
                                    [nzPlaceHolder]="'起始日期'"></nz-datepicker>
                   </div>
@@ -362,9 +366,10 @@
             <div nz-col [nzSpan]="4">
               <div nz-form-item nz-row>
                 <div>
-                  <div nz-form-control [nzValidateStatus]="getFormControl('businessLicenceEnd')"
+                  <div nz-form-control [nzValidateStatus]="ngValidateStatus(ngBusinessLicenceEnd)"
                        nzHasFeedback>
-                    <nz-datepicker formControlName="businessLicenceEnd" [nzSize]="'large'"
+                    <nz-datepicker name="businessLicenceEnd" [(ngModel)]="validateForm.businessLicenceEnd"
+                                   [nzSize]="'large'" #ngBusinessLicenceEnd="ngModel" required
                                    [nzDisabledDate]="_disabledBusinessLicenceEndDate"
                                    [nzPlaceHolder]="'结束日期'"></nz-datepicker>
                   </div>
@@ -378,15 +383,15 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>营业执照电子版</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('businessLicenceNumberElectronic')"
-             nzHasFeedback>
+        <div nz-col [nzSpan]="8" nz-form-control>
           <label class="file-upload">
             <i class="anticon anticon-cloud-upload-o"></i>上传电子版营业执照
-            <input class="w100" type="file" name="businessLicenceNumberElectronic" ng2FileSelect [uploader]="businessLicenceUploader"
+            <input class="w100" type="file" name="businessLicenceNumberElectronic" ng2FileSelect
+                   [uploader]="businessLicenceUploader" required
                    accept="image/*" (change)="businessLicenceFileChangeListener()"/>
           </label>
           <div nz-form-explain
-               *ngIf="!businessLicenceUploader.queue[0]&&getFormControl('businessLicenceNumberElectronic').dirty&&getFormControl('businessLicenceNumberElectronic').hasError('required')">
+               *ngIf="!validateForm.businessLicenceNumberElectronic && !businessLicenceUploader.queue[0]">
             请上传电子版营业执照
           </div>
         </div>
@@ -401,11 +406,8 @@
 
     <!--操作按钮 start-->
     <div nz-row class="text-center p-20 bt">
-      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="pre()">
-        <span>上一步</span>
-      </button>
       <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w"
-              (click)="submitBaseInfoForm($event)">
+              (click)="submitCompleteForm($event)">
         <span>下一步</span>
       </button>
     </div>

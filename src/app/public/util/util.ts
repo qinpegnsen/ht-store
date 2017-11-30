@@ -14,7 +14,11 @@ export class Util {
   /**
    * ***********************表单验证取值字符串定义**********************
    * 用于代替表单常用校验方法取错字段hasError(string)中的string
-   * 请保证这些值与下面具体校验方法中的参数返回字段key相同
+   * 请保证这些value值与下面具体校验方法中的返回字段key相同
+   * using： <div nz-form-explain
+   *ngIf="getFormControl('idCard').dirty&&getFormControl('idCard').hasError(valitate.isIdCard)">
+   请输入6位以上含数字、字母组成的密码！
+   </div>
    **/
   public static validate = {
     isPhone: 'phone',
@@ -158,27 +162,57 @@ export class Util {
   }
 
   /**
-   * ************************************表单验证方法**************************************
+   * ************************************佐罗框架的表单验证方法**************************************
    * 请保证变量的状态参数与定义的validate中的字符串一致
    * eg:{error: true, phone: true}中phone等于Util.validate.isPhone;
    **/
 
-  /**
-   * 手机号异步校验
-   * @param control
-   * @returns {any}
+  /*========================== 非FormGroup的表单验证 start ==============================
+   * 非FormGroup下使用ngModel绑定模板变量的形式下使用
    */
-  public static phoneValidator = (control: FormControl): any => {
-    return Util.asyncPatternsValidate(PatternService.PHONE_REGEXP, control, {error: true, phone: true});
-  };
+  /**
+   * 输入值状态信息判断
+   * @param templateParam ：输入框ngModel模板变量
+   * @returns 返回nzValidateStatus的几个状态，这里只给到'success' ,'error'
+   *  <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback [nzValidateStatus]="ngValidateStatus(ngPhone)">
+   <nz-input name="phone" [(ngModel)]="phone" required [nzType]="'text'" [nzPlaceHolder]="'企业名称'"
+   #ngPhone="ngModel" pattern='^1[0-9]{10}$'>
+   </nz-input>
+   </div>
+   */
+  public static ngValidateStatus(templateParam) {
+    return templateParam.pristine ? null ://未输入状态不返回状态值
+      templateParam.valid ? 'success' : 'error';//输入正确返回success，否则error
+  }
 
   /**
-   * 短信验证码异步校验
+   * 错误提示信息的提示状态
+   * @param templateParam ：输入框ngModel模板变量
+   * @returns 返回输入值的状态（输入正确:'success'，输入后清空:'empty',输入值不符合要求:'error',未输入：null）
+   * 使用上面的输入模板：
+   * eg1: <div nz-form-explain *ngIf="ngValidateErrorMsg(ngPhone) == 'empty'">请输入手机号！</div>
+   * eg2: <div nz-form-explain *ngIf="ngValidateErrorMsg(ngPhone) == 'empty'">请输入正确的手机号！</div>
+   */
+  public static ngValidateErrorMsg(templateParam) {
+    return templateParam.pristine ? null ://未输入状态不返回状态值
+      templateParam.valid ? 'success' : //输入正确返回success
+        templateParam.invalid && (isNullOrUndefined(templateParam.value) || templateParam.value == '') ? 'empty' :// 输入后如果不正确，判断是否是值为空，空则返回'empty'
+          'error';
+  }
+
+  /*========================== 非FormGroup的表单验证 end ==============================*/
+
+
+  /*========================== FormGroup的表单验证 start ===============================*/
+  /**
+   * 手机号校验
    * @param control
    * @returns {any}
    */
-  public static smsCodeValidator = (control: FormControl): any => {
-    return Util.asyncPatternsValidate(PatternService.SMS_REGEXP, control, {error: true, smsCode: true});
+  public static phoneValidator = (control: FormControl): { [s: string]: boolean } => {
+    if (!PatternService.PHONE_REGEXP.test(control.value)) {
+      return {error: true, phone: true};
+    }
   };
 
   /**
@@ -195,7 +229,7 @@ export class Util {
   };
 
   /**
-   * 密码异步校验
+   * 密码校验
    * @param control
    * @returns {any}
    */
@@ -205,6 +239,30 @@ export class Util {
     } else if (!PatternService.PWD_REGEXP.test(control.value)) {
       return {pwd: true, error: true}
     }
+  };
+
+
+  /**
+   以下方法会显示输入中状态，一定时间（eg:500ms）后不输入才会反馈校验结果;
+   用法：this.validateForm = this.fb.group({
+      phone ：[null, [ Validators.required ], [ Util.requiredPhoneValidator ]
+    });//此种方式[ Validators.required ]是必要的
+
+   * 必填的手机号异步校验
+   * @param control
+   * @returns {any}
+   */
+  public static requiredPhoneValidator = (control: FormControl): any => {
+    return Util.asyncPatternsValidate(PatternService.PHONE_REGEXP, control, {error: true, phone: true});
+  };
+
+  /**
+   * 短信验证码异步校验
+   * @param control
+   * @returns {any}
+   */
+  public static smsCodeValidator = (control: FormControl): any => {
+    return Util.asyncPatternsValidate(PatternService.SMS_REGEXP, control, {error: true, smsCode: true});
   };
 
   /**
@@ -217,12 +275,11 @@ export class Util {
   };
 
   /**
-   * 输入延迟的异步正则校验方法封装
-   * 用法（this.asyncPatternsValidate(this.patterns.IDCARD_REGEXP, control, { error: true, idCard: true })
-   * @param exp （正则表达式）
-   * @param value
-   * @param obj （eg:{ error: true, idCard: true }）
-   * @returns {any}
+   * 有输入中状态的需要正则校验的异步校验方法封装，
+   * 用法（Util.asyncPatternsValidate(PatternService.IDCARD_REGEXP, control, { error: true, idCard: true })
+   * @param exp （需要匹配的正则表达式）
+   * @param control （FormGroup的表单项）
+   * @param obj （需要的返回对象，eg:{ error: true, idCard: true }）
    */
   public static asyncPatternsValidate = (exp: RegExp, control: FormControl, obj?: any) => {
     return Observable.create(function (observer) {

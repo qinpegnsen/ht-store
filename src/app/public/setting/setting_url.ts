@@ -14,12 +14,13 @@ export class SettingUrl {
     /**
      * 企业入驻
      */
-    enterpris: {
-      getStore: '/enterpris/load',//企业入驻查询
-      query: '/enterpris/query',//企业查询
-      save: '/enterpris/save',//保存或修改企业信息
-      auditPass: '/enterpris/updateToNormal',//企业审核--通过
-      auditReject: '/enterpris/updateToReject',//企业审核--驳回
+    enterprise: {
+      getStore: '/enterprise/load',//企业入驻查询
+      query: '/enterprise/query',//企业查询
+      save: '/enterprise/save',//保存或修改企业基本信息
+      save2: '/enterprise/save2',//保存或修改企业银行账户信息
+      auditPass: '/enterprise/updateToNormal',//企业审核--通过
+      auditReject: '/enterprise/updateToReject',//企业审核--驳回
     },
     /**
      * 商家

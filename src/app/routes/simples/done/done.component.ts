@@ -22,14 +22,14 @@ export class DoneComponent implements OnInit {
     //获取当前路由
     me.route.url.subscribe(urls => {
       me.path = urls[0].path;
-      switch (me.path) {
+      /*switch (me.path) {
         case 'done':
           this.simplesService.routerSkip(5);
           break;
         case 'dredgeReject':
           this.simplesService.routerSkip(5.1);
           break;
-      }
+      }*/
     })
   }
 

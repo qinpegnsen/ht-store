@@ -1,6 +1,6 @@
 <!--开通店铺 start-->
 <div nz-row class="p-20">
-  <form nz-form [formGroup]="validateForm" class="p-20">
+  <form nz-form class="p-20">
     <!--店铺基本信息 start-->
     <div class="fieldset">
       <div class="legend bb-dashed">店铺基本信息</div>
@@ -8,11 +8,11 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>店铺名称</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storeName')" nzHasFeedback>
-          <nz-input formControlName="storeName" [nzType]="'text'" [nzPlaceHolder]="'店铺名称'" [nzSize]="'large'">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngStoreName)" nzHasFeedback>
+          <nz-input name="storeName" [(ngModel)]="validateForm.storeName" #ngStoreName="ngModel" required
+                    [nzType]="'text'" [nzPlaceHolder]="'店铺名称'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('storeName').dirty&&getFormControl('storeName').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreName) == 'empty'">
             请输入店铺名称！
           </div>
         </div>
@@ -21,9 +21,10 @@
         <div nz-col [nzSpan]="8" nz-form-label>
           <label nz-form-item-required>店铺地址</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('areaName')"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngAreaName)"
              nzHasFeedback>
-          <nz-cascader formControlName="areaName" [nzSize]="'large'"
+          <nz-cascader name="areaName" [nzSize]="'large'" required
+                       [(ngModel)]="validateForm.areaName" #ngAreaName="ngModel"
                        [nzPlaceHolder]="'请选择'"
                        [nzExpandTrigger]="'hover'"
                        [nzChangeOnSelect]="true"
@@ -36,12 +37,12 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>详细地址</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('address')" nzHasFeedback>
-          <nz-input formControlName="address" [nzRows]="2" [nzType]="'textarea'" [nzPlaceHolder]="'请输入详细地址'"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngAddress)" nzHasFeedback>
+          <nz-input name="address" [(ngModel)]="validateForm.address" #ngAddress="ngModel" required [nzRows]="2"
+                    [nzType]="'textarea'" [nzPlaceHolder]="'请输入详细地址'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('address').dirty&&getFormControl('address').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngAddress) == 'empty'">
             请输入详细地址！
           </div>
         </div>
@@ -50,12 +51,15 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>邮政编码</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storeZip')" nzHasFeedback>
-          <nz-input formControlName="storeZip" [nzType]="'text'" [nzPlaceHolder]="'请输入邮政编码'" [nzSize]="'large'">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngStoreZip)" nzHasFeedback>
+          <nz-input name="storeZip" [(ngModel)]="validateForm.storeZip" #ngStoreZip="ngModel" required
+                    [pattern]="'\d{6}'" [nzType]="'text'" [nzPlaceHolder]="'请输入邮政编码'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('storeZip').dirty&&getFormControl('storeZip').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreZip) == 'empty'">
             请输入邮政编码！
+          </div>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreZip) == 'error'">
+            邮政编码不正确！
           </div>
         </div>
       </div>
@@ -63,15 +67,14 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>商家电话</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storePhone')" nzHasFeedback>
-          <nz-input formControlName="storePhone" [nzPlaceHolder]="'请填写商家电话'" [nzType]="'tel'" [nzSize]="'large'">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngStorePhone)" nzHasFeedback>
+          <nz-input name="storePhone" [(ngModel)]="validateForm.storePhone" #ngStorePhone="ngModel" required
+                    [nzPlaceHolder]="'请填写商家电话'" [nzType]="'tel'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('storePhone').dirty&&getFormControl('storePhone').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStorePhone) == 'empty'">
             请输入商家电话！
           </div>
-          <div nz-form-explain
-               *ngIf="getFormControl('storePhone').dirty&&getFormControl('storePhone').hasError('phone')">手机号码不正确！
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStorePhone) == 'error'">手机号码不正确！
           </div>
         </div>
       </div>
@@ -79,14 +82,13 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>店铺logo</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storeLabel')" nzHasFeedback>
+        <div nz-col [nzSpan]="8" nz-form-control>
           <label class="file-upload">
             <i class="anticon anticon-cloud-upload-o"></i>请上传店铺logo
             <input class="w100" type="file" name="storeLabel" ng2FileSelect accept="image/*"
                    [uploader]="storeLabelUploader" (change)="storeLabelFileChangeListener()"/>
           </label>
-          <div nz-form-explain
-               *ngIf="!storeLabelUploader.queue[0]&&getFormControl('storeLabel').dirty&&getFormControl('storeLabel').hasError('required')">
+          <div nz-form-explain *ngIf="!validateForm.storeLabel&&!storeLabelUploader.queue[0]">
             请上传店铺logo！
           </div>
         </div>
@@ -100,14 +102,13 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>店铺头像</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storeAvatar')" nzHasFeedback>
+        <div nz-col [nzSpan]="8" nz-form-control>
           <label class="file-upload">
             <i class="anticon anticon-cloud-upload-o"></i>请上传店铺头像
             <input class="w100" type="file" name="storeAvatar" ng2FileSelect accept="image/*"
                    [uploader]="storeAvatarUploader" (change)="storeAvatarFileChangeListener()"/>
           </label>
-          <div nz-form-explain
-               *ngIf="!storeAvatarUploader.queue[0]&&getFormControl('storeAvatar').dirty&&getFormControl('storeAvatar').hasError('required')">
+          <div nz-form-explain *ngIf="!validateForm.storeAvatar && !storeAvatarUploader.queue[0]">
             请上传店铺头像！
           </div>
         </div>
@@ -121,12 +122,15 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>QQ</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storeQQ')" nzHasFeedback>
-          <nz-input formControlName="storeQQ" [nzType]="'text'" [nzPlaceHolder]="'QQ'" [nzSize]="'large'">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngStoreQQ)" nzHasFeedback>
+          <nz-input name="storeQQ" [nzType]="'text'" [(ngModel)]="validateForm.storeQQ" #ngStoreQQ="ngModel" required
+                    [nzPlaceHolder]="'QQ'" [nzSize]="'large'" minlength="6">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('storeQQ').dirty&&getFormControl('storeQQ').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreQQ) == 'empty'">
             请输入店铺QQ！
+          </div>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreQQ) == 'error'">
+            不是正确的QQ！
           </div>
         </div>
       </div>
@@ -134,12 +138,15 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>阿里旺旺账号</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('storeWW')" nzHasFeedback>
-          <nz-input formControlName="storeWW" [nzType]="'text'" [nzPlaceHolder]="'阿里旺旺账号'" [nzSize]="'large'">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngStoreWW)" nzHasFeedback>
+          <nz-input name="storeWW" [(ngModel)]="validateForm.storeWW" #ngStoreWW="ngModel" required [nzType]="'text'"
+                    [nzPlaceHolder]="'阿里旺旺账号'" [nzSize]="'large'" minlength="6">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('storeWW').dirty&&getFormControl('storeWW').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreWW) == 'empty'">
             请输入店铺阿里旺旺账号！
+          </div>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreWW) == 'empty'">
+            不是正确的阿里旺旺账号！
           </div>
         </div>
       </div>
@@ -147,7 +154,7 @@
     <!--企业基本信息 end-->
 
     <div nz-row class="text-center p-20 bt">
-      <button nz-button [nzSize]="'large'" class="btn-thc" (click)="skipTo(5)">
+      <button nz-button [nzSize]="'large'" class="btn-thc" (click)="skipTo('done')">
         <span>提交</span>
       </button>
     </div>

@@ -8,6 +8,7 @@ import {SettingUrl} from "../../public/setting/setting_url";
 import {NzNotificationService} from "ng-zorro-antd";
 import {StepsComponent} from "./settle-steps/steps.component";
 declare var $: any;
+
 @Injectable()
 export class SimplesService {
 
@@ -24,31 +25,31 @@ export class SimplesService {
    */
   routerSkip(step) {
     switch (step) {
-      case 0 :
+      case 'register' :
         this.router.navigate(['/simple/reg/register'], {replaceUrl: true})
         break;
-      case 1 :
+      case 'baseInfo' :
         this.router.navigate(['/simple/reg/baseInfo'], {replaceUrl: true})
         break;
-      case 2 :
+      case 'accountInfo' :
         this.router.navigate(['/simple/reg/accountInfo'], {replaceUrl: true})
         break;
-      case 3 :
+      case 'auditing' :
         this.router.navigate(['/simple/reg/auditing'], {replaceUrl: true})
         break;
-      case 3.1 :
+      case 'settlePass' :
         this.router.navigate(['/simple/reg/settlePass'], {replaceUrl: true})
         break;
-      case 3.2 :
+      case 'settleReject' :
         this.router.navigate(['/simple/reg/settleReject'], {replaceUrl: true})
         break;
-      case 4 :
+      case 'dredge' :
         this.router.navigate(['/simple/reg/shop/dredge'], {replaceUrl: true})
         break;
-      case 5 :
+      case 'done' :
         this.router.navigate(['/simple/reg/shop/done'], {replaceUrl: true})
         break;
-      case 5.1 :
+      case 'dredgeReject' :
         this.router.navigate(['/simple/reg/shop/dredgeReject'], {replaceUrl: true})
         break;
     }
@@ -61,14 +62,12 @@ export class SimplesService {
    */
   addSeller(requestDate: any) {
     const me = this;
-    me.routerSkip(1);
     AjaxService.post({
       url: SettingUrl.URL.seller.add,
       data: requestDate,
       success: (res) => {
-        // me.routerSkip(1);
         if (res.success) {
-          // me.routerSkip(1)
+          me.routerSkip('baseInfo');
         } else {
           me._notification.error(`出错了`, '注册接口出错了接口出错了接口出错了')
         }
@@ -94,36 +93,60 @@ export class SimplesService {
         if (res.success) {
           _success = true;
         } else {
-          me._notification.error(`出错了`, '接口出错了接口出错了接口出错了')
+          me._notification.error(`出错了`, '注册接口出错了')
         }
       },
       error: (res) => {
-        me._notification.error(`接口出错了`, '接口出错了接口出错了接口出错了')
+        me._notification.error(`接口出错了`, '注册接口出错了')
       }
     });
     return _success;
   }
 
   /**
-   * 企业入驻
+   * 企业入驻——保存基本信息
    * @param data
    */
-  enterpris(data) {
+  enterpriseBase(data) {
     const me = this;
     AjaxService.post({
-      url: SettingUrl.URL.enterpris.save,
-      data: data,
+      url: SettingUrl.URL.enterprise.save,
+      data: JSON.stringify(data),
       mask: true,
       contentType: "application/json",
       success: (res) => {
         if (res.success) {
-          me.routerSkip(1.5);
+          me.routerSkip('accountInfo');
         } else {
-          me._notification.error(`出错了`, '入驻接口出错了接口出错了接口出错了')
+          me._notification.error(`错误提示`, res.info)
         }
       },
       error: (res) => {
-        me._notification.error(`接口出错了`, '入驻接口出错了接口出错了接口出错了')
+        me._notification.error(`错误提示`, res.info)
+      }
+    });
+  }
+
+  /**
+   * 企业入驻——保存银行账户信息
+   * @param data
+   */
+  enterpriseSaveAccount(data) {
+    const me = this;
+    AjaxService.post({
+      url: SettingUrl.URL.enterprise.save2,
+      data: JSON.stringify(data),
+      mask: true,
+      contentType: "application/json",
+      success: (res) => {
+        if (res.success) {
+          me.routerSkip('accountInfo');
+        } else {
+          me._notification.error(`错误提示`, res.info)
+        }
+      },
+      error: (res) => {
+        me._notification.error(`错误提示`, res.info)
       }
     });
   }

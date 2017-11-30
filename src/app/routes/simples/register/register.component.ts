@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
     this.simplesService.routerSkip(this.steps.current);
     //企业注册表单项校验
     this.validateForm = this.fb.group({
-      phone               : [ '', [ Validators.required ], [ Util.phoneValidator ] ],
+      phone               : [ '', [ Validators.required ], [ Util.requiredPhoneValidator ] ],
       code                : [ '', [ Validators.required ], [ Util.smsCodeValidator ] ],
       sellerPwd           : [ '', [ Util.pwdValidator] ],
       rePwd               : [ '', [ this.passwordConfirmationValidator ] ],

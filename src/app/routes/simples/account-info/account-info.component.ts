@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
 import {SimplesService} from "../simples.service";
 import {StepsComponent} from "../settle-steps/steps.component";
 import {FileUploader} from "ng2-file-upload";
@@ -15,8 +15,11 @@ import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
   styleUrls: ['./account-info.component.css']
 })
 export class AccountInfoComponent implements OnInit {
-  validateForm: FormGroup;
+  validateForm: any = {};
   _options: any;//三级联动区域数据
+  ngValidateStatus = Util.ngValidateStatus;
+  ngValidateErrorMsg = Util.ngValidateErrorMsg;
+
   public bankLicenceUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.base.upload,
     itemAlias: "limitFile",
@@ -28,23 +31,26 @@ export class AccountInfoComponent implements OnInit {
               public _notification: NzNotificationService,
               public fb: FormBuilder) {
     this.steps.current = 2;
-    this.simplesService.routerSkip(this.steps.current);
+    // this.simplesService.routerSkip(this.steps.current);
     Util.transAreas(AREA_LEVEL_3_JSON);
     this._options = AREA_LEVEL_3_JSON;
-    this.validateForm = this.fb.group({
-      bankAccountName                     : ['', [this.simplesService.validateRequired]],//银行开户名
-      bankAccountNumber                   : ['', [this.simplesService.validateRequired]],//公司银行账号
-      bankName                            : ['', [this.simplesService.validateRequired]],//开户行支行名称
-      bankCode                            : ['', [this.simplesService.validateRequired]],//开户支行联行号
-      bankAddress                         : [null, [this.simplesService.addressValidator]],//开户银行地址
-      isSettlementAccount                 : [true, [this.simplesService.validateRequired]],//是否为结算账户
-      settlementBankAccountName           : ['', [this.simplesService.validateRequired]],//结算银行开户名
-      settlementBankAccountNumber         : ['', [this.simplesService.validateRequired]],//结算银行账号
-      settlementBankName                  : ['', [this.simplesService.validateRequired]],//结算账户开户行支行名称
-      settlementBankCode                  : ['', [this.simplesService.validateRequired]],//结算账户开户行支行联行号
-      settlementBankAddress               : [null, [this.simplesService.addressValidator]],//结算账户开户行所在地
-      bankLicenceElectronic               : [null, [this.simplesService.validateRequired]],//开户银行许可证电子版
-    });
+    this.validateForm = {
+      isSettlementAccount: true
+    }
+    /*this.fb.group({
+     bankAccountName                     : ['', [this.simplesService.validateRequired]],//银行开户名
+     bankAccountNumber                   : ['', [this.simplesService.validateRequired]],//公司银行账号
+     bankName                            : ['', [this.simplesService.validateRequired]],//开户行支行名称
+     bankCode                            : ['', [this.simplesService.validateRequired]],//开户支行联行号
+     bankAddress                         : [null, [this.simplesService.addressValidator]],//开户银行地址
+     isSettlementAccount                 : [true, [this.simplesService.validateRequired]],//是否为结算账户
+     settlementBankAccountName           : ['', [this.simplesService.validateRequired]],//结算银行开户名
+     settlementBankAccountNumber         : ['', [this.simplesService.validateRequired]],//结算银行账号
+     settlementBankName                  : ['', [this.simplesService.validateRequired]],//结算账户开户行支行名称
+     settlementBankCode                  : ['', [this.simplesService.validateRequired]],//结算账户开户行支行联行号
+     settlementBankAddress               : [null, [this.simplesService.addressValidator]],//结算账户开户行所在地
+     bankLicenceElectronic               : [null, [this.simplesService.validateRequired]],//开户银行许可证电子版
+     });*/
   }
 
   ngOnInit() {
@@ -79,7 +85,7 @@ export class AccountInfoComponent implements OnInit {
 
       //如果该组不需要上传图片则uploadedNum+1
       //需要上传图片的则在图片上传完成后uploadedNum+1
-      if(uploader.getNotUploadedItems().length == 0) uploadedNum += 1;
+      if (uploader.getNotUploadedItems().length == 0) uploadedNum += 1;
       //上传之前，获取暗码
       uploader.onBuildItemForm = function (fileItem, form) {
         uuid = MainService.uploadUid();
@@ -90,7 +96,7 @@ export class AccountInfoComponent implements OnInit {
       uploader.onSuccessItem = function (item, response, status, headers) {
         let res = JSON.parse(response);
         if (res.success) {
-          if (uuid) me.patchValues(i, uuid);
+          if (uuid) me.patchValues(i, uuid);//上传成功将暗码赋值给相应字段
         } else {
           me._notification.error(`上传失败`, '图片' + item._file.name + res.info)
         }
@@ -120,17 +126,12 @@ export class AccountInfoComponent implements OnInit {
    * @param value
    */
   submitFormData = () => {
-    for (const key in this.validateForm.controls) {
-      this.validateForm.controls[key].markAsDirty();
-    }
-    console.log("█ this.validateForm ►►►",  this.validateForm);
-    let formValue = this.validateForm.value;
+    let formValue = this.validateForm;
     //转换地址格式
-   /* formValue.businessLicenceAddress = formValue.businessLicenceAddress[2];
-    formValue.bankAddress = formValue.bankAddress[2];
-    formValue.settlementBankAddress = formValue.settlementBankAddress[2];*/
+     if(formValue.bankAddress) formValue.bankAddress = formValue.bankAddress[2];
+     if(formValue.settlementBankAddress) formValue.settlementBankAddress = formValue.settlementBankAddress[2];
     console.log(formValue);
-    // this.simplesService.enterpris(formValue);
+    this.simplesService.enterpriseSaveAccount(formValue);
   };
 
 
@@ -140,23 +141,16 @@ export class AccountInfoComponent implements OnInit {
   patchValues(i, uuid) {
     switch (i) {
       case 0:
-        this.validateForm.patchValue({bankLicenceElectronic: uuid});
+        this.validateForm.bankLicenceElectronic = uuid;
         break;
     }
-  }
-  _console(value) {
-    // console.log(value);
   }
 
   /**
    * 跳转页面
    */
-  skipTo(stepNum) {
-    this.simplesService.routerSkip(stepNum);
-  }
-
-  getFormControl(name) {
-    return this.validateForm.controls[name];
+  skipTo(stepName) {
+    this.simplesService.routerSkip(stepName);
   }
 
 }

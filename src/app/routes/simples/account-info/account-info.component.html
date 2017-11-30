@@ -1,6 +1,6 @@
 <!--企业银行账户信息 start-->
 <div nz-row class="p-20">
-  <form nz-form [formGroup]="validateForm" class="p-20">
+  <form nz-form class="p-20">
     <!--开户行信息 start-->
     <div class="fieldset">
       <div class="legend bb-dashed">开户行信息</div>
@@ -8,11 +8,11 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>银行开户名</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankAccountName')" nzHasFeedback>
-          <nz-input formControlName="bankAccountName" [nzType]="'text'" [nzPlaceHolder]="'银行开户名'" [nzSize]="'large'">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBankAccountName)" nzHasFeedback>
+          <nz-input name="bankAccountName" [(ngModel)]="validateForm.bankAccountName" #ngBankAccountName="ngModel"
+                    required [nzType]="'text'" [nzPlaceHolder]="'银行开户名'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('bankAccountName').dirty&&getFormControl('bankAccountName').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankAccountName)=='empty'">
             请输入银行开户名！
           </div>
         </div>
@@ -21,13 +21,13 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>公司银行账号</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankAccountNumber')"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBankAccountNumber)"
              nzHasFeedback>
-          <nz-input formControlName="bankAccountNumber" [nzType]="'text'" [nzPlaceHolder]="'公司银行账号'"
+          <nz-input name="bankAccountNumber" [(ngModel)]="validateForm.bankAccountNumber" #ngBankAccountNumber="ngModel"
+                    required [nzType]="'text'" [nzPlaceHolder]="'公司银行账号'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('bankAccountNumber').dirty&&getFormControl('bankAccountNumber').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankAccountNumber)=='empty'">
             请输入公司银行账号！
           </div>
         </div>
@@ -36,13 +36,13 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>开户行支行名称</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankName')"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBankName)"
              nzHasFeedback>
-          <nz-input formControlName="bankName" [nzType]="'text'" [nzPlaceHolder]="'开户行支行名称'"
+          <nz-input name="bankName" [(ngModel)]="validateForm.bankName" #ngBankName="ngModel"
+                    required [nzType]="'text'" [nzPlaceHolder]="'开户行支行名称'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('bankName').dirty&&getFormControl('bankName').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankName)=='empty'">
             请输入开户行支行名称！
           </div>
         </div>
@@ -51,13 +51,13 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>开户支行联行号</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankCode')"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBankCode)"
              nzHasFeedback>
-          <nz-input formControlName="bankCode" [nzType]="'text'" [nzPlaceHolder]="'开户支行联行号'"
+          <nz-input name="bankCode" [(ngModel)]="validateForm.bankCode" #ngBankCode="ngModel"
+                    required [nzType]="'text'" [nzPlaceHolder]="'开户支行联行号'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('bankCode').dirty&&getFormControl('bankCode').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankCode)=='empty'">
             请输入开户支行联行号！
           </div>
         </div>
@@ -66,17 +66,17 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>开户银行地址</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankAddress')"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBankAddress)"
              nzHasFeedback>
-          <nz-cascader formControlName="bankAddress" [nzSize]="'large'"
+          <nz-cascader name="bankAddress" [nzSize]="'large'"
+                       [(ngModel)]="validateForm.bankAddress"
+                       #ngBankAddress="ngModel" required
                        [nzPlaceHolder]="'请选择'"
                        [nzExpandTrigger]="'hover'"
                        [nzChangeOnSelect]="true"
-                       [nzOptions]="_options"
-                       (nzChange)="_console($event)">
+                       [nzOptions]="_options">
           </nz-cascader>
-          <div nz-form-explain
-               *ngIf="getFormControl('bankAddress').dirty&&getFormControl('bankAddress').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankAddress)=='empty'">
             请选择开户银行地址！
           </div>
         </div>
@@ -85,15 +85,13 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>开户银行许可证电子版</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('bankLicenceElectronic')"
-             nzHasFeedback>
+        <div nz-col [nzSpan]="8" nz-form-control>
           <label class="file-upload">
             <i class="anticon anticon-cloud-upload-o"></i>上传开户银行许可证电子版
             <input class="w100" type="file" name="bankLicenceElectronic" ng2FileSelect [uploader]="bankLicenceUploader"
                    accept="image/*" (change)="bankLicenceFileChangeListener()"/>
           </label>
-          <div nz-form-explain
-               *ngIf="!bankLicenceUploader.queue[0]&&getFormControl('bankLicenceElectronic').dirty&&getFormControl('bankLicenceElectronic').hasError('required')">
+          <div nz-form-explain *ngIf="!bankLicenceUploader.queue[0]&&!bankLicenceUploader.queue[0]">
             请上传开户银行许可证电子版！
           </div>
         </div>
@@ -108,7 +106,7 @@
           <label nz-form-item-required>是否为结算账户</label>
         </div>
         <div nz-col [nzSpan]="8" nz-form-control>
-          <nz-switch formControlName="isSettlementAccount" class="lg thc">
+          <nz-switch name="isSettlementAccount" class="lg thc">
             <span checked>是</span>
             <span unchecked>否</span>
           </nz-switch>
@@ -124,12 +122,13 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>结算银行开户名</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankAccountName')"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngSettlementBankAccountName)"
              nzHasFeedback>
-          <nz-input formControlName="settlementBankAccountName" [nzType]="'text'" [nzPlaceHolder]="'结算银行开户名'" [nzSize]="'large'">
+          <nz-input name="settlementBankAccountName" [(ngModel)]="validateForm.settlementBankAccountName"
+                    #ngSettlementBankAccountName="ngModel" required [nzType]="'text'" [nzPlaceHolder]="'结算银行开户名'"
+                    [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('settlementBankAccountName').dirty&&getFormControl('settlementBankAccountName').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankAccountName)=='empty'">
             请输入结算银行开户名！
           </div>
         </div>
@@ -138,13 +137,14 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>结算银行账号</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankAccountNumber')"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngSettlementBankAccountNumber)"
              nzHasFeedback>
-          <nz-input formControlName="settlementBankAccountNumber" [nzType]="'text'" [nzPlaceHolder]="'结算银行账号'"
+          <nz-input name="settlementBankAccountNumber" [(ngModel)]="validateForm.settlementBankAccountNumber"
+                    #ngSettlementBankAccountNumber="ngModel"
+                    required [nzType]="'text'" [nzPlaceHolder]="'结算银行账号'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('settlementBankAccountNumber').dirty&&getFormControl('settlementBankAccountNumber').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankAccountNumber)=='empty'">
             请输入结算银行账号！
           </div>
         </div>
@@ -153,13 +153,14 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>结算账户开户行支行名称</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankName')"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngSettlementBankName)"
              nzHasFeedback>
-          <nz-input formControlName="settlementBankName" [nzType]="'text'" [nzPlaceHolder]="'结算账户开户行支行名称'"
+          <nz-input name="settlementBankName" [(ngModel)]="validateForm.settlementBankName"
+                    #ngSettlementBankName="ngModel"
+                    required [nzType]="'text'" [nzPlaceHolder]="'结算账户开户行支行名称'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('settlementBankName').dirty&&getFormControl('settlementBankName').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankName)=='empty'">
             请输入结算账户开户行支行名称！
           </div>
         </div>
@@ -168,13 +169,14 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>结算账户开户行支行联行号</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankCode')"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngSettlementBankCode)"
              nzHasFeedback>
-          <nz-input formControlName="settlementBankCode" [nzType]="'text'" [nzPlaceHolder]="'结算账户开户行支行联行号'"
+          <nz-input name="settlementBankCode" [(ngModel)]="validateForm.settlementBankCode"
+                    #ngSettlementBankCode="ngModel"
+                    required [nzType]="'text'" [nzPlaceHolder]="'结算账户开户行支行联行号'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain
-               *ngIf="getFormControl('settlementBankCode').dirty&&getFormControl('settlementBankCode').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankCode)=='empty'">
             请输入结算账户开户行支行联行号！
           </div>
         </div>
@@ -183,17 +185,18 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>结算账户开户行所在地</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="getFormControl('settlementBankAddress')"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngSettlementBankAddress)"
              nzHasFeedback>
-          <nz-cascader formControlName="settlementBankAddress" [nzSize]="'large'"
+          <nz-cascader name="settlementBankAddress" [nzSize]="'large'"
+                       [(ngModel)]="validateForm.settlementBankAddress"
+                       #ngSettlementBankAddress="ngModel"
+                       required
                        [nzPlaceHolder]="'请选择'"
                        [nzExpandTrigger]="'hover'"
                        [nzChangeOnSelect]="true"
-                       [nzOptions]="_options"
-                       (nzChange)="_console($event)">
+                       [nzOptions]="_options">
           </nz-cascader>
-          <div nz-form-explain
-               *ngIf="getFormControl('settlementBankAddress').dirty&&getFormControl('settlementBankAddress').hasError('required')">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankAddress)=='empty'">
             请选择结算账户开户行所在地！
           </div>
         </div>
@@ -203,11 +206,11 @@
 
     <!--操作按钮 start-->
     <div nz-row class="text-center p-20 bt">
-      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="skipTo(1)">
+      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="skipTo('baseInfo')">
         <span>上一步</span>
       </button>
       <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w"
-              (click)="skipTo(3)">
+              (click)="submitCompleteForm($event)">
         <span>提交申请</span>
       </button>
     </div>

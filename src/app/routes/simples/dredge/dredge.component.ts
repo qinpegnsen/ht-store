@@ -13,8 +13,10 @@ import {SettingUrl} from "../../../public/setting/setting_url";
   styleUrls: ['./dredge.component.css']
 })
 export class DredgeComponent implements OnInit {
-  validateForm: FormGroup;
+  validateForm: any = {};
   _options: any;//三级联动区域数据
+  ngValidateStatus = Util.ngValidateStatus;
+  ngValidateErrorMsg = Util.ngValidateErrorMsg;
 
   public storeLabelUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.base.upload,
@@ -32,23 +34,26 @@ export class DredgeComponent implements OnInit {
               public steps: DreageStepsComponent,
               public fb: FormBuilder) {
     this.steps.step = 0;
-    this.simplesService.routerSkip(4);
+    // this.simplesService.routerSkip(4);
     Util.transAreas(AREA_LEVEL_3_JSON);
     this._options = AREA_LEVEL_3_JSON;
 
-    this.validateForm = this.fb.group({
-      storeName            : [ '', [ this.simplesService.validateRequired ] ],//店铺名称
-      areaName             : [ '', [ this.simplesService.addressValidator ] ],//店铺所在地区
-      areaCode             : [ '', [ this.simplesService.validateRequired ] ],//店铺所在区域编码
-      areaFullName         : [ '', [ this.simplesService.validateRequired ] ],//店铺所在区域全称
-      address              : [ '', [ this.simplesService.validateRequired ] ],//详细地址
-      storeZip             : [ '', [ this.simplesService.validateRequired ] ],//邮政编码
-      storeLabel           : [ '', [ this.simplesService.validateRequired ] ],//店铺logo
-      storeAvatar          : [ '', [ this.simplesService.validateRequired ] ],//店铺头像
-      storeQQ              : [ '', [ this.simplesService.validateRequired ] ],//QQ
-      storeWW              : [ '', [ this.simplesService.validateRequired ] ],//阿里旺旺
-      storePhone           : [ '', [ this.simplesService.validateRequired ] ]//商家电话
-    });
+    this.validateForm = {
+
+    }
+    /*this.fb.group({
+     storeName            : [ '', [ this.simplesService.validateRequired ] ],//店铺名称
+     areaName             : [ '', [ this.simplesService.addressValidator ] ],//店铺所在地区
+     areaCode             : [ '', [ this.simplesService.validateRequired ] ],//店铺所在区域编码
+     areaFullName         : [ '', [ this.simplesService.validateRequired ] ],//店铺所在区域全称
+     address              : [ '', [ this.simplesService.validateRequired ] ],//详细地址
+     storeZip             : [ '', [ this.simplesService.validateRequired ] ],//邮政编码
+     storeLabel           : [ '', [ this.simplesService.validateRequired ] ],//店铺logo
+     storeAvatar          : [ '', [ this.simplesService.validateRequired ] ],//店铺头像
+     storeQQ              : [ '', [ this.simplesService.validateRequired ] ],//QQ
+     storeWW              : [ '', [ this.simplesService.validateRequired ] ],//阿里旺旺
+     storePhone           : [ '', [ this.simplesService.validateRequired ] ]//商家电话
+     });*/
   }
 
   ngOnInit() {
@@ -65,9 +70,6 @@ export class DredgeComponent implements OnInit {
    */
   submitForm = ($event, value) => {
     $event.preventDefault();
-    for (const key in this.validateForm.controls) {
-     this.validateForm.controls[ key ].markAsDirty();
-     }
     console.log(value);
     console.log(this.validateForm);
   };
@@ -106,10 +108,10 @@ export class DredgeComponent implements OnInit {
   }
 
   /**
-   * 回到前一步
+   * 路由跳转
    */
-  skipTo(stepNum) {
-    this.simplesService.routerSkip(stepNum);
+  skipTo(stepName) {
+    this.simplesService.routerSkip(stepName);
   }
 
   getFormControl(name) {

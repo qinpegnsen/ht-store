@@ -1,10 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Page} from "../../../public/util/page";
-import {isUndefined} from "util";
 import {GoodsService} from "../goods.service";
 import {MainService} from "../../../public/service/main.service";
-import {SettingUrl} from "../../../public/setting/setting_url";
-import {AjaxService} from "../../../public/service/ajax.service";
 import {NzMessageService, NzModalService, NzNotificationService} from "ng-zorro-antd";
 import {Setting} from "../../../public/setting/setting";
 import {SkuGoodsComponent} from "../sku-goods/sku-goods.component";
@@ -20,15 +17,11 @@ export class ManageComponent implements OnInit {
   public goodsList: Page = new Page();
   public _loading = false;             //查询时锁屏
   public enumState = Setting.ENUMSTATE;
-  public currentModal;
-  public currentContent;
 
   public kindList;// 分类列表
   public goodsAudits: any;  // 商品审核状态列表
   public goodsState: any;  // 商品状态列表
   public isOwnPlats: any;  //是否自营列表
-  public curBaseCode: string;  // 当前商品基本编号
-  public curName: string;    // 当前商品名称
   public query = {
     kindId: '',
     goodsName: '',

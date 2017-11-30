@@ -28,8 +28,8 @@ export class AuditingComponent implements OnInit {
     /**
      * 组件跳转
      */
-    skipTo(stepNum:number){
-      this.simplesService.routerSkip(stepNum);
+    skipTo(stepName){
+      this.simplesService.routerSkip(stepName);
     }
 
   }
