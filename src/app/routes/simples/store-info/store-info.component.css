@@ -1,11 +1,39 @@
-dd{
+dd {
   height: 30px;
   line-height: 30px;
 }
-.a{
+
+.store-info-all {
+  background: #fff;
+  height: 1120px
+}
+
+.store-info {
+  margin: auto;
+  font-weight: 700
+}
+
+.store-info-one {
+  height: 189px
+}
+
+.store-info-two {
+  height: 168px
+}
+
+.store-info-three {
+  height: 230px
+}
+
+.store-info-four {
+  height: 260px
+}
+
+.store-info-border {
   padding: 0px 20px;
   font-size: 16px;
   border-left: 3px solid #f40;
   border-bottom: 1px dashed #e9e9e9;
-  font-weight: 600;margin: auto
+  font-weight: 600;
+  margin: auto
 }

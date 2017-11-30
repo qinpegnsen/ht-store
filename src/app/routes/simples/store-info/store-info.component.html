@@ -1,10 +1,10 @@
-<div class="w100" style="background:#fff;height:1120px">
+<div class="w100 store-info-all">
 
-  <div class="mb-20 pt-20 w90" style="margin: auto;font-size: 18px;font-weight: 700">
+  <div class="mb-20 pt-20 w90 font18 store-info">
     企业信息
   </div>
-  <div class="w100" style="height: 189px">
-    <p class="legend bb-dashed a w90">企业基本信息</p>
+  <div class="w100 store-info-one">
+    <p class="legend bb-dashed w90 store-info-border">企业基本信息</p>
     <dl class="w48 fl mt-15">
       <dd class="text-right strong">企业名称：</dd>
       <dd class="text-right strong">企业邮箱：</dd>
@@ -20,8 +20,8 @@
       <dd class="pl">{{storeInfo.idType}}</dd>
     </dl>
   </div>
-  <div class="w100" style="height: 168px">
-    <p class="legend bb-dashed a w90">企业法人信息</p>
+  <div class="w100 store-info-two">
+    <p class="legend bb-dashed w90 store-info-border">企业法人信息</p>
     <dl class="w48 fl mt-15">
       <dd class="text-right strong">法人姓名：</dd>
       <dd class="text-right strong">法人身份证号：</dd>
@@ -35,8 +35,8 @@
       <dd class="pl">{{storeInfo.idcardStartTime}}~{{storeInfo.idcardEndTime}}</dd>
     </dl>
   </div>
-  <div class="w100" style="height: 230px">
-    <p class="legend bb-dashed a w90">营业执照信息</p>
+  <div class="w100 store-info-three">
+    <p class="legend bb-dashed w90 store-info-border">营业执照信息</p>
     <dl class="w48 fl mt-15">
       <dd class="text-right strong">注册资本：</dd>
       <dd class="text-right strong">法定经营范围：</dd>
@@ -50,17 +50,20 @@
       <dd class="pl">{{storeInfo.businessSphere}}</dd>
       <dd class="pl">{{storeInfo.businessLicenceAreaName}}</dd>
       <dd class="pl">{{storeInfo.businessLicenceAddress}}</dd>
-      <dd class="pl">{{storeInfo.businessLicenceStart | date:"yyyy-MM-dd"}}~{{storeInfo.businessLicenceEnd | date:"yyyy-MM-dd"}}</dd>
+      <dd class="pl">{{storeInfo.businessLicenceStart | date:"yyyy-MM-dd"}}~{{storeInfo.businessLicenceEnd |
+        date:"yyyy-MM-dd"}}
+      </dd>
       <dd class="pl">
-        <img [src]="storeInfo.businessLicenceNumberElectronic" alt=""  onerror="javascript:this.src='../../../assets/img/dummy.png'"
+        <img [src]="storeInfo.businessLicenceNumberElectronic" alt=""
+             onerror="javascript:this.src='../../../assets/img/dummy.png'"
         >
       </dd>
     </dl>
   </div>
-  <div class="w100" style="height: 260px">
-    <p class="legend bb-dashed w90 a" style="">开户行信息</p>
+  <div class="w100 store-info-four">
+    <p class="legend bb-dashed w90 store-info-border" style="">开户行信息</p>
     <dl class="w48 fl mt-15">
-      <dd class="text-right strong" >银行开户名：</dd>
+      <dd class="text-right strong">银行开户名：</dd>
       <dd class="text-right strong">公司银行账号：</dd>
       <dd class="text-right strong">开户行支行名称：</dd>
       <dd class="text-right strong">开户支行银联号：</dd>
@@ -75,15 +78,16 @@
       <dd class="pl">{{storeInfo.bankCode}}</dd>
       <dd class="pl">{{storeInfo.bankAddress}}</dd>
       <dd class="pl">
-        <img [src]="storeInfo.bankLicenceElectronic" alt="" onerror="javascript:this.src='../../../assets/img/dummy.png'">
+        <img [src]="storeInfo.bankLicenceElectronic" alt=""
+             onerror="javascript:this.src='../../../assets/img/dummy.png'">
       </dd>
       <dd class="pl">{{storeInfo.isSettlementAccount}}</dd>
     </dl>
   </div>
   <div class="w100" style="height: 200px">
-    <p class="legend bb-dashed w90 a" style="">结算账户信息</p>
+    <p class="legend bb-dashed w90 store-info-border" style="">结算账户信息</p>
     <dl class="w48 fl mt-15">
-      <dd class="text-right strong" >结算银行开户名：</dd>
+      <dd class="text-right strong">结算银行开户名：</dd>
       <dd class="text-right strong">结算公司银行账号：</dd>
       <dd class="text-right strong">结算开户行支行名称：</dd>
       <dd class="text-right strong">结算开户支行银联号：</dd>
