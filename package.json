@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 192.168.10.117 --port 4000 --proxy-config proxy.conf.js",
+    "start": "ng serve --host 192.168.10.163 --port 4000 --proxy-config proxy.conf.js",
     "start:aot": "node --max-old-space-size=8192 ./node_modules/@angular/cli/bin/ng serve --host 192.168.10.163 --port 4000 --proxy-config proxy.conf.js -aot",
     "build": "ng build",
     "build:prod": "node --max-old-space-size=8192 ./node_modules/@angular/cli/bin/ng build --target=production --environment=prod",
@@ -32,7 +32,6 @@
     "ng2-file-upload": "^1.2.1",
     "ngx-echarts": "^1.2.4",
     "rxjs": "^5.5.2",
-    "save": "^2.3.1",
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.14"
   },

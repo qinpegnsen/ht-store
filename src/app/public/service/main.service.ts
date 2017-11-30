@@ -2,7 +2,8 @@ import {Util} from "../util/util";
 import {AjaxService} from "./ajax.service";
 import {SettingUrl} from "../setting/setting_url";
 import {isNullOrUndefined} from "util";
-import {AREA_LEVEL_2_JSON} from "./area_level_2";
+import {AREA_LEVEL_2_JSON} from "../util/area_level_2";
+
 declare var $: any;
 
 export class MainService {
@@ -80,41 +81,41 @@ export class MainService {
     return uid;
   }
 
-    /**
-     * 根据区域编码查询区域（2级）
-     * @param code  12位区域编码
-     * @returns {any}
-     */
-    public static getAreaByTwelveBitCode(code) {
-  let areaList = AREA_LEVEL_2_JSON;
-  let level = this.getLevelByCode(code);
-  if (level == 1) {
-    for (let levelOneItem of areaList) {
-      if (levelOneItem.areaCode == code) {
-        return levelOneItem;
-      }
-    }
-  } else if (level == 2) {
-    let parentCode = code.substring(0, 2) + '0000000000';
-    for (let area of areaList) {
-      if (area.areaCode === parentCode) {
-        for (let levelTwoItem of area.children) {
-          if (levelTwoItem.areaCode == code) return levelTwoItem;
+  /**
+   * 根据区域编码查询区域（2级）
+   * @param code  12位区域编码
+   * @returns {any}
+   */
+  public static getAreaByTwelveBitCode(code) {
+    let areaList = AREA_LEVEL_2_JSON;
+    let level = this.getLevelByCode(code);
+    if (level == 1) {
+      for (let levelOneItem of areaList) {
+        if (levelOneItem.areaCode == code) {
+          return levelOneItem;
         }
       }
+    } else if (level == 2) {
+      let parentCode = code.substring(0, 2) + '0000000000';
+      for (let area of areaList) {
+        if (area.areaCode === parentCode) {
+          for (let levelTwoItem of area.children) {
+            if (levelTwoItem.areaCode == code) return levelTwoItem;
+          }
+        }
+      }
+    } else {
+      return null
     }
-  } else {
-    return null
-  }
 
-}
+  }
 
   /**
    * 12位的区域编码根据code查询级别
    * @param areaCode
    * @returns {number}
    */
-    public static getLevelByCode(areaCode) {
+  public static getLevelByCode(areaCode) {
     let level = 0;
     if (isNullOrUndefined(areaCode)) {
       return level;
@@ -133,7 +134,7 @@ export class MainService {
    * @param data
    * @returns {any<T>}
    */
-  static getWeekListByMonth(data:any) {
+  static getWeekListByMonth(data: any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
