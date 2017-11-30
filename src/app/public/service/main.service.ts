@@ -131,8 +131,8 @@ export class MainService {
 
   /**
    * 获取指定年月下的周集合
-   * @param data
-   * @returns {any<T>}
+   * @param data 如 {queryYear:2017,queryMonth:02}
+   * @returns {any<T>} ["2017-01-30~2017-02-05", "2017-02-06~2017-02-12", "2017-02-13~2017-02-19", "2017-02-20~2017-02-26",…]
    */
   static getWeekListByMonth(data: any) {
     var defer = $.Deferred(); //封装异步请求结果

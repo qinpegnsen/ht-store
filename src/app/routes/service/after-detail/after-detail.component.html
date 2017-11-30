@@ -201,6 +201,7 @@
     <!--</div>-->
   <!--</div>-->
   <!--<form class="goods-audit panel panel-danger w96 m-auto mb-xl" (keydown.Enter)="false" *ngIf="type=='deal'">-->
+    <!--&lt;!&ndash;处理意见 start&ndash;&gt;-->
     <!--<fieldset class="p0 panel-body">-->
       <!--<legend class="m0 goods-audit-title">{{afterData.state=='DELIVERY'?'退还商品审核':'退款/退货申请处理'}}</legend>-->
       <!--&lt;!&ndash;未发货商品只能同意退款&ndash;&gt;-->
@@ -228,6 +229,9 @@
         <!--</tr>-->
       <!--</table>-->
     <!--</fieldset>-->
+    <!--&lt;!&ndash;处理意见 end&ndash;&gt;-->
+
+    <!--&lt;!&ndash;提交 start&ndash;&gt;-->
     <!--<fieldset class="pt-xl m0 text-center">-->
       <!--<button class="btn btn-green" type="button" *ngIf="afterData.returnType=='REFUND'" (click)="auditRefund()"-->
               <!--[disabled]="!opinion">-->
@@ -244,6 +248,8 @@
         <!--</button>-->
       <!--</ng-container>-->
     <!--</fieldset>-->
+    <!--&lt;!&ndash;提交 end&ndash;&gt;-->
+
   <!--</form>-->
 <!--</div>-->
 <!--<div class="btn btn-primary" (click)="back()">返回</div>-->

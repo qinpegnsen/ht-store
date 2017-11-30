@@ -122,8 +122,8 @@ export class Util {
   }
 
   /**
-   *最近十年
-   * @returns {Array}
+   *最近十年 (已当前的年份为起点，获取之前十年的信息)
+   * @returns {Array} ["2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008"]
    */
   public static tenYear = function () {
     let nowYear: number = new Date().getFullYear(), tenYearArr: Array<string> = new Array();
@@ -136,6 +136,7 @@ export class Util {
 
   /**
    * 获取月份
+   * @returns {Array} 如：["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
    */
   public static getMonth = function () {
     let monthArr: Array<string> = new Array();
