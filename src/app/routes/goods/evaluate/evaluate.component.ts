@@ -9,7 +9,6 @@ declare var $: any;
   styleUrls: ['./evaluate.component.css']
 })
 export class EvaluateComponent implements OnInit {
-  public detail = [];
   evalPage: Page = new Page();          //提现信息
   _loading = false;             //查询时锁屏
   public goodsName: string;     //评价的商品名称
