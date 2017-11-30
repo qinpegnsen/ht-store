@@ -81,6 +81,11 @@ export class MainComponent implements OnInit {
         url: "/store/order",
         children: [
           {
+            name: "待付款",
+            icon: "",
+            url: "/store/order/orderPayment",
+          },
+          {
             name: "待发货",
             icon: "",
             url: "/store/order/pendingShipment",

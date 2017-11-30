@@ -149,10 +149,18 @@ html, body {
   border-bottom: 1px solid #e1e1e1;
 }
 
-/*页面提示信息*/
+/*页面提示信息（黄色）*/
 .page-msg {
   background-color: #fffee5;
   border: 1px solid #f7dea3;
+  padding: 10px;
+  position: relative;
+  zoom: 1;
+}
+/*页面提示信息（红色）*/
+.page-msg-red {
+  background-color: #fef0ef;
+  border: 1px solid #fcdedc;
   padding: 10px;
   position: relative;
   zoom: 1;

@@ -8,6 +8,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../../shared/shared.module";
 import {OrderService} from "./order.service";
 import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { OrderPaymentComponent } from './order-payment/order-payment.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'complete', component:OrderCompleteComponent,children: [
     {path: 'orderDetail', component: OrderDetailComponent}
   ]},
+  {path: 'orderPayment', component:OrderPaymentComponent},
 ];
 
 @NgModule({
@@ -31,7 +33,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  declarations: [OrderPendingShipmentComponent, OrderBeenShippedComponent, OrderCancelComponent, OrderCompleteComponent, OrderDetailComponent],
+  declarations: [OrderPendingShipmentComponent, OrderBeenShippedComponent, OrderCancelComponent, OrderCompleteComponent, OrderDetailComponent, OrderPaymentComponent],
   providers: [
     OrderService
   ]
