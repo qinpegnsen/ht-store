@@ -103,6 +103,40 @@ export class MainComponent implements OnInit {
         ]
       },
       {
+        name: "售前售后",
+        icon: "customer-service",
+        url: "/store/service",
+        children: [
+          {
+            name: "退款",
+            icon: "",
+            url: "/store/service/refund",
+          },
+          {
+            name: "退货",
+            icon: "",
+            url: "/store/service/returnGoods",
+          }
+        ]
+      },
+      {
+        name: "红包",
+        icon: "red-envelope",
+        url: "/store/redPacket",
+        children: [
+          {
+            name: "红包投放记录",
+            icon: "",
+            url: "/store/redPacket/pushOrder",
+          },
+          {
+            name: "红包统计",
+            icon: "",
+            url: "/store/redPacket/statistics",
+          }
+        ]
+      },
+      {
         name: "提现与结算",
         icon: "pay-circle-o",
         url: "/store/cashSettle/cashSettle"
