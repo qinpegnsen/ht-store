@@ -10,11 +10,15 @@ import { OneComponent } from './publish/one/one.component';
 import { TwoComponent } from './publish/two/two.component';
 import { ThreeComponent } from './publish/three/three.component';
 import { FreightTemplateComponent } from './freight-template/freight-template.component';
+import { AddTemplateComponent } from './add-template/add-template.component';
+import {SessionService} from "./session.service";
 
 const routes: Routes = [
   {path: 'manage', component: ManageComponent},
   {path: 'eval', component: EvaluateComponent},
-  {path: 'freightTemplate', component: FreightTemplateComponent},
+  {path: 'freightTemplate', component: FreightTemplateComponent,children: [
+    {path: 'addTemplate', component: AddTemplateComponent}
+  ]},
   {path: 'publish', component: PublishComponent, children: [
     {path: '', redirectTo: 'one'},
     {path: 'one', component: OneComponent},
@@ -36,10 +40,12 @@ const routes: Routes = [
     PublishComponent,
     OneComponent,
     TwoComponent,
-    ThreeComponent
+    ThreeComponent,
+    AddTemplateComponent
   ],
   providers: [
     GoodsService,
+    SessionService
   ],
   entryComponents: [ SkuGoodsComponent ]
 })

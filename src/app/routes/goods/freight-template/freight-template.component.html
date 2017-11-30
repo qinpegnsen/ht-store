@@ -1,25 +1,56 @@
-<div class="page-msg-red">
-vdfkjvdfkovnm
+<!--顶部信息 start-->
+<div class="mb page-title">
+  <h3 class="fl">运费模板管理</h3>
+  <button class="fr m btn-danger" nz-button [nzGhost]="true" routerLink="addTemplate" [queryParams]="{linkType:'addArticle'}">
+    <span>新增运费模板</span>
+  </button>
 </div>
-<!--<nz-alert [nzType]="'error'" [nzMessage]="'操作提示：'"
-          [nzDescription]="'如果商品选择使用了配送规则，则该商品只售卖配送规则中指定的地区，运费为指定地区的运费，正在被商品使用的配送规则不允许删除'">
-</nz-alert>-->
-<div>
+<!--顶部信息 end-->
+
+<!--温馨提示 start-->
+<div class="page-msg-red">
+  <ul>
+    <li><h3>{{prompt.one}}：</h3></li>
+    <li>1. {{prompt.two}}</li>
+    <li>2. {{prompt.three}}</li>
+  </ul>
+</div>
+<!--温馨提示 end-->
+
+<!--运费模板table start-->
+<div *ngIf="showFreightList">
   <nz-table #nzTable
             [nzAjaxData]="tplList"
             [nzLoading]="_loading"
             (nzPageIndexChange)="queryTplList()"
             [nzIsPagination]="false"
             class="table-even-bg w100">
-
     <tbody nz-tbody>
     <tr nz-tbody-tr *ngFor="let organ of nzTable.data;let i = index">
       <td nz-td>
-        <div class="table-thead-header">{{organ.tplName}}</div>
+        <!--运费模板信息 start-->
+        <div class="table-thead-header fl">{{organ.tplName}}</div>
+        <!--运费模板信息 end-->
+
+        <!--操作按钮 start-->
+        <div class="fr mr-15">
+            <!--修改运费模板值按钮-->
+            <button nz-button title="修改"  class="btn-green">
+              <i class="anticon anticon-edit"></i>
+            </button>
+            <!--删除运费模板值按钮-->
+            <button  nz-button class="btn-warning"  title="删除">
+              <i class="anticon anticon-delete"></i>
+            </button>
+        </div>
+        <!--操作按钮 end-->
+
+
+        <!--运费模板值信息 start-->
         <table>
           <thead class="table-thead-header">
           <tr>
-            <th class="w45 main-color" >
+            <th class="w45 main-color">
               运送到
             </th>
             <th class="w15 text-center main-color">
@@ -28,13 +59,13 @@ vdfkjvdfkovnm
             <th class="w10 text-center main-color" *ngIf="organ.valuationType == 'NUM'">
               首件(件)
             </th>
-            <th  class="w10 text-center main-color" *ngIf="organ.valuationType == 'WEIGHT'">
+            <th class="w10 text-center main-color" *ngIf="organ.valuationType == 'WEIGHT'">
               首重(Kg)
             </th>
-            <th  class="w10 text-center main-color" *ngIf="organ.valuationType == 'VOLUME'">
+            <th class="w10 text-center main-color" *ngIf="organ.valuationType == 'VOLUME'">
               首体积(m³)
             </th>
-            <th class="w10 text-center main-color" >
+            <th class="w10 text-center main-color">
               运费(元)
             </th>
             <th class="w10 text-center main-color" *ngIf="organ.valuationType == 'NUM'">
@@ -43,10 +74,10 @@ vdfkjvdfkovnm
             <th class="w10 text-center main-color" *ngIf="organ.valuationType == 'WEIGHT'">
               续重(Kg)
             </th>
-            <th class="w10 text-center main-color"  *ngIf="organ.valuationType == 'VOLUME'">
+            <th class="w10 text-center main-color" *ngIf="organ.valuationType == 'VOLUME'">
               续体积(m³)
             </th>
-            <th  class="w10 text-center main-color">
+            <th class="w10 text-center main-color">
               运费(元)
             </th>
           </tr>
@@ -64,8 +95,14 @@ vdfkjvdfkovnm
           </tr>
           </tbody>
         </table>
+        <!--运费模板值信息 end-->
       </td>
     </tr>
     </tbody>
   </nz-table>
 </div>
+<!--运费模板table end-->
+
+<!--路由嵌套 begin-->
+<router-outlet (activate)="isactivate($event)" (deactivate)='isDeactivate($event)'></router-outlet>
+<!--路由嵌套 end-->

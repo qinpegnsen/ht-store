@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-order-detail',
@@ -8,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class OrderDetailComponent implements OnInit {
   current = 0;//步骤条
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
   }
-
+  /**
+   * 返回上一级页面
+   */
+  backOrderList() {
+    this.router.navigate(['/store/order/pendingShipment'])
+  }
 }

@@ -24,7 +24,9 @@ const routes: Routes = [
   {path: 'complete', component:OrderCompleteComponent,children: [
     {path: 'orderDetail', component: OrderDetailComponent}
   ]},
-  {path: 'orderPayment', component:OrderPaymentComponent},
+  {path: 'orderPayment', component:OrderPaymentComponent,children: [
+    {path: 'orderDetail', component: OrderDetailComponent}
+  ]},
 ];
 
 @NgModule({

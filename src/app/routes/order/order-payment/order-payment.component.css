@@ -1,0 +1,89 @@
+.table-head{
+  height: 40px;
+  line-height: 40px;
+  background-color: #fafafa;;
+}
+.inline-block {
+  display: inline-block;
+}
+.pending-group .pending-title {
+  width: 40%;
+  line-height: 36px;
+  display: inline-block;
+}
+.pending-group .pending-main {
+  width: 60%;
+}
+.relative {
+  position: relative;
+}
+.order-space {
+  height: 10px;
+}
+.tbody-tr-head{
+  height: 40px;
+  background: #f5f5f5;
+}
+.tbody-tr-head span{
+  line-height: 40px;
+}
+.goods-img {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.hover-img{
+  width: 180px !important;
+  max-width: 220px;
+  max-height: 220px;
+  position: fixed;
+  z-index: 100;
+  display: none;
+  -webkit-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 2px 2px 5px 1px  rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 5px 1px  rgba(0, 0, 0, 0.5);
+}
+.szh-buyer-info {
+  display: none;
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #FEC500;
+  background-color: #FFFCE9;
+  border-radius: 4px;
+  position: absolute;
+  z-index: 2;
+  right: 32%;
+  box-shadow: 1px 1px 1px 3px #FFFCE9;
+}
+.szh-buyer-info .info-con {
+  padding: 10px;
+  width: 190px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.szh-buyer-info .info-con dl{
+  margin-bottom: 3px;
+  font-size: 0;
+}
+.szh-buyer-info .info-con dt, dd{
+  font-size: 12px;
+  display: inline-block;
+  line-height: 18px;
+}
+.szh-buyer-info .info-con dt{
+  font-weight: normal;
+  text-align: right;
+  width: 23%;
+  margin-right: 2%;
+}
+.szh-buyer-info .info-con dd{
+  width: 75%;
+  vertical-align: top;
+  text-align: left;
+}
+.gray-color{
+  color: #999;
+}
+.p-hover:hover{
+  color: #e82d4d;
+}
