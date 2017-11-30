@@ -1,6 +1,6 @@
 <div *ngIf="showList">
   <div class="panel panel-default">
-    <div class="page-msg m">
+    <div class="page-msg-red m">
       <p class="font16 mb">操作提示</p>
       <ul>
         <li *ngFor="let item of guideLang">{{item}}</li>
@@ -98,7 +98,7 @@
         <td nz-td class="text-center">{{item.state | stateName:'1602'}}</td>
         <td nz-td class="text-center">
           <button nz-button class="mt-5" *ngIf="item.state==enumState.afterService.wait" routerLink="afterDetail"
-                  [queryParams]="{afterNo:item.afterNo,type:'deal'}" title="处理" routerLink="edit" class="btn-blue">
+                  [queryParams]="{afterNo:item.afterNo,type:'deal'}" title="处理" class="btn-blue">
             <i class="anticon anticon-edit"></i>
           </button>
           <button nz-button title="详情" class="btn-green" routerLink="afterDetail"
