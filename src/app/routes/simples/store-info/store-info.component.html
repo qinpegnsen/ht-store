@@ -1,4 +1,4 @@
-<div class="w100" style="background:#fff;height:918px">
+<div class="w100" style="background:#fff;height:1120px">
 
   <div class="mb-20 pt-20 w90" style="margin: auto;font-size: 18px;font-weight: 700">
     企业信息
@@ -13,11 +13,11 @@
       <dd class="text-right strong">证件类型：</dd>
     </dl>
     <dl class="w52 fr mt-15">
-      <dd class="pl">欢迎来到divcss5</dd>
-      <dd class="pl">这里有，html教程</dd>
-      <dd class="pl">这里有，css模块</dd>
-      <dd class="pl">这里有，css教程</dd>
-      <dd class="pl">这里有，css教程</dd>
+      <dd class="pl">{{storeInfo.epName}}</dd>
+      <dd class="pl">{{storeInfo.contactsEmail}}</dd>
+      <dd class="pl">{{storeInfo.contactsName}}</dd>
+      <dd class="pl">{{storeInfo.contactsPhone}}</dd>
+      <dd class="pl">{{storeInfo.idType}}</dd>
     </dl>
   </div>
   <div class="w100" style="height: 168px">
@@ -29,10 +29,10 @@
       <dd class="text-right strong">法人身份证有效期：</dd>
     </dl>
     <dl class="w52 fr mt-15">
-      <dd class="pl">欢迎来到divcss5</dd>
-      <dd class="pl">这里有，html教程</dd>
-      <dd class="pl">这里有，css模块</dd>
-      <dd class="pl">这里有，css教程</dd>
+      <dd class="pl">{{storeInfo.legalPersonName}}</dd>
+      <dd class="pl">{{storeInfo.legalPersonIdcard}}</dd>
+      <dd class="pl">{{storeInfo.isForever}}</dd>
+      <dd class="pl">{{storeInfo.idcardStartTime}}~{{storeInfo.idcardEndTime}}</dd>
     </dl>
   </div>
   <div class="w100" style="height: 230px">
@@ -46,12 +46,15 @@
       <dd class="text-right strong">营业执照电子版：</dd>
     </dl>
     <dl class="w52 fr mt-15">
-      <dd class="pl">欢迎来到divcss5</dd>
-      <dd class="pl">这里有，html教程</dd>
-      <dd class="pl">这里有，css模块</dd>
-      <dd class="pl">这里有，css教程</dd>
-      <dd class="pl">这里有，css教程</dd>
-      <dd class="pl">这里有，css教程</dd>
+      <dd class="pl">{{storeInfo.businessRegisteredCapital}}</dd>
+      <dd class="pl">{{storeInfo.businessSphere}}</dd>
+      <dd class="pl">{{storeInfo.businessLicenceAreaName}}</dd>
+      <dd class="pl">{{storeInfo.businessLicenceAddress}}</dd>
+      <dd class="pl">{{storeInfo.businessLicenceStart | date:"yyyy-MM-dd"}}~{{storeInfo.businessLicenceEnd | date:"yyyy-MM-dd"}}</dd>
+      <dd class="pl">
+        <img [src]="storeInfo.businessLicenceNumberElectronic" alt=""  onerror="javascript:this.src='../../../assets/img/dummy.png'"
+        >
+      </dd>
     </dl>
   </div>
   <div class="w100" style="height: 260px">
@@ -66,13 +69,33 @@
       <dd class="text-right strong">是否为结算账户：</dd>
     </dl>
     <dl class="w52 fr mt-15">
-      <dd class="pl">欢迎来到divcss5</dd>
-      <dd class="pl">这里有，html教程</dd>
-      <dd class="pl">这里有，css模块</dd>
-      <dd class="pl">这里有，css教程</dd>
-      <dd class="pl">这里有，html教程</dd>
-      <dd class="pl">这里有，css模块</dd>
-      <dd class="pl">这里有，css教程</dd>
+      <dd class="pl">{{storeInfo.businessSphere}}</dd>
+      <dd class="pl">{{storeInfo.bankaAccountNumber}}</dd>
+      <dd class="pl">{{storeInfo.bankName}}</dd>
+      <dd class="pl">{{storeInfo.bankCode}}</dd>
+      <dd class="pl">{{storeInfo.bankAddress}}</dd>
+      <dd class="pl">
+        <img [src]="storeInfo.bankLicenceElectronic" alt="" onerror="javascript:this.src='../../../assets/img/dummy.png'">
+      </dd>
+      <dd class="pl">{{storeInfo.isSettlementAccount}}</dd>
     </dl>
   </div>
+  <div class="w100" style="height: 200px">
+    <p class="legend bb-dashed w90 a" style="">结算账户信息</p>
+    <dl class="w48 fl mt-15">
+      <dd class="text-right strong" >结算银行开户名：</dd>
+      <dd class="text-right strong">结算公司银行账号：</dd>
+      <dd class="text-right strong">结算开户行支行名称：</dd>
+      <dd class="text-right strong">结算开户支行银联号：</dd>
+      <dd class="text-right strong">结算开户银行地址：</dd>
+    </dl>
+    <dl class="w52 fr mt-15">
+      <dd class="pl">{{storeInfo.settlementBankAccountName}}</dd>
+      <dd class="pl">{{storeInfo.settlementBankAccountNumber}}</dd>
+      <dd class="pl">{{storeInfo.settlementBankAame}}</dd>
+      <dd class="pl">{{storeInfo.settlementBankCode}}</dd>
+      <dd class="pl">{{storeInfo.settlementBankAddress}}</dd>
+    </dl>
+  </div>
+
 </div>

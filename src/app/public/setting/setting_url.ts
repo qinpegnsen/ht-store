@@ -91,6 +91,13 @@ export class SettingUrl {
     order:{
       queryOrdAdmin: '/agentOrd/queryAgentOrdAdmin',//(get)查询订单管理中的待发货订单
       getKeywords: '/basicExpress/queryBasicExpressIsUseList',//(get)查询物流公司列表
+    },
+    /**
+     *查询企业和店铺信息
+     */
+    store:{
+      company:'/enterprise/loadByEpCode'//查询企业信息
     }
+
   };
 }

@@ -34,7 +34,7 @@ export class EvaluateComponent implements OnInit {
     $.when(GoodsService.settleList(me.evalPage.params)).done(data => {
       me._loading = false //解除锁屏
       if (data) me.evalPage = data; //赋值
-      console.log("█ me.evalPage ►►►", me.evalPage);
+      // console.log("█ me.evalPage ►►►", me.evalPage);
     })
   };
 
@@ -45,21 +45,5 @@ export class EvaluateComponent implements OnInit {
     this.router.navigate(['/store/goods/manage'])
   }
 
-  /**
-   * 点击鼠标出现大图
-   */
-  showImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'block';
-  }
-
-  /**
-   * 隐藏大图
-   * @param event
-   */
-  hideImg(event) {
-    let target = event.target;
-    target.style.display = 'none';
-  }
 
 }

@@ -7,7 +7,7 @@ import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {NzNotificationService} from "ng-zorro-antd";
 import {StepsComponent} from "./settle-steps/steps.component";
-
+declare var $: any;
 @Injectable()
 export class SimplesService {
 
@@ -170,5 +170,24 @@ export class SimplesService {
     }
   };
 
+  /**
+   * 查询结算信息列表
+   * @param data （查询参数）
+   */
+   static cashSettleList(data:any){
+    const me = this;
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
+    AjaxService.post({
+      url: SettingUrl.URL.store.company,
+      data: data,
+      async: false,
+      success: (data) => {
+        console.log("█ 456545 ►►►",  456545);
+        if (data.success) defer.resolve(data.data);
+      }
+    });
+    return defer.promise(); //返回异步请求休息
+  }
 
 }
