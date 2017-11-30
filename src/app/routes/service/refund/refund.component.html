@@ -99,9 +99,19 @@
       <td nz-td class="text-center">{{item.createTime}}</td>
       <td nz-td class="text-center">{{item.state | stateName:'1602'}}</td>
       <td nz-td class="text-center">
-        <button nz-button [nzType]="'primary'" class="pr8">
-          <i class="anticon anticon-search"></i><span></span>
+
+
+
+          <button nz-button class="mt-5" title="处理" routerLink="edit" class="btn-blue"
+                 >
+            <i class="anticon anticon-edit"></i>
+          </button>
+        <button nz-button title="详情" routerLink="detail" class="btn-green"
+                >
+          <i class="anticon anticon-info-circle-o"></i>
         </button>
+
+
       </td>
     </tr>
     <tr nz-tbody-tr *ngIf="detail[i]">
