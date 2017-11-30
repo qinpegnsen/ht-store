@@ -6,7 +6,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AngularEchartsModule} from "ngx-echarts";
 import {StateNamePipe} from "../public/pipes/state-name.pipe";
 import {ImgPreviewPipe} from "../public/pipes/img-preview.pipe";
-import {MoneyPipe} from "../public/pipes/money.pipe";
+import {ImgSizePipe} from "../public/pipes/img-size.pipe";
 import {Level2AreaNamePipe} from "../public/pipes/level-2-area-name.pipe";
 
 @NgModule({
@@ -20,7 +20,7 @@ import {Level2AreaNamePipe} from "../public/pipes/level-2-area-name.pipe";
   declarations: [
     StateNamePipe,          //将状态值转为对应状态名得管道
     ImgPreviewPipe,          //本地图片上传预览管道
-    MoneyPipe,               //金额格式化
+    ImgSizePipe,             //设置图片大小
     Level2AreaNamePipe       //12位地区编码转化地区名称管道
   ],
   providers: [],
@@ -33,7 +33,7 @@ import {Level2AreaNamePipe} from "../public/pipes/level-2-area-name.pipe";
     NgZorroAntdModule,      //zorroUI库
     StateNamePipe,          //将状态值转为对应状态名得管道
     ImgPreviewPipe,         //本地图片上传预览管道
-    MoneyPipe,              //金额格式化
+    ImgSizePipe,            //设置图片大小
     Level2AreaNamePipe      //12位地区编码转化地区名称管道
   ]
 })

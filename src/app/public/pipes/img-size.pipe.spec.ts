@@ -1,8 +1,8 @@
-import { MoneyPipe } from './money.pipe';
+import { ImgSizePipe } from './img-size.pipe';
 
 describe('MoneyPipe', () => {
   it('create an instance', () => {
-    const pipe = new MoneyPipe();
+    const pipe = new ImgSizePipe();
     expect(pipe).toBeTruthy();
   });
 });
