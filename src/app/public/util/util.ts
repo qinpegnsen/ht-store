@@ -4,8 +4,6 @@ import {isNullOrUndefined, isUndefined} from "util";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
 import {PatternService} from "../service/pattern.service";
-import {SettingUrl} from "../setting/setting_url";
-import {AjaxService} from "../service/ajax.service";
 
 declare var $: any;
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MainService} from "../../../public/service/main.service";
 import {Setting} from "../../../public/setting/setting";
 import {Page} from "../../../public/util/page";
@@ -14,11 +14,13 @@ declare var $: any;
 export class RefundComponent implements OnInit {
 
   public refundOrderPage: Page = new Page();          //退款订单的数据
+  public showList: boolean = true;                   //是否显示父组件
   public detail = [];                                 //tr 的详情,
-  public _loading: boolean=false;                    //查询时锁屏,默认关闭
+  public _loading: boolean = false;                    //查询时锁屏,默认关闭
   public saleAfterStates: any;                        //售后单状态数据
   public isReceiveList: any;                          //是否收货数据
-  public guideLang: any=Setting.PAGEMSG.service.refund;//引导语
+  public enumState = Setting.ENUMSTATE;               //定义枚举状态
+  public guideLang: any = Setting.PAGEMSG.service.refund;//引导语
   public query = {
     saleAfterState: '',//当前的售后单的状态
     isReceive: '',     //是否收到货
@@ -27,7 +29,8 @@ export class RefundComponent implements OnInit {
     afterNo: null,
     searchType: 'afterNo',
   }; // 查询条件
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     let me = this;
@@ -66,14 +69,14 @@ export class RefundComponent implements OnInit {
    * @param curPage
    */
   public queryOrdList() {
-    this._loading=true;//锁屏
+    this._loading = true;//锁屏
     this.refundOrderPage.params = { //查询参数
       curPage: this.refundOrderPage.curPage, //目标页码
       pageSize: this.refundOrderPage.pageSize //每页条数
     };
     $.when(ServiceService.queryRefundOrd(this.refundOrderPage.params)).done(data => {
-      this._loading = false ;//解除锁屏
-      if(data) this.refundOrderPage = data; //赋值
+      this._loading = false;//解除锁屏
+      if (data) this.refundOrderPage = data; //赋值
     })
   }
 
@@ -93,5 +96,22 @@ export class RefundComponent implements OnInit {
   hideImg(event) {
     let target = event.target.nextElementSibling;
     target.style.display = 'none';
+  }
+
+  /**
+   * 子组件加载时
+   * @param event
+   */
+  activate(event) {
+    this.showList = false;
+  }
+
+  /**
+   * 子组件注销时
+   * @param event
+   */
+  onDeactivate(event) {
+    this.showList = true;
+    if (event.refresh) this.queryOrdList();
   }
 }

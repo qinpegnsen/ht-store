@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
+import {Location}from '@angular/common';
+import {isNullOrUndefined} from "util";
+import {ServiceService} from "../service.service";
+import {MainService} from "../../../public/service/main.service";
+import {Setting} from "../../../public/setting/setting";
+declare var $: any;
 
 @Component({
   selector: 'app-after-detail',
@@ -8,9 +15,105 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class AfterDetailComponent implements OnInit {
 
-  constructor() { }
+  public enumState = Setting.ENUMSTATE;               //定义枚举状态
+  public type: string;             //类型,处理/查看详情
+  public parentPath: string;       //类型,处理/查看详情
+  public afterNo: string;          //售后编码
+  public LogisticsData: any;       //退货物流信息
+  public afterData: any;           //售后详情数据
+  public afterTailList: any;       //查看售后单跟踪信息
+  public opinion: string;          //审核意见
+  public goodsAudits: any;         //商品审核是否通过枚举
+  public isPass: string = this.enumState.yes;     //是否同意退货
+  public isAgree: string = this.enumState.yes;    //是否同意退货
+  public expressData: any;          //获取快递的公司和单号
+  public refresh: boolean;          //父组件是否需要刷新
 
-  ngOnInit() {
+
+  constructor(public router: Router,
+              public location: Location,
+              public route: ActivatedRoute) {
   }
 
+  ngOnInit() {
+    let me = this;
+    me.type = me.route.snapshot.queryParams['type'];
+    me.afterNo = me.route.snapshot.queryParams['afterNo'];
+    let data = {afterNo: me.afterNo};
+    $.when(ServiceService.loadAfterTail(data)).done(data => {
+      if (data) me.LogisticsData = data;
+    });
+    me.goodsAudits = MainService.getEnumDataList('1001');  // 商品审核是否通过
+    $.when(ServiceService.loadReqByAfterNo(data)).done(data => {
+      if (data) me.afterData = data;
+    });
+    $.when(ServiceService.loadAfterTailList(data)).done(data => {
+      if (data) me.afterTailList = data;
+    });
+    if (isNullOrUndefined(me.afterData)) me.afterData = null;
+  }
+
+  /**
+   * 审核退款申请
+   */
+  auditRefund() {
+    let me = this;
+    let data = {
+      afterNo: me.afterData.afterNo,
+      opinion: me.opinion,
+      isAgree: me.isAgree
+    }
+    ServiceService.agreeRefundMoney(data);
+    me.refresh = true;
+  }
+
+  /**
+   * 审核退货申请
+   */
+  auditReturn() {
+    let me = this;
+    let data = {
+      afterNo: me.afterData.afterNo,
+      opinion: me.opinion,
+      isAgree: me.isAgree
+    };
+    ServiceService.dealReturnGoods(data);
+    me.refresh = true;
+  }
+
+  /**
+   * 审核退货商品
+   */
+  auditReturnGoods() {
+    let me = this;
+    let data = {
+      afterNo: me.afterData.afterNo,
+      opinion: me.opinion,
+      isPass: me.isPass
+    };
+    ServiceService.checkRefundGoods(data);
+    me.refresh = true;
+  }
+
+  /**
+   * 鼠标放在图片上时大图随之移动
+   */
+  showImg(event) {
+    let target = event.target.nextElementSibling;
+    target.style.display = 'block';
+    target.style.top = (event.clientY + 15) + 'px';
+    target.style.left = (event.clientX + 20) + 'px';
+  }
+
+  /**
+   * 鼠标离开时大图随之隐藏
+   */
+  hideImg(event) {
+    let target = event.target.nextElementSibling;
+    target.style.display = 'none';
+  }
+
+  back() {
+    this.location.back();
+  }
 }

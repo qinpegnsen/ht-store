@@ -60,7 +60,15 @@ export class Setting {
     papersType: {
       normal: 'NORMAL', //普通营业执照
       unity: 'UNITY'    //多证合一营业执照
-    }
+    },
+    afterService: {
+      wait: 'WAIT', //申请已受理
+      agree: 'AGREE',   //申请通过
+      reject: 'REJECT',//申请未通过
+      delivery: 'DELIVERY',//用户已发出
+      checkFails: 'CHECK_FAILS',//验货不通过
+      done: 'DONE',//退款完成
+    },//售后服务状态
   };
 
   //數據字典健名

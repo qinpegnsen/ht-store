@@ -43,7 +43,13 @@ export class SettingUrl {
      * 售后接口
      */
     after:{
-      RefundOrd: '/after/queryAfterGoodsReqPages',//查询退款订单
+      RefundOrd: '/after/queryAfterGoodsReqPages',//查询退款订单列表
+      loadAfterTail: '/after/loadAfterTail',//根据售后编号查询物流信息
+      loadReqByAfterNo: '/after/loadReqByAfterNo',//根据售后编码查询详情
+      loadAfterTailList: '/after/loadAfterTailList',//根据售后编号查询物流信息
+      agreeRefundMoney: '/after/agreeRefundMoney',//平台处理用户的退款申请(同意/驳回)
+      dealReturnGoods: '/after/dealReturnGoods',//平台处理用户的退货申请(同意/驳回)
+      checkRefundGoods: '/after/checkRefundGoods',//平台验收用户退货(通过/驳回)
     },
     /**
      * 统计接口
