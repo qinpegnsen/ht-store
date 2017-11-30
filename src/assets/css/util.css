@@ -92,6 +92,14 @@
 /*清除浮动*/
 .float-none{float: none;}
 
+/*浮动样式*/
+.pull-right {
+  float: right !important;
+}
+.pull-left {
+  float: left !important;
+}
+
 /*字体颜色*/
 .color-a{
   color: #108ee9;
@@ -157,6 +165,7 @@
 /*信息位置*/
 .text-center{text-align: center !important;}
 .text-right{text-align: right !important;}
+.text-left{text-align: left !important;}
 
 /*位置定位*/
 .relative{position: relative;}

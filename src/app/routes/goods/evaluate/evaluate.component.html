@@ -1,4 +1,3 @@
-<!--提现详情 -- start-->
 <div>
   <div class="font16 mb-20">
     <span>评价列表</span>
@@ -14,43 +13,58 @@
             [nzTotal]="evalPage.totalRow"
             [(nzPageIndex)]="evalPage.curPage"
             (nzPageIndexChange)="qeuryEvalData()"
-            [(nzPageSize)]="evalPage.pageSize">
+            [(nzPageSize)]="evalPage.pageSize"
+            class="table-even-bg">
     <tbody>
     <tr class="b" *ngFor="let data of nzTable.data;let i = index">
-      <td class="w100 mb-15">
-        <div class="eval-head bg-f8">
-          <!--<span class="fl pl-20">评价商品：{{data.goodsName}}</span>-->
-          <span class="fl pl-20">评分：
-              <nz-rate [ngModel]="data.commentStar" nzAllowHalf [nzDisabled]="true" class="eval-score"></nz-rate>
-          </span>
+      <td class="w100">
+        <div class="tbody-start br bl bt">
+          <span class="fl pl-20">评分:
+            <nz-rate [ngModel]="data.commentStar" nzAllowHalf [nzDisabled]="true" class="eval-score"></nz-rate>
+            </span>
           <span class="fr pr-20">评价时间：{{data.createTime}}</span>
         </div>
-        <div class="w100 b eval-border mb-20">
-      <td class="relative">
-        <div class="inline-block fl text-center eval-user-img pt-15">
-        <i class="icon icon-user font30"></i>
-          <p class="">{{data.custName}}</p>
-        </div>
+        <table class="w100 b mb-20">
+          <tr>
+            <!--买家信息 --start -->
+            <td class="w5 text-center " [attr.rowspan]="data.commentGoodsPicList.length">
+              <span class="">
+                <i class="icon icon-user font30"></i>
+              </span><br>
+              <span class="">{{data.custName}}</span>
+            </td>
+            <!--买家信息  --end  -->
+            <td class="relative w40 p bl">
+              <div class="fl pl pt">
+                <!--评价内容 --start -->
+                <p><span>订单编号：</span><span class="font14">{{data.ordno}}</span></p>
+                <div>
+                  <p><span class="font14">{{data.commentTextAfter}}</span></p>
+                  <p><span class="font14" *ngFor="let eval of data.commentGoodsPicList;let i = index">
+                    <img [src]="eval.pic" class="good-img" onerror="javascript:this.src='../../../assets/img/dummy.png'"
+                         alt="" *ngIf="eval.isAfter=='N'" (click)="showImg($event)" (dblclick)="hideImg($event)">
+                    <img [src]="eval.pic" class="click-img"
+                         onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="" *ngIf="eval.isAfter=='N'">
+                  </span></p>
+                  <p>
+                </div>
+                <!-- 评价内容  --end -->
+                <!--追评内容 --start -->
+                <div>
+                  <p>追平内容：</p>
+                  <p><span class="font14">{{data.commentText}}</span></p>
+                  <p><span class="font14" *ngFor="let eval of data.commentGoodsPicList;let j = index">
+                     <img [src]="eval.pic" class="good-img"
+                          onerror="javascript:this.src='../../../assets/img/dummy.png'" *ngIf="eval.isAfter=='Y'"
+                          alt=""></span></p>
+                </div>
+                <!--追评内容  --end  -->
+              </div>
+            </td>
+          </tr>
+        </table>
       </td>
-      <td class="w100 text-center eval-bl">
-        <div class="fl pl ">
-          <div class="eval-conment pt-5 ">
-            <span>订单:{{data.ordno}}</span>
-          </div>
-          <div class="eval-conment pt-5">
-            <span>{{data.commentText}}</span>
-          </div>
-          <div class="fl pl pt-5 pb-5" *ngFor="let comment of data.commentGoodsPicList">
-            <img [src]="comment.pic" class="good-img"
-                 onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
-          </div>
-        </div>
-      </td>
+    </tr>
+    </tbody>
+  </nz-table>
 </div>
-</td>
-</tr>
-</tbody>
-</nz-table>
-<!--结算表格 --end -->
-</div>
-<!--提现详情 -- end-->

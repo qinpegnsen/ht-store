@@ -14,6 +14,7 @@ declare var $: any;
 export class RefundComponent implements OnInit {
 
   public refundOrderPage: Page = new Page();    //退款订单的数据
+  public detail = [];                           //tr 的详情,
   public _loading: boolean=false;              //查询时锁屏,默认关闭
   public saleAfterStates: any;                  //售后单状态数据
   public isReceiveList: any;                     //是否收货数据
@@ -51,6 +52,14 @@ export class RefundComponent implements OnInit {
   }
 
   /**
+   * 当点击tr的时候，让隐藏的tr出来
+   */
+  showDetail(index) {
+    if (this.detail[index]) this.detail[index] = false;
+    else this.detail[index] = true;
+  }
+
+  /**
    * 查询列表
    * @param event
    * @param curPage
@@ -67,5 +76,21 @@ export class RefundComponent implements OnInit {
     })
   }
 
+  /**
+   * 鼠标放在图片上时大图随之移动
+   */
+  showImg(event) {
+    let target = event.target.nextElementSibling;
+    target.style.display = 'block';
+    target.style.top = (event.clientY + 15) + 'px';
+    target.style.left = (event.clientX + 20) + 'px';
+  }
 
+  /**
+   * 鼠标离开时大图随之隐藏
+   */
+  hideImg(event) {
+    let target = event.target.nextElementSibling;
+    target.style.display = 'none';
+  }
 }

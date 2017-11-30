@@ -4,6 +4,8 @@ import {isNullOrUndefined, isUndefined} from "util";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
 import {PatternService} from "../service/pattern.service";
+import {SettingUrl} from "../setting/setting_url";
+import {AjaxService} from "../service/ajax.service";
 
 declare var $: any;
 
@@ -17,11 +19,11 @@ export class Util {
    * 请保证这些值与下面具体校验方法中的参数返回字段key相同
    **/
   public static validate = {
-    isPhone:  'phone',
-    isEmail:  'email',
-    isPwd:  'pwd',
-    isSmsCode:  'smsCode',
-    isIdCard:  'idCard',
+    isPhone: 'phone',
+    isEmail: 'email',
+    isPwd: 'pwd',
+    isSmsCode: 'smsCode',
+    isIdCard: 'idCard',
   }
 
   constructor(public patterns: PatternService) {
@@ -124,11 +126,11 @@ export class Util {
    * @returns {Array}
    */
   public static tenYear = function () {
-    let nowYear: number = new Date().getFullYear(),tenYearArr:Array<string> = new Array();
+    let nowYear: number = new Date().getFullYear(), tenYearArr: Array<string> = new Array();
     for (let i = 0; i < 10; i++) {
       tenYearArr.push(nowYear.toString());
       nowYear--;
-    };
+    }
     return tenYearArr;
   }
 
@@ -142,6 +144,36 @@ export class Util {
       else monthArr.push((i + 1).toString());
     }
     return monthArr;
+  }
+
+  /**
+   * 获取指定年月下的周集合
+   * @param data
+   * @returns {any<T>}
+   */
+  public static getWeekListByMonth(data: any) {
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
+    AjaxService.get({
+      url: SettingUrl.URL.statistical.getWeekList,
+      data: data,
+      success: (data) => {
+        if (data.success) defer.resolve(data.data);
+      }
+    });
+    return defer.promise(); //返回异步请求休息
+  }
+
+  /**
+   * 转换区域数据格式，用于级联选择组件
+   */
+  public static transAreas(areas: Array<any>) {
+    areas.forEach(res => {
+      if (res.value) return;
+      res.value = res.areaCode;
+      res.label = res.areaName;
+      if (res.children) this.transAreas(res.children); else res.isLeaf = true;
+    })
   }
 
   /**
@@ -188,9 +220,9 @@ export class Util {
    */
   public static pwdValidator = (control: FormControl): any => {
     if (!control.value) {
-      return { required: true }
+      return {required: true}
     } else if (!PatternService.PWD_REGEXP.test(control.value)) {
-      return { pwd: true, error: true }
+      return {pwd: true, error: true}
     }
   };
 

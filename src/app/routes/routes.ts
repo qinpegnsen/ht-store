@@ -11,7 +11,7 @@ export const routes = [
       {path: 'home', loadChildren: './home/home.module#HomeModule'},
       {path: 'redPacket', loadChildren: './red-packet/red-packet.module#RedPacketModule'},
       {path: 'service', loadChildren: './service/service.module#ServiceModule'},
-      {path: 'cashSettle', loadChildren: './cash-settle/cash-settle.module#CashSettleModule'},
+      {path: 'cashSettle', loadChildren: './cash-settle-steps/cash-settle-steps.module#CashSettleModule'},
       {path: 'order', loadChildren: './order/order.module#OrderModule'},
       {path: 'goods', loadChildren: './goods/goods.module#GoodsModule'}
     ]

@@ -18,11 +18,12 @@
           <nz-select class="w100" name="saleAfter" [(ngModel)]="query.saleAfterState" [nzSize]="'large'"
                      (ngModelChange)="queryOrdList()">
             <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
-            <nz-option
-              *ngFor="let item of saleAfterStates"
-              [nzLabel]="item.val"
-              [nzValue]="item.key">
-            </nz-option>
+            <ng-container *ngFor="let item of saleAfterStates">
+              <nz-option *ngIf="item.key!='CHECK_FAILS' && item.key!='DELIVERY'"
+                         [nzLabel]="item.val"
+                         [nzValue]="item.key">
+              </nz-option>
+            </ng-container>
           </nz-select>
         </div>
       </div>
@@ -69,6 +70,7 @@
   </div>
   <!--搜索 end-->
 </div>
+
 <nz-table #nzTable
           [nzAjaxData]="refundOrderPage.voList"
           [nzLoading]="_loading"
@@ -78,7 +80,7 @@
           [(nzPageSize)]="refundOrderPage.pageSize">
   <thead nz-thead>
   <tr>
-    <th nz-th [nzExpand]="true"></th>
+    <th nz-th class="text-center"><span></span></th>
     <th nz-th class="text-center"><span>退单单号</span></th>
     <th nz-th class="text-center"><span>退款金额（元）</span></th>
     <th nz-th class="text-center"><span>申请人（买家）</span></th>
@@ -88,14 +90,49 @@
   </tr>
   </thead>
   <tbody nz-tbody>
-  <tr nz-tbody-tr *ngFor="let item of nzTable.data;let i=index;">
-    <td nz-td class="text-center">{{item.afterNo}}</td>
-    <td nz-td class="text-center">{{item.reqMoney | number:'1.2-2'}}</td>
-    <td nz-td class="text-center">{{item.custPhone}}</td>
-    <td nz-td class="text-center">{{item.createTime}}</td>
-    <td nz-td class="text-center">{{item.state | stateName:'1602'}}</td>
-    <td nz-td class="text-center"></td>
-  </tr>
+  <ng-container *ngFor="let item of nzTable.data;let i=index;">
+    <tr nz-tbody-tr>
+      <td nz-td class="text-center"><i class="anticon anticon-down" (click)="showDetail(i)"></i></td>
+      <td nz-td class="text-center">{{item.afterNo}}</td>
+      <td nz-td class="text-center">{{item.reqMoney | number:'1.2-2'}}</td>
+      <td nz-td class="text-center">{{item.custPhone}}</td>
+      <td nz-td class="text-center">{{item.createTime}}</td>
+      <td nz-td class="text-center">{{item.state | stateName:'1602'}}</td>
+      <td nz-td class="text-center">
+        <button nz-button [nzType]="'primary'" class="pr8">
+          <i class="anticon anticon-search"></i><span></span>
+        </button>
+      </td>
+    </tr>
+    <tr nz-tbody-tr *ngIf="detail[i]">
+      <td nz-td class="text-center" [attr.colspan]="7">
+        <div class="bg-light-gray pl text-left">
+          <span class="">申请原因：</span> <span>{{item.reason}}</span>
+        </div>
+        <div class="bg-light-gray pl text-left">
+          <span class="">订单编号：</span> <span>{{item.ordno}}</span>
+        </div>
+        <div class="bg-light-gray pl text-left">
+          <span class="">商品编码：</span> <span>{{item.goodsCode}}</span>
+        </div>
+        <div class="bg-light-gray pl text-left">
+          <span class="">商品名称：</span> <span>{{item.goodsName}}</span>
+        </div>
+        <div class="bg-light-gray pl text-left">
+          <span class="">商品数量：</span> <span>{{item.num}}</span>
+        </div>
+        <div class="bg-light-gray pl text-left h35">
+          <span class="pull-left">商品图片：</span>
+          <span class="">
+                 <img [src]="item.goodsImage" alt="" class="buyimg" (mousemove)="showImg($event)"
+                      (mouseout)="hideImg($event)" onerror="javascript:this.src='../../../assets/img/dummy.png'">
+                 <img [src]="item.goodsImage" class="hover-big-img" alt=""
+                      onerror="javascript:this.src='../../../assets/img/dummy.png'">
+                </span>
+        </div>
+      </td>
+    </tr>
+  </ng-container>
   </tbody>
 </nz-table>
 

@@ -86,7 +86,7 @@ export class LoginService {
         this.router.navigate(['/page/login/forget-password/new-password'], {replaceUrl: true})
         break;
       case 2 :
-        this.router.navigate(['/page/login/forget-password/complete-password'], {replaceUrl: true})
+        this.router.navigate(['/page/login/forget-password/account-info-password'], {replaceUrl: true})
         break;
     }
   }

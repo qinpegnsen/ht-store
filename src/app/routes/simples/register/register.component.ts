@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {SimplesService} from "../simples.service";
-import {StepsComponent} from "../steps/steps.component";
+import {StepsComponent} from "../settle-steps/steps.component";
 import {PatternService} from "../../../public/service/pattern.service";
 import {Util} from "../../../public/util/util";
 
