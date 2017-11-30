@@ -103,12 +103,22 @@ export class MainComponent implements OnInit {
         ]
       },
       {
-        name: "smile布局",
+        name: "提现与结算",
+        icon: "pay-circle-o",
+        url: "/store/cashSettle/cashSettle"
+      },
+      {
+        name: "员工管理",
+        icon: "usergroup-add",
+        url: ""
+      },
+      {
+        name: "企业信息（TODO）",
         icon: "smile-o",
         url: "/simple/reg"
       },
       {
-        name: "page布局",
+        name: "登录页面（TODO）",
         icon: "smile-o",
         url: "/page/login"
       },
