@@ -10,29 +10,29 @@ import {Setting} from "../../../public/setting/setting";
 export class HomeComponent implements OnInit {
   defaultImg: string = Setting.APP.defaultImg; //默认显示的图片
   chartOption: any = {}; //订单流量图表配置项
-  contactUs:Array<any> = new Array(); //联系我们的信息内容
-  commonFunctions:Array<any> = new Array(); //常见功能的信息内容
-  storeCount:Array<any> = new Array(); //统计信息内容
+  contactUs: Array<any> = new Array(); //联系我们的信息内容
+  commonFunctions: Array<any> = new Array(); //常见功能的信息内容
+  storeCount: Array<any> = new Array(); //统计信息内容
 
   constructor() {
     const _this = this;
     //设置联系我们的信息内容
     _this.contactUs = [
       {
-        icon:"anticon anticon-phone color-pink",
-        info:"电话：0371-XXXXXXXX"
+        icon: "anticon anticon-phone color-pink",
+        info: "电话：0371-XXXXXXXX"
       },
       {
-        icon:"icon icon-weixin color-success",
-        info:"微信：XXXXXXXXXX"
+        icon: "icon icon-weixin color-success",
+        info: "微信：XXXXXXXXXX"
       },
       {
-        icon:"icon icon-qq color-blue",
-        info:"QQ：XXXXXXXXXX"
+        icon: "icon icon-qq color-blue",
+        info: "QQ：XXXXXXXXXX"
       },
       {
-        icon:"icon icon-email color-blue",
-        info:"Email：XXXXXXXXX@XX.XXX"
+        icon: "icon icon-email color-blue",
+        info: "Email：XXXXXXXXX@XX.XXX"
       }
     ];
   }
@@ -42,94 +42,94 @@ export class HomeComponent implements OnInit {
     //设置统计信息内容
     _this.storeCount = [
       {
-        num:15,
-        info:"商品数"
+        num: 15,
+        info: "商品数"
       },
       {
-        num:99,
-        info:"待发货订单"
+        num: 99,
+        info: "待发货订单"
       },
       {
-        num:321,
-        info:"已完成订单"
+        num: 321,
+        info: "已完成订单"
       },
       {
-        num:3,
-        info:"红包广告发放次数"
+        num: 3,
+        info: "红包广告发放次数"
       },
       {
-        num:21560,
-        info:"红包广告点击量"
+        num: 21560,
+        info: "红包广告点击量"
       },
       {
-        num:6,
-        info:"员工数"
+        num: 6,
+        info: "员工数"
       }
     ];
     //设置联系我们的信息内容
     _this.commonFunctions = [
       {
-        icon:"anticon anticon-plus-square-o color-pink",
-        info:"发布商品",
-        url:"",
-        isShow:true
+        icon: "anticon anticon-plus-square-o color-pink",
+        info: "发布商品",
+        url: "",
+        isShow: true
       },
       {
-        icon:"anticon anticon-appstore-o color-orange",
-        info:"管理商品",
-        url:"",
-        isShow:true
+        icon: "anticon anticon-appstore-o color-orange",
+        info: "管理商品",
+        url: "",
+        isShow: true
       },
       {
-        icon:"anticon anticon-tool color-blue",
-        info:"运费模板",
-        url:"",
-        isShow:true
+        icon: "anticon anticon-tool color-blue",
+        info: "运费模板",
+        url: "",
+        isShow: true
       },
       {
-        icon:"icon icon-fahuo color-purple",
-        info:"去发货",
-        url:"",
-        isShow:true
+        icon: "icon icon-fahuo color-purple",
+        info: "去发货",
+        url: "",
+        isShow: true
       },
       {
-        icon:"anticon anticon-bank color-red",
-        info:"收入/提现",
-        url:"",
-        isShow:true
+        icon: "anticon anticon-bank color-red",
+        info: "收入/提现",
+        url: "",
+        isShow: true
       },
       {
-        icon:"icon icon-tuikuan color-blue",
-        info:"处理退款",
-        url:"",
-        isShow:true
+        icon: "icon icon-tuikuan color-blue",
+        info: "处理退款",
+        url: "",
+        isShow: true
       },
       {
-        icon:"icon icon-tuihuo color-blue",
-        info:"处理退货",
-        url:"",
-        isShow:true
+        icon: "icon icon-tuihuo color-blue",
+        info: "处理退货",
+        url: "",
+        isShow: true
       },
       {
-        icon:"anticon anticon-red-envelope color-pink",
-        info:"红包统计",
-        url:"",
-        isShow:true
+        icon: "anticon anticon-red-envelope color-pink",
+        info: "红包统计",
+        url: "",
+        isShow: true
       },
       {
-        icon:"anticon anticon-usergroup-add color-orange",
-        info:"设置员工",
-        url:"",
-        isShow:true
+        icon: "anticon anticon-usergroup-add color-orange",
+        info: "设置员工",
+        url: "",
+        isShow: true
       }
     ];
     //绘制订单浏览的图表
     setTimeout(() => {
       _this.chartOption = {
         backgroundColor: "#f8f8f8",
-        grid:{
-          left:"5%",
-          right:"5%"
+        grid: {
+          left: "5%",
+          right: "5%"
         },
         tooltip: {
           trigger: 'axis',
