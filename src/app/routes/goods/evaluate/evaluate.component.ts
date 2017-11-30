@@ -51,8 +51,6 @@ export class EvaluateComponent implements OnInit {
   showImg(event) {
     let target = event.target.nextElementSibling;
     target.style.display = 'block';
-    target.style.top = (event.clientY + 20) + 'px';
-    target.style.left = (event.clientX + 30) + 'px';
   }
 
   /**
@@ -60,7 +58,7 @@ export class EvaluateComponent implements OnInit {
    * @param event
    */
   hideImg(event) {
-    let target = event.target.nextElementSibling;
+    let target = event.target;
     target.style.display = 'none';
   }
 

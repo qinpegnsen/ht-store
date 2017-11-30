@@ -34,12 +34,6 @@
   padding-left: 10px;
 }
 
-.goods-img {
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-}
-
 .good-img {
   display: inline-block;
   width: 50px;
@@ -49,8 +43,8 @@
 .click-img {
   width: 300px;
   height: auto;
-  position: fixed;
-  z-index: 100;
+  /*position: fixed;*/
+  /*z-index: 100;*/
   display: none;
   -webkit-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
@@ -61,5 +55,4 @@
   height: 40px;
   padding-bottom: 40px;
   line-height: 40px;
-  /*border: 1px solid #e9e9e9;*/
 }

@@ -39,11 +39,11 @@
                 <!--评价内容 --start -->
                 <p><span>订单编号：</span><span class="font14">{{data.ordno}}</span></p>
                 <div>
-                  <p><span class="font14">{{data.commentTextAfter}}</span></p>
+                  <p><span class="font14">{{data.commentText}}</span></p>
                   <p><span class="font14" *ngFor="let eval of data.commentGoodsPicList;let i = index">
                     <img [src]="eval.pic" class="good-img" onerror="javascript:this.src='../../../assets/img/dummy.png'"
-                         alt="" *ngIf="eval.isAfter=='N'" (click)="showImg($event)" (dblclick)="hideImg($event)">
-                    <img [src]="eval.pic" class="click-img"
+                         alt="" *ngIf="eval.isAfter=='N'" (click)="showImg($event)" >
+                    <img [src]="eval.pic" class="click-img" (click)="hideImg($event)"
                          onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="" *ngIf="eval.isAfter=='N'">
                   </span></p>
                   <p>
@@ -52,11 +52,14 @@
                 <!--追评内容 --start -->
                 <div>
                   <p>追平内容：</p>
-                  <p><span class="font14">{{data.commentText}}</span></p>
+                  <p><span class="font14">{{data.commentTextAfter}}</span></p>
                   <p><span class="font14" *ngFor="let eval of data.commentGoodsPicList;let j = index">
-                     <img [src]="eval.pic" class="good-img"
+                     <img [src]="eval.pic" class="good-img"  (click)="showImg($event)"
                           onerror="javascript:this.src='../../../assets/img/dummy.png'" *ngIf="eval.isAfter=='Y'"
-                          alt=""></span></p>
+                          alt="">
+                    <img [src]="eval.pic" class="click-img" (click)="hideImg($event)"
+                         onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="" *ngIf="eval.isAfter=='Y'">
+                  </span></p>
                 </div>
                 <!--追评内容  --end  -->
               </div>

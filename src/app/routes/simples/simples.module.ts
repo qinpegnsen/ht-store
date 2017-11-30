@@ -11,6 +11,8 @@ import { AuditingComponent } from './auditing/auditing.component';
 import {FileUploadModule} from "ng2-file-upload";
 import { BaseInfoComponent } from './base-info/base-info.component';
 import { DreageStepsComponent } from './dreage-steps/dreage-steps.component';
+import {StoreInfoComponent} from "./store-info/store-info.component";
+
 
 const routes: Routes = [
   {
@@ -30,6 +32,10 @@ const routes: Routes = [
     {path: 'dredgeReject', component: DoneComponent}
   ]
   },
+  {
+    path: 'company', component: StoreInfoComponent
+  },
+
 ];
 
 @NgModule({
@@ -46,7 +52,8 @@ const routes: Routes = [
     DoneComponent,
     AuditingComponent,
     BaseInfoComponent,
-    DreageStepsComponent
+    DreageStepsComponent,
+    StoreInfoComponent,
   ],
   providers: [
     StepsComponent,
