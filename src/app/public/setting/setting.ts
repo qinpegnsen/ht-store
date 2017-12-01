@@ -89,6 +89,17 @@ export class Setting {
       refund: 'REFUND',   //仅退款
       return: 'RETURN', //退货退款
     },
+    //订单的状态
+    ordState: {
+      take: 'TAKE',   //可自提
+      success: 'SUCCESS', //交易完成
+      prepare: 'PREPARE', //待发货
+      assigned: 'ASSIGNED', //已派单
+      paid: 'PAID', //待配货
+      close: 'CLOSE', //订单关闭
+      cr: 'CR', //待付款
+      delivery: 'DELIVERY', //待收货
+    },
     //企业入驻状态
     enterState: {
       half: 'HALF',  //入驻待审核

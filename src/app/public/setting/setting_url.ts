@@ -121,8 +121,8 @@ export class SettingUrl {
       orderComplete:"/store/order/complete", //已完成订单
       orderCancel:"/store/order/cancel", //已取消订单
       orderDetailSimple:"orderDetail", //订单详情页（此处如此写，用于路由相对进入模式）
-      serviceRefund:"/store/service/refund", //退款
-      serviceReturnGoods:"/store/service/returnGoods", //退货
+      serviceRefund:"/store/afterSale/refund", //退款
+      serviceReturnGoods:"/store/afterSale/returnGoods", //退货
       afterDetail:"afterDetail", //退款、退货信息详情
       redPacketPushOrder:"/store/redPacket/pushOrder", //红包投放记录
       redPacketStatistics:"/store/redPacket/statistics", //红包统计

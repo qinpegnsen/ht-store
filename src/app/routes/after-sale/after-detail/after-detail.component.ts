@@ -2,9 +2,9 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location}from '@angular/common';
 import {isNullOrUndefined} from "util";
-import {ServiceService} from "../service.service";
 import {MainService} from "../../../public/service/main.service";
 import {Setting} from "../../../public/setting/setting";
+import {AfterSaleService} from "../after-sale.service";
 declare var $: any;
 
 @Component({
@@ -39,14 +39,14 @@ export class AfterDetailComponent implements OnInit {
     me.type = me.route.snapshot.queryParams['type'];
     me.afterNo = me.route.snapshot.queryParams['afterNo'];
     let data = {afterNo: me.afterNo};
-    $.when(ServiceService.loadAfterTail(data)).done(data => {
+    $.when(AfterSaleService.loadAfterTail(data)).done(data => {
       if (data) me.LogisticsData = data;
     });
     me.goodsAudits = MainService.getEnumDataList('1001');  // 商品审核是否通过
-    $.when(ServiceService.loadReqByAfterNo(data)).done(data => {
+    $.when(AfterSaleService.loadReqByAfterNo(data)).done(data => {
       if (data) me.afterData = data;
     });
-    $.when(ServiceService.loadAfterTailList(data)).done(data => {
+    $.when(AfterSaleService.loadAfterTailList(data)).done(data => {
       if (data) me.afterTailList = data;
     });
     if (isNullOrUndefined(me.afterData)) me.afterData = null;
@@ -62,7 +62,7 @@ export class AfterDetailComponent implements OnInit {
       opinion: me.opinion,
       isAgree: me.isAgree
     };
-    ServiceService.agreeRefundMoney(data);
+    AfterSaleService.agreeRefundMoney(data);
     this.back();
   }
 
@@ -76,7 +76,7 @@ export class AfterDetailComponent implements OnInit {
       opinion: me.opinion,
       isAgree: me.isAgree
     };
-    ServiceService.dealReturnGoods(data);
+    AfterSaleService.dealReturnGoods(data);
     this.back();
   }
 
@@ -90,7 +90,7 @@ export class AfterDetailComponent implements OnInit {
       opinion: me.opinion,
       isPass: me.isPass
     };
-    ServiceService.checkRefundGoods(data);
+    AfterSaleService.checkRefundGoods(data);
     this.back();
   }
 

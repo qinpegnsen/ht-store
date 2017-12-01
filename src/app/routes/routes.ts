@@ -11,7 +11,7 @@ export const routes = [
       {path: '', redirectTo: SettingUrl.ROUTERLINK.store.home, pathMatch: 'full'},
       {path: 'home', loadChildren: './home/home.module#HomeModule'},
       {path: 'redPacket', loadChildren: './red-packet/red-packet.module#RedPacketModule'},
-      {path: 'service', loadChildren: './service/service.module#ServiceModule'},
+      {path: 'afterSale', loadChildren: './after-sale/after-sale.module#AfterSaleModule'},
       {path: 'cashSettle', loadChildren: './cash-settle/cash-settle.module#CashSettleModule'},
       {path: 'order', loadChildren: './order/order.module#OrderModule'},
       {path: 'goods', loadChildren: './goods/goods.module#GoodsModule'}

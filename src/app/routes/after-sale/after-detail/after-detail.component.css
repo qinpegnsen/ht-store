@@ -101,3 +101,6 @@
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+.littleImg{
+  width:30px;height:30px;vertical-align: middle;
+}

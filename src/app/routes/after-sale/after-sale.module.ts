@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReturnGoodsComponent } from './return-goods/return-goods.component';
 import {SharedModule} from "../../shared/shared.module";
 import {RouterModule, Routes} from "@angular/router";
+import {AfterDetailComponent} from "./after-detail/after-detail.component";
 import {RefundComponent} from "./refund/refund.component";
-import { AfterDetailComponent } from './after-detail/after-detail.component';
+import {ReturnGoodsComponent} from "./return-goods/return-goods.component";
 
 const afterDetail: Routes = [
   {path: 'afterDetail', component: AfterDetailComponent},
@@ -21,4 +21,4 @@ const routes: Routes = [
   ],
   declarations: [ReturnGoodsComponent,RefundComponent, AfterDetailComponent]
 })
-export class ServiceModule { }
+export class AfterSaleModule { }

@@ -115,7 +115,7 @@
                   [queryParams]="{afterNo:item.afterNo,type:'deal'}" title="处理" class="btn-blue">
             <i class="anticon anticon-edit"></i>
           </button>
-          <button nz-button title="详情" class="btn-green" [routerLink]="afterDetail"
+          <button nz-button title="详情" class="btn-green" [routerLink]="routerLink.store.afterDetail"
                   [queryParams]="{afterNo:item.afterNo,type:'detail'}">
             <i class="anticon anticon-info-circle-o"></i>
           </button>
@@ -145,10 +145,11 @@
           <div class="bg-light-gray pl text-left h35">
             <span class="fl">商品图片：</span>
             <span>
-                 <img [src]="item.goodsImage | imgSize :'30'" title="点击查看大图" (click)="showImg($event)"
-                      (mouseout)="hideImg($event)" onerror="javascript:this.src='../../../assets/img/dummy.png'">
+                 <img [src]="item.goodsImage | imgErr | imgSize :'30'" class="littleImg" title="点击查看大图"
+                      (click)="showImg($event)"
+                      (mouseout)="hideImg($event)">
                  <img [src]="item.goodsImage" class="hover-big-img"
-                      onerror="javascript:this.src='../../../assets/img/dummy.png'">
+                 >
                 </span>
           </div>
         </td>

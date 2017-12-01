@@ -4,9 +4,10 @@ import {SettingUrl} from "../../public/setting/setting_url";
 declare var $: any;
 
 @Injectable()
-export class ServiceService {
+export class AfterSaleService {
 
   constructor() { }
+
 
   /**
    * 查询退款订单列表
@@ -134,5 +135,4 @@ export class ServiceService {
     });
     return defer.promise(); //返回异步请求休息
   }
-
 }

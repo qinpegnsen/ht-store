@@ -2,17 +2,17 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MainService} from "../../../public/service/main.service";
 import {Setting} from "../../../public/setting/setting";
 import {Page} from "../../../public/util/page";
-import {ServiceService} from "../service.service";
 import {SettingUrl} from "../../../public/setting/setting_url";
+import {AfterSaleService} from "../after-sale.service";
 declare var $: any;
 
 @Component({
-  selector: 'app-return-goods',
-  templateUrl: './return-goods.component.html',
-  styleUrls: ['./return-goods.component.css'],
+  selector: 'app-refund',
+  templateUrl: './refund.component.html',
+  styleUrls: ['./refund.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ReturnGoodsComponent implements OnInit {
+export class RefundComponent implements OnInit {
 
   public refundOrderPage: Page = new Page();          //退款订单的数据
   public showList: boolean = true;                   //是否显示父组件
@@ -21,6 +21,7 @@ export class ReturnGoodsComponent implements OnInit {
   public saleAfterStates: any;                        //售后单状态数据
   public isReceiveList: any;                          //是否收货数据
   public enumState = Setting.ENUMSTATE;               //定义枚举状态
+  public routerLink = SettingUrl.ROUTERLINK;          //定义路由
   public app = Setting.APP;                           //定义出错时加载的图片
   public guideLang: any = Setting.PAGEMSG.service.refund;//引导语
   public query = {
@@ -29,7 +30,7 @@ export class ReturnGoodsComponent implements OnInit {
     phone: null,
     ordno: null,
     afterNo: null,
-    returnType: this.enumState.afterType.return,
+    returnType: this.enumState.afterType.refund,
     searchType: this.enumState.afterSearchType.afterNo,
     curPage: this.refundOrderPage.curPage, //目标页码
     pageSize: this.refundOrderPage.pageSize //每页条数
@@ -65,16 +66,8 @@ export class ReturnGoodsComponent implements OnInit {
   /**
    * 点击待审核退款直接更改售后单的状态，查询待审核退款列表
    */
-  changeSaleAfterStateToWAIT() {
+  changeSaleAfterState() {
     this.query.state = this.enumState.afterService.wait;
-    this.queryOrdList();
-  }
-
-  /**
-   * 点击待审核退款直接更改售后单的状态，查询待审核退款列表
-   */
-  changeSaleAfterStateToDeLivery() {
-    this.query.state = this.enumState.afterService.delivery;
     this.queryOrdList();
   }
 
@@ -94,7 +87,7 @@ export class ReturnGoodsComponent implements OnInit {
   public queryOrdList() {
     this._loading = true;//锁屏
     this.refundOrderPage.params=this.query;
-    $.when(ServiceService.queryRefundOrd(this.refundOrderPage.params)).done(data => {
+    $.when(AfterSaleService.queryRefundOrd(this.refundOrderPage.params)).done(data => {
       this._loading = false;//解除锁屏
       if (data) this.refundOrderPage = data; //赋值
     })
