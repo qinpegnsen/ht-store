@@ -5,7 +5,7 @@ dd {
 
 .store-info-all {
   background: #fff;
-  height: 1120px
+  height: 1180px
 }
 
 .store-info {
@@ -22,11 +22,19 @@ dd {
 }
 
 .store-info-three {
-  height: 230px
+  height: 260px
 }
 
 .store-info-four {
-  height: 260px
+  height: 293px
+}
+
+.store-info-five {
+  height: 213px;
+}
+
+.Electronic-img {
+  padding-top: 8px;
 }
 
 .store-info-border {

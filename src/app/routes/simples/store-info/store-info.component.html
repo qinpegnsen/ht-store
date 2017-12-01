@@ -17,7 +17,7 @@
       <dd class="pl">{{storeInfo.contactsEmail}}</dd>
       <dd class="pl">{{storeInfo.contactsName}}</dd>
       <dd class="pl">{{storeInfo.contactsPhone}}</dd>
-      <dd class="pl">{{storeInfo.idType}}</dd>
+      <dd class="pl">{{storeInfo.idType | stateName:'2002'}}</dd>
     </dl>
   </div>
   <div class="w100 store-info-two">
@@ -31,8 +31,11 @@
     <dl class="w52 fr mt-15">
       <dd class="pl">{{storeInfo.legalPersonName}}</dd>
       <dd class="pl">{{storeInfo.legalPersonIdcard}}</dd>
-      <dd class="pl">{{storeInfo.isForever}}</dd>
-      <dd class="pl">{{storeInfo.idcardStartTime}}~{{storeInfo.idcardEndTime}}</dd>
+      <dd class="pl">{{storeInfo.isForever | stateName:'1001'}}</dd>
+      <dd class="pl" *ngIf="storeInfo.idcardEndTime!=null">{{storeInfo.idcardStartTime| date:"yyyy-MM-dd"}}&nbsp;&nbsp;-&nbsp;&nbsp;{{storeInfo.idcardEndTime|
+        date:"yyyy-MM-dd"}}
+      </dd>
+      <dd class="pl" *ngIf="storeInfo.idcardEndTime==null">{{storeInfo.idcardStartTime| date:"yyyy-MM-dd"}}&nbsp;&nbsp;-&nbsp;&nbsp;长期</dd>
     </dl>
   </div>
   <div class="w100 store-info-three">
@@ -50,26 +53,36 @@
       <dd class="pl">{{storeInfo.businessSphere}}</dd>
       <dd class="pl">{{storeInfo.businessLicenceAreaName}}</dd>
       <dd class="pl">{{storeInfo.businessLicenceAddress}}</dd>
-      <dd class="pl">{{storeInfo.businessLicenceStart | date:"yyyy-MM-dd"}}~{{storeInfo.businessLicenceEnd |
+      <dd class="pl" *ngIf="storeInfo.businessLicenceEnd!=null">{{storeInfo.businessLicenceStart | date:"yyyy-MM-dd"}}&nbsp;&nbsp;至&nbsp;&nbsp;{{storeInfo.businessLicenceEnd
+        |
         date:"yyyy-MM-dd"}}
       </dd>
+      <dd class="pl" *ngIf="storeInfo.businessLicenceEnd==null">{{storeInfo.businessLicenceStart | date:"yyyy-MM-dd"}}&nbsp;&nbsp;至&nbsp;&nbsp;长期
+      </dd>
       <dd class="pl">
-        <img [src]="storeInfo.businessLicenceNumberElectronic" alt=""
-             onerror="javascript:this.src='../../../assets/img/dummy.png'"
-        >
+        <nz-popover [nzTrigger]="'click'">
+          <img [src]="storeInfo.businessLicenceNumberElectronic" class="Electronic-img"
+               onerror="javascript:this.src='../../../assets/img/dummy.png'" title="点击出大图"
+               alt="" nz-popover>
+          <ng-template #nzTemplate>
+            <div><img [src]="storeInfo.businessLicenceNumberElectronic | imgSize:'600'" class=""
+                      onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+            </div>
+          </ng-template>
+        </nz-popover>
       </dd>
     </dl>
   </div>
   <div class="w100 store-info-four">
-    <p class="legend bb-dashed w90 store-info-border" style="">开户行信息</p>
+    <p class="legend bb-dashed w90 store-info-border">开户行信息</p>
     <dl class="w48 fl mt-15">
       <dd class="text-right strong">银行开户名：</dd>
       <dd class="text-right strong">公司银行账号：</dd>
       <dd class="text-right strong">开户行支行名称：</dd>
       <dd class="text-right strong">开户支行银联号：</dd>
       <dd class="text-right strong">开户银行地址：</dd>
-      <dd class="text-right strong">开户银行许可证电子版：</dd>
       <dd class="text-right strong">是否为结算账户：</dd>
+      <dd class="text-right strong">开户银行许可证电子版：</dd>
     </dl>
     <dl class="w52 fr mt-15">
       <dd class="pl">{{storeInfo.businessSphere}}</dd>
@@ -77,15 +90,23 @@
       <dd class="pl">{{storeInfo.bankName}}</dd>
       <dd class="pl">{{storeInfo.bankCode}}</dd>
       <dd class="pl">{{storeInfo.bankAddress}}</dd>
+      <dd class="pl">{{storeInfo.isSettlementAccount | stateName:'1001'}}</dd>
       <dd class="pl">
-        <img [src]="storeInfo.bankLicenceElectronic" alt=""
-             onerror="javascript:this.src='../../../assets/img/dummy.png'">
+        <nz-popover [nzTrigger]="'click'">
+          <img [src]="storeInfo.bankLicenceElectronic" class="Electronic-img"
+               onerror="javascript:this.src='../../../assets/img/dummy.png'" title="点击出大图"
+               alt="" nz-popover>
+          <ng-template #nzTemplate>
+            <div><img [src]="storeInfo.bankLicenceElectronic | imgSize:'600'" class=""
+                      onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+            </div>
+          </ng-template>
+        </nz-popover>
       </dd>
-      <dd class="pl">{{storeInfo.isSettlementAccount}}</dd>
     </dl>
   </div>
-  <div class="w100" style="height: 200px">
-    <p class="legend bb-dashed w90 store-info-border" style="">结算账户信息</p>
+  <div class="w100 store-info-five">
+    <p class="legend bb-dashed w90 store-info-border">结算账户信息</p>
     <dl class="w48 fl mt-15">
       <dd class="text-right strong">结算银行开户名：</dd>
       <dd class="text-right strong">结算公司银行账号：</dd>

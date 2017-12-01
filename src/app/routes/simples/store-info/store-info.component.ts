@@ -24,7 +24,7 @@ export class StoreInfoComponent implements OnInit {
     let me = this;
     me._loading = true; //锁屏
     let data = { //查询参数
-      epCode: "645291726408990720"
+      epCode: "648357645864706048"
     }
     $.when(SimplesService.cashSettleList(data)).done(data => {
       me._loading = false //解除锁屏
