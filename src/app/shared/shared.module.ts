@@ -9,6 +9,7 @@ import {ImgPreviewPipe} from "../public/pipes/img-preview.pipe";
 import {ImgSizePipe} from "../public/pipes/img-size.pipe";
 import {Level2AreaNamePipe} from "../public/pipes/level-2-area-name.pipe";
 import {GetWeekPipe} from "../public/pipes/get-week.pipe";
+import {ImgErrPipe} from "../public/pipes/img-err.pipe";
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import {GetWeekPipe} from "../public/pipes/get-week.pipe";
     ImgPreviewPipe,          //本地图片上传预览管道
     ImgSizePipe,             //设置图片大小
     Level2AreaNamePipe,       //12位地区编码转化地区名称管道
-    GetWeekPipe               //根据日期获取
+    GetWeekPipe,               //根据日期获取周几的管道
+    ImgErrPipe               //图片加载失败时，加载默认图片
   ],
   providers: [],
   exports: [
@@ -37,7 +39,8 @@ import {GetWeekPipe} from "../public/pipes/get-week.pipe";
     ImgPreviewPipe,         //本地图片上传预览管道
     ImgSizePipe,            //设置图片大小
     Level2AreaNamePipe,      //12位地区编码转化地区名称管道
-    GetWeekPipe               //根据日期获取周几的管道
+    GetWeekPipe,               //根据日期获取周几的管道
+    ImgErrPipe               //图片加载失败时，加载默认图片
   ]
 })
 export class SharedModule {

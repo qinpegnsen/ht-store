@@ -5,6 +5,7 @@ import {MainService} from "../../../public/service/main.service";
 import {NzMessageService, NzModalService, NzNotificationService} from "ng-zorro-antd";
 import {Setting} from "../../../public/setting/setting";
 import {SkuGoodsComponent} from "../sku-goods/sku-goods.component";
+import {SettingUrl} from "../../../public/setting/setting_url";
 
 declare var $: any;
 
@@ -30,6 +31,15 @@ export class ManageComponent implements OnInit {
     isOwnPlat: '',
     goodsAudit: '',
   }; // 查询条件
+
+  //路由
+  goodsManageAudit:string = SettingUrl.ROUTERLINK.store.goodsManageAudit;           //商品审核（此处如此写，用于路由相对进入模式）
+  goodsManageEdit:string = SettingUrl.ROUTERLINK.store.goodsManageEdit;           //商品修改/编辑（此处如此写，用于路由相对进入模式）
+  goodsManageEval:string = SettingUrl.ROUTERLINK.store.goodsManageEval;           //查看商品评价（此处如此写，用于路由相对进入模式）
+  goodsManageDetail:string = SettingUrl.ROUTERLINK.store.goodsManageDetail;          //查看商品详情（此处如此写，用于路由相对进入模式）
+
+
+
   constructor(public _message: NzMessageService,
               public goodsService: GoodsService,
               public modalService: NzModalService,

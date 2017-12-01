@@ -3,6 +3,7 @@ import {MainService} from "../../../public/service/main.service";
 import {Setting} from "../../../public/setting/setting";
 import {Page} from "../../../public/util/page";
 import {ServiceService} from "../service.service";
+import {SettingUrl} from "../../../public/setting/setting_url";
 declare var $: any;
 
 @Component({
@@ -33,6 +34,7 @@ export class ReturnGoodsComponent implements OnInit {
     curPage: this.refundOrderPage.curPage, //目标页码
     pageSize: this.refundOrderPage.pageSize //每页条数
   }; // 查询条件
+  public afterDetail:string = SettingUrl.ROUTERLINK.store.afterDetail; //退款信息详情
 
   constructor() {
   }

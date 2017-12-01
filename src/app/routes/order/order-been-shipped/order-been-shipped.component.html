@@ -1,4 +1,3 @@
-
 <div *ngIf="showOrderList">
   <!--查询 start-->
   <div class="mb-15">
@@ -94,7 +93,7 @@
             </td>
             <td class="w10 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
               <p class="gray-color">{{orders.state | stateName :'1019'}}</p>
-              <p class="cursor p-hover" routerLink="orderDetail">查看详情</p>
+              <p class="cursor p-hover" [routerLink]="orderDetail">查看详情</p>
             </td>
           </tr>
         </table>

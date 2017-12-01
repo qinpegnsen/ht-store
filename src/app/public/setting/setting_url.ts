@@ -1,6 +1,7 @@
 /*接口访问路径配置*/
 
 export class SettingUrl {
+  // 接口通讯url集合
   static URL: any = {
     /**
      * 基础路径配置
@@ -102,4 +103,50 @@ export class SettingUrl {
     }
 
   };
+  // 路由链接信息
+  static ROUTERLINK:any = {
+    store:{
+      home:"/store/home", //首页
+      goodsManage:"/store/goods/manage", //管理商品
+      goodsManageAudit:"audit",           //商品审核（此处如此写，用于路由相对进入模式）
+      goodsManageEdit:"edit",           //商品修改/编辑（此处如此写，用于路由相对进入模式）
+      goodsManageEval:"../eval",           //查看商品评价（此处如此写，用于路由相对进入模式）
+      goodsManageDetail:"detail",           //查看商品详情（此处如此写，用于路由相对进入模式）
+      goodsPublish:"/store/goods/publish", //商品发布
+      goodsFreightTemplate:"/store/goods/freightTemplate", //运费模板
+      addTemplate:"addTemplate",  //添加运费模板
+      orderPayment:"/store/order/orderPayment", //待付款订单
+      orderPendingShipment:"/store/order/pendingShipment", //待发货订单
+      orderBeenShipped:"/store/order/beenShipped", //待付款订单
+      orderComplete:"/store/order/complete", //已完成订单
+      orderCancel:"/store/order/cancel", //已取消订单
+      orderDetailSimple:"orderDetail", //订单详情页（此处如此写，用于路由相对进入模式）
+      serviceRefund:"/store/service/refund", //退款
+      serviceReturnGoods:"/store/service/returnGoods", //退货
+      afterDetail:"afterDetail", //退款、退货信息详情
+      redPacketPushOrder:"/store/redPacket/pushOrder", //红包投放记录
+      redPacketStatistics:"/store/redPacket/statistics", //红包统计
+      cashSettle:"/store/cashSettle/cashSettle", //提现与结算
+      cach:"../cash" //提现页面（此处如此写，用于路由相对进入模式）
+    },
+    basic:{
+      reg:"/simple/reg", //企业注册
+      company:"/simple/reg/company", //企业信息
+      register:"/simple/reg/register", //注册
+      baseInfo:"/simple/reg/baseInfo", //基础信息
+      accountInfo:"/simple/reg/accountInfo", //企业信息
+      auditing:"/simple/reg/auditing", //审核
+      settlePass:"/simple/reg/settlePass", //审核通过
+      settleReject:"/simple/reg/settleReject", //审核不通过
+      dredge:"/simple/reg/shop/dredge", //开通店铺
+      done:"/simple/reg/shop/done", //完成
+      dredgeReject:"/simple/reg/shop/dredgeReject" //开通店铺被驳回
+    },
+    pass:{
+      login:"/page/login", //登录
+      resetPwd:"/page/login/forgetPwd/resetPwd", //找回密码-重置密码
+      newPwd:"/page/login/forgetPwd/newPwd",  //找回密码-密码
+      accountPwd:"/page/login/forgetPwd/accountPwd" //重置密码完成
+    }
+  }
 }

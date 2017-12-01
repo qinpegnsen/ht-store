@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {CashSettleService} from "../cash-settle.service";
 import {Page} from "../../../public/util/page";
 import {Setting} from "../../../public/setting/setting";
+import {SettingUrl} from "../../../public/setting/setting_url";
 
 declare var $: any;
 
@@ -22,6 +23,7 @@ export class CashSettleComponent implements OnInit {
   bankDataList: Array<any> = new Array();  //银行信息
   insertData: any = {};  //申请提现时传入的信息
   settleFormula: any = Setting.PAGEMSG.settleFormula; //结算公式
+  cachUrl:string = SettingUrl.ROUTERLINK.store.cach; //提现页面
 
   constructor(private fb: FormBuilder, public cashSettleService: CashSettleService) {
     this.validateForm = this.fb.group({ //表单数据

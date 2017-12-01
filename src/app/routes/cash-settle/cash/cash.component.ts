@@ -40,7 +40,7 @@ export class CashComponent implements OnInit {
    * 返回上一级页面
    */
   back() {
-    this.router.navigate(['/store/cashSettle/cashSettle'])
+    this.router.navigate([SettingUrl.ROUTERLINK.store.cashSettle])
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Page} from "../../../public/util/page";
 import {OrderService} from "../order.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {SettingUrl} from "../../../public/setting/setting_url";
 declare var $: any;
 
 @Component({
@@ -22,7 +23,7 @@ export class OrderPendingShipmentComponent implements OnInit {
   validateForm: FormGroup;//设置发货的表单
   auditsDataList=[];  //物流信息
   showOrderList: boolean = true;//判断子组件的显示/隐藏
-
+  orderDetail: string = SettingUrl.ROUTERLINK.store.orderDetailSimple; //订单详情页面
 
   constructor(public fb: FormBuilder) { }
 

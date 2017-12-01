@@ -27,29 +27,29 @@ export class SimplesService {
   routerSkip(step, param?: any) {
     switch (step) {
       case 'register' ://注册
-        this.router.navigate(['/simple/reg/register'], {replaceUrl: true})
+        this.router.navigate([SettingUrl.ROUTERLINK.basic.register], {replaceUrl: true})
         break;
       case 'baseInfo' ://企业基本信息
         //添加: queryParams: {sellerCode:611111111111111111}
         //修改: epCode: {epCode:649255483008294912}
-        this.router.navigate(['/simple/reg/baseInfo'], {replaceUrl: true, queryParams: param})
+        this.router.navigate([SettingUrl.ROUTERLINK.basic.baseInfo], {replaceUrl: true, queryParams: param})
         break;
       case 'accountInfo' ://企业银行账户信息
         //添加/修改: queryParams: {epCode:649255483008294912}
-        this.router.navigate(['/simple/reg/accountInfo'], {replaceUrl: true, queryParams: param})
+        this.router.navigate([SettingUrl.ROUTERLINK.basic.accountInfo], {replaceUrl: true, queryParams: param})
         break;
       case 'auditing' ://企业入驻已提交，待审核，审核通过，驳回
         //queryParams: {epCode:649255483008294912}
-        this.router.navigate(['/simple/reg/auditing'], {replaceUrl: true, queryParams: param})
+        this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: param})
         break;
       case 'dredge' ://企业开通店铺
         //开通: queryParams: {epCode:649255483008294912,sellerCode:611111111111111111}
         //修改: queryParams: {storeCode:649530532714012672}
-        this.router.navigate(['/simple/reg/shop/dredge'], {replaceUrl: true, queryParams: param})
+        this.router.navigate([SettingUrl.ROUTERLINK.basic.dredge], {replaceUrl: true, queryParams: param})
         break;
       case 'done' ://开店申请已提交，待审核，驳回
         //queryParams: {storeCode:649530532714012672}
-        this.router.navigate(['/simple/reg/shop/done'], {replaceUrl: true, queryParams: param})
+        this.router.navigate([SettingUrl.ROUTERLINK.basic.done], {replaceUrl: true, queryParams: param})
         break;
     }
   }

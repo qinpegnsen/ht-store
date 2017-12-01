@@ -4,7 +4,6 @@ import {PatternService} from "./service/pattern.service";
 import {throwIfAlreadyLoaded} from "./module-import-guard";
 import {Setting} from "./setting/setting";
 import {Page} from "./util/page";
-import {GetWeekPipe} from "./pipes/get-week.pipe";
 
 @NgModule({
   //导入模块

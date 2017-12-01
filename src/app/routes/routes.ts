@@ -1,13 +1,14 @@
 import {MainComponent} from "../layout/main/main.component";
 import {SimpleComponent} from "../layout/simple/simple.component";
 import {PageComponent} from "../layout/page/page.component";
+import {SettingUrl} from "../public/setting/setting_url";
 
 export const routes = [
   {
     path: 'store',
     component: MainComponent,
     children: [
-      {path: '', redirectTo: '/store/home', pathMatch: 'full'},
+      {path: '', redirectTo: SettingUrl.ROUTERLINK.store.home, pathMatch: 'full'},
       {path: 'home', loadChildren: './home/home.module#HomeModule'},
       {path: 'redPacket', loadChildren: './red-packet/red-packet.module#RedPacketModule'},
       {path: 'service', loadChildren: './service/service.module#ServiceModule'},
@@ -33,5 +34,5 @@ export const routes = [
     ]
   },
   // 路由指向找不到时，指向这里
-  {path: '**', redirectTo: '/store/home'}
+  {path: '**', redirectTo: SettingUrl.ROUTERLINK.store.home}
 ];

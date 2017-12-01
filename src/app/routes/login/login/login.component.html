@@ -64,8 +64,8 @@
       <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">登录</button>
       <div class="passed">
         <ul class="fr mr-20 mt-5">
-          <li routerLink="/simple/reg/register" class="br" >注册</li>
-          <li routerLink="../forget-password">忘记密码？</li>
+          <li [routerLink]="registerUrl" class="br" >注册</li>
+          <li [routerLink]="resetPwdUrl">忘记密码？</li>
         </ul>
       </div>
     </div>

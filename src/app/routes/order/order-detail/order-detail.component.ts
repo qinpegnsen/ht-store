@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {SettingUrl} from "../../../public/setting/setting_url";
 
 @Component({
   selector: 'app-order-detail',
@@ -17,6 +18,6 @@ export class OrderDetailComponent implements OnInit {
    * 返回上一级页面
    */
   backOrderList() {
-    this.router.navigate(['/store/order/pendingShipment'])
+    this.router.navigate([SettingUrl.ROUTERLINK.store.orderPendingShipment])
   }
 }

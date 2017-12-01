@@ -2,7 +2,7 @@
   <!--menu 信息 start-->
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="sider">
-      <div class="logo">
+      <div class="logo cursor" [routerLink]="home">
         <img *ngIf="!isCollapsed" src="{{app.logo}}">
       </div>
       <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
@@ -39,8 +39,8 @@
       <i class="anticon trigger" [class.anticon-menu-fold]="!isCollapsed" [class.anticon-menu-unfold]="isCollapsed"
          (click)="isCollapsed=!isCollapsed"></i>
       <ul class="fr mr">
-        <li><i class="anticon anticon-home" title="去首页"></i></li>
-        <li><i class="anticon anticon-user" title="企业信息" routerLink="/simple/reg/company"></i></li>
+        <li><i class="anticon anticon-home" [routerLink]="home" title="去首页"></i></li>
+        <li><i class="anticon anticon-user" title="企业信息" [routerLink]="company"></i></li>
 
         <nz-dropdown [nzTrigger]="'click'">
           <li nz-dropdown>

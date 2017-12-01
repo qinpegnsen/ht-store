@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Page} from "../../../public/util/page";
 import {GoodsService} from "../goods.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {SettingUrl} from "../../../public/setting/setting_url";
 declare var $: any;
 @Component({
   selector: 'app-evaluate',
@@ -42,7 +43,7 @@ export class EvaluateComponent implements OnInit {
    * 返回上一级页面
    */
   back() {
-    this.router.navigate(['/store/goods/manage'])
+    this.router.navigate([SettingUrl.ROUTERLINK.store.goodsManage])
   }
 
 

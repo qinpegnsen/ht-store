@@ -22,7 +22,7 @@
         <tr class="t-item">
           <td class="item-hd w15">订单编号：</td>
           <td class="item-bd w85 mb0">
-            <a routerLink="/main/orders/cust/order-detail" [queryParams]="{ordno: afterData.ordno}">{{afterData
+            <a [queryParams]="{ordno: afterData.ordno}">{{afterData
               .ordno}}</a>
           </td>
         </tr>
@@ -30,7 +30,7 @@
           <td class="item-hd w15">商品名称：</td>
           <td class="item-bd w85 mb0">
             {{afterData.goodsName}}
-            <a routerLink="/main/goods/manage/detail" [queryParams]="{baseCode: afterData.goodsBaseCode}">(查看)</a>
+            <a [queryParams]="{baseCode: afterData.goodsBaseCode}">(查看)</a>
           </td>
         </tr>
         <tr class="t-item">

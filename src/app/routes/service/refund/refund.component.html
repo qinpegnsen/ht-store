@@ -107,11 +107,11 @@
         <td nz-td class="text-center">{{item.createTime}}</td>
         <td nz-td class="text-center">{{item.state | stateName:'1602'}}</td>
         <td nz-td class="text-center">
-          <button nz-button class="mt-5" *ngIf="item.state==enumState.afterService.wait" routerLink="afterDetail"
+          <button nz-button class="mt-5" *ngIf="item.state==enumState.afterService.wait" [routerLink]="afterDetail"
                   [queryParams]="{afterNo:item.afterNo,type:'deal'}" title="处理" class="btn-blue">
             <i class="anticon anticon-edit"></i>
           </button>
-          <button nz-button title="详情" class="btn-green" routerLink="afterDetail"
+          <button nz-button title="详情" class="btn-green" [routerLink]="afterDetail"
                   [queryParams]="{afterNo:item.afterNo,type:'detail'}">
             <i class="anticon anticon-info-circle-o"></i>
           </button>

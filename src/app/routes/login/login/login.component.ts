@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   app = Setting.APP; //平台基本信息
   userName: string;//登录时的用户名称
   userPassword: string;//登录时的用户密码
+  registerUrl:string = SettingUrl.ROUTERLINK.basic.reg;
+  resetPwdUrl:string = SettingUrl.ROUTERLINK.pass.resetPwd;
 
   //用于登录时的表单
   _submitForm() {

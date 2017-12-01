@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {SettingUrl} from "../../public/setting/setting_url";
 
 @Injectable()
 export class LoginService {
@@ -80,13 +81,13 @@ export class LoginService {
   routerSkip(current){
     switch (current) {
       case 0 :
-        this.router.navigate(['/page/login/forget-password/reset-password'], {replaceUrl: true})
+        this.router.navigate([SettingUrl.ROUTERLINK.pass.resetPwd], {replaceUrl: true})
         break;
       case 1 :
-        this.router.navigate(['/page/login/forget-password/new-password'], {replaceUrl: true})
+        this.router.navigate([SettingUrl.ROUTERLINK.pass.newPwd], {replaceUrl: true})
         break;
       case 2 :
-        this.router.navigate(['/page/login/forget-password/account-info-password'], {replaceUrl: true})
+        this.router.navigate([SettingUrl.ROUTERLINK.pass.accountPwd], {replaceUrl: true})
         break;
     }
   }

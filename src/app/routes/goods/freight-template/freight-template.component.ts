@@ -3,6 +3,7 @@ import {Page} from "../../../public/util/page";
 import {GoodsService} from "../goods.service";
 import {MainService} from "../../../public/service/main.service";
 import {Setting} from "../../../public/setting/setting";
+import {SettingUrl} from "../../../public/setting/setting_url";
 declare var $: any;
 
 @Component({
@@ -15,8 +16,7 @@ export class FreightTemplateComponent implements OnInit {
   tplList: any = [];  //模板/模板值信息
   prompt: any = Setting.PAGEMSG.freightTemplate; //提示信息
   showFreightList: boolean = true;//判断子组件的显示/隐藏
-
-
+  addTemplate:string = SettingUrl.ROUTERLINK.store.addTemplate; //添加运费模板路由
 
   constructor() { }
 

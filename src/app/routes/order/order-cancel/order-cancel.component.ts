@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {OrderService} from "../order.service";
 import {Page} from "../../../public/util/page";
+import {SettingUrl} from "../../../public/setting/setting_url";
 declare var $: any;
 
 @Component({
@@ -17,6 +18,7 @@ export class OrderCancelComponent implements OnInit {
     agentOrdno: ''//订单号
   }//查询条件
   showOrderList: boolean = true;//判断子组件的显示/隐藏
+  orderDetail:string = SettingUrl.ROUTERLINK.store.orderDetailSimple; //订单详情页
 
   constructor() { }
 

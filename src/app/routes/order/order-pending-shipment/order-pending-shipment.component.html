@@ -95,7 +95,7 @@
           </td>
           <td class="w8 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
             <p class="gray-color">{{orders.state | stateName :'1019'}}</p>
-            <p class="cursor p-hover" routerLink="orderDetail">查看详情</p>
+            <p class="cursor p-hover" [routerLink]="orderDetail">查看详情</p>
           </td>
           <td class="w8 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
             <button nz-button [nzSize]="'large'" class="btn-danger" title="设置发货" (click)="showOrderPend()">

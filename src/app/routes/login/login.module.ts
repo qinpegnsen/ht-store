@@ -11,10 +11,10 @@ import { CompletePasswordComponent } from './complete-password/complete-password
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'forget-password', component: ForgetPasswordComponent, children: [
-    {path: 'reset-password', component: ResetPasswordComponent},
-    {path: 'new-password', component: NewPasswordComponent},
-    {path: 'account-info-password', component: CompletePasswordComponent},
+  {path: 'forgetPwd', component: ForgetPasswordComponent, children: [
+    {path: 'resetPwd', component: ResetPasswordComponent},
+    {path: 'newPwd', component: NewPasswordComponent},
+    {path: 'accountPwd', component: CompletePasswordComponent},
   ]}
 ];
 
