@@ -1,6 +1,6 @@
 <!--企业入驻 start-->
 <div nz-row class="p-20">
-  <form nz-form class="p-20">
+  <form nz-form class="p-20" #baseInfoForm="ngForm">
     <!--企业基本信息 start-->
     <div class="fieldset">
       <div class="legend bb-dashed">企业基本信息</div>
@@ -35,7 +35,7 @@
       </div>
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
-          <label>联系人姓名</label>
+          <label>负责人姓名</label>
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngContactsName)" nzHasFeedback>
           <nz-input [nzType]="'text'" name="contactsName" [(ngModel)]="validateForm.contactsName"
@@ -45,11 +45,11 @@
       </div>
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
-          <label>联系人手机号</label>
+          <label>负责人电话</label>
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngContactsPhone)" nzHasFeedback>
           <nz-input name="contactsPhone" [(ngModel)]="validateForm.contactsPhone"
-                    [nzType]="'tel'" [pattern]="patterns.phone"
+                    [nzType]="'tel'" [pattern]="patternService.phone"
                     #ngContactsPhone="ngModel" [nzPlaceHolder]="'联系人手机号'" [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain *ngIf="ngValidateErrorMsg(ngContactsPhone) == 'error'">手机号码不正确！
@@ -194,7 +194,7 @@
              nzHasFeedback>
           <nz-input name="legalPersonIdcard" [(ngModel)]="validateForm.legalPersonIdcard"
                     #ngLegalPersonIdcard="ngModel" [nzType]="'text'" required
-                    [nzPlaceHolder]="'请输入法人身份证号'" [pattern]="patterns.idcard"
+                    [nzPlaceHolder]="'请输入法人身份证号'" [pattern]="patternService.idcard"
                     [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain *ngIf="ngValidateErrorMsg(ngLegalPersonIdcard)=='empty'">
@@ -406,7 +406,7 @@
 
     <!--操作按钮 start-->
     <div nz-row class="text-center p-20 bt">
-      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w"
+      <button nz-button [disabled]="!baseInfoForm.form.valid" [nzSize]="'large'" class="thc-btn-w"
               (click)="submitCompleteForm($event)">
         <span>下一步</span>
       </button>

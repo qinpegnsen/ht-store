@@ -1,6 +1,6 @@
 <!--企业银行账户信息 start-->
 <div nz-row class="p-20">
-  <form nz-form class="p-20">
+  <form nz-form class="p-20" #accountInfoForm="ngForm">
     <!--开户行信息 start-->
     <div class="fieldset">
       <div class="legend bb-dashed">开户行信息</div>
@@ -91,14 +91,22 @@
             <input class="w100" type="file" name="bankLicenceElectronic" ng2FileSelect [uploader]="bankLicenceUploader"
                    accept="image/*" (change)="bankLicenceFileChangeListener()"/>
           </label>
-          <div nz-form-explain *ngIf="!bankLicenceUploader.queue[0]&&!bankLicenceUploader.queue[0]">
+          <div nz-form-explain *ngIf="!validateForm.bankLicenceElectronic&&!bankLicenceUploader.queue[0]">
             请上传开户银行许可证电子版！
           </div>
         </div>
         <div nz-col [nzSpan]="8">
-          <img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" (mousemove)="showImg($event)"
-               (mouseleave)="hideImg($event)" class="uploaded">
-          <img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" class="uploaded-big">
+          <ng-container *ngIf="bankLicenceUploader.queue[0]">
+            <img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" (mousemove)="showImg($event)"
+                 (mouseleave)="hideImg($event)" class="uploaded">
+            <img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" class="uploaded-big">
+          </ng-container>
+          <ng-container *ngIf="validateForm.bankLicenceElectronic && !bankLicenceUploader.queue[0]">
+            <img [src]="validateForm.bankLicenceElectronic" onerror="javascript:this.src='../../../assets/img/dummy.png'"
+                 (mousemove)="showImg($event)"
+                 (mouseleave)="hideImg($event)" class="uploaded">
+            <img [src]="validateForm.bankLicenceElectronic" onerror="javascript:this.src='../../../assets/img/dummy.png'" class="uploaded-big">
+          </ng-container>
         </div>
       </div>
       <div nz-form-item nz-row>
@@ -106,7 +114,7 @@
           <label nz-form-item-required>是否为结算账户</label>
         </div>
         <div nz-col [nzSpan]="8" nz-form-control>
-          <nz-switch name="isSettlementAccount" class="lg thc">
+          <nz-switch name="isSettlementAccount" [(ngModel)]="validateForm.isSettlementAccount" class="lg thc">
             <span checked>是</span>
             <span unchecked>否</span>
           </nz-switch>
@@ -116,7 +124,7 @@
     <!--开户行信息 end-->
 
     <!--结算账户信息 start-->
-    <div class="fieldset" *ngIf="!validateForm.controls['isSettlementAccount'].value">
+    <div class="fieldset" *ngIf="!validateForm.isSettlementAccount">
       <div class="legend bb-dashed">结算账户信息</div>
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
@@ -206,10 +214,10 @@
 
     <!--操作按钮 start-->
     <div nz-row class="text-center p-20 bt">
-      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="skipTo('baseInfo')">
+      <button nz-button [nzSize]="'large'" class="btn-blue" (click)="skipTo('baseInfo')">
         <span>上一步</span>
       </button>
-      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w"
+      <button nz-button [nzSize]="'large'" [disabled]="!accountInfoForm.form.valid" class="thc-btn-w"
               (click)="submitCompleteForm($event)">
         <span>提交申请</span>
       </button>

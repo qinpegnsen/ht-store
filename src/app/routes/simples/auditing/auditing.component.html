@@ -1,5 +1,5 @@
 <!--提交成功-->
-<ng-container *ngIf="path == 'auditing'">
+<ng-container *ngIf="curState == 'auditing'">
   <div class="ing">
     <i class="anticon anticon-clock-circle-o color-green"></i>
     <p>您已成功提交申请，请等待平台审核通过</p>
@@ -7,7 +7,7 @@
 </ng-container>
 
 <!--入驻审核通过-->
-<ng-container *ngIf="path == 'settlePass'">
+<ng-container *ngIf="curState == 'settlePass'">
   <div class="ing">
     <i class="anticon anticon-check-circle-o color-green"></i>
     <p>您的入驻申请已审核通过，快去开通店铺吧</p>
@@ -20,7 +20,7 @@
 </ng-container>
 
 <!--入驻申请驳回-->
-<ng-container *ngIf="path == 'settleReject'">
+<ng-container *ngIf="curState == 'settleReject'">
   <div class="ing">
     <i class="anticon anticon-exclamation-circle-o color-orange"></i>
     <p>您提交的申请信息有误，请重新申请</p>
@@ -36,14 +36,14 @@
 <!--操作按钮 start-->
 <div class="mt text-center">
   <p>临时按钮，查看页面状态用</p>
-  <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="skipTo('auditing')">
+  <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="curState = 'auditing'">
     <span>提交成功</span>
   </button>
-  <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="skipTo('settlePass')">
+  <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="curState = 'settlePass'">
     <span>审核通过</span>
   </button>
   <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w"
-          (click)="skipTo('settleReject')">
+          (click)="curState = 'settleReject'">
     <span>审核驳回</span>
   </button>
 </div>

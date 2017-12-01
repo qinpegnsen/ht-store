@@ -2,7 +2,6 @@ import {Component, OnInit} from "@angular/core";
 import {SimplesService} from "../simples.service";
 import {StepsComponent} from "../settle-steps/steps.component";
 import {NzNotificationService} from "ng-zorro-antd";
-import {FormBuilder} from "@angular/forms";
 import {FileUploader} from "ng2-file-upload";
 import {SettingUrl} from "../../../public/setting/setting_url";
 import {MainService} from "../../../public/service/main.service";
@@ -10,6 +9,8 @@ import {Setting} from "../../../public/setting/setting";
 import {Util} from "../../../public/util/util";
 import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
 import {PatternService} from "../../../public/service/pattern.service";
+import {ActivatedRoute} from "@angular/router";
+declare var $: any;
 
 @Component({
   selector: 'app-base-info',
@@ -23,6 +24,7 @@ export class BaseInfoComponent implements OnInit {
   enumStates = Setting.ENUMSTATE; //枚举值
   ngValidateStatus = Util.ngValidateStatus;
   ngValidateErrorMsg = Util.ngValidateErrorMsg;
+  defaultImage = Setting.APP.defaultImg;
 
   public organizationCodeUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.base.upload,
@@ -42,23 +44,38 @@ export class BaseInfoComponent implements OnInit {
 
   constructor(public simplesService: SimplesService,
               public steps: StepsComponent,
-              public patterns: PatternService,
+              public patternService: PatternService,
               public _notification: NzNotificationService,
-              public fb: FormBuilder) {
+              public route: ActivatedRoute) {
     Util.transAreas(AREA_LEVEL_3_JSON);
     this._options = AREA_LEVEL_3_JSON;
     this.steps.current = 1;
-    this.validateForm = {
-      sellerCode: 'dmkfjkldjfoipe',//商家编码
-      idType: this.enumStates.papersType.unity,//证件类型
-      isForever: false,//法人身份证是否长期有效
-    };
   }
 
   ngOnInit() {
     const me = this;
+    let sellerCode = me.route.snapshot.queryParams['sellerCode'];
+    if (sellerCode) me.validateForm.sellerCode = sellerCode;
+    let epCode = me.route.snapshot.queryParams['epCode'];
+    if (epCode) me.loadStoreData(epCode);//查询企业信息
     me.papersTypes = MainService.getEnumDataList(Setting.ENUM.papersType);       // 证件类型
-    this.validateForm = {"idType":"UNITY","sellerCode":"dmkfjkldjfoipe","isForever":"Y","contactsPhone":"15737198859","contactsName":"sd","epName":"as的地方","contactsEmail":"123@qq.com","creditCode":"sdfdsffgsdaf","legalPersonName":"df","legalPersonIdcard":"210302199901012498","idcardStartTime":new Date("2017-11-30T10:23:55.669Z"),"businessRegisteredCapital":"1000000","businessSphere":"食品粮油","businessLicenceAreaCode":"110101000000","businessLicenceAddress":"秩序的说法","businessLicenceStart":new Date("2017-11-30T10:23:55.669Z"),"businessLicenceEnd":new Date(),"businessLicenceNumberElectronic":"1C06792U12CNUA1"}
+  }
+
+  /**
+   * 查询企业信息
+   * @param data
+   */
+  loadStoreData(epCode) {
+    let me = this, param = {epCode: epCode};
+    $.when(SimplesService.loadStoreInfo(param)).done(data => {
+      if (data) {
+        me.validateForm = data;
+        me.validateForm.idcardStartTime = new Date(me.validateForm.idcardStartTime);
+        me.validateForm.idcardEndTime = new Date(me.validateForm.idcardEndTime);
+        me.validateForm.businessLicenceStart = new Date(me.validateForm.businessLicenceStart);
+        me.validateForm.businessLicenceEnd = new Date(me.validateForm.businessLicenceEnd);
+      }//企业信息
+    })
   }
 
   /**
@@ -126,7 +143,9 @@ export class BaseInfoComponent implements OnInit {
     //转换布尔值
     if (formValue.isForever) formValue.isForever = 'Y';
     else formValue.isForever = 'N';
-    if (formValue.businessLicenceAreaCode) formValue.businessLicenceAreaCode = formValue.businessLicenceAreaCode[2];//取第三级编码
+    if (typeof formValue.businessLicenceAreaCode == 'object') { //如果是数组形式则取数组的第三个
+      formValue.businessLicenceAreaCode = formValue.businessLicenceAreaCode[2];//取第三级编码
+    }
     // console.log(JSON.stringify(formValue));
     this.simplesService.enterpriseBase(formValue);
   };
@@ -228,9 +247,5 @@ export class BaseInfoComponent implements OnInit {
   hideImg(event) {
     let target = event.target.nextElementSibling;
     target.style.display = 'none';
-  }
-
-  getFormControl(name) {
-    return this.validateForm.controls[name];
   }
 }

@@ -47,8 +47,6 @@ export class RegisterComponent implements OnInit {
     }
     console.log(value);
     let formValue = value;
-    if(value.isBoss) formValue.isBoss = 'Y';
-    if(!value.isBoss) formValue.isBoss = 'N';
     this.simplesService.addSeller(formValue);
   };
 

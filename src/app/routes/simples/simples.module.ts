@@ -12,6 +12,7 @@ import {FileUploadModule} from "ng2-file-upload";
 import { BaseInfoComponent } from './base-info/base-info.component';
 import { DreageStepsComponent } from './dreage-steps/dreage-steps.component';
 import {StoreInfoComponent} from "./store-info/store-info.component";
+import {MainService} from "../../public/service/main.service";
 
 
 const routes: Routes = [
@@ -21,15 +22,12 @@ const routes: Routes = [
     {path: 'baseInfo', component: BaseInfoComponent},
     {path: 'accountInfo', component: AccountInfoComponent},
     {path: 'auditing', component: AuditingComponent},
-    {path: 'settlePass', component: AuditingComponent},
-    {path: 'settleReject', component: AuditingComponent}
   ]
   },
   {
     path: 'shop', component: DreageStepsComponent, children: [
     {path: 'dredge', component: DredgeComponent},
-    {path: 'done', component: DoneComponent},
-    {path: 'dredgeReject', component: DoneComponent}
+    {path: 'done', component: DoneComponent}
   ]
   },
   {
@@ -57,7 +55,8 @@ const routes: Routes = [
   ],
   providers: [
     StepsComponent,
-    SimplesService
+    SimplesService,
+    MainService
   ]
 })
 export class SimplesModule {

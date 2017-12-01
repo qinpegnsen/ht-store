@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {SimplesService} from "../simples.service";
 import {StepsComponent} from "../settle-steps/steps.component";
 import {ActivatedRoute} from "@angular/router";
+import {Setting} from "../../../public/setting/setting";
+declare var $: any;
 
 @Component({
   selector: 'app-auditing',
@@ -9,7 +11,8 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./auditing.component.css']
 })
 export class AuditingComponent implements OnInit {
-  public path: string;   //当前路由
+  public curState: string;   //当前状态
+  public curParam: any = null;   //当前状态下可以跳转的路由所需参数
 
   constructor(public simplesService: SimplesService,
               public route: ActivatedRoute,
@@ -19,9 +22,27 @@ export class AuditingComponent implements OnInit {
 
   ngOnInit() {
     let me = this;
-    //获取当前路由
-    me.route.url.subscribe(urls => {
-      me.path = urls[0].path;
+    let epCode = me.route.snapshot.queryParams['epCode'];
+    if (epCode) me.loadState(epCode);
+  }
+
+  /**
+   * 查询企业当前状态
+   */
+  loadState(epCode){
+    let me = this,param = {epCode:epCode};
+    $.when(SimplesService.loadStoreState(param)).done(data => {
+      if (data) {
+        if(data.state == Setting.ENUMSTATE.enterState.half || data.state == Setting.ENUMSTATE.enterState.audit){
+          me.curState = 'auditing';
+        }else if(data.state == Setting.ENUMSTATE.enterState.normal){
+          me.curState = 'settlePass';
+          me.curParam = {epCode:data.epCode,sellerCode:data.sellerCode};//开通店铺所需参数
+        }else if(data.state == Setting.ENUMSTATE.enterState.reject) {
+          me.curState = 'settleReject';
+          me.curParam = {epCode:data.epCode};//修改信息所需参数
+        }
+      }
     })
   }
 
@@ -29,7 +50,7 @@ export class AuditingComponent implements OnInit {
      * 组件跳转
      */
     skipTo(stepName){
-      this.simplesService.routerSkip(stepName);
+      this.simplesService.routerSkip(stepName,this.curParam);
     }
 
   }

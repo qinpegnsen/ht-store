@@ -12,15 +12,14 @@ export class SettingUrl {
       getRegSms: '/sms/registerSms'   //企业注册获取短信验证码
     },
     /**
-     * 企业入驻
+     * 企业入驻及相关信息查询
      */
     enterprise: {
-      getStore: '/enterprise/load',//企业入驻查询
       query: '/enterprise/query',//企业查询
       save: '/enterprise/save',//保存或修改企业基本信息
       save2: '/enterprise/save2',//保存或修改企业银行账户信息
-      auditPass: '/enterprise/updateToNormal',//企业审核--通过
-      auditReject: '/enterprise/updateToReject',//企业审核--驳回
+      load:'/enterprise/loadByEpCode', //(post)查询企业信息
+      loadState: '/enterprise/loadStateByEpCode'//(get)查询企业状态
     },
     /**
      * 商家
@@ -94,10 +93,12 @@ export class SettingUrl {
       getKeywords: '/basicExpress/queryBasicExpressIsUseList',//(get)查询物流公司列表
     },
     /**
-     *查询企业和店铺信息
+     *查询店铺信息
      */
     store:{
-      company:'/enterprise/loadByEpCode'//查询企业信息
+      saveStore: "/stores/saveStore",//(post)保存或修改企业店铺信息
+      loadShop: "/stores/loadByStoreCode", //(get)查询店铺基本信息
+      loadState: "/stores/loadStateByStoreCode" //(get)查询店铺状态
     }
 
   };

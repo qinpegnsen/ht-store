@@ -21,36 +21,35 @@ export class SimplesService {
 
   /**
    * 根据入驻步骤跳到相应页面
-   * @param current （当前步骤）
+   * step （步骤名称）
+   * param，路由参数，对象形式，如{code: '1243355'}
    */
-  routerSkip(step) {
+  routerSkip(step, param?: any) {
     switch (step) {
-      case 'register' :
+      case 'register' ://注册
         this.router.navigate(['/simple/reg/register'], {replaceUrl: true})
         break;
-      case 'baseInfo' :
-        this.router.navigate(['/simple/reg/baseInfo'], {replaceUrl: true})
+      case 'baseInfo' ://企业基本信息
+        //添加: queryParams: {sellerCode:611111111111111111}
+        //修改: epCode: {epCode:649255483008294912}
+        this.router.navigate(['/simple/reg/baseInfo'], {replaceUrl: true, queryParams: param})
         break;
-      case 'accountInfo' :
-        this.router.navigate(['/simple/reg/accountInfo'], {replaceUrl: true})
+      case 'accountInfo' ://企业银行账户信息
+        //添加/修改: queryParams: {epCode:649255483008294912}
+        this.router.navigate(['/simple/reg/accountInfo'], {replaceUrl: true, queryParams: param})
         break;
-      case 'auditing' :
-        this.router.navigate(['/simple/reg/auditing'], {replaceUrl: true})
+      case 'auditing' ://企业入驻已提交，待审核，审核通过，驳回
+        //queryParams: {epCode:649255483008294912}
+        this.router.navigate(['/simple/reg/auditing'], {replaceUrl: true, queryParams: param})
         break;
-      case 'settlePass' :
-        this.router.navigate(['/simple/reg/settlePass'], {replaceUrl: true})
+      case 'dredge' ://企业开通店铺
+        //开通: queryParams: {epCode:649255483008294912,sellerCode:611111111111111111}
+        //修改: queryParams: {storeCode:649530532714012672}
+        this.router.navigate(['/simple/reg/shop/dredge'], {replaceUrl: true, queryParams: param})
         break;
-      case 'settleReject' :
-        this.router.navigate(['/simple/reg/settleReject'], {replaceUrl: true})
-        break;
-      case 'dredge' :
-        this.router.navigate(['/simple/reg/shop/dredge'], {replaceUrl: true})
-        break;
-      case 'done' :
-        this.router.navigate(['/simple/reg/shop/done'], {replaceUrl: true})
-        break;
-      case 'dredgeReject' :
-        this.router.navigate(['/simple/reg/shop/dredgeReject'], {replaceUrl: true})
+      case 'done' ://开店申请已提交，待审核，驳回
+        //queryParams: {storeCode:649530532714012672}
+        this.router.navigate(['/simple/reg/shop/done'], {replaceUrl: true, queryParams: param})
         break;
     }
   }
@@ -116,7 +115,7 @@ export class SimplesService {
       contentType: "application/json",
       success: (res) => {
         if (res.success) {
-          me.routerSkip('accountInfo');
+          me.routerSkip('accountInfo', {epCode: res.data.epCode});
         } else {
           me._notification.error(`错误提示`, res.info)
         }
@@ -131,7 +130,7 @@ export class SimplesService {
    * 企业入驻——保存银行账户信息
    * @param data
    */
-  enterpriseSaveAccount(data) {
+  enterpriseAccount(data) {
     const me = this;
     AjaxService.post({
       url: SettingUrl.URL.enterprise.save2,
@@ -140,7 +139,7 @@ export class SimplesService {
       contentType: "application/json",
       success: (res) => {
         if (res.success) {
-          me.routerSkip('accountInfo');
+          me.routerSkip('auditing');
         } else {
           me._notification.error(`错误提示`, res.info)
         }
@@ -152,61 +151,94 @@ export class SimplesService {
   }
 
   /**
-   * 用户名异步校验
-   * @param control
-   * @returns {any}
+   * 企业入驻——保存银行账户信息
+   * @param data
    */
-  userNameAsyncValidator = (control: FormControl): any => {
-    return Observable.create(function (observer) {
-      setTimeout(() => {
-        if (control.value === 'any') {
-          observer.next({error: true, duplicated: true});
+  dredgeShop(data) {
+    const me = this;
+    AjaxService.post({
+      url: SettingUrl.URL.store.saveStore,
+      data: JSON.stringify(data),
+      mask: true,
+      contentType: "application/json",
+      success: (res) => {
+        if (res.success) {
+          me.routerSkip('done');
         } else {
-          observer.next(null);
+          me._notification.error(`错误提示`, res.info)
         }
-        observer.complete();
-      }, 600);
+      },
+      error: (res) => {
+        me._notification.error(`错误提示`, res.info)
+      }
     });
-  };
+  }
 
   /**
-   * 地址校验（地址级别对应数组长度）
-   * @param control
-   * @returns {any}
-   */
-  addressValidator = (control: FormControl): { [s: string]: boolean } => {
-    if (!control.value) {
-      return {required: true}
-    } else if (control.value.length < 3) {
-      return {error: true, address: true};
-    }
-  };
-
-  /**
-   * 仅仅检测必填项
-   * @param control
-   * @returns {any}
-   */
-  validateRequired = (control: FormControl): any => {
-    if (!control.value) {
-      return {required: true};
-    }
-  };
-
-  /**
-   * 查询结算信息列表
+   * 查询企业信息
    * @param data （查询参数）
    */
-   static cashSettleList(data:any){
-    const me = this;
+  static loadStoreInfo(data: any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.post({
-      url: SettingUrl.URL.store.company,
+      url: SettingUrl.URL.enterprise.load,
       data: data,
       async: false,
       success: (data) => {
-        console.log("█ 456545 ►►►",  456545);
+        if (data.success) defer.resolve(data.data);
+      }
+    });
+    return defer.promise(); //返回异步请求休息
+  }
+
+  /**
+   * 查询店铺信息
+   * @param data （查询参数）
+   */
+  static loadShopInfo(data: any) {
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
+    AjaxService.get({
+      url: SettingUrl.URL.store.loadShop,
+      data: data,
+      success: (data) => {
+        if (data.success) defer.resolve(data.data);
+      }
+    });
+    return defer.promise(); //返回异步请求休息
+  }
+
+  /**
+   * 查询企业入驻状态
+   * @param data （查询参数）
+   */
+  static loadStoreState(data: any) {
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
+    AjaxService.get({
+      url: SettingUrl.URL.enterprise.loadState,
+      data: data,
+      async: false,
+      success: (data) => {
+        if (data.success) defer.resolve(data.data);
+      }
+    });
+    return defer.promise(); //返回异步请求休息
+  }
+
+  /**
+   * 查询店铺状态
+   * @param data （查询参数）
+   */
+  static loadShopState(data: any) {
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
+    AjaxService.get({
+      url: SettingUrl.URL.store.loadState,
+      data: data,
+      async: false,
+      success: (data) => {
         if (data.success) defer.resolve(data.data);
       }
     });

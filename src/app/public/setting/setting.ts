@@ -51,21 +51,25 @@ export class Setting {
   public static ENUMSTATE: any = {
     yes: 'Y',
     no: 'N',
+    //商品状态
     goodsState: {
       normal: 'NORMAL', //已上架
       down: 'DOWN', //下架
       stop: 'STOP' //禁售
     },
+    //商品审核状态
     auditState: {
       audit: 'AUDIT', //待审核
       pass: 'PASS',   //审核通过
       unPass: 'UNPASS',//审核未通过
       reject: 'REJECT',//彻底驳回
     },
+    //营业执照类型
     papersType: {
       normal: 'NORMAL', //普通营业执照
       unity: 'UNITY'    //多证合一营业执照
     },
+    //售后服务状态
     afterService: {
       wait: 'WAIT', //申请已受理
       agree: 'AGREE',   //申请通过
@@ -73,16 +77,33 @@ export class Setting {
       delivery: 'DELIVERY',//用户已发出
       checkFails: 'CHECK_FAILS',//验货不通过
       done: 'DONE',//退款完成
-    },//售后服务状态
+    },
+    //售后搜索方式
     afterSearchType: {
       ordno: 'order', //订单编号
       afterNo: 'afterNo',   //申请通过
       phone: 'phone',//用户手机号
-    },//售后搜索方式
+    },
+    //售后服务类型
     afterType: {
       refund: 'REFUND',   //仅退款
       return: 'RETURN', //退货退款
-    },//售后服务类型
+    },
+    //企业入驻状态
+    enterState: {
+      half: 'HALF',  //入驻待审核
+      audit: 'AUDIT',   //入驻审核中
+      reject: 'REJECT',//入驻驳回
+      black: 'BLACK',//黑名单
+      normal: 'NORMAL',//店铺已正常
+    },
+    //企业开通店铺流程状态
+    shopState: {
+      reject: 'REJECT',//驳回
+      pending: 'PENDING',//店铺审核中
+      close: 'CLOSE',//店铺关闭
+      normal: 'NORMAL'//店铺正常
+    }
   };
 
   //數據字典健名

@@ -2,7 +2,7 @@ import {Util} from "../util/util";
 import {AjaxService} from "./ajax.service";
 import {SettingUrl} from "../setting/setting_url";
 import {isNullOrUndefined} from "util";
-import {AREA_LEVEL_2_JSON} from "../util/area_level_2";
+import {AREA_LEVEL_3_JSON} from "../util/area_level_3";
 
 declare var $: any;
 
@@ -70,7 +70,7 @@ export class MainService {
    * @returns {any}
    */
   public static uploadUid = function () {
-    let _this = this, uid;
+    let uid;
     AjaxService.get({
       url: SettingUrl.URL.base.uuid,
       async: false,
@@ -82,12 +82,12 @@ export class MainService {
   }
 
   /**
-   * 根据区域编码查询区域（2级）
+   * 根据区域编码查询区域（3级）
    * @param code  12位区域编码
    * @returns {any}
    */
   public static getAreaByTwelveBitCode(code) {
-    let areaList = AREA_LEVEL_2_JSON;
+    let areaList = AREA_LEVEL_3_JSON;
     let level = this.getLevelByCode(code);
     if (level == 1) {
       for (let levelOneItem of areaList) {
@@ -96,7 +96,7 @@ export class MainService {
         }
       }
     } else if (level == 2) {
-      let parentCode = code.substring(0, 2) + '0000000000';
+      let parentCode = code.substring(0, 2) + '0000000000';//获取父级编码
       for (let area of areaList) {
         if (area.areaCode === parentCode) {
           for (let levelTwoItem of area.children) {
@@ -104,7 +104,21 @@ export class MainService {
           }
         }
       }
-    } else {
+    } else if (level == 3){
+      let parentsCode = code.substring(0, 2) + '0000000000';//获取祖父级编码
+      let parentCode = code.substring(0, 4) + '00000000';//获取父级编码
+      for (let area of areaList) {
+        if (area.areaCode === parentsCode) {
+          for (let levelTwoItem of area.children) {
+            if (levelTwoItem.areaCode == parentCode) {
+              for (let levelThreeItem of levelTwoItem.children) {
+                if (levelThreeItem.areaCode == code) return levelThreeItem;
+              }
+            };
+          }
+        }
+      }
+    }else {
       return null
     }
 
@@ -144,6 +158,6 @@ export class MainService {
         if (data.success) defer.resolve(data.data);
       }
     });
-    return defer.promise(); //返回异步请求休息
+    return defer.promise(); //返回异步请求信息
   }
 }

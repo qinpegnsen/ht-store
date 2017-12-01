@@ -14,19 +14,19 @@ export class StoreInfoComponent implements OnInit {
 
   _loading: boolean = false;             //查询时锁屏
   ngOnInit() {
-    this.qeuryAgentData();//查询企业信息
+    this.queryStoreData();//查询企业信息
   }
 
   /**
    * 查询企业信息
    */
-  qeuryAgentData() {
+  queryStoreData() {
     let me = this;
     me._loading = true; //锁屏
     let data = { //查询参数
       epCode: "648357645864706048"
     }
-    $.when(SimplesService.cashSettleList(data)).done(data => {
+    $.when(SimplesService.loadStoreInfo(data)).done(data => {
       me._loading = false //解除锁屏
       if (data) {
         me.storeInfo = data;//企业信息

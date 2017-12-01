@@ -1,5 +1,4 @@
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder} from "@angular/forms";
 import {SimplesService} from "../simples.service";
 import {StepsComponent} from "../settle-steps/steps.component";
 import {FileUploader} from "ng2-file-upload";
@@ -8,6 +7,9 @@ import {MainService} from "../../../public/service/main.service";
 import {NzNotificationService} from "ng-zorro-antd";
 import {Util} from "../../../public/util/util";
 import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
+import {ActivatedRoute} from "@angular/router";
+import {Setting} from "../../../public/setting/setting";
+declare var $: any;
 
 @Component({
   selector: 'app-account-info',
@@ -19,6 +21,7 @@ export class AccountInfoComponent implements OnInit {
   _options: any;//三级联动区域数据
   ngValidateStatus = Util.ngValidateStatus;
   ngValidateErrorMsg = Util.ngValidateErrorMsg;
+  defaultImage = Setting.APP.defaultImg;
 
   public bankLicenceUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.base.upload,
@@ -29,33 +32,30 @@ export class AccountInfoComponent implements OnInit {
   constructor(public simplesService: SimplesService,
               public steps: StepsComponent,
               public _notification: NzNotificationService,
-              public fb: FormBuilder) {
+              public route: ActivatedRoute) {
     this.steps.current = 2;
-    // this.simplesService.routerSkip(this.steps.current);
     Util.transAreas(AREA_LEVEL_3_JSON);
     this._options = AREA_LEVEL_3_JSON;
     this.validateForm = {
       isSettlementAccount: true
     }
-    /*this.fb.group({
-     bankAccountName                     : ['', [this.simplesService.validateRequired]],//银行开户名
-     bankAccountNumber                   : ['', [this.simplesService.validateRequired]],//公司银行账号
-     bankName                            : ['', [this.simplesService.validateRequired]],//开户行支行名称
-     bankCode                            : ['', [this.simplesService.validateRequired]],//开户支行联行号
-     bankAddress                         : [null, [this.simplesService.addressValidator]],//开户银行地址
-     isSettlementAccount                 : [true, [this.simplesService.validateRequired]],//是否为结算账户
-     settlementBankAccountName           : ['', [this.simplesService.validateRequired]],//结算银行开户名
-     settlementBankAccountNumber         : ['', [this.simplesService.validateRequired]],//结算银行账号
-     settlementBankName                  : ['', [this.simplesService.validateRequired]],//结算账户开户行支行名称
-     settlementBankCode                  : ['', [this.simplesService.validateRequired]],//结算账户开户行支行联行号
-     settlementBankAddress               : [null, [this.simplesService.addressValidator]],//结算账户开户行所在地
-     bankLicenceElectronic               : [null, [this.simplesService.validateRequired]],//开户银行许可证电子版
-     });*/
   }
 
   ngOnInit() {
+    const me = this;
+    let epCode = me.route.snapshot.queryParams['epCode'];
+    if (epCode) me.loadStoreData(epCode);//查询企业信息
+  }
 
-
+  /**
+   * 查询企业信息
+   * @param data
+   */
+  loadStoreData(epCode) {
+    let me = this, param = {epCode: epCode};
+    $.when(SimplesService.loadStoreInfo(param)).done(data => {
+      if (data) me.validateForm = data; //企业信息
+    })
   }
 
   /**
@@ -128,10 +128,16 @@ export class AccountInfoComponent implements OnInit {
   submitFormData = () => {
     let formValue = this.validateForm;
     //转换地址格式
-     if(formValue.bankAddress) formValue.bankAddress = formValue.bankAddress[2];
-     if(formValue.settlementBankAddress) formValue.settlementBankAddress = formValue.settlementBankAddress[2];
-    console.log(formValue);
-    this.simplesService.enterpriseSaveAccount(formValue);
+    if (typeof formValue.bankAddress == 'object') { //如果是数组形式则取数组的第三个
+      formValue.bankAddress = formValue.bankAddress[2];
+    }
+    if (typeof formValue.settlementBankAddress == 'object') { //如果是数组形式则取数组的第三个
+      formValue.settlementBankAddress = formValue.settlementBankAddress[2];
+    }
+    if (formValue.isSettlementAccount) formValue.isSettlementAccount = 'Y';
+    else formValue.isSettlementAccount = 'N';
+    console.log(JSON.stringify(formValue));
+    this.simplesService.enterpriseAccount(formValue);
   };
 
 
@@ -151,6 +157,25 @@ export class AccountInfoComponent implements OnInit {
    */
   skipTo(stepName) {
     this.simplesService.routerSkip(stepName);
+  }
+
+  /**
+   * 鼠标放在图片上时大图随之移动
+   */
+  showImg(event) {
+    let target = event.target.nextElementSibling;
+    target.style.display = 'block';
+    target.style.top = (event.clientY + 20) + 'px';
+    target.style.left = (event.clientX + 30) + 'px';
+  }
+
+  /**
+   * 隐藏大图
+   * @param event
+   */
+  hideImg(event) {
+    let target = event.target.nextElementSibling;
+    target.style.display = 'none';
   }
 
 }
