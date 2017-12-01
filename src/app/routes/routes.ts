@@ -18,10 +18,10 @@ export const routes = [
     ]
   },
   {
-    path: 'simple',
+    path: 'basic',
     component: SimpleComponent,
     children: [
-      {path: '', redirectTo: '/simple/reg', pathMatch: 'full'},
+      {path: '', redirectTo: '/basic/reg', pathMatch: 'full'},
       {path: 'reg', loadChildren: './simples/simples.module#SimplesModule'},
     ]
   },

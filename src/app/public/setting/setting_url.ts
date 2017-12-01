@@ -130,17 +130,14 @@ export class SettingUrl {
       cach:"../cash" //提现页面（此处如此写，用于路由相对进入模式）
     },
     basic:{
-      reg:"/simple/reg", //企业注册
-      company:"/simple/reg/company", //企业信息
-      register:"/simple/reg/register", //注册
-      baseInfo:"/simple/reg/baseInfo", //基础信息
-      accountInfo:"/simple/reg/accountInfo", //企业信息
-      auditing:"/simple/reg/auditing", //审核
-      settlePass:"/simple/reg/settlePass", //审核通过
-      settleReject:"/simple/reg/settleReject", //审核不通过
-      dredge:"/simple/reg/shop/dredge", //开通店铺
-      done:"/simple/reg/shop/done", //完成
-      dredgeReject:"/simple/reg/shop/dredgeReject" //开通店铺被驳回
+      reg:"/basic/reg", //企业注册
+      company:"/basic/reg/company", //企业信息
+      register:"/basic/reg/register", //注册
+      baseInfo:"/basic/reg/baseInfo", //基础信息
+      accountInfo:"/basic/reg/accountInfo", //企业账户信息
+      auditing:"/basic/reg/auditing", //审核
+      dredge:"/basic/reg/shop/dredge", //开通店铺
+      done:"/basic/reg/shop/done" //完成
     },
     pass:{
       login:"/page/login", //登录
