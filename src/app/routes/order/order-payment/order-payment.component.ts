@@ -12,7 +12,7 @@ export class OrderPaymentComponent implements OnInit {
   orderList: Page = new Page();  //待付款订单信息
   _loading = false;             //查询时锁屏
   orderquery = {
-    custPhone: '',//会员手机号
+    phone: '',//会员手机号
     agentOrdno: ''//订单号
   }//查询条件
   showOrderList: boolean = true;//判断子组件的显示/隐藏
@@ -21,7 +21,7 @@ export class OrderPaymentComponent implements OnInit {
 
   ngOnInit() {
     const me = this
-    me.queryComplete()//查询待付款订单列表
+    me.queryPayment()//查询待付款订单列表
   }
   /**
    * 子组件加载时
@@ -44,15 +44,15 @@ export class OrderPaymentComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryComplete() {
+  public queryPayment() {
     let me = this;
     me._loading = true; //锁屏
     me.orderList.params = { //查询参数
       curPage: me.orderList.curPage, //目标页码
       pageSize: me.orderList.pageSize, //每页条数
-      agentAcct: me.orderquery.custPhone,//代理商账号
+      custPhone: me.orderquery.phone,//会员手机号
       ordno: me.orderquery.agentOrdno,//订单号
-      state:'SUCCESS'
+      ordState:'CR'
     }
     $.when(OrderService.queryOrderList(me.orderList.params)).done(data => {
       me._loading = false //解除锁屏

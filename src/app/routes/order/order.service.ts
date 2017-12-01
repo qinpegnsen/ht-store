@@ -8,6 +8,11 @@ export class OrderService {
 
   constructor() { }
 
+  /**
+   * 查询订单列表
+   * @param data
+   * @returns {any<T>}
+   */
   static queryOrderList(data:any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）

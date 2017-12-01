@@ -13,7 +13,7 @@ export class OrderPendingShipmentComponent implements OnInit {
   orderList: Page = new Page();  //待收货订单信息
   _loading = false;             //查询时锁屏
   orderquery = {
-    custPhone: '',//会员手机号
+    phone: '',//会员手机号
     agentOrdno: ''//订单号
   }//查询条件
   isOrderPend = false;//设置发货弹窗
@@ -63,9 +63,9 @@ export class OrderPendingShipmentComponent implements OnInit {
     me.orderList.params = { //查询参数
       curPage: me.orderList.curPage, //目标页码
       pageSize: me.orderList.pageSize, //每页条数
-      agentAcct: me.orderquery.custPhone,//会员手机号
+      custPhone: me.orderquery.phone,//会员手机号
       ordno: me.orderquery.agentOrdno,//订单号
-      state:'PREPARE'
+      ordState:'PREPARE'
     }
     $.when(OrderService.queryOrderList(me.orderList.params)).done(data => {
       me._loading = false //解除锁屏

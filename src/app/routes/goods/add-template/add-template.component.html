@@ -1,5 +1,5 @@
 <div class="pt-30" *ngIf="linkType=='addArticle'">
-  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+  <form nz-form [formGroup]="validateForm">
     <div nz-form-item nz-row>
       <div nz-form-label nz-col [nzSpan]="3">
         <label nz-form-item-required>运费模板名称</label>

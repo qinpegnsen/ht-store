@@ -90,7 +90,7 @@ export class SettingUrl {
      * 订单管理
      */
     order:{
-      queryOrdAdmin: '/agentOrd/queryAgentOrdAdmin',//(get)查询订单管理中的待发货订单
+      queryOrdAdmin: '/ord/queryStoreOrd',//(get)查询订单管理中的订单列表
       getKeywords: '/basicExpress/queryBasicExpressIsUseList',//(get)查询物流公司列表
     },
     /**
