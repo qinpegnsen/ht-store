@@ -20,15 +20,20 @@ export class RefundComponent implements OnInit {
   public saleAfterStates: any;                        //售后单状态数据
   public isReceiveList: any;                          //是否收货数据
   public enumState = Setting.ENUMSTATE;               //定义枚举状态
+  public app = Setting.APP;                           //定义出错时加载的图片
   public guideLang: any = Setting.PAGEMSG.service.refund;//引导语
   public query = {
-    saleAfterState: '',//当前的售后单的状态
+    state: '',//当前的售后单的状态
     isReceive: '',     //是否收到货
     phone: null,
     ordno: null,
     afterNo: null,
-    searchType: 'afterNo',
+    returnType: this.enumState.afterType.refund,
+    searchType: this.enumState.afterSearchType.afterNo,
+    curPage: this.refundOrderPage.curPage, //目标页码
+    pageSize: this.refundOrderPage.pageSize //每页条数
   }; // 查询条件
+
   constructor() {
   }
 
@@ -43,16 +48,24 @@ export class RefundComponent implements OnInit {
    * 切换搜索条件时
    */
   changeSearchType(val) {
-    if (val == 'afterNo') {
+    if (val == this.enumState.afterSearchType.afterNo) {
       this.query.phone = null;
       this.query.ordno = null;
-    } else if (val == 'phone') {
+    } else if (val == this.enumState.afterSearchType.phone) {
       this.query.afterNo = null;
       this.query.ordno = null;
-    } else if (val == 'ordno') {
+    } else if (val == this.enumState.afterSearchType.ordno) {
       this.query.afterNo = null;
       this.query.phone = null;
     }
+  }
+
+  /**
+   * 点击待审核退款直接更改售后单的状态，查询待审核退款列表
+   */
+  changeSaleAfterState() {
+    this.query.state = this.enumState.afterService.wait;
+    this.queryOrdList();
   }
 
   /**
@@ -70,10 +83,7 @@ export class RefundComponent implements OnInit {
    */
   public queryOrdList() {
     this._loading = true;//锁屏
-    this.refundOrderPage.params = { //查询参数
-      curPage: this.refundOrderPage.curPage, //目标页码
-      pageSize: this.refundOrderPage.pageSize //每页条数
-    };
+    this.refundOrderPage.params=this.query;
     $.when(ServiceService.queryRefundOrd(this.refundOrderPage.params)).done(data => {
       this._loading = false;//解除锁屏
       if (data) this.refundOrderPage = data; //赋值
@@ -102,7 +112,7 @@ export class RefundComponent implements OnInit {
    * 子组件加载时
    * @param event
    */
-  activate(event) {
+  activate() {
     this.showList = false;
   }
 
@@ -110,8 +120,8 @@ export class RefundComponent implements OnInit {
    * 子组件注销时
    * @param event
    */
-  onDeactivate(event) {
+  onDeactivate() {
     this.showList = true;
-    if (event.refresh) this.queryOrdList();
+    this.queryOrdList();
   }
 }

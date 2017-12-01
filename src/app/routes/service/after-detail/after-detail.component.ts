@@ -27,7 +27,6 @@ export class AfterDetailComponent implements OnInit {
   public isPass: string = this.enumState.yes;     //是否同意退货
   public isAgree: string = this.enumState.yes;    //是否同意退货
   public expressData: any;          //获取快递的公司和单号
-  public refresh: boolean;          //父组件是否需要刷新
 
 
   constructor(public router: Router,
@@ -62,9 +61,9 @@ export class AfterDetailComponent implements OnInit {
       afterNo: me.afterData.afterNo,
       opinion: me.opinion,
       isAgree: me.isAgree
-    }
+    };
     ServiceService.agreeRefundMoney(data);
-    me.refresh = true;
+    this.back();
   }
 
   /**
@@ -78,7 +77,7 @@ export class AfterDetailComponent implements OnInit {
       isAgree: me.isAgree
     };
     ServiceService.dealReturnGoods(data);
-    me.refresh = true;
+    this.back();
   }
 
   /**
@@ -92,7 +91,7 @@ export class AfterDetailComponent implements OnInit {
       isPass: me.isPass
     };
     ServiceService.checkRefundGoods(data);
-    me.refresh = true;
+    this.back();
   }
 
   /**
@@ -102,7 +101,7 @@ export class AfterDetailComponent implements OnInit {
     let target = event.target.nextElementSibling;
     target.style.display = 'block';
     target.style.top = (event.clientY + 15) + 'px';
-    target.style.left = (event.clientX + 20) + 'px';
+    target.style.left = (event.clientX + 25) + 'px';
   }
 
   /**
@@ -113,6 +112,9 @@ export class AfterDetailComponent implements OnInit {
     target.style.display = 'none';
   }
 
+  /**
+   * 点击返回执行方法
+   */
   back() {
     this.location.back();
   }

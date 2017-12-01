@@ -56,25 +56,6 @@
   min-width: 1360px;
 }
 
-.order-track .timeline > li > .timeline-panel, .timeline-alt > li > .timeline-panel {
-  margin-left: 45px;
-}
-
-.order-track .timeline-alt > li > .timeline-badge {
-  position: absolute;
-  left: 15px;
-  z-index: 100;
-  color: #fff;
-  width: 6px;
-  height: 6px;
-  margin-top: 8px;
-  font-size: 12px;
-  border-radius: 20px;
-  line-height: 20px;
-  text-align: center;
-  background-color: #d8d8d8;
-}
-
 .order-track .logis-time {
   display: inline-block;
   text-align: right;
@@ -103,4 +84,20 @@
 .lengendSty{
   height:50px;
   line-height:50px;
+}
+.hover-native-img{
+  max-width: 800px;
+  max-height: 500px;
+  position: fixed;
+  top: 50%;
+  z-index: 100;
+  display: none;
+  -webkit-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 2px 2px 5px 1px  rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 5px 1px  rgba(0, 0, 0, 0.5);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
 }

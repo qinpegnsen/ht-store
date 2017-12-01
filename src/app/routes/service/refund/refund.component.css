@@ -1,10 +1,10 @@
-.page-msg li{
+.page-msg-red li{
   line-height: 20px;
   margin-bottom: 5px;
   padding-left: 30px;
   position: relative;
 }
-.page-msg li:before{
+.page-msg-red li:before{
   position: absolute;
   content: '●';
   line-height: 20px;
@@ -27,22 +27,18 @@
   width: 60%;
   float: right;
 }
+._special{
+  width: 350px;
+}
 ._special .search-title{
   width: 40%;
 }
 ._special .search-main{
   width: 50%;
 }
-
 .h35{height: 35px}
 
-.buyimg{
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
 .hover-big-img{
-  width: 180px !important;
   max-width: 220px;
   max-height: 220px;
   position: fixed;

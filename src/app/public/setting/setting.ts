@@ -74,6 +74,15 @@ export class Setting {
       checkFails: 'CHECK_FAILS',//验货不通过
       done: 'DONE',//退款完成
     },//售后服务状态
+    afterSearchType: {
+      ordno: 'order', //订单编号
+      afterNo: 'afterNo',   //申请通过
+      phone: 'phone',//用户手机号
+    },//售后搜索方式
+    afterType: {
+      refund: 'REFUND',   //仅退款
+      return: 'RETURN', //退货退款
+    },//售后服务类型
   };
 
   //數據字典健名

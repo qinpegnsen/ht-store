@@ -63,7 +63,7 @@ export class RedPackStatisticsComponent implements OnInit {
           _this.select.week = ele;//获取默认周
         } else if (now == start || now == end) {
           _this.select.week = ele;//获取默认周
-        } else if (now > start || now > end) {//两个月的交界处
+        } else if (now > start || now < end) {//两个月的交界处
           _this.select.week = ele;//获取默认周
         }
       });
