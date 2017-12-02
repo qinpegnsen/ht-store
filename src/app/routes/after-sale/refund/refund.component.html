@@ -141,11 +141,10 @@
           <div class="bg-light-gray pl text-left h35">
             <span class="fl">商品图片：</span>
             <span>
-                 <img [src]="item.goodsImage | imgErr | imgSize :'30'" class="littleImg" title="点击查看大图"
+                 <img [src]="item.goodsImage | imgSize :'30'" appImgErr class="littleImg" title="点击查看大图"
                       (click)="showImg($event)"
                       (mouseout)="hideImg($event)">
-                 <img [src]="item.goodsImage  | imgErr" class="hover-big-img"
-                 >
+                 <img [src]="item.goodsImage" appImgErr class="hover-big-img">
                 </span>
           </div>
         </td>

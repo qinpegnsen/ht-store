@@ -62,10 +62,10 @@
           <td class="item-bd w85 mb0">
             <ng-container *ngIf="afterData.afterGoodsReqVouList?.length > 0">
               <div class="tag-dib imgbox text-center mr" *ngFor="let item of afterData.afterGoodsReqVouList">
-                <img class="img" [src]="item.vpic | imgErr | imgSize :'30'" class="littleImg" title="点击查看大图"
+                <img class="img" [src]="item.vpic | imgSize :'30'" class="littleImg" appImgErr title="点击查看大图"
                      (click)="showImg($event)"
                      (mouseout)="hideImg($event)">
-                <img [src]="item.vpic" class="hover-native-img">
+                <img [src]="item.vpic" appImgErr class="hover-native-img">
               </div>
             </ng-container>
           </td>
