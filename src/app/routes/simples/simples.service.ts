@@ -181,7 +181,7 @@ export class SimplesService {
   static loadStoreInfo(data: any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
-    AjaxService.post({
+    AjaxService.get({
       url: SettingUrl.URL.enterprise.load,
       data: data,
       async: false,
