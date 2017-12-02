@@ -43,10 +43,10 @@
                   <p><span class="font14" *ngFor="let eval of data.commentGoodsPicList;let i = index">
 
                    <nz-popover  [nzTrigger]="'click'">
-                       <img [src]="eval.pic | imgSize:'200'" class="good-img" onerror="javascript:this.src='../../../assets/img/dummy.png'" title="点击出大图"
+                       <img [src]="eval.pic" class="good-img" onerror="javascript:this.src='../../../assets/img/dummy.png'" title="点击出大图"
                             alt="" *ngIf="eval.isAfter=='N'"  nz-popover >
                         <ng-template #nzTemplate>
-                          <div>  <img [src]="eval.pic | imgSize:'400'" class="" onerror="javascript:this.src='../../../assets/img/dummy.png'"
+                          <div>  <img [src]="eval.pic" class="" onerror="javascript:this.src='../../../assets/img/dummy.png'"
                       alt="" *ngIf="eval.isAfter=='N'" >
                           </div>
                         </ng-template>
@@ -64,7 +64,7 @@
                        <img [src]="eval.pic" class="good-img" onerror="javascript:this.src='../../../assets/img/dummy.png'" title="点击出大图"
                             alt="" *ngIf="eval.isAfter=='Y'"  nz-popover >
                         <ng-template #nzTemplate>
-                          <div>  <img [src]="eval.pic | imgSize:'400'" class="" onerror="javascript:this.src='../../../assets/img/dummy.png'"
+                          <div>  <img [src]="eval.pic" class="" onerror="javascript:this.src='../../../assets/img/dummy.png'"
                                       alt="" *ngIf="eval.isAfter=='Y'" >
                           </div>
                         </ng-template>

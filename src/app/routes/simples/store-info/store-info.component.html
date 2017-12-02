@@ -1,126 +1,321 @@
-<div class="w100 store-info-all">
-
-  <div class="mb-20 pt-20 w90 font18 store-info">
+<div class="store-info-all">
+  <div class="mb-20 pt-20 font18 strong store-info">
     企业信息
   </div>
-  <div class="w100 store-info-one">
-    <p class="legend bb-dashed w90 store-info-border">企业基本信息</p>
-    <dl class="w48 fl mt-15">
-      <dd class="text-right strong">企业名称：</dd>
-      <dd class="text-right strong">企业邮箱：</dd>
-      <dd class="text-right strong">联系人姓名：</dd>
-      <dd class="text-right strong">联系人手机号：</dd>
-      <dd class="text-right strong">证件类型：</dd>
-    </dl>
-    <dl class="w52 fr mt-15">
-      <dd class="pl">{{storeInfo.epName}}</dd>
-      <dd class="pl">{{storeInfo.contactsEmail}}</dd>
-      <dd class="pl">{{storeInfo.contactsName}}</dd>
-      <dd class="pl">{{storeInfo.contactsPhone}}</dd>
-      <dd class="pl">{{storeInfo.idType | stateName:'2002'}}</dd>
-    </dl>
-  </div>
-  <div class="w100 store-info-two">
-    <p class="legend bb-dashed w90 store-info-border">企业法人信息</p>
-    <dl class="w48 fl mt-15">
-      <dd class="text-right strong">法人姓名：</dd>
-      <dd class="text-right strong">法人身份证号：</dd>
-      <dd class="text-right strong">是否长期有效：</dd>
-      <dd class="text-right strong">法人身份证有效期：</dd>
-    </dl>
-    <dl class="w52 fr mt-15">
-      <dd class="pl">{{storeInfo.legalPersonName}}</dd>
-      <dd class="pl">{{storeInfo.legalPersonIdcard}}</dd>
-      <dd class="pl">{{storeInfo.isForever | stateName:'1001'}}</dd>
-      <dd class="pl" *ngIf="storeInfo.idcardEndTime!=null">{{storeInfo.idcardStartTime| date:"yyyy-MM-dd"}}&nbsp;&nbsp;-&nbsp;&nbsp;{{storeInfo.idcardEndTime|
-        date:"yyyy-MM-dd"}}
-      </dd>
-      <dd class="pl" *ngIf="storeInfo.idcardEndTime==null">{{storeInfo.idcardStartTime| date:"yyyy-MM-dd"}}&nbsp;&nbsp;-&nbsp;&nbsp;长期</dd>
-    </dl>
-  </div>
-  <div class="w100 store-info-three">
-    <p class="legend bb-dashed w90 store-info-border">营业执照信息</p>
-    <dl class="w48 fl mt-15">
-      <dd class="text-right strong">注册资本：</dd>
-      <dd class="text-right strong">法定经营范围：</dd>
-      <dd class="text-right strong">营业执照所在地：</dd>
-      <dd class="text-right strong">详细地址：</dd>
-      <dd class="text-right strong">营业执照有效期：</dd>
-      <dd class="text-right strong">营业执照电子版：</dd>
-    </dl>
-    <dl class="w52 fr mt-15">
-      <dd class="pl">{{storeInfo.businessRegisteredCapital}}</dd>
-      <dd class="pl">{{storeInfo.businessSphere}}</dd>
-      <dd class="pl">{{storeInfo.businessLicenceAreaName}}</dd>
-      <dd class="pl">{{storeInfo.businessLicenceAddress}}</dd>
-      <dd class="pl" *ngIf="storeInfo.businessLicenceEnd!=null">{{storeInfo.businessLicenceStart | date:"yyyy-MM-dd"}}&nbsp;&nbsp;至&nbsp;&nbsp;{{storeInfo.businessLicenceEnd
-        |
-        date:"yyyy-MM-dd"}}
-      </dd>
-      <dd class="pl" *ngIf="storeInfo.businessLicenceEnd==null">{{storeInfo.businessLicenceStart | date:"yyyy-MM-dd"}}&nbsp;&nbsp;至&nbsp;&nbsp;长期
-      </dd>
-      <dd class="pl">
-        <nz-popover [nzTrigger]="'click'">
-          <img [src]="storeInfo.businessLicenceNumberElectronic" class="Electronic-img"
-               onerror="javascript:this.src='../../../assets/img/dummy.png'" title="点击出大图"
-               alt="" nz-popover>
-          <ng-template #nzTemplate>
-            <div><img [src]="storeInfo.businessLicenceNumberElectronic | imgSize:'600'" class=""
-                      onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
-            </div>
-          </ng-template>
-        </nz-popover>
-      </dd>
-    </dl>
-  </div>
-  <div class="w100 store-info-four">
-    <p class="legend bb-dashed w90 store-info-border">开户行信息</p>
-    <dl class="w48 fl mt-15">
-      <dd class="text-right strong">银行开户名：</dd>
-      <dd class="text-right strong">公司银行账号：</dd>
-      <dd class="text-right strong">开户行支行名称：</dd>
-      <dd class="text-right strong">开户支行银联号：</dd>
-      <dd class="text-right strong">开户银行地址：</dd>
-      <dd class="text-right strong">是否为结算账户：</dd>
-      <dd class="text-right strong">开户银行许可证电子版：</dd>
-    </dl>
-    <dl class="w52 fr mt-15">
-      <dd class="pl">{{storeInfo.businessSphere}}</dd>
-      <dd class="pl">{{storeInfo.bankaAccountNumber}}</dd>
-      <dd class="pl">{{storeInfo.bankName}}</dd>
-      <dd class="pl">{{storeInfo.bankCode}}</dd>
-      <dd class="pl">{{storeInfo.bankAddress}}</dd>
-      <dd class="pl">{{storeInfo.isSettlementAccount | stateName:'1001'}}</dd>
-      <dd class="pl">
-        <nz-popover [nzTrigger]="'click'">
-          <img [src]="storeInfo.bankLicenceElectronic" class="Electronic-img"
-               onerror="javascript:this.src='../../../assets/img/dummy.png'" title="点击出大图"
-               alt="" nz-popover>
-          <ng-template #nzTemplate>
-            <div><img [src]="storeInfo.bankLicenceElectronic | imgSize:'600'" class=""
-                      onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
-            </div>
-          </ng-template>
-        </nz-popover>
-      </dd>
-    </dl>
-  </div>
-  <div class="w100 store-info-five">
-    <p class="legend bb-dashed w90 store-info-border">结算账户信息</p>
-    <dl class="w48 fl mt-15">
-      <dd class="text-right strong">结算银行开户名：</dd>
-      <dd class="text-right strong">结算公司银行账号：</dd>
-      <dd class="text-right strong">结算开户行支行名称：</dd>
-      <dd class="text-right strong">结算开户支行银联号：</dd>
-      <dd class="text-right strong">结算开户银行地址：</dd>
-    </dl>
-    <dl class="w52 fr mt-15">
-      <dd class="pl">{{storeInfo.settlementBankAccountName}}</dd>
-      <dd class="pl">{{storeInfo.settlementBankAccountNumber}}</dd>
-      <dd class="pl">{{storeInfo.settlementBankAame}}</dd>
-      <dd class="pl">{{storeInfo.settlementBankCode}}</dd>
-      <dd class="pl">{{storeInfo.settlementBankAddress}}</dd>
-    </dl>
-  </div>
+  <!--企业基本信息 --start -->
+  <div>
+    <div class="store-info-border mb-20">企业基本信息</div>
+    <div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          企业名称：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.epName}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          企业邮箱：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.contactsEmail}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          联系人姓名：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.contactsName}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          联系人手机号：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.contactsPhone}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          证件类型：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.idType | stateName:'2002'}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row" *ngIf="storeInfo.idType!=UNITY">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          社会信用代码：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.creditCode}}
+        </div>
+      </div>
+      <div *ngIf="storeInfo.idType==UNITY">
+        <div nz-row class="store-info-row">
+          <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+            税务登记证证号：
+          </div>
+          <div nz-col [nzSpan]="12">
+            {{storeInfo.taxRegistrationCertificate}}
+          </div>
+        </div>
+        <div nz-row class="store-info-row">
+          <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+            纳税登记证电子版：
+          </div>
+          <div nz-col [nzSpan]="12">
+            {{storeInfo.taxRegistrationCertificateElectronic}}
+          </div>
+        </div>
+        <div nz-row class="store-info-row">
+          <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+            组织结构代码：
+          </div>
+          <div nz-col [nzSpan]="12">
+            {{storeInfo.organizationCode}}
+          </div>
+        </div>
+        <div nz-row class="store-info-row">
+          <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+            组织结构代码电子版：
+          </div>
+          <div nz-col [nzSpan]="12">
+            {{storeInfo.organizationCodeElectronic}}
+          </div>
+        </div>
+      </div>
 
+    </div>
+  </div>
+  <!--企业基本信息 --end -->
+  <!--企业法人信息 --start -->
+  <div>
+    <div class="store-info-border mb-20">企业法人信息</div>
+    <div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          法人姓名：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.legalPersonName}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          法人身份证号：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.legalPersonIdcard}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          是否长期有效：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.isForever | stateName:'1001'}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          法人身份证有效期：
+        </div>
+        <div nz-col [nzSpan]="12" *ngIf="storeInfo.isForever==Y">
+          {{storeInfo.idcardStartTime| date:"yyyy-MM-dd"}}&nbsp;&nbsp;-&nbsp;&nbsp;{{storeInfo.idcardEndTime|
+          date:"yyyy-MM-dd"}}
+        </div>
+        <div nz-col [nzSpan]="12" *ngIf="storeInfo.isForever!=Y">
+          {{storeInfo.idcardStartTime| date:"yyyy-MM-dd"}}&nbsp;&nbsp;-&nbsp;&nbsp;长期
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 企业法人信息 --end -->
+  <!--营业执照信息 --start -->
+  <div>
+    <div class="store-info-border mb-20">营业执照信息</div>
+    <div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          注册资本：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.businessRegisteredCapital}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          法定经营范围：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.businessSphere}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          营业执照所在地：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.businessLicenceAreaName}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          详细地址：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.businessLicenceAddress}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          营业执照有效期：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.businessLicenceStart | date:"yyyy-MM-dd"}}&nbsp;&nbsp;至&nbsp;&nbsp;{{storeInfo.businessLicenceEnd
+          | date:"yyyy-MM-dd"}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row img-bottom">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          营业执照电子版：
+        </div>
+        <nz-popover [nzTrigger]="'click'">
+          <img [src]="storeInfo.businessLicenceNumberElectronic" class="electronic-img"
+               onerror="javascript:this.src='../../../assets/img/dummy.png'" title="点击出大图"
+               alt="" nz-popover>
+          <ng-template #nzTemplate>
+            <div><img [src]="storeInfo.businessLicenceNumberElectronic" class=""
+                      onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+            </div>
+          </ng-template>
+        </nz-popover>
+
+      </div>
+    </div>
+  </div>
+  <!--营业执照信息 --end -->
+  <!--开户行信息 --start -->
+  <div class="opening-bank-info">
+    <div class="store-info-border mb-20">开户行信息</div>
+    <div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          银行开户名：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.businessSphere}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          公司银行账号：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.bankAccountNumber}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          开户行支行名称：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.bankName}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          开户支行银联号：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.bankCode}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          开户银行地址：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.bankAddress}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          开户银行许可证电子版：
+        </div>
+        <div nz-col [nzSpan]="12">
+          <nz-popover [nzTrigger]="'click'">
+            <img [src]="storeInfo.bankLicenceElectronic"  class="electronic-img"
+                 onerror="javascript:this.src='../../../assets/img/dummy.png'" title="点击出大图"
+                 alt="" nz-popover>
+            <ng-template #nzTemplate>
+              <div><img [src]="storeInfo.bankLicenceElectronic"
+                        onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+              </div>
+            </ng-template>
+          </nz-popover>
+        </div>
+      </div>
+      <div nz-row class="store-info-row store-info-bottom">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          是否为结算账户：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.isSettlementAccount | stateName:'1001'}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--开户行信息 --end -->
+  <!--结算账户信息 --start -->
+  <div *ngIf="storeInfo.isSettlementAccount==N">
+    <div class="store-info-border mb-20">结算账户信息</div>
+    <div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          结算银行开户名：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.settlementBankAccountName}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          结算银行账号：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.settlementBankAccountNumber}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          结算账户开户行支行名称：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.settlementBankName}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          结算账户开户行支行银联号：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.settlementBankCode}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row store-info-bottom">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          结算账户开户行所在地：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.settlementBankAddress}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--结算账户信息 --end -->
 </div>

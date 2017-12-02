@@ -130,7 +130,7 @@ export class SettingUrl {
     },
     basic:{
       reg:"/basic/reg", //企业注册
-      company:"/basic/reg/company", //企业信息
+      company:"/basic/company", //企业信息
       register:"/basic/reg/register", //注册
       baseInfo:"/basic/reg/baseInfo", //基础信息
       accountInfo:"/basic/reg/accountInfo", //企业账户信息
