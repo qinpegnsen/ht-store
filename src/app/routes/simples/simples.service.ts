@@ -68,11 +68,11 @@ export class SimplesService {
         if (res.success) {
           me.routerSkip('baseInfo',{sellerCode:res.data.sellerCode});
         } else {
-          me._notification.error(`出错了`, '注册接口出错了')
+          me._notification.error(`出错了`, res.info)
         }
       },
       error: (res) => {
-        me._notification.error(`接口出错了`, '注册接口出错了')
+        me._notification.error(`出错了`, '接口调用失败')
       }
     });
   }
@@ -92,11 +92,11 @@ export class SimplesService {
         if (res.success) {
           _success = true;
         } else {
-          me._notification.error(`出错了`, '注册接口出错了')
+          me._notification.error(`出错了`, res.info)
         }
       },
       error: (res) => {
-        me._notification.error(`接口出错了`, '注册接口出错了')
+        me._notification.error(`接口出错了`, '接口调用失败')
       }
     });
     return _success;
@@ -121,7 +121,7 @@ export class SimplesService {
         }
       },
       error: (res) => {
-        me._notification.error(`错误提示`, res.info)
+        me._notification.error(`错误提示`, '接口调用失败')
       }
     });
   }
@@ -145,7 +145,7 @@ export class SimplesService {
         }
       },
       error: (res) => {
-        me._notification.error(`错误提示`, res.info)
+        me._notification.error(`错误提示`, '接口调用失败')
       }
     });
   }
@@ -169,7 +169,7 @@ export class SimplesService {
         }
       },
       error: (res) => {
-        me._notification.error(`错误提示`, res.info)
+        me._notification.error(`错误提示`, '接口调用失败')
       }
     });
   }
