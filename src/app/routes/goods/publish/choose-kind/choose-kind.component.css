@@ -39,12 +39,9 @@
 
 .kind-zone li.current {
   color: #e82d4d;
-  background-color: #fdeff2;
-  border: solid 1px #fdd8e7;
-  border-radius: 3px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  background-color: #fef0ef;
+  border: solid 1px #fcdedc;
+  border-radius: 2px;
 }
 
 .kind-zone li.current:after {

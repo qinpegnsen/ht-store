@@ -204,14 +204,6 @@
         </button>
       </ng-container>
 
-      <!--待审核的商品，有如下操作-->
-      <ng-container *ngIf="goods.goodsAudit==enumState.auditState.audit">
-        <button nz-button title="审核" [routerLink]="goodsManageAudit" class="btn-purple"
-                [queryParams]="{baseCode: goods.goodsBaseCode,page: goodsList.curPage}">
-          <i class="anticon anticon-check-circle-o"></i>
-        </button>
-      </ng-container>
-
       <!--未被驳回的正常状态的商品，可查看详情-->
       <ng-container *ngIf="goods.goodsAudit!=enumState.auditState.reject && goods.state!=enumState.goodsState.normal">
         <button nz-button class="mt-5" title="修改/编辑" [routerLink]="goodsManageEdit" class="btn-blue"

@@ -20,9 +20,9 @@
       </dt>
       <dd nz-col [nzSpan]="20">
         <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
-             [nzValidateStatus]="ngGoodsName.valid && !ngGoodsName.pristine?'success':ngGoodsName.invalid?'error':null">
+             [nzValidateStatus]="ngValidateStatus(ngGoodsName)">
           <nz-input name="goodsName" [(ngModel)]="publishData.goodsName" [nzType]="'text'" [nzPlaceHolder]="'商品名称'"
-                    [nzSize]="'large'" minlength="3" maxlength="50" #ngGoodsName="ngModel">
+                   required [nzSize]="'large'" minlength="3" maxlength="50" #ngGoodsName="ngModel">
           </nz-input>
         </div>
         <p nz-col [nzSpan]="24" class="tip">商品标题名称长度至少3个字符，最长50个汉字</p>
@@ -34,9 +34,9 @@
       </dt>
       <dd nz-col [nzSpan]="20">
         <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
-             [nzValidateStatus]="ngGoodsJingle.valid && !ngGoodsJingle.pristine?'success':ngGoodsJingle.invalid?'error':null">
+             [nzValidateStatus]="ngValidateStatus(ngGoodsJingle)">
           <nz-input name="goodsJingle" [(ngModel)]="publishData.goodsJingle" [nzType]="'textarea'"
-                    [nzPlaceHolder]="'商品卖点'"
+                   required [nzPlaceHolder]="'商品卖点'"
                     [nzSize]="'large'" minlength="1" maxlength="140" #ngGoodsJingle="ngModel">
           </nz-input>
         </div>
@@ -49,9 +49,9 @@
       </dt>
       <dd nz-col [nzSpan]="20">
         <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
-             [nzValidateStatus]="ngBrandCode.valid && !ngBrandCode.pristine?'success':null">
+             [nzValidateStatus]="ngValidateStatus(ngBrandCode)">
           <nz-select name="brandCode" [(ngModel)]="publishData.brandCode" [nzSize]="'large'" [nzPlaceHolder]="'商品品牌'"
-                     #ngBrandCode="ngModel">
+                    required #ngBrandCode="ngModel">
             <nz-option *ngFor="let brand of publishData.brandList" [nzLabel]="brand.brandName"
                        [nzValue]="brand.id"></nz-option>
           </nz-select>
@@ -92,9 +92,9 @@
       </dt>
       <dd nz-col [nzSpan]="20">
         <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
-             [nzValidateStatus]="ngUnit.valid && !ngUnit.pristine?'success':null">
+             [nzValidateStatus]="ngValidateStatus(ngUnit)">
           <nz-select name="unit" [(ngModel)]="publishData.unit" [nzSize]="'large'" #ngUnit="ngModel"
-                     [nzPlaceHolder]="'商品品牌'">
+                    required [nzPlaceHolder]="'商品品牌'">
             <nz-option *ngFor="let unit of publishData.unitList" [nzLabel]="unit.unitName"
                        [nzValue]="unit.unitName"></nz-option>
           </nz-select>
@@ -293,7 +293,7 @@
               <div nz-form-control
                    [nzValidateStatus]="ngMarketPrice.valid && !ngMarketPrice.pristine?'success':ngMarketPrice.invalid?'error':null">
                 <nz-input [(ngModel)]="sku.marketPrice" [ngModelOptions]="{standalone: true}"
-                          [pattern]="patterns.twodecimal" [nzSize]="'large'"
+                          [pattern]="patterns.twodecimal" [nzSize]="'large'" required
                           #ngMarketPrice="ngModel">
                   <ng-template #addOnAfter>元</ng-template>
                 </nz-input>
@@ -304,7 +304,7 @@
               <div nz-form-control
                    [nzValidateStatus]="ngPrice.valid && !ngPrice.pristine?'success':ngPrice.invalid?'error':null">
                 <nz-input [(ngModel)]="sku.price" [ngModelOptions]="{standalone: true}" [pattern]="patterns.twodecimal"
-                          [nzSize]="'large'"
+                          [nzSize]="'large'" required
                           #ngPrice="ngModel">
                   <ng-template #addOnAfter>元</ng-template>
                 </nz-input>
@@ -320,7 +320,7 @@
               <div nz-form-control
                    [nzValidateStatus]="ngMemberPrice.valid && !ngMemberPrice.pristine?'success':ngMemberPrice.invalid?'error':null">
                 <nz-input [(ngModel)]="sku.memberPrice" [ngModelOptions]="{standalone: true}" [nzSize]="'large'"
-                          [pattern]="patterns.twodecimal" #ngMemberPrice="ngModel">
+                          required [pattern]="patterns.twodecimal" #ngMemberPrice="ngModel">
                   <ng-template #addOnAfter>元</ng-template>
                 </nz-input>
               </div>
@@ -335,7 +335,7 @@
               <div nz-form-control
                    [nzValidateStatus]="ngStorageNum.valid && !ngStorageNum.pristine?'success':ngStorageNum.invalid?'error':null">
                 <nz-input [(ngModel)]="sku.storageNum" [ngModelOptions]="{standalone: true}" [nzSize]="'large'"
-                          [pattern]="patterns.storage" #ngStorageNum="ngModel">
+                          required [pattern]="patterns.storage" #ngStorageNum="ngModel">
                 </nz-input>
               </div>
               <span [hidden]="!ngStorageNum.value || ngStorageNum.value > 9"

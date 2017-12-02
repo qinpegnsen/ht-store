@@ -7,6 +7,7 @@ import {GoodsService} from "../../goods.service";
 import {isNullOrUndefined, isUndefined} from "util";
 import {FileUploader} from "ng2-file-upload";
 import {PatternService} from "../../../../public/service/pattern.service";
+import {Util} from "../../../../public/util/util";
 declare var $: any;
 
 @Component({
@@ -15,6 +16,8 @@ declare var $: any;
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
+  ngValidateStatus = Util.ngValidateStatus;
+  ngValidateErrorMsg = Util.ngValidateErrorMsg;
   public validateForm: FormGroup;
   public path: string;           // 当前路径
   public kindId: string;         //商品分类id
