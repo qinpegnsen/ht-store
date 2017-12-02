@@ -66,13 +66,13 @@ export class SimplesService {
       data: requestDate,
       success: (res) => {
         if (res.success) {
-          me.routerSkip('baseInfo');
+          me.routerSkip('baseInfo',{sellerCode:res.data.sellerCode});
         } else {
-          me._notification.error(`出错了`, '注册接口出错了接口出错了接口出错了')
+          me._notification.error(`出错了`, '注册接口出错了')
         }
       },
       error: (res) => {
-        me._notification.error(`接口出错了`, '注册接口出错了接口出错了接口出错了')
+        me._notification.error(`接口出错了`, '注册接口出错了')
       }
     });
   }
