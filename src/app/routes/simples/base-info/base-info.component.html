@@ -286,7 +286,7 @@
              nzHasFeedback>
           <nz-input name="businessRegisteredCapital" [(ngModel)]="validateForm.businessRegisteredCapital"
                     #ngBusinessRegisteredCapital="ngModel" [nzType]="'text'" required [nzPlaceHolder]="'注册资本'"
-                    [nzSize]="'large'">
+                    [nzSize]="'large'" maxlength="16">
           </nz-input>
           <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBusinessRegisteredCapital)=='empty'">
             请填写注册资本！
@@ -300,7 +300,7 @@
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBusinessSphere)"
              nzHasFeedback>
           <nz-input name="businessSphere" [(ngModel)]="validateForm.businessSphere"
-                    #ngBusinessSphere="ngModel" [nzType]="'text'" required
+                    #ngBusinessSphere="ngModel" [nzType]="'text'" required maxlength="32"
                     [nzPlaceHolder]="'法定经营范围'" [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBusinessSphere)=='empty'">
@@ -334,7 +334,7 @@
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBusinessLicenceAddress)"
              nzHasFeedback>
           <nz-input name="businessLicenceAddress" [(ngModel)]="validateForm.businessLicenceAddress" required
-                    [nzType]="'textarea'" [nzPlaceHolder]="'详细地址'" #ngBusinessLicenceAddress="ngModel"
+                    [nzType]="'textarea'" [nzPlaceHolder]="'详细地址'" #ngBusinessLicenceAddress="ngModel" maxlength="32"
                     [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain

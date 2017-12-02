@@ -12,6 +12,7 @@ import { PublishedComponent } from './publish/published/published.component';
 import { FreightTemplateComponent } from './freight-template/freight-template.component';
 import { AddTemplateComponent } from './add-template/add-template.component';
 import {SessionService} from "./session.service";
+import {FileUploadModule} from "ng2-file-upload";
 
 const routes: Routes = [
   {path: 'manage', component: ManageComponent},
@@ -30,7 +31,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     SharedModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FileUploadModule
   ],
   declarations: [
     ManageComponent,

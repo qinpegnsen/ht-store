@@ -89,10 +89,10 @@ export class EditComponent implements OnInit {
    */
   public getPageData() {
     let me = this, pageData;
-    if (me.path == 'two') {
+    if (me.path == 'edit') {
       pageData = me.goodsService.getPageDataAdd(me.kindId);
       if (!isNullOrUndefined(pageData)) me.publishData = pageData;
-    } else if (me.path == 'edit') {
+    } else if (me.path == 'update') {
       me.goodsService.getPageDataEdit('');
     }
   }
@@ -115,6 +115,7 @@ export class EditComponent implements OnInit {
     let obj = event.target;
     let me = this, $obj = $(obj) || obj;
     me.genObject(index);//生成选中的数据对象
+    if (index == 0) me.genImgSku(index);  // 如果是第一个规格，则改变图片列表的选值数组
   }
 
   /**
@@ -128,12 +129,12 @@ export class EditComponent implements OnInit {
       let checkedEnumItem = curCheckedAttr.goodsEnumValList[i];
       if (checkedEnumItem.checked) {
         checkedAttrNum += 1;
-        if (me.checkImgListIfHadGroup(checkedEnumItem.idx).isHad) {
-          let groupId = me.checkImgListIfHadGroup(checkedEnumItem.idx).groupId;
+        if (me.checkImgListIfHadGroup((index + 1) + '' + (i + 1)).isHad) {
+          let groupId = me.checkImgListIfHadGroup((index + 1) + '' + (i + 1)).groupId;
           me.skuImg.vals[groupId].valName = checkedEnumItem.enumValue;
         } else {
           let obj = {
-            attrCode: me.skuImg.attrCode,
+            attrCode: index + 1,
             valCode: (index + 1) + '' + (i + 1),
             valName: checkedEnumItem.enumValue,
             idx: checkedEnumItem.idx,
@@ -147,9 +148,9 @@ export class EditComponent implements OnInit {
         }
       } else {      // 取消选中
         let skuImgAry = me.skuImg.vals;
-        for (let i = 0; i < skuImgAry.length; i++) {
-          if (skuImgAry[i].valCode === (index + 1) + '' + (i + 1)) {
-            me.skuImg.vals.splice(i, 1);
+        for (let k = 0; k < skuImgAry.length; k++) {
+          if (skuImgAry[k].valCode === (index + 1) + '' + (i + 1)) {
+            me.skuImg.vals.splice(k, 1);
             if (!isUndefined(me.oldImgs[(index + 1) + '' + (i + 1)])) delete me.oldImgs[(index + 1) + '' + (i + 1)];            //在老图片组中将该图片组删除
             if (!isUndefined(me.goodsImgList[(index + 1) + '' + (i + 1)])) delete me.goodsImgList[(index + 1) + '' + (i + 1)];  //在总图片组中将该图片组删除
           }
@@ -158,7 +159,6 @@ export class EditComponent implements OnInit {
     }
     if (checkedAttrNum > 0) {     //选择的规格属大于0时，获取所选属性的名和值
       me.skuImg.attrName = curCheckedAttr.name;
-      me.skuImg.attrCode = index + 1;
     }
     me.skuImg.vals.sort(me.compare('valCode'));   //根据某个属性值（valCode）排序
   }
@@ -228,9 +228,11 @@ export class EditComponent implements OnInit {
     if (!isNullOrUndefined(me.publishData.goodsSkuList) && me.judgeSkuListHasInputVal()) enums.skuList = me.publishData.goodsSkuList;    // 当表格中已经输入了价格则将带价格的skuList传过去保存
 
     $.when(me.goodsService.getSkuData(enums)).done(data => {
-      if (data) {
+      if (data && data.length > 0) {
         me.publishData.goodsSkuList = data;
         me.skuAttr = data[0].attrsList;
+      }else{
+        me.publishData.goodsSkuList = []
       }   // 将数据生成易解析的新数组
     })
   }
@@ -283,6 +285,17 @@ export class EditComponent implements OnInit {
   compareNumber(arg1: string, arg2: string) {
     let num1 = Number(arg1), num2 = Number(arg2);
     if (num1 < num2 || num1 == num2) return true;
+  }
+
+  /**
+   * edit将商品原有的图片删除
+   * @param groupId  图片组序列
+   * @param index    图片组中图片的序列
+   */
+  removeImgSrc(groupId, index) {
+    let me = this;
+    me.oldImgs[groupId].splice(index, 1);      //删除老图片组中的这个图片
+    me.goodsImgList[groupId].splice(index, 1); //删除总图片组中的这个图片
   }
 
   /**

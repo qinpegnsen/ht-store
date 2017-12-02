@@ -6,7 +6,7 @@
 }
 
 .step-two {
-  min-width: 800px;
+  min-width: 1000px;
 }
 
 .step-two dl {
@@ -41,6 +41,10 @@
   margin-bottom: 0;
 }
 
+.step-two .tip:hover {
+  color: #666;
+}
+
 .step-two .base-attr {
   font-size: 12px;
   display: table;
@@ -58,7 +62,7 @@
   padding-bottom: 8px;
 }
 
-.hide{
+.hide {
   display: none;
 }
 
@@ -67,7 +71,7 @@
   font-size: 12px;
 }
 
-.step-two .setAll{
+.step-two .setAll {
   width: 140px;
 }
 
@@ -114,31 +118,6 @@
   padding: 0 10px;
 }
 
-.sku-table input[type="text"], .sku-table input[type="password"], .sku-table input.text, .sku-table input.password {
-  font: 12px/1.5 Tahoma, Arial, "\5b8b\4f53", sans-serif;
-  color: #777;
-  background-color: #FFF;
-  vertical-align: top;
-  display: inline-block;
-  height: 30px;
-  padding: 5px;
-  border-left-width: 2px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  outline: 0 none;
-}
-
-.sku-table .dropdown-menu .set {
-  vertical-align: top;
-}
-
-.sku-table .dropdown-menu .form-control {
-  width: 60px;
-  display: inline-block;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-
 .specs em {
   font-weight: normal;
   font-style: normal;
@@ -146,51 +125,35 @@
 }
 
 .sku-table {
-  border: solid 1px #BCE8F1;
+  border: solid 1px #fcdedc;
+  border-collapse: collapse;
+  border-spacing: 0;
   box-shadow: 3px 3px 0 rgba(153, 153, 153, 0.15);
-}
-
-.sku-table .s-menu {
-  font-weight: bold;
-}
-
-.add-on {
-  font-size: 12px;
-  font-style: normal;
-  line-height: 28px;
-  background-color: #F6F7Fb;
-  vertical-align: top;
-  text-align: center;
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  border: solid #E6E9EE;
-  border-width: 1px 1px 1px 0;
 }
 
 .sku-table th {
   font-weight: 600;
   line-height: 24px;
-  color: #3A87AD;
-  background: #D9EDF7;
+  color: #999999;
+  background: #fef0ef;
   white-space: nowrap;
   padding: 5px 10px;
   position: relative;
   text-align: center;
 }
 
-.sku-table .dropdown-menu {
-  min-width: 120px;
-  left: 20%;
-}
-
 .sku-table td {
   white-space: nowrap;
   height: 30px;
   padding: 5px 10px;
-  border-top: solid 1px #BCE8F1;
+  border-top: solid 1px #fcdedc;
   text-align: center;
   font-size: 0;
+}
+
+.sku-table .sku-item {
+  max-width: 90px;
+  margin: auto;
 }
 
 .sku-table td p {
@@ -198,65 +161,43 @@
   margin-bottom: 0;
 }
 
-.sku-table ._price {
-  width: 50px;
-}
-
-.sku-table .stock {
-  width: 60px;
-}
-
-.sku-table .sku {
-  width: 80px;
-}
-
-.sku-table .dropdown-menu p {
-  font-size: 12px;
-  color: #666;
-  margin-bottom: 0;
-  font-weight: normal;
-}
-
-.sku-table .dropdown-menu ._price {
-  width: 66px;
-  font-size: 12px;
-}
-
-.sku-table .close, .goodspics .close {
+.goods-pics .close {
   width: 20px;
   height: 20px;
   position: absolute;
   right: 0;
   top: 0;
-  font-size: 20px;
+  font-size: 24px;
   text-align: center;
   line-height: 20px;
   z-index: 9;
+  cursor: pointer;
+  color: #999;
+}
+
+.goods-pics .close:hover{
+  color: #e82d4d;
 }
 
 .sku-table .dropdown-menu button {
   font-size: 12px;
 }
 
-.goodspics {
+.goods-pics {
   margin: 0 0 20px 0;
   overflow: hidden;
-  border: solid 1px #BCE8F1;
+  border: solid 1px #fcdedc;
   box-shadow: 3px 3px 0 rgba(153, 153, 153, 0.15);
   padding: 9px;
 }
 
-.goodspics .img-box {
+.goods-pics .img-box {
   position: relative;
 }
 
-.goodspics img {
+.goods-pics img {
   width: 100%;
   height: 100%;
-}
-
-.goodspics .close {
-  font-size: 24px;
 }
 
 .up-success {
@@ -272,17 +213,17 @@
   text-align: center;
 }
 
-.goodspics .color-value {
+.goods-pics .color-value {
   float: left;
   width: 120px;
 }
 
-.goodspics .color-value h4 {
+.goods-pics .color-value h4 {
   font-weight: normal;
   font-size: 12px;
 }
 
-.goodspics .goods-pic-list {
+.goods-pics .goods-pic-list {
   display: block;
   font-size: 0;
   float: left;
@@ -292,7 +233,7 @@
   overflow: hidden;
 }
 
-.goodspics .goods-pic-list li {
+.goods-pics .goods-pic-list li {
   font-size: 12px;
   vertical-align: top;
   letter-spacing: normal;
@@ -306,7 +247,7 @@
   zoom: 1;
 }
 
-.goodspics .goods-pic-list li .upload-thumb {
+.goods-pics .goods-pic-list li .upload-thumb {
   line-height: 100px;
   background-color: #FFF;
   text-align: center;
@@ -320,7 +261,7 @@
   left: 10px;
 }
 
-.goodspics .goods-pic-list li .upload-thumb img {
+.goods-pics .goods-pic-list li .upload-thumb img {
   max-width: 100px;
   max-height: 100px;
 }

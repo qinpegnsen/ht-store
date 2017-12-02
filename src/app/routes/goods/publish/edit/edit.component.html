@@ -287,60 +287,54 @@
           </thead>
           <tbody>
           <tr *ngFor="let sku of publishData.goodsSkuList;let i = index">
-            <td [hidden]="true"><input type="text" name="saGroupCode" [(ngModel)]="sku.saGroupCode"></td>
             <td *ngFor="let val of sku.attrsList" [id]="val.valCode" [class]="val.idx"><p>{{val.value}}</p></td>
             <td>
-              <div nz-form-control
-                   [nzValidateStatus]="ngMarketPrice.valid && !ngMarketPrice.pristine?'success':ngMarketPrice.invalid?'error':null">
+              <div nz-form-control class="sku-item" [nzValidateStatus]="ngValidateStatus(ngMarketPrice)">
                 <nz-input [(ngModel)]="sku.marketPrice" [ngModelOptions]="{standalone: true}"
                           [pattern]="patterns.twodecimal" [nzSize]="'large'" required
                           #ngMarketPrice="ngModel">
                   <ng-template #addOnAfter>元</ng-template>
                 </nz-input>
               </div>
-              <span [hidden]="ngMarketPrice.value != 0" class="text-danger font12"> 市场价>0 </span>
+              <!--<span [hidden]="ngMarketPrice.value != 0" class="color-red font12"> 市场价>0 </span>-->
             </td>
             <td>
-              <div nz-form-control
-                   [nzValidateStatus]="ngPrice.valid && !ngPrice.pristine?'success':ngPrice.invalid?'error':null">
+              <div nz-form-control class="sku-item" [nzValidateStatus]="ngValidateStatus(ngPrice)">
                 <nz-input [(ngModel)]="sku.price" [ngModelOptions]="{standalone: true}" [pattern]="patterns.twodecimal"
-                          [nzSize]="'large'" required
-                          #ngPrice="ngModel">
+                          [nzSize]="'large'" required #ngPrice="ngModel">
                   <ng-template #addOnAfter>元</ng-template>
                 </nz-input>
               </div>
-              <ng-container *ngIf="ngMarketPrice.value > 0 && ngPrice.value >0">
+              <!--<ng-container *ngIf="ngMarketPrice.value > 0 && ngPrice.value >0">
                 <span [hidden]="compareNumber(ngPrice.value,ngMarketPrice.value)"
-                      class="text-danger font12"> 销售价<=市场价
+                      class="color-red font12"> 销售价<=市场价
                 </span>
               </ng-container>
-              <span [hidden]="ngPrice.value != 0" class="text-danger font12"> 销售价>0 </span>
+              <span [hidden]="ngPrice.value != 0" class="color-red font12"> 销售价>0 </span>-->
             </td>
             <td>
-              <div nz-form-control
-                   [nzValidateStatus]="ngMemberPrice.valid && !ngMemberPrice.pristine?'success':ngMemberPrice.invalid?'error':null">
+              <div nz-form-control class="sku-item" [nzValidateStatus]="ngValidateStatus(ngMemberPrice)">
                 <nz-input [(ngModel)]="sku.memberPrice" [ngModelOptions]="{standalone: true}" [nzSize]="'large'"
                           required [pattern]="patterns.twodecimal" #ngMemberPrice="ngModel">
                   <ng-template #addOnAfter>元</ng-template>
                 </nz-input>
               </div>
-              <ng-container *ngIf="ngPrice.value > 0 && ngMemberPrice.value>0">
+              <!--<ng-container *ngIf="ngPrice.value > 0 && ngMemberPrice.value>0">
                 <span [hidden]="compareNumber(ngMemberPrice.value,ngPrice.value)"
-                      class="text-danger font12"> 会员价<=销售价
+                      class="color-red font12"> 会员价<=销售价
                 </span>
               </ng-container>
-              <span [hidden]="ngMemberPrice.value != 0" class="text-danger font12"> 会员价>0 </span>
+              <span [hidden]="ngMemberPrice.value != 0" class="color-red font12"> 会员价>0 </span>-->
             </td>
             <td>
-              <div nz-form-control
-                   [nzValidateStatus]="ngStorageNum.valid && !ngStorageNum.pristine?'success':ngStorageNum.invalid?'error':null">
+              <div nz-form-control class="sku-item" [nzValidateStatus]="ngValidateStatus(ngStorageNum)">
                 <nz-input [(ngModel)]="sku.storageNum" [ngModelOptions]="{standalone: true}" [nzSize]="'large'"
                           required [pattern]="patterns.storage" #ngStorageNum="ngModel">
                 </nz-input>
               </div>
-              <span [hidden]="!ngStorageNum.value || ngStorageNum.value > 9"
-                    class="text-danger font12"> 库存>=10
-              </span>
+              <!--<span [hidden]="!ngStorageNum.value || ngStorageNum.value > 9"
+                    class="color-red font12"> 库存>=10
+              </span>-->
             </td>
           </tr>
           </tbody>
@@ -350,34 +344,34 @@
       </dd>
     </dl>
     <!--商品图片-->
-    <!--<dl class="clearfix">
-      <dt class="col-xs-2"><i class="main-red">*</i>商品图片：</dt>
-      <dd class="col-xs-10 pic-list">
-        &lt;!&ndash;当没有选择第一规格时&ndash;&gt;
-        <div class="goodspics" *ngIf="skuImg.vals.length == 0">
+    <dl nz-form-item nz-row>
+      <dt nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item-required>商品图片</label>
+      </dt>
+      <dd nz-col [nzSpan]="20" class="pic-list">
+        <!--当没有选择第一规格时-->
+        <div class="goods-pics" *ngIf="skuImg.vals.length == 0">
           <div class="color-value mr">
-            <h4>默认：</h4>
-            <label class="btn btn-sm btn-info file-upload" (click)="noAttrTip()">
-              <em class="fa fa-picture-o"></em>
-              打开相册图片
-              &lt;!&ndash;<input class="w100" type="file" accept="image/*" name="" ng2FileSelect [uploader]="defaultUploader" multiple/>&ndash;&gt;
-            </label>
-            <p class="tip" myHoverColor>默认第一张图片为主图</p>
+            <h4>请先选择商品规格：</h4>
+            <nz-popconfirm [nzTitle]="'请先选择商品规格'" [nzPlacement]="'topLeft'">
+              <label nz-popconfirm class="file-upload">
+                <i class="anticon anticon-cloud-upload-o"></i>选择图片
+              </label>
+            </nz-popconfirm>
           </div>
         </div>
 
-        &lt;!&ndash;当选择了第一规格时&ndash;&gt;
-        <div class="goodspics" *ngFor="let val of skuImg.vals;let idx = index;" [id]="val.valCode">
+        <!--当选择了第一规格时-->
+        <div class="goods-pics" *ngFor="let val of skuImg.vals;let idx = index;" [id]="val.valCode">
           <div class="color-value">
             <h4>{{skuImg.attrName}}：<span>{{val.valName}}</span></h4>
-            <label class="btn btn-sm btn-info file-upload">
-              <em class="fa fa-picture-o"></em>
+            <label class="file-upload">
+              <i class="anticon anticon-cloud-upload-o"></i>
               打开相册图片
               <input class="w100" type="file" name="" ng2FileSelect
-                     accept="image/*"
-                     [uploader]="val.uploader" multiple/>
+                     accept="image/*" [uploader]="val.uploader" multiple/>
             </label>
-            <p class="tip" myHoverColor>默认第一张图片为主图</p>
+            <p class="tip">默认第一张图片为主图</p>
           </div>
           <ul class="goods-pic-list ml">
             <li class="ui-state-disabled img-box" *ngFor="let src of oldImgs[val.valCode];let i = index">
@@ -392,13 +386,13 @@
               <div class="close" *ngIf="item.isSuccess" (click)="removeImgSrc(val.valCode,i)">×</div>
               <div class="upload-thumb">
                 <div class="up-success" *ngIf="item.isSuccess"><em class="fa fa-check"></em></div>
-                <img *ngIf="item" [src]="item._file | imgUrl"
+                <img *ngIf="item" [src]="item._file | imgPreview"
                      (error)="item.remove()" [alt]="item?.file?.name">
               </div>
             </li>
           </ul>
         </div>
       </dd>
-    </dl>-->
+    </dl>
   </div>
 </form>
