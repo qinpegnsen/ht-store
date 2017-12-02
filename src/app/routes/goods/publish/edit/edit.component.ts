@@ -10,11 +10,11 @@ import {PatternService} from "../../../../public/service/pattern.service";
 declare var $: any;
 
 @Component({
-  selector: 'app-two',
-  templateUrl: './two.component.html',
-  styleUrls: ['./two.component.css']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.css']
 })
-export class TwoComponent implements OnInit {
+export class EditComponent implements OnInit {
   public validateForm: FormGroup;
   public path: string;           // 当前路径
   public kindId: string;         //商品分类id

@@ -4,11 +4,11 @@ import {PublishComponent} from "../publish.component";
 declare var $: any;
 
 @Component({
-  selector: 'app-one',
-  templateUrl: './one.component.html',
-  styleUrls: ['./one.component.css']
+  selector: 'app-choose-kind',
+  templateUrl: './choose-kind.component.html',
+  styleUrls: ['./choose-kind.component.css']
 })
-export class OneComponent implements OnInit {
+export class ChooseKindComponent implements OnInit {
   public firstList;// 一级分类列表
   public secondList;// 二级分类列表
   public thirdList;// 三级分类列表
