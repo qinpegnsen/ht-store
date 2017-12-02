@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {SimplesService} from "../simples.service";
-import {DreageStepsComponent} from "../dreage-steps/dreage-steps.component";
+import {OpenStepsComponent} from "../open-steps/open-steps.component";
 import {ActivatedRoute} from "@angular/router";
 import {Setting} from "../../../public/setting/setting";
 declare var $: any;
@@ -16,7 +16,7 @@ export class DoneComponent implements OnInit {
 
   constructor(public simplesService: SimplesService,
               public route: ActivatedRoute,
-              public steps: DreageStepsComponent) {
+              public steps: OpenStepsComponent) {
     this.steps.step = 1;
   }
 

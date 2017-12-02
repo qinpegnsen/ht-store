@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {SimplesService} from "../simples.service";
-import {DreageStepsComponent} from "../dreage-steps/dreage-steps.component";
+import {OpenStepsComponent} from "../open-steps/open-steps.component";
 import {Util} from "../../../public/util/util";
 import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
 import {FileUploader} from "ng2-file-upload";
@@ -13,11 +13,11 @@ import {PatternService} from "../../../public/service/pattern.service";
 declare var $: any;
 
 @Component({
-  selector: 'app-dredge',
-  templateUrl: './dredge.component.html',
-  styleUrls: ['./dredge.component.css']
+  selector: 'app-open-shop',
+  templateUrl: './open-shop.component.html',
+  styleUrls: ['./open-shop.component.css']
 })
-export class DredgeComponent implements OnInit {
+export class OpenShopComponent implements OnInit {
   validateForm: any = {};
   _options: any;//三级联动区域数据
   ngValidateStatus = Util.ngValidateStatus;
@@ -37,7 +37,7 @@ export class DredgeComponent implements OnInit {
   }); //店铺头像,初始化上传方法
 
   constructor(public simplesService: SimplesService,
-              public steps: DreageStepsComponent,
+              public steps: OpenStepsComponent,
               public patternService: PatternService,
               public _notification: NzNotificationService,
               public route: ActivatedRoute) {

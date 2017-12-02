@@ -3,11 +3,11 @@ import {NzMessageService} from "ng-zorro-antd";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-steps',
-  templateUrl: './steps.component.html',
-  styleUrls: ['./steps.component.css']
+  selector: 'app-settle-steps',
+  templateUrl: './settle-steps.component.html',
+  styleUrls: ['./settle-steps.component.css']
 })
-export class StepsComponent implements OnInit {
+export class SettleStepsComponent implements OnInit {
   current = 0;
   constructor(public router: Router,
               private _message: NzMessageService) {

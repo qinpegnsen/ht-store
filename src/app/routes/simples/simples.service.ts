@@ -1,12 +1,10 @@
 import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
-import {FormControl} from "@angular/forms";
-import {Observable} from "rxjs/Observable";
 import {PatternService} from "../../public/service/pattern.service";
 import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {NzNotificationService} from "ng-zorro-antd";
-import {StepsComponent} from "./settle-steps/steps.component";
+import {SettleStepsComponent} from "./settle-steps/settle-steps.component";
 declare var $: any;
 
 @Injectable()
@@ -14,7 +12,7 @@ export class SimplesService {
 
   constructor(public router: Router,
               public patterns: PatternService,
-              public steps: StepsComponent,
+              public steps: SettleStepsComponent,
               public _notification: NzNotificationService) {
   }
 
@@ -42,10 +40,10 @@ export class SimplesService {
         //queryParams: {epCode:649255483008294912}
         this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: param})
         break;
-      case 'dredge' ://企业开通店铺
+      case 'openShop' ://企业开通店铺
         //开通: queryParams: {epCode:649255483008294912,sellerCode:611111111111111111}
         //修改: queryParams: {storeCode:649530532714012672}
-        this.router.navigate([SettingUrl.ROUTERLINK.basic.dredge], {replaceUrl: true, queryParams: param})
+        this.router.navigate([SettingUrl.ROUTERLINK.basic.openShop], {replaceUrl: true, queryParams: param})
         break;
       case 'done' ://开店申请已提交，待审核，驳回
         //queryParams: {storeCode:649530532714012672}

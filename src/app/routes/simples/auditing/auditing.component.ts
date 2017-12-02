@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SimplesService} from "../simples.service";
-import {StepsComponent} from "../settle-steps/steps.component";
+import {SettleStepsComponent} from "../settle-steps/settle-steps.component";
 import {ActivatedRoute} from "@angular/router";
 import {Setting} from "../../../public/setting/setting";
 declare var $: any;
@@ -16,7 +16,7 @@ export class AuditingComponent implements OnInit {
 
   constructor(public simplesService: SimplesService,
               public route: ActivatedRoute,
-              public steps: StepsComponent) {
+              public steps: SettleStepsComponent) {
     this.steps.current = 3;
   }
 

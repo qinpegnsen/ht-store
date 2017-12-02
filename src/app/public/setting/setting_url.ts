@@ -108,7 +108,6 @@ export class SettingUrl {
     store:{
       home:"/store/home", //首页
       goodsManage:"/store/goods/manage", //管理商品
-      goodsManageAudit:"audit",           //商品审核（此处如此写，用于路由相对进入模式）
       goodsManageEdit:"edit",           //商品修改/编辑（此处如此写，用于路由相对进入模式）
       goodsManageEval:"../eval",           //查看商品评价（此处如此写，用于路由相对进入模式）
       goodsManageDetail:"detail",           //查看商品详情（此处如此写，用于路由相对进入模式）
@@ -136,8 +135,8 @@ export class SettingUrl {
       baseInfo:"/basic/reg/baseInfo", //基础信息
       accountInfo:"/basic/reg/accountInfo", //企业账户信息
       auditing:"/basic/reg/auditing", //审核
-      dredge:"/basic/reg/shop/dredge", //开通店铺
-      done:"/basic/reg/shop/done" //完成
+      openShop:"/basic/shop/openShop", //开通店铺
+      done:"/basic/shop/done" //完成
     },
     pass:{
       login:"/page/login", //登录

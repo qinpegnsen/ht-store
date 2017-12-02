@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {SimplesService} from "../simples.service";
-import {StepsComponent} from "../settle-steps/steps.component";
+import {SettleStepsComponent} from "../settle-steps/settle-steps.component";
 import {FileUploader} from "ng2-file-upload";
 import {SettingUrl} from "../../../public/setting/setting_url";
 import {MainService} from "../../../public/service/main.service";
@@ -30,7 +30,7 @@ export class AccountInfoComponent implements OnInit {
   }); //银行开户许可证电子版,初始化上传方法
 
   constructor(public simplesService: SimplesService,
-              public steps: StepsComponent,
+              public steps: SettleStepsComponent,
               public _notification: NzNotificationService,
               public route: ActivatedRoute) {
     this.steps.current = 2;

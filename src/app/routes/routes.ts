@@ -21,8 +21,7 @@ export const routes = [
     path: 'basic',
     component: SimpleComponent,
     children: [
-      {path: '', redirectTo: '/basic/reg', pathMatch: 'full'},
-      {path: 'reg', loadChildren: './simples/simples.module#SimplesModule'},
+      {path: '', loadChildren: './simples/simples.module#SimplesModule'},
     ]
   },
   {

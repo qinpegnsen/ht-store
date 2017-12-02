@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {SimplesService} from "../simples.service";
-import {StepsComponent} from "../settle-steps/steps.component";
+import {SettleStepsComponent} from "../settle-steps/settle-steps.component";
 import {PatternService} from "../../../public/service/pattern.service";
 import {Util} from "../../../public/util/util";
 
@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   valitate = Util.validate; //表单验证
 
   constructor(public simplesService: SimplesService,
-              public steps: StepsComponent,
+              public steps: SettleStepsComponent,
               public fb: FormBuilder) {
     this.steps.current = 0;
     this.simplesService.routerSkip(this.steps.current);

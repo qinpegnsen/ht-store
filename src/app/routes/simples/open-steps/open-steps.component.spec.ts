@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DredgeComponent } from './dredge.component';
+import { OpenStepsComponent } from './open-steps.component';
 
-describe('DredgeComponent', () => {
-  let component: DredgeComponent;
-  let fixture: ComponentFixture<DredgeComponent>;
+describe('OpenStepsComponent', () => {
+  let component: OpenStepsComponent;
+  let fixture: ComponentFixture<OpenStepsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DredgeComponent ]
+      declarations: [ OpenStepsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DredgeComponent);
+    fixture = TestBed.createComponent(OpenStepsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

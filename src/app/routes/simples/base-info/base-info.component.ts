@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {SimplesService} from "../simples.service";
-import {StepsComponent} from "../settle-steps/steps.component";
+import {SettleStepsComponent} from "../settle-steps/settle-steps.component";
 import {NzNotificationService} from "ng-zorro-antd";
 import {FileUploader} from "ng2-file-upload";
 import {SettingUrl} from "../../../public/setting/setting_url";
@@ -43,7 +43,7 @@ export class BaseInfoComponent implements OnInit {
   }); //纳税登记证电子版,初始化上传方法
 
   constructor(public simplesService: SimplesService,
-              public steps: StepsComponent,
+              public steps: SettleStepsComponent,
               public patternService: PatternService,
               public _notification: NzNotificationService,
               public route: ActivatedRoute) {
