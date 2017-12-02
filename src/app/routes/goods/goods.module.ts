@@ -6,9 +6,9 @@ import {GoodsService} from "./goods.service";
 import { EvaluateComponent } from './evaluate/evaluate.component';
 import {SkuGoodsComponent} from "./sku-goods/sku-goods.component";
 import { PublishComponent } from './publish/publish.component';
-import { OneComponent } from './publish/one/one.component';
-import { TwoComponent } from './publish/two/two.component';
-import { ThreeComponent } from './publish/three/three.component';
+import { ChooseKindComponent } from './publish/choose-kind/choose-kind.component';
+import { EditComponent } from './publish/edit/edit.component';
+import { PublishedComponent } from './publish/published/published.component';
 import { FreightTemplateComponent } from './freight-template/freight-template.component';
 import { AddTemplateComponent } from './add-template/add-template.component';
 import {SessionService} from "./session.service";
@@ -20,10 +20,10 @@ const routes: Routes = [
     {path: 'addTemplate', component: AddTemplateComponent}
   ]},
   {path: 'publish', component: PublishComponent, children: [
-    {path: '', redirectTo: 'one'},
-    {path: 'one', component: OneComponent},
-    {path: 'two', component: TwoComponent},
-    {path: 'three', component: ThreeComponent},
+    {path: '', redirectTo: 'chooseKind'},
+    {path: 'chooseKind', component: ChooseKindComponent},
+    {path: 'edit', component: EditComponent},
+    {path: 'published', component: PublishedComponent},
   ]},
 ];
 
@@ -38,9 +38,9 @@ const routes: Routes = [
     FreightTemplateComponent,
     SkuGoodsComponent,
     PublishComponent,
-    OneComponent,
-    TwoComponent,
-    ThreeComponent,
+    ChooseKindComponent,
+    EditComponent,
+    PublishedComponent,
     AddTemplateComponent
   ],
   providers: [
