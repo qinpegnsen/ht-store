@@ -5,6 +5,7 @@ const sg = 'http://192.168.10.111:';  //善谷
 const zyg = 'http://192.168.10.167:'; //张阳光
 const gh = 'http://192.168.10.109:';  //高辉
 const wp = 'http://192.168.10.182:';  //万鹏
+const ly = 'http://192.168.10.101:';  //柳阳
 const csj = 'http://192.168.10.221:';  //测试机
 
 /**
@@ -16,12 +17,18 @@ const PROXY_CONFIG = [
     context: [
       "/seller",
       "/sms",
-      "/enterpris",
       "/rpAccountRec",
-      "/rpStatistics",
-      "/enterpris"
+      "/rpStatistics"
     ],
-    target: zyg + "8087",   //拦截 context配置路径，经过此地址
+    target: ly + "8087",   //拦截 context配置路径，经过此地址
+    secure: false
+  },
+  {
+    context: [
+      "/enterprise",
+      "/stores"
+    ],
+    target: ly + "8087",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
@@ -52,6 +59,7 @@ const PROXY_CONFIG = [
     context: [
       "/res",
       "/basicExpress",
+      "/upload"
     ],
     target: csj + "8082",   //拦截 context配置路径，经过此地址
     secure: false
