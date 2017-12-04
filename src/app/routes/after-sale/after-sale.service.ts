@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
+import {NzNotificationService} from "ng-zorro-antd";
 declare var $: any;
 
 @Injectable()
 export class AfterSaleService {
 
-  constructor() { }
+  constructor(public _notification: NzNotificationService,) { }
 
 
   /**
@@ -21,7 +22,9 @@ export class AfterSaleService {
       url: SettingUrl.URL.after.RefundOrd,
       data: data,
       success: (data) => {
-        if (data.success) defer.resolve(data.data);
+        if (data.success) {
+          defer.resolve(data.data)
+        }
       }
     });
     return defer.promise(); //返回异步请求休息
