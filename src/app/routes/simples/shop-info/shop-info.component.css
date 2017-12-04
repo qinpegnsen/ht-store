@@ -1,0 +1,16 @@
+.store-info {
+  margin-left: 60px;
+}
+
+.store-info-all {
+  background: #fff;
+}
+
+.store-info-row {
+  height: 40px;
+  line-height: 40px;
+}
+
+.store-info-nowrite {
+  color: rgba(160, 160, 160, 0.74)
+}

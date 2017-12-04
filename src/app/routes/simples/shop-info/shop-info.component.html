@@ -1,0 +1,107 @@
+<div class="store-info-all">
+  <div class="mb-20 pt-20 font18 strong store-info">
+    店铺信息
+    <button nz-button [nzType]="'danger'" [nzShape]="'circle'" class="page-back" (click)="back()" title="返回">
+      <i class="anticon anticon-rollback font20"></i>
+    </button>
+  </div>
+  <!--店铺基本信息 --start -->
+  <div>
+
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          店铺名称：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{shopsInfo.storeName}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          店铺地址：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{shopsInfo.areaFullName}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          详细地址：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{shopsInfo.address}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          邮政编码：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{shopsInfo.areaCode}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row">
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          商家电话：
+        </div>
+        <div nz-col [nzSpan]="12">
+          {{shopsInfo.storePhone}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row" >
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+          店铺头像：
+        </div>
+        <div nz-col [nzSpan]="12" *ngIf="shopsInfo.storeAvatar!=null">
+          <nz-popover [nzTrigger]="'click'">
+            <img [src]="shopsInfo.storeAvatar | imgSize:'50'" appImgErr
+                 title="点击出大图"
+                 alt="" nz-popover>
+            <ng-template #nzTemplate>
+              <div><img [src]="shopsInfo.storeAvatar | imgSize:'400'"
+                        alt="">
+              </div>
+            </ng-template>
+          </nz-popover>
+        </div>
+        <div nz-col [nzSpan]="12" *ngIf="shopsInfo.storeAvatar==null" class="store-info-nowrite" >
+          未上传店铺头像
+        </div>
+      </div>
+      <div nz-row class="store-info-row" >
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+              QQ：
+        </div>
+        <div nz-col [nzSpan]="12" *ngIf="shopsInfo.storeQq!=null">
+          {{shopsInfo.storeQq}}
+        </div>
+        <div nz-col [nzSpan]="12" *ngIf="shopsInfo.storeQq==null" class="store-info-nowrite" >
+          未填写
+        </div>
+      </div>
+      <div nz-row class="store-info-row" >
+      <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+        店铺logo：
+      </div>
+      <div nz-col [nzSpan]="12"*ngIf="shopsInfo.storeLabel!=null" >
+        {{shopsInfo.storeLabel}}
+      </div>
+      <div nz-col [nzSpan]="12" *ngIf="shopsInfo.storeLabel==null" class="store-info-nowrite">
+        未填写
+      </div>
+    </div>
+      <div nz-row class="store-info-row" >
+      <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
+        阿里旺旺号：
+      </div>
+      <div nz-col [nzSpan]="12" *ngIf="shopsInfo.storeWw!=null">
+        {{shopsInfo.storeWw}}
+      </div>
+      <div nz-col [nzSpan]="12" *ngIf="shopsInfo.storeWw==null" class="store-info-nowrite">
+        未填写
+      </div>
+    </div>
+  </div>
+  <!--店铺基本信息 --end -->
+
+</div>

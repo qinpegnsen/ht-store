@@ -2,6 +2,10 @@
   margin-left: 60px;
 }
 
+.store-info-all {
+  background: #fff;
+}
+
 .opening-bank-info {
   height: 298px;
 }
@@ -13,10 +17,6 @@
 .store-info-row {
   height: 30px;
   line-height: 30px;
-}
-
-.store-info-all {
-  background: #fff;
 }
 
 .store-info-border {
@@ -31,4 +31,8 @@
 
 .store-info-bottom {
   padding-bottom: 50px
+}
+
+.store-info-nowrite {
+  color: rgba(160, 160, 160, 0.74)
 }
