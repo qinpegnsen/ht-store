@@ -5,7 +5,7 @@
   <div class="bg-white p-15">
     <div class="inline-block">
       <div class="pending-group ml-20 mb fl">
-        <span class="pending-title text-center">会员手机号：</span>
+        <span class="pending-title text-center">收货人手机号：</span>
         <div class="pending-main fr">
           <nz-input [(ngModel)]="orderquery.phone"  [nzPlaceHolder]="'请填写会员手机号'" [nzSize]="'large'"></nz-input>
         </div>
@@ -29,7 +29,7 @@
   <li class="w40 fl text-center">商品</li>
   <li class="w8 fl text-center">单价</li>
   <li class="w8 fl text-center">数量</li>
-  <li class="w10 fl text-center">会员手机号</li>
+  <li class="w10 fl text-center">收货人手机号</li>
   <li class="w10 fl text-center">店铺名</li>
   <li class="w8 fl text-center">订单金额（元）</li>
   <li class="w8 fl text-center">交易状态</li>
@@ -74,7 +74,7 @@
               </p>
             </div>
           </td>
-          <td class="w8 text-center bl">&yen; {{name.marketPrice| number:'1.2-2'}}</td>
+          <td class="w8 text-center bl">&yen; {{name.price| number:'1.2-2'}}</td>
           <td class="w8 text-center bl">{{name.num}}</td>
           <td class="w10 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">{{orders.phone}}</td>
           <td class="w10 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
@@ -91,14 +91,16 @@
             </div>-->
           </td>
           <td class="w8 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
-            <span class="main-color">&yen; {{orders.pay | number:'1.2-2'}}</span><br>
+            <span class="main-color">&yen; {{orders.ordTotal | number:'1.2-2'}}</span><br>
+            <span class="font12 gray-color">运费{{orders.freight  | number:'1.2-2'}}</span><br>
+            <span class="font12 gray-color">重消币{{orders.coinPay | number:'1.2-2'}}</span>
           </td>
           <td class="w8 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
             <p class="gray-color">{{orders.state | stateName :'1019'}}</p>
             <p class="cursor p-hover" [routerLink]="orderDetail">查看详情</p>
           </td>
           <td class="w8 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
-            <button nz-button [nzSize]="'large'" class="btn-danger" title="设置发货" (click)="showOrderPend()">
+            <button nz-button [nzSize]="'large'" class="btn-danger" title="设置发货" (click)="showOrderPend(orders.ordno)">
               <i class="anticon anticon-car"></i>
             </button>
           </td>
@@ -117,30 +119,34 @@
           (nzOnOk)="hideleOk($event)" [nzConfirmLoading]="isConfirm">
   <ng-template #modalContent>
     <!--申请提现 -- start -->
+    <input class="form-control" required [(ngModel)]="expressCode" name="expressCode"/>
     <form nz-form [formGroup]="validateForm">
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
           <label>订单号</label>
         </div>
+        <div class="pt-5">
+          <span class="font14">{{getOrdno}}</span>
+        </div>
       </div>
       <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-          <label nz-form-item-required>快递公司快递号</label>
-        </div>
-        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
-             [nzValidateStatus]="getFormControl('email')">
-          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请快递公司快递号'" formControlName="email" [nzId]="'email'"></nz-input>
-          <div nz-form-explain *ngIf="getFormControl('email').dirty&&getFormControl('email').hasError('email')">
-            请快递公司快递号!
-          </div>
+      <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+        <label nz-form-item-required>快递公司快递号</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
+           [nzValidateStatus]="getFormControl('email')">
+        <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请快递公司快递号'" formControlName="email" [nzId]="'email'" [(ngModel)]="expressNos"></nz-input>
+        <div nz-form-explain *ngIf="getFormControl('email').dirty&&getFormControl('email').hasError('email')">
+          请快递公司快递号!
         </div>
       </div>
+    </div>
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="6">
           <label nz-form-item-required>选择快递公司</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="14">
-          <nz-select class="w100" formControlName="audits" name="audits" [nzSize]="'large'">
+          <nz-select class="w100" formControlName="audits" name="audits" [nzSize]="'large'" [(ngModel)]="expressCode">
             <nz-option [nzLabel]="''" [nzValue]="''"></nz-option>
             <nz-option
               *ngFor="let item of auditsDataList"

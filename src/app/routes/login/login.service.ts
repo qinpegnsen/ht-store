@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
+import {NzNotificationService} from "ng-zorro-antd";
 
 @Injectable()
 export class LoginService {
@@ -10,7 +12,7 @@ export class LoginService {
 
 
 
-  constructor(public router: Router, public fb: FormBuilder) {
+  constructor(public router: Router, public fb: FormBuilder,public _notification: NzNotificationService) {
     //重置密码的表单校验
     this.validateFormReset = this.fb.group({
       phone: ['', [this.phoneValidator]],//手机号的校验
@@ -73,6 +75,31 @@ export class LoginService {
       return {confirm: true, error: true};
     }
   };
+
+
+  /**
+   * 登录
+   * @param requestDate
+   * @param callback
+   */
+  loginStore(requestDate: any) {
+    const me = this;
+    AjaxService.post({
+      url: SettingUrl.URL.login.storeLogin,
+      data: requestDate,
+      success: (res) => {
+        if (res.success) {
+          me.routerSkip('baseInfo');
+        } else {
+          me._notification.error(`失败`, '登录失败了');
+        }
+      },
+      error: (res) => {
+        me._notification.error(`接口出错了`, '注册接口出错了接口出错了接口出错了')
+      }
+    });
+  }
+
 
   /**
    * 根据操作步骤跳到相应页面

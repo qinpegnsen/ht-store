@@ -5,8 +5,8 @@ const sg = 'http://192.168.10.111:';  //善谷
 const zyg = 'http://192.168.10.167:'; //张阳光
 const gh = 'http://192.168.10.109:';  //高辉
 const wp = 'http://192.168.10.182:';  //万鹏
-const ly = 'http://192.168.10.101:';  //柳阳
 const csj = 'http://192.168.10.221:';  //测试机
+const ly = 'http://192.168.10.101:';  //柳阳
 
 /**
  * 配置代理
@@ -18,23 +18,18 @@ const PROXY_CONFIG = [
       "/seller",
       "/sms",
       "/rpAccountRec",
-      "/rpStatistics"
-    ],
-    target: ly + "8087",   //拦截 context配置路径，经过此地址
-    secure: false
-  },
-  {
-    context: [
+      "/rpStatistics",
       "/enterprise",
-      "/stores"
+      "/login",
+      "/stores",
+      "/ord",
     ],
-    target: ly + "8087",   //拦截 context配置路径，经过此地址
+    target: wp + "8087",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
     context: [
       "/finaceDraw",
-      "/ord",
       "/rpAccountRec",
       "/datadict"
     ],
@@ -50,7 +45,8 @@ const PROXY_CONFIG = [
       "/agentOrd",
       "/rpAccountRec",
       "/expressTpl",
-      "/storeExpressTpl"
+      "/storeExpressTpl",
+      "/after"
     ],
     target: csj + "8084",   //拦截 context配置路径，经过此地址
     secure: false

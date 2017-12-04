@@ -14,18 +14,20 @@ export class OrderPendingShipmentComponent implements OnInit {
   orderList: Page = new Page();  //待收货订单信息
   _loading = false;             //查询时锁屏
   orderquery = {
-    phone: '',//会员手机号
+    phone: '',//收货人手机号
     agentOrdno: ''//订单号
   }//查询条件
   isOrderPend = false;//设置发货弹窗
   isConfirm = false;
-  pendingData:any={};  //申请提现信息
   validateForm: FormGroup;//设置发货的表单
   auditsDataList=[];  //物流信息
   showOrderList: boolean = true;//判断子组件的显示/隐藏
   orderDetail: string = SettingUrl.ROUTERLINK.store.orderDetailSimple; //订单详情页面
+  getOrdno:string; //订单号
+  expressNos:string; //快递号
+  expressCode:string; //快递公司编码
 
-  constructor(public fb: FormBuilder) { }
+  constructor(public fb: FormBuilder,public orderService:OrderService) { }
 
   ngOnInit() {
     const me = this
@@ -64,7 +66,7 @@ export class OrderPendingShipmentComponent implements OnInit {
     me.orderList.params = { //查询参数
       curPage: me.orderList.curPage, //目标页码
       pageSize: me.orderList.pageSize, //每页条数
-      custPhone: me.orderquery.phone,//会员手机号
+      phone: me.orderquery.phone,//收货人手机号
       ordno: me.orderquery.agentOrdno,//订单号
       ordState:'PREPARE'
     }
@@ -112,9 +114,10 @@ export class OrderPendingShipmentComponent implements OnInit {
   /**
    * 遮罩层显示
    */
-  showOrderPend = () => {
+  showOrderPend = (getOrdno) => {
     this.isOrderPend = true;
     this.queryAuditsDatas();//获取物流列表
+    this.getOrdno = getOrdno;
   }
 
   /**
@@ -123,10 +126,8 @@ export class OrderPendingShipmentComponent implements OnInit {
    */
   hideleOk = (e) => {
     let me = this;
-    me.pendingData= { //查询参数
-
-    }
     me.isConfirm = true;
+    me.shipping();
     setTimeout(() => {
       this.isOrderPend = false;
       this.isConfirm = false;
@@ -154,6 +155,18 @@ export class OrderPendingShipmentComponent implements OnInit {
     let me = this;
     me._loading = true; //锁屏
     $.when(OrderService.auditsList()).done(data => {
+      me._loading = false //解除锁屏
+      if (data) me.auditsDataList = data; //赋值
+    })
+  }
+
+  /**
+   * 设置发货
+   */
+  shipping() {
+    let me = this;
+    me._loading = true; //锁屏
+    $.when(me.orderService.canceslOrder(this.getOrdno,this.expressNos,this.expressCode)).done(data => {
       me._loading = false //解除锁屏
       if (data) me.auditsDataList = data; //赋值
     })

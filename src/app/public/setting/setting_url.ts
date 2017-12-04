@@ -13,6 +13,13 @@ export class SettingUrl {
       getRegSms: '/sms/registerSms'   //企业注册获取短信验证码
     },
     /**
+     * 登录接口
+     */
+    login:{
+      storeLogin:' /login/login',
+    },
+    /**
+     * 企业入驻
      * 企业入驻及相关信息查询
      */
     enterprise: {
@@ -92,6 +99,7 @@ export class SettingUrl {
     order:{
       queryOrdAdmin: '/ord/queryStoreOrd',//(get)查询订单管理中的订单列表
       getKeywords: '/basicExpress/queryBasicExpressIsUseList',//(get)查询物流公司列表
+      storeDelivery: '/ord/storeDelivery',//(put)设置发货
     },
     /**
      *查询店铺信息

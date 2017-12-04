@@ -30,14 +30,14 @@
   <!--表单头部end-->
   <!--表单用户名input框start-->
   <div nz-form-item class="login-form-information">
-    <div nz-form-control [nzValidateStatus]="validateForm.controls.userName">
-      <nz-input formControlName="userName" [nzPlaceHolder]="'请填写用户名'" [nzSize]="'large'">
+    <div nz-form-control [nzValidateStatus]="validateForm.controls.account">
+      <nz-input formControlName="account" [nzPlaceHolder]="'请填写用户名'" [nzSize]="'large'">
         <ng-template #prefix>
           <i class="anticon anticon-user font18"></i>
         </ng-template>
       </nz-input>
       <div nz-form-explain
-           *ngIf="validateForm.controls.userName.dirty&&validateForm.controls.userName.hasError('required')">
+           *ngIf="validateForm.controls.account.dirty&&validateForm.controls.account.hasError('required')">
         请填写用户名
       </div>
     </div>
@@ -45,23 +45,24 @@
   <!--表单用户名input框end-->
   <!--表单密码input框start-->
   <div nz-form-item class="login-form-information">
-    <div nz-form-control [nzValidateStatus]="validateForm.controls.password">
-      <nz-input formControlName="password" [nzType]="'password'" [nzPlaceHolder]="'密码'" [nzSize]="'large'">
+    <div nz-form-control [nzValidateStatus]="validateForm.controls.pwd">
+      <nz-input formControlName="pwd" [nzType]="'pwd'" [nzPlaceHolder]="'密码'" [nzSize]="'large'">
         <ng-template #prefix>
           <i class="anticon anticon-lock font18"></i>
         </ng-template>
       </nz-input>
       <div nz-form-explain
-           *ngIf="validateForm.controls.password.dirty&&validateForm.controls.password.hasError('required')">
+           *ngIf="validateForm.controls.pwd.dirty&&validateForm.controls.pwd.hasError('required')">
         请填写密码
       </div>
     </div>
   </div>
   <!--表单密码input框end-->
+
   <!--表单底部start-->
   <div nz-form-item>
     <div nz-form-control>
-      <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">登录</button>
+      <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'" (click)="login($event,validateForm.value)">登录</button>
       <div class="passed">
         <ul class="fr mr-20 mt-5">
           <li [routerLink]="registerUrl" class="br" >注册</li>
