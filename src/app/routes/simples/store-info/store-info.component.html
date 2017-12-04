@@ -46,7 +46,7 @@
           {{storeInfo.idType | stateName:'2002'}}
         </div>
       </div>
-      <div nz-row class="store-info-row" *ngIf="storeInfo.idType!=UNITY">
+      <div nz-row class="store-info-row" *ngIf="storeInfo.idType=='NORMAL'">
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           社会信用代码：
         </div>
@@ -54,7 +54,7 @@
           {{storeInfo.creditCode}}
         </div>
       </div>
-      <div *ngIf="storeInfo.idType==UNITY">
+      <div *ngIf="storeInfo.idType=='UNITY'">
         <div nz-row class="store-info-row">
           <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
             税务登记证证号：
@@ -116,7 +116,10 @@
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           是否长期有效：
         </div>
-        <div nz-col [nzSpan]="12">
+        <div nz-col [nzSpan]="12" class="color-success"  *ngIf="storeInfo.isForever=='Y'">
+          {{storeInfo.isForever | stateName:'1001'}}
+        </div>
+        <div nz-col [nzSpan]="12" class="color-red" *ngIf="storeInfo.isForever=='N'">
           {{storeInfo.isForever | stateName:'1001'}}
         </div>
       </div>
@@ -185,11 +188,11 @@
           营业执照电子版：
         </div>
         <nz-popover [nzTrigger]="'click'">
-          <img [src]="storeInfo.businessLicenceNumberElectronic" class="electronic-img"
+          <img [src]="storeInfo.businessLicenceNumberElectronic  | imgSize:'50'" appImgErr
                onerror="javascript:this.src='../../../assets/img/dummy.png'" title="点击出大图"
                alt="" nz-popover>
           <ng-template #nzTemplate>
-            <div><img [src]="storeInfo.businessLicenceNumberElectronic" class=""
+            <div><img [src]="storeInfo.businessLicenceNumberElectronic | imgSize:'400'"
                       onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
             </div>
           </ng-template>
@@ -249,12 +252,12 @@
         </div>
         <div nz-col [nzSpan]="12">
           <nz-popover [nzTrigger]="'click'">
-            <img [src]="storeInfo.bankLicenceElectronic"  class="electronic-img"
-                 onerror="javascript:this.src='../../../assets/img/dummy.png'" title="点击出大图"
+            <img [src]="storeInfo.bankLicenceElectronic | imgSize:'50'" appImgErr
+                title="点击出大图"
                  alt="" nz-popover>
             <ng-template #nzTemplate>
-              <div><img [src]="storeInfo.bankLicenceElectronic"
-                        onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+              <div><img [src]="storeInfo.bankLicenceElectronic | imgSize:'400'"
+                       alt="">
               </div>
             </ng-template>
           </nz-popover>
@@ -264,7 +267,10 @@
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           是否为结算账户：
         </div>
-        <div nz-col [nzSpan]="12">
+        <div nz-col [nzSpan]="12" class="color-success"  *ngIf="storeInfo.isSettlementAccount=='Y'">
+          {{storeInfo.isSettlementAccount | stateName:'1001'}}
+        </div>
+        <div nz-col [nzSpan]="12" class="color-red"  *ngIf="storeInfo.isSettlementAccount=='N'">
           {{storeInfo.isSettlementAccount | stateName:'1001'}}
         </div>
       </div>
@@ -272,7 +278,7 @@
   </div>
   <!--开户行信息 --end -->
   <!--结算账户信息 --start -->
-  <div *ngIf="storeInfo.isSettlementAccount==N">
+  <div *ngIf="storeInfo.isSettlementAccount=='N'">
     <div class="store-info-border mb-20">结算账户信息</div>
     <div>
       <div nz-row class="store-info-row">

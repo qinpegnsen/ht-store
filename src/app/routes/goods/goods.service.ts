@@ -210,10 +210,10 @@ export class GoodsService {
   }
 
   /**
-   * 查询提现信息列表
+   * 查商品评价信息列表
    * @param data （查询参数）
    */
-  static settleList(data: any) {
+  static commnetGoodsList(data: any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({

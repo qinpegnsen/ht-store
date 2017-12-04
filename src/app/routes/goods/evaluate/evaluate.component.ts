@@ -32,10 +32,10 @@ export class EvaluateComponent implements OnInit {
       curPage: me.evalPage.curPage, //目标页码
       pageSize: me.evalPage.pageSize, //每页条数
     }
-    $.when(GoodsService.settleList(me.evalPage.params)).done(data => {
+    $.when(GoodsService.commnetGoodsList(me.evalPage.params)).done(data => {
       me._loading = false //解除锁屏
       if (data) me.evalPage = data; //赋值
-      // console.log("█ me.evalPage ►►►", me.evalPage);
+      console.log("█ me.evalPage ►►►", me.evalPage);
     })
   };
 
