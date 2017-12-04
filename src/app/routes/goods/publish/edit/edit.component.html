@@ -1,4 +1,4 @@
-<form nz-form class="p-20 step-two">
+<form nz-form class="p-20 step-two" #publishForm="ngForm">
   <!--商品基本信息 start-->
   <div class="fieldset">
     <div class="legend bb">商品基本信息</div>
@@ -22,7 +22,7 @@
         <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
              [nzValidateStatus]="ngValidateStatus(ngGoodsName)">
           <nz-input name="goodsName" [(ngModel)]="publishData.goodsName" [nzType]="'text'" [nzPlaceHolder]="'商品名称'"
-                   required [nzSize]="'large'" minlength="3" maxlength="50" #ngGoodsName="ngModel">
+                    required [nzSize]="'large'" minlength="3" maxlength="50" #ngGoodsName="ngModel">
           </nz-input>
         </div>
         <p nz-col [nzSpan]="24" class="tip">商品标题名称长度至少3个字符，最长50个汉字</p>
@@ -36,7 +36,7 @@
         <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
              [nzValidateStatus]="ngValidateStatus(ngGoodsJingle)">
           <nz-input name="goodsJingle" [(ngModel)]="publishData.goodsJingle" [nzType]="'textarea'"
-                   required [nzPlaceHolder]="'商品卖点'"
+                    required [nzPlaceHolder]="'商品卖点'"
                     [nzSize]="'large'" minlength="1" maxlength="140" #ngGoodsJingle="ngModel">
           </nz-input>
         </div>
@@ -51,8 +51,8 @@
         <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
              [nzValidateStatus]="ngValidateStatus(ngBrandCode)">
           <nz-select name="brandCode" [(ngModel)]="publishData.brandCode" [nzSize]="'large'" [nzPlaceHolder]="'商品品牌'"
-                    required #ngBrandCode="ngModel">
-            <nz-option *ngFor="let brand of publishData.brandList" [nzLabel]="brand.brandName"
+                     required #ngBrandCode="ngModel">
+            <nz-option *ngFor="let brand of brandsList" [nzLabel]="brand.brandName"
                        [nzValue]="brand.id"></nz-option>
           </nz-select>
         </div>
@@ -64,10 +64,10 @@
         <label nz-form-item-required>商品属性</label>
       </dt>
       <dd nz-col [nzSpan]="20">
-        <div nz-col [nzSpan]="8" *ngFor="let attrType of publishData.baseAttrList;let i = index">
+        <div nz-col [nzSpan]="8" *ngFor="let attrType of baseAttrList;let i = index">
           <div nz-form-item>
             <div nz-form-label nz-col [nzSpan]="6">
-              <label [attr.for]="'field'+i">{{attrType.name}}</label>
+              <label>{{attrType.name}}</label>
             </div>
             <div nz-form-control nz-col [nzSpan]="18">
               <nz-select name="baseAttr" [nzSize]="'large'">
@@ -85,7 +85,7 @@
 
   <!--商品交易信息 start-->
   <div class="fieldset">
-    <div class="legend bb">商品基本信息</div>
+    <div class="legend bb">商品交易信息</div>
     <dl nz-form-item nz-row>
       <dt nz-form-label nz-col [nzSpan]="4">
         <label nz-form-item-required>计量单位</label>
@@ -94,8 +94,8 @@
         <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
              [nzValidateStatus]="ngValidateStatus(ngUnit)">
           <nz-select name="unit" [(ngModel)]="publishData.unit" [nzSize]="'large'" #ngUnit="ngModel"
-                    required [nzPlaceHolder]="'商品品牌'">
-            <nz-option *ngFor="let unit of publishData.unitList" [nzLabel]="unit.unitName"
+                     required [nzPlaceHolder]="'商品品牌'">
+            <nz-option *ngFor="let unit of unitList" [nzLabel]="unit.unitName"
                        [nzValue]="unit.unitName"></nz-option>
           </nz-select>
         </div>
@@ -107,7 +107,7 @@
 
   <!--商品规格及图片 start-->
   <div class="fieldset">
-    <div class="legend bb">商品基本信息</div>
+    <div class="legend bb">商品规格及图片</div>
     <!--商品规格-->
     <dl nz-form-item nz-row>
       <dt nz-form-label nz-col [nzSpan]="4">
@@ -118,7 +118,7 @@
           <span nz-col [nzSpan]="4" class="text-right pr">规格</span>
           <span nz-col [nzSpan]="20" class="pl">规格值 <em>（通过选择规格值建立商品与商品规格的关系）</em></span>
         </h5>
-        <div class="enumType" *ngFor="let saleAttr of publishData.saleAttrList;let i = index" [attr.id]="i+1">
+        <div class="enumType" *ngFor="let saleAttr of saleAttrList;let i = index" [attr.id]="i+1">
           <h6 nz-col [nzSpan]="4" class="text-right p">
             <span nz-col [nzSpan]="24" class="attr-name pr" *ngIf="!saleAttr.used">{{saleAttr.name}}</span>
             <div nz-form-control nz-col [nzSpan]="24" *ngIf="saleAttr.used">
@@ -147,6 +147,7 @@
         </p>
       </dd>
     </dl>
+
     <!--sku表格-->
     <dl nz-form-item nz-row>
       <dt nz-form-label nz-col [nzSpan]="4">
@@ -210,7 +211,7 @@
                               <span>取消</span>
                             </button>
                             <button nz-button [nzSize]="'small'" class="btn-green"
-                                    (click)="setPrice('marketPrice',setSalePrice.value,setSalePriceWindow)">
+                                    (click)="setPrice('price',setSalePrice.value,setSalePriceWindow)">
                               <span>确认</span>
                             </button>
                           </div>
@@ -241,7 +242,7 @@
                               <span>取消</span>
                             </button>
                             <button nz-button [nzSize]="'small'" class="btn-green"
-                                    (click)="setPrice('marketPrice',setMemberPrice.value,setMemberPriceWindow)">
+                                    (click)="setPrice('memberPrice',setMemberPrice.value,setMemberPriceWindow)">
                               <span>确认</span>
                             </button>
                           </div>
@@ -272,7 +273,7 @@
                               <span>取消</span>
                             </button>
                             <button nz-button [nzSize]="'small'" class="btn-green"
-                                    (click)="setPrice('marketPrice',setStorageNum.value,setStorageNumWindow)">
+                                    (click)="setPrice('storageNum',setStorageNum.value,setStorageNumWindow)">
                               <span>确认</span>
                             </button>
                           </div>
@@ -343,6 +344,7 @@
           当规格值较多时，可在操作区域通过滑动滚动条查看超出隐藏区域。</p>
       </dd>
     </dl>
+
     <!--商品图片-->
     <dl nz-form-item nz-row>
       <dt nz-form-label nz-col [nzSpan]="4">
@@ -383,7 +385,6 @@
             </li>
             <li class="ui-state-disabled img-box" *ngFor="let item of val.uploader.queue">
               <div class="close" *ngIf="!item.isSuccess" (click)="item.remove()">×</div>
-              <div class="close" *ngIf="item.isSuccess" (click)="removeImgSrc(val.valCode,i)">×</div>
               <div class="upload-thumb">
                 <div class="up-success" *ngIf="item.isSuccess"><em class="fa fa-check"></em></div>
                 <img *ngIf="item" [src]="item._file | imgPreview"
@@ -395,4 +396,311 @@
       </dd>
     </dl>
   </div>
+  <!--商品规格及图片 end-->
+
+  <!--商品详情描述 start-->
+  <div class="fieldset">
+    <div class="legend bb">商品详情描述</div>
+
+    <!--PC端详情描述-->
+    <dl nz-form-item nz-row>
+      <dt nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item-required>商品描述</label>
+      </dt>
+      <dd nz-col [nzSpan]="20">
+        <div class="w100">
+          <!--<umeditor [(ngModel)]="publishData.goodsBody" name="goodsBody"
+                    [config]="{initialFrameHeight:200}"
+                    #contents></umeditor>-->
+        </div>
+      </dd>
+    </dl>
+
+    <!--移动端描述-->
+    <dl nz-form-item nz-row>
+      <dt nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item-required>移动端描述</label>
+      </dt>
+      <dd nz-col [nzSpan]="20">
+        <div class="w100 app-box">
+          <div class="app-wrap">
+            <div class="app-control">
+              <div class="app-content">
+                <div class="app-img-box" *ngFor="let item of mblItemList;let i=index;">
+                  <div class="_edit hide">
+                    <ul class="tools fr">
+                      <li class="p0 mr-5 ant-btn" *ngIf="i != 0" (click)="moveImg(i,'up',item)">上移</li>
+                      <li class="p0 mr-5 ant-btn" *ngIf="i != mblItemList.length-1"
+                          (click)="moveImg(i,'down',item)">下移
+                      </li>
+                      <li class="p0 mr-5 ant-btn btn-purple" *ngIf="item.type== 'img'">
+                        <label class="file-upload p0 mb0 w100 h100">替换
+                          <input class="w100" type="file" accept="image/*" name="appPic"
+                                 (change)="mblReplaceImg($event,i)"/>
+                        </label>
+                      </li>
+                      <li class="p0 mr-5 ant-btn btn-green" *ngIf="item.type== 'text'"
+                          (click)="mblReplaceText($event.target,item.value)">编辑
+                      </li>
+                      <li class="p0 mr-5 ant-btn btn-blue" (click)="removeItem(i)">移除</li>
+                    </ul>
+                  </div>
+                  <img width="100%" *ngIf="item.type== 'img'" [src]="item.value">
+                  <p class="text mb0" style="line-height: 1.6" *ngIf="item.type== 'text'">{{item.value}}</p>
+                  <div class="mobile-edit-area hide" *ngIf="item.type== 'text'">
+                    <div class="mea-text">
+                      <p class="text-tip">还可以输入 <i class="counter">500</i>字 </p>
+                      <div class="pl pr"><textarea class="textarea form-control p-sm" rows="3" maxlength="500"
+                                                   (keyup)="counter($event.target)"></textarea></div>
+                      <div class="button">
+                        <button nz-button (click)="insertMblText($event.target,i)">确认</button>
+                        <button nz-button class="ml" (click)="hideEdit($event.target)">取消</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mobile-edit-area new-text hide">
+                <div class="mea-text">
+                  <p class="text-tip">还可以输入 <i class="counter">500</i>字 </p>
+                  <div class="pl pr">
+                    <textarea class="textarea p-5" rows="3" maxlength="500"
+                              (keyup)="counter($event.target)"></textarea>
+                  </div>
+                  <div class="button">
+                    <button nz-button class="btn-green" (click)="insertMblText()">确认</button>
+                    <button nz-button class="ml" (click)="hideEdit()">取消</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ul class="app-add">
+              <li class="w50 fl br">
+                <label class="file-upload w100 h100 b0">
+                  <i class="anticon anticon-picture"></i><br>图片
+                  <input class="w100" type="file" accept="image/*" name="appPic" ng2FileSelect
+                         [uploader]="mobileUploader" multiple/>
+                </label>
+              </li>
+              <li class="w50 fl p-5" (click)="showEdit($event.target)">
+                <i class="anticon anticon-edit"></i><br>文字
+              </li>
+            </ul>
+          </div>
+          <div class="explain">
+            <dl class="mb">
+              <dt>1、基本要求：</dt>
+              <dd>建议：所有图片都是本宝贝相关的图片。</dd>
+            </dl>
+            <dl class="mb">
+              <dt>2、图片大小要求：</dt>
+              <dd>（1）建议使用宽度超过480像素、高度超过960像素的图片；</dd>
+              <dd>（2）格式为：jpg\gif\png；</dd>
+              <dd>举例：可以上传一张宽度为480，高度为960像素，格式为jpg的图片。</dd>
+            </dl>
+            <dl class="mb">
+              <dt>3、文字要求：</dt>
+              <dd>（1）每次插入文字不能超过500个字，标点、特殊字符按照一个字计算；</dd>
+              <dd>（2）请手动输入文字，不要复制粘贴网页上的文字，防止出现乱码；</dd>
+              <dd>（3）请注意特殊字符将会被转译。</dd>
+              <dd>建议：不要添加太多的文字，这样看起来更清晰。</dd>
+            </dl>
+          </div>
+        </div>
+      </dd>
+    </dl>
+  </div>
+  <!--商品详情描述 end-->
+
+  <!--临时节点，修改商品时用来存储移动端详情的图片和文本，通过节点的取值，方便处理成详情展示和修改需要的数据-->
+  <div class="hide" id="mblHtml" [innerHtml]="tempMblHtml"></div>
+
+  <!--商品物流信息 start-->
+  <div class="fieldset logistics">
+    <div class="legend bb">商品物流信息</div>
+
+    <!--是否有运费-->
+    <dl nz-form-item nz-row>
+      <dt nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item-required>运费</label>
+      </dt>
+      <dd nz-col [nzSpan]="20">
+        <div nz-col [nzSpan]="24">
+          <nz-radio-group name="isFreight" [(ngModel)]="publishData.isFreight">
+            <label nz-radio [nzValue]="enumState.yes">
+              <span class="font14">有</span>
+            </label>
+            <label nz-radio [nzValue]="enumState.no">
+              <span class="font14">无</span>
+            </label>
+          </nz-radio-group>
+        </div>
+      </dd>
+    </dl>
+
+    <!--设置运费-->
+    <ng-container *ngIf="publishData.isFreight == 'Y' && publishData.goodsExpressInfo">
+      <dl nz-form-item nz-row>
+        <dt nz-form-label nz-col [nzSpan]="4">
+          <label nz-form-item-required>设置运费</label>
+        </dt>
+        <dd nz-col [nzSpan]="20">
+          <div nz-col [nzSpan]="24">
+            <div class="mb">
+              <nz-radio-group nz-col [nzSpan]="24" name="freightType"
+                              [(ngModel)]="publishData.goodsExpressInfo.freightType"
+                              (ngModelChange)="getExpressTpl()">
+                <!--固定运费-->
+                <div nz-row class="m-5">
+                  <label class="lh32" nz-radio [nzValue]="enumState.freightType.fixed">
+                    <span>使用固定运费</span>
+                  </label>
+                  <ng-container *ngIf="publishData.goodsExpressInfo.freightType == enumState.freightType.fixed">
+                    <div class="inline-block feight-fixed-width">
+                      <nz-input name="fixedFreight" [(ngModel)]="publishData.goodsExpressInfo.fixedFreight"
+                                [pattern]="patterns.twodecimal" [nzSize]="'large'" [nzType]="'number'" required
+                                #ngMarketPrice="ngModel" (keyup)="auditInputValueForNum(ngMarketPrice)">
+                        <ng-template #addOnAfter>元</ng-template>
+                      </nz-input>
+                    </div>
+                  </ng-container>
+                </div>
+
+                <!--使用物流规则-->
+                <div class="m-5">
+                  <label class="lh32" nz-radio [nzValue]="enumState.freightType.tpl">
+                    <span>使用物流规则</span>
+                  </label>
+                  <ng-container *ngIf="publishData.goodsExpressInfo.freightType == enumState.freightType.tpl">
+                    <div class="inline-block">
+                      <nz-select class="feight-tpl-width" name="tplFreight"
+                                 [(ngModel)]="publishData.goodsExpressInfo.expressTplId"
+                                 [nzSize]="'large'" (ngModelChange)="getTplValById()" required>
+                        <nz-option *ngFor="let item of logistics" [nzLabel]="item.tplName"
+                                   [nzValue]="item.id"></nz-option>
+                      </nz-select>
+                      <button nz-button class="btn-blue" (click)="addLogisticsModule()">
+                        <i class="anticon anticon-plus"></i>添加物流规则
+                      </button>
+                      <button nz-button title="刷新物流规则" class="btn-success" (click)="getExpressTpl()">
+                        <i class="anticon anticon-sync"></i>
+                      </button>
+                    </div>
+
+                    <!--物流规则详情-->
+                    <ng-container *ngIf="publishData.goodsExpressInfo.expressTplId">
+                      <div class="tpl-box w100 p mt"
+                           *ngIf="publishData.goodsExpressInfo.freightType=='TPL' && publishData.goodsExpressInfo.expressTplId">
+                        <p class="m0">
+                          <strong>指定物流配送区域及运费</strong>
+                          <a class="btn btn-xs btn-default fa fa-eye pull-right" target="_blank"
+                             (click)="lookLogisticsModule()">
+                            查看详情</a>
+                        </p>
+                        <ul class="list-unstyled tpl-list mb0" *ngIf="publishData.goodsExpressInfo.expressTplId">
+                          <li class="clearfix" *ngFor="let item of tplVals.storeExpressTplValList">
+                            <p nz-col [nzSpan]="16" class="one-row omg">{{item.area | level2AreaName}}</p>
+                            <p nz-col [nzSpan]="8" class="one-row omg text-right">
+                              {{item.firstNum}}{{unit}}内{{item.firstPrice}}元，每增加{{item.addAttach}}{{unit}}，增加{{item
+                              .addPrice}}元</p>
+                          </li>
+                        </ul>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                </div>
+              </nz-radio-group>
+            </div>
+          </div>
+        </dd>
+      </dl>
+      <!--物流参数-->
+      <ng-container *ngIf="publishData.goodsExpressInfo.freightType==enumState.freightType.tpl && unit != '件'">
+        <dl nz-form-item nz-row>
+          <dt nz-form-label nz-col [nzSpan]="4">
+            <label nz-form-item-required>物流参数</label>
+          </dt>
+          <dd nz-col [nzSpan]="20">
+            <div nz-col [nzSpan]="24">
+              <div class="clearfix mb">
+                <div nz-form-label class="mr-5"><label nz-form-item-required>重量</label></div>
+                <div class="inline-block feight-fixed-width">
+                  <nz-input name="weight" [(ngModel)]="publishData.goodsExpressInfo.weight"
+                            placeholder="1.00" [pattern]="patterns.twodecimal" [nzSize]="'large'" [nzType]="'number'"
+                            required #ngMarketPrice="ngModel" (keyup)="auditInputValueForNum(ngMarketPrice)">
+                    <ng-template #addOnAfter>kg</ng-template>
+                  </nz-input>
+                </div>
+              </div>
+              <div class="clearfix">
+                <div nz-form-label class="mr-5"><label nz-form-item-required>体积</label></div>
+                <div class="inline-block feight-fixed-width">
+                  <nz-input name="volume" [(ngModel)]="publishData.goodsExpressInfo.volume"
+                            [pattern]="patterns.twodecimal" [nzSize]="'large'" [nzType]="'number'" required
+                            #ngMarketPrice="ngModel" (keyup)="auditInputValueForNum(ngMarketPrice)">
+                    <ng-template #addOnAfter>m³</ng-template>
+                  </nz-input>
+                </div>
+              </div>
+            </div>
+            <p class="tip">如选择物流规则具有体积或重量运费时，需设定商品物流参数，默认为“1”单位，小数点后保留2位。</p>
+          </dd>
+        </dl>
+      </ng-container>
+    </ng-container>
+  </div>
+  <!--商品物流信息 end-->
+
+  <!--其他信息 start-->
+  <div class="fieldset">
+    <div class="legend bb">其他信息</div>
+    <!--是否有赠品-->
+    <dl nz-form-item nz-row>
+      <dt nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item-required>是否有赠品</label>
+      </dt>
+      <dd nz-col [nzSpan]="20">
+        <div nz-col [nzSpan]="24">
+          <nz-radio-group name="haveGift" [(ngModel)]="publishData.haveGift">
+            <label nz-radio [nzValue]="enumState.yes">
+              <span class="font14">是</span>
+            </label>
+            <label nz-radio [nzValue]="enumState.no">
+              <span class="font14">否</span>
+            </label>
+          </nz-radio-group>
+        </div>
+      </dd>
+    </dl>
+
+    <!--是否参加促销活动-->
+    <dl nz-form-item nz-row>
+      <dt nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item-required>是否参加促销活动</label>
+      </dt>
+      <dd nz-col [nzSpan]="20">
+        <div nz-col [nzSpan]="24">
+          <nz-radio-group name="isJoinLimitime" [(ngModel)]="publishData.isJoinLimitime">
+            <label nz-radio [nzValue]="enumState.yes">
+              <span class="font14">是</span>
+            </label>
+            <label nz-radio [nzValue]="enumState.no">
+              <span class="font14">否</span>
+            </label>
+          </nz-radio-group>
+        </div>
+        <p class="tip" myHoverColor>请选择您的商品是否参加促销活动，如选择“否”，当您参加活动时将不能选择该商品。</p>
+      </dd>
+    </dl>
+  </div>
+  <!--其他信息 end-->
+
+  <!--商品发布按钮-->
+  <div class="fieldset text-center pt-30">
+    <button nz-button class="btn-green" [disabled]="!publishForm.form.valid"
+            (click)="publishGoods()">
+      <i class="anticon anticon-upload"></i> {{publishForm.form.valid?'发布商品':'请填写必要信息'}}
+    </button>
+  </div>
+
 </form>

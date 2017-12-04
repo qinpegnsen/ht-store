@@ -9,6 +9,12 @@ html, body {
 
 .hawthorn-store {
   height: 100%;
+  overflow-y: auto;
+}
+
+/*兼容页面中有UMEditor的情况*/
+.hawthorn-store .ant-back-top {
+  z-index: 1000;
 }
 
 /******************当前使用的ng-zorro框架中，很多内置样式与当前项目不符，此处进行覆盖重写 start************************/
@@ -98,6 +104,18 @@ html, body {
   font-size: 14px;
 }
 
+
+/*去掉数字输入框的上下小箭头*/
+.hawthorn-store input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.hawthorn-store input[type=number]::-webkit-inner-spin-button,
+.hawthorn-store input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 /******************当前使用的ng-zorro框架中，很多内置样式与当前项目不符，此处进行覆盖重写 end**************************/
 
 /******************当前使用的ng-zorro框架中，很多内置样式与当前项目不符，此处进行扩展 start****************************/
@@ -184,13 +202,13 @@ html, body {
   font-size: 12px;
 }
 
-.page-msg-red li{
+.page-msg-red li {
   margin-bottom: 5px;
   padding-left: 30px;
   position: relative;
 }
 
-.page-msg-red li:before{
+.page-msg-red li:before {
   position: absolute;
   content: '●';
   left: 18px;
@@ -265,7 +283,7 @@ html, body {
   background-image: none;
   border: 1px solid #d9d9d9;
   white-space: nowrap;
-  padding: 5px 16px;
+  padding: 5px 12px;
   font-size: 14px;
   line-height: 1.6;
   -webkit-user-select: none;
@@ -285,7 +303,6 @@ html, body {
 label.file-upload > .anticon {
   font-size: 18px;
   color: #f46e55;
-  margin-right: 5px;
   letter-spacing: 2px;
 }
 
@@ -301,11 +318,11 @@ label.file-upload > .anticon {
   z-index: -1;
 }
 
+
 /***************************************公共样式定义 end***************************************************************/
 
-
 /*商品发布sku表格需要，写在本组件不起作用*/
-.sku-table .ant-input{
+.sku-table .ant-input {
   vertical-align: middle;
   font-size: 12px;
 }

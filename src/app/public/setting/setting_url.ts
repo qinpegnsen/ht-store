@@ -9,6 +9,7 @@ export class SettingUrl {
     base: {
       enum: '/res/enum/',            //获取枚举接口
       upload: '/upload/basic/upload',  //上传图片
+      uploadHttpURL: '/upload/basic/uploadHttpURL',  //上传图片 返回完整URL，带有HTTP
       uuid: '/upload/basic/uid',      //获取上传图片的编码
       getRegSms: '/sms/registerSms'   //企业注册获取短信验证码
     },
@@ -117,6 +118,8 @@ export class SettingUrl {
       home:"/store/home", //首页
       goodsManage:"/store/goods/manage", //管理商品
       goodsManageEdit:"edit",           //商品修改/编辑（此处如此写，用于路由相对进入模式）
+      goodsManageUpdate:"update",           //商品修改/编辑（此处如此写，用于路由相对进入模式）
+      goodsManagePublish:"../publish",       //商品发布（此处如此写，用于路由相对进入模式）
       goodsManageEval:"../eval",           //查看商品评价（此处如此写，用于路由相对进入模式）
       goodsManageDetail:"detail",           //查看商品详情（此处如此写，用于路由相对进入模式）
       goodsPublish:"/store/goods/publish", //商品发布
@@ -154,6 +157,10 @@ export class SettingUrl {
       resetPwd:"/page/login/forgetPwd/resetPwd", //找回密码-重置密码
       newPwd:"/page/login/forgetPwd/newPwd",  //找回密码-密码
       accountPwd:"/page/login/forgetPwd/accountPwd" //重置密码完成
+    },
+    goods: {
+      addTpl: "/store/goods/freightTemplate/addTemplate?linkType=addArticle", //添加运费模板
+      lookTpl: "/store/goods/freightTemplate"   //查看运费模板
     }
   }
 }

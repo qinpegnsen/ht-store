@@ -38,7 +38,7 @@ export class Setting {
   public static ENUM: any = {
     yesOrNo: 1001,  // 是否
     goodsState: 1006,  //商品状态列表
-    goodsAudits: 1006,  //商品审核状态列表
+    goodsAudits: 1014,  //商品审核状态列表
     enterpriseState: 2001, //企业入驻状态
     papersType: 2002, //证件类型
     stepsState: 2003, //企业入驻流程状态
@@ -115,6 +115,17 @@ export class Setting {
       pending: 'PENDING',//店铺审核中
       close: 'CLOSE',//店铺关闭
       normal: 'NORMAL'//店铺正常
+    },
+    //运费类型
+    freightType: {
+      fixed: 'FIXED', //固定运费
+      tpl: 'TPL'  //运费模板
+    },
+    //运费模板计费类型
+    valuationType: {
+      volume:"VOLUME",    //按体积
+      weight: "WEIGHT",   //按重量
+      num: "NUM"          //按件数
     }
   };
 

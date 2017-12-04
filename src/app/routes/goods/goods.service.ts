@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {NzMessageService, NzNotificationService} from "ng-zorro-antd";
-import {isUndefined} from "util";
+import {isNullOrUndefined, isUndefined} from "util";
 
 declare var $: any;
 
@@ -53,39 +53,38 @@ export class GoodsService {
    * 商品发布，获取基本数据
    */
   getPageDataAdd(kindId) {
-    let result, me = this;
+    let me = this, defer = $.Deferred(); //封装异步请求结果
     AjaxService.get({
       url: SettingUrl.URL.goods.pageDataAdd,
       data: {kindId: kindId},
-      async: false,
       success: (res) => {
         if (res.success) {
-          result = res.data;
+          defer.resolve(res.data);
         } else {
           me._notification.error(res.info, res.info)
         }
       }
     })
-    return result; //返回异步请求信息
+    return defer.promise(); //返回异步请求信息
   }
 
   /**
    * 商品发布，获取基本数据
    */
   getPageDataEdit(goodsBaseCode) {
-    let result, me = this;
+    let me = this, defer = $.Deferred(); //封装异步请求结果
     AjaxService.get({
       url: SettingUrl.URL.goods.pageDataEdit,
       data: {goodsBaseCode: goodsBaseCode},
       success: (res) => {
         if (res.success) {
-          result = res.data;
+          defer.resolve(res.data);
         } else {
           me._notification.error(res.info, res.info)
         }
       }
     })
-    return result; //返回异步请求信息
+    return defer.promise(); //返回异步请求信息
   }
 
   /**
@@ -96,7 +95,7 @@ export class GoodsService {
     if (isUndefined(parentId)) parentId = 0;
     let list = this.getKindList(parentId);
     let option = {}, items = [];
-    for (var i = 0; i < list.length; i++) {
+    for (let i = 0; i < list.length; i++) {
       option = {
         label: list[i].kindName,
         value: list[i].id,
@@ -126,7 +125,7 @@ export class GoodsService {
         requestUrl = SettingUrl.URL.goods.relieveGoods;
         break;
     }
-    var defer = $.Deferred(); //封装异步请求结果
+    let defer = $.Deferred(); //封装异步请求结果
     AjaxService.put({
       url: requestUrl,
       data: {goodsBaseCode: baseCode},
@@ -226,10 +225,31 @@ export class GoodsService {
     return defer.promise(); //返回异步请求休息
   }
 
-  // 阻止冒泡
-  stopPro(e) {
-    e = event || window.event;
-    window.event ? e.cancelBubble = true : e.stopPropagation();
+  /**
+   * 上传文章编辑器图片
+   * @param file
+   */
+  uploadImg = function (file: any) {
+    let _this = this, ret: string, data: any = new FormData();
+    data.append("limitFile", file);
+    AjaxService.post({
+      url: SettingUrl.URL.base.uploadHttpURL,
+      data: data,
+      async: false,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: (response) => {
+        if (!isNullOrUndefined(response) && response.success) {
+          ret = response.data;
+        }
+        if (!response.success) _this._notification.error(response.info, file.name + '上传失败')
+      },
+      error: (response) => {
+        _this._notification.error(file.name + '上传失败', '')
+      }
+    });
+    return ret;
   }
 
 
@@ -239,7 +259,7 @@ export class GoodsService {
    * @returns {any<T>}
    */
   static freightList(data:any) {
-    var defer = $.Deferred(); //封装异步请求结果
+    let defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.goods.expressTpl,
@@ -250,4 +270,5 @@ export class GoodsService {
     });
     return defer.promise(); //返回异步请求休息
   }
+
 }

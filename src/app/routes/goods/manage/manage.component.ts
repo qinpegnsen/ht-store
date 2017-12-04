@@ -17,7 +17,9 @@ declare var $: any;
 export class ManageComponent implements OnInit {
   public goodsList: Page = new Page();
   public _loading = false;             //查询时锁屏
+  public showList = true;             //是否显示列表页
   public enumState = Setting.ENUMSTATE;
+  public enums = Setting.ENUM;
 
   public kindList;// 分类列表
   public goodsAudits: any;  // 商品审核状态列表
@@ -33,7 +35,8 @@ export class ManageComponent implements OnInit {
   }; // 查询条件
 
   //路由
-  goodsManageEdit:string = SettingUrl.ROUTERLINK.store.goodsManageEdit;           //商品修改/编辑（此处如此写，用于路由相对进入模式）
+  goodsManagePublish:string = SettingUrl.ROUTERLINK.store.goodsManagePublish;    //商品发布（此处如此写，用于路由相对进入模式）
+  goodsManageUpdate:string = SettingUrl.ROUTERLINK.store.goodsManageUpdate;           //商品修改/编辑（此处如此写，用于路由相对进入模式）
   goodsManageEval:string = SettingUrl.ROUTERLINK.store.goodsManageEval;           //查看商品评价（此处如此写，用于路由相对进入模式）
   goodsManageDetail:string = SettingUrl.ROUTERLINK.store.goodsManageDetail;          //查看商品详情（此处如此写，用于路由相对进入模式）
 
@@ -67,6 +70,23 @@ export class ManageComponent implements OnInit {
         baseCode: baseCode
       }
     });
+  }
+
+  /**
+   * 子组件加载时
+   * @param event
+   */
+  activate(event) {
+    this.showList = false;
+  }
+
+  /**
+   * 子组件注销时
+   * @param event
+   */
+  onDeactivate(event) {
+    this.showList = true;
+    if(event.refresh) this.queryGoodsList()
   }
 
   /**

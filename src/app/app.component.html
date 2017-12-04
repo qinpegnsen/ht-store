@@ -3,7 +3,8 @@
 </nz-spin>
 <!--全局的遮罩 end-->
 <!--路由嵌套 start-->
-<div class="hawthorn-store">
+<div class="hawthorn-store" #hawthornStore>
   <router-outlet></router-outlet>
+  <nz-back-top [nzTarget]="hawthornStore" [nzVisibilityHeight]="100"></nz-back-top>
 </div>
 <!--路由嵌套 end-->
