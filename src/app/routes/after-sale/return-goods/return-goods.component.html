@@ -19,9 +19,9 @@
                        (ngModelChange)="queryOrdList()">
               <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
               <ng-container *ngFor="let item of saleAfterStates">
-                <nz-option *ngIf="item.key!='CHECK_FAILS' && item.key!='DELIVERY'"
-                           [nzLabel]="item.val"
-                           [nzValue]="item.key">
+                <nz-option
+                  [nzLabel]="item.val"
+                  [nzValue]="item.key">
                 </nz-option>
               </ng-container>
             </nz-select>
@@ -111,11 +111,13 @@
         <td nz-td class="text-center">{{item.createTime}}</td>
         <td nz-td class="text-center">{{item.state | stateName:'1602'}}</td>
         <td nz-td class="text-center">
-          <button nz-button class="mt-5 btn-blue" *ngIf="item.state==enumState.afterService.wait" [routerLink]="afterDetail"
+          <button nz-button class="mt-5 btn-blue" *ngIf="item.state==enumState.afterService.wait"
+                  [routerLink]="afterDetail"
                   [queryParams]="{afterNo:item.afterNo,type:'deal'}" title="处理">
             <i class="anticon anticon-edit"></i>
           </button>
-          <button nz-button class="mt-5 btn-success" *ngIf="item.state==enumState.afterService.delivery" [routerLink]="afterDetail"
+          <button nz-button class="mt-5 btn-success" *ngIf="item.state==enumState.afterService.delivery"
+                  [routerLink]="afterDetail"
                   [queryParams]="{afterNo:item.afterNo,type:'deal'}" title='验收'>
             <i class="anticon anticon-check"></i>
           </button>
