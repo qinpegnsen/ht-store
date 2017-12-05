@@ -157,4 +157,11 @@ export class EditShopInfoComponent implements OnInit {
     if (this.storeLabelUploader.queue.length > 1) this.storeLabelUploader.queue[0].remove();
   }
 
+
+  /**
+   * 返回上一页
+   */
+  back() {
+    window.history.go(-1);
+  }
 }
