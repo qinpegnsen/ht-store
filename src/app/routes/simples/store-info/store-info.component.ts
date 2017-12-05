@@ -43,7 +43,5 @@ export class StoreInfoComponent implements OnInit {
   back() {
     window.history.go(-1);
   }
-  a(){
-    $(".a").toggleClass("qq")
-  }
+
 }

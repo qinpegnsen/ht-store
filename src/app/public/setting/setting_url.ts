@@ -120,7 +120,7 @@ export class SettingUrl {
       goodsManageEdit:"edit",           //商品修改/编辑（此处如此写，用于路由相对进入模式）
       goodsManageUpdate:"update",           //商品修改/编辑（此处如此写，用于路由相对进入模式）
       goodsManagePublish:"../publish",       //商品发布（此处如此写，用于路由相对进入模式）
-      goodsManageEval:"../eval",           //查看商品评价（此处如此写，用于路由相对进入模式）
+      goodsManageEval:"eval",           //查看商品评价（此处如此写，用于路由相对进入模式）
       goodsManageDetail:"detail",           //查看商品详情（此处如此写，用于路由相对进入模式）
       goodsPublish:"/store/goods/publish", //商品发布
       goodsEdit:"/store/goods/publish/edit",  //商品发布编辑

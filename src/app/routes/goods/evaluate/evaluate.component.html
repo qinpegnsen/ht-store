@@ -40,7 +40,7 @@
                 <p><span>订单编号：</span><span class="font14">{{data.ordno}}</span></p>
                 <div>
                   <p><span class="font14">{{data.commentText}}</span></p>
-                  <p><span class="font14" *ngFor="let eval of data.commentGoodsPicList;let i = index">
+                  <p><span class="font14" *ngFor="let eval of data.commentGoodsPicList;">
 
                    <nz-popover  [nzTrigger]="'click'">
                        <img [src]="eval.pic | imgSize:'50'"  title="点击出大图"
@@ -58,9 +58,9 @@
                 <div>
                   <p>追评内容：</p>
                   <p><span class="font14">{{data.commentTextAfter}}</span></p>
-                  <p><span class="font14" *ngFor="let eval of data.commentGoodsPicList;let j = index">
+                  <p><span class="font14" *ngFor="let eval of data.commentGoodsPicList;">
                      <nz-popover [nzTrigger]="'click'">
-                       <img [src]="eval.pic | imgSize:'50'" class="good-img"  appImgErr title="点击出大图"
+                       <img [src]="eval.pic | imgSize:'50'"  appImgErr title="点击出大图"
                             alt="" *ngIf="eval.isAfter=='Y'"  nz-popover >
                         <ng-template #nzTemplate>
                           <div>  <img [src]="eval.pic | imgSize:'400'" class=""

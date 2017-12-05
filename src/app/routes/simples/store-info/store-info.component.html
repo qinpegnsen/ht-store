@@ -63,7 +63,7 @@
           {{storeInfo.creditCode}}
         </div>
       </div>
-      <div *ngIf="storeInfo.idType==enumState.goodsState.normal">
+      <div *ngIf="storeInfo.idType==enumState.goodsState.normal" class="store-info-normal">
         <div nz-row class="store-info-row">
           <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
             税务登记证证号：
@@ -77,7 +77,16 @@
             纳税登记证电子版：
           </div>
           <div nz-col [nzSpan]="12">
-            {{storeInfo.taxRegistrationCertificateElectronic}}
+            <nz-popover [nzTrigger]="'click'">
+              <img [src]="storeInfo.taxRegistrationCertificateElectronic | imgSize:'50'" appImgErr
+                   title="点击出大图"
+                   alt="" nz-popover>
+              <ng-template #nzTemplate>
+                <div><img [src]="storeInfo.taxRegistrationCertificateElectronic | imgSize:'400'"
+                          alt="">
+                </div>
+              </ng-template>
+            </nz-popover>
           </div>
         </div>
         <div nz-row class="store-info-row">
@@ -93,7 +102,16 @@
             组织结构代码电子版：
           </div>
           <div nz-col [nzSpan]="12">
-            {{storeInfo.organizationCodeElectronic}}
+            <nz-popover [nzTrigger]="'click'">
+              <img [src]="storeInfo.organizationCodeElectronic | imgSize:'50'" appImgErr
+                   title="点击出大图"
+                   alt="" nz-popover>
+              <ng-template #nzTemplate>
+                <div><img [src]="storeInfo.organizationCodeElectronic | imgSize:'400'"
+                          alt="">
+                </div>
+              </ng-template>
+            </nz-popover>
           </div>
         </div>
       </div>
@@ -247,7 +265,7 @@
         </div>
       </div>
       <div nz-row class="store-info-row">
-        <div nz-col [nzSpan]="12" class="text-right pr-5 strong" >
+        <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           开户银行地址：
         </div>
         <div nz-col [nzSpan]="12">
