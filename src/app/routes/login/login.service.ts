@@ -8,7 +8,6 @@ import {NzNotificationService} from "ng-zorro-antd";
 @Injectable()
 export class LoginService {
   validateFormReset: FormGroup;          //重置密码的表单校验
-  validateFormNew: FormGroup;            //新密码的表单校验
 
 
 
@@ -16,13 +15,9 @@ export class LoginService {
     //重置密码的表单校验
     this.validateFormReset = this.fb.group({
       phone: ['', [this.phoneValidator]],//手机号的校验
-      smsCode: ['', [this.samCodeValidator]],//验证码校验
-    });
-
-    //新密码的表单校验
-    this.validateFormNew = this.fb.group({
-      password: ['', [Validators.required]],//密码的校验
-      passwordConfirmation: ['', [this.passwordConfirmationValidator]],//再次输入密码的校验
+      code: ['', [this.samCodeValidator]],//验证码校验
+      newPwd: ['', [Validators.required]],//密码的校验
+      confirmPwd: ['', [this.passwordConfirmationValidator]],//再次输入密码的校验
     });
   }
 
@@ -59,7 +54,7 @@ export class LoginService {
    */
   validateConfirmPassword() {
     setTimeout(_ => {
-      this.validateFormNew.controls['passwordConfirmation'].updateValueAndValidity();
+      this.validateFormReset.controls['confirmPwd'].updateValueAndValidity();
     })
   }
 
@@ -71,7 +66,7 @@ export class LoginService {
   passwordConfirmationValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return {required: true};
-    } else if (control.value !== this.validateFormNew.controls['password'].value) {
+    } else if (control.value !== this.validateFormReset.controls['newPwd'].value) {
       return {confirm: true, error: true};
     }
   };
@@ -118,4 +113,55 @@ export class LoginService {
         break;
     }
   }
+
+
+  /**
+   * 商家忘记密码
+   * @param requestDate
+   * @param callback
+   */
+  resetPassword(requestDate: any) {
+    const me = this;
+    AjaxService.post({
+      url: SettingUrl.URL.login.resetPassword,
+      data: requestDate,
+      success: (res) => {
+        if (res.success) {
+          me._notification.success('成功',res.info);
+        } else {
+          me._notification.error(`出错了`, res.info)
+        }
+      },
+      error: (res) => {
+        me._notification.error(`出错了`, '接口调用失败')
+      }
+    });
+  }
+
+  /**
+   * 修改密码获取验证码
+   * @param requestDate
+   */
+    getSmsCode(phone: string) {
+    const me = this;
+    let _success: boolean = false;
+    AjaxService.put({
+      url: SettingUrl.URL.login.getSms,
+      data: {phone: phone},
+      async: false,
+      success: (res) => {
+        if (res.success) {
+          _success = true;
+        } else {
+          me._notification.error(`出错了`, res.info)
+        }
+      },
+      error: (res) => {
+        me._notification.error(`接口出错了`, '接口调用失败')
+      }
+    });
+    return _success;
+  }
+
+
 }

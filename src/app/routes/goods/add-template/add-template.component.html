@@ -18,13 +18,13 @@
       </div>
       <div nz-form-control nz-col [nzSpan]="16">
         <nz-radio-group formControlName="radio_group">
-          <label nz-radio [nzValue]="1">
+          <label nz-radio [nzValue]="1" (click)="number()">
             <span>按件数 </span>
           </label>
-          <label nz-radio [nzValue]="2">
+          <label nz-radio [nzValue]="2" (click)="weight()">
             <span>按重量 </span>
           </label>
-          <label nz-radio [nzValue]="3">
+          <label nz-radio [nzValue]="3" (click)="volume()">
             <span>按体积 </span>
           </label>
         </nz-radio-group>
@@ -37,7 +37,7 @@
       <div nz-form-control nz-col [nzSpan]="16">
         <table class="freight-table w100 b">
         <thead>
-        <tr >
+        <tr *ngIf="one">
           <th class="w42 main-color text-left pl-20">
             运送到
           </th>
@@ -52,6 +52,42 @@
           </th>
           <th class="w12 main-color">
            续费(元)
+          </th>
+          <th class="w12 main-color">操作</th>
+        </tr>
+        <tr *ngIf="twe">
+          <th class="w42 main-color text-left pl-20">
+            运送到
+          </th>
+          <th class="w10 main-color">
+            首重(Kg)
+          </th>
+          <th class="w12 main-color">
+            首费(元)
+          </th>
+          <th class="w10 main-color">
+            续重(Kg)
+          </th>
+          <th class="w12 main-color">
+            续费(元)
+          </th>
+          <th class="w12 main-color">操作</th>
+        </tr>
+        <tr *ngIf="three">
+          <th class="w42 main-color text-left pl-20">
+            运送到
+          </th>
+          <th class="w10 main-color">
+            首体积(㎡)
+          </th>
+          <th class="w12 main-color">
+            首费(元)
+          </th>
+          <th class="w10 main-color">
+            续体积(㎡)
+          </th>
+          <th class="w12 main-color">
+            续费(元)
           </th>
           <th class="w12 main-color">操作</th>
         </tr>

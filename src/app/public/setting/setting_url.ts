@@ -17,7 +17,9 @@ export class SettingUrl {
      * 登录接口
      */
     login:{
-      storeLogin:' /login/login',
+      storeLogin:' /login/login',//登录接口
+      getSms:' /sms/forgetPasswordSMS',//（put）获取验证码
+      resetPassword:' /seller/resetPassword',//（post）获取验证码
     },
     /**
      * 企业入驻

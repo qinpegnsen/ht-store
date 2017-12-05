@@ -26,6 +26,9 @@ export class AddTemplateComponent implements OnInit {
   checkOptionsOnes = {};
   public staff: any = {};//获取的模板值数据
   public area_model: boolean = false;//地区的显示框
+  public one: boolean = true//运费时首选按件数默认为true
+  public twe: boolean = false;//运费时按重量默认为false
+  public three: boolean = false;//运费时按体积默认为false
 
   constructor(private fb: FormBuilder,public routeInfo: ActivatedRoute,public session: SessionService) {
     this.validateForm = this.fb.group({
@@ -322,6 +325,30 @@ export class AddTemplateComponent implements OnInit {
         break;
     }
 
+  }
+
+  /**
+   * 判断计量方式(按件数，重量，体积)
+   */
+  number() {
+    let me = this;
+    me.one = true;
+    me.twe = false;
+    me.three = false;
+  }
+
+  weight() {
+    let me = this;
+    me.one = false;
+    me.twe = true;
+    me.three = false;
+  }
+
+  volume() {
+    let me = this;
+    me.one = false;
+    me.twe = false;
+    me.three = true;
   }
 
 

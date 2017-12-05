@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import { FormGroup} from "@angular/forms";
 import {LoginService} from "../login.service";
 import {ForgetPasswordComponent} from "../forget-password/forget-password.component";
 
@@ -11,6 +11,9 @@ import {ForgetPasswordComponent} from "../forget-password/forget-password.compon
 export class ResetPasswordComponent implements OnInit {
 
   validateForm: FormGroup;//重置密码的表单
+  msgCode: string = '获取验证码';
+  isSending: boolean = false;
+  phoneState: string;
 
   constructor(public loginService: LoginService, public forgetPwd: ForgetPasswordComponent) {
     this.validateForm = this.loginService.validateFormReset;////重置密码的表单
@@ -44,12 +47,33 @@ export class ResetPasswordComponent implements OnInit {
 
 
   /**
-   * 获取验证码
-   * @param e
+   * 忘记密码时获取验证码
+   * @param requestDate
    */
-  getCaptcha(e: MouseEvent) {
-    e.preventDefault();
-    alert('获取验证码')
+  getCaptcha(){
+    let me = this, phone = me.validateForm.controls[ 'phone' ].value;
+    if(!me.isSending && /^1[0-9]{10}$/.test(phone)){
+      let res = me.loginService.getSmsCode(phone);
+      if(res){
+        me.isSending = true;
+        let second = 60;
+        let timer = setInterval(() => {
+          if(second >= 1) {
+            second -= 1;
+            me.msgCode = `已发送${second}秒`;
+          }
+          if(second < 1) {
+            me.msgCode = `重新获取`;
+            me.isSending = false;
+            clearInterval(timer);
+          }
+        },1000);
+      }
+    }else if(phone == ''){
+      me.phoneState = 'empty';
+    }else{
+      me.phoneState = 'error';
+    }
   }
 
 }

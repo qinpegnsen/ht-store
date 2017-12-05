@@ -13,7 +13,7 @@ export class NewPasswordComponent implements OnInit {
   validateForm: FormGroup;//新密码的表单
 
   constructor(public loginService: LoginService, public forgetPwd: ForgetPasswordComponent) {
-    this.validateForm = this.loginService.validateFormNew;//新密码的表单
+    this.validateForm = this.loginService.validateFormReset;//新密码的表单
   }
 
   ngOnInit() {
@@ -27,10 +27,12 @@ export class NewPasswordComponent implements OnInit {
    */
   submitForm = ($event, value) => {
     $event.preventDefault();
-    // for (const key in this.validateForm.controls) {
-    //   this.validateForm.controls[key].markAsDirty();
-    // }
+    for (const key in this.validateForm.controls) {
+      this.validateForm.controls[ key ].markAsDirty();
+    }
     console.log(value);
+    let formValue = value;
+    this.loginService.resetPassword(formValue);
     this.forgetPwd.current += 1;
     this.loginService.routerSkip(this.forgetPwd.current);
   };
@@ -38,7 +40,6 @@ export class NewPasswordComponent implements OnInit {
   getFormControl(name) {
     return this.validateForm.controls[name];
   }
-
 
   /**
    * 回到前一步

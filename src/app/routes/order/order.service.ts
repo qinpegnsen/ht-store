@@ -28,7 +28,7 @@ export class OrderService {
   }
 
   /**
-   * 查询获取物流gon列表
+   * 查询获取物流列表
    * @param data （查询参数）
    */
   static auditsList(){
@@ -45,7 +45,7 @@ export class OrderService {
   }
 
   /**
-   * 查询获取物流gon列表
+   * 商家发货
    * @param data （查询参数）
    */
   canceslOrder(getOrdno,expressNos,expressCode) {
@@ -55,14 +55,18 @@ export class OrderService {
         'expressNo': expressNos,
         'expressCode': expressCode
       };
-    AjaxService.put({
+    AjaxService.get({
       url: SettingUrl.URL.order.storeDelivery,
       data: requestData,
       success: (res) => {
-        defer.resolve(res);
+        if (res.success) {
+          me._notification.success('成功',res.info);
+        } else {
+          me._notification.error(`出错了`, res.info)
+        }
       },
       error: (res) => {
-        me._notification.error(`失败`, '发货失败');
+        me._notification.error(`失败`, res.info);
       }
     })
     return defer.promise(); //返回异步请求信息
