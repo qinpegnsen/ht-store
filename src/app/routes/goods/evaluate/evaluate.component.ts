@@ -10,7 +10,7 @@ declare var $: any;
   styleUrls: ['./evaluate.component.css']
 })
 export class EvaluateComponent implements OnInit {
-  evalPage: Page = new Page();          //提现信息
+  evalPage: Page = new Page();   //提现信息
   _loading = false;             //查询时锁屏
   public goodsName: string;     //评价的商品名称
   constructor(public router: Router, public routeInfo: ActivatedRoute) {
@@ -35,7 +35,7 @@ export class EvaluateComponent implements OnInit {
     $.when(GoodsService.commnetGoodsList(me.evalPage.params)).done(data => {
       me._loading = false //解除锁屏
       if (data) me.evalPage = data; //赋值
-      console.log("█ me.evalPage ►►►", me.evalPage);
+      // console.log("█ me.evalPage ►►►", me.evalPage);
     })
   };
 

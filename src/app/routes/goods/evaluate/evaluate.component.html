@@ -27,7 +27,7 @@
         <table class="w100 b mb-20">
           <tr>
             <!--买家信息 --start -->
-            <td class="w5 text-center " [attr.rowspan]="data.commentGoodsPicList.length">
+            <td class="w5 text-center" [attr.rowspan]="data.commentGoodsPicList.length">
               <span class="">
                 <i class="icon icon-user font30"></i>
               </span><br>
@@ -41,6 +41,7 @@
                 <div>
                   <p><span class="font14">{{data.commentText}}</span></p>
                   <p><span class="font14" *ngFor="let eval of data.commentGoodsPicList;let i = index">
+
                    <nz-popover  [nzTrigger]="'click'">
                        <img [src]="eval.pic | imgSize:'50'"  title="点击出大图"
                             alt="" *ngIf="eval.isAfter=='N'"  nz-popover >
@@ -59,8 +60,8 @@
                   <p><span class="font14">{{data.commentTextAfter}}</span></p>
                   <p><span class="font14" *ngFor="let eval of data.commentGoodsPicList;let j = index">
                      <nz-popover [nzTrigger]="'click'">
-                         <img [src]="eval.pic | imgSize:'50'" appImgErr title="点击出大图"
-                              alt="" *ngIf="eval.isAfter=='Y'"  nz-popover >
+                       <img [src]="eval.pic | imgSize:'50'" class="good-img"  appImgErr title="点击出大图"
+                            alt="" *ngIf="eval.isAfter=='Y'"  nz-popover >
                         <ng-template #nzTemplate>
                           <div>  <img [src]="eval.pic | imgSize:'400'" class=""
                                       alt="" *ngIf="eval.isAfter=='Y'" >
