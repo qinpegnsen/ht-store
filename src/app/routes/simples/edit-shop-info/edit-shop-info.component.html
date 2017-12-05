@@ -1,0 +1,175 @@
+<!--开通店铺 start-->
+<div nz-row class="p-20 edit-shop-bg">
+  <form nz-form class="p-20" #dredgeStoreForm = "ngForm">
+    <!--店铺基本信息 start-->
+    <div class="mb-20">
+      <div class="legend bb-dashed">店铺基本信息</div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>店铺名称</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngStoreName)" nzHasFeedback>
+          <nz-input name="storeName" [(ngModel)]="validateForm.storeName" #ngStoreName="ngModel" required
+                    [nzType]="'text'" [nzPlaceHolder]="'店铺名称'" [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreName) == 'empty'">
+            请输入店铺名称！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-col [nzSpan]="8" nz-form-label>
+          <label nz-form-item-required>店铺地址</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngAreaCode)"
+             nzHasFeedback>
+          <nz-cascader name="areaCode" [nzSize]="'large'" required
+                       [(ngModel)]="validateForm.areaCode" #ngAreaCode="ngModel"
+                       [nzPlaceHolder]="'请选择'" minlength="3"
+                       [nzExpandTrigger]="'hover'"
+                       [nzChangeOnSelect]="true"
+                       [nzOptions]="_options">
+          </nz-cascader>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>详细地址</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngAddress)" nzHasFeedback>
+          <nz-input name="address" [(ngModel)]="validateForm.address" #ngAddress="ngModel" required [nzRows]="2"
+                    [nzType]="'textarea'" [nzPlaceHolder]="'请输入详细地址'"
+                    [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngAddress) == 'empty'">
+            请输入详细地址！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>邮政编码</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngStoreZip)" nzHasFeedback>
+          <nz-input name="storeZip" [(ngModel)]="validateForm.storeZip" #ngStoreZip="ngModel" required
+                    [pattern]="'[0-9]{6}'" [nzType]="'text'" [nzPlaceHolder]="'请输入邮政编码'" [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreZip) == 'empty'">
+            请输入邮政编码！
+          </div>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreZip) == 'error'">
+            邮政编码不正确！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>商家电话</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngStorePhone)" nzHasFeedback>
+          <nz-input name="storePhone" [(ngModel)]="validateForm.storePhone" #ngStorePhone="ngModel"
+                    [pattern]="patternService.tel" required
+                    [nzPlaceHolder]="'请填写商家电话'" [nzType]="'tel'" [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStorePhone) == 'empty'">
+            请输入商家电话！
+          </div>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStorePhone) == 'error'">不是正确的手机号或电话！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label>店铺logo</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control>
+          <label class="file-upload">
+            <i class="anticon anticon-cloud-upload-o"></i>修改店铺logo
+            <input class="w100" type="file" name="storeLabel" ng2FileSelect accept="image/*"
+                   [uploader]="storeLabelUploader" (change)="storeLabelFileChangeListener()"/>
+          </label>
+          <!--<div nz-form-explain *ngIf="!validateForm.storeLabel&&!storeLabelUploader.queue[0]">
+            请上传店铺logo！
+          </div>-->
+        </div>
+        <div nz-col [nzSpan]="8">
+          <ng-container *ngIf="storeLabelUploader.queue[0]">
+            <img [src]="storeLabelUploader.queue[0]?._file | imgPreview" class="uploaded">
+            <img [src]="storeLabelUploader.queue[0]?._file | imgPreview" class="uploaded-big">
+          </ng-container>
+          <ng-container *ngIf="validateForm.storeLabel && !storeLabelUploader.queue[0]">
+            <img [src]="validateForm.storeLabel"  onerror="javascript:this.src='../../../assets/img/dummy.png'"
+              class="uploaded">
+            <img [src]="validateForm.storeLabel" onerror="javascript:this.src='../../../assets/img/dummy.png'" class="uploaded-big">
+          </ng-container>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label>店铺头像</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control>
+          <label class="file-upload">
+            <i class="anticon anticon-cloud-upload-o"></i>修改店铺头像
+            <input class="w100" type="file" name="storeAvatar" ng2FileSelect accept="image/*"
+                   [uploader]="storeAvatarUploader" (change)="storeAvatarFileChangeListener()"/>
+          </label>
+          <!--<div nz-form-explain *ngIf="!validateForm.storeAvatar && !storeAvatarUploader.queue[0]">
+            请上传店铺头像！
+          </div>-->
+        </div>
+        <div nz-col [nzSpan]="8">
+          <ng-container *ngIf="storeAvatarUploader.queue[0]">
+            <img [src]="storeAvatarUploader.queue[0]?._file | imgPreview"  class="uploaded">
+            <img [src]="storeAvatarUploader.queue[0]?._file | imgPreview" class="uploaded-big">
+          </ng-container>
+          <ng-container *ngIf="validateForm.storeAvatar && !storeAvatarUploader.queue[0]">
+            <img [src]="validateForm.storeAvatar" onerror="javascript:this.src='../../../assets/img/dummy.png'" class="uploaded">
+            <img [src]="validateForm.storeAvatar" onerror="javascript:this.src='../../../assets/img/dummy.png'" class="uploaded-big">
+          </ng-container>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label>QQ</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngStoreQQ)" nzHasFeedback>
+          <nz-input name="storeQQ" [nzType]="'text'" [(ngModel)]="validateForm.storeQQ" #ngStoreQQ="ngModel"
+                    [nzPlaceHolder]="'QQ'" [nzSize]="'large'" minlength="6">
+          </nz-input>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreQQ) == 'empty'">
+            请输入店铺QQ！
+          </div>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreQQ) == 'error'">
+            不是正确的QQ！
+          </div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label>阿里旺旺账号</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngStoreWW)" nzHasFeedback>
+          <nz-input name="storeWW" [(ngModel)]="validateForm.storeWW" #ngStoreWW="ngModel" [nzType]="'text'"
+                    [nzPlaceHolder]="'阿里旺旺账号'" [nzSize]="'large'" minlength="6">
+          </nz-input>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreWW) == 'empty'">
+            请输入店铺阿里旺旺账号！
+          </div>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreWW) == 'empty'">
+            不是正确的阿里旺旺账号！
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--企业基本信息 end-->
+
+    <div nz-row class="text-center p-20 bt">
+      <button nz-button [nzSize]="'large'" [disabled]="!dredgeStoreForm.form.valid" class="btn-thc"
+              (click)="submitShopForm($event)">
+        <span>提交</span>
+      </button>
+    </div>
+  </form>
+</div>
+<!--开通店铺 end-->

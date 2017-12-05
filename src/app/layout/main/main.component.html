@@ -46,7 +46,7 @@
           <li nz-dropdown>
             <nz-badge [nzCount]="msgNum">
               <ng-template #content>
-                <i class="anticon anticon-bell" title="消息通知"></i>
+                <i class="anticon anticon-bell" title="消息通知" [routerLink]="shops"></i>
               </ng-template>
             </nz-badge>
           </li>
@@ -58,7 +58,7 @@
           </ul>
         </nz-dropdown>
 
-        <li><i class="anticon anticon-edit" title="修改密码" [routerLink]="shops"></i></li>
+        <li><i class="anticon anticon-edit" title="修改密码" [routerLink]="editShop"></i></li>
         <li><i class="anticon anticon-logout" title="退出登录"></i></li>
       </ul>
     </nz-header>

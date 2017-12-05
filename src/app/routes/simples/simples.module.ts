@@ -14,6 +14,7 @@ import {OpenStepsComponent} from './open-steps/open-steps.component';
 import {StoreInfoComponent} from "./store-info/store-info.component";
 import {MainService} from "../../public/service/main.service";
 import {ShopInfoComponent} from "./shop-info/shop-info.component";
+import { EditShopInfoComponent } from './edit-shop-info/edit-shop-info.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,9 @@ const routes: Routes = [
   {
     path: 'shops', component: ShopInfoComponent
   },
+  {
+    path: 'editShop', component: EditShopInfoComponent
+  },
 ];
 
 @NgModule({
@@ -58,6 +62,7 @@ const routes: Routes = [
     BaseInfoComponent,
     OpenStepsComponent,
     StoreInfoComponent,
+    EditShopInfoComponent,
     ShopInfoComponent,
   ],
   providers: [
