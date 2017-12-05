@@ -83,6 +83,7 @@ export class SettingUrl {
       updateIsUseCoin: "/goodsEdit/updateIsUseCoin",//(put)更改是否可用重消币
       commnetGoods:"/commentGoods/queryCommnetGoodsAdmin",//(get)查询商品评价
       expressTpl:" /expressTpl/queryByStoreCode",//(get)查询运费模板/模板值列表
+      goodsSave: "/goodsEdit/save"      //保存商品数据（发布/修改）
     },
     /**
      * 提现与账单明细

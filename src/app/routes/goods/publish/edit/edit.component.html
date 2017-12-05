@@ -7,7 +7,7 @@
         <label nz-form-item-required>商品分类</label>
       </dt>
       <dd nz-col [nzSpan]="20">
-        <span class="mr">{{kindSelectName}}</span>
+        <span class="mr">{{publishData.kindSelectName}}</span>
         <nz-popconfirm [nzPlacement]="'top'" [nzTitle]="'重新选择分类，本页面数据将不会保留'"
                        (nzOnConfirm)="location.back()">
           <button nz-popconfirm nz-button class="btn-warning" title="选择分类">选择分类</button>
@@ -19,7 +19,7 @@
         <label nz-form-item-required>商品名称</label>
       </dt>
       <dd nz-col [nzSpan]="20">
-        <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
+        <div nz-col [nzSpan]="12" nz-form-control nzHasFeedback
              [nzValidateStatus]="ngValidateStatus(ngGoodsName)">
           <nz-input name="goodsName" [(ngModel)]="publishData.goodsName" [nzType]="'text'" [nzPlaceHolder]="'商品名称'"
                     required [nzSize]="'large'" minlength="3" maxlength="50" #ngGoodsName="ngModel">
@@ -33,7 +33,7 @@
         <label nz-form-item-required>商品卖点</label>
       </dt>
       <dd nz-col [nzSpan]="20">
-        <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
+        <div nz-col [nzSpan]="12" nz-form-control nzHasFeedback
              [nzValidateStatus]="ngValidateStatus(ngGoodsJingle)">
           <nz-input name="goodsJingle" [(ngModel)]="publishData.goodsJingle" [nzType]="'textarea'"
                     required [nzPlaceHolder]="'商品卖点'"
@@ -48,12 +48,12 @@
         <label nz-form-item-required>商品品牌</label>
       </dt>
       <dd nz-col [nzSpan]="20">
-        <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
+        <div nz-col [nzSpan]="12" nz-form-control nzHasFeedback
              [nzValidateStatus]="ngValidateStatus(ngBrandCode)">
           <nz-select name="brandCode" [(ngModel)]="publishData.brandCode" [nzSize]="'large'" [nzPlaceHolder]="'商品品牌'"
                      required #ngBrandCode="ngModel">
             <nz-option *ngFor="let brand of brandsList" [nzLabel]="brand.brandName"
-                       [nzValue]="brand.id"></nz-option>
+                       [nzValue]="brand.id | number"></nz-option>
           </nz-select>
         </div>
         <p nz-col [nzSpan]="24" class="tip">选择您的商品品牌，有利于商品通过品牌索引方式被找到；如没有您想要的品牌，可从“品牌管理”功能中添加并提交后台审核后再选择。</p>
@@ -64,15 +64,14 @@
         <label nz-form-item-required>商品属性</label>
       </dt>
       <dd nz-col [nzSpan]="20">
-        <div nz-col [nzSpan]="8" *ngFor="let attrType of baseAttrList;let i = index">
+        <div nz-col [nzSpan]="8" class="mb" *ngFor="let attrType of baseAttrList;let i = index">
           <div nz-form-item>
-            <div nz-form-label nz-col [nzSpan]="6">
+            <div nz-form-label nz-col [nzSpan]="8">
               <label>{{attrType.name}}</label>
             </div>
-            <div nz-form-control nz-col [nzSpan]="18">
-              <nz-select name="baseAttr" [nzSize]="'large'">
-                <nz-option *ngFor="let attr of attrType.goodsEnumValList" [nzLabel]="attr.enumValue" [nzValue]="attr.id"
-                           [class]="attr.idx"></nz-option>
+            <div nz-form-control nz-col [nzSpan]="16">
+              <nz-select name="baseAttr" [nzSize]="'large'" [(ngModel)]="attrType.checkedId">
+                <nz-option *ngFor="let attr of attrType.goodsEnumValList" [nzLabel]="attr.enumValue" [nzValue]="attr.id"></nz-option>
               </nz-select>
             </div>
           </div>
@@ -91,7 +90,7 @@
         <label nz-form-item-required>计量单位</label>
       </dt>
       <dd nz-col [nzSpan]="20">
-        <div nz-col [nzSpan]="10" nz-form-control nzHasFeedback
+        <div nz-col [nzSpan]="12" nz-form-control nzHasFeedback
              [nzValidateStatus]="ngValidateStatus(ngUnit)">
           <nz-select name="unit" [(ngModel)]="publishData.unit" [nzSize]="'large'" #ngUnit="ngModel"
                      required [nzPlaceHolder]="'商品品牌'">
@@ -118,24 +117,24 @@
           <span nz-col [nzSpan]="4" class="text-right pr">规格</span>
           <span nz-col [nzSpan]="20" class="pl">规格值 <em>（通过选择规格值建立商品与商品规格的关系）</em></span>
         </h5>
-        <div class="enumType" *ngFor="let saleAttr of saleAttrList;let i = index" [attr.id]="i+1">
+        <div class="enumType" *ngFor="let saleAttr of saleAttrList;let s = index" [attr.id]="s+1">
           <h6 nz-col [nzSpan]="4" class="text-right p">
             <span nz-col [nzSpan]="24" class="attr-name pr" *ngIf="!saleAttr.used">{{saleAttr.name}}</span>
             <div nz-form-control nz-col [nzSpan]="24" *ngIf="saleAttr.used">
-              <nz-input [nzType]="'text'" [nzSize]="'large'" [ngModelOptions]="{standalone: true}" [attr.id]="i+1"
+              <nz-input [nzType]="'text'" [nzSize]="'large'" [ngModelOptions]="{standalone: true}" [attr.id]="s+1"
                         minlength="1" maxlength="6"
-                        [(ngModel)]="saleAttr.name" (ngModelChange)="changeSpecVal(i)"></nz-input>
+                        [(ngModel)]="saleAttr.name" (ngModelChange)="changeSpecVal(s)"></nz-input>
             </div>
           </h6>
           <ul nz-col [nzSpan]="20" class="p vals">
             <li nz-col [nzSpan]="6" *ngFor="let val of saleAttr.goodsEnumValList;">
               <label nz-col [nzSpan]="3" nz-checkbox [(ngModel)]="val.checked" class="relative"
-                     [ngModelOptions]="{standalone: true}" (ngModelChange)="checkSpecVal($event,i)">
+                     [ngModelOptions]="{standalone: true}" (ngModelChange)="changeSpecVal(s)">
                 <span class="absolute" *ngIf="!val.checked">{{val.enumValue}}</span>
               </label>
               <div nz-form-control nz-col [nzSpan]="18" *ngIf="val.checked">
                 <nz-input [nzType]="'text'" [nzSize]="'large'" [ngModelOptions]="{standalone: true}"
-                          [(ngModel)]="val.enumValue" (ngModelChange)="changeSpecVal(i)"></nz-input>
+                          [(ngModel)]="val.enumValue" (ngModelChange)="changeSpecVal(s)"></nz-input>
               </div>
             </li>
           </ul>
