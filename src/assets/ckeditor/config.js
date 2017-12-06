@@ -27,11 +27,11 @@ CKEDITOR.editorConfig = function (config) {
   // 简化对话框窗口
   config.removeDialogTabs = 'image:advanced;link:advanced;image:Link';
   //上传图片的弹框中，预览区域显示内容
-  config.image_previewText = '请注意：左侧的‘宽度’和‘高度’，若您不需要设置图片的固定宽高，可以删除里面的数据，同时宽高是可以设定百分比的，如：宽-100%，高-（空）';
+  config.image_previewText = ' ';
   //上传图片使用的方法（默认）
   config.filebrowserImageUploadUrl = "/upload/basic/uploadGoodsForCkEditor";
   //设置编辑器高度
   // config.height = 1000;
   //上传图片后，不自动设置宽和高
-  // config.disallowedContent = 'img{width,height};img[width,height]'  //有错误，弃用
+  config.disallowedContent = 'img{width,height};img[width,height]'
 };
