@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {NzNotificationService} from "ng-zorro-antd";
@@ -7,7 +7,8 @@ declare var $: any;
 @Injectable()
 export class AfterSaleService {
 
-  constructor(public _notification: NzNotificationService) { }
+  constructor(public _notification: NzNotificationService) {
+  }
 
 
   /**
@@ -15,7 +16,7 @@ export class AfterSaleService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-   queryRefundOrd(data:any){
+  queryRefundOrd(data: any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
@@ -24,6 +25,8 @@ export class AfterSaleService {
       success: (data) => {
         if (data.success) {
           defer.resolve(data.data)
+        } else {
+          this._notification.error(data.info, data.info);
         }
       }
     });
@@ -36,14 +39,19 @@ export class AfterSaleService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-   loadAfterTail(data:any) {
+  loadAfterTail(data: any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.after.loadAfterTail,
       data: data,
       success: (data) => {
-        if (data.success) defer.resolve(data.data);
+        if (data.success) {
+          defer.resolve(data.data)
+        } else {
+          this._notification.error(data.info, data.info);
+        }
+        ;
       }
     });
     return defer.promise(); //返回异步请求休息
@@ -54,14 +62,18 @@ export class AfterSaleService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-   loadReqByAfterNo(data:any) {
+  loadReqByAfterNo(data: any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.after.loadReqByAfterNo,
       data: data,
       success: (data) => {
-        if (data.success) defer.resolve(data.data);
+        if (data.success) {
+          defer.resolve(data.data);
+        } else {
+          this._notification.error(data.info, data.info);
+        }
       }
     });
     return defer.promise(); //返回异步请求休息
@@ -72,14 +84,18 @@ export class AfterSaleService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-   loadAfterTailList(data:any) {
+  loadAfterTailList(data: any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.after.loadAfterTailList,
       data: data,
       success: (data) => {
-        if (data.success) defer.resolve(data.data);
+        if (data.success) {
+          defer.resolve(data.data);
+        } else {
+          this._notification.error(data.info, data.info);
+        }
       }
     });
     return defer.promise(); //返回异步请求休息
@@ -90,14 +106,18 @@ export class AfterSaleService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-   agreeRefundMoney(data:any) {
+  agreeRefundMoney(data: any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.post({
       url: SettingUrl.URL.after.agreeRefundMoney,
       data: data,
       success: (data) => {
-        if (data.success) defer.resolve(data.data);
+        if (data.success) {
+          defer.resolve(data.data);
+        } else {
+          this._notification.error(data.info, data.info);
+        }
       }
     });
     return defer.promise(); //返回异步请求休息
@@ -108,14 +128,18 @@ export class AfterSaleService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-   dealReturnGoods(data:any) {
+  dealReturnGoods(data: any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.post({
       url: SettingUrl.URL.after.dealReturnGoods,
       data: data,
       success: (data) => {
-        if (data.success) defer.resolve(data.data);
+        if (data.success) {
+          defer.resolve(data.data);
+        } else {
+          this._notification.error(data.info, data.info);
+        }
       }
     });
     return defer.promise(); //返回异步请求休息
@@ -126,14 +150,18 @@ export class AfterSaleService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-   checkRefundGoods(data:any) {
+  checkRefundGoods(data: any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.post({
       url: SettingUrl.URL.after.checkRefundGoods,
       data: data,
       success: (data) => {
-        if (data.success) defer.resolve(data.data);
+        if (data.success) {
+          defer.resolve(data.data);
+        } else {
+          this._notification.error(data.info, data.info);
+        }
       }
     });
     return defer.promise(); //返回异步请求休息
