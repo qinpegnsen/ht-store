@@ -6,6 +6,7 @@ import {NzMessageService, NzModalService, NzNotificationService} from "ng-zorro-
 import {Setting} from "../../../public/setting/setting";
 import {SkuGoodsComponent} from "../sku-goods/sku-goods.component";
 import {SettingUrl} from "../../../public/setting/setting_url";
+import {isNullOrUndefined} from "util";
 
 declare var $: any;
 
@@ -25,14 +26,7 @@ export class ManageComponent implements OnInit {
   public goodsAudits: any;  // 商品审核状态列表
   public goodsState: any;  // 商品状态列表
   public isOwnPlats: any;  //是否自营列表
-  public query = {
-    kindId: '',
-    goodsName: '',
-    brandName: '',
-    state: '',
-    isOwnPlat: '',
-    goodsAudit: '',
-  }; // 查询条件
+  public query:any = {}; // 查询条件
 
   //路由
   goodsManagePublish:string = SettingUrl.ROUTERLINK.store.goodsManagePublish;    //商品发布（此处如此写，用于路由相对进入模式）
@@ -63,7 +57,7 @@ export class ManageComponent implements OnInit {
    */
   showSkuList(baseCode, name) {
     this.modalService.open({
-      title          : `"${name}"的所有规格`,
+      title          : `“${name}”的所有规格`,
       content        : SkuGoodsComponent,
       footer         : false,
       componentParams: {
@@ -86,7 +80,6 @@ export class ManageComponent implements OnInit {
    */
   onDeactivate(event) {
     this.showList = true;
-    if(event.refresh) this.queryGoodsList()
   }
 
   /**
@@ -94,9 +87,10 @@ export class ManageComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryGoodsList() {
+  public queryGoodsList(curPage?:number) {
     let me = this;
     me._loading = true; //锁屏
+    if(!isNullOrUndefined(curPage)) me.goodsList.curPage = curPage;//当有页码时，查询该页数据
     me.goodsList.params = { //查询参数
       curPage: me.goodsList.curPage, //目标页码
       pageSize: me.goodsList.pageSize, //每页条数

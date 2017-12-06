@@ -13,7 +13,7 @@
         <span class="search-title">审核状态：</span>
         <div class="search-main">
           <nz-select class="w100" name="goodsAudit" [(ngModel)]="query.goodsAudit" [nzSize]="'large'"
-                     (ngModelChange)="queryGoodsList()">
+                     (ngModelChange)="queryGoodsList(1)">
             <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
             <nz-option
               *ngFor="let item of goodsAudits"
@@ -27,7 +27,7 @@
         <span class="search-title">商品状态：</span>
         <div class="search-main">
           <nz-select class="w100" name="state" [(ngModel)]="query.state" [nzSize]="'large'"
-                     (ngModelChange)="queryGoodsList()">
+                     (ngModelChange)="queryGoodsList(1)">
             <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
             <nz-option
               *ngFor="let item of goodsState"
@@ -41,7 +41,7 @@
         <span class="search-title">自营：</span>
         <div class="search-main">
           <nz-select class="w100" name="isOwnPlat" [(ngModel)]="query.isOwnPlat" [nzSize]="'large'"
-                     (ngModelChange)="queryGoodsList()">
+                     (ngModelChange)="queryGoodsList(1)">
             <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
             <nz-option
               *ngFor="let item of isOwnPlats"
@@ -79,7 +79,7 @@
                       [nzSize]="'large'"></nz-input>
           </div>
         </div>
-        <button nz-button [nzSize]="'large'" class="ml btn-thc" (click)="queryGoodsList()">
+        <button nz-button [nzSize]="'large'" class="ml btn-thc" (click)="queryGoodsList(1)">
           <i class="anticon anticon-search"></i>
         </button>
       </div>
@@ -125,12 +125,13 @@
     <tr nz-tbody-tr *ngFor="let goods of nzTable.data;let i = index">
       <td nz-td class="text-center">{{i+1}}</td>
       <td nz-td class="relative w30">
-        <div class="mr inline-block">
-          <img [src]="goods.goodsImage" class="goods-img" (mousemove)="showImg($event)"
-               (mouseleave)="hideImg($event)"
-               onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
-          <img [src]="goods.goodsImage" class="hover-img"
-               onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+        <div class="goods-img-box">
+          <nz-popover [nzTrigger]="'click'">
+            <img [src]="goods.goodsImage | imgSize:'80'" appImgErr title="点击看大图" [alt]="goods.goodsName" nz-popover>
+            <ng-template #nzTemplate>
+              <div><img [src]="goods.goodsImage | imgSize:'200'" [alt]="goods.goodsName"></div>
+            </ng-template>
+          </nz-popover>
         </div>
         <div class="mb0 goods-info">
           <p>
@@ -212,11 +213,11 @@
             <i class="anticon anticon-edit"></i>
           </button>
         </ng-container>
-        <button nz-button title="详情" class="btn-green" [routerLink]="goodsManageDetail"
+        <!--<button nz-button title="详情" class="btn-green" [routerLink]="goodsManageDetail"
                 [queryParams]="{baseCode: goods.goodsBaseCode,page: goodsList.curPage,type:'detail'}">
           <i class="anticon anticon-info-circle-o"></i>
-        </button>
-        <button nz-button class="btn-warning" title="查看评价" [routerLink]="goodsManageEval"
+        </button>-->
+        <button nz-button class="btn-green" title="查看评价" [routerLink]="goodsManageEval"
                 [queryParams]="{goodsName:goods.goodsName}">
           <i class="anticon anticon-search"></i>
         </button>

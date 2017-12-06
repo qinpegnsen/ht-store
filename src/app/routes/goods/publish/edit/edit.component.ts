@@ -22,6 +22,7 @@ export class EditComponent implements OnInit {
   ngValidateStatus = Util.ngValidateStatus;
   public enumState = Setting.ENUMSTATE;//枚举
   public path: string;           // 当前路径
+  public update: boolean = false;   // 是否修改商品
   public saleAttrList: any;       // 所有规格数据
   public brandsList: any;        // 品牌列表
   public unitList: any;           // 计量单位列表
@@ -904,7 +905,10 @@ export class EditComponent implements OnInit {
     $.when(this.goodsService.saveGoods(me.publishData)).done(data => {
       if (data) {
         if (me.path == 'edit') me.router.navigate([SettingUrl.ROUTERLINK.store.goodsPublished], {queryParams: {baseCode: me.goodsBaseCode}})
-        if (me.path == 'update') me.router.navigate([SettingUrl.ROUTERLINK.store.goodsManage], {replaceUrl: true})
+        if (me.path == 'update') {
+          me.update = true;
+          me.router.navigate([SettingUrl.ROUTERLINK.store.goodsManage], {replaceUrl: true})
+        }
       }
     })
   }

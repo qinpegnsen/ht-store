@@ -18,7 +18,7 @@ export class PublishedComponent implements OnInit {
   }
 
   public editGoods() {
-    this.router.navigate([SettingUrl.ROUTERLINK.store.goodsManageEdit], {preserveQueryParams: true})
+    this.router.navigate([SettingUrl.ROUTERLINK.store.goodsUpdate], {preserveQueryParams: true})
   }
 
   public publishNew() {

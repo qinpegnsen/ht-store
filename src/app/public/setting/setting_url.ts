@@ -127,6 +127,7 @@ export class SettingUrl {
       goodsManageDetail:"detail",           //查看商品详情（此处如此写，用于路由相对进入模式）
       goodsPublish:"/store/goods/publish", //商品发布
       goodsEdit:"/store/goods/publish/edit",  //商品发布编辑
+      goodsUpdate:"/store/goods/manage/update",  //商品修改
       goodsPublished:"/store/goods/publish/published",  //商品发布完成
       goodsFreightTemplate:"/store/goods/freightTemplate", //运费模板
       addTemplate:"addTemplate",  //添加运费模板

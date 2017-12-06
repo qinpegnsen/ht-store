@@ -96,16 +96,28 @@
           </div>
         </div>
         <div nz-col [nzSpan]="8">
+          <!--上传图片的时候-->
           <ng-container *ngIf="bankLicenceUploader.queue[0]">
-            <img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" (mousemove)="showImg($event)"
-                 (mouseleave)="hideImg($event)" class="uploaded">
-            <img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" class="uploaded-big">
+            <div class="uploaded">
+              <nz-popover [nzTrigger]="'click'">
+                <img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" height="32"
+                     title="点击看大图" nz-popover>
+                <ng-template #nzTemplate>
+                  <div><img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" height="200"></div>
+                </ng-template>
+              </nz-popover>
+            </div>
           </ng-container>
+          <!--修改图片的时候-->
           <ng-container *ngIf="validateForm.bankLicenceElectronic && !bankLicenceUploader.queue[0]">
-            <img [src]="validateForm.bankLicenceElectronic" onerror="javascript:this.src='../../../assets/img/dummy.png'"
-                 (mousemove)="showImg($event)"
-                 (mouseleave)="hideImg($event)" class="uploaded">
-            <img [src]="validateForm.bankLicenceElectronic" onerror="javascript:this.src='../../../assets/img/dummy.png'" class="uploaded-big">
+            <div class="uploaded">
+              <nz-popover [nzTrigger]="'click'">
+                <img [src]="validateForm.bankLicenceElectronic | imgSize: '60'" title="点击看大图" nz-popover>
+                <ng-template #nzTemplate>
+                  <div><img [src]="validateForm.bankLicenceElectronic | imgSize: '200'"></div>
+                </ng-template>
+              </nz-popover>
+            </div>
           </ng-container>
         </div>
       </div>

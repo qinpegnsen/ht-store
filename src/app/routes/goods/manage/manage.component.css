@@ -62,16 +62,13 @@
   overflow: hidden;
 }
 
-.hover-img {
-  width: 180px !important;
-  max-width: 220px;
-  max-height: 220px;
-  position: fixed;
-  z-index: 100;
-  display: none;
-  -webkit-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
-  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
+.goods-img-box{
+  width: 80px;
+  text-align: center;
+}
+
+.goods-img-box img{
+  vertical-align: middle;
 }
 
 .one-row {
