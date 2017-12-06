@@ -2,15 +2,16 @@
 .step-three{
   background-color: #f8f8f8;
 }
+.step-three .success-icon{
+  font-size: 50px;
+  vertical-align: middle;
+}
 .align-middle{
   vertical-align: middle;
 }
 .step-three a{
-  text-decoration: underline;
-}
-.step-three a.a{
-  font-weight: bold;
-}
+   text-decoration: underline;
+ }
 .step-three ul{
   list-style: decimal;
 }

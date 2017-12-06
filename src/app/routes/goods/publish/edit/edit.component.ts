@@ -22,7 +22,6 @@ export class EditComponent implements OnInit {
   ngValidateStatus = Util.ngValidateStatus;
   public enumState = Setting.ENUMSTATE;//枚举
   public path: string;           // 当前路径
-  public kindId: string;         //商品分类id
   public saleAttrList: any;       // 所有规格数据
   public brandsList: any;        // 品牌列表
   public unitList: any;           // 计量单位列表
@@ -67,9 +66,9 @@ export class EditComponent implements OnInit {
       me.path = paths[0].path;
       switch (me.path) {
         case "edit":  //编辑商品详情
-          me.kindId = me.route.snapshot.queryParams['kindId'];
+          me.publishData.kindId = me.route.snapshot.queryParams['kindId'];
           me.publishData.kindSelectName = me.route.snapshot.queryParams['choosedKind'];
-          if (me.kindId) me.getPageData();
+          if (me.publishData.kindId) me.getPageData();
           else me.location.back();
           break;
         case "update":  //修改商品详情
@@ -113,7 +112,7 @@ export class EditComponent implements OnInit {
   public getPageData() {
     let me = this, pageData;
     if (me.path == 'edit') {
-      $.when(this.goodsService.getPageDataAdd(me.kindId)).done(data => {
+      $.when(this.goodsService.getPageDataAdd(me.publishData.kindId)).done(data => {
         if (data) {
           me.allotPageData(data); //分配获取的页面数据
           /*设置默认值*/
@@ -137,6 +136,7 @@ export class EditComponent implements OnInit {
           me.allotPageData(data); //分配获取的页面数据
           me.goodsEditData = data.goodsSave;//赋值
           me.publishData = data.goodsSave;//赋值
+          me.checkedBaseAttr();           //已选中的基本属性
           if (isNullOrUndefined(me.publishData.goodsExpressInfo)) {
             me.publishData.goodsExpressInfo = {
               freightType: null,
@@ -168,6 +168,20 @@ export class EditComponent implements OnInit {
     me.unitList = pageData.unitList;              // 计量单位
     me.brandsList = pageData.brandList;           // 品牌列表
     me.saleAttrList = pageData.saleAttrList;      // 规格
+  }
+
+  /**
+   * update 已选中的基本属性
+   */
+  checkedBaseAttr(){
+    let me = this;
+    me.goodsEditData.goodsBaseAttrList.forEach(val => {
+      me.baseAttrList.forEach(item => {
+        item.goodsEnumValList.forEach(attr => {
+          if(attr.id == val.value) item.checkedId = attr.id;
+        })
+      })
+    })
   }
 
 //添加物流模板
@@ -322,7 +336,8 @@ export class EditComponent implements OnInit {
     }
     if (checkedAttrNum > 0) {     //选择的规格属大于0时，获取所选属性的名和值
       me.skuImg.attrName = curCheckedAttr.name;
-    }
+      curCheckedAttr.used = true;
+    } else curCheckedAttr.used = false;
     me.skuImg.vals.sort(me.compare('valCode'));   //根据某个属性值（valCode）排序
   }
 
@@ -541,17 +556,19 @@ export class EditComponent implements OnInit {
    */
   public hideEdit(target?) {
     if (!isUndefined(target)) {
-      $(target).parents('.app-img-box').find('._edit').addClass('hide');
-      $(target).parents('.app-img-box').find('.mobile-edit-area').addClass('hide');
+      $(target).parents('.app-img-box').find('.mobile-edit-area').addClass('hide');//隐藏编辑框
+      $(target).parents('.app-img-box').find('.text').show();//取消编辑展示原本文
+      $(target).parents('.app-img-box').find('._edit').addClass('hide');//隐藏编辑组
+    }else{
+      $('.mobile-edit-area').addClass('hide');
     }
-    $('.mobile-edit-area').addClass('hide');
   }
 
   /**
    * 使移动端详情编辑滚动条一直保持在最底部
    */
   public scrollBottom() {
-    $('.app-control')[0].scrollTop = $('.app-control')[0].scrollHeight;// 使滚动条一直保持在最底部
+    $('.app-control')[0].scrollTop = $('.app-control')[0].scrollHeight;// 编辑文本时使滚动条一直保持在最底部
   }
 
   /**
@@ -562,6 +579,7 @@ export class EditComponent implements OnInit {
   insertMblText(target?, index?) {
     let me = this, textArea;
     if (!isUndefined(target)) {
+      $(target).parents('.app-img-box').find('.text').remove();//确认编辑移除原本文
       $(target).parents('.app-img-box').find('._edit').addClass('hide');
       textArea = $(target).parents('.mobile-edit-area').find('.textarea');
     } else {
@@ -582,12 +600,12 @@ export class EditComponent implements OnInit {
 
   /**
    * 手机端详情编辑编辑文本
-   * @param target
-   * @param quondamText
+   * @param target（编辑对象）
+   * @param quondamText（原文本）
    */
   mblReplaceText(target, quondamText) {
     $('.mobile-edit-area .textarea').html(quondamText);
-    $(target).parents('.app-img-box').find('.text').remove();
+    $(target).parents('.app-img-box').find('.text').hide();
     $(target).parents('.app-img-box').find('.mobile-edit-area').removeClass('hide');
     $(target).parents('.app-img-box').find('._edit').addClass('hide');
   }
@@ -880,7 +898,6 @@ export class EditComponent implements OnInit {
     }                //当某个规格没有图片时直接结束发布
     me.genGoodsBaseAttrList();                                          // 商品基本属性
     me.publishData.goodsImagesList = me.genGoodsImgList();           // 商品图片列表
-    if (me.path == 'step_two') me.publishData['kindId'] = me.kindId;
     me.publishData.goodsBody = me.genMblDetailHtml();                 // 商品详情 PC //TODO，PC端商品详情
     me.publishData.mobileBody = me.genMblDetailHtml();               // 商品详情 App
     console.log("█ me.publishData ►►►", me.publishData);

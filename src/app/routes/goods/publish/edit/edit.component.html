@@ -70,7 +70,7 @@
               <label>{{attrType.name}}</label>
             </div>
             <div nz-form-control nz-col [nzSpan]="16">
-              <nz-select name="baseAttr" [nzSize]="'large'" [(ngModel)]="attrType.checkedId">
+              <nz-select [name]="'baseAttr'+i" [nzSize]="'large'" [(ngModel)]="attrType.checkedId">
                 <nz-option *ngFor="let attr of attrType.goodsEnumValList" [nzLabel]="attr.enumValue" [nzValue]="attr.id"></nz-option>
               </nz-select>
             </div>
@@ -448,12 +448,14 @@
                   <p class="text mb0" style="line-height: 1.6" *ngIf="item.type== 'text'">{{item.value}}</p>
                   <div class="mobile-edit-area hide" *ngIf="item.type== 'text'">
                     <div class="mea-text">
-                      <p class="text-tip">还可以输入 <i class="counter">500</i>字 </p>
-                      <div class="pl pr"><textarea class="textarea form-control p-sm" rows="3" maxlength="500"
-                                                   (keyup)="counter($event.target)"></textarea></div>
+                      <p class="text-tip">还可以输入 <i class="main-color counter">500</i>字 </p>
+                      <div class="pl pr">
+                        <textarea class="textarea" rows="3" maxlength="500"
+                                                   (keyup)="counter($event.target)"></textarea>
+                      </div>
                       <div class="button">
-                        <button nz-button (click)="insertMblText($event.target,i)">确认</button>
-                        <button nz-button class="ml" (click)="hideEdit($event.target)">取消</button>
+                        <button nz-button [nzSize]="'small'" (click)="insertMblText($event.target,i)">确认</button>
+                        <button nz-button [nzSize]="'small'" class="ml" (click)="hideEdit($event.target)">取消</button>
                       </div>
                     </div>
                   </div>
@@ -461,14 +463,14 @@
               </div>
               <div class="mobile-edit-area new-text hide">
                 <div class="mea-text">
-                  <p class="text-tip">还可以输入 <i class="counter">500</i>字 </p>
+                  <p class="text-tip">还可以输入 <i class="main-color counter">500</i>字 </p>
                   <div class="pl pr">
-                    <textarea class="textarea p-5" rows="3" maxlength="500"
+                    <textarea class="textarea" rows="3" maxlength="500"
                               (keyup)="counter($event.target)"></textarea>
                   </div>
                   <div class="button">
-                    <button nz-button class="btn-green" (click)="insertMblText()">确认</button>
-                    <button nz-button class="ml" (click)="hideEdit()">取消</button>
+                    <button nz-button [nzSize]="'small'" class="btn-green" (click)="insertMblText()">确认</button>
+                    <button nz-button [nzSize]="'small'" class="ml" (click)="hideEdit()">取消</button>
                   </div>
                 </div>
               </div>

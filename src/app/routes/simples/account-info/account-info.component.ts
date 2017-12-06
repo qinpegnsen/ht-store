@@ -128,15 +128,15 @@ export class AccountInfoComponent implements OnInit {
   submitFormData = () => {
     let formValue = this.validateForm;
     //转换地址格式
-    if (typeof formValue.bankAddress == 'object') { //如果是数组形式则取数组的第三个
+    if (formValue.bankAddress && typeof formValue.bankAddress == 'object') { //如果是数组形式则取数组的第三个
       formValue.bankAddress = formValue.bankAddress[2];
     }
-    if (typeof formValue.settlementBankAddress == 'object') { //如果是数组形式则取数组的第三个
+    if (formValue.settlementBankAddress && typeof formValue.settlementBankAddress == 'object') { //如果是数组形式则取数组的第三个
       formValue.settlementBankAddress = formValue.settlementBankAddress[2];
     }
     if (formValue.isSettlementAccount) formValue.isSettlementAccount = 'Y';
     else formValue.isSettlementAccount = 'N';
-    console.log(JSON.stringify(formValue));
+    // console.log(JSON.stringify(formValue));
     this.simplesService.enterpriseAccount(formValue);
   };
 

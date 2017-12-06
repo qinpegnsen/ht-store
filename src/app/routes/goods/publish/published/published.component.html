@@ -1,13 +1,20 @@
-<div class="panel-body step-three">
-  <p><i class="anticon anticon-check font20 align-middle"></i>商品发布成功</p>
-  <p>
-    <a class="ml-20 a" (click)="editGoods()">重新编辑刚刚发布的商品 <i class="icon-arrow-right small"></i></a>
-  </p>
-  <div class="mt-30">
-    <h4>其他操作</h4>
-    <ul>
-      <li>继续“<a (click)="publishNew()">发布新商品</a>”</li>
-      <li>查看“<a (click)="goodsList()">商品列表</a>”</li>
-    </ul>
+<div nz-row class="p-20 step-three">
+  <div nz-col [nzSpan]="6" class="p-30 text-center br">
+    <div class="m-20 pt">
+      <i class="anticon anticon-check-circle-o main-color success-icon"></i><br>
+      <p class="text-center p-5">商品发布成功</p>
+    </div>
+  </div>
+  <div nz-col [nzSpan]="18" class="p-20">
+    <div class="ml-20">
+      <a class="strong" (click)="editGoods()">重新编辑刚刚发布的商品 <i class="anticon anticon-right"></i></a>
+      <div class="mt pl-20">
+        <h4>其他操作</h4>
+        <ul>
+          <li>继续“<a (click)="publishNew()">发布新商品</a>”</li>
+          <li>查看“<a (click)="goodsList()">商品列表</a>”</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>

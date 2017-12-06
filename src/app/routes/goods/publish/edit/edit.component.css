@@ -175,7 +175,7 @@
   color: #999;
 }
 
-.goods-pics .close:hover{
+.goods-pics .close:hover {
   color: #666;
 }
 
@@ -358,13 +358,26 @@
 
 .app-control .textarea {
   width: 98%;
+  padding: 3px;
+  line-height: 24px;
   margin: auto;
   resize: none;
+  border-radius: 2px;
+  border-color: #ddd;
+}
+
+.app-control .textarea:hover {
+  border-color: #49a9ee;
+}
+
+.app-control .textarea:focus {
+  border-color: #49a9ee;
+  outline: 0;
+  box-shadow: 0 0 0 2px rgba(16, 142, 233, 0.2);
 }
 
 .app-control .button {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   text-align: center;
 }
 
@@ -425,7 +438,7 @@
   user-select: none;
 }
 
-.app-add li:hover,.app-add li:active {
+.app-add li:hover, .app-add li:active {
   background-color: #f5f5f5;
 }
 
@@ -452,21 +465,29 @@
 .tpl-box .tpl-list li:last-child {
   border: none;
 }
-.list-unstyled{padding-left:0;list-style:none}
 
-.align-middle{
+.list-unstyled {
+  padding-left: 0;
+  list-style: none
+}
+
+.align-middle {
   vertical-align: middle;
 }
-.lh32{
+
+.lh32 {
   line-height: 32px;
 }
-.inline-block{
+
+.inline-block {
   display: inline-block;
   vertical-align: middle;
 }
-.feight-fixed-width{
+
+.feight-fixed-width {
   width: 90px;
 }
-.feight-tpl-width{
+
+.feight-tpl-width {
   width: 200px;
 }
