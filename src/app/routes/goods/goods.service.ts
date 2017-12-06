@@ -26,7 +26,7 @@ export class GoodsService {
           defer.resolve(res.data);
         }
       }
-    })
+    });
     return defer.promise(); //返回异步请求休息
   }
 

@@ -5,6 +5,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {AfterDetailComponent} from "./after-detail/after-detail.component";
 import {RefundComponent} from "./refund/refund.component";
 import {ReturnGoodsComponent} from "./return-goods/return-goods.component";
+import {AfterSaleService} from "./after-sale.service";
 
 const afterDetail: Routes = [
   {path: 'afterDetail', component: AfterDetailComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  declarations: [ReturnGoodsComponent,RefundComponent, AfterDetailComponent]
+  declarations: [ReturnGoodsComponent,RefundComponent, AfterDetailComponent],
+  providers:[AfterSaleService]
 })
 export class AfterSaleModule { }

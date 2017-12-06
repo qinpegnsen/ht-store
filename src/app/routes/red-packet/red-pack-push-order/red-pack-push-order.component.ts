@@ -13,7 +13,7 @@ export class RedPackPushOrderComponent implements OnInit {
 
   public PushOrderPage: Page = new Page();    //红包投放记录的数据
   public _loading = false;                    //查询时锁屏,默认关闭
-  constructor() {
+  constructor(public redPacketService:RedPacketService) {
   }
 
   /**
@@ -32,7 +32,7 @@ export class RedPackPushOrderComponent implements OnInit {
       curPage: this.PushOrderPage.curPage, //目标页码
       pageSize: this.PushOrderPage.pageSize //每页条数
     };
-    $.when(RedPacketService.pushOrDerList(this.PushOrderPage.params)).done(data => {
+    $.when(this.redPacketService.pushOrDerList(this.PushOrderPage.params)).done(data => {
       this._loading = false;//解除锁屏
       if (data) this.PushOrderPage = data; //赋值
     })

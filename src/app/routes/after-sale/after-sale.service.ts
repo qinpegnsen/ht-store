@@ -7,7 +7,7 @@ declare var $: any;
 @Injectable()
 export class AfterSaleService {
 
-  constructor(public _notification: NzNotificationService,) { }
+  constructor(public _notification: NzNotificationService) { }
 
 
   /**
@@ -15,7 +15,7 @@ export class AfterSaleService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-  static queryRefundOrd(data:any){
+   queryRefundOrd(data:any){
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
@@ -36,7 +36,7 @@ export class AfterSaleService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-  static loadAfterTail(data:any) {
+   loadAfterTail(data:any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
@@ -54,7 +54,7 @@ export class AfterSaleService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-  static loadReqByAfterNo(data:any) {
+   loadReqByAfterNo(data:any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
@@ -72,7 +72,7 @@ export class AfterSaleService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-  static loadAfterTailList(data:any) {
+   loadAfterTailList(data:any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
@@ -90,7 +90,7 @@ export class AfterSaleService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-  static agreeRefundMoney(data:any) {
+   agreeRefundMoney(data:any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.post({
@@ -108,7 +108,7 @@ export class AfterSaleService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-  static dealReturnGoods(data:any) {
+   dealReturnGoods(data:any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.post({
@@ -126,7 +126,7 @@ export class AfterSaleService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-  static checkRefundGoods(data:any) {
+   checkRefundGoods(data:any) {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.post({

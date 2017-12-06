@@ -31,6 +31,7 @@ export class AfterDetailComponent implements OnInit {
 
   constructor(public router: Router,
               public location: Location,
+              public afterSaleService:AfterSaleService,
               public route: ActivatedRoute) {
   }
 
@@ -39,14 +40,14 @@ export class AfterDetailComponent implements OnInit {
     me.type = me.route.snapshot.queryParams['type'];
     me.afterNo = me.route.snapshot.queryParams['afterNo'];
     let data = {afterNo: me.afterNo};
-    $.when(AfterSaleService.loadAfterTail(data)).done(data => {
+    $.when(this.afterSaleService.loadAfterTail(data)).done(data => {
       if (data) me.LogisticsData = data;
     });
     me.goodsAudits = MainService.getEnumDataList('1001');  // 商品审核是否通过
-    $.when(AfterSaleService.loadReqByAfterNo(data)).done(data => {
+    $.when(this.afterSaleService.loadReqByAfterNo(data)).done(data => {
       if (data) me.afterData = data;
     });
-    $.when(AfterSaleService.loadAfterTailList(data)).done(data => {
+    $.when(this.afterSaleService.loadAfterTailList(data)).done(data => {
       if (data) me.afterTailList = data;
     });
     if (isNullOrUndefined(me.afterData)) me.afterData = null;
@@ -62,7 +63,7 @@ export class AfterDetailComponent implements OnInit {
       opinion: me.opinion,
       isAgree: me.isAgree
     };
-    AfterSaleService.agreeRefundMoney(data);
+    this.afterSaleService.agreeRefundMoney(data);
     this.back();
   }
 
@@ -76,7 +77,7 @@ export class AfterDetailComponent implements OnInit {
       opinion: me.opinion,
       isAgree: me.isAgree
     };
-    AfterSaleService.dealReturnGoods(data);
+    this.afterSaleService.dealReturnGoods(data);
     this.back();
   }
 
@@ -90,7 +91,7 @@ export class AfterDetailComponent implements OnInit {
       opinion: me.opinion,
       isPass: me.isPass
     };
-    AfterSaleService.checkRefundGoods(data);
+    this.afterSaleService.checkRefundGoods(data);
     this.back();
   }
 

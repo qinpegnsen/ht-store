@@ -37,7 +37,7 @@ export class RefundComponent implements OnInit {
   }; // 查询条件
   public afterDetail:string = SettingUrl.ROUTERLINK.store.afterDetail; //退款信息详情
 
-  constructor() {
+  constructor(public afterSaleService:AfterSaleService) {
   }
 
   ngOnInit() {
@@ -87,7 +87,7 @@ export class RefundComponent implements OnInit {
   public queryOrdList() {
     this._loading = true;//锁屏
     this.refundOrderPage.params=this.query;
-    $.when(AfterSaleService.queryRefundOrd(this.refundOrderPage.params)).done(data => {
+    $.when(this.afterSaleService.queryRefundOrd(this.refundOrderPage.params)).done(data => {
       this._loading = false;//解除锁屏
       if (data) this.refundOrderPage = data; //赋值
     })

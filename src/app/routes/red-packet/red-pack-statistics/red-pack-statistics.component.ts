@@ -29,7 +29,7 @@ export class RedPackStatisticsComponent implements OnInit {
     'week': '',
   }; //选择的年份、月份、周信息
 
-  constructor() {
+  constructor(public redPacketService:RedPacketService) {
   }
 
 
@@ -79,7 +79,7 @@ export class RedPackStatisticsComponent implements OnInit {
       queryType: this.staType, //查询的类型
       queryTime: this.queryTime //查询的时间
     };
-    $.when(RedPacketService.rpStatistics(queryparams)).done(data => {
+    $.when(this.redPacketService.rpStatistics(queryparams)).done(data => {
       if (data) {
         this.redPackStatic = data;
       } //赋值

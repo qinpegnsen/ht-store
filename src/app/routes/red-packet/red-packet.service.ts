@@ -13,7 +13,7 @@ export class RedPacketService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-   static pushOrDerList(data:any){
+    pushOrDerList(data:any){
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
@@ -32,7 +32,7 @@ export class RedPacketService {
    * @param data
    * @returns {any<T>} （查询参数）
    */
-  static rpStatistics(data:any){
+   rpStatistics(data:any){
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
