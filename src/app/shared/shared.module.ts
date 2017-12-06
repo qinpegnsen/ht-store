@@ -10,7 +10,7 @@ import {ImgSizePipe} from "../public/pipes/img-size.pipe";
 import {Level2AreaNamePipe} from "../public/pipes/level-2-area-name.pipe";
 import {GetWeekPipe} from "../public/pipes/get-week.pipe";
 import {ImgErrDirective} from "../public/directives/img-err.directive";
-import {UMeditorModule} from "ngx-umeditor";
+import {CKEditorModule} from "ng2-ckeditor";
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ import {UMeditorModule} from "ngx-umeditor";
     FormsModule,                  //表单支持
     ReactiveFormsModule,          //表单支持
     AngularEchartsModule,         //百度echarts图表插件
-    UMeditorModule,               //百度文本富编辑器—简易版
+    CKEditorModule,               //富文本编辑器
     NgZorroAntdModule.forRoot()   //zorroUI库
   ],
   declarations: [
@@ -36,7 +36,7 @@ import {UMeditorModule} from "ngx-umeditor";
     FormsModule,            //表单支持
     ReactiveFormsModule,    //表单支持
     AngularEchartsModule,   //百度echarts图表插件
-    UMeditorModule,         //百度文本富编辑器—简易版
+    CKEditorModule,         //富文本编辑器
     NgZorroAntdModule,      //zorroUI库
     StateNamePipe,          //将状态值转为对应状态名得管道
     ImgPreviewPipe,         //本地图片上传预览管道
