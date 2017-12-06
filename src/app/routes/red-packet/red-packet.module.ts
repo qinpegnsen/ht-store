@@ -4,6 +4,7 @@ import { RedPackPushOrderComponent } from './red-pack-push-order/red-pack-push-o
 import { RedPackStatisticsComponent } from './red-pack-statistics/red-pack-statistics.component';
 import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../../shared/shared.module";
+import {RedPacketService} from "./red-packet.service";
 
 const routes: Routes = [
   {path: 'statistics', component: RedPackStatisticsComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  declarations: [RedPackPushOrderComponent, RedPackStatisticsComponent]
+  declarations: [RedPackPushOrderComponent, RedPackStatisticsComponent],
+  providers:[RedPacketService]
 })
 export class RedPacketModule { }
