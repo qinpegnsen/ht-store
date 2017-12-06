@@ -379,7 +379,7 @@
               <div class="close" (click)="removeImgSrc(val.valCode,i)">×</div>
               <div class="upload-thumb">
                 <div class="up-success"><em class="fa fa-check"></em></div>
-                <img [src]="src" (error)="removeImgSrc(val.valCode,i)">
+                <img [src]="src | imgSize: '100'" appImgErr>
               </div>
             </li>
             <li class="ui-state-disabled img-box" *ngFor="let item of val.uploader.queue">
@@ -408,9 +408,7 @@
       </dt>
       <dd nz-col [nzSpan]="20">
         <div class="w100">
-          <!--<umeditor [(ngModel)]="publishData.goodsBody" name="goodsBody"
-                    [config]="{initialFrameHeight:200}"
-                    #contents></umeditor>-->
+          <ckeditor name="goodsBody" [(ngModel)]="publishData.goodsBody"></ckeditor>
         </div>
       </dd>
     </dl>
@@ -445,7 +443,7 @@
                     </ul>
                   </div>
                   <img width="100%" *ngIf="item.type== 'img'" [src]="item.value">
-                  <p class="text mb0" style="line-height: 1.6" *ngIf="item.type== 'text'">{{item.value}}</p>
+                  <div class="text mb0" style="line-height: 1.6" *ngIf="item.type== 'text'">{{item.value}}</div>
                   <div class="mobile-edit-area hide" *ngIf="item.type== 'text'">
                     <div class="mea-text">
                       <p class="text-tip">还可以输入 <i class="main-color counter">500</i>字 </p>

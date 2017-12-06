@@ -785,7 +785,7 @@ export class EditComponent implements OnInit {
       if (item.type == 'img') {
         mblHtml += '<img width="100%" src="' + item.value + '">';
       } else if (item.type == 'text') {
-        mblHtml += '<p class="text mb0" style="line-height: 1.6">' + item.value + '</p>';
+        mblHtml += '<p class="text">' + item.value + '</p>';
       }
     });
     return mblHtml;
@@ -899,7 +899,6 @@ export class EditComponent implements OnInit {
     }                //当某个规格没有图片时直接结束发布
     me.genGoodsBaseAttrList();                                          // 商品基本属性
     me.publishData.goodsImagesList = me.genGoodsImgList();           // 商品图片列表
-    me.publishData.goodsBody = me.genMblDetailHtml();                 // 商品详情 PC //TODO，PC端商品详情
     me.publishData.mobileBody = me.genMblDetailHtml();               // 商品详情 App
     console.log("█ me.publishData ►►►", me.publishData);
     $.when(this.goodsService.saveGoods(me.publishData)).done(data => {
@@ -907,7 +906,7 @@ export class EditComponent implements OnInit {
         if (me.path == 'edit') me.router.navigate([SettingUrl.ROUTERLINK.store.goodsPublished], {queryParams: {baseCode: me.goodsBaseCode}})
         if (me.path == 'update') {
           me.update = true;
-          me.router.navigate([SettingUrl.ROUTERLINK.store.goodsManage], {replaceUrl: true})
+          me.location.back();
         }
       }
     })

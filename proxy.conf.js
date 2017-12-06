@@ -57,7 +57,7 @@ const PROXY_CONFIG = [
       "/basicExpress",
       "/upload"
     ],
-    target: bb + "8082",   //拦截 context配置路径，经过此地址
+    target: csj + "8082",   //拦截 context配置路径，经过此地址
     secure: false
   },
 ];
