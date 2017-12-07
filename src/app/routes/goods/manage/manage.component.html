@@ -188,9 +188,9 @@
               <i class="anticon anticon-minus-circle-o"></i>
             </button>
           </nz-popconfirm>
-          <button nz-button *ngIf="goods.state==enumState.goodsState.stop" title="解禁" class="btn-green"
+          <button nz-button *ngIf="goods.state==enumState.goodsState.stop" title="解禁" class="btn-purple"
                   (click)="changeState('relieve',goods.goodsBaseCode)">
-            <i class="anticon anticon-check-circle"></i>
+            <i class="anticon anticon-check"></i>
           </button>
           <button nz-button *ngIf="goods.state==enumState.goodsState.down" class="btn-success"
                   title="申请上架" (click)="changeState('normal',goods.goodsBaseCode)">

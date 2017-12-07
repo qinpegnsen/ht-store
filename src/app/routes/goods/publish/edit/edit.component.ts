@@ -791,6 +791,11 @@ export class EditComponent implements OnInit {
     return mblHtml;
   }
 
+
+  back(){
+    this.location.back();
+  }
+
   /**
    * 发布商品
    */

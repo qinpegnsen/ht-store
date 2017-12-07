@@ -5,7 +5,7 @@ import {SettleStepsComponent} from './settle-steps/settle-steps.component';
 import {RegisterComponent} from "./register/register.component";
 import {AccountInfoComponent} from './account-info/account-info.component';
 import {DoneComponent} from './done/done.component';
-import {SimplesService} from "./simples.service";
+import {StoreBaseService} from "./store-base.service";
 import {OpenShopComponent} from './open-shop/open-shop.component';
 import {AuditingComponent} from './auditing/auditing.component';
 import {FileUploadModule} from "ng2-file-upload";
@@ -67,9 +67,9 @@ const routes: Routes = [
   ],
   providers: [
     SettleStepsComponent,
-    SimplesService,
+    StoreBaseService,
     MainService
   ]
 })
-export class SimplesModule {
+export class StoreBaseModule {
 }

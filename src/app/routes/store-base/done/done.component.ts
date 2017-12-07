@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {SimplesService} from "../simples.service";
+import {StoreBaseService} from "../store-base.service";
 import {OpenStepsComponent} from "../open-steps/open-steps.component";
 import {ActivatedRoute} from "@angular/router";
 import {Setting} from "../../../public/setting/setting";
@@ -14,7 +14,7 @@ export class DoneComponent implements OnInit {
   public curState: string;//当前店铺状态
   public curParam: any = null;
 
-  constructor(public simplesService: SimplesService,
+  constructor(public storeBaseService: StoreBaseService,
               public route: ActivatedRoute,
               public steps: OpenStepsComponent) {
     this.steps.step = 1;
@@ -34,7 +34,7 @@ export class DoneComponent implements OnInit {
    */
   loadState(storeCode){
     let me = this,param = {storeCode:storeCode};
-    $.when(SimplesService.loadShopState(param)).done(data => {
+    $.when(StoreBaseService.loadShopState(param)).done(data => {
       if (data) {
         if(data.state == Setting.ENUMSTATE.shopState.pending){
           me.curState = 'pending';
@@ -49,6 +49,6 @@ export class DoneComponent implements OnInit {
    * 组件跳转
    */
   skipTo(stepName) {
-    this.simplesService.routerSkip(stepName, this.curParam);
+    this.storeBaseService.routerSkip(stepName, this.curParam);
   }
 }

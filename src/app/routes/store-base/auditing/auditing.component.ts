@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SimplesService} from "../simples.service";
+import {StoreBaseService} from "../store-base.service";
 import {SettleStepsComponent} from "../settle-steps/settle-steps.component";
 import {ActivatedRoute} from "@angular/router";
 import {Setting} from "../../../public/setting/setting";
@@ -14,7 +14,7 @@ export class AuditingComponent implements OnInit {
   public curState: string;   //当前状态
   public curParam: any = null;   //当前状态下可以跳转的路由所需参数
 
-  constructor(public simplesService: SimplesService,
+  constructor(public storeBaseService: StoreBaseService,
               public route: ActivatedRoute,
               public steps: SettleStepsComponent) {
     this.steps.current = 3;
@@ -31,7 +31,7 @@ export class AuditingComponent implements OnInit {
    */
   loadState(epCode){
     let me = this,param = {epCode:epCode};
-    $.when(SimplesService.loadStoreState(param)).done(data => {
+    $.when(StoreBaseService.loadStoreState(param)).done(data => {
       if (data) {
         if(data.state == Setting.ENUMSTATE.enterState.half || data.state == Setting.ENUMSTATE.enterState.audit){
           me.curState = 'auditing';
@@ -50,7 +50,7 @@ export class AuditingComponent implements OnInit {
      * 组件跳转
      */
     skipTo(stepName){
-      this.simplesService.routerSkip(stepName,this.curParam);
+      this.storeBaseService.routerSkip(stepName,this.curParam);
     }
 
   }

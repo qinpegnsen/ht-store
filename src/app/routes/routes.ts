@@ -21,7 +21,7 @@ export const routes = [
     path: 'basic',
     component: SimpleComponent,
     children: [
-      {path: '', loadChildren: './simples/simples.module#SimplesModule'},
+      {path: '', loadChildren: './store-base/store-base.module#StoreBaseModule'}
     ]
   },
   {
@@ -29,7 +29,7 @@ export const routes = [
     component: PageComponent,
     children: [
       {path: '', redirectTo: '/page/login', pathMatch: 'full'},
-      {path: 'login', loadChildren: './login/login.module#LoginModule'},
+      {path: 'login', loadChildren: './login/login.module#LoginModule'}
     ]
   },
   // 路由指向找不到时，指向这里

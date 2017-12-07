@@ -8,7 +8,7 @@ import {SettleStepsComponent} from "./settle-steps/settle-steps.component";
 declare var $: any;
 
 @Injectable()
-export class SimplesService {
+export class StoreBaseService {
 
   constructor(public router: Router,
               public patterns: PatternService,

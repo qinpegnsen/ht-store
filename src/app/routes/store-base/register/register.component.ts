@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {SimplesService} from "../simples.service";
+import {StoreBaseService} from "../store-base.service";
 import {SettleStepsComponent} from "../settle-steps/settle-steps.component";
 import {PatternService} from "../../../public/service/pattern.service";
 import {Util} from "../../../public/util/util";
@@ -17,11 +17,11 @@ export class RegisterComponent implements OnInit {
   isSending: boolean = false;
   valitate = Util.validate; //表单验证
 
-  constructor(public simplesService: SimplesService,
+  constructor(public storeBaseService: StoreBaseService,
               public steps: SettleStepsComponent,
               public fb: FormBuilder) {
     this.steps.current = 0;
-    this.simplesService.routerSkip(this.steps.current);
+    this.storeBaseService.routerSkip(this.steps.current);
     //企业注册表单项校验
     this.validateForm = this.fb.group({
       phone               : [ '', [ Validators.required ], [ Util.requiredPhoneValidator ] ],
@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
     }
     console.log(value);
     let formValue = value;
-    this.simplesService.addSeller(formValue);
+    this.storeBaseService.addSeller(formValue);
   };
 
   /**
@@ -83,7 +83,7 @@ export class RegisterComponent implements OnInit {
   getCaptcha(){
     let me = this, phone = me.validateForm.controls[ 'phone' ].value;
     if(!me.isSending && PatternService.PHONE_REGEXP.test(phone)){
-      let res = me.simplesService.getSmsCode(phone);
+      let res = me.storeBaseService.getSmsCode(phone);
       if(res){
         me.isSending = true;
         let second = 60;

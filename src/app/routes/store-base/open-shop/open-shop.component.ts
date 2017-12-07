@@ -1,26 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import {MainService} from "../../../public/service/main.service";
-import {SimplesService} from "../simples.service";
+import {Component, OnInit} from "@angular/core";
+import {StoreBaseService} from "../store-base.service";
+import {OpenStepsComponent} from "../open-steps/open-steps.component";
+import {Util} from "../../../public/util/util";
 import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
-import {PatternService} from "../../../public/service/pattern.service";
+import {FileUploader} from "ng2-file-upload";
+import {SettingUrl} from "../../../public/setting/setting_url";
+import {MainService} from "../../../public/service/main.service";
 import {NzNotificationService} from "ng-zorro-antd";
 import {ActivatedRoute} from "@angular/router";
-import {Util} from "../../../public/util/util";
-import {FileUploader} from "ng2-file-upload";
 import {Setting} from "../../../public/setting/setting";
-import {SettingUrl} from "../../../public/setting/setting_url";
+import {PatternService} from "../../../public/service/pattern.service";
 declare var $: any;
+
 @Component({
-  selector: 'app-edit-shop-info',
-  templateUrl: './edit-shop-info.component.html',
-  styleUrls: ['./edit-shop-info.component.css']
+  selector: 'app-open-shop',
+  templateUrl: './open-shop.component.html',
+  styleUrls: ['./open-shop.component.css']
 })
-export class EditShopInfoComponent implements OnInit {
+export class OpenShopComponent implements OnInit {
   validateForm: any = {};
   _options: any;//三级联动区域数据
   ngValidateStatus = Util.ngValidateStatus;
   ngValidateErrorMsg = Util.ngValidateErrorMsg;
   defaultImage = Setting.APP.defaultImg;
+
   public storeLabelUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.base.upload,
     itemAlias: "limitFile",
@@ -32,10 +35,13 @@ export class EditShopInfoComponent implements OnInit {
     itemAlias: "limitFile",
     allowedFileType: ["image"]
   }); //店铺头像,初始化上传方法
-  constructor(public simplesService: SimplesService,
+
+  constructor(public storeBaseService: StoreBaseService,
+              public steps: OpenStepsComponent,
               public patternService: PatternService,
               public _notification: NzNotificationService,
               public route: ActivatedRoute) {
+    this.steps.step = 0;
     Util.transAreas(AREA_LEVEL_3_JSON);
     this._options = AREA_LEVEL_3_JSON;
   }
@@ -46,18 +52,17 @@ export class EditShopInfoComponent implements OnInit {
     let epCode = this.route.snapshot.queryParams['epCode'];
     if (epCode) this.validateForm = epCode;
     let storeCode = this.route.snapshot.queryParams['storeCode'];
-    this.loadShopData();//查询店铺信息
+    if (storeCode) this.loadShopData(storeCode);//查询店铺信息
   }
 
   /**
    * 查询店铺信息
    * @param data
    */
-  loadShopData (){
-    let me = this,param = {storeCode:'649518214747807744'};
-    $.when(SimplesService.loadShopInfo(param)).done(data => {
+  loadShopData (storeCode){
+    let me = this,param = {storeCode:storeCode};
+    $.when(StoreBaseService.loadShopInfo(param)).done(data => {
       if (data) me.validateForm = data //店铺信息
-      // console.log("█ me.validateForm ►►►",  me.validateForm);
     })
   }
 
@@ -126,7 +131,7 @@ export class EditShopInfoComponent implements OnInit {
       formValue.areaCode = formValue.areaCode[2];//取第三级编码
     }
     console.log(JSON.stringify(formValue));
-    this.simplesService.dredgeShop(formValue);
+    this.storeBaseService.dredgeShop(formValue);
   };
 
   /**
@@ -157,11 +162,22 @@ export class EditShopInfoComponent implements OnInit {
     if (this.storeLabelUploader.queue.length > 1) this.storeLabelUploader.queue[0].remove();
   }
 
+  /**
+   * 鼠标放在图片上时大图随之移动
+   */
+  showImg(event) {
+    let target = event.target.nextElementSibling;
+    target.style.display = 'block';
+    target.style.top = (event.clientY + 20) + 'px';
+    target.style.left = (event.clientX + 30) + 'px';
+  }
 
   /**
-   * 返回上一页
+   * 隐藏大图
+   * @param event
    */
-  back() {
-    window.history.go(-1);
+  hideImg(event) {
+    let target = event.target.nextElementSibling;
+    target.style.display = 'none';
   }
 }

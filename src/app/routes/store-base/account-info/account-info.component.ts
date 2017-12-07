@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {SimplesService} from "../simples.service";
+import {StoreBaseService} from "../store-base.service";
 import {SettleStepsComponent} from "../settle-steps/settle-steps.component";
 import {FileUploader} from "ng2-file-upload";
 import {SettingUrl} from "../../../public/setting/setting_url";
@@ -29,7 +29,7 @@ export class AccountInfoComponent implements OnInit {
     allowedFileType: ["image"]
   }); //银行开户许可证电子版,初始化上传方法
 
-  constructor(public simplesService: SimplesService,
+  constructor(public storeBaseService: StoreBaseService,
               public steps: SettleStepsComponent,
               public _notification: NzNotificationService,
               public route: ActivatedRoute) {
@@ -53,7 +53,7 @@ export class AccountInfoComponent implements OnInit {
    */
   loadStoreData(epCode) {
     let me = this, param = {epCode: epCode};
-    $.when(SimplesService.loadStoreInfo(param)).done(data => {
+    $.when(StoreBaseService.loadStoreInfo(param)).done(data => {
       if (data) me.validateForm = data; //企业信息
     })
   }
@@ -137,7 +137,7 @@ export class AccountInfoComponent implements OnInit {
     if (formValue.isSettlementAccount) formValue.isSettlementAccount = 'Y';
     else formValue.isSettlementAccount = 'N';
     // console.log(JSON.stringify(formValue));
-    this.simplesService.enterpriseAccount(formValue);
+    this.storeBaseService.enterpriseAccount(formValue);
   };
 
 
@@ -156,7 +156,7 @@ export class AccountInfoComponent implements OnInit {
    * 跳转页面
    */
   skipTo(stepName) {
-    this.simplesService.routerSkip(stepName);
+    this.storeBaseService.routerSkip(stepName);
   }
 
   /**

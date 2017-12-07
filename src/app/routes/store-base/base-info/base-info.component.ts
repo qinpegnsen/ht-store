@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {SimplesService} from "../simples.service";
+import {StoreBaseService} from "../store-base.service";
 import {SettleStepsComponent} from "../settle-steps/settle-steps.component";
 import {NzNotificationService} from "ng-zorro-antd";
 import {FileUploader} from "ng2-file-upload";
@@ -42,7 +42,7 @@ export class BaseInfoComponent implements OnInit {
     allowedFileType: ["image"]
   }); //纳税登记证电子版,初始化上传方法
 
-  constructor(public simplesService: SimplesService,
+  constructor(public storeBaseService: StoreBaseService,
               public steps: SettleStepsComponent,
               public patternService: PatternService,
               public _notification: NzNotificationService,
@@ -67,7 +67,7 @@ export class BaseInfoComponent implements OnInit {
    */
   loadStoreData(epCode) {
     let me = this, param = {epCode: epCode};
-    $.when(SimplesService.loadStoreInfo(param)).done(data => {
+    $.when(StoreBaseService.loadStoreInfo(param)).done(data => {
       if (data) {
         me.validateForm = data;
         me.validateForm.idcardStartTime = new Date(me.validateForm.idcardStartTime);
@@ -147,7 +147,7 @@ export class BaseInfoComponent implements OnInit {
       formValue.businessLicenceAreaCode = formValue.businessLicenceAreaCode[2];//取第三级编码
     }
     // console.log(JSON.stringify(formValue));
-    this.simplesService.enterpriseBase(formValue);
+    this.storeBaseService.enterpriseBase(formValue);
   };
 
   /**

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Setting} from "../../../public/setting/setting";
-import {SimplesService} from "../simples.service";
+import {StoreBaseService} from "../store-base.service";
 declare var $: any;
 @Component({
   selector: 'app-shop-info',
@@ -27,7 +27,7 @@ export class ShopInfoComponent implements OnInit {
     let data = { //查询参数
       storeCode: "649518214747807744"//店铺编码
     }
-    $.when(SimplesService.loadShopInfo(data)).done(data => {
+    $.when(StoreBaseService.loadShopInfo(data)).done(data => {
       me._loading = false //解除锁屏
       if (data) {
         me.shopsInfo = data;//店铺信息

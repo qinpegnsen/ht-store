@@ -1,29 +1,26 @@
-import {Component, OnInit} from "@angular/core";
-import {SimplesService} from "../simples.service";
-import {OpenStepsComponent} from "../open-steps/open-steps.component";
-import {Util} from "../../../public/util/util";
-import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
-import {FileUploader} from "ng2-file-upload";
-import {SettingUrl} from "../../../public/setting/setting_url";
+import { Component, OnInit } from '@angular/core';
 import {MainService} from "../../../public/service/main.service";
+import {StoreBaseService} from "../store-base.service";
+import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
+import {PatternService} from "../../../public/service/pattern.service";
 import {NzNotificationService} from "ng-zorro-antd";
 import {ActivatedRoute} from "@angular/router";
+import {Util} from "../../../public/util/util";
+import {FileUploader} from "ng2-file-upload";
 import {Setting} from "../../../public/setting/setting";
-import {PatternService} from "../../../public/service/pattern.service";
+import {SettingUrl} from "../../../public/setting/setting_url";
 declare var $: any;
-
 @Component({
-  selector: 'app-open-shop',
-  templateUrl: './open-shop.component.html',
-  styleUrls: ['./open-shop.component.css']
+  selector: 'app-edit-shop-info',
+  templateUrl: './edit-shop-info.component.html',
+  styleUrls: ['./edit-shop-info.component.css']
 })
-export class OpenShopComponent implements OnInit {
+export class EditShopInfoComponent implements OnInit {
   validateForm: any = {};
   _options: any;//三级联动区域数据
   ngValidateStatus = Util.ngValidateStatus;
   ngValidateErrorMsg = Util.ngValidateErrorMsg;
   defaultImage = Setting.APP.defaultImg;
-
   public storeLabelUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.base.upload,
     itemAlias: "limitFile",
@@ -35,13 +32,10 @@ export class OpenShopComponent implements OnInit {
     itemAlias: "limitFile",
     allowedFileType: ["image"]
   }); //店铺头像,初始化上传方法
-
-  constructor(public simplesService: SimplesService,
-              public steps: OpenStepsComponent,
+  constructor(public storeBaseService: StoreBaseService,
               public patternService: PatternService,
               public _notification: NzNotificationService,
               public route: ActivatedRoute) {
-    this.steps.step = 0;
     Util.transAreas(AREA_LEVEL_3_JSON);
     this._options = AREA_LEVEL_3_JSON;
   }
@@ -52,17 +46,18 @@ export class OpenShopComponent implements OnInit {
     let epCode = this.route.snapshot.queryParams['epCode'];
     if (epCode) this.validateForm = epCode;
     let storeCode = this.route.snapshot.queryParams['storeCode'];
-    if (storeCode) this.loadShopData(storeCode);//查询店铺信息
+    this.loadShopData();//查询店铺信息
   }
 
   /**
    * 查询店铺信息
    * @param data
    */
-  loadShopData (storeCode){
-    let me = this,param = {storeCode:storeCode};
-    $.when(SimplesService.loadShopInfo(param)).done(data => {
+  loadShopData (){
+    let me = this,param = {storeCode:'649518214747807744'};
+    $.when(StoreBaseService.loadShopInfo(param)).done(data => {
       if (data) me.validateForm = data //店铺信息
+      // console.log("█ me.validateForm ►►►",  me.validateForm);
     })
   }
 
@@ -131,7 +126,7 @@ export class OpenShopComponent implements OnInit {
       formValue.areaCode = formValue.areaCode[2];//取第三级编码
     }
     console.log(JSON.stringify(formValue));
-    this.simplesService.dredgeShop(formValue);
+    this.storeBaseService.dredgeShop(formValue);
   };
 
   /**
@@ -162,22 +157,11 @@ export class OpenShopComponent implements OnInit {
     if (this.storeLabelUploader.queue.length > 1) this.storeLabelUploader.queue[0].remove();
   }
 
-  /**
-   * 鼠标放在图片上时大图随之移动
-   */
-  showImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'block';
-    target.style.top = (event.clientY + 20) + 'px';
-    target.style.left = (event.clientX + 30) + 'px';
-  }
 
   /**
-   * 隐藏大图
-   * @param event
+   * 返回上一页
    */
-  hideImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'none';
+  back() {
+    window.history.go(-1);
   }
 }
