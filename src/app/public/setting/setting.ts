@@ -13,6 +13,7 @@ export class Setting {
   };
   public static MENUS: Array<any> = new Array();      //平台菜单
   public static PAGEMSG: any = {                        //平台信息提示（公式、提示、引导等等...）
+    tipTitle: "操作提示",
     settleFormula: {
       one: "入账 =（订单总额 - 订单退款）× 10%",
       two: "结算 =（订单总额 - 订单退款）×（1-10%）= 订单总额 - 订单退款 - 入账"
@@ -33,6 +34,9 @@ export class Setting {
       two: "如果商品选择使用了配送规则，则该商品只售卖配送规则中指定的地区，运费为指定地区的运费",
       three: "正在被商品使用的配送规则不允许删除"
     },
+    goods:{
+      chooseKind: "请慎重选择商品分类，商品发布后将不可修改。"
+    }
   }
   //定义枚举
   public static ENUM: any = {

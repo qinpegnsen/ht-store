@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {GoodsService} from "../../goods.service";
 import {PublishComponent} from "../publish.component";
 import {SettingUrl} from "../../../../public/setting/setting_url";
+import {Setting} from "../../../../public/setting/setting";
 declare var $: any;
 
 @Component({
@@ -16,6 +17,7 @@ export class ChooseKindComponent implements OnInit {
   public choosedKindId: string;// 选择的分类ID
   public choosedKindStr: string = '';// 已经选择的分类
   goodsEdit:string = SettingUrl.ROUTERLINK.store.goodsEdit;           //商品修改/编辑（此处如此写，用于路由相对进入模式）
+  pageMsg = Setting.PAGEMSG;
 
   constructor(public goodsService: GoodsService,
               public publishComponent: PublishComponent) {
