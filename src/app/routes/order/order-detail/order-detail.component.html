@@ -17,23 +17,23 @@
     <div class="order-main">
       <dl>
         <dt>买家留言：</dt>
-        <dd>哈哈哈</dd>
+        <dd>{{orderData.note}}</dd>
       </dl>
       <dl>
         <dt>支付方式：</dt>
-        <dd>银行汇款</dd>
+        <dd>{{orderData.payWay | stateName : enum.orderPayState}}</dd>
       </dl>
       <dl>
         <dt>运费：</dt>
-        <dd><span>￥ 12.00</span></dd>
+        <dd><span>&nbsp;&yen; {{orderData.freightPrice | number:'1.2-2'}}</span></dd>
       </dl>
       <dl>
         <dt>应付总额：</dt>
-        <dd><span>￥ 12.00</span></dd>
+        <dd><span>&nbsp;&yen; {{orderData.pay | number:'1.2-2'}}</span></dd>
       </dl>
       <dl>
         <dt>订单编号：</dt>
-        <dd>1345445481024562.063652</dd>
+        <dd>{{orderData.ordno}}</dd>
       </dl>
     </div>
   </div>
@@ -45,15 +45,15 @@
     <div class="order-main">
       <dl>
         <dt>收货人：</dt>
-        <dd>高辉</dd>
+        <dd>{{orderData.linkman}}</dd>
       </dl>
       <dl class="line">
         <dt>联系电话：</dt>
-        <dd> 15901019392</dd>
+        <dd>{{orderData.phone}}</dd>
       </dl>
       <dl>
         <dt>收货地址：</dt>
-        <dd><span>河北省秦皇岛市山海关区西关街道办事处荣邦城</span></dd>
+        <dd><span>{{orderData.areaFullName }}{{orderData.address}}</span></dd>
       </dl>
     </div>
   </div>
@@ -63,6 +63,14 @@
       <span class="main-color font14 pl">包裹信息</span>
     </div>
 
+    <div class="p" *ngIf="orderData.state!='CR'">
+     <!-- <nz-timeline>
+        <nz-timeline-item [nzColor]="'red'">Create a services site 2015-09-01</nz-timeline-item>
+        <nz-timeline-item [nzColor]="'red'">Solve initial network problems 2015-09-01</nz-timeline-item>
+        <nz-timeline-item [nzColor]="'red'">Technical testing 2015-09-01</nz-timeline-item>
+        <nz-timeline-item [nzColor]="'red'">Network problems being solved 2015-09-01</nz-timeline-item>
+      </nz-timeline>-->
+    </div>
   </div>
 </div>
 <!--订单基本信息 end-->
@@ -71,6 +79,7 @@
 <div class="order-state">
   <div class="order-state-steps">
     <nz-steps  [(nzCurrent)]="current" class="lg thc">
+      <nz-step [nzTitle]="'待付款'"></nz-step>
       <nz-step [nzTitle]="'待发货'"></nz-step>
       <nz-step [nzTitle]="'已发货'"></nz-step>
       <nz-step [nzTitle]="'已完成'"></nz-step>
@@ -94,3 +103,4 @@
   </table>
 </div>
 <!--订单信息 end-->
+

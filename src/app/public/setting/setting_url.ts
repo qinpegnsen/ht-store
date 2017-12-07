@@ -104,6 +104,7 @@ export class SettingUrl {
       queryOrdAdmin: '/ord/queryStoreOrd',//(get)查询订单管理中的订单列表
       getKeywords: '/basicExpress/queryBasicExpressIsUseList',//(get)查询物流公司列表
       storeDelivery: '/ord/storeDelivery',//(put)设置发货
+      loadStoreOrd: '/ord/loadStoreOrdByOrdno',//(get)查询订单的详细信息
     },
     /**
      *查询店铺信息

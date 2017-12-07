@@ -67,9 +67,9 @@
                 <p>
                   <a class="font14" href="javascript:;">{{name.goodsName}}</a>
                 </p>
-                <p class="pt-20">
-                  <span class="inline">容量：</span>
-                  <span class="inline">500ml</span>
+                <p class="pt-20" *ngFor="let attr of name.goodsSavSet | strJson">
+                  <span class="inline">{{attr.attrName}}：</span>
+                  <span class="inline">{{attr.value}}</span>
                 </p>
               </div>
             </td>
@@ -95,8 +95,8 @@
               <span class="font12 gray-color">重消币{{orders.coinPay | number:'1.2-2'}}</span>
             </td>
             <td class="w10 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
-              <p class="gray-color">{{orders.state | stateName :'1019'}}</p>
-              <p class="cursor p-hover" [routerLink]="orderDetail">查看详情</p>
+              <p class="gray-color">{{orders.state | stateName : enum.orderState}}</p>
+              <p class="cursor p-hover" [routerLink]="orderDetail" [queryParams]="{ordno:orders.ordno}">查看详情</p>
             </td>
           </tr>
         </table>

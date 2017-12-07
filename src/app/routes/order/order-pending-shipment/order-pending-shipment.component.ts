@@ -3,6 +3,7 @@ import {Page} from "../../../public/util/page";
 import {OrderService} from "../order.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SettingUrl} from "../../../public/setting/setting_url";
+import {Setting} from "../../../public/setting/setting";
 declare var $: any;
 
 @Component({
@@ -26,6 +27,7 @@ export class OrderPendingShipmentComponent implements OnInit {
   getOrdno:string; //订单号
   expressNos:string; //快递号
   expressCode:string; //快递公司编码
+  enum = Setting.ENUM;  // 订单状态类型
 
   constructor(public fb: FormBuilder,public orderService:OrderService) { }
 

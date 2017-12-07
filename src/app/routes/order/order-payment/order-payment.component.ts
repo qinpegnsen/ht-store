@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Page} from "../../../public/util/page";
 import {OrderService} from "../order.service";
 import {SettingUrl} from "../../../public/setting/setting_url";
+import {Setting} from "../../../public/setting/setting";
 declare var $: any;
 
 @Component({
@@ -18,6 +19,7 @@ export class OrderPaymentComponent implements OnInit {
   }//查询条件
   showOrderList: boolean = true;//判断子组件的显示/隐藏
   orderDetail:string = SettingUrl.ROUTERLINK.store.orderDetailSimple; //订单详情页面
+  enum = Setting.ENUM;  // 订单状态类型
 
   constructor() { }
 

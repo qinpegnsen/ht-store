@@ -28,6 +28,25 @@ export class OrderService {
   }
 
   /**
+   * 查询订单列表
+   * @param data
+   * @returns {any<T>}
+   */
+  static queryOrderordSmg(data:any) {
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
+    AjaxService.get({
+      url: SettingUrl.URL.order.loadStoreOrd,
+      data: data,
+      async:false,
+      success: (data) => {
+        if (data.success) defer.resolve(data.data);
+      }
+    });
+    return defer.promise(); //返回异步请求休息
+  }
+
+  /**
    * 查询获取物流列表
    * @param data （查询参数）
    */

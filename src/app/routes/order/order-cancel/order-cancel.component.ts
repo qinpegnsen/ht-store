@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {OrderService} from "../order.service";
 import {Page} from "../../../public/util/page";
 import {SettingUrl} from "../../../public/setting/setting_url";
+import {Setting} from "../../../public/setting/setting";
 declare var $: any;
 
 @Component({
@@ -10,7 +11,6 @@ declare var $: any;
   styleUrls: ['./order-cancel.component.css']
 })
 export class OrderCancelComponent implements OnInit {
-
   orderList: Page = new Page();  //已取消订单信息
   _loading = false;             //查询时锁屏
   orderquery = {
@@ -19,6 +19,7 @@ export class OrderCancelComponent implements OnInit {
   }//查询条件
   showOrderList: boolean = true;//判断子组件的显示/隐藏
   orderDetail:string = SettingUrl.ROUTERLINK.store.orderDetailSimple; //订单详情页
+  enum = Setting.ENUM;  // 订单状态类型
 
   constructor() { }
 
