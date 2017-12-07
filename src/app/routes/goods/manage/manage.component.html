@@ -14,7 +14,6 @@
         <div class="search-main">
           <nz-select class="w100" name="goodsAudit" [(ngModel)]="query.goodsAudit" [nzSize]="'large'"
                      (ngModelChange)="queryGoodsList(1)">
-            <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
             <nz-option
               *ngFor="let item of goodsAudits"
               [nzLabel]="item.val"
@@ -28,7 +27,6 @@
         <div class="search-main">
           <nz-select class="w100" name="state" [(ngModel)]="query.state" [nzSize]="'large'"
                      (ngModelChange)="queryGoodsList(1)">
-            <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
             <nz-option
               *ngFor="let item of goodsState"
               [nzLabel]="item.val"
@@ -42,7 +40,6 @@
         <div class="search-main">
           <nz-select class="w100" name="isOwnPlat" [(ngModel)]="query.isOwnPlat" [nzSize]="'large'"
                      (ngModelChange)="queryGoodsList(1)">
-            <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
             <nz-option
               *ngFor="let item of isOwnPlats"
               [nzLabel]="item.val"
@@ -79,8 +76,11 @@
                       [nzSize]="'large'"></nz-input>
           </div>
         </div>
-        <button nz-button [nzSize]="'large'" class="ml btn-thc" (click)="queryGoodsList(1)">
+        <button nz-button [nzSize]="'large'" class="ml-20 btn-thc" (click)="queryGoodsList(1)" title="查询">
           <i class="anticon anticon-search"></i>
+        </button>
+        <button nz-button [nzSize]="'large'" class="ml btn-thc" (click)="resetQuery()" title="重置查询条件">
+          <i class="anticon anticon-sync"></i>
         </button>
       </div>
     </form>

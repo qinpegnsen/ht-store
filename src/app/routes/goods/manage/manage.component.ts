@@ -26,11 +26,7 @@ export class ManageComponent implements OnInit {
   public goodsAudits: any;  // 商品审核状态列表
   public goodsState: any;  // 商品状态列表
   public isOwnPlats: any;  //是否自营列表
-  public query:any = {    //默认值，默认选中全部
-    state: '',
-    isOwnPlat: '',
-    goodsAudit: ''
-  }; // 查询条件
+  public query:any = {};    // 查询条件
 
   //路由
   goodsManagePublish:string = SettingUrl.ROUTERLINK.store.goodsManagePublish;    //商品发布（此处如此写，用于路由相对进入模式）
@@ -84,6 +80,16 @@ export class ManageComponent implements OnInit {
    */
   onDeactivate(event) {
     this.showList = true;
+  }
+
+  /**
+   * 重置搜索条件
+   */
+  resetQuery(){
+    let me = this;
+    me.query = {};
+    me.goodsList = new Page();
+    me.queryGoodsList();
   }
 
   /**
