@@ -10,9 +10,9 @@ declare var $: any;
   styleUrls: ['./evaluate.component.css']
 })
 export class EvaluateComponent implements OnInit {
-  evalPage: Page = new Page();   //提现信息
-  _loading = false;             //查询时锁屏
-  public goodsName: string;     //评价的商品名称
+  public  evalPage: Page = new Page();   //提现信息
+  public  _loading: boolean = false;    //查询时锁屏
+  public  goodsName: string;     //评价的商品名称
   constructor(public router: Router, public routeInfo: ActivatedRoute) {
   }
 

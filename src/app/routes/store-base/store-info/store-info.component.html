@@ -29,22 +29,16 @@
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           联系人姓名：
         </div>
-        <div nz-col [nzSpan]="12" *ngIf="storeInfo.contactsName!=null">
-          {{storeInfo.contactsName}}
-        </div>
-        <div nz-col [nzSpan]="12" *ngIf="storeInfo.contactsName==null" class="store-info-nowrite">
-          未填写
+        <div nz-col [nzSpan]="12"  [ngClass]="{'store-info-nowrite':!storeInfo.contactsName}">
+          {{storeInfo.contactsName || "未填写"}}
         </div>
       </div>
       <div nz-row class="store-info-row">
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           联系人手机号：
         </div>
-        <div nz-col [nzSpan]="12" *ngIf="storeInfo.contactsPhone!=null">
-          {{storeInfo.contactsPhone}}
-        </div>
-        <div nz-col [nzSpan]="12" *ngIf="storeInfo.contactsPhone==null" class="store-info-nowrite">
-          未填写
+        <div nz-col [nzSpan]="12"  [ngClass]="{'store-info-nowrite':!storeInfo.contactsPhone}">
+          {{storeInfo.contactsPhone || "未填写"}}
         </div>
       </div>
       <div nz-row class="store-info-row">
@@ -144,10 +138,10 @@
           是否长期有效：
         </div>
         <div nz-col [nzSpan]="12" class="color-success" *ngIf="storeInfo.isForever==enumState.yes">
-          {{storeInfo.isForever | stateName:'1001'}}
+          {{storeInfo.isForever | stateName:enum.yesOrNo}}
         </div>
         <div nz-col [nzSpan]="12" class="color-red" *ngIf="storeInfo.isForever==enumState.no">
-          {{storeInfo.isForever | stateName:'1001'}}
+          {{storeInfo.isForever | stateName:enum.yesOrNo}}
         </div>
       </div>
       <div nz-row class="store-info-row">
@@ -293,11 +287,11 @@
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           是否为结算账户：
         </div>
-        <div nz-col [nzSpan]="12" class="color-success" *ngIf="storeInfo.isSettlementAccount=='Y'">
-          {{storeInfo.isSettlementAccount | stateName:'1001'}}
+        <div nz-col [nzSpan]="12" class="color-success" *ngIf="storeInfo.isSettlementAccount==enumState.yes">
+          {{storeInfo.isSettlementAccount | stateName:enum.yesOrNo}}
         </div>
-        <div nz-col [nzSpan]="12" class="color-red" *ngIf="storeInfo.isSettlementAccount=='N'">
-          {{storeInfo.isSettlementAccount | stateName:'1001'}}
+        <div nz-col [nzSpan]="12" class="color-red" *ngIf="storeInfo.isSettlementAccount==enumState.no">
+          {{storeInfo.isSettlementAccount | stateName:enum.yesOrNo}}
         </div>
       </div>
     </div>
