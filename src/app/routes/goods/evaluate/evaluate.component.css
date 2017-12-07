@@ -1,5 +1,4 @@
 
-
 .eval-score {
   height: 39px;
   line-height: 39px;
@@ -9,4 +8,12 @@
   height: 40px;
   padding-bottom: 40px;
   line-height: 40px;
+}
+
+.pt-10 {
+  padding-top: 10px;
+}
+
+.ant-table table {
+  border-radius: 0;
 }

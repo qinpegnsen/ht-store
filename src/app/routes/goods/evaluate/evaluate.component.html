@@ -5,7 +5,7 @@
       <i class="anticon anticon-rollback font20"></i>
     </button>
   </div>
-  <div class="mb-15">
+  <div class="mb-15 page-msg-red">
     评价商品：{{goodsName}}
   </div>
   <nz-table #nzTable [nzAjaxData]="evalPage.voList"
@@ -29,7 +29,7 @@
             <!--买家信息 --start -->
             <td class="w6 text-center" [attr.rowspan]="data.commentGoodsPicList.length">
               <span class="">
-                <img src="" appImgErr="user" width="50"/>
+                <img src="" appImgErr="user" width="50" alt="">
               </span><br>
               <span class="">{{data.custName}}</span>
             </td>
@@ -37,17 +37,16 @@
             <td class="relative w40 p bl">
               <div class="fl pl pt">
                 <!--评价内容 --start -->
-                <p><span>订单编号：</span><span class="font14">{{data.ordno}}</span></p>
+                <p class="pb-5"><span>订单编号：</span><span>{{data.ordno}}</span></p>
                 <div>
-                  <p><span class="font14">{{data.commentText || "[空]"}}</span></p>
-                  <p><span class="font14" *ngFor="let eval of data.commentGoodsPicList">
+                  <p class="pb-5"><span>{{data.commentText}}</span></p>
+                  <p><span *ngFor="let eval of data.commentGoodsPicList;">
 
                    <nz-popover [nzTrigger]="'click'">
                        <img [src]="eval.pic | imgSize:'50'" title="点击出大图"
-                            alt="" *ngIf="eval.isAfter=='N'" nz-popover>
+                            alt="" *ngIf="eval.isAfter==enumState.no" nz-popover>
                         <ng-template #nzTemplate>
-                          <div>
-                            <img [src]="eval.pic | imgSize:'400'" class="" alt="" *ngIf="eval.isAfter=='N'">
+                          <div>  <img [src]="eval.pic | imgSize:'400'" alt="" *ngIf="eval.isAfter==enumState.no">
                           </div>
                         </ng-template>
                         </nz-popover>
@@ -57,15 +56,15 @@
                 <!-- 评价内容  --end -->
                 <!--追评内容 --start -->
                 <div>
-                  <p>追评内容：</p>
-                  <p><span class="font14">{{data.commentTextAfter || "[空]"}}</span></p>
-                  <p><span class="font14" *ngFor="let eval of data.commentGoodsPicList;">
+                  <p class="pt-10">追评内容：</p>
+                  <p class="pb-5"><span>{{data.commentTextAfter || "[空]"}}</span></p>
+                  <p><span *ngFor="let eval of data.commentGoodsPicList;">
                      <nz-popover [nzTrigger]="'click'">
                        <img [src]="eval.pic | imgSize:'50'" appImgErr title="点击出大图"
-                            alt="" *ngIf="eval.isAfter=='Y'" nz-popover>
+                            alt="" *ngIf="eval.isAfter==enumState.yes" nz-popover>
                         <ng-template #nzTemplate>
                           <div>  <img [src]="eval.pic | imgSize:'400'" class=""
-                                      alt="" *ngIf="eval.isAfter=='Y'">
+                                      alt="" *ngIf="eval.isAfter==enumState.yes">
                           </div>
                         </ng-template>
                         </nz-popover>

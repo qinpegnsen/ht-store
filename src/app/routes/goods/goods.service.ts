@@ -219,6 +219,7 @@ export class GoodsService {
       url: SettingUrl.URL.goods.commnetGoods,
       data: data,
       success: (data) => {
+        console.log("█ data ►►►",  data);
         if (data.success) defer.resolve(data.data);
       }
     });

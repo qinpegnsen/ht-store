@@ -51,6 +51,7 @@ export class Setting {
     saleAfterState: 1602,  //售后单状态
     saleAfterTyte: 1601,  //售后单类型
     saleAfterTrace: 1701,  //售后单跟踪类型
+    cashState: 1802,  //提现详情状态
   }
   ;
 

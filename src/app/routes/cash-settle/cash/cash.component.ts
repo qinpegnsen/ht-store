@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {SettingUrl} from "../../../public/setting/setting_url";
 import {CashSettleService} from "../cash-settle.service";
 import {Page} from "../../../public/util/page";
+import {Setting} from "../../../public/setting/setting";
 declare var $: any;
 @Component({
   selector: 'app-cash',
@@ -10,8 +11,9 @@ declare var $: any;
   styleUrls: ['./cash.component.css']
 })
 export class CashComponent implements OnInit {
-  cashPage: Page = new Page();          //提现信息
-  _loading = false;             //查询时锁屏
+  public cashPage: Page = new Page();          //提现信息
+  public _loading = false;             //查询时锁屏
+  public  enum = Setting.ENUM;//获取枚举名 如（1001,2002）
   constructor(public router: Router) {
   }
 
