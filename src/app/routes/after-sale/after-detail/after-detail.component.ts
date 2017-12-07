@@ -17,7 +17,6 @@ export class AfterDetailComponent implements OnInit {
 
   public enumState = Setting.ENUMSTATE;               //定义枚举状态
   public type: string;             //类型,处理/查看详情
-  public parentPath: string;       //类型,处理/查看详情
   public afterNo: string;          //售后编码
   public LogisticsData: any;       //退货物流信息
   public afterData: any;           //售后详情数据
@@ -26,8 +25,7 @@ export class AfterDetailComponent implements OnInit {
   public goodsAudits: any;         //商品审核是否通过枚举
   public isPass: string = this.enumState.yes;     //是否同意退货
   public isAgree: string = this.enumState.yes;    //是否同意退货
-  public expressData: any;          //获取快递的公司和单号
-
+  public enums = Setting.ENUM;                        //枚举
 
   constructor(public router: Router,
               public location: Location,

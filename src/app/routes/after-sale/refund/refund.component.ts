@@ -24,6 +24,7 @@ export class RefundComponent implements OnInit {
   public routerLink = SettingUrl.ROUTERLINK;          //定义路由
   public app = Setting.APP;                           //定义出错时加载的图片
   public guideLang: any = Setting.PAGEMSG.service.refund;//引导语
+  public enums = Setting.ENUM;                        //枚举
   public query = {
     state: '',//当前的售后单的状态
     isReceive: '',     //是否收到货

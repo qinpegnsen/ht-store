@@ -109,7 +109,7 @@
         <td nz-td class="text-center">{{item.reqMoney | number:'1.2-2'}}</td>
         <td nz-td class="text-center">{{item.custPhone}}</td>
         <td nz-td class="text-center">{{item.createTime}}</td>
-        <td nz-td class="text-center">{{item.state | stateName:'1602'}}</td>
+        <td nz-td class="text-center">{{item.state | stateName:enums.saleAfterState}}</td>
         <td nz-td class="text-center">
           <button nz-button class="mt-5 btn-blue" *ngIf="item.state==enumState.afterService.wait"
                   [routerLink]="afterDetail"

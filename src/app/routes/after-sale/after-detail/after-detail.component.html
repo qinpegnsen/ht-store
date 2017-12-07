@@ -39,7 +39,7 @@
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">售后类型：</td>
-          <td class="item-bd w85 mb0">{{afterData.returnType | stateName:'1601'}}</td>
+          <td class="item-bd w85 mb0">{{afterData.returnType | stateName:enums.saleAfterTyte}}</td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">退款金额：</td>
@@ -47,7 +47,7 @@
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">是否收到货：</td>
-          <td class="item-bd w85 mb0">{{afterData.isReceive | stateName:'1001'}}</td>
+          <td class="item-bd w85 mb0">{{afterData.isReceive | stateName:enums.yesOrNo}}</td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">{{afterData.returnType==enumState.afterType.return?'退货原因':'退款原因'}}：</td>
@@ -150,7 +150,7 @@
           </tr>
           <tr class="t-item">
             <td class="item-hd w15">退货发货状态：</td>
-            <td class="item-bd w85 mb0">{{afterData.state | stateName:'1701'}}</td>
+            <td class="item-bd w85 mb0">{{afterData.state | stateName:enums.saleAfterTrace}}</td>
           </tr>
           <tr class="t-item">
             <td class="item-hd w15">物流公司：</td>
@@ -181,7 +181,7 @@
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">审核结果：</td>
-          <td class="item-bd w85 mb0">{{afterTailList[3].state | stateName:'1701'}}</td>
+          <td class="item-bd w85 mb0">{{afterTailList[3].state | stateName:enums.saleAfterTrace}}</td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">处理备注：</td>

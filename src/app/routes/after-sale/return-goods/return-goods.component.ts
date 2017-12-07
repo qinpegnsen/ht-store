@@ -17,13 +17,14 @@ export class ReturnGoodsComponent implements OnInit {
   public refundOrderPage: Page = new Page();          //退款订单的数据
   public showList: boolean = true;                   //是否显示父组件
   public detail = [];                                 //tr 的详情,
-  public _loading: boolean = false;                    //查询时锁屏,默认关闭
+  public _loading: boolean = false;                  //查询时锁屏,默认关闭
   public saleAfterStates: any;                        //售后单状态数据
   public isReceiveList: any;                          //是否收货数据
   public enumState = Setting.ENUMSTATE;               //定义枚举状态
   public routerLink = SettingUrl.ROUTERLINK;          //定义路由
   public app = Setting.APP;                           //定义出错时加载的图片
   public guideLang: any = Setting.PAGEMSG.service.refund;//引导语
+  public enums = Setting.ENUM;                        //枚举
   public query = {
     state: '',//当前的售后单的状态
     isReceive: '',     //是否收到货

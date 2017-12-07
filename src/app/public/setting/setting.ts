@@ -17,12 +17,12 @@ export class Setting {
       one: "入账 =（订单总额 - 订单退款）× 10%",
       two: "结算 =（订单总额 - 订单退款）×（1-10%）= 订单总额 - 订单退款 - 入账"
     },
-    service:{
-      refund:[
+    service: {
+      refund: [
         '买家提交退款申请，选择预存款方式支付的,卖家同意并经过平台确认后会将金额以预存款的形式返还给买家。买家选择在线支付方式的，会把在线支付金额原路返回到账号上。 如果订单同时使用了在线支付方式和预存款支付方式，则会优先使用在线支付方式退款，当在线退款可退款金额为0后才会使用预存款方式退款。',
         '平台也可以不经过商家处理，直接处理退款申请，退款给买家。'
       ],
-      returnGoods:[
+      returnGoods: [
         '买家提交退货申请，平台审核通过后买家可退货给配货方。',
         '买家将货物寄出后，平台将验收货物，验收通过则会退款给买家。',
         '选择预存款方式支付的,卖家同意并经过平台确认后会将金额以预存款的形式返还给买家。买家选择在线支付方式的，会把在线支付金额原路返回到账号上。 如果订单同时使用了在线支付方式和预存款支付方式，则会优先使用在线支付方式退款，当在线退款可退款金额为0后才会使用预存款方式退款。'
@@ -31,7 +31,7 @@ export class Setting {
     freightTemplate: {
       one: "温馨提示",
       two: "如果商品选择使用了配送规则，则该商品只售卖配送规则中指定的地区，运费为指定地区的运费",
-      three:"正在被商品使用的配送规则不允许删除"
+      three: "正在被商品使用的配送规则不允许删除"
     },
   }
   //定义枚举
@@ -44,7 +44,9 @@ export class Setting {
     stepsState: 2003, //企业入驻流程状态
     shopState: 2004,   //店铺状态
     staTimeType: 1401,   //统计时间类型
-    saleAfterState: 1602,  //售后单类型
+    saleAfterState: 1602,  //售后单状态
+    saleAfterTyte: 1601,  //售后单类型
+    saleAfterTrace: 1701,  //售后单跟踪类型
   }
   ;
 
@@ -123,7 +125,7 @@ export class Setting {
     },
     //运费模板计费类型
     valuationType: {
-      volume:"VOLUME",    //按体积
+      volume: "VOLUME",    //按体积
       weight: "WEIGHT",   //按重量
       num: "NUM"          //按件数
     }
@@ -140,8 +142,8 @@ export class Setting {
   }
 
   //數據字典健名
-  public static SETTINGINFO:any = {
-    bankTypeCode:"common_use_bank_name"
+  public static SETTINGINFO: any = {
+    bankTypeCode: "common_use_bank_name"
   }
 
   constructor() {
