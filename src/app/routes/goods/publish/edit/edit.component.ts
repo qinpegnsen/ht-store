@@ -31,7 +31,9 @@ export class EditComponent implements OnInit {
   public logistics: any;                  // 物流规则列表
   public tplVals: any;                    // 运费模板内容
   public unit: string = '件';             // 运费价格单位
-  public skuImg: any = {};                // 图片属性
+  public skuImg: any = {                  // 图片属性
+    vals: []
+  };
   public goodsImgList: any = {};          // 商品上传图片列表
   public oldImgs: any = {};               // 商品已经有的图片列表
   public mblItemList: Array<any> = new Array();//手机端上传后的图片集合
