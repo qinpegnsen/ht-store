@@ -12,7 +12,7 @@
           <nz-input name="bankAccountName" [(ngModel)]="validateForm.bankAccountName" #ngBankAccountName="ngModel"
                     required [nzType]="'text'" [nzPlaceHolder]="'银行开户名'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankAccountName)=='empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankAccountName)==valitateState.empty">
             请输入银行开户名！
           </div>
         </div>
@@ -27,7 +27,7 @@
                     required [nzType]="'text'" [nzPlaceHolder]="'公司银行账号'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankAccountNumber)=='empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankAccountNumber)==valitateState.empty">
             请输入公司银行账号！
           </div>
         </div>
@@ -42,7 +42,7 @@
                     required [nzType]="'text'" [nzPlaceHolder]="'开户行支行名称'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankName)=='empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankName)==valitateState.empty">
             请输入开户行支行名称！
           </div>
         </div>
@@ -57,7 +57,7 @@
                     required [nzType]="'text'" [nzPlaceHolder]="'开户支行联行号'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankCode)=='empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankCode)==valitateState.empty">
             请输入开户支行联行号！
           </div>
         </div>
@@ -76,7 +76,7 @@
                        [nzChangeOnSelect]="true"
                        [nzOptions]="_options">
           </nz-cascader>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankAddress)=='empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankAddress)==valitateState.empty">
             请选择开户银行地址！
           </div>
         </div>
@@ -148,7 +148,7 @@
                     #ngSettlementBankAccountName="ngModel" required [nzType]="'text'" [nzPlaceHolder]="'结算银行开户名'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankAccountName)=='empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankAccountName)==valitateState.empty">
             请输入结算银行开户名！
           </div>
         </div>
@@ -164,7 +164,7 @@
                     required [nzType]="'text'" [nzPlaceHolder]="'结算银行账号'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankAccountNumber)=='empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankAccountNumber)==valitateState.empty">
             请输入结算银行账号！
           </div>
         </div>
@@ -180,7 +180,7 @@
                     required [nzType]="'text'" [nzPlaceHolder]="'结算账户开户行支行名称'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankName)=='empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankName)==valitateState.empty">
             请输入结算账户开户行支行名称！
           </div>
         </div>
@@ -196,7 +196,7 @@
                     required [nzType]="'text'" [nzPlaceHolder]="'结算账户开户行支行联行号'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankCode)=='empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankCode)==valitateState.empty">
             请输入结算账户开户行支行联行号！
           </div>
         </div>
@@ -216,7 +216,7 @@
                        [nzChangeOnSelect]="true"
                        [nzOptions]="_options">
           </nz-cascader>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankAddress)=='empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankAddress)==valitateState.empty">
             请选择结算账户开户行所在地！
           </div>
         </div>

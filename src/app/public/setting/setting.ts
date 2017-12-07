@@ -129,6 +129,16 @@ export class Setting {
     }
   };
 
+  /**
+   * 表单校验的状态，配合Util.ngValidateErrorMsg方法使用，此状态一般用来判断显示表单提示信息
+   * eg1:<div nz-form-explain *ngIf="ngValidateErrorMsg(ngPhone) == Setting.valitateState.empty">请输入手机号！</div>
+   * eg2:<div nz-form-explain *ngIf="ngValidateErrorMsg(ngPhone) == Setting.valitateState.error">请输入正确的手机号！</div>
+   */
+  public static valitateState:any = {
+    empty: "empty",
+    error: "error"
+  }
+
   //數據字典健名
   public static SETTINGINFO:any = {
     bankTypeCode:"common_use_bank_name"

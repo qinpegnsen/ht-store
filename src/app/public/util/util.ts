@@ -190,8 +190,8 @@ export class Util {
    * @param templateParam ：输入框ngModel模板变量
    * @returns 返回输入值的状态（输入正确:'success'，输入后清空:'empty',输入值不符合要求:'error',未输入：null）
    * 使用上面的输入模板：
-   * eg1: <div nz-form-explain *ngIf="ngValidateErrorMsg(ngPhone) == 'empty'">请输入手机号！</div>
-   * eg2: <div nz-form-explain *ngIf="ngValidateErrorMsg(ngPhone) == 'empty'">请输入正确的手机号！</div>
+   * eg1:<div nz-form-explain *ngIf="ngValidateErrorMsg(ngPhone) == Setting.valitateState.empty">请输入手机号！</div>
+   * eg2:<div nz-form-explain *ngIf="ngValidateErrorMsg(ngPhone) == Setting.valitateState.error">请输入正确的手机号！</div>
    */
   public static ngValidateErrorMsg(templateParam) {
     return templateParam.pristine ? null ://未输入状态不返回状态值

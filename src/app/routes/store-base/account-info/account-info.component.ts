@@ -21,7 +21,7 @@ export class AccountInfoComponent implements OnInit {
   _options: any;//三级联动区域数据
   ngValidateStatus = Util.ngValidateStatus;
   ngValidateErrorMsg = Util.ngValidateErrorMsg;
-  defaultImage = Setting.APP.defaultImg;
+  valitateState = Setting.valitateState;//表单验证状态
 
   public bankLicenceUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.base.upload,

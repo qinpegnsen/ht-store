@@ -24,7 +24,7 @@ export class BaseInfoComponent implements OnInit {
   enumStates = Setting.ENUMSTATE; //枚举值
   ngValidateStatus = Util.ngValidateStatus;
   ngValidateErrorMsg = Util.ngValidateErrorMsg;
-  defaultImage = Setting.APP.defaultImg;
+  valitateState = Setting.valitateState;//表单验证状态
 
   public organizationCodeUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.base.upload,

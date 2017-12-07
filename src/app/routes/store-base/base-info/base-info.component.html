@@ -12,10 +12,10 @@
           <nz-input name="epName" [(ngModel)]="validateForm.epName" required [nzType]="'text'" [nzPlaceHolder]="'企业名称'"
                     [nzSize]="'large'" #ngEpName="ngModel" minlength="2">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngEpName) == 'empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngEpName) == valitateState.empty">
             请输入企业名称！
           </div>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngEpName) == 'error'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngEpName) == valitateState.error">
             请输入正确的企业名称！
           </div>
         </div>
@@ -28,7 +28,7 @@
           <nz-input name="contactsEmail" [(ngModel)]="validateForm.contactsEmail" [nzPlaceHolder]="'请输入企业邮箱'"
                     [nzType]="'email'" [nzSize]="'large'" required #ngContactsEmail="ngModel">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngContactsEmail) == 'error'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngContactsEmail) == valitateState.error">
             不是正确的邮箱！
           </div>
         </div>
@@ -52,7 +52,7 @@
                     [nzType]="'tel'" [pattern]="patternService.phone"
                     #ngContactsPhone="ngModel" [nzPlaceHolder]="'联系人手机号'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngContactsPhone) == 'error'">手机号码不正确！
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngContactsPhone) == valitateState.error">手机号码不正确！
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@
                       [nzPlaceHolder]="'请输入社会信用代码'" [nzSize]="'large'">
             </nz-input>
             <div nz-form-explain
-                 *ngIf="ngValidateErrorMsg(ngContactsPhone) == 'empty'">
+                 *ngIf="ngValidateErrorMsg(ngContactsPhone) == valitateState.empty">
               请输入社会信用代码！
             </div>
           </div>
@@ -100,7 +100,7 @@
                       [nzPlaceHolder]="'税务登记证号'" [nzSize]="'large'">
             </nz-input>
             <div nz-form-explain
-                 *ngIf="ngValidateErrorMsg(ngTaxRegistrationCertificate)=='empty'">
+                 *ngIf="ngValidateErrorMsg(ngTaxRegistrationCertificate)==valitateState.empty">
               请输入税务登记证号！
             </div>
           </div>
@@ -158,7 +158,7 @@
                       [nzSize]="'large'">
             </nz-input>
             <div nz-form-explain
-                 *ngIf="ngValidateErrorMsg(ngOrganizationCode)=='empty'">
+                 *ngIf="ngValidateErrorMsg(ngOrganizationCode)==valitateState.empty">
               请输入组织结构代码！
             </div>
           </div>
@@ -221,7 +221,7 @@
                     [nzType]="'text'" #ngLegalPersonName="ngModel" required minlength="1"
                     [nzPlaceHolder]="'请输入法人姓名'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngLegalPersonName)=='empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngLegalPersonName)==valitateState.empty">
             请输入法人姓名！
           </div>
         </div>
@@ -237,10 +237,10 @@
                     [nzPlaceHolder]="'请输入法人身份证号'" [pattern]="patternService.idcard"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngLegalPersonIdcard)=='empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngLegalPersonIdcard)==valitateState.empty">
             请输入法人身份证号！
           </div>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngLegalPersonIdcard)=='error'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngLegalPersonIdcard)==valitateState.error">
             身份证号码错误！
           </div>
         </div>
@@ -313,7 +313,7 @@
                     [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain
-               *ngIf="ngValidateErrorMsg(ngBusinessLicence)=='empty'">
+               *ngIf="ngValidateErrorMsg(ngBusinessLicence)==valitateState.empty">
             请输入营业执照注册号！
           </div>
         </div>
@@ -328,7 +328,7 @@
                     #ngBusinessRegisteredCapital="ngModel" [nzType]="'text'" required [nzPlaceHolder]="'注册资本'"
                     [nzSize]="'large'" maxlength="16">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBusinessRegisteredCapital)=='empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBusinessRegisteredCapital)==valitateState.empty">
             请填写注册资本！
           </div>
         </div>
@@ -343,7 +343,7 @@
                     #ngBusinessSphere="ngModel" [nzType]="'text'" required maxlength="32"
                     [nzPlaceHolder]="'法定经营范围'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBusinessSphere)=='empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBusinessSphere)==valitateState.empty">
             请输入法定经营范围！
           </div>
         </div>
@@ -362,7 +362,7 @@
                        [nzChangeOnSelect]="true"
                        [nzOptions]="_options">
           </nz-cascader>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBusinessLicenceAreaCode)=='empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBusinessLicenceAreaCode)==valitateState.empty">
             请选择营业执照地区！
           </div>
         </div>
@@ -378,7 +378,7 @@
                     [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain
-               *ngIf="ngValidateErrorMsg(ngBusinessLicenceAddress)=='empty'">
+               *ngIf="ngValidateErrorMsg(ngBusinessLicenceAddress)==valitateState.empty">
             请输入详细地址！
           </div>
         </div>

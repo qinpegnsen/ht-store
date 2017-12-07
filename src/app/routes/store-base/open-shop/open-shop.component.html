@@ -12,7 +12,7 @@
           <nz-input name="storeName" [(ngModel)]="validateForm.storeName" #ngStoreName="ngModel" required
                     [nzType]="'text'" [nzPlaceHolder]="'店铺名称'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreName) == 'empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreName) == valitateState.empty">
             请输入店铺名称！
           </div>
         </div>
@@ -41,7 +41,7 @@
                     [nzType]="'textarea'" [nzPlaceHolder]="'请输入详细地址'"
                     [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngAddress) == 'empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngAddress) == valitateState.empty">
             请输入详细地址！
           </div>
         </div>
@@ -54,10 +54,10 @@
           <nz-input name="storeZip" [(ngModel)]="validateForm.storeZip" #ngStoreZip="ngModel" required
                     [pattern]="'[0-9]{6}'" [nzType]="'text'" [nzPlaceHolder]="'请输入邮政编码'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreZip) == 'empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreZip) == valitateState.empty">
             请输入邮政编码！
           </div>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreZip) == 'error'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreZip) == valitateState.error">
             邮政编码不正确！
           </div>
         </div>
@@ -71,10 +71,10 @@
                     [pattern]="patternService.tel" required
                     [nzPlaceHolder]="'请填写商家电话'" [nzType]="'tel'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStorePhone) == 'empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStorePhone) == valitateState.empty">
             请输入商家电话！
           </div>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStorePhone) == 'error'">不是正确的手机号或电话！
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStorePhone) == valitateState.error">不是正确的手机号或电话！
           </div>
         </div>
       </div>
@@ -190,10 +190,10 @@
           <nz-input name="storeQQ" [nzType]="'text'" [(ngModel)]="validateForm.storeQQ" #ngStoreQQ="ngModel"
                     [nzPlaceHolder]="'QQ'" [nzSize]="'large'" minlength="6">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreQQ) == 'empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreQQ) == valitateState.empty">
             请输入店铺QQ！
           </div>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreQQ) == 'error'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreQQ) == valitateState.error">
             不是正确的QQ！
           </div>
         </div>
@@ -206,10 +206,10 @@
           <nz-input name="storeWW" [(ngModel)]="validateForm.storeWW" #ngStoreWW="ngModel" [nzType]="'text'"
                     [nzPlaceHolder]="'阿里旺旺账号'" [nzSize]="'large'" minlength="6">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreWW) == 'empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreWW) == valitateState.empty">
             请输入店铺阿里旺旺账号！
           </div>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreWW) == 'empty'">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreWW) == valitateState.empty">
             不是正确的阿里旺旺账号！
           </div>
         </div>
