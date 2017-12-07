@@ -3,6 +3,7 @@ import {Page} from "../../../public/util/page";
 import {GoodsService} from "../goods.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SettingUrl} from "../../../public/setting/setting_url";
+import {Setting} from "../../../public/setting/setting";
 declare var $: any;
 @Component({
   selector: 'app-evaluate',
@@ -13,6 +14,7 @@ export class EvaluateComponent implements OnInit {
   public  evalPage: Page = new Page();   //提现信息
   public  _loading: boolean = false;    //查询时锁屏
   public  goodsName: string;     //评价的商品名称
+  public  enumState = Setting.ENUMSTATE;//获取枚举状态名 如（是否是追加评论的图片:Y，N）
   constructor(public router: Router, public routeInfo: ActivatedRoute) {
   }
 
@@ -35,7 +37,7 @@ export class EvaluateComponent implements OnInit {
     $.when(GoodsService.commnetGoodsList(me.evalPage.params)).done(data => {
       me._loading = false //解除锁屏
       if (data) me.evalPage = data; //赋值
-      // console.log("█ me.evalPage ►►►", me.evalPage);
+      console.log("█ me.evalPage ►►►", me.evalPage);
     })
   };
 

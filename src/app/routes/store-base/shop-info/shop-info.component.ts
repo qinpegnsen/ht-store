@@ -8,7 +8,7 @@ declare var $: any;
   styleUrls: ['./shop-info.component.css']
 })
 export class ShopInfoComponent implements OnInit {
-  _loading: boolean = false; //查询时锁屏
+  public _loading: boolean = false; //查询时锁屏
   public shopsInfo: any = {};//店铺信息存储
   public enumState: any = Setting.ENUMSTATE;//获取枚举状态名
   constructor() {

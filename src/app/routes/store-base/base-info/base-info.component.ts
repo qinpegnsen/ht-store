@@ -18,13 +18,13 @@ declare var $: any;
   styleUrls: ['./base-info.component.css']
 })
 export class BaseInfoComponent implements OnInit {
-  _options: any;//三级联动区域数据
-  validateForm: any = {};
-  papersTypes: any;     //证件类型
-  enumStates: any = Setting.ENUMSTATE; //枚举值
-  ngValidateStatus = Util.ngValidateStatus;
-  ngValidateErrorMsg = Util.ngValidateErrorMsg;
-  valitateState: any = Setting.valitateState;//表单验证状态
+  public _options: any;//三级联动区域数据
+  public validateForm: any = {};
+  public papersTypes: any;     //证件类型
+  public enumStates: any = Setting.ENUMSTATE; //枚举值
+  public ngValidateStatus = Util.ngValidateStatus;
+  public ngValidateErrorMsg = Util.ngValidateErrorMsg;
+  public valitateState: any = Setting.valitateState;//表单验证状态
 
   public organizationCodeUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.base.upload,
