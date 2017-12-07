@@ -19,10 +19,10 @@ export class ManageComponent implements OnInit {
   public goodsList: Page = new Page();
   public _loading = false;             //查询时锁屏
   public showList = true;             //是否显示列表页
-  public enumState = Setting.ENUMSTATE;
-  public enums = Setting.ENUM;
+  public enumState:any = Setting.ENUMSTATE;
+  public enums:any = Setting.ENUM;
 
-  public kindList;// 分类列表
+  public kindList:any;// 分类列表
   public goodsAudits: any;  // 商品审核状态列表
   public goodsState: any;  // 商品状态列表
   public isOwnPlats: any;  //是否自营列表

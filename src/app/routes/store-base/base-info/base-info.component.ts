@@ -21,10 +21,10 @@ export class BaseInfoComponent implements OnInit {
   _options: any;//三级联动区域数据
   validateForm: any = {};
   papersTypes: any;     //证件类型
-  enumStates = Setting.ENUMSTATE; //枚举值
+  enumStates: any = Setting.ENUMSTATE; //枚举值
   ngValidateStatus = Util.ngValidateStatus;
   ngValidateErrorMsg = Util.ngValidateErrorMsg;
-  valitateState = Setting.valitateState;//表单验证状态
+  valitateState: any = Setting.valitateState;//表单验证状态
 
   public organizationCodeUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.base.upload,

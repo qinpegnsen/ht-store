@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   msgText: string = '获取验证码';
   phoneState: string;
   isSending: boolean = false;
-  valitate = Util.validate; //表单验证
+  valitate: any = Util.validate; //表单验证
 
   constructor(public storeBaseService: StoreBaseService,
               public steps: SettleStepsComponent,

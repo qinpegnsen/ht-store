@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StoreBaseService} from "../store-base.service";
 import {Setting} from "../../../public/setting/setting";
-import { Location } from '@angular/common';
+import {Location} from '@angular/common';
 declare var $: any;
 @Component({
   selector: 'app-store-info',
@@ -9,16 +9,16 @@ declare var $: any;
   styleUrls: ['./store-info.component.css']
 })
 export class StoreInfoComponent implements OnInit {
- public _loading: boolean = false; //查询时锁屏
- public storeInfo: any = {};//企业信息存储
+  public _loading: boolean = false; //查询时锁屏
+  public storeInfo: any = {};//企业信息存储
 
- public  enumState = Setting.ENUMSTATE;//获取枚举状态名
- public  enum = Setting.ENUM;//获取枚举状态名
-  constructor(public location:Location) {
+  public enumState: any = Setting.ENUMSTATE;//获取枚举状态名
+  public enum: any = Setting.ENUM;//获取枚举状态名
+  constructor(public location: Location) {
   }
 
   ngOnInit() {
-    let _this=this;
+    let _this = this;
     _this.queryStoreData();//查询企业信息
   }
 
@@ -44,7 +44,7 @@ export class StoreInfoComponent implements OnInit {
    * 返回上一页
    */
   back() {
-   this.location.back();
+    this.location.back();
   }
 
 }

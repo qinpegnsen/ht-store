@@ -10,7 +10,7 @@ declare var $: any;
 export class ShopInfoComponent implements OnInit {
   _loading: boolean = false; //查询时锁屏
   public shopsInfo: any = {};//店铺信息存储
-  public enumState = Setting.ENUMSTATE;//获取枚举状态名
+  public enumState: any = Setting.ENUMSTATE;//获取枚举状态名
   constructor() {
   }
 

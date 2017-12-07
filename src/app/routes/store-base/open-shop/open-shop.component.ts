@@ -22,7 +22,7 @@ export class OpenShopComponent implements OnInit {
   _options: any;//三级联动区域数据
   ngValidateStatus = Util.ngValidateStatus;
   ngValidateErrorMsg = Util.ngValidateErrorMsg;
-  valitateState = Setting.valitateState;//表单验证状态
+  valitateState: any = Setting.valitateState;//表单验证状态
 
   public storeLabelUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.base.upload,

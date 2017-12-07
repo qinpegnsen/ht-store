@@ -21,29 +21,25 @@ declare var $: any;
 export class EditComponent implements OnInit {
   ngValidateStatus = Util.ngValidateStatus;
   public enumState = Setting.ENUMSTATE;//枚举
-  public path: string;           // 当前路径
-  public update: boolean = false;   // 是否修改商品
-  public saleAttrList: any;       // 所有规格数据
-  public brandsList: any;        // 品牌列表
-  public unitList: any;           // 计量单位列表
-  public baseAttrList: any;      // 商品基本属性列表
-  public goodsBaseCode: string;  //商品基本编码
-  public skuAttr = [];              //属性列表
-  public logistics: any;             // 物流规则列表
-  public tplVals: any;               // 运费模板内容
-  public unit: string = '件';       // 运费价格单位
-  public skuImg: any = {
-    vals: []
-  };        // 图片属性
-  public goodsImgList = {};       // 商品上传图片列表
-  public oldImgs: any = {};        // 商品已经有的图片列表
-  public mblItemList = [];         //手机端上传后的图片集合
-  public tempMblHtml: string;    // 修改商品时临时用的移动端详情
-  public set: any = {}
-  public goodsEditData: any;     // 修改商品时商品的原有数据
-  public goodsBody: any;          //商品详情
-  /*默认数据及数据结构*/
-  public publishData: any = {};// 商品发布数据，所有数据
+  public path: string;                  // 当前路径
+  public saleAttrList: any;             // 所有规格数据
+  public brandsList: any;               // 品牌列表
+  public unitList: any;                 // 计量单位列表
+  public baseAttrList: any;             // 商品基本属性列表
+  public goodsBaseCode: string;         //商品基本编码
+  public skuAttr: Array<any> = new Array();//属性列表
+  public logistics: any;                  // 物流规则列表
+  public tplVals: any;                    // 运费模板内容
+  public unit: string = '件';             // 运费价格单位
+  public skuImg: any = {};                // 图片属性
+  public goodsImgList: any = {};          // 商品上传图片列表
+  public oldImgs: any = {};               // 商品已经有的图片列表
+  public mblItemList: Array<any> = new Array();//手机端上传后的图片集合
+  public tempMblHtml: string;           // 修改商品时临时用的移动端详情
+  public set: any = {};                   //批量设置
+  public goodsBody: any;                //商品详情
+  public goodsEditData: any;           // 修改商品时商品的原有数据
+  public publishData: any = {};         // 商品发布数据
   public mobileUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.base.uploadHttpURL,
     itemAlias: "limitFile",
@@ -174,12 +170,12 @@ export class EditComponent implements OnInit {
   /**
    * update 已选中的基本属性
    */
-  checkedBaseAttr(){
+  checkedBaseAttr() {
     let me = this;
     me.goodsEditData.goodsBaseAttrList.forEach(val => {
       me.baseAttrList.forEach(item => {
         item.goodsEnumValList.forEach(attr => {
-          if(attr.id == val.value) item.checkedId = attr.id;
+          if (attr.id == val.value) item.checkedId = attr.id;
         })
       })
     })
@@ -560,7 +556,7 @@ export class EditComponent implements OnInit {
       $(target).parents('.app-img-box').find('.mobile-edit-area').addClass('hide');//隐藏编辑框
       $(target).parents('.app-img-box').find('.text').show();//取消编辑展示原本文
       $(target).parents('.app-img-box').find('._edit').addClass('hide');//隐藏编辑组
-    }else{
+    } else {
       $('.mobile-edit-area').addClass('hide');
     }
   }
@@ -758,8 +754,7 @@ export class EditComponent implements OnInit {
         if (isNullOrUndefined(itemImgSrcs)) {
           me._notification.warning('缺少图片', '请上传规格为' + item.valName + '的商品的图片');
           return null;// 当某个规格没有图片时，提示必须上传
-        }
-        if (!isNullOrUndefined(itemImgSrcs)) {
+        }else {
           for (let k = 0; k < itemImgSrcs.length; k++) {
             const temp: any = {attrCode: '', valCode: '', valName: '', idx: '', goodsImage: ''};
             Object.assign(temp, item);
@@ -771,8 +766,7 @@ export class EditComponent implements OnInit {
         }
       }
     }
-    console.log("█ goodsImgList ►►►", goodsImgList);
-    return goodsImgList;
+    me.publishData.goodsImagesList = goodsImgList;
   }
 
   /**
@@ -792,7 +786,7 @@ export class EditComponent implements OnInit {
   }
 
 
-  back(){
+  back() {
     this.location.back();
   }
 
@@ -801,9 +795,7 @@ export class EditComponent implements OnInit {
    */
   publishGoods() {
     let me = this;
-    if (me.judgeSkuPrices() && me.judgeGoodsImgs() && me.judgeLogistics()) {
-      me.uploadImgs();// 先上传图片
-    }
+    if (me.judgeSkuPrices() && me.judgeGoodsImgs() && me.judgeLogistics()) me.uploadImgs();// 如果没有空项则上传图片
   }
 
   /**
@@ -899,20 +891,13 @@ export class EditComponent implements OnInit {
    */
   public genPublishDataAndPublish() {
     let me = this;
-    if (isNullOrUndefined(me.genGoodsImgList())) {
-      return;
-    }                //当某个规格没有图片时直接结束发布
+    me.genGoodsImgList();                                              // 商品图片列表
     me.genGoodsBaseAttrList();                                          // 商品基本属性
-    me.publishData.goodsImagesList = me.genGoodsImgList();           // 商品图片列表
     me.publishData.mobileBody = me.genMblDetailHtml();               // 商品详情 App
-    console.log("█ me.publishData ►►►", me.publishData);
     $.when(this.goodsService.saveGoods(me.publishData)).done(data => {
       if (data) {
-        if (me.path == 'edit') me.router.navigate([SettingUrl.ROUTERLINK.store.goodsPublished], {queryParams: {baseCode: me.goodsBaseCode}})
-        if (me.path == 'update') {
-          me.update = true;
-          me.location.back();
-        }
+        if (me.path == 'edit') me.router.navigate([SettingUrl.ROUTERLINK.store.goodsPublished], {queryParams: {baseCode: me.goodsBaseCode}});
+        if (me.path == 'update') me.location.back();
       }
     })
   }
