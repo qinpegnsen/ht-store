@@ -134,6 +134,7 @@ export class OrderPendingShipmentComponent implements OnInit {
       this.isOrderPend = false;
       this.isConfirm = false;
     }, 500);
+    me._loading = false //解除锁屏
   };
 
   /**
@@ -171,7 +172,9 @@ export class OrderPendingShipmentComponent implements OnInit {
     $.when(me.orderService.canceslOrder(this.getOrdno,this.expressNos,this.expressCode)).done(data => {
       me._loading = false //解除锁屏
       if (data) me.auditsDataList = data; //赋值
-    })
+      me.queryPending()//查询待发货订单列表
+    });
+
   }
 
 }

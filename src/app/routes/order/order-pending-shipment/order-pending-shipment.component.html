@@ -16,7 +16,7 @@
           <nz-input [(ngModel)]="orderquery.agentOrdno"  [nzPlaceHolder]="'请填写订单号'" [nzSize]="'large'"></nz-input>
         </div>
       </div>
-      <button nz-button [nzSize]="'large'" class="ml-15 btn-danger fl" (click)="queryPending()">
+      <button nz-button [nzSize]="'large'" class="ml-20 btn-thc mr-20" (click)="queryPending()">
         <i class="anticon anticon-search"></i>
       </button>
     </div>
@@ -119,7 +119,7 @@
           (nzOnOk)="hideleOk($event)" [nzConfirmLoading]="isConfirm">
   <ng-template #modalContent>
     <!--申请提现 -- start -->
-    <input class="form-control" required [(ngModel)]="expressCode" name="expressCode"/>
+    <input class="form-control" required [(ngModel)]="expressCode" name="expressCode" type="hidden"/>
     <form nz-form [formGroup]="validateForm">
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
