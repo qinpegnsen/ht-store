@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Setting} from "../../../public/setting/setting";
 import {StoreBaseService} from "../store-base.service";
+import {SettingUrl} from "../../../public/setting/setting_url";
 declare var $: any;
 @Component({
   selector: 'app-shop-info',
@@ -11,6 +12,7 @@ export class ShopInfoComponent implements OnInit {
   public _loading: boolean = false; //查询时锁屏
   public shopsInfo: any = {};//店铺信息存储
   public enumState: any = Setting.ENUMSTATE;//获取枚举状态名
+  public editShop:string = SettingUrl.ROUTERLINK.basic.editShop; //修改店铺信息路由
   constructor() {
   }
 
@@ -31,7 +33,7 @@ export class ShopInfoComponent implements OnInit {
       me._loading = false //解除锁屏
       if (data) {
         me.shopsInfo = data;//店铺信息
-        // console.log("█ me.shopsInfo ►►►",  me.shopsInfo);
+        console.log("█ me.shopsInfo ►►►",  me.shopsInfo);
       }
     })
   };
