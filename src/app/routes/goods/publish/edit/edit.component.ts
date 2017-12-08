@@ -43,7 +43,7 @@ export class EditComponent implements OnInit {
   public goodsEditData: any;           // 修改商品时商品的原有数据
   public publishData: any = {};         // 商品发布数据
   public mobileUploader: FileUploader = new FileUploader({
-    url: SettingUrl.URL.base.uploadHttpURL,
+    url: SettingUrl.URL.goods.goodsUploadRetHttpURL,
     itemAlias: "limitFile",
     autoUpload: true,
     allowedFileType: ["image"]
@@ -151,7 +151,7 @@ export class EditComponent implements OnInit {
           me.genImgSku();       //已选中属性的图片组
           me.genTempGoodsImgsList();  // 将商品的图片组生成me.goodsImgList一样的数据，方便后续追加图片
           me.genMblItemList();        //将html字符串生成移动端图片文字组合
-          console.log("█ me.publishData ►►►", me.publishData);
+          // console.log("█ me.publishData ►►►", me.publishData);
         }
       })
     }
@@ -281,7 +281,7 @@ export class EditComponent implements OnInit {
       me.oldImgs[item.valCode].push(item.goodsImage);       // 往老图片组中添加这个图片
       me.goodsImgList[item.valCode].push(item.goodsImage);  // 往总图片组中添加这个图片
     });
-    console.log("█ me.oldImgs ►►►", me.oldImgs);
+    // console.log("█ me.oldImgs ►►►", me.oldImgs);
   }
 
   /**
@@ -315,7 +315,7 @@ export class EditComponent implements OnInit {
             valName: checkedEnumItem.enumValue,
             idx: checkedEnumItem.idx,
             uploader: new FileUploader({
-              url: '/goodsEdit/uploadGoodsImage',
+              url: SettingUrl.URL.goods.goodsUploadRetUrl,
               itemAlias: "limitFile",
               allowedFileType: ["image"]
             })
