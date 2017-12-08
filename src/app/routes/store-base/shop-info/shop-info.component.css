@@ -3,6 +3,7 @@
 }
 
 .store-info-all {
+  height: 460px;
   background: #fff;
 }
 
@@ -13,4 +14,24 @@
 
 .store-info-nowrite {
   color: rgba(160, 160, 160, 0.74)
+}
+
+.m-auto{
+  margin: auto;
+}
+
+.br-shop{
+  border-right:1px solid #999;
+}
+.b-shop{
+  border-top: 1px solid #999;
+  border-left:1px solid #999;
+  border-right:1px solid #999;
+}
+.b-shop-img{
+  border-top: 1px solid #999;
+  border-left:1px solid #999;
+}
+.bb-shop{
+  border-bottom: 1px solid #999;
 }

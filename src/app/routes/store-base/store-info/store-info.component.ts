@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {StoreBaseService} from "../store-base.service";
 import {Setting} from "../../../public/setting/setting";
 import {Location} from '@angular/common';
+import {SettingUrl} from "../../../public/setting/setting_url";
 declare var $: any;
 @Component({
   selector: 'app-store-info',
@@ -14,6 +15,7 @@ export class StoreInfoComponent implements OnInit {
 
   public enumState: any = Setting.ENUMSTATE;//获取枚举状态名
   public enum: any = Setting.ENUM;//获取枚举状态名
+  public shops:string = SettingUrl.ROUTERLINK.basic.shops; //店铺信息路由
   constructor(public location: Location) {
   }
 

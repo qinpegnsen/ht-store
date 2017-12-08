@@ -6,55 +6,11 @@
     </button>
   </div>
   <!--店铺基本信息 --start -->
-  <div>
-
-    <div nz-row class="store-info-row">
-      <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
-        店铺名称：
-      </div>
-      <div nz-col [nzSpan]="12">
-        {{shopsInfo.storeName}}
-      </div>
-    </div>
-    <div nz-row class="store-info-row">
-      <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
-        店铺地址：
-      </div>
-      <div nz-col [nzSpan]="12">
-        {{shopsInfo.areaFullName}}
-      </div>
-    </div>
-    <div nz-row class="store-info-row">
-      <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
-        详细地址：
-      </div>
-      <div nz-col [nzSpan]="12">
-        {{shopsInfo.address}}
-      </div>
-    </div>
-    <div nz-row class="store-info-row">
-      <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
-        邮政编码：
-      </div>
-      <div nz-col [nzSpan]="12">
-        {{shopsInfo.areaCode}}
-      </div>
-    </div>
-    <div nz-row class="store-info-row">
-      <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
-        商家电话：
-      </div>
-      <div nz-col [nzSpan]="12">
-        {{shopsInfo.storePhone}}
-      </div>
-    </div>
-    <div nz-row class="store-info-row">
-      <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
-        店铺头像：
-      </div>
-      <div nz-col [nzSpan]="12">
-        <nz-popover [nzTrigger]="'click'" [ngClass]="{'store-info-nowrite':!shopsInfo.storeAvatar}">
-          <img [src]="shopsInfo.storeAvatar | imgSize:'50' || '未上传店铺头像'" appImgErr
+  <div style="width: 90%;margin: auto">
+    <div style="width: 25%;float: left;display: inline-block;height: 280px" class="b-shop-img bb-shop">
+      <p class="text-center" style="margin-top: 50px">
+        <nz-popover [nzTrigger]="'click'">
+          <img [src]="" appImgErr="user" width="80"
                title="点击出大图"
                alt="" nz-popover>
           <ng-template #nzTemplate>
@@ -63,32 +19,81 @@
             </div>
           </ng-template>
         </nz-popover>
-      </div>
+      </p>
+       <p class="text-center pt-5">{{shopsInfo.storeName}}</p>
     </div>
-    <div nz-row class="store-info-row">
-      <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
-        QQ：
+    <div style="width:75%;float: right">
+      <div nz-row class="store-info-row b-shop m-auto">
+      <div nz-col [nzSpan]="4" class="text-right pr-20 strong br-shop">
+      店铺地址
       </div>
-      <div nz-col [nzSpan]="12" [ngClass]="{'store-info-nowrite':!shopsInfo.storeQq}">
-        {{shopsInfo.storeQq || '未填写'}}
+      <div nz-col [nzSpan]="20" class="pl-20">
+      {{shopsInfo.areaFullName}}
       </div>
+      </div>
+      <div nz-row class="store-info-row b-shop m-auto">
+
+        <div nz-col [nzSpan]="4" class="text-right pr-20 strong br-shop">
+        详细地址
+        </div>
+        <div nz-col [nzSpan]="20" class="pl-20">
+        {{shopsInfo.address}}
+        </div>
+        </div>
+      <div nz-row class="store-info-row b-shop m-auto">
+
+          <div nz-col [nzSpan]="4" class="text-right pr-20 strong br-shop">
+            邮政编码
+          </div>
+          <div nz-col [nzSpan]="20" class="pl-20">
+            {{shopsInfo.areaCode}}
+          </div>
+        </div>
+      <div nz-row class="store-info-row b-shop m-auto">
+
+        <div nz-col [nzSpan]="4" class="text-right pr-20 strong br-shop">
+          商家电话
+        </div>
+        <div nz-col [nzSpan]="20" class="pl-20">
+          {{shopsInfo.storePhone}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row b-shop m-auto">
+        <div nz-col [nzSpan]="4" class="text-right pr-20 strong br-shop">
+          店铺头像
+        </div>
+        <div nz-col [nzSpan]="20" class="pl-20"  [ngClass]="{'store-info-nowrite':!shopsInfo.storeAvatar}">
+          <nz-popover [nzTrigger]="'click'">
+            <img [src]="shopsInfo.storeAvatar | imgSize:'50' ||'未上传店铺头像'" appImgErr
+                 title="点击出大图"
+                 alt="" nz-popover>
+            <ng-template #nzTemplate>
+              <div><img [src]="shopsInfo.storeAvatar | imgSize:'400'"
+                        alt="">
+              </div>
+            </ng-template>
+          </nz-popover>
+        </div>
+      </div>
+      <div nz-row class="store-info-row b-shop m-auto">
+        <div nz-col [nzSpan]="4" class="text-right pr-20 strong br-shop">
+          QQ
+        </div>
+        <div nz-col [nzSpan]="20" class="pl-20" [ngClass]="{'store-info-nowrite':!shopsInfo.storeQq}">
+          {{shopsInfo.storeQq || '未填写'}}
+        </div>
+      </div>
+      <div nz-row class="store-info-row b-shop m-auto bb-shop">
+        <div nz-col [nzSpan]="4" class="text-right pr-20 strong br-shop">
+        阿里旺旺账号
+        </div>
+        <div nz-col [nzSpan]="20" class="pl-20"  [ngClass]="{'store-info-nowrite':!shopsInfo.storeWw}">
+          {{shopsInfo.storeWw || '未填写'}}
+        </div>
+      </div>
+    <div>
     </div>
-    <div nz-row class="store-info-row">
-      <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
-        店铺logo：
-      </div>
-      <div nz-col [nzSpan]="12" [ngClass]="{'store-info-nowrite':!shopsInfo.storeLabel}">
-        {{shopsInfo.storeLabel}}
-      </div>
     </div>
-    <div nz-row class="store-info-row">
-      <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
-        阿里旺旺号：
-      </div>
-      <div nz-col [nzSpan]="12" [ngClass]="{'store-info-nowrite':!shopsInfo.storeWw}">
-        {{shopsInfo.storeWw}}
-      </div>
-    </div>
-  </div>
   <!--店铺基本信息 --end -->
+  </div>
 </div>

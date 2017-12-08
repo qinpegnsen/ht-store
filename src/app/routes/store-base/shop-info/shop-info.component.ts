@@ -31,6 +31,7 @@ export class ShopInfoComponent implements OnInit {
       me._loading = false //解除锁屏
       if (data) {
         me.shopsInfo = data;//店铺信息
+        // console.log("█ me.shopsInfo ►►►",  me.shopsInfo);
       }
     })
   };
