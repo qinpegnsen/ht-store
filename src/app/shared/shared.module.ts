@@ -11,6 +11,7 @@ import {Level2AreaNamePipe} from "../public/pipes/level-2-area-name.pipe";
 import {GetWeekPipe} from "../public/pipes/get-week.pipe";
 import {ImgErrDirective} from "../public/directives/img-err.directive";
 import {StrJsonPipe} from "../public/pipes/str-json.pipe";
+import {CKEditorModule} from "ng2-ckeditor";
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {StrJsonPipe} from "../public/pipes/str-json.pipe";
     FormsModule,                  //表单支持
     ReactiveFormsModule,          //表单支持
     AngularEchartsModule,         //百度echarts图表插件
+    CKEditorModule,               //富文本编辑器
     NgZorroAntdModule.forRoot()   //zorroUI库
   ],
   declarations: [
@@ -43,6 +45,7 @@ import {StrJsonPipe} from "../public/pipes/str-json.pipe";
     Level2AreaNamePipe,      //12位地区编码转化地区名称管道
     GetWeekPipe,               //根据日期获取周几的管道
     ImgErrDirective,          //图片加载失败时，加载默认图片
+    CKEditorModule,         //富文本编辑器
     StrJsonPipe               //后台返回字符转转化为json格式
   ]
 })
