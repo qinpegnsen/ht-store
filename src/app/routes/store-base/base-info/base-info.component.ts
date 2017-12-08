@@ -27,17 +27,17 @@ export class BaseInfoComponent implements OnInit {
   public valitateState: any = Setting.valitateState;//表单验证状态
 
   public organizationCodeUploader: FileUploader = new FileUploader({
-    url: SettingUrl.URL.base.upload,
+    url: SettingUrl.URL.enterprise.upload,
     itemAlias: "limitFile",
     allowedFileType: ["image"]
   }); //组织机构代码电子版,初始化上传方法
   public businessLicenceUploader: FileUploader = new FileUploader({
-    url: SettingUrl.URL.base.upload,
+    url: SettingUrl.URL.enterprise.upload,
     itemAlias: "limitFile",
     allowedFileType: ["image"]
   }); //电子版营业执照,初始化上传方法
   public taxRegistrationUploader: FileUploader = new FileUploader({
-    url: SettingUrl.URL.base.upload,
+    url: SettingUrl.URL.enterprise.upload,
     itemAlias: "limitFile",
     allowedFileType: ["image"]
   }); //纳税登记证电子版,初始化上传方法

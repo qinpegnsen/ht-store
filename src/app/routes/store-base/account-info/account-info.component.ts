@@ -24,7 +24,7 @@ export class AccountInfoComponent implements OnInit {
   valitateState: any = Setting.valitateState;//表单验证状态
 
   public bankLicenceUploader: FileUploader = new FileUploader({
-    url: SettingUrl.URL.base.upload,
+    url: SettingUrl.URL.enterprise.upload,
     itemAlias: "limitFile",
     allowedFileType: ["image"]
   }); //银行开户许可证电子版,初始化上传方法

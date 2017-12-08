@@ -30,7 +30,8 @@ export class SettingUrl {
       save: '/enterprise/save',//保存或修改企业基本信息
       save2: '/enterprise/save2',//保存或修改企业银行账户信息
       load:'/enterprise/loadByEpCode', //(post)查询企业信息
-      loadState: '/enterprise/loadStateByEpCode'//(get)查询企业状态
+      loadState: '/enterprise/loadStateByEpCode',//(get)查询企业状态
+      upload: "/upload/basic/enterpriseUpload"    //上传图片,需要uuid，返回全路径
     },
     /**
      * 商家

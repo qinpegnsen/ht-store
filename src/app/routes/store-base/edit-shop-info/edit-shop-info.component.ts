@@ -22,13 +22,13 @@ export class EditShopInfoComponent implements OnInit {
   ngValidateErrorMsg = Util.ngValidateErrorMsg;
   valitateState: any = Setting.valitateState;//表单验证状态
   public storeLabelUploader: FileUploader = new FileUploader({
-    url: SettingUrl.URL.base.upload,
+    url: SettingUrl.URL.enterprise.upload,
     itemAlias: "limitFile",
     allowedFileType: ["image"]
   }); //店铺Logo,初始化上传方法
 
   public storeAvatarUploader: FileUploader = new FileUploader({
-    url: SettingUrl.URL.base.upload,
+    url: SettingUrl.URL.enterprise.upload,
     itemAlias: "limitFile",
     allowedFileType: ["image"]
   }); //店铺头像,初始化上传方法
