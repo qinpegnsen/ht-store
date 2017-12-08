@@ -18,22 +18,14 @@ const PROXY_CONFIG = [
       "/seller",
       "/sms",
       "/rpAccountRec",
+      "/statistical",
       "/rpStatistics",
       "/enterprise",
       "/login",
       "/stores",
       "/ord",
     ],
-    target: wp + "8087",   //拦截 context配置路径，经过此地址
-    secure: false
-  },
-  {
-    context: [
-      "/finaceDraw",
-      "/rpAccountRec",
-      "/datadict"
-    ],
-    target: wp + "8085",   //拦截 context配置路径，经过此地址
+    target: gh + "8084",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
@@ -43,12 +35,11 @@ const PROXY_CONFIG = [
       "/goodsQuery",
       "/goodsAudit",
       "/agentOrd",
-      "/rpAccountRec",
       "/expressTpl",
       "/storeExpressTpl",
       "/after"
     ],
-    target: csj + "8084",   //拦截 context配置路径，经过此地址
+    target: gh + "8084",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
@@ -57,7 +48,7 @@ const PROXY_CONFIG = [
       "/basicExpress",
       "/upload"
     ],
-    target: csj + "8082",   //拦截 context配置路径，经过此地址
+    target: gh + "8082",   //拦截 context配置路径，经过此地址
     secure: false
   },
 ];

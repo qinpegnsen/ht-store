@@ -2,15 +2,15 @@
   <!--红包块状统计 start-->
   <div class="mt-20 bg-f8 pt-20 pb-20" nz-row>
     <div nz-col [nzSpan]="8" [ngClass]="{'border-right':true}" class="text-center">
-      <p class="font22 main-color">{{redPackStatic?.amount |number:'1.2-2'}}</p>
+      <p class="font22 main-color">{{redPackStatic?.amount  || "0" | number:'1.2-2'}}</p>
       <p>投放总金额（元）</p>
     </div>
     <div nz-col [nzSpan]="8" [ngClass]="{'border-right':true}" class="text-center">
-      <p class="font22 main-color">{{redPackStatic?.totalClickNum}}</p>
+      <p class="font22 main-color">{{redPackStatic?.totalClickNum || "0"}}</p>
       <p>总点击数</p>
     </div>
     <div nz-col [nzSpan]="8" [ngClass]="{'border-right':false}" class="text-center">
-      <p class="font22 main-color">{{redPackStatic?.clickTodayNum}}</p>
+      <p class="font22 main-color">{{redPackStatic?.clickTodayNum || "0"}}</p>
       <p>今日点击数</p>
     </div>
     <!--to do -->

@@ -46,16 +46,16 @@
 
 /*主题色实心按钮 start*/
 .btn-thc.ant-btn {
-  border-color: #e82d4d;
-  background-color: #e82d4d;
-  color: #ffffff;
+  border-color: #e82d4d !important;
+  background-color: #e82d4d !important;
+  color: #ffffff !important;
 }
 
 .btn-thc.ant-btn:hover, .btn-thc.ant-btn:focus, .btn-thc.ant-btn:active {
-  color: #ffffff;
-  background-color: #e82d4d;
-  border-color: #e82d4d;
-  box-shadow: 0 0 15px 1px #bb0020 inset;
+  color: #ffffff !important;
+  background-color: #e82d4d !important;
+  border-color: #e82d4d !important;
+  box-shadow: 0 0 15px 1px #bb0020 inset !important;
 }
 /*主题色实心按钮 end*/
 

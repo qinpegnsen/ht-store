@@ -6,11 +6,11 @@
     <!--买家退款退货 start-->
     <ng-container>
       <div class="pl-20">
-        <legend class="m0 lengendSty font20">
+        <legend class="m0 lengendSty font20 bb0">
           {{afterData.returnType==enumState.afterType.return?'买家退货申请':'买家退款申请'}}
         </legend>
       </div>
-      <table class="p w100">
+      <table class="w100">
         <tr class="t-item">
           <td class="item-hd w15 bt">申请时间：</td>
           <td class="item-bd w85 mb0 bt">{{afterData.createTime}}</td>
@@ -62,10 +62,12 @@
           <td class="item-bd w85 mb0">
             <ng-container *ngIf="afterData.afterGoodsReqVouList?.length > 0">
               <div class="tag-dib imgbox text-center mr" *ngFor="let item of afterData.afterGoodsReqVouList">
-                <img class="img" [src]="item.vpic | imgSize :'30'" class="littleImg" appImgErr title="点击查看大图"
-                     (click)="showImg($event)"
-                     (mouseout)="hideImg($event)">
-                <img [src]="item.vpic" appImgErr class="hover-native-img">
+                <nz-popover [nzTrigger]="'click'">
+                  <img  [src]="item.vpic | imgSize :'50'" class="littleImg" appImgErr  title="点击查看大图" nz-popover>
+                  <ng-template #nzTemplate>
+                    <img [src]="item.vpic | imgSize :'200'" appImgErr >
+                  </ng-template>
+                </nz-popover>
               </div>
             </ng-container>
           </td>
@@ -77,15 +79,15 @@
     <!--平台同意申请 start-->
     <ng-container *ngIf="afterData.state!='WAIT'">
       <div>
-        <div class="">
+        <div>
           <legend class="m0 lengendSty font20">
             {{afterData.returnType==enumState.afterType.return?'退货申请处理':'退款申请处理'}}
           </legend>
         </div>
-        <table class="t-items p w100">
+        <table class="t-items w100">
           <tr class="t-item">
-            <td class="item-hd w15">处理时间：</td>
-            <td class="item-bd w85 mb0">{{afterTailList[1]?.updateTime}}</td>
+            <td class="item-hd w15 bt">处理时间：</td>
+            <td class="item-bd w85 mb0 bt">{{afterTailList[1]?.updateTime}}</td>
           </tr>
           <tr class="t-item">
             <td class="item-hd w15">审核人：</td>
@@ -112,10 +114,10 @@
         <div class="">
           <legend class="m0 lengendSty font20">退货发货信息</legend>
         </div>
-        <table class="t-items p w100">
+        <table class="t-items w100">
           <tr class="t-item">
-            <td class="item-hd w15">退货跟踪：</td>
-            <td class="item-bd w85 mb0">
+            <td class="item-hd w15 bt">退货跟踪：</td>
+            <td class="item-bd w85 mb0 bt">
               <div class="order-track">
                 <nz-timeline class="timeline-alt pb0 mb0">
                   <nz-timeline-item class="mb0" *ngFor="let item of LogisticsData;let s = index">
@@ -170,10 +172,10 @@
       <div class="">
         <legend class="m0 lengendSty font20">退货验收处理</legend>
       </div>
-      <table class="t-items p w100">
+      <table class="t-items w100">
         <tr class="t-item">
-          <td class="item-hd w15">处理时间：</td>
-          <td class="item-bd w85 mb0">{{afterTailList[3].updateTime}}</td>
+          <td class="item-hd w15 bt">处理时间：</td>
+          <td class="item-bd w85 mb0 bt">{{afterTailList[3].updateTime}}</td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">操作人：</td>
@@ -230,21 +232,27 @@
 
     <!--提交 start-->
     <fieldset class="pt-20 pb-20 m0 text-center b0">
-      <button nz-button [nzType]="'primary'" class="btn-green" *ngIf="afterData.returnType==enumState.afterType.refund"
+      <button nz-button [nzType]="'primary'" class="btn-thc" [nzSize]="'large'" *ngIf="afterData.returnType==enumState.afterType.refund"
               (click)="auditRefund()"
               [disabled]="!opinion">
         <i class="anticon anticon-upload"></i><span>提交处理结果</span>
       </button>
       <ng-container *ngIf="afterData.returnType==enumState.afterType.return">
-        <button nz-button [nzType]="'primary'" class="btn-green" *ngIf="afterData.state==enumState.afterService.wait" (click)="auditReturn()"
+        <button nz-button [nzType]="'primary'"  [nzSize]="'large'" class="btn-thc" *ngIf="afterData.state==enumState.afterService.wait" (click)="auditReturn()"
                 [disabled]="!opinion">
           <i class="anticon anticon-upload"></i><span>提交处理结果</span>
         </button>
-        <button nz-button [nzType]="'primary'" class="btn-green" *ngIf="afterData.state==enumState.afterService.delivery"
+        <button nz-button [nzType]="'primary'" class="btn-thc" [nzSize]="'large'" *ngIf="afterData.state==enumState.afterService.delivery"
                 (click)="auditReturnGoods()"
                 [disabled]="!opinion">
           <i class="anticon anticon-upload"></i><span>提交处理结果</span>
         </button>
+
+        <!--<button nz-button [nzType]="'primary'" class="btn-thc mr-20" [nzSize]="'large'"-->
+                <!--(click)="resetSearch()">-->
+          <!--<i class="anticon anticon-reload"></i><span>重置</span>-->
+        <!--</button>-->
+
       </ng-container>
     </fieldset>
     <!--提交 end-->

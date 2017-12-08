@@ -17,7 +17,7 @@
           <div class="search-main">
             <nz-select class="w100" name="saleAfter" [(ngModel)]="query.state" [nzSize]="'large'"
                        (ngModelChange)="queryOrdList()">
-              <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
+              <nz-option [nzLabel]="''" [nzValue]="''"></nz-option>
               <ng-container *ngFor="let item of saleAfterStates">
                 <nz-option
                   [nzLabel]="item.val"
@@ -32,7 +32,7 @@
           <div class="search-main">
             <nz-select class="w100" name="isReceive" [(ngModel)]="query.isReceive" [nzSize]="'large'"
                        (ngModelChange)="queryOrdList()">
-              <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
+              <nz-option [nzLabel]="''" [nzValue]="''"></nz-option>
               <nz-option
                 *ngFor="let item of isReceiveList"
                 [nzLabel]="item.val"
@@ -45,7 +45,6 @@
           <span class="search-title ml-20">
             <nz-select class="w100" name="searchType" [(ngModel)]="query.searchType" [nzSize]="'large'" #sType
                        (ngModelChange)="changeSearchType(sType.value)">
-              <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
               <nz-option [nzLabel]="'退单单号'" [nzValue]="enumState.afterSearchType.afterNo"></nz-option>
               <nz-option [nzLabel]="'用户手机号'" [nzValue]="enumState.afterSearchType.phone"></nz-option>
               <nz-option [nzLabel]="'订单号'" [nzValue]="enumState.afterSearchType.ordno"></nz-option>
@@ -77,6 +76,10 @@
                 (click)="changeSaleAfterStateToDeLivery()">
           <i class="anticon anticon-search"></i><span>待验货</span>
         </button>
+        <button nz-button [nzType]="'primary'" class="btn-thc mr-20" [nzSize]="'large'"
+                (click)="resetSearch()">
+          <i class="anticon anticon-reload"></i><span>重置</span>
+        </button>
       </form>
     </div>
     <!--搜索 end-->
@@ -92,7 +95,7 @@
             [(nzPageSize)]="refundOrderPage.pageSize">
     <thead nz-thead>
     <tr>
-      <th nz-th class="text-center"><span></span></th>
+      <th nz-th nzExpand></th>
       <th nz-th class="text-center"><span>退单单号</span></th>
       <th nz-th class="text-center"><span>退款金额（元）</span></th>
       <th nz-th class="text-center"><span>申请人（买家）</span></th>
@@ -102,66 +105,83 @@
     </tr>
     </thead>
     <tbody nz-tbody>
-    <ng-container *ngFor="let item of nzTable.data;let i=index;">
+    <ng-template ngFor let-data [ngForOf]="nzTable.data">
       <tr nz-tbody-tr>
-        <td nz-td class="text-center"><i class="anticon anticon-down" (click)="showDetail(i)"></i></td>
-        <td nz-td class="text-center">{{item.afterNo}}</td>
-        <td nz-td class="text-center">{{item.reqMoney | number:'1.2-2'}}</td>
-        <td nz-td class="text-center">{{item.custPhone}}</td>
-        <td nz-td class="text-center">{{item.createTime}}</td>
-        <td nz-td class="text-center">{{item.state | stateName:enums.saleAfterState}}</td>
+        <td nz-td class="text-center" nzExpand>
+          <nz-row-expand-icon [(nzExpand)]="data.expand"></nz-row-expand-icon>
+        </td>
+        <td nz-td class="text-center">{{data.afterNo}}</td>
+        <td nz-td class="text-center">{{data.reqMoney | number:'1.2-2'}}</td>
+        <td nz-td class="text-center">{{data.custPhone}}</td>
+        <td nz-td class="text-center">{{data.createTime}}</td>
+        <td nz-td class="text-center">{{data.state | stateName:enums.saleAfterState}}</td>
         <td nz-td class="text-center">
-          <button nz-button class="mt-5 btn-blue" *ngIf="item.state==enumState.afterService.wait"
+          <button nz-button class="mt-5 btn-blue" *ngIf="data.state==enumState.afterService.wait"
                   [routerLink]="afterDetail"
-                  [queryParams]="{afterNo:item.afterNo,type:'deal'}" title="处理">
+                  [queryParams]="{afterNo:data.afterNo,type:'deal'}" title="处理">
             <i class="anticon anticon-edit"></i>
           </button>
-          <button nz-button class="mt-5 btn-success" *ngIf="item.state==enumState.afterService.delivery"
+          <button nz-button class="mt-5 btn-success" *ngIf="data.state==enumState.afterService.delivery"
                   [routerLink]="afterDetail"
-                  [queryParams]="{afterNo:item.afterNo,type:'deal'}" title='验收'>
+                  [queryParams]="{afterNo:data.afterNo,type:'deal'}" title='验收'>
             <i class="anticon anticon-check"></i>
           </button>
           <button nz-button title="详情" class="btn-green" [routerLink]="routerLink.store.afterDetail"
-                  [queryParams]="{afterNo:item.afterNo,type:'detail'}">
-            <i class="anticon anticon-info-circle-o"></i>
+                  [queryParams]="{afterNo:data.afterNo,type:'detail'}">
+            <i class="anticon anticon-eye-o"></i>
           </button>
         </td>
       </tr>
       <!--详情 start-->
-      <tr nz-tbody-tr *ngIf="detail[i]">
-        <td nz-td class="text-center lineHeight" [attr.colspan]="7">
-          <div class="bg-light-gray pl text-left">
-            <span>手机号：</span> <span>{{item.custPhone}}</span>
+      <tr nz-tbody-tr *ngIf="data.expand">
+        <td nz-td></td>
+        <td nz-td class="text-center">
+          <div class="bg-light-gray pl">
+            <span>商品名称：</span> <span>{{data.goodsName}}</span>
           </div>
-          <div class="bg-light-gray pl text-left">
-            <span>申请原因：</span> <span>{{item.reason}}</span>
+        </td>
+        <td nz-td class="text-center">
+          <div class="bg-light-gray pl">
+            <span>商品数量：</span> <span>{{data.num}}</span>
           </div>
-          <div class="bg-light-gray pl text-left">
-            <span>订单编号：</span> <span>{{item.ordno}}</span>
+        </td>
+        <td nz-td class="text-center">
+          <div class="bg-light-gray pl">
+            <span>手机号：</span> <span>{{data.custPhone}}</span>
           </div>
-          <div class="bg-light-gray pl text-left">
-            <span>商品编码：</span> <span>{{item.goodsCode}}</span>
+        </td>
+        <td nz-td class="text-center">
+          <div class="bg-light-gray pl">
+            <span>订单编号：</span> <span>{{data.ordno}}</span>
           </div>
-          <div class="bg-light-gray pl text-left">
-            <span>商品名称：</span> <span>{{item.goodsName}}</span>
+        </td>
+        <td nz-td class="text-center">
+          <div class="bg-light-gray pl">
+            <span>商品编码：</span> <span>{{data.goodsCode}}</span>
           </div>
-          <div class="bg-light-gray pl text-left">
-            <span>商品数量：</span> <span>{{item.num}}</span>
+        </td>
+      </tr>
+      <tr nz-tbody-tr *ngIf="data.expand">
+        <td nz-td></td>
+        <td nz-td class="text-center">
+          <div class="bg-light-gray pl">
+            <span class="mySpan">商品图片：</span>
+            <nz-popover [nzTrigger]="'click'">
+              <img [src]="data.goodsImage | imgSize :'50'" appImgErr title="点击查看大图" nz-popover>
+              <ng-template #nzTemplate>
+                <img [src]="data.goodsImage | imgSize :'200'" appImgErr>
+              </ng-template>
+            </nz-popover>
           </div>
-          <div class="bg-light-gray pl text-left h35">
-            <span class="fl">商品图片：</span>
-            <span>
-                 <img [src]="item.goodsImage| imgSize :'30'" appImgErr class="littleImg" title="点击查看大图"
-                      (click)="showImg($event)"
-                      (mouseout)="hideImg($event)">
-                 <img [src]="item.goodsImage" appImgErr class="hover-big-img"
-                 >
-                </span>
+        </td>
+        <td nz-td class="text-center" colspan="5">
+          <div class="bg-light-gray pl">
+            <span>申请原因：</span> <span>{{data.reason}}</span>
           </div>
         </td>
       </tr>
       <!--详情 end-->
-    </ng-container>
+    </ng-template>
     </tbody>
   </nz-table>
   <!--引导语 start-->
