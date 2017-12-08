@@ -17,9 +17,6 @@ const PROXY_CONFIG = [
     context: [
       "/seller",
       "/sms",
-      "/rpAccountRec",
-      "/statistical",
-      "/rpStatistics",
       "/enterprise",
       "/login",
       "/stores",
@@ -30,6 +27,9 @@ const PROXY_CONFIG = [
   },
   {
     context: [
+      "/rpStatistics",
+      "/statistical",
+      "/rpAccountRec",
       "/goodsKind",
       "/goodsEdit",
       "/goodsQuery",
