@@ -93,23 +93,13 @@
           </div>-->
         </div>
         <div nz-col [nzSpan]="8">
-          <ng-container *ngIf="bankLicenceUploader.queue[0]">
+          <ng-container *ngIf="storeLabelUploader.queue[0]">
             <div class="uploaded">
               <nz-popover [nzTrigger]="'click'">
-                <img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" height="32"
+                <img [src]="storeLabelUploader.queue[0]?._file | imgPreview" height="32"
                      title="点击看大图" nz-popover>
                 <ng-template #nzTemplate>
-                  <div><img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" height="200"></div>
-                </ng-template>
-              </nz-popover>
-            </div>
-          </ng-container>
-          <ng-container *ngIf="validateForm.bankLicenceElectronic && !bankLicenceUploader.queue[0]">
-            <div class="uploaded">
-              <nz-popover [nzTrigger]="'click'">
-                <img [src]="validateForm.bankLicenceElectronic | imgSize: '60'" title="点击看大图" nz-popover>
-                <ng-template #nzTemplate>
-                  <div><img [src]="validateForm.bankLicenceElectronic | imgSize: '200'"></div>
+                  <div><img [src]="storeLabelUploader.queue[0]?._file | imgPreview" height="200"></div>
                 </ng-template>
               </nz-popover>
             </div>
