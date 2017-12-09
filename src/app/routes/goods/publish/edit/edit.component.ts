@@ -797,7 +797,22 @@ export class EditComponent implements OnInit {
    */
   publishGoods() {
     let me = this;
-    if (me.judgeSkuPrices() && me.judgeGoodsImgs() && me.judgeLogistics()) me.uploadImgs();// 如果没有空项则上传图片
+    if (me.judgeSkuPrices() && me.judgeGoodsImgs() && me.judgeDetailInfo() && me.judgeLogistics()) me.uploadImgs();// 如果没有空项则上传图片
+  }
+
+  /**
+   * 判断商品详情是否编辑
+   */
+  judgeDetailInfo(){
+    let me = this;
+    if(isNullOrUndefined(me.publishData.goodsBody) || me.publishData.goodsBody == '') {
+      me._notification.warning('', '请编辑PC端商品详情');
+    }else{
+      me.publishData.mobileBody = me.genMblDetailHtml();               // 商品详情 App
+      if(isNullOrUndefined(me.publishData.mobileBody) ||me.publishData.mobileBody == ''){
+        me._notification.warning('', '请编辑移动端商品详情');
+      }
+    }
   }
 
   /**
@@ -807,7 +822,7 @@ export class EditComponent implements OnInit {
   judgeGoodsImgs() {
     let me = this, targets = me.skuImg.vals;
     // 当商品发布时，如果选了规格，但没有选择图片
-    if (me.path == 'step_two') {
+    if (me.path == 'edit') {
       if (targets.length > 0) {
         for (let i = 0; i < targets.length; i++) {
           if (targets[i].uploader.queue.length == 0) {
@@ -895,7 +910,6 @@ export class EditComponent implements OnInit {
     let me = this;
     me.genGoodsImgList();                                              // 商品图片列表
     me.genGoodsBaseAttrList();                                          // 商品基本属性
-    me.publishData.mobileBody = me.genMblDetailHtml();               // 商品详情 App
     $.when(this.goodsService.saveGoods(me.publishData)).done(data => {
       if (data) {
         if (me.path == 'edit') me.router.navigate([SettingUrl.ROUTERLINK.store.goodsPublished], {queryParams: {baseCode: me.goodsBaseCode}});
