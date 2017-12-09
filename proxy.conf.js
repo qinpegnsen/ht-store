@@ -19,10 +19,9 @@ const PROXY_CONFIG = [
       "/sms",
       "/enterprise",
       "/login",
-      "/stores",
-      "/ord",
+      "/stores"
     ],
-    target: gh + "8084",   //拦截 context配置路径，经过此地址
+    target: ly + "8087",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
@@ -39,7 +38,16 @@ const PROXY_CONFIG = [
       "/storeExpressTpl",
       "/after"
     ],
-    target: gh + "8084",   //拦截 context配置路径，经过此地址
+    target: csj + "8084",   //拦截 context配置路径，经过此地址
+    secure: false
+  },
+  {
+    context: [
+      "/ord",
+      "/finaceDraw",
+      "/rpAccountRec"
+    ],
+    target: csj + "8085",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
@@ -48,9 +56,9 @@ const PROXY_CONFIG = [
       "/basicExpress",
       "/upload"
     ],
-    target: gh + "8082",   //拦截 context配置路径，经过此地址
+    target: csj + "8082",   //拦截 context配置路径，经过此地址
     secure: false
-  },
+  }
 ];
 
 module.exports = PROXY_CONFIG;
