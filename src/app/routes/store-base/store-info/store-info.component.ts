@@ -22,6 +22,8 @@ export class StoreInfoComponent implements OnInit {
   ngOnInit() {
     let _this = this;
     _this.queryStoreData();//查询企业信息
+    _this.bankCard();//银行卡号加密
+    _this.idCard();//身份证号加密
   }
 
   /**
@@ -47,6 +49,24 @@ export class StoreInfoComponent implements OnInit {
    */
   back() {
     this.location.back();
+  }
+
+  /**
+   * 银行卡号加密
+   */
+  bankCard(){
+    let _this=this;
+    let card= _this.storeInfo.settlementBankCode.substr(0,3) + '***********' + _this.storeInfo.settlementBankCode.substr(14);
+    $('.bankCard').text(card)
+  }
+
+  /**
+   * 身份证号加密
+   */
+  idCard(){
+    let _this=this;
+    let card= _this.storeInfo.legalPersonIdcard.substr(0,3) + '***********' + _this.storeInfo.legalPersonIdcard.substr(14);
+    $('.idCard').text(card)
   }
 
 }

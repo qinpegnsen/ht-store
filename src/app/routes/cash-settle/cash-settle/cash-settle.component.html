@@ -106,10 +106,10 @@
     <tbody nz-tbody>
     <tr nz-tbody-tr *ngFor="let data of nzTable.data;let i=index;" class="text-center">
       <td nz-td>{{i+1}}</td>
-      <td nz-td>￥{{data.ordPay}}</td>
-      <td nz-td>￥{{data.ordRefundPay}}</td>
+      <td nz-td>￥{{data.ordPay | number:'1.2-2'}}</td>
+      <td nz-td>￥{{data.ordRefundPay | number:'1.2-2'}}</td>
       <td nz-td>{{data.settleRate}}%</td>
-      <td nz-td>￥{{data.settle}}</td>
+      <td nz-td>￥{{data.settle | number:'1.2-2'}}</td>
     </tr>
     </tbody>
     <!--结算数据 --end -->
