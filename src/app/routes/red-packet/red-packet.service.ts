@@ -48,8 +48,11 @@ export class RedPacketService {
         if (res.success) {
           defer.resolve(res.data);
         } else {
-          this._notification.info('温馨提示', '服务器打盹了');
+          defer.reject(res.data);
         }
+      },
+      error:()=>{
+        this._notification.info('温馨提示', '服务器打盹了');
       }
     });
     return defer.promise(); //返回异步请求消息

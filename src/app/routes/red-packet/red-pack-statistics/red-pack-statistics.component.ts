@@ -3,6 +3,7 @@ import {RedPacketService} from "../red-packet.service";
 import {MainService} from "../../../public/service/main.service";
 import {Util} from "../../../public/util/util";
 import {Setting} from "../../../public/setting/setting";
+import {isNullOrUndefined} from "util";
 declare var $: any;
 
 @Component({
@@ -78,10 +79,14 @@ export class RedPackStatisticsComponent implements OnInit {
       queryType: this.staType, //查询的类型
       queryTime: this.queryTime //查询的时间
     };
-    $.when(this.redPacketService.rpStatistics(queryparams)).done(data => {
+    $.when(this.redPacketService.rpStatistics(queryparams)).always(data => {
       if (data) {
         this.redPackStatic = data;
-      } //赋值
+      } else{
+        if(isNullOrUndefined(data)){
+          me.redPackStatic=null;
+        }
+      }//赋值
       me.optionPrevInfo();
     })
   }
@@ -164,7 +169,7 @@ export class RedPackStatisticsComponent implements OnInit {
       xAxis: [
         {
           type: 'category',
-          data: _this.redPackStatic[this.queryTime].keys,
+          data: _this.redPackStatic?_this.redPackStatic[_this.queryTime].keys:[''],
           axisTick: {
             alignWithLabel: true
           },
@@ -183,7 +188,7 @@ export class RedPackStatisticsComponent implements OnInit {
           name: '点击数',
           type: 'bar',
           barWidth: '30%',
-          data: _this.redPackStatic[this.queryTime].yaxis
+          data: _this.redPackStatic?_this.redPackStatic[_this.queryTime].yaxis:[0]
         }
       ]
     };
