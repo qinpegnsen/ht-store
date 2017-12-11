@@ -161,23 +161,4 @@ export class OpenShopComponent implements OnInit {
     // 当选择了新的图片的时候，把老图片从待上传列表中移除
     if (this.storeLabelUploader.queue.length > 1) this.storeLabelUploader.queue[0].remove();
   }
-
-  /**
-   * 鼠标放在图片上时大图随之移动
-   */
-  showImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'block';
-    target.style.top = (event.clientY + 20) + 'px';
-    target.style.left = (event.clientX + 30) + 'px';
-  }
-
-  /**
-   * 隐藏大图
-   * @param event
-   */
-  hideImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'none';
-  }
 }

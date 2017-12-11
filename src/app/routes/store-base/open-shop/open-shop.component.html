@@ -155,9 +155,6 @@
                 </ng-template>
               </nz-popover>
             </div>
-            <img [src]="storeAvatarUploader.queue[0]?._file | imgPreview" (mousemove)="showImg($event)"
-                 (mouseleave)="hideImg($event)" class="uploaded">
-            <img [src]="storeAvatarUploader.queue[0]?._file | imgPreview" class="uploaded-big">
           </ng-container>
           <!--修改图片的时候-->
           <ng-container *ngIf="validateForm.storeAvatar && !storeAvatarUploader.queue[0]">
