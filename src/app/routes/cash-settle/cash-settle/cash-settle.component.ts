@@ -22,7 +22,7 @@ export class CashSettleComponent implements OnInit {
   storeInfo: any = {};  //企业信息
   insertData: any = {};  //申请提现时传入的信息
   settleFormula: any = Setting.PAGEMSG.settleFormula; //结算公式
-  cachUrl:string = SettingUrl.ROUTERLINK.store.cach; //提现页面
+  cachUrl: string = SettingUrl.ROUTERLINK.store.cach; //提现页面
 
   constructor(private fb: FormBuilder, public cashSettleService: CashSettleService) {
     this.validateForm = this.fb.group({ //表单数据
@@ -52,7 +52,6 @@ export class CashSettleComponent implements OnInit {
     $.when(CashSettleService.cashSettleList(me.settlePage.params)).done(data => {
       me._loading = false //解除锁屏
       if (data) me.settlePage = data; //赋值
-      // console.log("█  me.settlePage ►►►",   me.settlePage);
     })
   };
 
@@ -66,11 +65,11 @@ export class CashSettleComponent implements OnInit {
       agentCode: "552408454438297600"
     }
     $.when(CashSettleService.storeData(data)).done(data => {
-      me._loading = false //解除锁屏
+      me._loading = false; //解除锁屏
       if (data) {
         me.storeInfo = data;
         me.validateForm.patchValue(me.storeInfo);//回显提现信息
-        // console.log("█ me.storeInfo ►►►",  me.storeInfo);
+        me.bankCard();//银行卡号加密
       }
     })
   };
@@ -81,6 +80,7 @@ export class CashSettleComponent implements OnInit {
    */
   showModal = () => {
     this.isVisible = true;
+
   }
 
   /**
@@ -94,8 +94,8 @@ export class CashSettleComponent implements OnInit {
     me.cashSettleService.insertList(me.insertData);
     this.isConfirmLoading = true;//点击确认按钮加载小圈
     setTimeout(() => {
-      this.isVisible = false;
-      this.isConfirmLoading = false;
+      me.isVisible = false;
+      me.isConfirmLoading = false;
     }, 1000);
   }
 
@@ -114,6 +114,15 @@ export class CashSettleComponent implements OnInit {
    */
   getFormControl(name) {
     return this.validateForm.controls[name];
+  }
+
+  /**
+   * 银行卡号加密
+   */
+  bankCard() {
+    let me = this, bank = me.validateForm.controls["balance"].value;
+    let bankCard = String(bank).substring(0, 2) + "*" + String(bank).substring(3);
+    me.validateForm.patchValue({balance: bankCard});
   }
 
 }

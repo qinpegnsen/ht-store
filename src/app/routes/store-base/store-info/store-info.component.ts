@@ -15,7 +15,7 @@ export class StoreInfoComponent implements OnInit {
 
   public enumState: any = Setting.ENUMSTATE;//获取枚举状态名
   public enum: any = Setting.ENUM;//获取枚举状态名
-  public shops:string = SettingUrl.ROUTERLINK.basic.shops; //店铺信息路由
+  public shops: string = SettingUrl.ROUTERLINK.basic.shops; //店铺信息路由
   constructor(public location: Location) {
   }
 
@@ -33,7 +33,7 @@ export class StoreInfoComponent implements OnInit {
     let _this = this;
     _this._loading = true; //锁屏
     let data = { //查询参数
-      epCode: "650849036134457344"//企业编码
+      epCode: "649255483008294912"//企业编码
     }
     $.when(StoreBaseService.loadStoreInfo(data)).done(data => {
       _this._loading = false //解除锁屏
@@ -54,19 +54,19 @@ export class StoreInfoComponent implements OnInit {
   /**
    * 银行卡号加密
    */
-  bankCard(){
-    let _this=this;
-    let card= _this.storeInfo.settlementBankCode.substr(0,3) + '***********' + _this.storeInfo.settlementBankCode.substr(14);
-    $('.bankCard').text(card)
+  bankCard() {
+    let _this = this, bank = _this.storeInfo.bankAccountNumber;
+    let bankcard = String(bank).substr(0, 3) + '***********' + String(bank).substr(14);
+    $('.bankCard').text(bankcard)
   }
 
   /**
    * 身份证号加密
    */
-  idCard(){
-    let _this=this;
-    let card= _this.storeInfo.legalPersonIdcard.substr(0,3) + '***********' + _this.storeInfo.legalPersonIdcard.substr(14);
-    $('.idCard').text(card)
+  idCard() {
+    let _this = this, card = _this.storeInfo.legalPersonIdcard;
+    let idcard = String(card).substr(0, 3) + '***********' + String(card).substr(14);
+    $('.idCard').text(idcard)
   }
 
 }
