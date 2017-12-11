@@ -17,10 +17,10 @@ declare var $: any;
   styleUrls: ['./account-info.component.css']
 })
 export class AccountInfoComponent implements OnInit {
-  validateForm: any = {};
-  _options: any;//三级联动区域数据
-  ngValidateStatus = Util.ngValidateStatus;
-  ngValidateErrorMsg = Util.ngValidateErrorMsg;
+  validateForm: any = {};                   //表单
+  _options: any;                            //三级联动区域数据
+  ngValidateStatus = Util.ngValidateStatus;//表单项状态
+  ngValidateErrorMsg = Util.ngValidateErrorMsg;//表单项提示状态
   valitateState: any = Setting.valitateState;//表单验证状态
 
   public bankLicenceUploader: FileUploader = new FileUploader({
@@ -34,8 +34,8 @@ export class AccountInfoComponent implements OnInit {
               public _notification: NzNotificationService,
               public route: ActivatedRoute) {
     this.steps.current = 2;
-    Util.transAreas(AREA_LEVEL_3_JSON);
-    this._options = AREA_LEVEL_3_JSON;
+    Util.transAreas(AREA_LEVEL_3_JSON);//将地区数据转成联级组件需要的格式
+    this._options = AREA_LEVEL_3_JSON;//地区数据
     this.validateForm = {
       isSettlementAccount: true
     }
@@ -77,47 +77,36 @@ export class AccountInfoComponent implements OnInit {
    */
   public submitCompleteForm($event) {
     $event.preventDefault();
-    let me = this, uploadedNum = 0, allUploaders = [
-      this.bankLicenceUploader
-    ];
-    allUploaders.forEach((uploader, i) => {
-      let uuid = '';//置空暗码
+    let me = this, uploadedNum = 0, uploader = me.bankLicenceUploader;
+    let uuid = '';//置空暗码
 
-      //如果该组不需要上传图片则uploadedNum+1
-      //需要上传图片的则在图片上传完成后uploadedNum+1
-      if (uploader.getNotUploadedItems().length == 0) uploadedNum += 1;
-      //上传之前，获取暗码
-      uploader.onBuildItemForm = function (fileItem, form) {
-        uuid = MainService.uploadUid();
-        form.append('uuid', uuid);
-      };
-      uploader.uploadAll();//执行上传
-      // 上传成功
-      uploader.onSuccessItem = function (item, response, status, headers) {
-        let res = JSON.parse(response);
-        if (res.success) {
-          if (uuid) me.patchValues(i, uuid);//上传成功将暗码赋值给相应字段
-        } else {
-          me._notification.error(`上传失败`, '图片' + item._file.name + res.info)
-        }
+    //如果该组不需要上传图片则uploadedNum+1
+    //需要上传图片的则在图片上传完成后uploadedNum+1
+    if (uploader.getNotUploadedItems().length == 0) uploadedNum += 1;
+    //上传之前，获取暗码
+    uploader.onBuildItemForm = function (fileItem, form) {
+      uuid = MainService.uploadUid();
+      form.append('uuid', uuid);
+    };
+    uploader.uploadAll();//执行上传
+    // 上传成功
+    uploader.onSuccessItem = function (item, response, status, headers) {
+      let res = JSON.parse(response);
+      if (res.success) {
+        if (uuid) me.validateForm.bankLicenceElectronic = uuid;//上传成功将暗码赋值给相应字段
+      } else {
+        me._notification.error(`上传失败`, '图片' + item._file.name + res.info)
       }
-      // 上传失败
-      uploader.onErrorItem = function (item, response, status, headers) {
-        let res = JSON.parse(response);
-        me._notification.error(`上传失败`, '图片' + uploader.queue[0]._file.name + res.info)
-      };
-      // 完成上传
-      uploader.onCompleteAll = function () {
-        uploadedNum += 1;     // 该组上传完之后uploadedNum+1；
-        if (uploadedNum == allUploaders.length) {  // 当有图片上传，并且是图片组的最后一个时
-          me.submitFormData()     //整理数据并且发布商品
-        }
-      }
-      // 每张图片上传结束后，判断如果是最后一组图片则发布商品，不是最后一组会进入下一个循环
-      if (uploadedNum == allUploaders.length) {  // 当有图片上传，并且是图片组的最后一个时
-        me.submitFormData()     //整理数据并且发布商品
-      }
-    })
+    }
+    // 上传失败
+    uploader.onErrorItem = function (item, response, status, headers) {
+      let res = JSON.parse(response);
+      me._notification.error(`上传失败`, '图片' + uploader.queue[0]._file.name + res.info)
+    };
+    // 完成上传
+    uploader.onCompleteAll = function () {
+      me.submitFormData()     //提交表单数据
+    }
   }
 
   /**
@@ -140,42 +129,11 @@ export class AccountInfoComponent implements OnInit {
     this.storeBaseService.enterpriseAccount(formValue);
   };
 
-
-  /**
-   * 上传图片之后给表单元素赋值
-   */
-  patchValues(i, uuid) {
-    switch (i) {
-      case 0:
-        this.validateForm.bankLicenceElectronic = uuid;
-        break;
-    }
-  }
-
   /**
    * 跳转页面
    */
   skipTo(stepName) {
     this.storeBaseService.routerSkip(stepName);
-  }
-
-  /**
-   * 鼠标放在图片上时大图随之移动
-   */
-  showImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'block';
-    target.style.top = (event.clientY + 20) + 'px';
-    target.style.left = (event.clientX + 30) + 'px';
-  }
-
-  /**
-   * 隐藏大图
-   * @param event
-   */
-  hideImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'none';
   }
 
 }

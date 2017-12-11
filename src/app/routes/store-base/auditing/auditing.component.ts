@@ -11,8 +11,8 @@ declare var $: any;
   styleUrls: ['./auditing.component.css']
 })
 export class AuditingComponent implements OnInit {
-  public curState: string;   //当前状态
-  public curParam: any = null;   //当前状态下可以跳转的路由所需参数
+  curState: string;   //当前状态
+  curParam: any = null;   //当前状态下可以跳转的路由所需参数
 
   constructor(public storeBaseService: StoreBaseService,
               public route: ActivatedRoute,
@@ -34,12 +34,12 @@ export class AuditingComponent implements OnInit {
     $.when(StoreBaseService.loadStoreState(param)).done(data => {
       if (data) {
         if(data.state == Setting.ENUMSTATE.enterState.half || data.state == Setting.ENUMSTATE.enterState.audit){
-          me.curState = 'auditing';
+          me.curState = 'auditing';//待审核状态
         }else if(data.state == Setting.ENUMSTATE.enterState.normal){
-          me.curState = 'settlePass';
+          me.curState = 'settlePass';//审核通过，入驻成功
           me.curParam = {epCode:data.epCode,sellerCode:data.sellerCode};//开通店铺所需参数
         }else if(data.state == Setting.ENUMSTATE.enterState.reject) {
-          me.curState = 'settleReject';
+          me.curState = 'settleReject';//审核驳回
           me.curParam = {epCode:data.epCode};//修改信息所需参数
         }
       }

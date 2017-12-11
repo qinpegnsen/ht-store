@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-open-steps',
@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./open-steps.component.css']
 })
 export class OpenStepsComponent implements OnInit {
-  step:number = 0;
-  constructor() { }
+  step: number = 0;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

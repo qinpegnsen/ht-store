@@ -11,8 +11,8 @@ declare var $: any;
   styleUrls: ['./done.component.css']
 })
 export class DoneComponent implements OnInit {
-  public curState: string;//当前店铺状态
-  public curParam: any = null;
+  curState: string;//当前店铺状态
+  curParam: any = null;
 
   constructor(public storeBaseService: StoreBaseService,
               public route: ActivatedRoute,

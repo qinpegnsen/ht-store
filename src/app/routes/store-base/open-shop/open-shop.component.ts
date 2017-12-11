@@ -18,10 +18,10 @@ declare var $: any;
   styleUrls: ['./open-shop.component.css']
 })
 export class OpenShopComponent implements OnInit {
-  validateForm: any = {};
+  validateForm: any = {};//表单
   _options: any;//三级联动区域数据
-  ngValidateStatus = Util.ngValidateStatus;
-  ngValidateErrorMsg = Util.ngValidateErrorMsg;
+  ngValidateStatus = Util.ngValidateStatus;//表单项状态
+  ngValidateErrorMsg = Util.ngValidateErrorMsg;//表单项提示状态
   valitateState: any = Setting.valitateState;//表单验证状态
 
   public storeLabelUploader: FileUploader = new FileUploader({
@@ -42,8 +42,8 @@ export class OpenShopComponent implements OnInit {
               public _notification: NzNotificationService,
               public route: ActivatedRoute) {
     this.steps.step = 0;
-    Util.transAreas(AREA_LEVEL_3_JSON);
-    this._options = AREA_LEVEL_3_JSON;
+    Util.transAreas(AREA_LEVEL_3_JSON);//将地区数据转成联级组件需要的格式
+    this._options = AREA_LEVEL_3_JSON;//地区数据
   }
 
   ngOnInit() {
@@ -59,8 +59,8 @@ export class OpenShopComponent implements OnInit {
    * 查询店铺信息
    * @param data
    */
-  loadShopData (storeCode){
-    let me = this,param = {storeCode:storeCode};
+  loadShopData(storeCode) {
+    let me = this, param = {storeCode: storeCode};
     $.when(StoreBaseService.loadShopInfo(param)).done(data => {
       if (data) me.validateForm = data //店铺信息
     })

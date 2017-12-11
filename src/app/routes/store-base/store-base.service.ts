@@ -1,6 +1,5 @@
 import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
-import {PatternService} from "../../public/service/pattern.service";
 import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {NzNotificationService} from "ng-zorro-antd";
@@ -11,7 +10,6 @@ declare var $: any;
 export class StoreBaseService {
 
   constructor(public router: Router,
-              public patterns: PatternService,
               public steps: SettleStepsComponent,
               public _notification: NzNotificationService) {
   }

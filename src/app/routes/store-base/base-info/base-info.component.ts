@@ -18,13 +18,13 @@ declare var $: any;
   styleUrls: ['./base-info.component.css']
 })
 export class BaseInfoComponent implements OnInit {
-  public _options: any;//三级联动区域数据
-  public validateForm: any = {};
-  public papersTypes: any;     //证件类型
-  public enumStates: any = Setting.ENUMSTATE; //枚举值
-  public ngValidateStatus = Util.ngValidateStatus;
-  public ngValidateErrorMsg = Util.ngValidateErrorMsg;
-  public valitateState: any = Setting.valitateState;//表单验证状态
+  _options: any;//三级联动区域数据
+  validateForm: any = {};//表单
+  papersTypes: any;     //证件类型
+  enumStates: any = Setting.ENUMSTATE; //枚举值
+  ngValidateStatus = Util.ngValidateStatus;//表单项状态
+  ngValidateErrorMsg = Util.ngValidateErrorMsg;//表单项提示状态
+  valitateState: any = Setting.valitateState;//表单验证状态
 
   public organizationCodeUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.enterprise.upload,
@@ -47,8 +47,8 @@ export class BaseInfoComponent implements OnInit {
               public patternService: PatternService,
               public _notification: NzNotificationService,
               public route: ActivatedRoute) {
-    Util.transAreas(AREA_LEVEL_3_JSON);
-    this._options = AREA_LEVEL_3_JSON;
+    Util.transAreas(AREA_LEVEL_3_JSON);//将地区数据转成联级组件需要的格式
+    this._options = AREA_LEVEL_3_JSON;//地区数据
     this.steps.current = 1;
   }
 

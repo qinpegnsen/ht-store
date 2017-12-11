@@ -24,13 +24,13 @@ export class RegisterComponent implements OnInit {
     this.storeBaseService.routerSkip(this.steps.current);
     //企业注册表单项校验
     this.validateForm = this.fb.group({
-      phone               : [ '', [ Validators.required ], [ Util.requiredPhoneValidator ] ],
-      code                : [ '', [ Validators.required ], [ Util.smsCodeValidator ] ],
-      sellerPwd           : [ '', [ Util.pwdValidator] ],
-      rePwd               : [ '', [ this.passwordConfirmationValidator ] ],
-      // email            : [ '', [ this.emailValidator ] ],
+      phone: ['', [Validators.required], [Util.requiredPhoneValidator]],
+      code: ['', [Validators.required], [Util.smsCodeValidator]],
+      sellerPwd: ['', [Util.pwdValidator]],
+      rePwd: ['', [this.passwordConfirmationValidator]]
     });
   }
+
   ngOnInit() {
   }
 
@@ -43,9 +43,8 @@ export class RegisterComponent implements OnInit {
   submitRegisterForm = ($event, value) => {
     $event.preventDefault();
     for (const key in this.validateForm.controls) {
-      this.validateForm.controls[ key ].markAsDirty();
+      this.validateForm.controls[key].markAsDirty();
     }
-    console.log(value);
     let formValue = value;
     this.storeBaseService.addSeller(formValue);
   };
@@ -57,9 +56,9 @@ export class RegisterComponent implements OnInit {
    */
   passwordConfirmationValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
-      return { required: true };
-    } else if (control.value !== this.validateForm.controls[ 'sellerPwd' ].value) {
-      return { confirm: true, error: true };
+      return {required: true};
+    } else if (control.value !== this.validateForm.controls['sellerPwd'].value) {
+      return {confirm: true, error: true};
     }
   };
 
@@ -68,40 +67,40 @@ export class RegisterComponent implements OnInit {
    */
   validateConfirmPassword() {
     setTimeout(_ => {
-      this.validateForm.controls[ 'rePwd' ].updateValueAndValidity();
+      this.validateForm.controls['rePwd'].updateValueAndValidity();
     })
   }
 
   getFormControl(name) {
-    return this.validateForm.controls[ name ];
+    return this.validateForm.controls[name];
   }
 
   /**
    * 企业注册获取验证码
    * @param requestDate
    */
-  getCaptcha(){
-    let me = this, phone = me.validateForm.controls[ 'phone' ].value;
-    if(!me.isSending && PatternService.PHONE_REGEXP.test(phone)){
+  getCaptcha() {
+    let me = this, phone = me.validateForm.controls['phone'].value;
+    if (!me.isSending && PatternService.PHONE_REGEXP.test(phone)) {
       let res = me.storeBaseService.getSmsCode(phone);
-      if(res){
+      if (res) {
         me.isSending = true;
         let second = 60;
         let timer = setInterval(() => {
-          if(second >= 1) {
+          if (second >= 1) {
             second -= 1;
             me.msgText = `已发送${second}秒`;
           }
-          if(second < 1) {
+          if (second < 1) {
             me.msgText = `重新获取`;
             me.isSending = false;
             clearInterval(timer);
           }
-        },1000);
+        }, 1000);
       }
-    }else if(phone == ''){
+    } else if (phone == '') {
       me.phoneState = 'empty';
-    }else{
+    } else {
       me.phoneState = 'error';
     }
   }

@@ -55,10 +55,11 @@ export class ManageComponent implements OnInit {
    */
   showSkuList(baseCode, name) {
     this.modalService.open({
-      title          : `“${name}”的所有规格`,
-      content        : SkuGoodsComponent,
-      footer         : false,
-      componentParams: {
+      title          : `“${name}”的所有规格`,          //弹窗标题
+      content        : SkuGoodsComponent,                 //弹窗内容组件
+      footer         : false,                             //弹窗页脚，false表示不显示
+      width          : 600,                                //弹窗宽度
+      componentParams: {                                  //传参数
         baseCode: baseCode
       }
     });
