@@ -52,8 +52,6 @@
         <span class="search-title">分类：</span>
         <div class="search-main">
           <nz-cascader
-            [(ngModel)]="_value"
-            name="kindId"
             [nzPlaceHolder]="'分类'"
             [nzSize]="'large'"
             (nzChange)="getKind($event)"
@@ -181,17 +179,17 @@
               <i class="anticon anticon-arrow-down"></i>
             </button>
           </nz-popconfirm>
-          <nz-popconfirm *ngIf="goods.state==enumState.goodsState.normal" [nzPlacement]="'top'"
+          <!--<nz-popconfirm *ngIf="goods.state==enumState.goodsState.normal" [nzPlacement]="'top'"
                          [nzTitle]="'确定要禁售这个商品吗？禁售后，所有sku商品都将下架，代理商将不能批发该商品'"
                          (nzOnConfirm)="changeState('stop',goods.goodsBaseCode)">
             <button nz-popconfirm nz-button class="btn-danger" title="禁售">
               <i class="anticon anticon-minus-circle-o"></i>
             </button>
-          </nz-popconfirm>
-          <button nz-button *ngIf="goods.state==enumState.goodsState.stop" title="解禁" class="btn-purple"
+          </nz-popconfirm>-->
+         <!-- <button nz-button *ngIf="goods.state==enumState.goodsState.stop" title="解禁" class="btn-purple"
                   (click)="changeState('relieve',goods.goodsBaseCode)">
             <i class="anticon anticon-check"></i>
-          </button>
+          </button>-->
           <button nz-button *ngIf="goods.state==enumState.goodsState.down" class="btn-success"
                   title="申请上架" (click)="changeState('normal',goods.goodsBaseCode)">
             <i class="anticon anticon-arrow-up"></i>

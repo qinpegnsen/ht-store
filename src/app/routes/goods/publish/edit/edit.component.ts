@@ -2,7 +2,6 @@ import {Component, OnInit} from "@angular/core";
 import {PublishComponent} from "../publish.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
-import {FormGroup} from "@angular/forms";
 import {GoodsService} from "../../goods.service";
 import {isNullOrUndefined, isUndefined} from "util";
 import {FileUploader} from "ng2-file-upload";
@@ -20,7 +19,7 @@ declare var $: any;
 })
 export class EditComponent implements OnInit {
   ngValidateStatus = Util.ngValidateStatus;
-  public enumState = Setting.ENUMSTATE;//枚举
+  public enumState = Setting.ENUMSTATE;   //枚举
   public path: string;                  // 当前路径
   public saleAttrList: any;             // 所有规格数据
   public brandsList: any;               // 品牌列表
@@ -43,20 +42,22 @@ export class EditComponent implements OnInit {
   public goodsEditData: any;           // 修改商品时商品的原有数据
   public publishData: any = {};         // 商品发布数据
   public mobileUploader: FileUploader = new FileUploader({
-    url: SettingUrl.URL.goods.goodsUploadRetHttpURL,
-    itemAlias: "limitFile",
-    autoUpload: true,
-    allowedFileType: ["image"]
+    url: SettingUrl.URL.goods.goodsUploadRetHttpURL,  //上传地址
+    itemAlias: "limitFile",//上传文件名
+    autoUpload: true,   //自动上传
+    allowedFileType: ["image"]  //文件类型限制
   })
+  public patterns:any;  //正则
 
   constructor(public publishComponent: PublishComponent,
               public location: Location,
               public goodsService: GoodsService,
-              public patterns: PatternService,
+              public patternService: PatternService,
               public _notification: NzNotificationService,
               public route: ActivatedRoute,
               public router: Router) {
     this.publishComponent.step = 1;
+    this.patterns = this.patternService;
   }
 
   ngOnInit() {
@@ -151,7 +152,6 @@ export class EditComponent implements OnInit {
           me.genImgSku();       //已选中属性的图片组
           me.genTempGoodsImgsList();  // 将商品的图片组生成me.goodsImgList一样的数据，方便后续追加图片
           me.genMblItemList();        //将html字符串生成移动端图片文字组合
-          // console.log("█ me.publishData ►►►", me.publishData);
         }
       })
     }
@@ -199,7 +199,7 @@ export class EditComponent implements OnInit {
   getExpressTpl() {
     let me = this;
     //TODO，登录后根据登录店铺编码获取相关运费模板,，目前所用是自营店铺的编码
-    let data = {storeCode: 'SZH_PLAT_SELF_STORE'};
+    let data = {storeCode: '649530532714012672'};
     $.when(GoodsService.freightList(data)).done(res => {
       if (res) me.logistics = res; //赋值
     })
@@ -281,7 +281,6 @@ export class EditComponent implements OnInit {
       me.oldImgs[item.valCode].push(item.goodsImage);       // 往老图片组中添加这个图片
       me.goodsImgList[item.valCode].push(item.goodsImage);  // 往总图片组中添加这个图片
     });
-    // console.log("█ me.oldImgs ►►►", me.oldImgs);
   }
 
   /**

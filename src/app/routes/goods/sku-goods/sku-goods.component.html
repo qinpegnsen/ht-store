@@ -16,10 +16,12 @@
   <tr nz-tbody-tr *ngFor="let item of nzTable.data;let i = index">
     <td nz-td class="w60 relative p">
       <div>
-        <img [src]="item.goodsImage" (mousemove)="showImg($event)" (mouseleave)="hideImg($event)"
-             class="goods-sku-img"
-             alt="">
-        <img [src]="item.goodsImage" class="hover-sku-img" alt="">
+        <nz-popover [nzTrigger]="'click'">
+          <img [src]="item.goodsImage | imgSize:'60'" appImgErr title="点击看大图" [alt]="item.goodsName" nz-popover>
+          <ng-template #nzTemplate>
+            <div><img [src]="item.goodsImage | imgSize:'200'" [alt]="item.goodsName"></div>
+          </ng-template>
+        </nz-popover>
       </div>
       <div class="mb0 goods-sku-info">
         <div class="goods-name">

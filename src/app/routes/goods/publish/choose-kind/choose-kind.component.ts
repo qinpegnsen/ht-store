@@ -11,13 +11,13 @@ declare var $: any;
   styleUrls: ['./choose-kind.component.css']
 })
 export class ChooseKindComponent implements OnInit {
-  public firstList;// 一级分类列表
-  public secondList;// 二级分类列表
-  public thirdList;// 三级分类列表
-  public choosedKindId: string;// 选择的分类ID
-  public choosedKindStr: string = '';// 已经选择的分类
-  goodsEdit:string = SettingUrl.ROUTERLINK.store.goodsEdit;           //商品修改/编辑（此处如此写，用于路由相对进入模式）
-  pageMsg = Setting.PAGEMSG;
+  public firstList: Array<any> = new Array();   // 一级分类列表
+  public secondList: Array<any> = new Array();  // 二级分类列表
+  public thirdList: Array<any> = new Array();   // 三级分类列表
+  public choosedKindId: string;                 // 选择的分类ID
+  public choosedKindStr: string = '';           // 已经选择的分类
+  pageMsg = Setting.PAGEMSG;                      //页面提示信息
+  goodsEdit: string = SettingUrl.ROUTERLINK.store.goodsEdit;           //商品修改/编辑（此处如此写，用于路由相对进入模式）
 
   constructor(public goodsService: GoodsService,
               public publishComponent: PublishComponent) {
@@ -26,7 +26,7 @@ export class ChooseKindComponent implements OnInit {
 
   ngOnInit() {
     const me = this;
-    this.getKinds();
+    this.getKinds();//获取分类数据
     setTimeout(_ => {
       $(document).on('click', '.step-one li', function () {
         $(this).addClass('current').siblings().removeClass('current');
@@ -40,12 +40,12 @@ export class ChooseKindComponent implements OnInit {
   }
 
 
-  getKinds(id?, level?) {
+  getKinds(id?, level?: number) {
     let me = this;
     switch (level) {
       case 1:
         me.secondList = me.goodsService.getKindList(id);
-        me.thirdList = [];
+        me.thirdList = new Array();
         me.choosedKindId = null;
         break;
       case 2 :

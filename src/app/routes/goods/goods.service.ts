@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
-import {NzMessageService, NzNotificationService} from "ng-zorro-antd";
+import {NzNotificationService} from "ng-zorro-antd";
 import {isNullOrUndefined, isUndefined} from "util";
 
 declare var $: any;
@@ -9,8 +9,7 @@ declare var $: any;
 @Injectable()
 export class GoodsService {
 
-  constructor(public _notification: NzNotificationService,
-              public _message: NzMessageService) {
+  constructor(public _notification: NzNotificationService) {
   }
 
   /**
@@ -219,7 +218,6 @@ export class GoodsService {
       url: SettingUrl.URL.goods.commnetGoods,
       data: data,
       success: (data) => {
-        console.log("█ data ►►►",  data);
         if (data.success) defer.resolve(data.data);
       }
     });
@@ -259,7 +257,7 @@ export class GoodsService {
    * @param data
    * @returns {any<T>}
    */
-  static freightList(data:any) {
+  static freightList(data: any) {
     let defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({

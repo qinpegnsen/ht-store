@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {GoodsService} from "../goods.service";
 declare var $: any;
 
@@ -8,12 +8,12 @@ declare var $: any;
   styleUrls: ['./sku-goods.component.css']
 })
 export class SkuGoodsComponent implements OnInit {
-  currentData = []; //当前商品sku数据
-  _baseCode;
+  currentData: Array<any> = new Array(); //当前商品sku数据
+  _baseCode: string;  //基本编码
 
   set baseCode(value: string) {
-    this._baseCode = value;
     let me = this;
+    me._baseCode = value;
     $.when(this.goodsService.loadSkuGoods(this._baseCode)).done(data => {
       if (data) me.currentData = data; //赋值
     })
@@ -24,25 +24,6 @@ export class SkuGoodsComponent implements OnInit {
 
   ngOnInit() {
 
-  }
-
-  /**
-   * 鼠标放在图片上时大图随之移动
-   */
-  showImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'block';
-    target.style.top = (event.clientY + 20) + 'px';
-    target.style.left = (event.clientX + 30) + 'px';
-  }
-
-  /**
-   * 隐藏大图
-   * @param event
-   */
-  hideImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'none';
   }
 
 }

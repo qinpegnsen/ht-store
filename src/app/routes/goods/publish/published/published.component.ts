@@ -17,14 +17,17 @@ export class PublishedComponent implements OnInit {
   ngOnInit() {
   }
 
+  /*重新编辑商品*/
   public editGoods() {
     this.router.navigate([SettingUrl.ROUTERLINK.store.goodsUpdate], {preserveQueryParams: true})
   }
 
+  /*发布新商品*/
   public publishNew() {
     this.router.navigate([SettingUrl.ROUTERLINK.store.goodsPublish])
   }
 
+  /*商品列表*/
   public goodsList() {
     this.router.navigate([SettingUrl.ROUTERLINK.store.goodsManage])
   }

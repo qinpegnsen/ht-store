@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {Page} from "../../../public/util/page";
 import {GoodsService} from "../goods.service";
 import {MainService} from "../../../public/service/main.service";
-import {NzMessageService, NzModalService, NzNotificationService} from "ng-zorro-antd";
+import {NzModalService, NzNotificationService} from "ng-zorro-antd";
 import {Setting} from "../../../public/setting/setting";
 import {SkuGoodsComponent} from "../sku-goods/sku-goods.component";
 import {SettingUrl} from "../../../public/setting/setting_url";
@@ -17,12 +17,12 @@ declare var $: any;
 })
 export class ManageComponent implements OnInit {
   public goodsList: Page = new Page();
-  public _loading = false;             //查询时锁屏
-  public showList = true;             //是否显示列表页
-  public enumState:any = Setting.ENUMSTATE;
-  public enums:any = Setting.ENUM;
+  public _loading:boolean = false;             //查询时锁屏
+  public showList:boolean = true;             //是否显示列表页
+  public enumState:any = Setting.ENUMSTATE;     //枚举状态
+  public enums:any = Setting.ENUM;               //枚举编码
 
-  public kindList:any;// 分类列表
+  public kindList:any;      // 分类列表
   public goodsAudits: any;  // 商品审核状态列表
   public goodsState: any;  // 商品状态列表
   public isOwnPlats: any;  //是否自营列表
@@ -32,12 +32,10 @@ export class ManageComponent implements OnInit {
   goodsManagePublish:string = SettingUrl.ROUTERLINK.store.goodsManagePublish;    //商品发布（此处如此写，用于路由相对进入模式）
   goodsManageUpdate:string = SettingUrl.ROUTERLINK.store.goodsManageUpdate;           //商品修改/编辑（此处如此写，用于路由相对进入模式）
   goodsManageEval:string = SettingUrl.ROUTERLINK.store.goodsManageEval;           //查看商品评价（此处如此写，用于路由相对进入模式）
-  goodsManageDetail:string = SettingUrl.ROUTERLINK.store.goodsManageDetail;          //查看商品详情（此处如此写，用于路由相对进入模式）
 
 
 
-  constructor(public _message: NzMessageService,
-              public goodsService: GoodsService,
+  constructor(public goodsService: GoodsService,
               public modalService: NzModalService,
               public _notification: NzNotificationService) {
     this.goodsList.pageSize = 10
@@ -157,26 +155,8 @@ export class ManageComponent implements OnInit {
   }
 
   /**
-   * 鼠标放在图片上时大图随之移动
+   * load商品分类数据
    */
-  showImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'block';
-    target.style.top = (event.clientY + 20) + 'px';
-    target.style.left = (event.clientX + 30) + 'px';
-  }
-
-  /**
-   * 隐藏大图
-   * @param event
-   */
-  hideImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'none';
-  }
-
-  _value: any[] = null;
-
   loadData(e: { option: any, index: number, resolve: Function, reject: Function }): void {
     if (e.index === -1) {
       e.resolve(this.goodsService.transKindsAsCascaderData());
