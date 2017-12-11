@@ -13,13 +13,11 @@
     <div class="b-shop-img bb-shop w25 fl d-block">
       <p class="text-center mt-50">
         <nz-popover [nzTrigger]="'click'">
-          <!--shopsInfo.storeAvatar-->
           <img [src]="" appImgErr="user" width="80"
                title="点击出大图"
                alt="" nz-popover>
           <ng-template #nzTemplate>
-            <div><img [src]="shopsInfo.storeAvatar | imgSize:'400'"
-                      alt="">
+            <div><img [src]="shopsInfo.storeAvatar | imgSize:'400'">
             </div>
           </ng-template>
         </nz-popover>
@@ -53,7 +51,6 @@
           </div>
         </div>
       <div nz-row class="store-info-row b-shop m-auto">
-
         <div nz-col [nzSpan]="4" class="text-right pr-20 strong br-shop">
           商家电话
         </div>
@@ -67,13 +64,9 @@
         </div>
         <div nz-col [nzSpan]="20" class="pl-20"  [ngClass]="{'store-info-nowrite':!shopsInfo.storeAvatar}">
           <nz-popover [nzTrigger]="'click'">
-            <img [src]="shopsInfo.storeLabel | imgSize:'30' ||'未上传店铺头像'" appImgErr
-                 title="点击出大图"
-                 alt="" nz-popover>
+            <img [src]="shopsInfo.storeLabel | imgSize:'30' || '未上传店铺头像'" appImgErr nz-popover>
             <ng-template #nzTemplate>
-              <div><img [src]="shopsInfo.storeLabel | imgSize:'400'"
-                        alt="">
-              </div>
+              <div><img [src]="shopsInfo.storeLabel | imgSize:'400'"></div>
             </ng-template>
           </nz-popover>
         </div>

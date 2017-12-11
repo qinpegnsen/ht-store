@@ -18,11 +18,11 @@ declare var $: any;
   styleUrls: ['./open-shop.component.css']
 })
 export class OpenShopComponent implements OnInit {
-  validateForm: any = {};//表单
-  _options: any;//三级联动区域数据
-  ngValidateStatus = Util.ngValidateStatus;//表单项状态
-  ngValidateErrorMsg = Util.ngValidateErrorMsg;//表单项提示状态
-  valitateState: any = Setting.valitateState;//表单验证状态
+  public validateForm: any = {};//表单
+  public _options: any;//三级联动区域数据
+  public ngValidateStatus = Util.ngValidateStatus;//表单项状态
+  public ngValidateErrorMsg = Util.ngValidateErrorMsg;//表单项提示状态
+  public valitateState: any = Setting.valitateState;//表单验证状态
 
   public storeLabelUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.enterprise.upload,
@@ -130,7 +130,6 @@ export class OpenShopComponent implements OnInit {
     if (typeof formValue.areaCode == 'object') { //如果是数组形式则取数组的第三个
       formValue.areaCode = formValue.areaCode[2];//取第三级编码
     }
-    console.log(JSON.stringify(formValue));
     this.storeBaseService.dredgeShop(formValue);
   };
 

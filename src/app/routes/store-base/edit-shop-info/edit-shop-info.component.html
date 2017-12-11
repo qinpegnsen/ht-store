@@ -97,13 +97,38 @@
         </div>
         <div nz-col [nzSpan]="8">
           <ng-container *ngIf="storeLabelUploader.queue[0]">
-            <img [src]="storeLabelUploader.queue[0]?._file | imgPreview" class="uploaded">
-            <img [src]="storeLabelUploader.queue[0]?._file | imgPreview" class="uploaded-big">
+            <div class="uploaded">
+              <nz-popover [nzTrigger]="'click'">
+                <img [src]="storeLabelUploader.queue[0]?._file | imgPreview" height="32"
+                     title="点击看大图" nz-popover>
+                <ng-template #nzTemplate>
+                  <div><img [src]="storeLabelUploader.queue[0]?._file | imgPreview" height="200"></div>
+                </ng-template>
+              </nz-popover>
+            </div>
           </ng-container>
+          <!--上传图片的时候-->
+          <ng-container *ngIf="storeLabelUploader.queue[0]">
+            <div class="uploaded">
+              <nz-popover [nzTrigger]="'click'">
+                <img [src]="storeLabelUploader.queue[0]?._file | imgPreview" height="32"
+                     title="点击看大图" nz-popover>
+                <ng-template #nzTemplate>
+                  <div><img [src]="storeLabelUploader.queue[0]?._file | imgPreview" height="200"></div>
+                </ng-template>
+              </nz-popover>
+            </div>
+          </ng-container>
+          <!--修改图片的时候-->
           <ng-container *ngIf="validateForm.storeLabel && !storeLabelUploader.queue[0]">
-            <img [src]="validateForm.storeLabel"  onerror="javascript:this.src='../../../assets/img/dummy.png'"
-              class="uploaded">
-            <img [src]="validateForm.storeLabel" onerror="javascript:this.src='../../../assets/img/dummy.png'" class="uploaded-big">
+            <div class="uploaded">
+              <nz-popover [nzTrigger]="'click'">
+                <img [src]="validateForm.storeLabel | imgSize: '60'" title="点击看大图" nz-popover>
+                <ng-template #nzTemplate>
+                  <div><img [src]="validateForm.storeLabel | imgSize: '200'"></div>
+                </ng-template>
+              </nz-popover>
+            </div>
           </ng-container>
         </div>
       </div>
@@ -113,7 +138,7 @@
         </div>
         <div nz-col [nzSpan]="8" nz-form-control>
           <label class="file-upload">
-            <i class="anticon anticon-cloud-upload-o"></i>修改店铺头像
+            <i class="anticon anticon-cloud-upload-o"></i>上传店铺头像
             <input class="w100" type="file" name="storeAvatar" ng2FileSelect accept="image/*"
                    [uploader]="storeAvatarUploader" (change)="storeAvatarFileChangeListener()"/>
           </label>
@@ -122,13 +147,28 @@
           </div>-->
         </div>
         <div nz-col [nzSpan]="8">
+          <!--上传图片的时候-->
           <ng-container *ngIf="storeAvatarUploader.queue[0]">
-            <img [src]="storeAvatarUploader.queue[0]?._file | imgPreview"  class="uploaded">
-            <img [src]="storeAvatarUploader.queue[0]?._file | imgPreview" class="uploaded-big">
+            <div class="uploaded">
+              <nz-popover [nzTrigger]="'click'">
+                <img [src]="storeAvatarUploader.queue[0]?._file | imgPreview" height="32"
+                     title="点击看大图" nz-popover>
+                <ng-template #nzTemplate>
+                  <div><img [src]="storeAvatarUploader.queue[0]?._file | imgPreview" height="200"></div>
+                </ng-template>
+              </nz-popover>
+            </div>
           </ng-container>
+          <!--修改图片的时候-->
           <ng-container *ngIf="validateForm.storeAvatar && !storeAvatarUploader.queue[0]">
-            <img [src]="validateForm.storeAvatar" onerror="javascript:this.src='../../../assets/img/dummy.png'" class="uploaded">
-            <img [src]="validateForm.storeAvatar" onerror="javascript:this.src='../../../assets/img/dummy.png'" class="uploaded-big">
+            <div class="uploaded">
+              <nz-popover [nzTrigger]="'click'">
+                <img [src]="validateForm.storeAvatar | imgSize: '60'" title="点击看大图" nz-popover>
+                <ng-template #nzTemplate>
+                  <div><img [src]="validateForm.storeAvatar | imgSize: '200'"></div>
+                </ng-template>
+              </nz-popover>
+            </div>
           </ng-container>
         </div>
       </div>

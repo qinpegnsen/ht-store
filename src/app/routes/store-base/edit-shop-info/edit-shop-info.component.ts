@@ -19,9 +19,10 @@ declare var $: any;
 export class EditShopInfoComponent implements OnInit {
   public validateForm: any = {};//表单
   public _options: any;//三级联动区域数据
-  public ngValidateStatus = Util.ngValidateStatus;//判断输入框是否为空
-  public ngValidateErrorMsg = Util.ngValidateErrorMsg;//判断输入框内容是否符合格式
+  public ngValidateStatus = Util.ngValidateStatus;//表单项状态
+  public ngValidateErrorMsg = Util.ngValidateErrorMsg;//表单项提示状态
   public valitateState: any = Setting.valitateState;//表单验证状态
+
   public storeLabelUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.enterprise.upload,
     itemAlias: "limitFile",
@@ -36,10 +37,9 @@ export class EditShopInfoComponent implements OnInit {
   constructor(public storeBaseService: StoreBaseService,
               public patternService: PatternService,
               public _notification: NzNotificationService,
-              public route: ActivatedRoute,
               public location: Location) {
-    Util.transAreas(AREA_LEVEL_3_JSON);
-    this._options = AREA_LEVEL_3_JSON;
+    Util.transAreas(AREA_LEVEL_3_JSON);//将地区数据转成联级组件需要的格式
+    this._options = AREA_LEVEL_3_JSON;//地区数据
   }
 
   ngOnInit() {
@@ -50,10 +50,10 @@ export class EditShopInfoComponent implements OnInit {
    * 查询店铺信息
    * @param data
    */
-  loadShopData (){
-    let me = this,param = {storeCode:'649518214747807744'};
+  loadShopData() {
+    let me = this, param = {storeCode: '649530532714012672'};
     $.when(StoreBaseService.loadShopInfo(param)).done(data => {
-      if (data) me.validateForm = data //店铺信息
+      if (data) me.validateForm = data; //店铺信息
     })
   }
 
@@ -121,7 +121,6 @@ export class EditShopInfoComponent implements OnInit {
     if (typeof formValue.areaCode == 'object') { //如果是数组形式则取数组的第三个
       formValue.areaCode = formValue.areaCode[2];//取第三级编码
     }
-    console.log(JSON.stringify(formValue));
     this.storeBaseService.dredgeShop(formValue);
   };
 
@@ -158,7 +157,7 @@ export class EditShopInfoComponent implements OnInit {
    * 返回上一页
    */
   back() {
-    let me=this;
+    let me = this;
     me.location.back();
   }
 }
