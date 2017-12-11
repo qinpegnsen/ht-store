@@ -151,7 +151,8 @@ export class SettingUrl {
       redPacketPushOrder: "/store/redPacket/pushOrder", //红包投放记录
       redPacketStatistics: "/store/redPacket/statistics", //红包统计
       cashSettle: "/store/cashSettle/cashSettle", //提现与结算
-      cach: "../cash" //提现页面（此处如此写，用于路由相对进入模式）
+      cach: "../cash", //提现页面（此处如此写，用于路由相对进入模式）
+      staff: "/store/staff" //员工管理页面
     },
     basic: {
       reg: "/basic/reg", //企业注册

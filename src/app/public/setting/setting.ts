@@ -37,8 +37,13 @@ export class Setting {
       two: "如果商品选择使用了配送规则，则该商品只售卖配送规则中指定的地区，运费为指定地区的运费",
       three: "正在被商品使用的配送规则不允许删除"
     },
-    goods:{
+    goods: {
       chooseKind: "请慎重选择商品分类，商品发布后将不可修改。"
+    },
+    staff: {
+      msgOne: "为了更好的让企业管理自己的员工，员工管理及其权限管理作为了一个单独的管理平台进行运营",
+      msgTwo: "使用当前登录账号（密码默认为手机号码），登录权限管理系统，对员工及其权限进行管理",
+      msgThree: "点击下方按钮，进入权限平台"
     }
   }
   //定义枚举
@@ -146,15 +151,18 @@ export class Setting {
    * eg1:<div nz-form-explain *ngIf="ngValidateErrorMsg(ngPhone) == Setting.valitateState.empty">请输入手机号！</div>
    * eg2:<div nz-form-explain *ngIf="ngValidateErrorMsg(ngPhone) == Setting.valitateState.error">请输入正确的手机号！</div>
    */
-  public static valitateState:any = {
+  public static valitateState: any = {
     empty: "empty",
     error: "error"
   }
 
-  //數據字典健名
+  //数据字典键名
   public static SETTINGINFO: any = {
     bankTypeCode: "common_use_bank_name"
   }
+
+  //权限系统路径
+  public static JURISDICTIONURL: string = "http://192.168.10.221"; //TODO上线时，修改为正确路径
 
   constructor() {
     const _this = this;
