@@ -9,9 +9,9 @@
     </button>
   </div>
   <!--店铺基本信息 --start -->
-  <div style="width: 90%;margin: auto">
-    <div style="width: 25%;float: left;display: inline-block;height: 281px" class="b-shop-img bb-shop">
-      <p class="text-center" style="margin-top: 50px">
+  <div class="w90 m-auto">
+    <div class="b-shop-img bb-shop w25 fl d-block">
+      <p class="text-center mt-50">
         <nz-popover [nzTrigger]="'click'">
           <!--shopsInfo.storeAvatar-->
           <img [src]="" appImgErr="user" width="80"
@@ -26,7 +26,7 @@
       </p>
        <p class="text-center pt-5">{{shopsInfo.storeName}}</p>
     </div>
-    <div style="width:75%;float: right">
+    <div class="w75 fr">
       <div nz-row class="store-info-row b-shop m-auto">
       <div nz-col [nzSpan]="4" class="text-right pr-20 strong br-shop">
       店铺地址

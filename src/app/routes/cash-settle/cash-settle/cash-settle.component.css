@@ -1,14 +1,15 @@
 .cash-settle-all {
   background: #fffee5;
-  height: 55px;
   border: 2px solid #f7dea3;
+  height: 55px;
   line-height: 55px;
 }
-.settle-record{
+
+.settle-record {
   outline: none;
 }
 
-.settle-color{
+.settle-color {
   color: #e82d4d;
 }
 

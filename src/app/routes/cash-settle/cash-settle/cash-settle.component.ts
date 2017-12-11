@@ -14,22 +14,22 @@ declare var $: any;
   providers: [CashSettleService]
 })
 export class CashSettleComponent implements OnInit {
-  isVisible: boolean = false;//提现弹窗默认不可见
-  isConfirmLoading: boolean = false;//提现确认按钮的加载小圈默认不可见
-  validateForm: FormGroup;
-  _loading: boolean = false;         //查询时锁屏
-  settlePage: Page = new Page();  //结算信息
-  storeInfo: any = {};  //企业信息
-  insertData: any = {};  //申请提现时传入的信息
-  settleFormula: any = Setting.PAGEMSG.settleFormula; //结算公式
-  cachUrl: string = SettingUrl.ROUTERLINK.store.cach; //提现页面
+  public isVisible: boolean = false;//提现弹窗默认不可见
+  public isConfirmLoading: boolean = false;//提现确认按钮的加载小圈默认不可见
+  public validateForm: FormGroup;  //提现表单
+  public _loading: boolean = false;  //查询时锁屏
+  public settlePage: Page = new Page();  //结算信息
+  public storeInfo: any = {};  //企业信息
+  public insertData: any = {};  //申请提现时传入的信息
+  public settleFormula: any = Setting.PAGEMSG.settleFormula; //结算公式
+  public cachUrl: string = SettingUrl.ROUTERLINK.store.cach; //提现页面
 
   constructor(private fb: FormBuilder, public cashSettleService: CashSettleService) {
     this.validateForm = this.fb.group({ //表单数据
-      acct: [null, [Validators.email]],
-      bacctName: [null, [Validators.required]],
-      bank: [null, [Validators.required]],
-      balance: [null, [Validators.required]]
+      acct: [null, [Validators.email]],//申请提现金额
+      bacctName: [null, [Validators.required]],//收款人姓名
+      bank: [null, [Validators.required]],//账号开户行
+      balance: [null, [Validators.required]]//银行卡号
     });
   }
 
@@ -80,7 +80,6 @@ export class CashSettleComponent implements OnInit {
    */
   showModal = () => {
     this.isVisible = true;
-
   }
 
   /**

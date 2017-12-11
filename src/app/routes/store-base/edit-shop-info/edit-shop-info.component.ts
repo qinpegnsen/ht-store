@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {MainService} from "../../../public/service/main.service";
 import {StoreBaseService} from "../store-base.service";
 import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
@@ -9,6 +9,7 @@ import {Util} from "../../../public/util/util";
 import {FileUploader} from "ng2-file-upload";
 import {Setting} from "../../../public/setting/setting";
 import {SettingUrl} from "../../../public/setting/setting_url";
+import {Location} from "@angular/common";
 declare var $: any;
 @Component({
   selector: 'app-edit-shop-info',
@@ -16,11 +17,11 @@ declare var $: any;
   styleUrls: ['./edit-shop-info.component.css']
 })
 export class EditShopInfoComponent implements OnInit {
-  validateForm: any = {};
-  _options: any;//三级联动区域数据
-  ngValidateStatus = Util.ngValidateStatus;
-  ngValidateErrorMsg = Util.ngValidateErrorMsg;
-  valitateState: any = Setting.valitateState;//表单验证状态
+  public validateForm: any = {};//表单
+  public _options: any;//三级联动区域数据
+  public ngValidateStatus = Util.ngValidateStatus;//判断输入框是否为空
+  public ngValidateErrorMsg = Util.ngValidateErrorMsg;//判断输入框内容是否符合格式
+  public valitateState: any = Setting.valitateState;//表单验证状态
   public storeLabelUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.enterprise.upload,
     itemAlias: "limitFile",
@@ -35,17 +36,13 @@ export class EditShopInfoComponent implements OnInit {
   constructor(public storeBaseService: StoreBaseService,
               public patternService: PatternService,
               public _notification: NzNotificationService,
-              public route: ActivatedRoute) {
+              public route: ActivatedRoute,
+              public location: Location) {
     Util.transAreas(AREA_LEVEL_3_JSON);
     this._options = AREA_LEVEL_3_JSON;
   }
 
   ngOnInit() {
-    let sellerCode = this.route.snapshot.queryParams['sellerCode'];
-    if (sellerCode) this.validateForm = sellerCode;
-    let epCode = this.route.snapshot.queryParams['epCode'];
-    if (epCode) this.validateForm = epCode;
-    let storeCode = this.route.snapshot.queryParams['storeCode'];
     this.loadShopData();//查询店铺信息
   }
 
@@ -57,7 +54,6 @@ export class EditShopInfoComponent implements OnInit {
     let me = this,param = {storeCode:'649518214747807744'};
     $.when(StoreBaseService.loadShopInfo(param)).done(data => {
       if (data) me.validateForm = data //店铺信息
-      // console.log("█ me.validateForm ►►►",  me.validateForm);
     })
   }
 
@@ -162,6 +158,7 @@ export class EditShopInfoComponent implements OnInit {
    * 返回上一页
    */
   back() {
-    window.history.go(-1);
+    let me=this;
+    me.location.back();
   }
 }

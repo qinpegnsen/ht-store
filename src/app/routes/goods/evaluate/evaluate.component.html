@@ -44,9 +44,9 @@
 
                    <nz-popover [nzTrigger]="'click'">
                        <img [src]="eval.pic | imgSize:'50'" title="点击出大图"
-                            alt="" *ngIf="eval.isAfter==enumState.no" nz-popover>
+                            [alt]="eval.pic" *ngIf="eval.isAfter==enumState.no" nz-popover>
                         <ng-template #nzTemplate>
-                          <div>  <img [src]="eval.pic | imgSize:'400'" alt="" *ngIf="eval.isAfter==enumState.no">
+                          <div>  <img [src]="eval.pic | imgSize:'400'" *ngIf="eval.isAfter==enumState.no">
                           </div>
                         </ng-template>
                         </nz-popover>
@@ -61,10 +61,9 @@
                   <p><span *ngFor="let eval of data.commentGoodsPicList;">
                      <nz-popover [nzTrigger]="'click'">
                        <img [src]="eval.pic | imgSize:'50'" appImgErr title="点击出大图"
-                            alt="" *ngIf="eval.isAfter==enumState.yes" nz-popover>
+                            *ngIf="eval.isAfter==enumState.yes" nz-popover>
                         <ng-template #nzTemplate>
-                          <div>  <img [src]="eval.pic | imgSize:'400'" class=""
-                                      alt="" *ngIf="eval.isAfter==enumState.yes">
+                          <div>  <img [src]="eval.pic | imgSize:'400'" *ngIf="eval.isAfter==enumState.yes">
                           </div>
                         </ng-template>
                         </nz-popover>
