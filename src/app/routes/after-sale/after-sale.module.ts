@@ -9,7 +9,7 @@ import {AfterSaleService} from "./after-sale.service";
 
 const afterDetail: Routes = [
   {path: 'afterDetail', component: AfterDetailComponent},
-]
+];
 const routes: Routes = [
   {path: 'refund', component: RefundComponent,children: afterDetail},
   {path: 'returnGoods', component:ReturnGoodsComponent,children: afterDetail},

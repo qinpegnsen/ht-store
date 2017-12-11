@@ -14,14 +14,14 @@ declare var $: any;
 })
 export class ReturnGoodsComponent implements OnInit {
 
-  public refundOrderPage: Page = new Page();          //退款订单的数据
-  public showList: boolean = true;                   //是否显示父组件
-  public _loading: boolean = false;                  //查询时锁屏,默认关闭
-  public saleAfterStates: any;                        //售后单状态数据
-  public isReceiveList: any;                          //是否收货数据
+  public refundOrderPage: Page = new Page();             //退款订单的数据
+  public showList: boolean = true;                      //是否显示父组件
+  public _loading: boolean = false;                     //查询时锁屏,默认关闭
+  public saleAfterStates: any;                           //售后单状态数据
+  public isReceiveList: any;                             //是否收货数据
   public enumState:any = Setting.ENUMSTATE;               //定义枚举状态
   public routerLink:any = SettingUrl.ROUTERLINK;          //定义路由
-  public app:any= Setting.APP;                           //定义出错时加载的图片
+  public app:any= Setting.APP;                            //定义出错时加载的图片
   public guideLang: any = Setting.PAGEMSG.service.returnGoods;//引导语
   public enums :any= Setting.ENUM;                        //枚举
   public query:any = {
@@ -32,6 +32,9 @@ export class ReturnGoodsComponent implements OnInit {
   constructor(public afterSaleService:AfterSaleService) {
   }
 
+  /**
+   * 查询售后商品列表
+   */
   ngOnInit() {
     let me = this;
     me.queryOrdList(); //查询商品列表

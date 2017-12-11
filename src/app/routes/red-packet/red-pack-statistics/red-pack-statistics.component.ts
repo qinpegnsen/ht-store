@@ -32,7 +32,6 @@ export class RedPackStatisticsComponent implements OnInit {
   constructor(public redPacketService:RedPacketService) {
   }
 
-
   /**
    * 1.获取统计时间的类型
    * 2.格式化默认的日期

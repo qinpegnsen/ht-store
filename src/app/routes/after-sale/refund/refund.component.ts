@@ -32,6 +32,9 @@ export class RefundComponent implements OnInit {
   constructor(public afterSaleService: AfterSaleService) {
   }
 
+  /**
+   * 查询商品列表
+   */
   ngOnInit() {
     let me = this;
     me.queryOrdList(); //查询商品列表

@@ -1,67 +1,67 @@
 <div *ngIf="afterData">
   <div class="page-msg-red pl-20">
-    <span>退单编号：{{afterData.afterNo}}</span>
+    <span>退单编号：{{afterData?.afterNo}}</span>
   </div>
   <div>
     <!--买家退款退货 start-->
     <ng-container>
       <div class="pl-20">
         <legend class="m0 lengendSty font20 bb0">
-          {{afterData.returnType==enumState.afterType.return?'买家退货申请':'买家退款申请'}}
+          {{afterData?.returnType==enumState.afterType.return?'买家退货申请':'买家退款申请'}}
         </legend>
       </div>
       <table class="w100">
         <tr class="t-item">
           <td class="item-hd w15 bt">申请时间：</td>
-          <td class="item-bd w85 mb0 bt">{{afterData.createTime}}</td>
+          <td class="item-bd w85 mb0 bt">{{afterData?.createTime}}</td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">申请人（买家）：</td>
-          <td class="item-bd w85 mb0">{{afterData.custPhone}}</td>
+          <td class="item-bd w85 mb0">{{afterData?.custPhone}}</td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">订单编号：</td>
           <td class="item-bd w85 mb0">
-            {{afterData.ordno}}
+            {{afterData?.ordno}}
           </td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">商品名称：</td>
           <td class="item-bd w85 mb0">
-            {{afterData.goodsName}}
+            {{afterData?.goodsName}}
           </td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">商品数量：</td>
           <td class="item-bd w85 mb0">
-            {{afterData.num}}
+            {{afterData?.num}}
           </td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">售后类型：</td>
-          <td class="item-bd w85 mb0">{{afterData.returnType | stateName:enums.saleAfterTyte}}</td>
+          <td class="item-bd w85 mb0">{{afterData?.returnType | stateName:enums.saleAfterTyte}}</td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">退款金额：</td>
-          <td class="item-bd w85 mb0">{{afterData.reqMoney}}</td>
+          <td class="item-bd w85 mb0">{{afterData?.reqMoney}}</td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">是否收到货：</td>
-          <td class="item-bd w85 mb0">{{afterData.isReceive | stateName:enums.yesOrNo}}</td>
+          <td class="item-bd w85 mb0">{{afterData?.isReceive | stateName:enums.yesOrNo}}</td>
         </tr>
         <tr class="t-item">
-          <td class="item-hd w15">{{afterData.returnType==enumState.afterType.return?'退货原因':'退款原因'}}：</td>
-          <td class="item-bd w85 mb0">{{afterData.reason}}</td>
+          <td class="item-hd w15">{{afterData?.returnType==enumState.afterType.return?'退货原因':'退款原因'}}：</td>
+          <td class="item-bd w85 mb0">{{afterData?.reason}}</td>
         </tr>
         <tr class="t-item">
-          <td class="item-hd w15">{{afterData.returnType==enumState.afterType.return?'退货说明':'退款说明'}}：</td>
-          <td class="item-bd w85 mb0">{{afterData.reasonRmk}}</td>
+          <td class="item-hd w15">{{afterData?.returnType==enumState.afterType.return?'退货说明':'退款说明'}}：</td>
+          <td class="item-bd w85 mb0">{{afterData?.reasonRmk}}</td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">凭证：</td>
           <td class="item-bd w85 mb0">
-            <ng-container *ngIf="afterData.afterGoodsReqVouList?.length > 0">
-              <div class="tag-dib imgbox text-center mr" *ngFor="let item of afterData.afterGoodsReqVouList">
+            <ng-container *ngIf="afterData?.afterGoodsReqVouList?.length > 0">
+              <div class="tag-dib imgbox text-center mr" *ngFor="let item of afterData?.afterGoodsReqVouList">
                 <nz-popover [nzTrigger]="'click'">
                   <img  [src]="item.vpic | imgSize :'50'" class="littleImg" appImgErr  title="点击查看大图" nz-popover>
                   <ng-template #nzTemplate>
@@ -77,11 +77,11 @@
     <!--买家退款退货 end-->
 
     <!--平台同意申请 start-->
-    <ng-container *ngIf="afterData.state!='WAIT'">
+    <ng-container *ngIf="afterData?.state!='WAIT'">
       <div>
         <div>
           <legend class="m0 lengendSty font20">
-            {{afterData.returnType==enumState.afterType.return?'退货申请处理':'退款申请处理'}}
+            {{afterData?.returnType==enumState.afterType.return?'退货申请处理':'退款申请处理'}}
           </legend>
         </div>
         <table class="t-items w100">
@@ -109,8 +109,8 @@
     <!--平台同意申请 end-->
 
     <!--退货订单已发货 start-->
-    <ng-container *ngIf="afterData.returnType==enumState.afterType.return">
-      <div *ngIf="afterData.state==enumState.afterService.delivery || afterData.state==enumState.afterService.checkFails || enumState.afterService.done">
+    <ng-container *ngIf="afterData?.returnType==enumState.afterType.return">
+      <div *ngIf="afterData?.state==enumState.afterService.delivery || afterData?.state==enumState.afterService.checkFails || enumState.afterService.done">
         <div class="">
           <legend class="m0 lengendSty font20">退货发货信息</legend>
         </div>
@@ -152,15 +152,15 @@
           </tr>
           <tr class="t-item">
             <td class="item-hd w15">退货发货状态：</td>
-            <td class="item-bd w85 mb0">{{afterData.state | stateName:enums.saleAfterTrace}}</td>
+            <td class="item-bd w85 mb0">{{afterData?.state | stateName:enums.saleAfterTrace}}</td>
           </tr>
           <tr class="t-item">
             <td class="item-hd w15">物流公司：</td>
-            <td class="item-bd w85 mb0">{{afterData.afterGoodsTail?.expressName}}</td>
+            <td class="item-bd w85 mb0">{{afterData?.afterGoodsTail?.expressName}}</td>
           </tr>
           <tr class="t-item">
             <td class="item-hd w15">物流单号：</td>
-            <td class="item-bd w85 mb0">{{afterData.afterGoodsTail?.expressNo}}</td>
+            <td class="item-bd w85 mb0">{{afterData?.afterGoodsTail?.expressNo}}</td>
           </tr>
         </table>
       </div>
@@ -168,26 +168,26 @@
     <!--退货订单已发货 end-->
 
     <!--平台验收货物之后 start-->
-    <div *ngIf="afterData.returnType==enumState.afterType.return && afterData.state==enumState.afterService.done">
+    <div *ngIf="afterData?.returnType==enumState.afterType.return && afterData?.state==enumState.afterService.done">
       <div class="">
         <legend class="m0 lengendSty font20">退货验收处理</legend>
       </div>
       <table class="t-items w100">
         <tr class="t-item">
           <td class="item-hd w15 bt">处理时间：</td>
-          <td class="item-bd w85 mb0 bt">{{afterTailList[3].updateTime}}</td>
+          <td class="item-bd w85 mb0 bt">{{afterTailList[3]?.updateTime}}</td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">操作人：</td>
-          <td class="item-bd w85 mb0">{{afterTailList[3].optName}}</td>
+          <td class="item-bd w85 mb0">{{afterTailList[3]?.optName}}</td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">审核结果：</td>
-          <td class="item-bd w85 mb0">{{afterTailList[3].state | stateName:enums.saleAfterTrace}}</td>
+          <td class="item-bd w85 mb0">{{afterTailList[3]?.state | stateName:enums.saleAfterTrace}}</td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">处理备注：</td>
-          <td class="item-bd w85 mb0">{{afterTailList[3].description}}</td>
+          <td class="item-bd w85 mb0">{{afterTailList[3]?.description}}</td>
         </tr>
       </table>
     </div>
@@ -197,14 +197,14 @@
   <form class="goods-audit panel panel-danger w100 m-auto mb-xl bg-f8" (keydown.Enter)="false" *ngIf="type=='deal'">
     <!--处理意见 start-->
     <fieldset class="p0 panel-body b0">
-      <legend class="m0 goods-audit-title w100">{{afterData.state==enumState.afterService.delivery?'退还商品审核':'退款/退货申请处理'}}</legend>
+      <legend class="m0 goods-audit-title w100">{{afterData?.state==enumState.afterService.delivery?'退还商品审核':'退款/退货申请处理'}}</legend>
       <!--未发货商品只能同意退款-->
       <table class="w100 pl">
         <tr>
           <td class="item-hd w15 bb-dashed">处理意见：</td>
           <td class="item-bd w20 bb-dashed">
             <ng-container
-              *ngIf="afterData.ordState != enumState.ordState.assigned && afterData.ordState != enumState.ordState.paid && afterData.ordState != enumState.ordState.prepare">
+              *ngIf="afterData?.ordState != enumState.ordState.assigned && afterData?.ordState != enumState.ordState.paid && afterData?.ordState != enumState.ordState.prepare">
               <div class="radio c-radio c-radio-nofont p-sm" *ngFor="let item of goodsAudits">
                 <nz-radio-group name="isPass" [(ngModel)]="isAgree">
                   <label nz-radio [nzValue]="item.key">
@@ -214,7 +214,7 @@
               </div>
             </ng-container>
             <ng-container
-              *ngIf="afterData.ordState == enumState.ordState.assigned || afterData.ordState ==  enumState.ordState.paid  || afterData.ordState ==enumState.ordState.prepare">
+              *ngIf="afterData?.ordState == enumState.ordState.assigned || afterData?.ordState ==  enumState.ordState.paid  || afterData?.ordState ==enumState.ordState.prepare">
               <div class="text-danger">该商品暂未发货，默认同意退款</div>
             </ng-container>
           </td>
@@ -232,27 +232,21 @@
 
     <!--提交 start-->
     <fieldset class="pt-20 pb-20 m0 text-center b0">
-      <button nz-button [nzType]="'primary'" class="btn-thc" [nzSize]="'large'" *ngIf="afterData.returnType==enumState.afterType.refund"
+      <button nz-button [nzType]="'primary'" class="btn-thc" [nzSize]="'large'" *ngIf="afterData?.returnType==enumState.afterType.refund"
               (click)="auditRefund()"
               [disabled]="!opinion">
         <i class="anticon anticon-upload"></i><span>提交处理结果</span>
       </button>
-      <ng-container *ngIf="afterData.returnType==enumState.afterType.return">
-        <button nz-button [nzType]="'primary'"  [nzSize]="'large'" class="btn-thc" *ngIf="afterData.state==enumState.afterService.wait" (click)="auditReturn()"
+      <ng-container *ngIf="afterData?.returnType==enumState.afterType.return">
+        <button nz-button [nzType]="'primary'"  [nzSize]="'large'" class="btn-thc" *ngIf="afterData?.state==enumState.afterService.wait" (click)="auditReturn()"
                 [disabled]="!opinion">
           <i class="anticon anticon-upload"></i><span>提交处理结果</span>
         </button>
-        <button nz-button [nzType]="'primary'" class="btn-thc" [nzSize]="'large'" *ngIf="afterData.state==enumState.afterService.delivery"
+        <button nz-button [nzType]="'primary'" class="btn-thc" [nzSize]="'large'" *ngIf="afterData?.state==enumState.afterService.delivery"
                 (click)="auditReturnGoods()"
                 [disabled]="!opinion">
           <i class="anticon anticon-upload"></i><span>提交处理结果</span>
         </button>
-
-        <!--<button nz-button [nzType]="'primary'" class="btn-thc mr-20" [nzSize]="'large'"-->
-                <!--(click)="resetSearch()">-->
-          <!--<i class="anticon anticon-reload"></i><span>重置</span>-->
-        <!--</button>-->
-
       </ng-container>
     </fieldset>
     <!--提交 end-->

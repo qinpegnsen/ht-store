@@ -22,15 +22,15 @@ export class AfterSaleService {
     AjaxService.get({
       url: SettingUrl.URL.after.RefundOrd,
       data: data,
-      success: (data) => {
-        if (data.success) {
-          defer.resolve(data.data)
+      success: (res) => {
+        if (res.success) {
+          defer.resolve(res.data)
         } else {
-          this._notification.error(data.info, data.info);
+          this._notification.info('温馨提示', '服务器打盹了');
         }
       }
     });
-    return defer.promise(); //返回异步请求休息
+    return defer.promise(); //返回异步请求消息
   }
 
 
@@ -45,16 +45,16 @@ export class AfterSaleService {
     AjaxService.get({
       url: SettingUrl.URL.after.loadAfterTail,
       data: data,
-      success: (data) => {
-        if (data.success) {
-          defer.resolve(data.data)
+      success: (res) => {
+        if (res.success) {
+          defer.resolve(res.data)
         } else {
-          this._notification.error(data.info, data.info);
+          this._notification.info('温馨提示', '服务器打盹了');
         }
         ;
       }
     });
-    return defer.promise(); //返回异步请求休息
+    return defer.promise(); //返回异步请求消息
   }
 
   /**
@@ -68,15 +68,15 @@ export class AfterSaleService {
     AjaxService.get({
       url: SettingUrl.URL.after.loadReqByAfterNo,
       data: data,
-      success: (data) => {
-        if (data.success) {
-          defer.resolve(data.data);
+      success: (res) => {
+        if (res.success) {
+          defer.resolve(res.data);
         } else {
-          this._notification.error(data.info, data.info);
+          this._notification.info('温馨提示', '服务器打盹了');
         }
       }
     });
-    return defer.promise(); //返回异步请求休息
+    return defer.promise(); //返回异步请求消息
   }
 
   /**
@@ -90,15 +90,15 @@ export class AfterSaleService {
     AjaxService.get({
       url: SettingUrl.URL.after.loadAfterTailList,
       data: data,
-      success: (data) => {
-        if (data.success) {
-          defer.resolve(data.data);
+      success: (res) => {
+        if (res.success) {
+          defer.resolve(res.data);
         } else {
-          this._notification.error(data.info, data.info);
+          this._notification.info('温馨提示', '服务器打盹了');
         }
       }
     });
-    return defer.promise(); //返回异步请求休息
+    return defer.promise(); //返回异步请求消息
   }
 
   /**
@@ -112,15 +112,15 @@ export class AfterSaleService {
     AjaxService.post({
       url: SettingUrl.URL.after.agreeRefundMoney,
       data: data,
-      success: (data) => {
-        if (data.success) {
-          defer.resolve(data.data);
+      success: (res) => {
+        if (res.success) {
+          defer.resolve(res.data);
         } else {
-          this._notification.error(data.info, data.info);
+          this._notification.info('温馨提示', '服务器打盹了');
         }
       }
     });
-    return defer.promise(); //返回异步请求休息
+    return defer.promise(); //返回异步请求消息
   }
 
   /**
@@ -134,15 +134,15 @@ export class AfterSaleService {
     AjaxService.post({
       url: SettingUrl.URL.after.dealReturnGoods,
       data: data,
-      success: (data) => {
-        if (data.success) {
-          defer.resolve(data.data);
+      success: (res) => {
+        if (res.success) {
+          defer.resolve(res.data);
         } else {
-          this._notification.error(data.info, data.info);
+          this._notification.info('温馨提示', '服务器打盹了');
         }
       }
     });
-    return defer.promise(); //返回异步请求休息
+    return defer.promise(); //返回异步请求消息
   }
 
   /**
@@ -156,14 +156,14 @@ export class AfterSaleService {
     AjaxService.post({
       url: SettingUrl.URL.after.checkRefundGoods,
       data: data,
-      success: (data) => {
-        if (data.success) {
-          defer.resolve(data.data);
+      success: (res) => {
+        if (res.success) {
+          defer.resolve(res.data);
         } else {
-          this._notification.error(data.info, data.info);
+          this._notification.info('温馨提示', '服务器打盹了');
         }
       }
     });
-    return defer.promise(); //返回异步请求休息
+    return defer.promise(); //返回异步请求消息
   }
 }

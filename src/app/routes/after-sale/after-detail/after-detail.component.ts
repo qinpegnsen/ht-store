@@ -18,7 +18,7 @@ export class AfterDetailComponent implements OnInit {
   public enumState :any= Setting.ENUMSTATE;               //定义枚举状态
   public type: string;             //类型,处理/查看详情
   public afterNo: string;          //售后编码
-  public LogisticsData: any;       //退货物流信息
+  public LogisticsData: any=new Array;//退货物流信息
   public afterData: any;           //售后详情数据
   public afterTailList: any;       //查看售后单跟踪信息
   public opinion: string;          //审核意见
@@ -33,6 +33,11 @@ export class AfterDetailComponent implements OnInit {
               public route: ActivatedRoute) {
   }
 
+  /**
+   * 1.查询售后单详情
+   * 2.查询售后处理列表
+   * 3.查询售后物流信息
+   */
   ngOnInit() {
     let me = this;
     me.type = me.route.snapshot.queryParams['type'];
@@ -91,24 +96,6 @@ export class AfterDetailComponent implements OnInit {
     };
     this.afterSaleService.checkRefundGoods(data);
     this.back();
-  }
-
-  /**
-   * 鼠标放在图片上时大图随之移动
-   */
-  showImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'block';
-    target.style.top = (event.clientY + 15) + 'px';
-    target.style.left = (event.clientX + 25) + 'px';
-  }
-
-  /**
-   * 鼠标离开时大图随之隐藏
-   */
-  hideImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'none';
   }
 
   /**
