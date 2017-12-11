@@ -9,12 +9,13 @@ export const routes = [
     component: MainComponent,
     children: [
       {path: '', redirectTo: SettingUrl.ROUTERLINK.store.home, pathMatch: 'full'},
-      {path: 'home', loadChildren: './home/home.module#HomeModule'},
-      {path: 'redPacket', loadChildren: './red-packet/red-packet.module#RedPacketModule'},
-      {path: 'afterSale', loadChildren: './after-sale/after-sale.module#AfterSaleModule'},
-      {path: 'cashSettle', loadChildren: './cash-settle/cash-settle.module#CashSettleModule'},
-      {path: 'order', loadChildren: './order/order.module#OrderModule'},
-      {path: 'goods', loadChildren: './goods/goods.module#GoodsModule'}
+      {path: 'home', loadChildren: './home/home.module#HomeModule'}, //首页
+      {path: 'redPacket', loadChildren: './red-packet/red-packet.module#RedPacketModule'}, //红包模块
+      {path: 'afterSale', loadChildren: './after-sale/after-sale.module#AfterSaleModule'}, //售前售后
+      {path: 'cashSettle', loadChildren: './cash-settle/cash-settle.module#CashSettleModule'}, //现金结算
+      {path: 'order', loadChildren: './order/order.module#OrderModule'}, //订单
+      {path: 'goods', loadChildren: './goods/goods.module#GoodsModule'}, //商品管理
+      {path: 'staff', loadChildren: './staff/staff.module#StaffModule'} //员工管理
     ]
   },
   {
@@ -28,7 +29,7 @@ export const routes = [
     path: 'page',
     component: PageComponent,
     children: [
-      {path: '', redirectTo: '/page/login', pathMatch: 'full'},
+      {path: '', redirectTo: SettingUrl.ROUTERLINK.pass.login, pathMatch: 'full'},
       {path: 'login', loadChildren: './login/login.module#LoginModule'}
     ]
   },

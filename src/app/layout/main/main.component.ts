@@ -15,8 +15,8 @@ export class MainComponent implements OnInit {
   public menus: Array<any> = new Array(); //菜单信息
   public msg: Array<any> = new Array(); //消息通知
   public msgNum: number = 0; //消息通知总条数
-  public home:string = SettingUrl.ROUTERLINK.store.home; //首页路由
-  public company:string = SettingUrl.ROUTERLINK.basic.company; //企业信息路由
+  public home: string = SettingUrl.ROUTERLINK.store.home; //首页路由
+  public company: string = SettingUrl.ROUTERLINK.basic.company; //企业信息路由
 
   constructor(public router: Router) {
     //菜单信息
@@ -113,7 +113,7 @@ export class MainComponent implements OnInit {
       {
         name: "员工管理",
         icon: "usergroup-add",
-        url: ""
+        url: SettingUrl.ROUTERLINK.store.staff
       },
       {
         name: "企业信息（TODO）",
