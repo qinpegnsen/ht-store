@@ -13,3 +13,40 @@
   color: #e82d4d;
 }
 
+.search-group {
+  width: 240px;
+  display: inline-block;
+}
+
+.search-group .search-title {
+  width: 40%;
+  line-height: 36px;
+  text-align: right;
+  display: inline-block;
+}
+
+.search-group .search-main {
+  width: 60%;
+  float: right;
+}
+
+.search-group-data {
+  width: 695px;
+  display: inline-block;
+}
+
+.search-group-data .search-title {
+  width: 40%;
+  line-height: 36px;
+  text-align: right;
+  display: inline-block;
+}
+
+.search-group-data .search-main {
+  width: 60%;
+  float: right;
+}
+
+.data{
+  width: 200px;
+}

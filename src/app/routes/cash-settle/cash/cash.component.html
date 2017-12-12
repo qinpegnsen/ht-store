@@ -17,7 +17,7 @@
     <thead nz-thead>
     <tr>
       <th nz-th class="w10 text-center"><span>序号</span></th>
-      <th nz-th class="w18 text-center"><span>提现金额</span></th>
+      <th nz-th class="w18 text-center"><span>提现金额（元）</span></th>
       <th nz-th class="w18 text-center"><span>收款开户行</span></th>
       <th nz-th class="w18 text-center"><span>状态</span></th>
       <th nz-th class="w18 text-center"><span>申情时间</span></th>
@@ -28,7 +28,7 @@
     <tbody nz-tbody>
     <tr nz-tbody-tr *ngFor="let data of nzTable.data;let i=index" class="text-center">
       <td nz-td>{{i+1}}</td>
-      <td nz-td>{{data.drawMoney | number:'1.2-2'}}</td>
+      <td nz-td class="main-color">￥{{data.drawMoney | number:'1.2-2'}}</td>
       <td nz-td>{{data.bank}}</td>
       <td nz-td>{{data.state | stateName:enum.cashState}}</td>
       <td nz-td>{{data.createTime}}</td>

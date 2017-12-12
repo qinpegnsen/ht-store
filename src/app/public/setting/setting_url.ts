@@ -92,7 +92,7 @@ export class SettingUrl {
       stopGoods: "/goodsEdit/updateStateToStop",//(put)商品禁售
       relieveGoods: "/goodsEdit/updateStateToNomal",//(put)解除商品禁售
       updateIsUseCoin: "/goodsEdit/updateIsUseCoin",//(put)更改是否可用重消币
-      commnetGoods: "/commentGoods/queryCommnetGoodsAdmin",//(get)查询商品评价
+      commnetGoods: "/commentGoods/queryCommnetGoodsStore",//(get)查询商品评价
       expressTpl: " /expressTpl/queryByStoreCode",//(get)查询运费模板/模板值列表
       goodsSave: "/goodsEdit/save",      //保存商品数据（发布/修改）
       brandsList: "/goodsBrand/queryBrandPagesByNA", //查询品牌列表
@@ -106,7 +106,7 @@ export class SettingUrl {
      */
     settle: {
       query: '/finaceDraw/query',//查询企业提现列表
-      plantSettle: '/ord/queryAgentSettle',//查询企业结算列表
+      storeSettle: '/settle/queryStoreSettle',//查询企业结算列表
       agentBalance: '/finaceDraw/loadAgentBalance',//查询企业信息
       insert: '/finaceDraw/insert',//申请提现
       bankCode: '/datadict/queryAllByTypeCode',//查询银行
@@ -169,8 +169,8 @@ export class SettingUrl {
     basic: {
       reg: "/basic/reg", //企业注册
       company: "/basic/company", //企业信息
-      shops: "/basic/shops", //企业信息
-      editShop: "/basic/editShop", //企业信息
+      shops: "/basic/shops", //店铺信息
+      editShop: "/basic/editShop", //修改店铺信息
       register: "/basic/reg/register", //注册
       baseInfo: "/basic/reg/baseInfo", //基础信息
       accountInfo: "/basic/reg/accountInfo", //企业账户信息

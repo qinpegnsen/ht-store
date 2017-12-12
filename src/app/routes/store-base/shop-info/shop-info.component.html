@@ -62,9 +62,9 @@
         <div nz-col [nzSpan]="4" class="text-right pr-20 strong br-shop">
           店铺LOGO
         </div>
-        <div nz-col [nzSpan]="20" class="pl-20"  [ngClass]="{'store-info-nowrite':!shopsInfo.storeAvatar}">
+        <div nz-col [nzSpan]="20" class="pl-20" style="height:40px"  [ngClass]="{'store-info-nowrite':!shopsInfo.storeAvatar}">
           <nz-popover [nzTrigger]="'click'">
-            <img [src]="shopsInfo.storeLabel | imgSize:'30' || '未上传店铺头像'" appImgErr nz-popover>
+            <img [src]="shopsInfo.storeLabel | imgSize:'30'" appImgErr nz-popover>
             <ng-template #nzTemplate>
               <div><img [src]="shopsInfo.storeLabel | imgSize:'400'"></div>
             </ng-template>

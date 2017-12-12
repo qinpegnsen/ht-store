@@ -18,7 +18,7 @@ export class CashSettleService {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
-      url: SettingUrl.URL.settle.plantSettle,
+      url: SettingUrl.URL.settle.storeSettle,
       data: data,
       success: (data) => {
         if (data.success) defer.resolve(data.data);

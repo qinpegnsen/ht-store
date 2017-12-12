@@ -14,13 +14,16 @@ export class EvaluateComponent implements OnInit {
   public evalPage: Page = new Page();   //提现信息
   public _loading: boolean = false;    //查询时锁屏
   public goodsName: string;     //评价的商品名称
+  public goodsBaseCode: number;     //评价的商品基本编码
   public enumState = Setting.ENUMSTATE;//获取枚举状态名 如（是否是追加评论的图片:Y，N）
   constructor(public router: Router, public routeInfo: ActivatedRoute) {
+    this.evalPage.pageSize = 10
   }
 
   ngOnInit() {
     let me = this;
     me.goodsName = me.routeInfo.snapshot.queryParams['goodsName'];//评价的商品名称
+    me.goodsBaseCode = me.routeInfo.snapshot.queryParams['goodsBaseCode'];//评价的商品基本编码
     me.qeuryEvalData();//查询评价信息
   }
 
@@ -33,6 +36,7 @@ export class EvaluateComponent implements OnInit {
     me.evalPage.params = { //查询参数
       curPage: me.evalPage.curPage, //目标页码
       pageSize: me.evalPage.pageSize, //每页条数
+      goodsBaseCode:me.goodsBaseCode,//商品基本编码
     }
     $.when(GoodsService.commnetGoodsList(me.evalPage.params)).done(data => {
       me._loading = false //解除锁屏

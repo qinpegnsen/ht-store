@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CashSettleService} from "../cash-settle.service";
 import {Page} from "../../../public/util/page";
 import {Setting} from "../../../public/setting/setting";
@@ -21,6 +21,9 @@ export class CashSettleComponent implements OnInit {
   public settlePage: Page = new Page();  //结算信息
   public storeInfo: any = {};  //企业信息
   public insertData: any = {};  //申请提现时传入的信息
+  public query:any = {};    // 查询条件
+  public _startDate:any;
+  public _endDate:any;
   public settleFormula: any = Setting.PAGEMSG.settleFormula; //结算公式
   public cachUrl: string = SettingUrl.ROUTERLINK.store.cach; //提现页面
 
@@ -29,7 +32,8 @@ export class CashSettleComponent implements OnInit {
       acct: [null, [Validators.email]],//申请提现金额
       bacctName: [null, [Validators.required]],//收款人姓名
       bank: [null, [Validators.required]],//账号开户行
-      balance: [null, [Validators.required]]//银行卡号
+      balance: [null, [Validators.required]],//银行卡号
+      a: [null, [Validators.required]]//银行卡号
     });
   }
 
@@ -47,7 +51,8 @@ export class CashSettleComponent implements OnInit {
     me._loading = true; //锁屏
     me.settlePage.params = { //查询参数
       curPage: me.settlePage.curPage, //目标页码
-      pageSize: me.settlePage.pageSize //每页条数
+      pageSize: me.settlePage.pageSize, //每页条数
+      ordno:me.query.ordno//订单编号
     }
     $.when(CashSettleService.cashSettleList(me.settlePage.params)).done(data => {
       me._loading = false //解除锁屏
@@ -91,7 +96,7 @@ export class CashSettleComponent implements OnInit {
     me.insertData = me.validateForm.value;
     me.insertData.agentCode = "552408454438297600";
     me.cashSettleService.insertList(me.insertData);
-    this.isConfirmLoading = true;//点击确认按钮加载小圈
+    me.isConfirmLoading = true;//点击确认按钮加载小圈
     setTimeout(() => {
       me.isVisible = false;
       me.isConfirmLoading = false;
@@ -123,5 +128,33 @@ export class CashSettleComponent implements OnInit {
     let bankCard = String(bank).substring(0, 2) + "*" + String(bank).substring(3);
     me.validateForm.patchValue({balance: bankCard});
   }
+
+  show(){
+    let acct=this.validateForm.controls["acct"].value
+    this.validateForm.patchValue({a:acct})
+  }
+
+
+  /**
+   * 排除不可选的身份证有效开始日期
+   * @param startValue
+   * @returns {boolean}
+   * @private
+   */
+  _disabledIdCardStartDate = (startValue) => {
+    if (!startValue || !this._endDate) return false;
+    return startValue.getTime() >= this._endDate.getTime();
+  };
+
+  /**
+   * 排除不可选的身份证有效结束日期
+   * @param endValue
+   * @returns {boolean}
+   * @private
+   */
+  _disabledIdCardEndDate = (endValue) => {
+    if (!endValue || !this._startDate) return false;
+    return endValue.getTime() <= this._startDate.getTime();
+  };
 
 }

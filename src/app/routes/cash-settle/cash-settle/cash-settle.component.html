@@ -52,16 +52,16 @@
             </div>
             <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
                  [nzValidateStatus]="getFormControl('acct')">
-              <nz-input [nzSize]="'large'" formControlName="acct" [nzId]="'acct'"></nz-input>
+              <nz-input [nzSize]="'large'" formControlName="a" [nzId]="'a'"></nz-input>
               <div nz-form-explain
-                   *ngIf="getFormControl('acct').dirty&&getFormControl('acct').hasError('required')">请输入申请提现的金额
+                   *ngIf="getFormControl('a').dirty&&getFormControl('a').hasError('required')">请输入申请提现的金额
               </div>
             </div>
           </div>
           <div nz-row>
             <div nz-form-label nz-col [nzSm]="20" [nzXs]="24">
               <span>当前余额{{storeInfo.balance}}，</span>
-              <span class="settle-color font14">全部提现</span>
+              <span class="settle-color font14" (click)="show()">全部提现</span>
             </div>
           </div>
         </form>
@@ -74,7 +74,7 @@
 <!--提现部分 -- end-->
 <!--结算明细 -- start-->
 <div>
-  <div class="font16 mb-20">
+  <div class="font16 mb-10">
     <i class="anticon anticon-switcher mr"></i><span>结算信息</span>
     <!--结算公式 -- start -->
     <nz-popover [nzPlacement]="'leftTop'" class="ml fr">
@@ -86,6 +86,60 @@
     </nz-popover>
     <!--结算公式 -- end -->
   </div>
+  <!--搜索 --start  -->
+  <div>
+    <form nz-form class="bg-white pt-15 pr-15 pl-5">
+      <div class="search-group">
+        <span class="search-title">订单编号：</span>
+        <div class="search-main">
+          <nz-input name="ordno" [(ngModel)]="query.ordno" [nzPlaceHolder]="'请输入订单编号'"
+          [nzSize]="'large'"></nz-input>
+        </div>
+      </div>
+
+      <div class="search-group-data">
+        <span class="search-title">结算时间：</span>
+        <div class="search-main">
+            <div nz-col [nzSpan]="4" class="data">
+            <div nz-form-item nz-row>
+              <div>
+                <!--<div nz-form-control [nzValidateStatus]="ngValidateStatus(ngIdcardStartTime)"-->
+                     <!--nzHasFeedback>-->
+                  <nz-datepicker name="idcardStartTime" [(ngModel)]="_startDate" class="data"
+                                 #ngIdcardStartTime="ngModel" [nzSize]="'large'" required
+                                 [nzDisabledDate]="_disabledIdCardStartDate"
+                                 [nzPlaceHolder]="'起始日期'"></nz-datepicker>
+                <!--</div>-->
+              </div>
+            </div>
+          </div>
+            <span class="fl pl-5 pr-5">-</span>
+            <div nz-col [nzSpan]="4" class="data">
+              <!--<div nz-form-item nz-row>-->
+                <div>
+                  <!--<div nz-form-control [nzValidateStatus]="ngValidateStatus(ngIdcardEndTime)"-->
+                       <!--nzHasFeedback>-->
+                    <nz-datepicker name="idcardEndTime" [(ngModel)]="_endDate" class="data"
+                                   #ngIdcardEndTime="ngModel" [nzSize]="'large'" required
+                                   [nzDisabledDate]="_disabledIdCardEndDate"
+                                   [nzPlaceHolder]="'结束日期'"></nz-datepicker>
+                  </div>
+                <!--</div>-->
+              <!--</div>-->
+            </div>
+        </div>
+      </div>
+
+      <button nz-button [nzSize]="'large'" class="ml-20 btn-thc mr-20" (click)="qeuryCashData()">
+        <i class="anticon anticon-search"></i> 搜索
+      </button>
+      <button nz-button [nzType]="'primary'" class="btn-thc mr-20" [nzSize]="'large'"
+              (click)="qeuryCashData()">
+        <i class="anticon anticon-reload"></i> 重置
+      </button>
+    </form>
+  </div>  <!--搜索 --end  -->
+
   <!--结算表格 -- start-->
   <nz-table #nzTable [nzAjaxData]="settlePage.voList"
             [nzLoading]="_loading"
@@ -96,11 +150,13 @@
     <!--结算头部 --start -->
     <thead nz-thead>
     <tr>
-      <th nz-th class="w10 text-center"><span>序号</span></th>
-      <th nz-th class="w18 text-center"><span>提现总额</span></th>
-      <th nz-th class="w18 text-center"><span>订单退款</span></th>
-      <th nz-th class="w18 text-center"><span>结算比例</span></th>
-      <th nz-th class="w18 text-center"><span>应结款</span></th>
+      <th nz-th class="w5 text-center"><span>序号</span></th>
+      <th nz-th class="w15 text-center"><span>订单号</span></th>
+      <th nz-th class="w16 text-center"><span>订单总额（元）</span></th>
+      <th nz-th class="w16 text-center"><span>订单退款（元）</span></th>
+      <th nz-th class="w16 text-center"><span>结算比例</span></th>
+      <th nz-th class="w16 text-center"><span>应结款（元）</span></th>
+      <th nz-th class="w16 text-center"><span>结算时间</span></th>
     </tr>
     </thead>
     <!--结算头部 --end -->
@@ -108,10 +164,12 @@
     <tbody nz-tbody>
     <tr nz-tbody-tr *ngFor="let data of nzTable.data;let i=index;" class="text-center">
       <td nz-td>{{i+1}}</td>
-      <td nz-td>￥{{data.ordPay | number:'1.2-2'}}</td>
+      <td nz-td>{{data.ordno}}</td>
+      <td nz-td class="main-color">￥{{data.ordPay | number:'1.2-2'}}</td>
       <td nz-td>￥{{data.ordRefundPay | number:'1.2-2'}}</td>
       <td nz-td>{{data.settleRate}}%</td>
       <td nz-td>￥{{data.settle | number:'1.2-2'}}</td>
+      <td nz-td>{{data.createTime}}</td>
     </tr>
     </tbody>
     <!--结算数据 --end -->

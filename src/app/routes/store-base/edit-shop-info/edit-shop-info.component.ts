@@ -4,7 +4,6 @@ import {StoreBaseService} from "../store-base.service";
 import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
 import {PatternService} from "../../../public/service/pattern.service";
 import {NzNotificationService} from "ng-zorro-antd";
-import {ActivatedRoute} from "@angular/router";
 import {Util} from "../../../public/util/util";
 import {FileUploader} from "ng2-file-upload";
 import {Setting} from "../../../public/setting/setting";
@@ -117,7 +116,7 @@ export class EditShopInfoComponent implements OnInit {
    * @param value
    */
   submitFormData = () => {
-    let formValue = this.validateForm;
+    let formValue = Object.assign({}, this.validateForm);
     if (typeof formValue.areaCode == 'object') { //如果是数组形式则取数组的第三个
       formValue.areaCode = formValue.areaCode[2];//取第三级编码
     }
