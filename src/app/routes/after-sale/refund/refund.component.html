@@ -17,7 +17,6 @@
           <div class="search-main">
             <nz-select class="w100" name="saleAfter" [(ngModel)]="query.state" [nzSize]="'large'"
                        (ngModelChange)="queryOrdList()">
-              <nz-option [nzLabel]="''" [nzValue]="''"></nz-option>
               <ng-container *ngFor="let item of saleAfterStates">
                 <nz-option *ngIf="item.key!='CHECK_FAILS' && item.key!='DELIVERY'"
                            [nzLabel]="item.val"
@@ -32,7 +31,6 @@
           <div class="search-main">
             <nz-select class="w100" name="isReceive" [(ngModel)]="query.isReceive" [nzSize]="'large'"
                        (ngModelChange)="queryOrdList()">
-              <nz-option [nzLabel]="''" [nzValue]="''"></nz-option>
               <nz-option
                 *ngFor="let item of isReceiveList"
                 [nzLabel]="item.val"
@@ -65,16 +63,16 @@
                       [nzSize]="'large'" (ngModelChange)="queryOrdList()"></nz-input>
           </div>
         </div>
-        <button nz-button [nzSize]="'large'" class="ml-20 btn-thc mr-20" (click)="queryOrdList()">
-          <i class="anticon anticon-search"></i>
+        <button nz-button [nzSize]="'large'" class="ml-20 btn-thc mr-20" title="搜索" (click)="queryOrdList()">
+          <i class="anticon anticon-search"></i><span>搜索</span>
         </button>
-        <button nz-button [nzType]="'primary'" class="btn-thc mr-20" [nzSize]="'large'"
+        <button nz-button [nzType]="'primary'" class="btn-thc mr-20" title="待审核" [nzSize]="'large'"
                 (click)="changeSaleAfterState()">
           <i class="anticon anticon-search"></i><span>待审核</span>
         </button>
-        <button nz-button [nzType]="'primary'" class="btn-thc mr-20" [nzSize]="'large'"
+        <button nz-button [nzType]="'primary'" class="btn-thc mr-20" title="重置" [nzSize]="'large'"
                 (click)="resetSearch()">
-          <i class="anticon anticon-reload"></i><span>重置</span>
+          <i class="anticon anticon-sync"></i><span>重置</span>
         </button>
       </form>
     </div>
@@ -125,28 +123,28 @@
       <!--详情 start-->
       <tr nz-tbody-tr *ngIf="data.expand">
         <td nz-td></td>
-        <td nz-td class="text-center">
-          <div class="bg-light-gray pl">
+        <td nz-td class="text-center" colspan="2">
+          <div class="''">
             <span>商品名称：</span> <span>{{data.goodsName}}</span>
           </div>
         </td>
         <td nz-td class="text-center">
-          <div class="bg-light-gray pl">
+          <div class="''">
             <span>商品数量：</span> <span>{{data.num}}</span>
           </div>
         </td>
         <td nz-td class="text-center">
-          <div class="bg-light-gray pl">
+          <div class="''">
             <span>手机号：</span> <span>{{data.custPhone}}</span>
           </div>
         </td>
         <td nz-td class="text-center">
-          <div class="bg-light-gray pl">
+          <div class="''">
             <span>订单编号：</span> <span>{{data.ordno}}</span>
           </div>
         </td>
         <td nz-td class="text-center">
-          <div class="bg-light-gray pl">
+          <div class="''">
             <span>商品编码：</span> <span>{{data.goodsCode}}</span>
           </div>
         </td>
@@ -154,7 +152,7 @@
       <tr nz-tbody-tr *ngIf="data.expand">
         <td nz-td></td>
         <td nz-td class="text-center">
-          <div class="bg-light-gray pl">
+          <div class="''">
             <span class="mySpan">商品图片：</span>
             <nz-popover [nzTrigger]="'click'">
               <img [src]="data.goodsImage | imgSize :'50'" appImgErr  title="点击查看大图" nz-popover>
@@ -165,7 +163,7 @@
           </div>
         </td>
         <td nz-td class="text-center" colspan="5">
-          <div class="bg-light-gray pl">
+          <div class="''">
             <span>申请原因：</span> <span>{{data.reason}}</span>
           </div>
         </td>
