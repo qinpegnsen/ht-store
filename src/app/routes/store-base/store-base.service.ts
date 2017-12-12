@@ -27,7 +27,7 @@ export class StoreBaseService {
         break;
       case 'baseInfo' ://企业基本信息
         //添加: queryParams: {sellerCode:611111111111111111}
-        //修改: epCode: {epCode:649255483008294912}
+        //修改: queryParams: {epCode:649255483008294912}
         this.router.navigate([SettingUrl.ROUTERLINK.basic.baseInfo], {replaceUrl: true, queryParams: param})
         break;
       case 'accountInfo' ://企业银行账户信息
@@ -147,7 +147,7 @@ export class StoreBaseService {
   }
 
   /**
-   * 企业入驻——保存银行账户信息
+   * 企业入驻——开通店铺
    * @param data
    */
   dredgeShop(data) {

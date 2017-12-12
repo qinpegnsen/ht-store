@@ -30,6 +30,23 @@ export class GoodsService {
   }
 
   /**
+   * 查询商品列表
+   */
+  static queryBrandsList(data) {
+    var defer = $.Deferred(); //封装异步请求结果
+    AjaxService.get({
+      url: SettingUrl.URL.goods.brandsList,
+      data: data,
+      success: (res) => {
+        if (res.success) {
+          defer.resolve(res.data);
+        }
+      }
+    });
+    return defer.promise(); //返回异步请求休息
+  }
+
+  /**
    * 获取分类列表
    */
   getKindList(parentId?: number) {

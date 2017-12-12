@@ -38,7 +38,13 @@ export class Setting {
       three: "正在被商品使用的配送规则不允许删除"
     },
     goods: {
-      chooseKind: "请慎重选择商品分类，商品发布后将不可修改。"
+      chooseKind: "请慎重选择商品分类，商品发布后将不可修改。",
+      brands: [
+        "商品品牌建立时可与商品分类进行绑定，新增一个品牌则需要与商品分类建立所属关系",
+        "经营不同分类商品的品牌可添加多次以选择不同的分类",
+        "品牌绑定商品分类后，商家发布商品时，可根据发布的商品所在分类找到对应的所属品牌并选择",
+        "被推荐品牌，将在前台品牌推荐模块出显示"
+      ]
     },
     staff: {
       msgOne: "为了更好的让企业管理自己的员工，员工管理及其权限管理作为了一个单独的管理平台进行运营",
@@ -51,6 +57,8 @@ export class Setting {
     yesOrNo: 1001,  // 是否
     goodsState: 1006,  //商品状态列表
     goodsAudits: 1014,  //商品审核状态列表
+    brandsApplyState: 1023,    //品牌审核状态
+    showType: 1024,     //品牌展示类型
     enterpriseState: 2001, //企业入驻状态
     papersType: 2002, //证件类型
     stepsState: 2003, //企业入驻流程状态
@@ -94,6 +102,9 @@ export class Setting {
       pass: 'PASS',   //审核通过
       unPass: 'UNPASS',//审核未通过
       reject: 'REJECT',//彻底驳回
+    },
+    brandState: {
+      show: 'SHOW'
     },
     //营业执照类型
     papersType: {

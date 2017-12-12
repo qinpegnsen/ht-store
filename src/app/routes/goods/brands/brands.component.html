@@ -1,0 +1,139 @@
+<div *ngIf="showList">
+  <div class="mb page-title">
+    <h3 class="fl">品牌管理</h3>
+    <button class="fr m btn-thc" nz-button>
+      <span>添加品牌</span>
+    </button>
+  </div>
+
+  <!--页面提示信息 start-->
+  <div class="page-msg-red">
+    <p class="title">{{pageMsg.tipTitle}}</p>
+    <ul>
+      <li *ngFor="let msg of pageMsg">{{msg}}</li>
+    </ul>
+  </div>
+  <!--页面提示信息 end-->
+
+  <!--搜索 start-->
+  <form nz-form class="bg-white p-15">
+    <div class="search-group ml-20 mb clearfix">
+      <span class="search-title">分类：</span>
+      <div class="search-main">
+        <nz-cascader
+          [nzPlaceHolder]="'分类'"
+          [nzSize]="'large'"
+          (nzChange)="getKind($event)"
+          (nzLoad)="loadData($event)">
+        </nz-cascader>
+      </div>
+    </div>
+    <div class="inline-block align-top">
+      <div class="search-group ml-20 mb align-top">
+        <span class="search-title">首字母：</span>
+        <div class="search-main">
+          <nz-input name="goodsName" [(ngModel)]="query.brandInitial" [nzPlaceHolder]="'品牌首字母'"
+                    [nzSize]="'large'"></nz-input>
+        </div>
+      </div>
+      <div class="search-group ml-20 mb align-top">
+        <span class="search-title">品牌：</span>
+        <div class="search-main">
+          <nz-input name="brandName" [(ngModel)]="query.brandName" [nzPlaceHolder]="'品牌名称'"
+                    [nzSize]="'large'"></nz-input>
+        </div>
+      </div>
+      <button nz-button [nzSize]="'large'" class="ml-20 btn-thc" (click)="queryBrandsList(1)" title="查询">
+        <i class="anticon anticon-search"></i> 查询
+      </button>
+      <button nz-button [nzSize]="'large'" class="ml btn-thc" (click)="resetQuery()" title="重置查询条件">
+        <i class="anticon anticon-sync"></i> 重置
+      </button>
+    </div>
+  </form>
+  <!--搜索 end-->
+
+  <nz-table #nzTable [nzAjaxData]="brandsList.voList"
+            [nzLoading]="_loading"
+            [nzTotal]="brandsList.totalRow"
+            [(nzPageIndex)]="brandsList.curPage"
+            (nzPageIndexChange)="queryBrandsList()"
+            [(nzPageSize)]="brandsList.pageSize">
+    <thead nz-thead>
+    <tr>
+      <th nz-th class="text-center">
+        <span>序号</span>
+      </th>
+      <th nz-th class="text-center">
+        <span>首字母</span>
+      </th>
+      <th nz-th class="text-center">
+        <span>品牌名称</span>
+      </th>
+      <th nz-th class="text-center">
+        <span>品牌LOGO</span>
+      </th>
+      <th nz-th class="text-center">
+        <span>是否推荐</span>
+      </th>
+      <th nz-th class="text-center">
+        <span>审核状态</span>
+      </th>
+      <th nz-th class="text-center">
+        <span>展示类型</span>
+      </th>
+      <th nz-th class="text-center">
+        <span>排序</span>
+      </th>
+      <th nz-th class="text-center">
+        <span>是否显示</span>
+      </th>
+      <th nz-th class="text-center">
+        <span>管理操作</span>
+      </th>
+    </tr>
+    </thead>
+    <tbody nz-tbody>
+    <tr nz-tbody-tr *ngFor="let brand of nzTable.data;let i = index" class="text-center">
+      <td nz-td class="text-center">{{i+1}}</td>
+      <td class="hidden-sm">{{brand.brandInitial}}</td>
+      <td>{{brand.brandName}}</td>
+      <td nz-td>
+        <nz-popover [nzTrigger]="'click'">
+          <img [src]="brand.brandPic | imgSize:'60'" appImgErr title="点击看大图" [alt]="brand.brandName" nz-popover>
+          <ng-template #nzTemplate>
+            <div><img [src]="brand.brandPic | imgSize:'200'" [alt]="brand.brandName"></div>
+          </ng-template>
+        </nz-popover>
+      </td>
+      <td nz-td>
+        <nz-switch class="thc" [nzSize]="'large'" [ngModel]="brand.brandRecommend==enumState.yes">
+          <span checked>是</span>
+          <span unchecked>否</span>
+        </nz-switch>
+      </td>
+      <td>{{brand.brandApply | stateName: enums.brandsApplyState}}</td>
+      <td>{{brand.showType | stateName: enums.showType}}</td>
+      <td>{{brand.brandSort}}</td>
+      <td nz-td>
+        <nz-switch class="thc" [nzSize]="'large'" [ngModel]="brand.state==enumState.brandState.show">
+          <span checked>是</span>
+          <span unchecked>否</span>
+        </nz-switch>
+      </td>
+      <td nz-td>
+        <button nz-button class="btn-green" title="查看详情" [routerLink]="goodsManageEval"
+                [queryParams]="{brandId:brand.id}">
+          <i class="anticon anticon-eye-o"></i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<!--路由嵌套 begin-->
+<router-outlet (activate)="activate($event)" (deactivate)="onDeactivate($event)"></router-outlet>
+<!--路由嵌套 end-->
+
+

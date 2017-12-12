@@ -95,6 +95,8 @@ export class SettingUrl {
       commnetGoods: "/commentGoods/queryCommnetGoodsAdmin",//(get)查询商品评价
       expressTpl: " /expressTpl/queryByStoreCode",//(get)查询运费模板/模板值列表
       goodsSave: "/goodsEdit/save",      //保存商品数据（发布/修改）
+      brandsList: "/goodsBrand/queryBrandPagesByNA", //查询品牌列表
+      ifRecommendBrand: "/goodsBrand/updateRecommend",//是否推荐品牌
       goodsUploadRetHttpURL: "upload/basic/goodsUploadRetHttpURL",//商品 返回URL，带HTTP
       goodsUploadRetUrl: "upload/basic/goodsUploadRetUrl" //商品 返回URL，不带HTTP
     }
@@ -146,6 +148,8 @@ export class SettingUrl {
       goodsUpdate: "/store/goods/manage/update",  //商品修改
       goodsPublished: "/store/goods/publish/published",  //商品发布完成
       goodsFreightTemplate: "/store/goods/freightTemplate", //运费模板
+      brands: "/store/goods/brands",//品牌管理
+      addBrands: "/store/goods/addBrands",//申请添加品牌
       addTemplate: "addTemplate",  //添加运费模板
       orderPayment: "/store/order/orderPayment", //待付款订单
       orderPendingShipment: "/store/order/pendingShipment", //待发货订单

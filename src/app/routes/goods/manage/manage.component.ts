@@ -29,11 +29,9 @@ export class ManageComponent implements OnInit {
   public query:any = {};    // 查询条件
 
   //路由
-  goodsManagePublish:string = SettingUrl.ROUTERLINK.store.goodsManagePublish;    //商品发布（此处如此写，用于路由相对进入模式）
-  goodsManageUpdate:string = SettingUrl.ROUTERLINK.store.goodsManageUpdate;           //商品修改/编辑（此处如此写，用于路由相对进入模式）
-  goodsManageEval:string = SettingUrl.ROUTERLINK.store.goodsManageEval;           //查看商品评价（此处如此写，用于路由相对进入模式）
-
-
+  public goodsManagePublish:string = SettingUrl.ROUTERLINK.store.goodsManagePublish;    //商品发布（此处如此写，用于路由相对进入模式）
+  public goodsManageUpdate:string = SettingUrl.ROUTERLINK.store.goodsManageUpdate;           //商品修改/编辑（此处如此写，用于路由相对进入模式）
+  public goodsManageEval:string = SettingUrl.ROUTERLINK.store.goodsManageEval;           //查看商品评价（此处如此写，用于路由相对进入模式）
 
   constructor(public goodsService: GoodsService,
               public modalService: NzModalService,

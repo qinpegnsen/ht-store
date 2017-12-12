@@ -37,6 +37,11 @@ export class MainComponent implements OnInit {
             url: SettingUrl.ROUTERLINK.store.goodsPublish
           },
           {
+            name: "品牌管理",
+            icon: "",
+            url: SettingUrl.ROUTERLINK.store.brands
+          },
+          {
             name: "运费模板",
             icon: "",
             url: SettingUrl.ROUTERLINK.store.goodsFreightTemplate

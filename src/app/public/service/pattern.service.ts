@@ -20,11 +20,11 @@ export class PatternService {
   public twodecimal: string;//两位小数
   public integer: string;//正整数
   public storage: string;//库存，十以上正整数
-  public static EMAIL_REGEXP: RegExp;//邮箱
-  public static PWD_REGEXP: RegExp;//密码
-  public static SMS_REGEXP: RegExp;//短信验证码
-  public static PHONE_REGEXP: RegExp;//手机号
-  public static IDCARD_REGEXP: RegExp;//身份证号
+  public static EMAIL_REGEXP: RegExp = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;;//邮箱
+  public static PWD_REGEXP: RegExp = /[A-Za-z0-9]{6,}/;//密码
+  public static SMS_REGEXP: RegExp = /\d{6}/;//短信验证码
+  public static PHONE_REGEXP: RegExp = /^1[0-9]{10}$/;//手机号
+  public static IDCARD_REGEXP: RegExp = /^(^[1-9][0-9]{7}((0[0-9])|(1[0-2]))(([0|1|2][0-9])|3[0-1])[0-9]{3}$)|(^[1-9][0-9]{5}[1-9][0-9]{3}((0[0-9])|(1[0-2]))(([0|1|2][0-9])|3[0-1])(([0-9]{4})|[0-9]{3}[Xx])$)$/;//身份证号
 
   constructor() {
     this.num = '^[0-9]*$'; //数字正则
@@ -42,12 +42,6 @@ export class PatternService {
     this.doubleDigit = '^[0-9]{1,2}$';      // 两位整数（0-99）
     this.integer = '^[0-9]*[1-9][0-9]*$';   //只能正整数
     this.storage = '^[1-9]{1}[0-9]+';//库存，十以上正整数
-
-    PatternService.IDCARD_REGEXP = /^(^[1-9][0-9]{7}((0[0-9])|(1[0-2]))(([0|1|2][0-9])|3[0-1])[0-9]{3}$)|(^[1-9][0-9]{5}[1-9][0-9]{3}((0[0-9])|(1[0-2]))(([0|1|2][0-9])|3[0-1])(([0-9]{4})|[0-9]{3}[Xx])$)$/;
-    PatternService.EMAIL_REGEXP = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
-    PatternService.PWD_REGEXP = /[A-Za-z0-9]{6,}/;//密码
-    PatternService.SMS_REGEXP = /\d{6}/;//短信验证码
-    PatternService.PHONE_REGEXP = /^1[0-9]{10}$/;//手机号
 
   }
 

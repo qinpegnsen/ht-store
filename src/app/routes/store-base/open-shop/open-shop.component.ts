@@ -48,9 +48,9 @@ export class OpenShopComponent implements OnInit {
 
   ngOnInit() {
     let sellerCode = this.route.snapshot.queryParams['sellerCode'];
-    if (sellerCode) this.validateForm = sellerCode;
+    if (sellerCode) this.validateForm.sellerCode = sellerCode;
     let epCode = this.route.snapshot.queryParams['epCode'];
-    if (epCode) this.validateForm = epCode;
+    if (epCode) this.validateForm.epCode = epCode;
     let storeCode = this.route.snapshot.queryParams['storeCode'];
     if (storeCode) this.loadShopData(storeCode);//查询店铺信息
   }
@@ -126,7 +126,8 @@ export class OpenShopComponent implements OnInit {
    * @param value
    */
   submitFormData = () => {
-    let formValue = Object.assign({}, this.validateForm);
+    let me = this;
+    let formValue = Object.assign({}, me.validateForm);
     if (typeof formValue.areaCode == 'object') { //如果是数组形式则取数组的第三个
       formValue.areaCode = formValue.areaCode[2];//取第三级编码
     }

@@ -23,7 +23,7 @@ const PROXY_CONFIG = [
       "/goodsQuery",
       "/stores"
     ],
-    target: csj + "8087",   //拦截 context配置路径，经过此地址
+    target: ly + "8087",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
@@ -31,6 +31,7 @@ const PROXY_CONFIG = [
       "/rpStatistics",
       "/rpAccountRec",
       "/goodsKind",
+      "/goodsBrand",
       "/agentOrd",
       "/expressTpl",
       "/storeExpressTpl",

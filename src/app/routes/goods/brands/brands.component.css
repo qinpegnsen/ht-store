@@ -1,0 +1,48 @@
+
+.search-group {
+  width: 240px;
+  display: inline-block;
+}
+
+.search-group .search-title {
+  width: 30%;
+  line-height: 36px;
+  text-align: right;
+  display: inline-block;
+}
+
+.search-group .search-main {
+  width: 70%;
+  float: right;
+}
+
+.search-term {
+  width: 360px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.relative {
+  position: relative;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.align-top {
+  vertical-align: top;
+}
+
+.align-mid {
+  vertical-align: middle;
+}
+
+.goods-img-box{
+  width: 80px;
+  text-align: center;
+}
+
+.goods-img-box img{
+  vertical-align: middle;
+}

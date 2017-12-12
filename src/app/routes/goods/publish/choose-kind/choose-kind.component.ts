@@ -16,8 +16,8 @@ export class ChooseKindComponent implements OnInit {
   public thirdList: Array<any> = new Array();   // 三级分类列表
   public choosedKindId: string;                 // 选择的分类ID
   public choosedKindStr: string = '';           // 已经选择的分类
-  pageMsg = Setting.PAGEMSG;                      //页面提示信息
-  goodsEdit: string = SettingUrl.ROUTERLINK.store.goodsEdit;           //商品修改/编辑（此处如此写，用于路由相对进入模式）
+  public pageMsg = Setting.PAGEMSG;                      //页面提示信息
+  public goodsEdit: string = SettingUrl.ROUTERLINK.store.goodsEdit;           //商品修改/编辑（此处如此写，用于路由相对进入模式）
 
   constructor(public goodsService: GoodsService,
               public publishComponent: PublishComponent) {

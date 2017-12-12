@@ -13,6 +13,7 @@ import {FreightTemplateComponent} from './freight-template/freight-template.comp
 import {AddTemplateComponent} from './add-template/add-template.component';
 import {SessionService} from "./session.service";
 import {FileUploadModule} from "ng2-file-upload";
+import { BrandsComponent } from './brands/brands.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,9 @@ const routes: Routes = [
     {path: 'edit', component: EditComponent},
     {path: 'published', component: PublishedComponent},
   ]
+  },
+  {
+    path: 'brands', component: BrandsComponent
   }
 ]
 
@@ -51,7 +55,8 @@ const routes: Routes = [
     ChooseKindComponent,
     EditComponent,
     PublishedComponent,
-    AddTemplateComponent
+    AddTemplateComponent,
+    BrandsComponent
   ],
   providers: [
     GoodsService,
