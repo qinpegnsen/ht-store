@@ -4,6 +4,14 @@ export class SettingUrl {
   // 接口通讯url集合
   static URL: any = {
     /**
+     * 首页统计
+     */
+    home:{
+      storeOrdCustomerStatistics:'/statistical/storeOrdCustomerStatistics', //首页呼吸孔信息统计
+      storeStatistics:'/statistical/storeStatistics', //首页总体信息统计
+      storeTreeGraphStatistics:'/statistical/storeTreeGraphStatistics' //首页图表信息
+    },
+    /**
      * 基础路径配置
      */
     base: {
@@ -133,7 +141,7 @@ export class SettingUrl {
       goodsManagePublish: "../publish",       //商品发布（此处如此写，用于路由相对进入模式）
       goodsManageEval: "eval",           //查看商品评价（此处如此写，用于路由相对进入模式）
       goodsManageDetail: "detail",           //查看商品详情（此处如此写，用于路由相对进入模式）
-      goodsPublish: "/store/goods/publish", //商品发布
+      goodsPublish: "/store/goods/publish/chooseKind", //商品发布
       goodsEdit: "/store/goods/publish/edit",  //商品发布编辑
       goodsUpdate: "/store/goods/manage/update",  //商品修改
       goodsPublished: "/store/goods/publish/published",  //商品发布完成

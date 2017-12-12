@@ -41,7 +41,6 @@
       <ul class="fr mr">
         <li><i class="anticon anticon-home" [routerLink]="home" title="去首页"></i></li>
         <li><i class="anticon anticon-user" title="企业信息" [routerLink]="company"></i></li>
-
         <nz-dropdown [nzTrigger]="'click'">
           <li nz-dropdown>
             <nz-badge [nzCount]="msgNum">
@@ -51,13 +50,14 @@
             </nz-badge>
           </li>
           <ul nz-menu>
-            <li nz-menu-item *ngFor="let news of msg">
-              <i class="{{news.icon}} mr-5"></i> {{news.info}}
-              （<span class="main-color">{{news.num}}</span>）
-            </li>
+            <ng-container *ngFor="let news of msg">
+              <li nz-menu-item *ngIf="news.num > 0" [routerLink]="news.url">
+                <i class="{{news.icon}} mr-5"></i> {{news.info}}
+                （<span class="main-color">{{news.num}}</span>）
+              </li>
+            </ng-container>
           </ul>
         </nz-dropdown>
-
         <li><i class="anticon anticon-edit" title="修改密码"></i></li>
         <li><i class="anticon anticon-logout" title="退出登录"></i></li>
       </ul>

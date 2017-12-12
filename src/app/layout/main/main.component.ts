@@ -2,6 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Setting} from "../../public/setting/setting";
 import {Router} from "@angular/router";
 import {SettingUrl} from "../../public/setting/setting_url";
+import {HomeService} from "../../routes/home/home.service";
 
 @Component({
   selector: 'app-main',
@@ -131,6 +132,45 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     const _this = this;
     _this.menus = Setting.MENUS; //菜单信息
+    //设置消息通知
+    _this.storeOrdCustomerStatistics();
+  }
+
+  /**
+   * 消息通知（待发货订单、申请退款信息、申请退货信息、密码过于简单提示等）
+   */
+  storeOrdCustomerStatistics(){
+    let me = this,infos:any = HomeService.storeOrdCustomerStatistics();
+    me.msg = [
+      {
+        icon: "anticon anticon-edit",
+        info: "建议修改密码",
+        url:"",
+        num: 1
+      },
+      {
+        icon: "anticon anticon-export",
+        info: "待发货商品",
+        url:SettingUrl.ROUTERLINK.store.orderPendingShipment,
+        num: infos.deliverGoods
+      },
+      {
+        icon: "anticon anticon-pay-circle-o",
+        info: "申请退款",
+        url:SettingUrl.ROUTERLINK.store.serviceRefund,
+        num: infos.refund
+      },
+      {
+        icon: "icon icon-tuihuo",
+        info: "申请退货",
+        url:SettingUrl.ROUTERLINK.store.serviceReturnGoods,
+        num: infos.refundGoods
+      }
+    ];
+    //设置消息通知总条数
+    me.msg.forEach(res => {
+      me.msgNum += res.num;
+    })
   }
 
   /**
