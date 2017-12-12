@@ -2,9 +2,9 @@
   <div class="panel panel-default">
     <!--引导语 start-->
     <div class="page-msg-red m">
-      <p class="title">操作提示</p>
+      <p class="title">{{guideLang.tipTitle}}</p>
       <ul>
-        <li *ngFor="let item of guideLang">{{item}}</li>
+        <li *ngFor="let item of guideLang.service.returnGoods">{{item}}</li>
       </ul>
     </div>
     <!--引导语 end-->
@@ -134,27 +134,27 @@
       <tr nz-tbody-tr *ngIf="data.expand">
         <td nz-td></td>
         <td nz-td class="text-center">
-          <div class="''">
+          <div>
             <span>商品名称：</span> <span>{{data.goodsName}}</span>
           </div>
         </td>
         <td nz-td class="text-center">
-          <div class="''">
+          <div>
             <span>商品数量：</span> <span>{{data.num}}</span>
           </div>
         </td>
         <td nz-td class="text-center">
-          <div class="''">
+          <div>
             <span>手机号：</span> <span>{{data.custPhone}}</span>
           </div>
         </td>
         <td nz-td class="text-center">
-          <div class="''">
+          <div>
             <span>订单编号：</span> <span>{{data.ordno}}</span>
           </div>
         </td>
         <td nz-td class="text-center">
-          <div class="''">
+          <div>
             <span>商品编码：</span> <span>{{data.goodsCode}}</span>
           </div>
         </td>
@@ -162,7 +162,7 @@
       <tr nz-tbody-tr *ngIf="data.expand">
         <td nz-td></td>
         <td nz-td class="text-center">
-          <div class="''">
+          <div>
             <span class="mySpan">商品图片：</span>
             <nz-popover [nzTrigger]="'click'">
               <img [src]="data.goodsImage | imgSize :'50'" appImgErr title="点击查看大图" nz-popover>
@@ -173,7 +173,7 @@
           </div>
         </td>
         <td nz-td class="text-center" colspan="5">
-          <div class="''">
+          <div>
             <span>申请原因：</span> <span>{{data.reason}}</span>
           </div>
         </td>

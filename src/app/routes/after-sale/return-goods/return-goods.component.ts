@@ -22,7 +22,7 @@ export class ReturnGoodsComponent implements OnInit {
   public enumState:any = Setting.ENUMSTATE;               //定义枚举状态
   public routerLink:any = SettingUrl.ROUTERLINK;          //定义路由
   public app:any= Setting.APP;                            //定义出错时加载的图片
-  public guideLang: any = Setting.PAGEMSG.service.returnGoods;//引导语
+  public guideLang: any = Setting.PAGEMSG;//引导语
   public enums :any= Setting.ENUM;                        //枚举
   public query:any = {
     searchType:this.enumState.afterSearchType.afterNo
