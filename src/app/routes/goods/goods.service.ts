@@ -283,7 +283,7 @@ export class GoodsService {
       contentType: "application/json",
       success: (res) => {
         if (res.success) {
-          defer.resolve(res.success);
+          defer.resolve(res.data);
         } else {
           me._notification.error(res.status, res.statusText)
         }

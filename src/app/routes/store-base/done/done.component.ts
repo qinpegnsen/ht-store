@@ -11,7 +11,7 @@ declare var $: any;
   styleUrls: ['./done.component.css']
 })
 export class DoneComponent implements OnInit {
-  curState: string;//当前店铺状态
+  curState: string = 'pending';//当前店铺状态
   curParam: any = null;
 
   constructor(public storeBaseService: StoreBaseService,
@@ -32,13 +32,13 @@ export class DoneComponent implements OnInit {
   /**
    * 查询企业当前状态
    */
-  loadState(storeCode){
-    let me = this,param = {storeCode:storeCode};
+  loadState(storeCode) {
+    let me = this, param = {storeCode: storeCode};
     $.when(StoreBaseService.loadShopState(param)).done(data => {
       if (data) {
-        if(data.state == Setting.ENUMSTATE.shopState.pending){
+        if (data.state == Setting.ENUMSTATE.shopState.pending) {
           me.curState = 'pending';
-        }else if(data.state == Setting.ENUMSTATE.shopState.reject) {
+        } else if (data.state == Setting.ENUMSTATE.shopState.reject) {
           me.curState = 'reject';
         }
       }

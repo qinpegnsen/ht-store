@@ -74,7 +74,8 @@
             </div>
             <div nz-form-control nz-col [nzSpan]="16">
               <nz-select [name]="'baseAttr'+i" [nzSize]="'large'" [(ngModel)]="attrType.checkedId" required>
-                <nz-option *ngFor="let attr of attrType.goodsEnumValList" [nzLabel]="attr.enumValue" [nzValue]="attr.id"></nz-option>
+                <nz-option *ngFor="let attr of attrType.goodsEnumValList" [nzLabel]="attr.enumValue"
+                           [nzValue]="attr.id"></nz-option>
               </nz-select>
             </div>
           </div>
@@ -452,7 +453,7 @@
                       <p class="text-tip">还可以输入 <i class="main-color counter">500</i>字 </p>
                       <div class="pl pr">
                         <textarea class="textarea" rows="3" maxlength="500"
-                                                   (keyup)="counter($event.target)"></textarea>
+                                  (keyup)="counter($event.target)"></textarea>
                       </div>
                       <div class="button">
                         <button nz-button [nzSize]="'small'" (click)="insertMblText($event.target,i)">确认</button>
@@ -558,12 +559,22 @@
                     <span>使用固定运费</span>
                   </label>
                   <ng-container *ngIf="publishData.goodsExpressInfo.freightType == enumState.freightType.fixed">
-                    <div class="inline-block feight-fixed-width">
+                    <div class="inline-block feight-fixed-width" nz-form-control
+                         [nzValidateStatus]="ngValidateStatus(ngFixedFreight)">
                       <nz-input name="fixedFreight" [(ngModel)]="publishData.goodsExpressInfo.fixedFreight"
-                                [pattern]="patterns.twodecimal" [nzSize]="'large'" [nzType]="'number'" required
-                                #ngMarketPrice="ngModel" (keyup)="auditInputValueForNum(ngMarketPrice)">
+                                #ngFixedFreight="ngModel" [pattern]="patterns.twodecimal" [nzSize]="'large'"
+                                [nzType]="'number'" required
+                                (keyup)="publishData.goodsExpressInfo.fixedFreight > 9999.99? publishData.goodsExpressInfo.fixedFreight=9999.99:true">
                         <ng-template #addOnAfter>元</ng-template>
                       </nz-input>
+                    </div>
+                    <div class="inline-block has-error">
+                      <p nz-form-explain *ngIf="ngValidateErrorMsg(ngFixedFreight)==valitateState.empty">
+                        请输入固定运费！</p>
+                    </div>
+                    <div class="inline-block has-error">
+                      <p nz-form-explain *ngIf="ngValidateErrorMsg(ngFixedFreight)==valitateState.error">
+                        请输入两位小数！</p>
                     </div>
                   </ng-container>
                 </div>
@@ -624,24 +635,44 @@
           </dt>
           <dd nz-col [nzSpan]="20">
             <div nz-col [nzSpan]="24">
-              <div class="clearfix mb">
+              <div class="mb">
                 <div nz-form-label class="mr-5"><label nz-form-item-required>重量</label></div>
-                <div class="inline-block feight-fixed-width">
+                <div class="inline-block feight-fixed-width" nz-form-control
+                     [nzValidateStatus]="ngValidateStatus(ngWeight)">
                   <nz-input name="weight" [(ngModel)]="publishData.goodsExpressInfo.weight"
                             placeholder="1.00" [pattern]="patterns.twodecimal" [nzSize]="'large'" [nzType]="'number'"
-                            required #ngMarketPrice="ngModel" (keyup)="auditInputValueForNum(ngMarketPrice)">
+                            required #ngWeight="ngModel"
+                            (keyup)="auditInputValueForNum(publishData.goodsExpressInfo.weight)">
                     <ng-template #addOnAfter>kg</ng-template>
                   </nz-input>
                 </div>
+                <div class="inline-block has-error">
+                  <p nz-form-explain *ngIf="ngValidateErrorMsg(ngWeight)==valitateState.empty">
+                    请输入商品重量！</p>
+                </div>
+                <div class="inline-block has-error">
+                  <p nz-form-explain *ngIf="ngValidateErrorMsg(ngWeight)==valitateState.error">
+                    请输入两位小数！</p>
+                </div>
               </div>
-              <div class="clearfix">
+              <div>
                 <div nz-form-label class="mr-5"><label nz-form-item-required>体积</label></div>
-                <div class="inline-block feight-fixed-width">
+                <div class="inline-block feight-fixed-width" nz-form-control
+                     [nzValidateStatus]="ngValidateStatus(ngVolume)">
                   <nz-input name="volume" [(ngModel)]="publishData.goodsExpressInfo.volume"
-                            [pattern]="patterns.twodecimal" [nzSize]="'large'" [nzType]="'number'" required
-                            #ngMarketPrice="ngModel" (keyup)="auditInputValueForNum(ngMarketPrice)">
+                            [pattern]="patterns.twodecimal" [nzSize]="'large'"
+                            [nzType]="'number'" required #ngVolume="ngModel"
+                            (keyup)="auditInputValueForNum(publishData.goodsExpressInfo.volume)">
                     <ng-template #addOnAfter>m³</ng-template>
                   </nz-input>
+                </div>
+                <div class="inline-block has-error">
+                  <p nz-form-explain *ngIf="ngValidateErrorMsg(ngVolume)==valitateState.empty">
+                  请输入商品体积！</p>
+                </div>
+                <div class="inline-block has-error">
+                  <p nz-form-explain *ngIf="ngValidateErrorMsg(ngVolume)==valitateState.error">
+                    请输入两位小数！</p>
                 </div>
               </div>
             </div>

@@ -126,8 +126,7 @@ export class OpenShopComponent implements OnInit {
    * @param value
    */
   submitFormData = () => {
-    let formValue = this.validateForm;
-    console.log("█ formValue ►►►",  formValue);
+    let formValue = Object.assign({}, this.validateForm);
     if (typeof formValue.areaCode == 'object') { //如果是数组形式则取数组的第三个
       formValue.areaCode = formValue.areaCode[2];//取第三级编码
     }

@@ -115,7 +115,7 @@ export class AccountInfoComponent implements OnInit {
    * @param value
    */
   submitFormData = () => {
-    let formValue = this.validateForm;
+    let formValue = Object.assign({}, this.validateForm);
     //转换地址格式
     if (formValue.bankAddress && typeof formValue.bankAddress == 'object') { //如果是数组形式则取数组的第三个
       formValue.bankAddress = formValue.bankAddress[2];

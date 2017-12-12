@@ -3,7 +3,7 @@ import {PublishComponent} from "../publish.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {GoodsService} from "../../goods.service";
-import {isNullOrUndefined, isUndefined} from "util";
+import {isNull, isNullOrUndefined, isUndefined} from "util";
 import {FileUploader} from "ng2-file-upload";
 import {PatternService} from "../../../../public/service/pattern.service";
 import {Util} from "../../../../public/util/util";
@@ -18,7 +18,9 @@ declare var $: any;
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  ngValidateStatus = Util.ngValidateStatus;
+  public ngValidateStatus = Util.ngValidateStatus;
+  public ngValidateErrorMsg = Util.ngValidateErrorMsg;
+  public valitateState: any = Setting.valitateState;//表单验证状态
   public enumState = Setting.ENUMSTATE;   //枚举
   public path: string;                  // 当前路径
   public saleAttrList: any;             // 所有规格数据
@@ -147,8 +149,7 @@ export class EditComponent implements OnInit {
             me.getTplValById(); //根据物流模板ID获取模板值
           }
           me.genClearArray(me.goodsEditData.goodsSkuList);    // 生成所选属性组合
-          me.goodsBody = me.goodsEditData.goodsBody.replace(/\\/, '');
-          me.tempMblHtml = me.goodsEditData.mobileBody.replace(/\\/, '');        //为了容易生成移动端详情图片文字组合，将html字符串先放入html再取
+          me.tempMblHtml = me.goodsEditData.mobileBody;        //为了容易生成移动端详情图片文字组合，将html字符串先放入html再取
           me.genImgSku();       //已选中属性的图片组
           me.genTempGoodsImgsList();  // 将商品的图片组生成me.goodsImgList一样的数据，方便后续追加图片
           me.genMblItemList();        //将html字符串生成移动端图片文字组合
@@ -199,7 +200,7 @@ export class EditComponent implements OnInit {
   getExpressTpl() {
     let me = this;
     //TODO，登录后根据登录店铺编码获取相关运费模板,，目前所用是自营店铺的编码
-    let data = {storeCode: '649530532714012672'};
+    let data = {storeCode: 'SZH_PLAT_SELF_STORE'};
     $.when(GoodsService.freightList(data)).done(res => {
       if (res) me.logistics = res; //赋值
     })
@@ -658,11 +659,18 @@ export class EditComponent implements OnInit {
   /**
    * 审核input框的value合不合要求
    */
-  auditInputValueForNum(target, type?) {
-    // Util.auditInputValueForNum(target, type);
-    if (Number(target.value) > 10000) {
-      target.value = 9999.99
+  auditInputValueForNum(value,type?:string) {
+    let val = value, reg;
+    if(type == 'int') reg = val.match(/^[1-9]{1}[0-9]*/);
+    else reg = val.match(/\d+(\.\d{1,2})?/);
+    if (!isNull(reg)){
+      val = reg[0];
+    }else {
+      val = val.substring(0,val.length-1)
     }
+    console.log("█ target ►►►",  value);
+    // Util.auditInputValueForNum(target, type);
+    if (Number(value) > 10000) value = 9999.99
   }
 
 
@@ -805,13 +813,16 @@ export class EditComponent implements OnInit {
   judgeDetailInfo(){
     let me = this;
     if(isNullOrUndefined(me.publishData.goodsBody) || me.publishData.goodsBody == '') {
-      me._notification.warning('', '请编辑PC端商品详情');
+      me._notification.warning('数据不完整', '请编辑PC端商品详情');
+      return false
     }else{
       me.publishData.mobileBody = me.genMblDetailHtml();               // 商品详情 App
       if(isNullOrUndefined(me.publishData.mobileBody) ||me.publishData.mobileBody == ''){
-        me._notification.warning('', '请编辑移动端商品详情');
+        me._notification.warning('数据不完整', '请编辑移动端商品详情');
+        return false
       }
     }
+    return true
   }
 
   /**
@@ -885,13 +896,13 @@ export class EditComponent implements OnInit {
           me._notification.warning('数据不完整', '请输入商品的会员价');
           return false;
         } else if (Number(item.price) > Number(item.marketPrice)) {
-          me._notification.warning('数据不完整', '商品价格应小于市场价');
+          me._notification.warning('数据不正确', '商品价格应小于市场价');
           return false;
         } else if (Number(item.memberPrice) > Number(item.price)) {
-          me._notification.warning('数据不完整', '会员价应小于商品价格');
+          me._notification.warning('数据不正确', '会员价应小于商品价格');
           return false;
         } else if (Number(item.storageNum) < 10) {
-          me._notification.warning('数据不完整', '商品库存必须大于10');
+          me._notification.warning('数据不正确', '商品库存必须大于10');
           return false;
         } else {
           return true
@@ -911,7 +922,7 @@ export class EditComponent implements OnInit {
     me.genGoodsBaseAttrList();                                          // 商品基本属性
     $.when(this.goodsService.saveGoods(me.publishData)).done(data => {
       if (data) {
-        if (me.path == 'edit') me.router.navigate([SettingUrl.ROUTERLINK.store.goodsPublished], {queryParams: {baseCode: me.goodsBaseCode}});
+        if (me.path == 'edit') me.router.navigate([SettingUrl.ROUTERLINK.store.goodsPublished], {queryParams: {baseCode: data}});
         if (me.path == 'update') me.location.back();
       }
     })

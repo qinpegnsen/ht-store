@@ -139,7 +139,7 @@ export class BaseInfoComponent implements OnInit {
    * @param value
    */
   submitFormData = () => {
-    let formValue = this.validateForm;
+    let formValue = Object.assign({}, this.validateForm);
     //转换布尔值
     if (formValue.isForever) formValue.isForever = 'Y';
     else formValue.isForever = 'N';
