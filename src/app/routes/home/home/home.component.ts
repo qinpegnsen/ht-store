@@ -133,8 +133,8 @@ export class HomeComponent implements OnInit {
         info: "红包广告点击量"
       },
       {
-        num: infos ? (infos.staff || 0) : 0,
-        info: "员工数"
+        num: infos ? (infos.money || 0) : 0,
+        info: "账户余额（元）"
       }
     ];
   };

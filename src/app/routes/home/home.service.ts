@@ -27,12 +27,12 @@ export class HomeService {
   }
 
   /**
-   * 首页信息汇总提示（商品数、待发货订单数、已完成订单数，红包广告投放次数，红包广告总点击数，员工数）
+   * 首页信息汇总提示（商品数、待发货订单数、已完成订单数，红包广告投放次数，红包广告总点击数，账户余额）
    * 查询正确时，返回结果格式：{goods: ?, deliverGoods: ?, redPackClick: ?, staff: ?, completedGoods: ?, redPack: ?}
    * 查询异常时，返回结果格式：{goods: 0, deliverGoods: 0, redPackClick: 0, staff: 0, completedGoods: 0, redPack: 0}
    */
   static storeStatistics() {
-    let ret = {goods: 0, deliverGoods: 0, redPackClick: 0, staff: 0, completedGoods: 0, redPack: 0};
+    let ret = {goods: 0, deliverGoods: 0, redPackClick: 0, money: 0, completedGoods: 0, redPack: 0};
     //执行查询
     AjaxService.get({
       url: SettingUrl.URL.home.storeStatistics,
