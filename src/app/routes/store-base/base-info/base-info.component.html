@@ -126,7 +126,7 @@
             <ng-container *ngIf="taxRegistrationUploader.queue[0]">
               <div class="uploaded">
                 <nz-popover [nzTrigger]="'click'">
-                  <img [src]="taxRegistrationUploader.queue[0]?._file | imgPreview" height="32"
+                  <img [src]="taxRegistrationUploader.queue[0]?._file | imgPreview" height="50"
                        title="点击看大图" nz-popover>
                   <ng-template #nzTemplate>
                     <div><img [src]="taxRegistrationUploader.queue[0]?._file | imgPreview" height="200"></div>
@@ -138,7 +138,8 @@
             <ng-container *ngIf="validateForm.taxRegistrationCertificateElectronic && !taxRegistrationUploader.queue[0]">
               <div class="uploaded">
                 <nz-popover [nzTrigger]="'click'">
-                  <img [src]="validateForm.taxRegistrationCertificateElectronic | imgSize: '60'" title="点击看大图" nz-popover>
+                  <img [src]="validateForm.taxRegistrationCertificateElectronic | imgSize: '50'" title="点击看大图"
+                       nz-popover>
                   <ng-template #nzTemplate>
                     <div><img [src]="validateForm.taxRegistrationCertificateElectronic | imgSize: '200'"></div>
                   </ng-template>
@@ -184,7 +185,7 @@
             <ng-container *ngIf="organizationCodeUploader.queue[0]">
               <div class="uploaded">
                 <nz-popover [nzTrigger]="'click'">
-                  <img [src]="organizationCodeUploader.queue[0]?._file | imgPreview" height="32"
+                  <img [src]="organizationCodeUploader.queue[0]?._file | imgPreview" height="50"
                        title="点击看大图" nz-popover>
                   <ng-template #nzTemplate>
                     <div><img [src]="organizationCodeUploader.queue[0]?._file | imgPreview" height="200"></div>
@@ -196,7 +197,7 @@
             <ng-container *ngIf="validateForm.organizationCodeElectronic && !organizationCodeUploader.queue[0]">
               <div class="uploaded">
                 <nz-popover [nzTrigger]="'click'">
-                  <img [src]="validateForm.organizationCodeElectronic | imgSize: '60'" title="点击看大图" nz-popover>
+                  <img [src]="validateForm.organizationCodeElectronic | imgSize: '50'" title="点击看大图" nz-popover>
                   <ng-template #nzTemplate>
                     <div><img [src]="validateForm.organizationCodeElectronic | imgSize: '200'"></div>
                   </ng-template>
@@ -440,7 +441,7 @@
           <ng-container *ngIf="businessLicenceUploader.queue[0]">
             <div class="uploaded">
               <nz-popover [nzTrigger]="'click'">
-                <img [src]="businessLicenceUploader.queue[0]?._file | imgPreview" height="32"
+                <img [src]="businessLicenceUploader.queue[0]?._file | imgPreview" height="50"
                      title="点击看大图" nz-popover>
                 <ng-template #nzTemplate>
                   <div><img [src]="businessLicenceUploader.queue[0]?._file | imgPreview" height="200"></div>
@@ -452,7 +453,7 @@
           <ng-container *ngIf="validateForm.businessLicenceNumberElectronic && !businessLicenceUploader.queue[0]">
             <div class="uploaded">
               <nz-popover [nzTrigger]="'click'">
-                <img [src]="validateForm.businessLicenceNumberElectronic | imgSize: '60'" title="点击看大图" nz-popover>
+                <img [src]="validateForm.businessLicenceNumberElectronic | imgSize: '50'" title="点击看大图" nz-popover>
                 <ng-template #nzTemplate>
                   <div><img [src]="validateForm.businessLicenceNumberElectronic | imgSize: '200'"></div>
                 </ng-template>

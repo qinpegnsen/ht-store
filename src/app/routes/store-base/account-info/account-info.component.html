@@ -100,7 +100,7 @@
           <ng-container *ngIf="bankLicenceUploader.queue[0]">
             <div class="uploaded">
               <nz-popover [nzTrigger]="'click'">
-                <img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" height="32"
+                <img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" height="50"
                      title="点击看大图" nz-popover>
                 <ng-template #nzTemplate>
                   <div><img [src]="bankLicenceUploader.queue[0]?._file | imgPreview" height="200"></div>
@@ -112,7 +112,7 @@
           <ng-container *ngIf="validateForm.bankLicenceElectronic && !bankLicenceUploader.queue[0]">
             <div class="uploaded">
               <nz-popover [nzTrigger]="'click'">
-                <img [src]="validateForm.bankLicenceElectronic | imgSize: '60'" title="点击看大图" nz-popover>
+                <img [src]="validateForm.bankLicenceElectronic | imgSize: '50'" title="点击看大图" nz-popover>
                 <ng-template #nzTemplate>
                   <div><img [src]="validateForm.bankLicenceElectronic | imgSize: '200'"></div>
                 </ng-template>
