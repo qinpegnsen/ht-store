@@ -117,6 +117,11 @@ export class MainComponent implements OnInit {
         url: SettingUrl.ROUTERLINK.store.staff
       },
       {
+        name: "店铺信息管理",
+        icon: "shop",
+        url: SettingUrl.ROUTERLINK.basic.shops
+      },
+      {
         name: "企业信息（TODO）",
         icon: "smile-o",
         url: SettingUrl.ROUTERLINK.basic.reg
