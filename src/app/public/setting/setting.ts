@@ -69,6 +69,19 @@ export class Setting {
   public static ENUMSTATE: any = {
     yes: 'Y',
     no: 'N',
+     //登录时获取店铺步骤状态
+    loginState: {
+      enterprosewait: "ENTERPRISEWAIT",       //企业待入驻
+      enterprishalf: "ENTERPRISHALF",         //企业待完善
+      enterpriseaudit: "ENTERPRISEAUDIT",     //企业待审核
+      enterprisempral: "ENTERPRISENORMAL",    //企业已正常
+      enterpriseblack: "ENTERPRISEBLACK",     //企业黑名单
+      enterprisereject: "ENTERPRISEREJECT",   //企业申请驳回
+      storewait: "STOREWAIT",                 //店铺待申请
+      storepending: "STOREPENDING",           //店铺审核中
+      storenormal: "STORENORMAL",             //店铺已正常
+      storeclose: "STORECLOSE"                //店铺关闭
+  },
     //商品状态
     goodsState: {
       normal: 'NORMAL', //已上架

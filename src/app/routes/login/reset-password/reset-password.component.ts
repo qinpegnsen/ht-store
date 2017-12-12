@@ -12,8 +12,8 @@ export class ResetPasswordComponent implements OnInit {
 
   validateForm: FormGroup;//重置密码的表单
   msgCode: string = '获取验证码';
-  isSending: boolean = false;
-  phoneState: string;
+  isSending: boolean = false;//判断获取验证码的按钮，如果已经点击过了，就变禁用
+  phoneState: string;//获取验证码时判断手机号是否输入
 
   constructor(public loginService: LoginService, public forgetPwd: ForgetPasswordComponent) {
     this.validateForm = this.loginService.validateFormReset;////重置密码的表单
@@ -38,12 +38,14 @@ export class ResetPasswordComponent implements OnInit {
     this.loginService.routerSkip(this.forgetPwd.current);
   };
 
-
+  /**
+   * from表单
+   * @param name
+   * @returns {AbstractControl}
+   */
   getFormControl(name) {
     return this.validateForm.controls[name];
   }
-
-
 
 
   /**

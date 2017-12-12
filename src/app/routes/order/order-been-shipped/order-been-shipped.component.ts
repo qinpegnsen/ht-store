@@ -13,7 +13,7 @@ declare var $: any;
 })
 export class OrderBeenShippedComponent implements OnInit {
   orderList: Page = new Page();  //已收货订单信息
-  _loading = false;             //查询时锁屏
+  _loading:boolean = false;             //查询时锁屏
   orderquery = {
     phone: '',//收货人手机号
     agentOrdno: ''//订单号
@@ -21,6 +21,8 @@ export class OrderBeenShippedComponent implements OnInit {
   showOrderList: boolean = true;//判断子组件的显示/隐藏
   orderDetail: string = SettingUrl.ROUTERLINK.store.orderDetailSimple; //订单详情页面
   enum = Setting.ENUM;  // 订单状态类型
+  orderState :any= Setting.ENUMSTATE;               //定义枚举状态
+  state: string = this.orderState.ordState.delivery;     //已发货状态的订单
 
   constructor() {
   }
@@ -59,7 +61,7 @@ export class OrderBeenShippedComponent implements OnInit {
       pageSize: me.orderList.pageSize, //每页条数
       phone: me.orderquery.phone,//代理商账号
       ordno: me.orderquery.agentOrdno,//订单号
-      ordState:'DELIVERY'
+      ordState:me.state,//已发货状态的订单
     }
     $.when(OrderService.queryOrderList(me.orderList.params)).done(data => {
       me._loading = false //解除锁屏
@@ -85,22 +87,4 @@ export class OrderBeenShippedComponent implements OnInit {
     let target = event.target.nextElementSibling;
     target.style.display = 'none';
   }
-
-  /**
-   * 显示买家信息
-   * @param event
-   * @param i
-   */
-  showUserInfo(t) {
-    t.style.display = 'block';
-  }
-
-  /**
-   * 隐藏买家信息
-   * @param i
-   */
-  hideBuyerInfo(t) {
-    t.style.display = 'none';
-  }
-
 }

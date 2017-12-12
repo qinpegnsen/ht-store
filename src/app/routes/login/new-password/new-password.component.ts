@@ -37,6 +37,11 @@ export class NewPasswordComponent implements OnInit {
     this.loginService.routerSkip(this.forgetPwd.current);
   };
 
+  /**
+   * from表单
+   * @param name
+   * @returns {AbstractControl}
+   */
   getFormControl(name) {
     return this.validateForm.controls[name];
   }

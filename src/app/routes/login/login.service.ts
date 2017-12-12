@@ -4,10 +4,14 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {NzNotificationService} from "ng-zorro-antd";
+import {Setting} from "../../public/setting/setting";
 
 @Injectable()
 export class LoginService {
   validateFormReset: FormGroup;          //重置密码的表单校验
+  flowState :any= Setting.ENUMSTATE;               //定义枚举状态
+  loginState: any = this.flowState.loginState;       //登录时获取跳转的状态
+
 
 
 
@@ -71,30 +75,63 @@ export class LoginService {
     }
   };
 
-
   /**
    * 登录
    * @param requestDate
    * @param callback
    */
-  loginStore(requestDate: any) {
+  loginStore(requestDate: any, param?: any) {
     const me = this;
     AjaxService.post({
       url: SettingUrl.URL.login.storeLogin,
       data: requestDate,
       success: (res) => {
         if (res.success) {
-          me.routerSkip('baseInfo');
+          //判断跳到相应的页面
+          switch (res.data.flowState) {
+            case me.loginState.enterprosewait://企业待入驻
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.baseInfo], {replaceUrl: true,queryParams: {sellerCode:res.data.sellerCode}})//跳到基础信息页面
+              break;
+            case me.loginState.enterprishalf://企业待完善
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.accountInfo], {replaceUrl: true, queryParams: {epCode:res.data.epCode}}) //跳到企业账户信息页面
+              break;
+            case me.loginState.enterpriseaudit://企业待审核
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode:res.data.epCode}})//跳到企业审核页面
+              break;
+            case me.loginState.enterprisempral://企业已正常
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode:res.data.epCode}})//跳到企业审核页面
+              break;
+            case me.loginState.enterpriseblack://企业黑名单
+              me._notification.success('该店铺不存在','该店铺不存在');
+              break;
+            case me.loginState.enterprisereject://企业申请驳回
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode:res.data.epCode}})//跳到企业审核页面
+              break;
+            case me.loginState.storewait://店铺待申请
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode:res.data.epCode}})//跳到企业审核页面
+              break;
+            case me.loginState.storepending://店铺审核中
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.done], {replaceUrl: true, queryParams: {storeCode:res.data.storeCode}})//跳到完成页面
+              break;
+            case me.loginState.storenormal://店铺已正常
+              this.router.navigate([SettingUrl.ROUTERLINK.store.home], {replaceUrl: true, queryParams: param})//跳到首页
+              break;
+            case me.loginState.storeclose://店铺关闭
+              me._notification.success('该店铺已关闭','该店铺已关闭');
+              break;
+          }
+          localStorage.setItem('loginInfo', JSON.stringify(res)); //用户信息存入localStorage
+          localStorage.setItem('islogin', 'yes'); //用户信息存入localStorage
+          me._notification.success('成功',res.info);
         } else {
-          me._notification.error(`失败`, '登录失败了');
+          me._notification.error(`失败`, res.info);
         }
       },
       error: (res) => {
-        me._notification.error(`接口出错了`, '注册接口出错了接口出错了接口出错了')
+        me._notification.error(`失败`, res.info);
       }
     });
   }
-
 
   /**
    * 根据操作步骤跳到相应页面
