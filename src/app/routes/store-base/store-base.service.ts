@@ -62,7 +62,7 @@ export class StoreBaseService {
       data: requestDate,
       success: (res) => {
         if (res.success) {
-          me.routerSkip('baseInfo',{sellerCode:res.data.sellerCode});
+          me.routerSkip('baseInfo', {sellerCode: res.data.sellerCode});
         } else {
           me._notification.error(`出错了`, res.info)
         }
@@ -135,7 +135,7 @@ export class StoreBaseService {
       contentType: "application/json",
       success: (res) => {
         if (res.success) {
-          me.routerSkip('auditing');
+          me.routerSkip('auditing', {epCode: res.data.epCode});
         } else {
           me._notification.error(`错误提示`, res.info)
         }
@@ -159,7 +159,7 @@ export class StoreBaseService {
       contentType: "application/json",
       success: (res) => {
         if (res.success) {
-          me.routerSkip('done');
+          me.routerSkip('done', {storeCode: res.data.storeCode});
         } else {
           me._notification.error(`错误提示`, res.info)
         }
