@@ -29,7 +29,6 @@ const PROXY_CONFIG = [
   {
     context: [
       "/rpStatistics",
-      "/statistical",
       "/rpAccountRec",
       "/goodsKind",
       "/agentOrd",
@@ -56,6 +55,13 @@ const PROXY_CONFIG = [
       "/upload"
     ],
     target: csj + "8082",   //拦截 context配置路径，经过此地址
+    secure: false
+  },
+  {
+    context: [
+      "/statistical"
+    ],
+    target: gh + "8087",   //拦截 context配置路径，经过此地址
     secure: false
   }
 ];

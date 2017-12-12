@@ -9,16 +9,18 @@
         <p class="font18 strong">坤先生的小店</p>
         <p class="mt-5 font12">
           <span><i class="anticon anticon-check-circle color-success"></i> 企业认证</span>
-          <span class="ml-5"><i class="anticon anticon-check-circle color-success"></i> 店铺认证</span>
+          <span class="ml-5">
+            <i class="anticon anticon-check-circle color-success"></i> 店铺认证
+          </span>
         </p>
       </li>
       <li class="fr mt-20">
-        <button nz-button [nzType]="'default'" [nzSize]="'large'">
+        <button nz-button [nzType]="'default'" [nzSize]="'large'" [routerLink]="companyUrl">
           <span>企业信息</span>
         </button>
       </li>
       <li class="fr mt-20 mr">
-        <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w">
+        <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w" [routerLink]="shopsUrl">
           <span>店铺信息</span>
         </button>
       </li>
@@ -40,7 +42,7 @@
   <div class="common-functions mt-20" nz-row>
     <p class="font16 strong mb title">常用功能</p>
     <ng-container *ngFor="let cf of commonFunctions">
-      <div nz-col [nzSpan]="4" class="bg-f8 pl-20 font16 cursor" *ngIf="cf.isShow">
+      <div nz-col [nzSpan]="4" class="bg-f8 pl-20 font16 cursor" [routerLink]="cf.url" *ngIf="cf.isShow">
         <i class="{{cf.icon}} font20 mr"></i>{{cf.info}}
       </div>
     </ng-container>
@@ -48,7 +50,7 @@
   <!--常用功能 end-->
   <!--订单流量统计 start-->
   <div class="order-count mt-20">
-    <p class="font16 strong mb title">订单流量统计</p>
+    <p class="font16 strong mb title">订单流量统计（近七天）</p>
     <!--图表绘制 start-->
     <div echarts [options]="chartOption" class="order-chart"></div>
     <!--图表绘制 end-->
