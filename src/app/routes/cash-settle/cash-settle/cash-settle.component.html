@@ -103,13 +103,10 @@
             <div nz-col [nzSpan]="4" class="data">
             <div nz-form-item nz-row>
               <div>
-                <!--<div nz-form-control [nzValidateStatus]="ngValidateStatus(ngIdcardStartTime)"-->
-                     <!--nzHasFeedback>-->
                   <nz-datepicker name="idcardStartTime" [(ngModel)]="_startDate" class="data"
                                  #ngIdcardStartTime="ngModel" [nzSize]="'large'" required
                                  [nzDisabledDate]="_disabledIdCardStartDate"
                                  [nzPlaceHolder]="'起始日期'"></nz-datepicker>
-                <!--</div>-->
               </div>
             </div>
           </div>

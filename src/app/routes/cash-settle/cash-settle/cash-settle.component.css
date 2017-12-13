@@ -31,20 +31,21 @@
 }
 
 .search-group-data {
+  height: 22px;
   width: 695px;
   display: inline-block;
 }
 
 .search-group-data .search-title {
-  width: 40%;
+  width: 11%;
   line-height: 36px;
-  text-align: right;
+  float: left;
   display: inline-block;
 }
 
 .search-group-data .search-main {
   width: 60%;
-  float: right;
+  float: left;
 }
 
 .data{
