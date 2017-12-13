@@ -3,6 +3,7 @@ import {Setting} from "../../public/setting/setting";
 import {Router} from "@angular/router";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {HomeService} from "../../routes/home/home.service";
+import {AjaxService} from "../../public/service/ajax.service";
 
 @Component({
   selector: 'app-main',
@@ -144,6 +145,23 @@ export class MainComponent implements OnInit {
     _this.menus = Setting.MENUS; //菜单信息
     //设置消息通知
     _this.storeOrdCustomerStatistics();
+  }
+
+  /**
+   * 退出登录
+   */
+  logout() {
+    localStorage.clear(); //清空所有storage
+    //this.cookieService.removeAll(); //清空所有cookie
+    //执行查询（异步）
+    AjaxService.get({
+      url: SettingUrl.URL.login.logout,
+      success: (result) => {
+        if (result.success) {
+          this.router.navigate([SettingUrl.ROUTERLINK.pass.login])//跳到登录页面
+        }
+      }
+    });
   }
 
   /**

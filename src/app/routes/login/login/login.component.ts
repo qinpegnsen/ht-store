@@ -52,11 +52,11 @@ export class LoginComponent implements OnInit {
      * islogin判断用户是否已经登录了存储到localStorage里
      * 登录过后不能再跳到登录页面
      */
-    /*me.isloginState = localStorage.getItem('islogin');
+    me.isloginState = localStorage.getItem('islogin');
     console.log("█ me.isloginState ►►►",  me.isloginState);
     if(me.isloginState){
       this.router.navigate([SettingUrl.ROUTERLINK.store.home])
-    }*/
+    }
   }
 
   /**

@@ -26,6 +26,7 @@ export class SettingUrl {
      */
     login: {
       storeLogin: ' /login/login',//登录接口
+      logout: "/login/logout", //（get）退出登录登录
       getSms: ' /sms/forgetPasswordSMS',//（put）获取验证码
       resetPassword: ' /seller/resetPassword',//（post）获取验证码
     },
