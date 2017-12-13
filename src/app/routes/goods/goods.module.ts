@@ -14,6 +14,7 @@ import {AddTemplateComponent} from './add-template/add-template.component';
 import {SessionService} from "./session.service";
 import {FileUploadModule} from "ng2-file-upload";
 import { BrandsComponent } from './brands/brands.component';
+import { AddBrandComponent } from './add-brand/add-brand.component';
 
 const routes: Routes = [
   {
@@ -36,7 +37,11 @@ const routes: Routes = [
   ]
   },
   {
-    path: 'brands', component: BrandsComponent
+    path: 'brands', component: BrandsComponent, children: [
+    {path: 'addBrand', component: AddBrandComponent},
+    {path: 'edit', component: AddBrandComponent},
+    {path: 'detail', component: AddBrandComponent}
+  ]
   }
 ]
 
@@ -56,7 +61,8 @@ const routes: Routes = [
     EditComponent,
     PublishedComponent,
     AddTemplateComponent,
-    BrandsComponent
+    BrandsComponent,
+    AddBrandComponent
   ],
   providers: [
     GoodsService,

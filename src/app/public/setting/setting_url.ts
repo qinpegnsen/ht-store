@@ -6,10 +6,10 @@ export class SettingUrl {
     /**
      * 首页统计
      */
-    home:{
-      storeOrdCustomerStatistics:'/statistical/storeOrdCustomerStatistics', //首页呼吸孔信息统计
-      storeStatistics:'/statistical/storeStatistics', //首页总体信息统计
-      storeTreeGraphStatistics:'/statistical/storeTreeGraphStatistics' //首页图表信息
+    home: {
+      storeOrdCustomerStatistics: '/statistical/storeOrdCustomerStatistics', //首页呼吸孔信息统计
+      storeStatistics: '/statistical/storeStatistics', //首页总体信息统计
+      storeTreeGraphStatistics: '/statistical/storeTreeGraphStatistics' //首页图表信息
     },
     /**
      * 基础路径配置
@@ -95,9 +95,12 @@ export class SettingUrl {
       updateIsUseCoin: "/goodsEdit/updateIsUseCoin",//(put)更改是否可用重消币
       commnetGoods: "/commentGoods/queryCommnetGoodsStore",//(get)查询商品评价
       expressTpl: " /expressTpl/queryByStoreCode",//(get)查询运费模板/模板值列表
-      goodsSave: "/goodsEdit/save",      //保存商品数据（发布/修改）
-      brandsList: "/goodsBrand/queryBrandPagesByNA", //查询品牌列表
-      ifRecommendBrand: "/goodsBrand/updateRecommend",//是否推荐品牌
+      goodsSave: "/goodsEdit/save",      //(post)保存商品数据（发布/修改）
+      brandsList: "/goodsBrand/queryMyBrandPage", //(get)查询店铺的品牌列表
+      addBrand: "/goodsBrand/addBrand",     //(post)添加品牌
+      upBrand: "/goodsBrand/updateBrand",     //(put)修改品牌
+      loadBrand: "/goodsBrand/loadBrandById",     //(get)品牌详情
+      goodsUpload: "upload/basic/goodsUpload",//商品，需要暗码 返回URL，带HTTP
       goodsUploadRetHttpURL: "upload/basic/goodsUploadRetHttpURL",//商品 返回URL，带HTTP
       goodsUploadRetUrl: "upload/basic/goodsUploadRetUrl" //商品 返回URL，不带HTTP
     }
@@ -150,7 +153,9 @@ export class SettingUrl {
       goodsPublished: "/store/goods/publish/published",  //商品发布完成
       goodsFreightTemplate: "/store/goods/freightTemplate", //运费模板
       brands: "/store/goods/brands",//品牌管理
-      addBrands: "/store/goods/addBrands",//申请添加品牌
+      addBrand: "addBrand",//申请添加品牌
+      editBrand: "edit",//修改品牌
+      brandDetail: "detail",//品牌详情
       addTemplate: "addTemplate",  //添加运费模板
       orderPayment: "/store/order/orderPayment", //待付款订单
       orderPendingShipment: "/store/order/pendingShipment", //待发货订单

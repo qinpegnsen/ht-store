@@ -32,19 +32,3 @@
   </div>
 </ng-container>
 
-
-<!--操作按钮 start-->
-<div class="mt text-center">
-  <p>临时按钮，查看页面状态用</p>
-  <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="curState = 'auditing'">
-    <span>提交成功</span>
-  </button>
-  <button nz-button [nzType]="'default'" [nzSize]="'large'" class="btn-danger" (click)="curState = 'settlePass'">
-    <span>审核通过</span>
-  </button>
-  <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w"
-          (click)="curState = 'settleReject'">
-    <span>审核驳回</span>
-  </button>
-</div>
-<!--操作按钮 end-->

@@ -27,6 +27,7 @@ export class ManageComponent implements OnInit {
   public goodsState: any;  // 商品状态列表
   public isOwnPlats: any;  //是否自营列表
   public query:any = {};    // 查询条件
+  public pageMsg = Setting.PAGEMSG;                      //页面提示信息
 
   //路由
   public goodsManagePublish:string = SettingUrl.ROUTERLINK.store.goodsManagePublish;    //商品发布（此处如此写，用于路由相对进入模式）

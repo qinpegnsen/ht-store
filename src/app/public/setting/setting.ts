@@ -44,7 +44,10 @@ export class Setting {
         "经营不同分类商品的品牌可添加多次以选择不同的分类",
         "品牌绑定商品分类后，商家发布商品时，可根据发布的商品所在分类找到对应的所属品牌并选择",
         "被推荐品牌，将在前台品牌推荐模块出显示"
-      ]
+      ],
+      downTip: "确定要下架这个商品吗？下架后，所有sku商品都将下架，代理商将不能批发该商品",//商品下架提示
+      upTip: "申请上架，商品将处于审核状态，平台将于1-2个工作日处理，请等待审核通过",//商品上架提示
+      stopTip: "确定要禁售这个商品吗？禁售后，所有sku商品都将下架，代理商将不能批发该商品"//商品禁售提示
     },
     staff: {
       msgOne: "为了更好的让企业管理自己的员工，员工管理及其权限管理作为了一个单独的管理平台进行运营",
@@ -59,6 +62,7 @@ export class Setting {
     goodsAudits: 1014,  //商品审核状态列表
     brandsApplyState: 1023,    //品牌审核状态
     showType: 1024,     //品牌展示类型
+    brandState: 1025,     //品牌状态
     enterpriseState: 2001, //企业入驻状态
     papersType: 2002, //证件类型
     stepsState: 2003, //企业入驻流程状态
@@ -103,8 +107,15 @@ export class Setting {
       unPass: 'UNPASS',//审核未通过
       reject: 'REJECT',//彻底驳回
     },
+    //品牌状态
     brandState: {
       show: 'SHOW'
+    },
+    //品牌审核状态
+    brandApplyState: {
+      unpass: 'UNPASS',
+      pass: 'PASS',
+      apply: 'APPLY'
     },
     //营业执照类型
     papersType: {

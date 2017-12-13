@@ -1,0 +1,31 @@
+.uploaded {
+  position: absolute;
+  top: -9px;
+  margin-left: 30px;
+  vertical-align: middle;
+}
+
+.t-items {
+  margin: auto;
+}
+
+.t-item {
+  width: 100%;
+  list-style: none;
+  font-size: 14px;
+  line-height: 20px;
+  border-bottom: 1px dashed #e1e1e1;
+}
+
+.item-hd {
+  padding: 10px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.item-bd {
+  margin: 0;
+  padding: 10px;
+  word-wrap: break-word;
+  border-left: 1px dashed #e1e1e1;
+}
