@@ -121,7 +121,7 @@ export class LoginService {
               break;
           }
           localStorage.setItem('loginInfo', JSON.stringify(res)); //用户信息存入localStorage
-          localStorage.setItem('islogin', 'yes'); //用户信息存入localStorage
+          localStorage.setItem('islogin', 'yes'); //判断初次登录
           me._notification.success('成功',res.info);
         } else {
           me._notification.error(`失败`, res.info);
