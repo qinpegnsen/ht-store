@@ -8,6 +8,7 @@ import {LoginService} from "./login.service";
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { CompletePasswordComponent } from './complete-password/complete-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
     {path: 'resetPwd', component: ResetPasswordComponent},
     {path: 'newPwd', component: NewPasswordComponent},
     {path: 'accountPwd', component: CompletePasswordComponent},
-  ]}
+  ]},
+  {path: 'changePassword', component: ChangePasswordComponent}
 ];
 
 @NgModule({
@@ -24,7 +26,7 @@ const routes: Routes = [
     SharedModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  declarations: [LoginComponent, ForgetPasswordComponent, ResetPasswordComponent, NewPasswordComponent, CompletePasswordComponent],
+  declarations: [LoginComponent, ForgetPasswordComponent, ResetPasswordComponent, NewPasswordComponent, CompletePasswordComponent, ChangePasswordComponent],
   exports: [
     RouterModule
   ],

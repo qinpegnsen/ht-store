@@ -28,7 +28,8 @@ export class SettingUrl {
       storeLogin: ' /login/login',//登录接口
       logout: "/login/logout", //（get）退出登录登录
       getSms: ' /sms/forgetPasswordSMS',//（put）获取验证码
-      resetPassword: ' /seller/resetPassword',//（post）获取验证码
+      resetPassword: ' /seller/resetPassword',//（post）忘记密码
+      updateSellerPwd: ' /seller/updateSellerPwd',//（post）修改密码
     },
     /**
      * 企业入驻
@@ -136,7 +137,7 @@ export class SettingUrl {
   ;
 // 路由链接信息
   static ROUTERLINK: any = {
-    store: {
+      store: {
       home: "/store/home", //首页
       goodsManage: "/store/goods/manage", //管理商品
       goodsManageEdit: "edit",           //商品修改/编辑（此处如此写，用于路由相对进入模式）
@@ -183,7 +184,8 @@ export class SettingUrl {
       login: "/page/login", //登录
       resetPwd: "/page/login/forgetPwd/resetPwd", //找回密码-重置密码
       newPwd: "/page/login/forgetPwd/newPwd",  //找回密码-密码
-      accountPwd: "/page/login/forgetPwd/accountPwd" //重置密码完成
+      accountPwd: "/page/login/forgetPwd/accountPwd", //重置密码完成
+      updateSellerPwd: "/page/login/changePassword" //重置密码完成
     },
     goods: {
       addTpl: "/store/goods/freightTemplate/addTemplate?linkType=addArticle", //添加运费模板

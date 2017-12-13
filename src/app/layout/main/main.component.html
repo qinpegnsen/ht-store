@@ -58,8 +58,8 @@
             </ng-container>
           </ul>
         </nz-dropdown>
-        <li><i class="anticon anticon-edit" title="修改密码"></i></li>
-        <li><i class="anticon anticon-logout" title="退出登录" (click)="logout()"></i></li>
+        <li [routerLink]="changePassword"><i class="anticon anticon-edit" title="修改密码" ></i></li>
+        <li (click)="logout()"><i class="anticon anticon-logout" title="退出登录" ></i></li>
       </ul>
     </nz-header>
     <!--顶部信息 end-->

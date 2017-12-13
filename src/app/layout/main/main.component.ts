@@ -19,6 +19,7 @@ export class MainComponent implements OnInit {
   public msgNum: number = 0; //消息通知总条数
   public home: string = SettingUrl.ROUTERLINK.store.home; //首页路由
   public company: string = SettingUrl.ROUTERLINK.basic.company; //企业信息路由
+  public changePassword:string = SettingUrl.ROUTERLINK.pass.updateSellerPwd; //修改密码路由
 
   constructor(public router: Router) {
     //菜单信息

@@ -9,6 +9,7 @@ import {Setting} from "../../public/setting/setting";
 @Injectable()
 export class LoginService {
   validateFormReset: FormGroup;          //重置密码的表单校验
+  changePassword: FormGroup;          //修改表单校验
   flowState :any= Setting.ENUMSTATE;               //定义枚举状态
   loginState: any = this.flowState.loginState;       //登录时获取跳转的状态
 
@@ -22,6 +23,14 @@ export class LoginService {
       code: ['', [this.samCodeValidator]],//验证码校验
       newPwd: ['', [Validators.required]],//密码的校验
       confirmPwd: ['', [this.passwordConfirmationValidator]],//再次输入密码的校验
+    });
+    //修改密码的表单校验
+    this.changePassword = this.fb.group({
+      phone: ['', [this.phoneValidator]],//手机号的校验
+      code: ['', [this.samCodeValidator]],//验证码校验
+      oldPassword: ['', [this.samCodeValidator]],//旧密码校验
+      password: ['', [Validators.required]],//密码的校验
+      confirmPwd: ['', [this.passwordConfirmationValidator2]],//再次输入密码的校验
     });
   }
 
@@ -54,16 +63,24 @@ export class LoginService {
   };
 
   /**
-   * 输入密码的校验
+   * 忘记密码时输入密码的校验
    */
   validateConfirmPassword() {
     setTimeout(_ => {
       this.validateFormReset.controls['confirmPwd'].updateValueAndValidity();
     })
   }
+  /**
+   * 修改密码时输入密码的校验
+   */
+  validateConfirmPassword2() {
+    setTimeout(_ => {
+      this.changePassword.controls['confirmPwd'].updateValueAndValidity();
+    })
+  }
 
   /**
-   * 再次输入密码的校验
+   * 忘记密码时再次输入密码的校验
    * @param control
    * @returns {any}
    */
@@ -71,6 +88,19 @@ export class LoginService {
     if (!control.value) {
       return {required: true};
     } else if (control.value !== this.validateFormReset.controls['newPwd'].value) {
+      return {confirm: true, error: true};
+    }
+  };
+
+  /**
+ * 修改密码时再次输入密码的校验
+ * @param control
+ * @returns {any}
+ */
+  passwordConfirmationValidator2 = (control: FormControl): { [s: string]: boolean } => {
+    if (!control.value) {
+      return {required: true};
+    } else if (control.value !== this.changePassword.controls['password'].value) {
       return {confirm: true, error: true};
     }
   };
@@ -151,6 +181,29 @@ export class LoginService {
     }
   }
 
+  /**
+   * 商家修改密码
+   * @param requestDate
+   * @param callback
+   */
+  updateSellerPwd(requestDate: any) {
+    const me = this;
+    AjaxService.post({
+      url: SettingUrl.URL.login.updateSellerPwd,
+      data: requestDate,
+      success: (res) => {
+        if (res.success) {
+          me._notification.success('成功',res.info);
+          this.router.navigate([SettingUrl.ROUTERLINK.store.home], {replaceUrl: true})
+        } else {
+          me._notification.error('失败', '修改密码失败，请检查输入密码是否正确')
+        }
+      },
+      error: (res) => {
+        me._notification.error(`出错了`, '接口调用失败')
+      }
+    });
+  }
 
   /**
    * 商家忘记密码
@@ -166,7 +219,7 @@ export class LoginService {
         if (res.success) {
           me._notification.success('成功',res.info);
         } else {
-          me._notification.error(`出错了`, res.info)
+          me._notification.error('失败', '修改密码失败，请检查输入密码是否正确')
         }
       },
       error: (res) => {
@@ -176,7 +229,7 @@ export class LoginService {
   }
 
   /**
-   * 修改密码获取验证码
+   * 忘记密码获取验证码
    * @param requestDate
    */
     getSmsCode(phone: string) {
