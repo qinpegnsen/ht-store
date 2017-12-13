@@ -88,7 +88,7 @@
   </div>
   <!--搜索 --start  -->
   <div>
-    <form nz-form class="bg-white pt-15 pr-15 pl-5">
+    <form nz-form class="bg-white pt-15 pr-15 pl-5 mb-20">
       <div class="search-group">
         <span class="search-title">订单编号：</span>
         <div class="search-main">
@@ -96,9 +96,8 @@
           [nzSize]="'large'"></nz-input>
         </div>
       </div>
-
       <div class="search-group-data">
-        <span class="search-title">结算时间：</span>
+        <span class="search-title pl-20">结算时间：</span>
         <div class="search-main">
             <div nz-col [nzSpan]="4" class="data">
             <div nz-form-item nz-row>
@@ -112,27 +111,22 @@
           </div>
             <span class="fl pl-5 pr-5">-</span>
             <div nz-col [nzSpan]="4" class="data">
-              <!--<div nz-form-item nz-row>-->
                 <div>
-                  <!--<div nz-form-control [nzValidateStatus]="ngValidateStatus(ngIdcardEndTime)"-->
-                       <!--nzHasFeedback>-->
                     <nz-datepicker name="idcardEndTime" [(ngModel)]="_endDate" class="data"
                                    #ngIdcardEndTime="ngModel" [nzSize]="'large'" required
                                    [nzDisabledDate]="_disabledIdCardEndDate"
                                    [nzPlaceHolder]="'结束日期'"></nz-datepicker>
                   </div>
-                <!--</div>-->
-              <!--</div>-->
             </div>
         </div>
       </div>
 
       <button nz-button [nzSize]="'large'" class="ml-20 btn-thc mr-20" (click)="qeuryCashData()">
-        <i class="anticon anticon-search"></i> 搜索
+        <i class="anticon anticon-search"></i> <span>搜索</span>
       </button>
       <button nz-button [nzType]="'primary'" class="btn-thc mr-20" [nzSize]="'large'"
-              (click)="qeuryCashData()">
-        <i class="anticon anticon-reload"></i> 重置
+              (click)="resetSearch()">
+        <i class="anticon anticon-reload"></i> <span>重置</span>
       </button>
     </form>
   </div>  <!--搜索 --end  -->

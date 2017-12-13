@@ -137,10 +137,7 @@
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           是否长期有效：
         </div>
-        <div nz-col [nzSpan]="12" class="color-success" *ngIf="storeInfo.isForever==enumState.yes">
-          {{storeInfo.isForever | stateName:enum.yesOrNo}}
-        </div>
-        <div nz-col [nzSpan]="12" class="color-red" *ngIf="storeInfo.isForever==enumState.no">
+        <div nz-col [nzSpan]="12" [ngClass]="{'color-success':storeInfo.isForever==enumState.yes,'color-red':storeInfo.isForever==enumState.no}">
           {{storeInfo.isForever | stateName:enum.yesOrNo}}
         </div>
       </div>
@@ -287,10 +284,7 @@
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           是否为结算账户：
         </div>
-        <div nz-col [nzSpan]="12" class="color-success" *ngIf="storeInfo.isSettlementAccount==enumState.yes">
-          {{storeInfo.isSettlementAccount | stateName:enum.yesOrNo}}
-        </div>
-        <div nz-col [nzSpan]="12" class="color-red" *ngIf="storeInfo.isSettlementAccount==enumState.no">
+        <div nz-col [nzSpan]="12" [ngClass]="{'color-success':storeInfo.isSettlementAccount==enumState.yes,'color-red':storeInfo.isSettlementAccount==enumState.no}">
           {{storeInfo.isSettlementAccount | stateName:enum.yesOrNo}}
         </div>
       </div>

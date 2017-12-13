@@ -32,22 +32,22 @@
 
 .search-group-data {
   height: 22px;
-  width: 695px;
+  width: 590px;
   display: inline-block;
 }
 
 .search-group-data .search-title {
-  width: 11%;
+  width: 17%;
   line-height: 36px;
   float: left;
   display: inline-block;
 }
 
 .search-group-data .search-main {
-  width: 60%;
+  width: 80%;
   float: left;
 }
 
 .data{
-  width: 200px;
+  width: 225px;
 }
