@@ -172,15 +172,22 @@
       <td nz-td class="text-center">
         <!--如果是审核通过的商品，有如下操作-->
         <ng-container *ngIf="goods.goodsAudit==enumState.auditState.pass">
+          <nz-popconfirm *ngIf="goods.state==enumState.goodsState.down" [nzPlacement]="'top'"
+                         [nzTitle]="pageMsg.goods.upTip"
+                         (nzOnConfirm)="changeState('normal',goods.goodsBaseCode)">
+            <button nz-popconfirm nz-button class="btn-success" title="申请上架">
+              <i class="anticon anticon-arrow-up"></i>
+            </button>
+          </nz-popconfirm>
           <nz-popconfirm *ngIf="goods.state==enumState.goodsState.normal" [nzPlacement]="'top'"
-                         [nzTitle]="'确定要下架这个商品吗？下架后，所有sku商品都将下架，代理商将不能批发该商品'"
+                         [nzTitle]="pageMsg.goods.downTip"
                          (nzOnConfirm)="changeState('down',goods.goodsBaseCode)">
             <button nz-popconfirm nz-button class="btn-warning" title="下架">
               <i class="anticon anticon-arrow-down"></i>
             </button>
           </nz-popconfirm>
           <!--<nz-popconfirm *ngIf="goods.state==enumState.goodsState.normal" [nzPlacement]="'top'"
-                         [nzTitle]="'确定要禁售这个商品吗？禁售后，所有sku商品都将下架，代理商将不能批发该商品'"
+                         [nzTitle]="pageMsg.goods.stopTip"
                          (nzOnConfirm)="changeState('stop',goods.goodsBaseCode)">
             <button nz-popconfirm nz-button class="btn-danger" title="禁售">
               <i class="anticon anticon-minus-circle-o"></i>
@@ -190,10 +197,6 @@
                   (click)="changeState('relieve',goods.goodsBaseCode)">
             <i class="anticon anticon-check"></i>
           </button>-->
-          <button nz-button *ngIf="goods.state==enumState.goodsState.down" class="btn-success"
-                  title="申请上架" (click)="changeState('normal',goods.goodsBaseCode)">
-            <i class="anticon anticon-arrow-up"></i>
-          </button>
         </ng-container>
 
         <!--如果是审核不通过的商品，有如下操作-->

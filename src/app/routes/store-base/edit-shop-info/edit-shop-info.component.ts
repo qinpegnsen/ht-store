@@ -21,6 +21,7 @@ export class EditShopInfoComponent implements OnInit {
   public ngValidateStatus = Util.ngValidateStatus;//表单项状态
   public ngValidateErrorMsg = Util.ngValidateErrorMsg;//表单项提示状态
   public valitateState: any = Setting.valitateState;//表单验证状态
+  public storeCode: any;//店铺编码
 
   public storeLabelUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.enterprise.upload,
@@ -42,6 +43,9 @@ export class EditShopInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    let me=this;
+    let collection = JSON.parse(localStorage.getItem('loginInfo'));//获取代理商的编码
+    me.storeCode = collection.data.storeCode;//获取代理商的编码
     this.loadShopData();//查询店铺信息
   }
 
@@ -50,7 +54,7 @@ export class EditShopInfoComponent implements OnInit {
    * @param data
    */
   loadShopData() {
-    let me = this, param = {storeCode: '649530532714012672'};
+    let me = this, param = {storeCode: me.storeCode };
     $.when(StoreBaseService.loadShopInfo(param)).done(data => {
       if (data) me.validateForm = data; //店铺信息
     })

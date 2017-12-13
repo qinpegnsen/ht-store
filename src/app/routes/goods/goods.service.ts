@@ -47,6 +47,23 @@ export class GoodsService {
   }
 
   /**
+   * 查询品牌数据
+   */
+  static loadBrandDataById(brandId) {
+    var defer = $.Deferred(); //封装异步请求结果
+    AjaxService.get({
+      url: SettingUrl.URL.goods.loadBrand,
+      data: {id: brandId},
+      success: (res) => {
+        if (res.success) {
+          defer.resolve(res.data);
+        }
+      }
+    });
+    return defer.promise(); //返回异步请求休息
+  }
+
+  /**
    * 获取分类列表
    */
   getKindList(parentId?: number) {
@@ -85,7 +102,7 @@ export class GoodsService {
   }
 
   /**
-   * 商品发布，获取基本数据
+   * 商品修改，获取基本数据
    */
   getPageDataEdit(goodsBaseCode) {
     let me = this, defer = $.Deferred(); //封装异步请求结果
@@ -301,6 +318,30 @@ export class GoodsService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data);
+        } else {
+          me._notification.error(res.status, res.statusText)
+        }
+      },
+      error: (res) => {
+        me._notification.error(res.status, res.statusText)
+      }
+    });
+    return defer.promise(); //返回异步请求信息
+  }
+
+  /**
+   * 提交商品数据
+   * @param requestData
+   * @returns {any<T>}
+   */
+  addBrand(requestData: any) {
+    let me = this, defer = $.Deferred(); //封装异步请求结果
+    AjaxService.post({
+      url: SettingUrl.URL.goods.addBrand,
+      data: requestData,
+      success: (res) => {
+        if (res.success) {
+          defer.resolve(res.success);
         } else {
           me._notification.error(res.status, res.statusText)
         }

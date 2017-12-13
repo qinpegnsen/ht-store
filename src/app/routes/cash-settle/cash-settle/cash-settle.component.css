@@ -31,22 +31,23 @@
 }
 
 .search-group-data {
-  width: 695px;
+  height: 22px;
+  width: 590px;
   display: inline-block;
 }
 
 .search-group-data .search-title {
-  width: 40%;
+  width: 17%;
   line-height: 36px;
-  text-align: right;
+  float: left;
   display: inline-block;
 }
 
 .search-group-data .search-main {
-  width: 60%;
-  float: right;
+  width: 80%;
+  float: left;
 }
 
 .data{
-  width: 200px;
+  width: 225px;
 }

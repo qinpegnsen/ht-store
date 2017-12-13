@@ -123,12 +123,12 @@ export class BaseInfoComponent implements OnInit {
       uploader.onCompleteAll = function () {
         uploadedNum += 1;     // 该组上传完之后uploadedNum+1；
         if (uploadedNum == allUploaders.length) {  // 当有图片上传，并且是图片组的最后一个时
-          me.submitFormData()     //整理数据并且发布商品
+          me.submitFormData()     //整理数据并且提交
         }
       }
       // 每张图片上传结束后，判断如果是最后一组图片则发布商品，不是最后一组会进入下一个循环
       if (uploadedNum == allUploaders.length) {  // 当有图片上传，并且是图片组的最后一个时
-        me.submitFormData()     //整理数据并且发布商品
+        me.submitFormData()     //整理数据并且提交
       }
     })
   }

@@ -4,6 +4,7 @@ import {CashSettleService} from "../cash-settle.service";
 import {Page} from "../../../public/util/page";
 import {Setting} from "../../../public/setting/setting";
 import {SettingUrl} from "../../../public/setting/setting_url";
+import {Util} from "../../../public/util/util";
 
 declare var $: any;
 
@@ -21,9 +22,9 @@ export class CashSettleComponent implements OnInit {
   public settlePage: Page = new Page();  //结算信息
   public storeInfo: any = {};  //企业信息
   public insertData: any = {};  //申请提现时传入的信息
-  public query:any = {};    // 查询条件
-  public _startDate:any;
-  public _endDate:any;
+  public query: any = {};    // 查询条件
+  public _startDate: Date = new Date();//查询条件的开始时间
+  public _endDate: Date = new Date();//查询条件的结束时间
   public settleFormula: any = Setting.PAGEMSG.settleFormula; //结算公式
   public cachUrl: string = SettingUrl.ROUTERLINK.store.cach; //提现页面
 
@@ -44,15 +45,30 @@ export class CashSettleComponent implements OnInit {
   }
 
   /**
+   * 重置搜索条件
+   *
+   */
+  resetSearch() {
+    let me = this;
+    me.query = {};
+    me.settlePage = new Page();
+    me.qeuryCashData();
+  }
+
+  /**
    * 查询账单明细数据
    */
   qeuryCashData() {
     let me = this;
+    let startDate = Util.dataFormat(me._startDate, "yyyy-MM-dd");//查询条件的开始时间
+    let endDate = Util.dataFormat(me._endDate, "yyyy-MM-dd");//查询条件的结束时间
     me._loading = true; //锁屏
     me.settlePage.params = { //查询参数
       curPage: me.settlePage.curPage, //目标页码
       pageSize: me.settlePage.pageSize, //每页条数
-      ordno:me.query.ordno//订单编号
+      ordno: me.query.ordno,//订单编号
+      startTime: startDate,//开始时间
+      endTime: endDate//结束时间
     }
     $.when(CashSettleService.cashSettleList(me.settlePage.params)).done(data => {
       me._loading = false //解除锁屏
@@ -129,9 +145,9 @@ export class CashSettleComponent implements OnInit {
     me.validateForm.patchValue({balance: bankCard});
   }
 
-  show(){
-    let acct=this.validateForm.controls["acct"].value
-    this.validateForm.patchValue({a:acct})
+  show() {
+    let acct = this.validateForm.controls["acct"].value
+    this.validateForm.patchValue({a: acct})
   }
 
 

@@ -91,6 +91,7 @@ export class CashSettleService {
       url: SettingUrl.URL.settle.insert,
       data: data,
       async:false,
+      mask:true,
       success: (data) => {
         if (data.success) me._notification.success('提现成功',data.info);
         else{me._notification.error('提现失败',data.info)}

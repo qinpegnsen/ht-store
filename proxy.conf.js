@@ -20,24 +20,25 @@ const PROXY_CONFIG = [
       "/enterprise",
       "/login",
       "/goodsEdit",
+      "/goodsKind",
+      "/goodsBrand",
       "/goodsQuery",
-      "/stores"
+      "/stores",
+      "/statistical"
     ],
-    target: ly + "8087",   //拦截 context配置路径，经过此地址
+    target: wp + "8087",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
     context: [
       "/rpStatistics",
       "/rpAccountRec",
-      "/goodsKind",
-      "/goodsBrand",
       "/agentOrd",
       "/expressTpl",
       "/storeExpressTpl",
       "/after"
     ],
-    target: csj + "8084",   //拦截 context配置路径，经过此地址
+    target: zyg + "8084",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
@@ -56,13 +57,6 @@ const PROXY_CONFIG = [
       "/upload"
     ],
     target: csj + "8082",   //拦截 context配置路径，经过此地址
-    secure: false
-  },
-  {
-    context: [
-      "/statistical"
-    ],
-    target: gh + "8087",   //拦截 context配置路径，经过此地址
     secure: false
   }
 ];
