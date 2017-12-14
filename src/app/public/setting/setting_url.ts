@@ -55,11 +55,11 @@ export class SettingUrl {
       updatePwd: '/seller/updateSellerPwd',//修改商家账户密码
     },
     /**
-     * 平台对红包账户企业投资记录的操作
+     * 企业红包账户投资记录的操作
      */
     rpAccountRec: {
-      queryRec: '/rpAccountRec/queryRpAccountRecAdmin',//查询企业投资记录列表
-      querySta: '/rpStatistics/queryRpStatisticsStore',//查询企业红包统计
+      queryRec: '/rpAccountRec/queryRpAccountRecStore',//查询企业投资记录列表
+      querySta: '/statistical/queryRpStatisticsStore',//查询企业红包统计
     },
     /**
      * 售后接口
