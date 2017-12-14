@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AjaxService} from "../../public/service/ajax.service";
@@ -10,13 +10,11 @@ import {Setting} from "../../public/setting/setting";
 export class LoginService {
   validateFormReset: FormGroup;          //重置密码的表单校验
   changePassword: FormGroup;          //修改表单校验
-  flowState :any= Setting.ENUMSTATE;               //定义枚举状态
+  flowState: any = Setting.ENUMSTATE;               //定义枚举状态
   loginState: any = this.flowState.loginState;       //登录时获取跳转的状态
 
 
-
-
-  constructor(public router: Router, public fb: FormBuilder,public _notification: NzNotificationService) {
+  constructor(public router: Router, public fb: FormBuilder, public _notification: NzNotificationService) {
     //重置密码的表单校验
     this.validateFormReset = this.fb.group({
       phone: ['', [this.phoneValidator]],//手机号的校验
@@ -26,8 +24,6 @@ export class LoginService {
     });
     //修改密码的表单校验
     this.changePassword = this.fb.group({
-      phone: ['', [this.phoneValidator]],//手机号的校验
-      code: ['', [this.samCodeValidator]],//验证码校验
       oldPassword: ['', [this.samCodeValidator]],//旧密码校验
       password: ['', [Validators.required]],//密码的校验
       confirmPwd: ['', [this.passwordConfirmationValidator2]],//再次输入密码的校验
@@ -70,6 +66,7 @@ export class LoginService {
       this.validateFormReset.controls['confirmPwd'].updateValueAndValidity();
     })
   }
+
   /**
    * 修改密码时输入密码的校验
    */
@@ -93,10 +90,10 @@ export class LoginService {
   };
 
   /**
- * 修改密码时再次输入密码的校验
- * @param control
- * @returns {any}
- */
+   * 修改密码时再次输入密码的校验
+   * @param control
+   * @returns {any}
+   */
   passwordConfirmationValidator2 = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return {required: true};
@@ -117,42 +114,52 @@ export class LoginService {
       data: requestDate,
       success: (res) => {
         if (res.success) {
+          /**
+           * 登录时获取到店铺基础信息放在localStorage和setting里
+           */
+          //店铺基础信息
+          if (res.data && res.data.storeLabel) Setting.STOREINFO.logo = res.data.storeLabel; //设置店铺logo
+          if (res.data && res.data.storeName) Setting.STOREINFO.name = res.data.storeName; //设置店铺名称
+          localStorage.setItem(Setting.cookie.storeInfo, JSON.stringify(Setting.STOREINFO)); //店铺信息存入localStorage
+          //企业基础信息
+          if (res.data && res.data.epName) Setting.ENTERPTISE.name = res.data.epName; //设置企业名称
+          if (res.data && res.data.flowState) Setting.ENTERPTISE.flowState = res.data.flowState; //设置企业名称
+          localStorage.setItem(Setting.cookie.enterpriseInfo, JSON.stringify(Setting.ENTERPTISE)); //企业信息存入localStorage
+
           //判断跳到相应的页面
           switch (res.data.flowState) {
             case me.loginState.enterprosewait://企业待入驻
-              this.router.navigate([SettingUrl.ROUTERLINK.basic.baseInfo], {replaceUrl: true,queryParams: {sellerCode:res.data.sellerCode}})//跳到基础信息页面
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.baseInfo], {replaceUrl: true, queryParams: {sellerCode: res.data.sellerCode}})//跳到基础信息页面
               break;
             case me.loginState.enterprishalf://企业待完善
-              this.router.navigate([SettingUrl.ROUTERLINK.basic.accountInfo], {replaceUrl: true, queryParams: {epCode:res.data.epCode}}) //跳到企业账户信息页面
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.accountInfo], {replaceUrl: true, queryParams: {epCode: res.data.epCode}}) //跳到企业账户信息页面
               break;
             case me.loginState.enterpriseaudit://企业待审核
-              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode:res.data.epCode}})//跳到企业审核页面
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode: res.data.epCode}})//跳到企业审核页面
               break;
             case me.loginState.enterprisempral://企业已正常
-              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode:res.data.epCode}})//跳到企业审核页面
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode: res.data.epCode}})//跳到企业审核页面
               break;
             case me.loginState.enterpriseblack://企业黑名单
-              me._notification.success('该店铺不存在','该店铺不存在');
+              me._notification.success('该店铺不存在', '该店铺不存在');
               break;
             case me.loginState.enterprisereject://企业申请驳回
-              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode:res.data.epCode}})//跳到企业审核页面
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode: res.data.epCode}})//跳到企业审核页面
               break;
             case me.loginState.storewait://店铺待申请
-              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode:res.data.epCode}})//跳到企业审核页面
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode: res.data.epCode}})//跳到企业审核页面
               break;
             case me.loginState.storepending://店铺审核中
-              this.router.navigate([SettingUrl.ROUTERLINK.basic.done], {replaceUrl: true, queryParams: {storeCode:res.data.storeCode}})//跳到完成页面
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.done], {replaceUrl: true, queryParams: {storeCode: res.data.storeCode}})//跳到完成页面
               break;
             case me.loginState.storenormal://店铺已正常
               this.router.navigate([SettingUrl.ROUTERLINK.store.home], {replaceUrl: true, queryParams: param})//跳到首页
               break;
             case me.loginState.storeclose://店铺关闭
-              me._notification.success('该店铺已关闭','该店铺已关闭');
+              me._notification.success('该店铺已关闭', '该店铺已关闭');
               break;
           }
-          localStorage.setItem('loginInfo', JSON.stringify(res)); //用户信息存入localStorage
-          localStorage.setItem('islogin', 'yes'); //判断初次登录
-          me._notification.success('成功',res.info);
+          me._notification.success('成功', res.info);
         } else {
           me._notification.error(`失败`, res.info);
         }
@@ -167,7 +174,7 @@ export class LoginService {
    * 根据操作步骤跳到相应页面
    * @param current （当前步骤）
    */
-  routerSkip(current){
+  routerSkip(current) {
     switch (current) {
       case 0 :
         this.router.navigate([SettingUrl.ROUTERLINK.pass.resetPwd], {replaceUrl: true})
@@ -193,7 +200,7 @@ export class LoginService {
       data: requestDate,
       success: (res) => {
         if (res.success) {
-          me._notification.success('成功',res.info);
+          me._notification.success('成功', res.info);
           this.router.navigate([SettingUrl.ROUTERLINK.store.home], {replaceUrl: true})
         } else {
           me._notification.error('失败', '修改密码失败，请检查输入密码是否正确')
@@ -217,7 +224,7 @@ export class LoginService {
       data: requestDate,
       success: (res) => {
         if (res.success) {
-          me._notification.success('成功',res.info);
+          me._notification.success('成功', res.info);
         } else {
           me._notification.error('失败', '修改密码失败，请检查输入密码是否正确')
         }
@@ -232,7 +239,7 @@ export class LoginService {
    * 忘记密码获取验证码
    * @param requestDate
    */
-    getSmsCode(phone: string) {
+  getSmsCode(phone: string) {
     const me = this;
     let _success: boolean = false;
     AjaxService.put({

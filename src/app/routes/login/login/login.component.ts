@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Setting} from "../../../public/setting/setting";
 import {SettingUrl} from "../../../public/setting/setting_url";
 import {LoginService} from "../login.service";
 import {Router} from "@angular/router";
+import {CookieService} from "angular2-cookie/core";
 
 @Component({
   selector: 'app-login',
@@ -15,9 +16,8 @@ export class LoginComponent implements OnInit {
   validateForm: FormGroup;//登录的表单
   app = Setting.APP; //平台基本信息
   userName: string;//登录时的用户名称
-  registerUrl:string = SettingUrl.ROUTERLINK.basic.reg;
-  resetPwdUrl:string = SettingUrl.ROUTERLINK.pass.resetPwd;
-  isloginState:string;//判断用户是否已经登录了
+  registerUrl: string = SettingUrl.ROUTERLINK.basic.reg;
+  resetPwdUrl: string = SettingUrl.ROUTERLINK.pass.resetPwd;
 
   //用于登录时的表单
   _submitForm() {
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  constructor(public fb: FormBuilder,public loginService:LoginService,public router: Router) {
+  constructor(public fb: FormBuilder, public loginService: LoginService, public router: Router, public cookieService: CookieService) {
   }
 
   ngOnInit() {
@@ -48,15 +48,9 @@ export class LoginComponent implements OnInit {
       remember: [true],
     });
 
-    /**
-     * islogin判断用户是否已经登录了存储到localStorage里
-     * 登录过后不能再跳到登录页面
-     */
-    /*me.isloginState = localStorage.getItem('islogin');
-    console.log("█ me.isloginState ►►►",  me.isloginState);
-    if(me.isloginState){
-      this.router.navigate([SettingUrl.ROUTERLINK.store.home])
-    }*/
+    //判断是否已经登录，已经登录，引导进入首页
+    let loginCookie = this.cookieService.get(Setting.cookie.szhLinfoStore);
+    if (loginCookie) this.router.navigate([SettingUrl.ROUTERLINK.store.home]); //路由跳转（首页）
   }
 
   /**
@@ -68,9 +62,8 @@ export class LoginComponent implements OnInit {
   login = ($event, value) => {
     $event.preventDefault();
     for (const key in this.validateForm.controls) {
-      this.validateForm.controls[ key ].markAsDirty();
+      this.validateForm.controls[key].markAsDirty();
     }
-    //console.log(value);
     let formValue = value;
     this.loginService.loginStore(formValue);
   };

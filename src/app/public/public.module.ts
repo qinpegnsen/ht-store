@@ -4,7 +4,6 @@ import {PatternService} from "./service/pattern.service";
 import {throwIfAlreadyLoaded} from "./module-import-guard";
 import {Setting} from "./setting/setting";
 import {Page} from "./util/page";
-import { StrJsonPipe } from './pipes/str-json.pipe';
 
 @NgModule({
   //导入模块
@@ -14,7 +13,7 @@ import { StrJsonPipe } from './pipes/str-json.pipe';
     AjaxService,          //ajax服务
     PatternService,       //正则
     Page,                 //分页信息
-    Setting               //基本�StrJsonPipe��性配置
+    Setting               //基本属性配置
   ],
   //声明
   declarations: []

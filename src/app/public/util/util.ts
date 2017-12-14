@@ -28,7 +28,7 @@ export class Util {
     isIdCard: 'idCard',
   }
 
-  constructor(public patterns: PatternService) {
+  constructor() {
   }
 
   /**
@@ -301,14 +301,14 @@ export class Util {
    * @param target 在HTML里的($event.targets，或模板变量)
    * @param type ('int':整数，其他默认两位小数)
    */
-  public static auditInputValueForNum(target,type?:string){
+  public static auditInputValueForNum(target, type?: string) {
     let val = target.value, reg;
-    if(type == 'int') reg = val.match(/^[1-9]{1}[0-9]*/);
+    if (type == 'int') reg = val.match(/^[1-9]{1}[0-9]*/);
     else reg = val.match(/\d+(\.\d{1,2})?/);
-    if (!isNull(reg)){
+    if (!isNull(reg)) {
       target.value = reg[0];
-    }else {
-      target.value = val.substring(0,val.length-1)
+    } else {
+      target.value = val.substring(0, val.length - 1)
     }
   }
 

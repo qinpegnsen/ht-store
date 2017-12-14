@@ -1,5 +1,5 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {NgZorroAntdModule} from "ng-zorro-antd";
 import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -12,6 +12,7 @@ import {GetWeekPipe} from "../public/pipes/get-week.pipe";
 import {ImgErrDirective} from "../public/directives/img-err.directive";
 import {StrJsonPipe} from "../public/pipes/str-json.pipe";
 import {CKEditorModule} from "ng2-ckeditor";
+import {CanStoreProvide} from "../public/provide/can-store-provide";
 
 @NgModule({
   imports: [
@@ -31,7 +32,7 @@ import {CKEditorModule} from "ng2-ckeditor";
     ImgErrDirective,            //图片加载失败时，加载默认图片
     StrJsonPipe                //后台返回字符转转化为json格式
   ],
-  providers: [],
+  providers: [CanStoreProvide],
   exports: [
     CommonModule,           //核心模块，必须
     RouterModule,           //路由依赖模块

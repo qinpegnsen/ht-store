@@ -2,11 +2,13 @@ import {MainComponent} from "../layout/main/main.component";
 import {SimpleComponent} from "../layout/simple/simple.component";
 import {PageComponent} from "../layout/page/page.component";
 import {SettingUrl} from "../public/setting/setting_url";
+import {CanStoreProvide} from "../public/provide/can-store-provide";
 
 export const routes = [
   {
     path: 'store',
     component: MainComponent,
+    canActivate: [CanStoreProvide], //路由守卫：只有在企业认证信息全部通过时，才能访问
     children: [
       {path: '', redirectTo: SettingUrl.ROUTERLINK.store.home, pathMatch: 'full'},
       {path: 'home', loadChildren: './home/home.module#HomeModule'}, //首页
@@ -34,5 +36,5 @@ export const routes = [
     ]
   },
   // 路由指向找不到时，指向这里
-  {path: '**', redirectTo: SettingUrl.ROUTERLINK.store.home}
+  {path: '**', redirectTo: SettingUrl.ROUTERLINK.pass.login}
 ];

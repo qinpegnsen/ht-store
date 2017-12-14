@@ -1,7 +1,7 @@
 /*基本属性配置*/
-
 export class Setting {
   public static STORE: any = {};                       //企业信息
+  public user: any;                             //保存店铺的基本信息
   public static APP: any = {                           //平台信息
     name: '三楂红网络技术-企业管理系统',
     description: '企业管理系统',
@@ -74,10 +74,9 @@ export class Setting {
     cashState: 1802,  //提现详情状态
     orderState: 1019,  //订单状态类型
     orderPayState: 1017,  //订单付款类型
-  }
-  ;
+  };
 
-//定义枚举状态名
+  //定义枚举状态名
   public static ENUMSTATE: any = {
     yes: 'Y',
     no: 'N',
@@ -199,8 +198,23 @@ export class Setting {
   //权限系统路径
   public static JURISDICTIONURL: string = "http://192.168.10.221"; //TODO上线时，修改为正确路径
 
-  constructor() {
-    const _this = this;
+  //店铺基础信息
+  public static STOREINFO:any = {
+    logo:"",//店铺logo
+    name:""//店铺名称
+  }
+
+  //企业基础信息
+  public static ENTERPTISE:any = {
+    name:"",//企业名称
+    flowState:""//企业状态
+  }
+
+  //企业和店铺 存入cookie信息的键名
+  public static cookie:any = {
+    storeInfo:"store-info-cookie",//店铺键名
+    enterpriseInfo:"enterprise-info-cookie",//企业键名
+    szhLinfoStore:"SZH_LINFO_STORE" //是否已经登录，若cookie中取不出此键名对应的信息，说明未登录，反之说明已登录
   }
 
 }

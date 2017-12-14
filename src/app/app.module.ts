@@ -8,6 +8,7 @@ import {MainComponent} from './layout/main/main.component';
 import {RoutesModule} from "./routes/routes.module";
 import {SimpleComponent} from './layout/simple/simple.component';
 import {PageComponent} from './layout/page/page.component';
+import {CookieService} from "angular2-cookie/core";
 declare var $: any;
 
 @NgModule({
@@ -24,7 +25,9 @@ declare var $: any;
     RoutesModule, // 路由模块
     SharedModule.forRoot() // 公用模块
   ],
-  providers: [],
+  providers: [
+    CookieService//Cookie储存
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

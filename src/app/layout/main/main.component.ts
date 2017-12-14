@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {HomeService} from "../../routes/home/home.service";
 import {AjaxService} from "../../public/service/ajax.service";
+import {CookieService} from "angular2-cookie/core";
 
 @Component({
   selector: 'app-main',
@@ -153,7 +154,6 @@ export class MainComponent implements OnInit {
    */
   logout() {
     localStorage.clear(); //清空所有storage
-    //this.cookieService.removeAll(); //清空所有cookie
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.login.logout,
