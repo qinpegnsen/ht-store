@@ -20,7 +20,7 @@ export class PatternService {
   public twodecimal: string;//两位小数
   public integer: string;//正整数
   public storage: string;//库存，十以上正整数
-  public static EMAIL_REGEXP: RegExp = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;;//邮箱
+  public static EMAIL_REGEXP: RegExp = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;//邮箱
   public static PWD_REGEXP: RegExp = /[A-Za-z0-9]{6,}/;//密码
   public static SMS_REGEXP: RegExp = /\d{6}/;//短信验证码
   public static PHONE_REGEXP: RegExp = /^1[0-9]{10}$/;//手机号

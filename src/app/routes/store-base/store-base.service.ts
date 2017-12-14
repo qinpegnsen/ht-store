@@ -165,6 +165,7 @@ export class StoreBaseService {
 
   /**
    * 查询企业信息
+   * @param data （查询参数）
    */
   static loadStoreInfo() {
     var defer = $.Deferred(); //封装异步请求结果

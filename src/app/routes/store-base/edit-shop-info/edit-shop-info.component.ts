@@ -44,7 +44,7 @@ export class EditShopInfoComponent implements OnInit {
 
   ngOnInit() {
     let me=this;
-    this.loadShopData();//查询店铺信息
+    me.loadShopData();//查询店铺信息
   }
 
   /**
@@ -69,8 +69,8 @@ export class EditShopInfoComponent implements OnInit {
   public submitShopForm($event) {
     $event.preventDefault();
     let me = this, uploadedNum = 0, allUploaders = [
-      this.storeLabelUploader,
-      this.storeAvatarUploader
+      me.storeLabelUploader,
+      me.storeAvatarUploader
     ];
     allUploaders.forEach((uploader, i) => {
       let uuid = '';//置空暗码
@@ -122,7 +122,7 @@ export class EditShopInfoComponent implements OnInit {
     if (typeof formValue.areaCode == 'object') { //如果是数组形式则取数组的第三个
       formValue.areaCode = formValue.areaCode[2];//取第三级编码
     }
-    this.storeBaseService.dredgeShop(formValue);
+    this.storeBaseService.dredgeShop(formValue,true);
   };
 
   /**
