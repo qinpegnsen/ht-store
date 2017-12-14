@@ -25,8 +25,26 @@ export class AfterSaleService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data)
-        } else {
-          this._notification.info('温馨提示', '服务器打盹了');
+        }
+      }
+    });
+    return defer.promise(); //返回异步请求消息
+  }
+
+  /**
+   * 查询退货订单列表
+   * @param data
+   * @returns {any<T>} （查询参数）
+   */
+  queryReturnGoodsOrd(data: any) {
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
+    AjaxService.get({
+      url: SettingUrl.URL.after.RefundOrd,
+      data: data,
+      success: (res) => {
+        if (res.success) {
+          defer.resolve(res.data)
         }
       }
     });
@@ -48,10 +66,7 @@ export class AfterSaleService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data)
-        } else {
-          this._notification.info('温馨提示', '服务器打盹了');
         }
-        ;
       }
     });
     return defer.promise(); //返回异步请求消息
@@ -71,8 +86,6 @@ export class AfterSaleService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data);
-        } else {
-          this._notification.info('温馨提示', '服务器打盹了');
         }
       }
     });
@@ -93,8 +106,6 @@ export class AfterSaleService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data);
-        } else {
-          this._notification.info('温馨提示', '服务器打盹了');
         }
       }
     });
@@ -115,8 +126,6 @@ export class AfterSaleService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data);
-        } else {
-          this._notification.info('温馨提示', '服务器打盹了');
         }
       }
     });
@@ -137,8 +146,6 @@ export class AfterSaleService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data);
-        } else {
-          this._notification.info('温馨提示', '服务器打盹了');
         }
       }
     });
@@ -159,8 +166,6 @@ export class AfterSaleService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data);
-        } else {
-          this._notification.info('温馨提示', '服务器打盹了');
         }
       }
     });

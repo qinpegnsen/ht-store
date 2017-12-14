@@ -100,10 +100,11 @@ export class ReturnGoodsComponent implements OnInit {
        afterNo: this.query.afterNo,
        searchType: this.query.searchType,
        returnType: this.enumState.afterType.refund,
+       storeCode:'667095608928403456',
        curPage: this.refundOrderPage.curPage, //目标页码
        pageSize: this.refundOrderPage.pageSize //每页条数
      };
-    $.when(this.afterSaleService.queryRefundOrd(this.refundOrderPage.params)).done(data => {
+    $.when(this.afterSaleService.queryReturnGoodsOrd(this.refundOrderPage.params)).done(data => {
       this._loading = false;//解除锁屏
       if (data) this.refundOrderPage = data; //赋值
     })

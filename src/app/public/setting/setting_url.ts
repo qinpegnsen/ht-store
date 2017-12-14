@@ -65,7 +65,7 @@ export class SettingUrl {
      * 售后接口
      */
     after: {
-      RefundOrd: '/after/queryAfterGoodsReqPages',//查询退款订单列表
+      RefundOrd: '/after/queryAfterGoodsReqPages',//查询退款退货订单列表
       loadAfterTail: '/after/loadAfterTail',//根据售后编号查询物流信息
       loadReqByAfterNo: '/after/loadReqByAfterNo',//根据售后编码查询详情
       loadAfterTailList: '/after/loadAfterTailList',//根据售后编号查询物流信息
