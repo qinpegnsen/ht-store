@@ -1,10 +1,11 @@
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CashSettleService} from "../cash-settle.service";
 import {Page} from "../../../public/util/page";
 import {Setting} from "../../../public/setting/setting";
 import {SettingUrl} from "../../../public/setting/setting_url";
 import {Util} from "../../../public/util/util";
+import {NzModalService, NzModalSubject, NzNotificationService} from "ng-zorro-antd";
+import {PatternService} from "../../../public/service/pattern.service";
 
 declare var $: any;
 
@@ -17,7 +18,6 @@ declare var $: any;
 export class CashSettleComponent implements OnInit {
   public isVisible: boolean = false;//提现弹窗默认不可见
   public isConfirmLoading: boolean = false;//提现确认按钮的加载小圈默认不可见
-  public validateForm: FormGroup;  //提现表单
   public _loading: boolean = false;  //查询时锁屏
   public settlePage: Page = new Page();  //结算信息
   public storeInfo: any = {};  //企业信息
@@ -28,14 +28,18 @@ export class CashSettleComponent implements OnInit {
   public settleFormula: any = Setting.PAGEMSG.settleFormula; //结算公式
   public cachUrl: string = SettingUrl.ROUTERLINK.store.cach; //提现页面
 
-  constructor(private fb: FormBuilder, public cashSettleService: CashSettleService) {
-    this.validateForm = this.fb.group({ //表单数据
-      acct: [null, [Validators.email]],//申请提现金额
-      bacctName: [null, [Validators.required]],//收款人姓名
-      bank: [null, [Validators.required]],//账号开户行
-      balance: [null, [Validators.required]],//银行卡号
-      a: [null, [Validators.required]]//银行卡号
-    });
+  bankDataList: Array<any> = new Array();  //银行信息
+  public ngValidateStatus = Util.ngValidateStatus;//表单项状态
+  public ngValidateErrorMsg = Util.ngValidateErrorMsg;//表单项提示状态
+  public valitateState: any = Setting.valitateState;//表单验证状态
+  public validateForm: any = {};//表单
+  public drawMoney: any;//提现金额（余额）
+  public currentModal: any;//弹窗默认不显示
+
+  constructor(public _notification: NzNotificationService,
+              public patternService: PatternService,
+              public cashSettleService: CashSettleService,
+              private modalService: NzModalService,) {
   }
 
   ngOnInit() {
@@ -46,7 +50,6 @@ export class CashSettleComponent implements OnInit {
 
   /**
    * 重置搜索条件
-   *
    */
   resetSearch() {
     let me = this;
@@ -82,25 +85,29 @@ export class CashSettleComponent implements OnInit {
   qeuryAgentData() {
     let me = this;
     me._loading = true; //锁屏
-    let data = { //查询参数
-      agentCode: "552408454438297600"
-    }
-    $.when(CashSettleService.storeData(data)).done(data => {
-      me._loading = false; //解除锁屏
+    $.when(CashSettleService.storeData()).done(data => {
       if (data) {
-        me.storeInfo = data;
-        me.validateForm.patchValue(me.storeInfo);//回显提现信息
+        me.validateForm = data;//企业信息
         me.bankCard();//银行卡号加密
       }
     })
   };
 
-
   /**
-   * 提现申请弹窗显示
+   * 点击提现申请，弹窗出现
+   * @param titleTpl  弹窗标题
+   * @param contentTpl  弹窗内容
+   * @param footerTpl   弹窗底部
    */
-  showModal = () => {
-    this.isVisible = true;
+  showModalForTemplate(titleTpl, contentTpl, footerTpl) {
+    let me = this;
+    me.currentModal = this.modalService.open({
+      title: titleTpl,
+      content: contentTpl,
+      footer: footerTpl,
+      maskClosable: false,
+    });
+    me.seletAllByTypeCode();//查询银行
   }
 
   /**
@@ -109,14 +116,21 @@ export class CashSettleComponent implements OnInit {
    */
   handleOk = (e) => {
     let me = this;
-    me.insertData = me.validateForm.value;
-    me.insertData.agentCode = "552408454438297600";
-    me.cashSettleService.insertList(me.insertData);
+    me.insertData = me.validateForm;
     me.isConfirmLoading = true;//点击确认按钮加载小圈
-    setTimeout(() => {
-      me.isVisible = false;
-      me.isConfirmLoading = false;
-    }, 1000);
+    $.when(me.cashSettleService.insertList(me.insertData)).done(data => {
+      me._loading = false; //解除锁屏
+      if (data.success) {
+        this.currentModal.destroy('onCancel');//
+        me.isConfirmLoading = false;
+        me.validateForm.drawMoney = null;
+        me._notification.success('提现成功', data.info)
+      } else {
+        this.currentModal.destroy('onOk');
+        me.isConfirmLoading = false;
+        me._notification.error('提现失败', data.info)
+      }
+    })
   }
 
   /**
@@ -124,8 +138,11 @@ export class CashSettleComponent implements OnInit {
    * @param e
    */
   handleCancel = (e) => {
-    this.isVisible = false;
+    let me = this;
+    this.currentModal.destroy('onCancel');
+    me.isConfirmLoading = false;//点击确认按钮加载小圈
   }
+
 
   /**
    * 正则验证
@@ -145,11 +162,25 @@ export class CashSettleComponent implements OnInit {
     me.validateForm.patchValue({balance: bankCard});
   }
 
-  show() {
-    let acct = this.validateForm.controls["acct"].value
-    this.validateForm.patchValue({a: acct})
+  /**
+   * 全部提现
+   */
+  showDrawMoney() {
+    let money = this.validateForm.acct;
+    this.validateForm.drawMoney = money;
   }
 
+  /**
+   * 选择银行
+   */
+  seletAllByTypeCode() {
+    let me = this, bankData: any = {typeCode: Setting.SETTINGINFO.bankTypeCode};  //查詢銀行信息時傳入的參數
+    me._loading = true; //锁屏
+    $.when(CashSettleService.bankList(bankData)).done(data => {
+      me._loading = false //解除锁屏
+      if (data) me.bankDataList = data; //赋值
+    })
+  }
 
   /**
    * 排除不可选的身份证有效开始日期

@@ -39,7 +39,7 @@ export class SettingUrl {
       query: '/enterprise/query',//企业查询
       save: '/enterprise/save',//保存或修改企业基本信息
       save2: '/enterprise/save2',//保存或修改企业银行账户信息
-      load: '/enterprise/loadByEpCode', //(post)查询企业信息
+      load: '/enterprise/loadEnterprise', //(post)查询企业信息
       loadState: '/enterprise/loadState',//(get)查询企业状态
       upload: "/upload/basic/enterpriseUpload"    //上传图片,需要uuid，返回全路径
     },
@@ -110,10 +110,10 @@ export class SettingUrl {
      * 提现与账单明细
      */
     settle: {
-      query: '/finaceDraw/query',//查询企业提现列表
+      query: '/finaceStoreDraw/queryFinaceStoreDraw',//查询企业提现列表
       storeSettle: '/settle/queryStoreSettle',//查询企业结算列表
-      agentBalance: '/finaceDraw/loadAgentBalance',//查询企业信息
-      insert: '/finaceDraw/insert',//申请提现
+      agentBalance: '/finaceStoreDraw/loadInitFinaceStoreDraw',//查询企业信息
+      insert: '/finaceStoreDraw/insertFinaceStoreDraw',//申请提现
       bankCode: '/datadict/queryAllByTypeCode',//查询银行
     }
     ,
@@ -132,7 +132,7 @@ export class SettingUrl {
      */
     store: {
       saveStore: "/stores/saveStore",//(post)保存或修改企业店铺信息
-      loadShop: "/stores/loadByStoreCode", //(get)查询店铺基本信息
+      loadShop: "/stores/loadStore", //(get)查询店铺基本信息
       loadState: "/stores/loadState" //(get)查询店铺状态
     }
 

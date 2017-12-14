@@ -48,6 +48,14 @@
   float: left;
 }
 
-.data{
+.data {
   width: 225px;
+}
+
+.ant-modal-header {
+  border-bottom: 1px solid red;
+}
+
+label {
+  font-size: 14px !important;
 }

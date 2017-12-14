@@ -81,22 +81,36 @@ html, body {
 }
 
 /*重新弹框中按钮‘确定’*/
-.hawthorn-store .ant-btn-primary {
-  border: 1px solid #e82d4d;
-  color: #e82d4d;
-  background: white;
+ .ant-btn-primary {
+  border: 1px solid #e82d4d!important;
+  color: #e82d4d!important;
+  background: white!important;
 }
 
-.hawthorn-store .ant-btn-primary:hover, .hawthorn-store .ant-btn-primary:focus {
-  background: white;
-  border: 1px solid #e82d4d;
-  color: #e82d4d;
-  box-shadow: 0 0 3px #a0a0a0;
+ .ant-btn-primary:hover,.ant-btn-primary:focus {
+  background: white!important;
+  border: 1px solid #e82d4d!important;
+  color: #e82d4d!important;
+  box-shadow: 0 0 3px #a0a0a0!important;
+}
+
+/*重新弹框中按钮‘取消’*/
+.ant-btn-ghost {
+  border: 1px solid #d9d9d9!important;
+  color:#595959!important;
+  background: white!important;
+}
+
+ .ant-btn-ghost:hover, .ant-btn-ghost:focus {
+  background: white!important;
+  border: 1px solid #d9d9d9!important;
+  color:#595959!important;
+  box-shadow: 0 0 3px #a0a0a0!important;
 }
 
 /*重新弹框头部的下边框样式*/
-.hawthorn-store .ant-modal-header {
-  border-bottom: 1px solid #e82d4d;
+.ant-modal-header {
+  border-bottom: 1px solid #e82d4d!important;
 }
 
 /*重新下拉列表中字体大小*/

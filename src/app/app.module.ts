@@ -34,8 +34,8 @@ declare var $: any;
 export class AppModule {
   constructor() {
     //解决页面底部溢出15px问题
-    setTimeout(() => {
-      console.log($("#trans-tooltip").parent().css("margin-top", "-15px"));
-    });
+    // setTimeout(() => {
+    //   $("#trans-tooltip").parent().css("margin-top", "-15px");
+    // });
   }
 }
