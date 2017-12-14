@@ -30,7 +30,6 @@ export class CashComponent implements OnInit {
     me.cashPage.params = { //查询参数
       curPage: me.cashPage.curPage, //目标页码
       pageSize: me.cashPage.pageSize, //每页条数
-      // agentCode:"552408454438297600" //代理商编码
     }
     $.when(CashSettleService.settleList(me.cashPage.params)).done(data => {
       me._loading = false //解除锁屏

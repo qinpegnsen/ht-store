@@ -100,13 +100,14 @@ export class CashSettleComponent implements OnInit {
    * @param footerTpl   弹窗底部
    */
   showModalForTemplate(titleTpl, contentTpl, footerTpl) {
-    this.currentModal = this.modalService.open({
+    let me = this;
+    me.currentModal = this.modalService.open({
       title: titleTpl,
       content: contentTpl,
       footer: footerTpl,
       maskClosable: false,
     });
-    this.seletAllByTypeCode();//查询银行
+    me.seletAllByTypeCode();//查询银行
   }
 
   /**
@@ -122,7 +123,7 @@ export class CashSettleComponent implements OnInit {
       if (data.success) {
         this.currentModal.destroy('onCancel');//
         me.isConfirmLoading = false;
-        me.validateForm.drawMoney=null;
+        me.validateForm.drawMoney = null;
         me._notification.success('提现成功', data.info)
       } else {
         this.currentModal.destroy('onOk');
