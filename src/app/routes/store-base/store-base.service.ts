@@ -153,6 +153,7 @@ export class StoreBaseService {
       contentType: "application/json",
       success: (res) => {
         if (res.success) {
+          if (update) me._notification.success(`成功提示`, res.info)
           if (!update) me.routerSkip('done');
         } else {
           me._notification.error(`错误提示`, res.info)

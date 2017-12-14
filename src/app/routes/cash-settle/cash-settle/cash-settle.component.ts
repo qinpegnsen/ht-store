@@ -126,7 +126,7 @@ export class CashSettleComponent implements OnInit {
         me.validateForm.drawMoney = null;
         me._notification.success('提现成功', data.info)
       } else {
-        this.currentModal.destroy('onOk');
+        // this.currentModal.destroy('onOk');
         me.isConfirmLoading = false;
         me._notification.error('提现失败', data.info)
       }
@@ -166,8 +166,9 @@ export class CashSettleComponent implements OnInit {
    * 全部提现
    */
   showDrawMoney() {
-    let money = this.validateForm.acct;
-    this.validateForm.drawMoney = money;
+    let me=this;
+    let money = me.validateForm.balance;
+    me.validateForm.drawMoney = money;
   }
 
   /**

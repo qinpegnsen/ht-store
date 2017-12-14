@@ -81,43 +81,44 @@ html, body {
 }
 
 /*重新弹框中按钮‘确定’*/
- .ant-btn-primary {
-  border: 1px solid #e82d4d!important;
-  color: #e82d4d!important;
-  background: white!important;
+.ant-btn-primary {
+  border: 1px solid #e82d4d !important;
+  color: #e82d4d !important;
+  background: white !important;
+  border-radius: 2px !important;
 }
 
- .ant-btn-primary:hover,.ant-btn-primary:focus {
-  background: white!important;
-  border: 1px solid #e82d4d!important;
-  color: #e82d4d!important;
-  box-shadow: 0 0 3px #a0a0a0!important;
+.ant-btn-primary:hover, .ant-btn-primary:focus {
+  background: white !important;
+  border: 1px solid #e82d4d !important;
+  color: #e82d4d !important;
+  box-shadow: 0 0 3px #a0a0a0 !important;
 }
 
 /*重新弹框中按钮‘取消’*/
 .ant-btn-ghost {
-  border: 1px solid #d9d9d9!important;
-  color:#595959!important;
-  background: white!important;
+  border: 1px solid #d9d9d9 !important;
+  color: #595959 !important;
+  background: white !important;
+  border-radius: 2px !important;
 }
 
- .ant-btn-ghost:hover, .ant-btn-ghost:focus {
-  background: white!important;
-  border: 1px solid #d9d9d9!important;
-  color:#595959!important;
-  box-shadow: 0 0 3px #a0a0a0!important;
+.ant-btn-ghost:hover, .ant-btn-ghost:focus {
+  background: white !important;
+  border: 1px solid #d9d9d9 !important;
+  color: #595959 !important;
+  box-shadow: 0 0 3px #a0a0a0 !important;
 }
 
 /*重新弹框头部的下边框样式*/
 .ant-modal-header {
-  border-bottom: 1px solid #e82d4d!important;
+  border-bottom: 1px solid #e82d4d !important;
 }
 
 /*重新下拉列表中字体大小*/
 #cdk-overlay-0 .ant-dropdown-menu-item, #cdk-overlay-0 .ant-dropdown-menu-submenu-title {
   font-size: 14px;
 }
-
 
 /*去掉数字输入框的上下小箭头*/
 .hawthorn-store input[type=number] {
@@ -331,7 +332,6 @@ label.file-upload > .anticon {
   top: 0;
   z-index: -1;
 }
-
 
 /***************************************公共样式定义 end***************************************************************/
 

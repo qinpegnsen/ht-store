@@ -2,7 +2,7 @@
 <div nz-row>
   <div class="bg-f8 mt mb-20 pt-20 pb-20">
     <span><i class="anticon anticon-red-envelope mr-5 ml font18"></i>余额：
-      <b class="main-color font18">￥{{validateForm.acct}}</b>
+      <b class="main-color font18">￥{{validateForm.balance}}</b>
     </span>
     <button nz-button class="ml-20 btn-thc" (click)="showModalForTemplate(title, content, footer)">
       提现
@@ -26,7 +26,7 @@
           <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
                [nzValidateStatus]="ngValidateStatus(ngBacctName)">
             <nz-input [nzSize]="'large'" [(ngModel)]="validateForm.bacctName" name="ngBacctName" #ngBacctName="ngModel"
-                      required [nzType]="'text'" [nzPlaceHolder]="'收款人姓名'"></nz-input>
+                      required [nzType]="'text'" [nzPlaceHolder]="'收款人姓名'" [pattern]="patternService.chinese"></nz-input>
             <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBacctName) == valitateState.empty">
               请输入收款人姓名！
             </div>
@@ -37,10 +37,10 @@
             <label nz-form-item-required>银行卡号</label>
           </div>
           <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
-               [nzValidateStatus]="ngValidateStatus(ngBalance)">
-            <nz-input [nzSize]="'large'" name="balance" [(ngModel)]="validateForm.balance" #ngBalance="ngModel" required
-                      [nzType]="'number'" [nzPlaceHolder]="'银行卡号'" [pattern]="patternService.backcard"></nz-input>
-            <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBalance) == valitateState.empty">
+               [nzValidateStatus]="ngValidateStatus(ngAcct)">
+            <nz-input [nzSize]="'large'" name="acct" [(ngModel)]="validateForm.acct" #ngAcct="ngModel" required
+                      [nzType]="'number'" [nzPlaceHolder]="'银行卡号'" [pattern]="patternService.icCard"></nz-input>
+            <div nz-form-explain *ngIf="ngValidateErrorMsg(ngAcct) == valitateState.empty">
               请输入银行卡号！
             </div>
           </div>
@@ -77,7 +77,7 @@
         </div>
         <div nz-row>
           <div nz-form-label nz-col [nzSm]="20" [nzXs]="24">
-            <span>当前余额{{validateForm.acct}}，</span>
+            <span>当前余额{{validateForm.balance}}，</span>
             <span class="settle-color font14" (click)="showDrawMoney()">全部提现</span>
           </div>
         </div>
