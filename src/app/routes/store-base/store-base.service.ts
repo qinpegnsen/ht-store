@@ -48,13 +48,13 @@ export class StoreBaseService {
    * @param callback
    */
   addSeller(requestDate: any) {
-    const me = this;
+    let me = this, defer = $.Deferred(); //封装异步请求结果
     AjaxService.post({
       url: SettingUrl.URL.seller.add,
       data: requestDate,
       success: (res) => {
         if (res.success) {
-          me.routerSkip('baseInfo');
+          defer.resolve(true);
         } else {
           me._notification.error(`出错了`, res.info)
         }
@@ -63,6 +63,7 @@ export class StoreBaseService {
         me._notification.error(`出错了`, '失败，请稍后重试')
       }
     });
+    return defer.promise();
   }
 
   /**

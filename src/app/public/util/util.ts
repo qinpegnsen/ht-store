@@ -291,7 +291,7 @@ export class Util {
           observer.next(null);
         }
         observer.complete();
-      }, 1000);
+      }, 500);
     });
   }
 

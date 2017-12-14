@@ -4,6 +4,8 @@ import {StoreBaseService} from "../store-base.service";
 import {SettleStepsComponent} from "../settle-steps/settle-steps.component";
 import {PatternService} from "../../../public/service/pattern.service";
 import {Util} from "../../../public/util/util";
+import {LoginService} from "../../login/login.service";
+declare var $: any;
 
 @Component({
   selector: 'app-register',
@@ -18,6 +20,7 @@ export class RegisterComponent implements OnInit {
   valitate: any = Util.validate; //表单验证
 
   constructor(public storeBaseService: StoreBaseService,
+              public loginService: LoginService,
               public steps: SettleStepsComponent,
               public fb: FormBuilder) {
     this.steps.current = 0;
@@ -41,11 +44,21 @@ export class RegisterComponent implements OnInit {
 
   submitRegisterForm = ($event, value) => {
     $event.preventDefault();
-    for (const key in this.validateForm.controls) {
-      this.validateForm.controls[key].markAsDirty();
+    let me = this;
+    for (const key in me.validateForm.controls) {
+      me.validateForm.controls[key].markAsDirty();
     }
     let formValue = value;
-    this.storeBaseService.addSeller(formValue);
+    $.when(me.storeBaseService.addSeller(formValue)).done(data => {
+      //注册成功去登陆
+      if (data) {
+        let requestData = {
+          account: me.validateForm.controls['phone'].value,
+          pwd: me.validateForm.controls['sellerPwd'].value
+        }
+        me.loginService.loginStore(requestData);
+      }; //企业信息
+    })
   };
 
   /**

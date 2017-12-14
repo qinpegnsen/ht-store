@@ -15,6 +15,7 @@ import {StoreInfoComponent} from "./store-info/store-info.component";
 import {MainService} from "../../public/service/main.service";
 import {ShopInfoComponent} from "./shop-info/shop-info.component";
 import { EditShopInfoComponent } from './edit-shop-info/edit-shop-info.component';
+import {LoginService} from "../login/login.service";
 
 
 const routes: Routes = [
@@ -68,7 +69,8 @@ const routes: Routes = [
   providers: [
     SettleStepsComponent,
     StoreBaseService,
-    MainService
+    MainService,
+    LoginService
   ]
 })
 export class StoreBaseModule {
