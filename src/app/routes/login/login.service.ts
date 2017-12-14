@@ -158,8 +158,11 @@ export class LoginService {
             case me.loginState.storeclose://店铺关闭
               me._notification.success('该店铺已关闭', '该店铺已关闭');
               break;
+            case me.loginState.storereject://店铺驳回
+              this.router.navigate([SettingUrl.ROUTERLINK.store.home], {replaceUrl: true, queryParams: param})//跳到首页
+              break;
           }
-          me._notification.success('成功', res.info);
+          //me._notification.success('成功', res.info);
         } else {
           me._notification.error(`失败`, res.info);
         }
