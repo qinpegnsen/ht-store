@@ -4,7 +4,6 @@ import {Router} from "@angular/router";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {HomeService} from "../../routes/home/home.service";
 import {AjaxService} from "../../public/service/ajax.service";
-import {CookieService} from "angular2-cookie/core";
 import {Util} from "../../public/util/util";
 
 declare var $: any;
