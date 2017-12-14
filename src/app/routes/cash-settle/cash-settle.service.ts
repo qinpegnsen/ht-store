@@ -66,12 +66,11 @@ export class CashSettleService {
    * 查询企业信息列表
    * @param data （查询参数）
    */
-  static storeData(data:any){
+  static storeData(){
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.settle.agentBalance,
-      data: data,
       success: (data) => {
         if (data.success) defer.resolve(data.data);
       }
@@ -87,17 +86,16 @@ export class CashSettleService {
     let  me = this;
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
-    AjaxService.post({
+    AjaxService.get({
       url: SettingUrl.URL.settle.insert,
       data: data,
       async:false,
       mask:true,
       success: (data) => {
-        if (data.success) me._notification.success('提现成功',data.info);
-        else{me._notification.error('提现失败',data.info)}
+        defer.resolve(data);
       },
       error:(data) => {
-        me._notification.error('提现失败', data.info)
+        defer.resolve(false);
       }
     });
     return defer.promise(); //返回异步请求休息

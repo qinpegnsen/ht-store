@@ -122,7 +122,7 @@ export class EditShopInfoComponent implements OnInit {
     if (typeof formValue.areaCode == 'object') { //如果是数组形式则取数组的第三个
       formValue.areaCode = formValue.areaCode[2];//取第三级编码
     }
-    this.storeBaseService.dredgeShop(formValue);
+    this.storeBaseService.dredgeShop(formValue,true);
   };
 
   /**

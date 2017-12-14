@@ -2,72 +2,100 @@
 <div nz-row>
   <div class="bg-f8 mt mb-20 pt-20 pb-20">
     <span><i class="anticon anticon-red-envelope mr-5 ml font18"></i>余额：
-      <b class="main-color font18">￥{{storeInfo.acct}}</b>
+      <b class="main-color font18">￥{{validateForm.acct}}</b>
     </span>
-    <button nz-button class="ml-20 btn-thc" (click)="showModal()">
+    <button nz-button class="ml-20 btn-thc" (click)="showModalForTemplate(title, content, footer)">
       提现
     </button>
     <span class="main-color ml-20 cursor settle-record" [routerLink]="cachUrl"><u>提现记录</u></span>
     <!--提现记录弹窗 -- start -->
-    <nz-modal [nzVisible]="isVisible" [nzTitle]="'提现申请'" class="thc" [nzContent]="modalContent"
-              (nzOnCancel)="handleCancel($event)"
-              (nzOnOk)="handleOk($event)" [nzConfirmLoading]="isConfirmLoading">
-      <ng-template #modalContent>
-        <!--申请提现 -- start -->
-        <form nz-form [formGroup]="validateForm" (ngSubmit)="_submitForm()">
-          <div nz-form-item nz-row>
-            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-              <label nz-form-item-required>
+    <form nz-form #dredgeStoreForm="ngForm">
+      <ng-template #title>
+        <span>提现申请</span>
+      </ng-template>
+      <ng-template #content>
+
+        <div nz-form-item nz-row>
+          <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+            <label nz-form-item-required>
             <span>
              收款人姓名
             </span>
-              </label>
-            </div>
-            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
-                 [nzValidateStatus]="getFormControl('bacctName')">
-              <nz-input [nzSize]="'large'" formControlName="bacctName" [nzId]="'bacctName'"
-                        [nzReadonly]="true"></nz-input>
+            </label>
+          </div>
+          <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
+               [nzValidateStatus]="ngValidateStatus(ngBacctName)">
+            <nz-input [nzSize]="'large'" [(ngModel)]="validateForm.bacctName" name="ngBacctName" #ngBacctName="ngModel"
+                      required [nzType]="'text'" [nzPlaceHolder]="'收款人姓名'"></nz-input>
+            <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBacctName) == valitateState.empty">
+              请输入收款人姓名！
             </div>
           </div>
-          <div nz-form-item nz-row>
-            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-              <label nz-form-item-required>银行卡号</label>
-            </div>
-            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-              <nz-input [nzSize]="'large'" formControlName="balance" [nzId]="'balance'" [nzReadonly]="true"
-                        class="bankcard"></nz-input>
+        </div>
+        <div nz-form-item nz-row>
+          <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+            <label nz-form-item-required>银行卡号</label>
+          </div>
+          <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
+               [nzValidateStatus]="ngValidateStatus(ngBalance)">
+            <nz-input [nzSize]="'large'" name="balance" [(ngModel)]="validateForm.balance" #ngBalance="ngModel" required
+                      [nzType]="'number'" [nzPlaceHolder]="'银行卡号'" [pattern]="patternService.backcard"></nz-input>
+            <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBalance) == valitateState.empty">
+              请输入银行卡号！
             </div>
           </div>
-          <div nz-form-item nz-row>
-            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-              <label nz-form-item-required>账号开户行</label>
-            </div>
-            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-              <nz-input [nzSize]="'large'" formControlName="bank" [nzId]="'bank'" [nzReadonly]="true"></nz-input>
+        </div>
+        <div nz-form-item nz-row>
+          <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+            <label nz-form-item-required>账号开户行</label>
+          </div>
+          <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback nzHasFeedback
+               [nzValidateStatus]="ngValidateStatus(ngBank)">
+
+            <nz-select class="w100" name="bank" [(ngModel)]="validateForm.bank" #ngBank="ngModel" required
+                       [nzSize]="'large'">
+              <nz-option
+                *ngFor="let item of bankDataList"
+                [nzLabel]="item.remark"
+                [nzValue]="item.remark">
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+        <div nz-row>
+          <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+            <label nz-form-item-required>申请提现金额</label>
+          </div>
+          <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
+               [nzValidateStatus]="ngValidateStatus(ngA)">
+            <nz-input [nzSize]="'large'" name="a" [(ngModel)]="validateForm.drawMoney" #ngA="ngModel" required
+                      [nzType]="'text'" [nzPlaceHolder]="'申请提现金额'" [pattern]="patternService.twodecimal"></nz-input>
+            <div nz-form-explain *ngIf="ngValidateErrorMsg(ngA) == valitateState.empty">
+              请输入申请提现金额！
             </div>
           </div>
-          <div nz-row>
-            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-              <label nz-form-item-required>申请提现金额</label>
-            </div>
-            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
-                 [nzValidateStatus]="getFormControl('acct')">
-              <nz-input [nzSize]="'large'" formControlName="a" [nzId]="'a'"></nz-input>
-              <div nz-form-explain
-                   *ngIf="getFormControl('a').dirty&&getFormControl('a').hasError('required')">请输入申请提现的金额
-              </div>
-            </div>
+        </div>
+        <div nz-row>
+          <div nz-form-label nz-col [nzSm]="20" [nzXs]="24">
+            <span>当前余额{{validateForm.acct}}，</span>
+            <span class="settle-color font14" (click)="showDrawMoney()">全部提现</span>
           </div>
-          <div nz-row>
-            <div nz-form-label nz-col [nzSm]="20" [nzXs]="24">
-              <span>当前余额{{storeInfo.balance}}，</span>
-              <span class="settle-color font14" (click)="show()">全部提现</span>
-            </div>
-          </div>
-        </form>
-        <!--申请提现 -- end -->
+        </div>
+
       </ng-template>
-    </nz-modal>
+      <ng-template #footer>
+        <div>
+          <button nz-button [nzType]="'ghost'" [nzSize]="'large'" (click)="handleCancel($event)"
+                  [nzLoading]="isConfirmLoading">
+            取消
+          </button>
+          <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk($event)"
+                  [nzLoading]="isConfirmLoading" [disabled]="!dredgeStoreForm.form.valid">
+            确定
+          </button>
+        </div>
+      </ng-template>
+    </form>
     <!--提现记录弹窗 -- end -->
   </div>
 </div>
@@ -93,31 +121,31 @@
         <span class="search-title">订单编号：</span>
         <div class="search-main">
           <nz-input name="ordno" [(ngModel)]="query.ordno" [nzPlaceHolder]="'请输入订单编号'"
-          [nzSize]="'large'"></nz-input>
+                    [nzSize]="'large'"></nz-input>
         </div>
       </div>
       <div class="search-group-data">
         <span class="search-title pl-20">结算时间：</span>
         <div class="search-main">
-            <div nz-col [nzSpan]="4" class="data">
+          <div nz-col [nzSpan]="4" class="data">
             <div nz-form-item nz-row>
               <div>
-                  <nz-datepicker name="idcardStartTime" [(ngModel)]="_startDate" class="data"
-                                 #ngIdcardStartTime="ngModel" [nzSize]="'large'" required
-                                 [nzDisabledDate]="_disabledIdCardStartDate"
-                                 [nzPlaceHolder]="'起始日期'"></nz-datepicker>
+                <nz-datepicker name="idcardStartTime" [(ngModel)]="_startDate" class="data"
+                               #ngIdcardStartTime="ngModel" [nzSize]="'large'" required
+                               [nzDisabledDate]="_disabledIdCardStartDate"
+                               [nzPlaceHolder]="'起始日期'"></nz-datepicker>
               </div>
             </div>
           </div>
-            <span class="fl pl-5 pr-5">-</span>
-            <div nz-col [nzSpan]="4" class="data">
-                <div>
-                    <nz-datepicker name="idcardEndTime" [(ngModel)]="_endDate" class="data"
-                                   #ngIdcardEndTime="ngModel" [nzSize]="'large'" required
-                                   [nzDisabledDate]="_disabledIdCardEndDate"
-                                   [nzPlaceHolder]="'结束日期'"></nz-datepicker>
-                  </div>
+          <span class="fl pl-5 pr-5">-</span>
+          <div nz-col [nzSpan]="4" class="data">
+            <div>
+              <nz-datepicker name="idcardEndTime" [(ngModel)]="_endDate" class="data"
+                             #ngIdcardEndTime="ngModel" [nzSize]="'large'" required
+                             [nzDisabledDate]="_disabledIdCardEndDate"
+                             [nzPlaceHolder]="'结束日期'"></nz-datepicker>
             </div>
+          </div>
         </div>
       </div>
 

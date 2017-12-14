@@ -91,17 +91,14 @@
             <input class="w100" type="file" name="storeLabel" ng2FileSelect accept="image/*"
                    [uploader]="storeLabelUploader" (change)="storeLabelFileChangeListener()"/>
           </label>
-          <!--<div nz-form-explain *ngIf="!validateForm.storeLabel&&!storeLabelUploader.queue[0]">
-            请上传店铺logo！
-          </div>-->
         </div>
         <div nz-col [nzSpan]="8">
           <!--上传图片的时候-->
           <ng-container *ngIf="storeLabelUploader.queue[0]">
             <div class="uploaded">
               <nz-popover [nzTrigger]="'click'">
-                <img [src]="storeLabelUploader.queue[0]?._file | imgPreview" height="32"
-                     title="点击看大图" nz-popover>
+                <img [src]="storeLabelUploader.queue[0]?._file | imgPreview" appImgErr height="50"
+                    nz-popover>
                 <ng-template #nzTemplate>
                   <div><img [src]="storeLabelUploader.queue[0]?._file | imgPreview" height="200"></div>
                 </ng-template>
@@ -112,7 +109,7 @@
           <ng-container *ngIf="validateForm.storeLabel && !storeLabelUploader.queue[0]">
             <div class="uploaded">
               <nz-popover [nzTrigger]="'click'">
-                <img [src]="validateForm.storeLabel | imgSize: '60'" title="点击看大图" nz-popover>
+                <img [src]="validateForm.storeLabel | imgSize: '50'"  appImgErr nz-popover>
                 <ng-template #nzTemplate>
                   <div><img [src]="validateForm.storeLabel | imgSize: '200'"></div>
                 </ng-template>
@@ -131,17 +128,13 @@
             <input class="w100" type="file" name="storeAvatar" ng2FileSelect accept="image/*"
                    [uploader]="storeAvatarUploader" (change)="storeAvatarFileChangeListener()"/>
           </label>
-          <!--<div nz-form-explain *ngIf="!validateForm.storeAvatar && !storeAvatarUploader.queue[0]">
-            请上传店铺头像！
-          </div>-->
         </div>
         <div nz-col [nzSpan]="8">
           <!--上传图片的时候-->
           <ng-container *ngIf="storeAvatarUploader.queue[0]">
             <div class="uploaded">
               <nz-popover [nzTrigger]="'click'">
-                <img [src]="storeAvatarUploader.queue[0]?._file | imgPreview" height="32"
-                     title="点击看大图" nz-popover>
+                <img [src]="storeAvatarUploader.queue[0]?._file | imgPreview" appImgErr height="50" nz-popover>
                 <ng-template #nzTemplate>
                   <div><img [src]="storeAvatarUploader.queue[0]?._file | imgPreview" height="200"></div>
                 </ng-template>
@@ -152,7 +145,7 @@
           <ng-container *ngIf="validateForm.storeAvatar && !storeAvatarUploader.queue[0]">
             <div class="uploaded">
               <nz-popover [nzTrigger]="'click'">
-                <img [src]="validateForm.storeAvatar | imgSize: '60'" title="点击看大图" nz-popover>
+                <img [src]="validateForm.storeAvatar | imgSize: '50'" appImgErr nz-popover>
                 <ng-template #nzTemplate>
                   <div><img [src]="validateForm.storeAvatar | imgSize: '200'"></div>
                 </ng-template>

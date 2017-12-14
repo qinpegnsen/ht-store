@@ -48,6 +48,25 @@
   float: left;
 }
 
-.data{
+.data {
   width: 225px;
 }
+
+.ant-modal-header {
+  border-bottom: 1px solid red;
+}
+
+label {
+  font-size: 14px !important;
+}
+
+/*去掉数字输入框的上下小箭头*/
+/*input[type=number] {*/
+  /*-moz-appearance: textfield!important;*/
+/*}*/
+
+/*input[type=number]::-webkit-inner-spin-button,*/
+/*input[type=number]::-webkit-outer-spin-button {*/
+  /*-webkit-appearance: none!important;*/
+  /*margin: 0!important;*/
+/*}*/
