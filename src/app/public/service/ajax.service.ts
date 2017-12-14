@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Util} from "../util/util";
 import {SettingUrl} from "../setting/setting_url";
-import {Router} from "@angular/router";
 
 declare var $: any;
 
@@ -44,8 +43,7 @@ export class AjaxService {
       if (config.mask === true) Util.hideMask();//隐藏遮罩层
       //过滤登录
       if (xhr.getResponseHeader("serverError") || xhr.getResponseHeader("serverError") === "sessionOut") {
-        // TODO 登录完成后，解除下面封印
-        // window.location.href = SettingUrl.ROUTERLINK.pass.login; //去往登录页面
+        window.location.href = SettingUrl.ROUTERLINK.pass.login; //去往登录页面
       } else {
         if (typeof success === "function") success(result, status, xhr);
       }

@@ -5,6 +5,9 @@ import {SettingUrl} from "../../public/setting/setting_url";
 import {HomeService} from "../../routes/home/home.service";
 import {AjaxService} from "../../public/service/ajax.service";
 import {CookieService} from "angular2-cookie/core";
+import {Util} from "../../public/util/util";
+
+declare var $: any;
 
 @Component({
   selector: 'app-main',
@@ -19,125 +22,124 @@ export class MainComponent implements OnInit {
   public msg: Array<any> = new Array(); //消息通知
   public msgNum: number = 0; //消息通知总条数
   public home: string = SettingUrl.ROUTERLINK.store.home; //首页路由
-  public company: string = SettingUrl.ROUTERLINK.basic.company; //企业信息路由
-  public changePassword:string = SettingUrl.ROUTERLINK.pass.updateSellerPwd; //修改密码路由
+  public changePassword: string = SettingUrl.ROUTERLINK.pass.updateSellerPwd; //修改密码路由
 
   constructor(public router: Router) {
     //菜单信息
     Setting.MENUS = [
       {
-        name: "商品管理",
-        icon: "gift",
-        children: [
+        menuName: "商品管理",
+        menuIcon: "gift",
+        subMenuList: [
           {
-            name: "管理商品",
-            icon: "",
-            url: SettingUrl.ROUTERLINK.store.goodsManage
+            menuName: "管理商品",
+            menuIcon: "",
+            menuUrl: SettingUrl.ROUTERLINK.store.goodsManage
           },
           {
-            name: "商品发布",
-            icon: "",
-            url: SettingUrl.ROUTERLINK.store.goodsPublish
+            menuName: "商品发布",
+            menuIcon: "",
+            menuUrl: SettingUrl.ROUTERLINK.store.goodsPublish
           },
           {
-            name: "品牌管理",
-            icon: "",
-            url: SettingUrl.ROUTERLINK.store.brands
+            menuName: "品牌管理",
+            menuIcon: "",
+            menuUrl: SettingUrl.ROUTERLINK.store.brands
           },
           {
-            name: "运费模板",
-            icon: "",
-            url: SettingUrl.ROUTERLINK.store.goodsFreightTemplate
+            menuName: "运费模板",
+            menuIcon: "",
+            menuUrl: SettingUrl.ROUTERLINK.store.goodsFreightTemplate
           }
         ]
       },
       {
-        name: "订单管理",
-        icon: "book",
-        children: [
+        menuName: "订单管理",
+        menuIcon: "book",
+        subMenuList: [
           {
-            name: "待付款",
-            icon: "",
-            url: SettingUrl.ROUTERLINK.store.orderPayment
+            menuName: "待付款",
+            menuIcon: "",
+            menuUrl: SettingUrl.ROUTERLINK.store.orderPayment
           },
           {
-            name: "待发货",
-            icon: "",
-            url: SettingUrl.ROUTERLINK.store.orderPendingShipment
+            menuName: "待发货",
+            menuIcon: "",
+            menuUrl: SettingUrl.ROUTERLINK.store.orderPendingShipment
           },
           {
-            name: "已发货",
-            icon: "",
-            url: SettingUrl.ROUTERLINK.store.orderBeenShipped
+            menuName: "已发货",
+            menuIcon: "",
+            menuUrl: SettingUrl.ROUTERLINK.store.orderBeenShipped
           },
           {
-            name: "已完成",
-            icon: "",
-            url: SettingUrl.ROUTERLINK.store.orderComplete
+            menuName: "已完成",
+            menuIcon: "",
+            menuUrl: SettingUrl.ROUTERLINK.store.orderComplete
           },
           {
-            name: "已取消",
-            icon: "",
-            url: SettingUrl.ROUTERLINK.store.orderCancel
+            menuName: "已取消",
+            menuIcon: "",
+            menuUrl: SettingUrl.ROUTERLINK.store.orderCancel
           }
         ]
       },
       {
-        name: "售前售后",
-        icon: "customer-service",
-        children: [
+        menuName: "售前售后",
+        menuIcon: "customer-service",
+        subMenuList: [
           {
-            name: "退款",
-            icon: "",
-            url: SettingUrl.ROUTERLINK.store.serviceRefund
+            menuName: "退款",
+            menuIcon: "",
+            menuUrl: SettingUrl.ROUTERLINK.store.serviceRefund
           },
           {
-            name: "退货",
-            icon: "",
-            url: SettingUrl.ROUTERLINK.store.serviceReturnGoods
+            menuName: "退货",
+            menuIcon: "",
+            menuUrl: SettingUrl.ROUTERLINK.store.serviceReturnGoods
           }
         ]
       },
       {
-        name: "红包",
-        icon: "red-envelope",
-        children: [
+        menuName: "红包",
+        menuIcon: "red-envelope",
+        subMenuList: [
           {
-            name: "红包投放记录",
-            icon: "",
-            url: SettingUrl.ROUTERLINK.store.redPacketPushOrder
+            menuName: "红包投放记录",
+            menuIcon: "",
+            menuUrl: SettingUrl.ROUTERLINK.store.redPacketPushOrder
           },
           {
-            name: "红包统计",
-            icon: "",
-            url: SettingUrl.ROUTERLINK.store.redPacketStatistics
+            menuName: "红包统计",
+            menuIcon: "",
+            menuUrl: SettingUrl.ROUTERLINK.store.redPacketStatistics
           }
         ]
       },
       {
-        name: "提现与结算",
-        icon: "pay-circle-o",
-        url: SettingUrl.ROUTERLINK.store.cashSettle
+        menuName: "提现与结算",
+        menuIcon: "pay-circle-o",
+        menuUrl: SettingUrl.ROUTERLINK.store.cashSettle
       },
       {
-        name: "员工管理",
-        icon: "usergroup-add",
-        url: SettingUrl.ROUTERLINK.store.staff
+        menuName: "员工管理",
+        menuIcon: "usergroup-add",
+        menuUrl: SettingUrl.ROUTERLINK.store.staff
       },
       {
-        name: "店铺信息管理",
-        icon: "shop",
-        url: SettingUrl.ROUTERLINK.basic.shops
+        menuName: "店铺信息管理",
+        menuIcon: "shop",
+        menuUrl: SettingUrl.ROUTERLINK.basic.shops
       },
       {
-        name: "企业信息（TODO）",
-        icon: "smile-o",
-        url: SettingUrl.ROUTERLINK.basic.reg
+        menuName: "企业信息（TODO）",
+        menuIcon: "smile-o",
+        menuUrl: SettingUrl.ROUTERLINK.basic.reg
       },
       {
-        name: "登录页面（TODO）",
-        icon: "smile-o",
-        url: SettingUrl.ROUTERLINK.pass.login
+        menuName: "登录页面（TODO）",
+        menuIcon: "smile-o",
+        menuUrl: SettingUrl.ROUTERLINK.pass.login
       },
     ]
   }
@@ -168,37 +170,34 @@ export class MainComponent implements OnInit {
   /**
    * 消息通知（待发货订单、申请退款信息、申请退货信息、密码过于简单提示等）
    */
-  storeOrdCustomerStatistics(){
-    let me = this,infos:any = HomeService.storeOrdCustomerStatistics();
+  storeOrdCustomerStatistics() {
+    let me = this, infos: any = HomeService.storeOrdCustomerStatistics();
     me.msg = [
-      {
-        icon: "anticon anticon-edit",
-        info: "建议修改密码",
-        url:"",
-        num: 1
-      },
       {
         icon: "anticon anticon-export",
         info: "待发货商品",
-        url:SettingUrl.ROUTERLINK.store.orderPendingShipment,
-        num: infos.deliverGoods
+        url: SettingUrl.ROUTERLINK.store.orderPendingShipment,
+        num: infos.deliverGoods,
+        isShow: Util.haveJurisdiction(me.menus, SettingUrl.ROUTERLINK.store.orderPendingShipment)
       },
       {
         icon: "anticon anticon-pay-circle-o",
         info: "申请退款",
-        url:SettingUrl.ROUTERLINK.store.serviceRefund,
-        num: infos.refund
+        url: SettingUrl.ROUTERLINK.store.serviceRefund,
+        num: infos.refund,
+        isShow: Util.haveJurisdiction(me.menus, SettingUrl.ROUTERLINK.store.serviceRefund)
       },
       {
         icon: "icon icon-tuihuo",
         info: "申请退货",
-        url:SettingUrl.ROUTERLINK.store.serviceReturnGoods,
-        num: infos.refundGoods
+        url: SettingUrl.ROUTERLINK.store.serviceReturnGoods,
+        num: infos.refundGoods,
+        isShow: Util.haveJurisdiction(me.menus, SettingUrl.ROUTERLINK.store.serviceReturnGoods)
       }
     ];
     //设置消息通知总条数
     me.msg.forEach(res => {
-      me.msgNum += res.num;
+      if (res.isShow) me.msgNum += res.num;
     })
   }
 

@@ -19,7 +19,7 @@
           <span>企业信息</span>
         </button>
       </li>
-      <li class="fr mt-20 mr">
+      <li class="fr mt-20 mr" *ngIf="shopsUrlShow">
         <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w" [routerLink]="shopsUrl">
           <span>店铺信息</span>
         </button>
@@ -31,7 +31,8 @@
   <!--统计信息 start-->
   <div class="store-count mt-20 bg-f8 pt-20 pb-20" nz-row>
     <ng-container *ngFor="let count of storeCount;index as i;">
-      <div nz-col [nzSpan]="4" [ngClass]="{'border-right':i != (storeCount.length-1)}" class="text-center">
+      <div nz-col [nzSpan]="4" [ngClass]="{'border-right':i != (storeCount.length-1)}" *ngIf="count.isShow"
+           class="text-center">
         <p class="font22 main-color">{{count.num}}</p>
         <p>{{count.info}}</p>
       </div>

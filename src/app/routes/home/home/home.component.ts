@@ -2,6 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Setting} from "../../../public/setting/setting";
 import {HomeService} from "../home.service";
 import {SettingUrl} from "../../../public/setting/setting_url";
+import {Util} from "../../../public/util/util";
 
 @Component({
   selector: 'app-home',
@@ -15,8 +16,9 @@ export class HomeComponent implements OnInit {
   contactUs: Array<any> = new Array(); //联系我们的信息内容
   commonFunctions: Array<any> = new Array(); //常见功能的信息内容
   storeCount: Array<any> = new Array(); //统计信息内容
-  companyUrl:string = SettingUrl.ROUTERLINK.basic.company; //企业信息路由地址
-  shopsUrl:string = SettingUrl.ROUTERLINK.basic.shops; //店铺信息路由地址
+  companyUrl: string = SettingUrl.ROUTERLINK.basic.company; //企业信息路由地址
+  shopsUrl: string = SettingUrl.ROUTERLINK.basic.shops; //店铺信息路由地址
+  shopsUrlShow: boolean = Util.haveJurisdiction(Setting.MENUS, this.shopsUrl); //是否显示店铺信息操作按钮
 
   constructor() {
     const _this = this;
@@ -24,19 +26,19 @@ export class HomeComponent implements OnInit {
     _this.contactUs = [
       {
         icon: "anticon anticon-phone color-pink",
-        info: "电话：0371-XXXXXXXX"
+        info: "电话：" + Setting.APP.contactInformation.phone
       },
       {
         icon: "icon icon-weixin color-success",
-        info: "微信：XXXXXXXXXX"
+        info: "微信：" + Setting.APP.contactInformation.wx
       },
       {
         icon: "icon icon-qq color-blue",
-        info: "QQ：XXXXXXXXXX"
+        info: "QQ：" + Setting.APP.contactInformation.qq
       },
       {
         icon: "icon icon-email color-blue",
-        info: "Email：XXXXXXXXX@XX.XXX"
+        info: "Email：" + Setting.APP.contactInformation.email
       }
     ];
   }
@@ -51,55 +53,55 @@ export class HomeComponent implements OnInit {
         icon: "anticon anticon-plus-square-o color-pink",
         info: "发布商品",
         url: SettingUrl.ROUTERLINK.store.goodsPublish,
-        isShow: true
+        isShow: Util.haveJurisdiction(Setting.MENUS, SettingUrl.ROUTERLINK.store.goodsPublish)
       },
       {
         icon: "anticon anticon-appstore-o color-orange",
         info: "管理商品",
         url: SettingUrl.ROUTERLINK.store.goodsManage,
-        isShow: true
+        isShow: Util.haveJurisdiction(Setting.MENUS, SettingUrl.ROUTERLINK.store.goodsManage)
       },
       {
         icon: "anticon anticon-tool color-blue",
         info: "运费模板",
         url: SettingUrl.ROUTERLINK.store.goodsFreightTemplate,
-        isShow: true
+        isShow: Util.haveJurisdiction(Setting.MENUS, SettingUrl.ROUTERLINK.store.goodsFreightTemplate)
       },
       {
         icon: "icon icon-fahuo color-purple",
         info: "去发货",
         url: SettingUrl.ROUTERLINK.store.orderPendingShipment,
-        isShow: true
+        isShow: Util.haveJurisdiction(Setting.MENUS, SettingUrl.ROUTERLINK.store.orderPendingShipment)
       },
       {
         icon: "anticon anticon-bank color-red",
         info: "收入/提现",
         url: SettingUrl.ROUTERLINK.store.cashSettle,
-        isShow: true
+        isShow: Util.haveJurisdiction(Setting.MENUS, SettingUrl.ROUTERLINK.store.cashSettle)
       },
       {
         icon: "icon icon-tuikuan color-blue",
         info: "处理退款",
         url: SettingUrl.ROUTERLINK.store.serviceRefund,
-        isShow: true
+        isShow: Util.haveJurisdiction(Setting.MENUS, SettingUrl.ROUTERLINK.store.serviceRefund)
       },
       {
         icon: "icon icon-tuihuo color-blue",
         info: "处理退货",
         url: SettingUrl.ROUTERLINK.store.serviceReturnGoods,
-        isShow: true
+        isShow: Util.haveJurisdiction(Setting.MENUS, SettingUrl.ROUTERLINK.store.serviceReturnGoods)
       },
       {
         icon: "anticon anticon-red-envelope color-pink",
         info: "红包统计",
         url: SettingUrl.ROUTERLINK.store.redPacketStatistics,
-        isShow: true
+        isShow: Util.haveJurisdiction(Setting.MENUS, SettingUrl.ROUTERLINK.store.redPacketStatistics)
       },
       {
         icon: "anticon anticon-usergroup-add color-orange",
         info: "设置员工",
         url: SettingUrl.ROUTERLINK.store.staff,
-        isShow: true
+        isShow: Util.haveJurisdiction(Setting.MENUS, SettingUrl.ROUTERLINK.store.staff)
       }
     ];
     //绘制订单浏览的图表
@@ -114,27 +116,33 @@ export class HomeComponent implements OnInit {
     me.storeCount = [
       {
         num: infos ? (infos.goods || 0) : 0,
-        info: "商品数"
+        info: "商品数",
+        isShow: true
       },
       {
         num: infos ? (infos.deliverGoods || 0) : 0,
-        info: "待发货订单"
+        info: "待发货订单",
+        isShow: true
       },
       {
         num: infos ? (infos.completedGoods || 0) : 0,
-        info: "已完成订单"
+        info: "已完成订单",
+        isShow: true
       },
       {
         num: infos ? (infos.redPack || 0) : 0,
-        info: "红包广告发放次数"
+        info: "红包广告发放次数",
+        isShow: true
       },
       {
         num: infos ? (infos.redPackClick || 0) : 0,
-        info: "红包广告点击量"
+        info: "红包广告点击量",
+        isShow: true
       },
       {
         num: infos ? (infos.money || 0) : 0,
-        info: "账户余额（元）"
+        info: "账户余额（元）",
+        isShow: Util.haveJurisdiction(Setting.MENUS, SettingUrl.ROUTERLINK.store.cashSettle)
       }
     ];
   };

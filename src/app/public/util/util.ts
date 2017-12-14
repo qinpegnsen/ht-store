@@ -295,7 +295,6 @@ export class Util {
     });
   }
 
-
   /**
    * 审核input框的value合不合要求，只能输入整数或两位小数的限制方法
    * @param target 在HTML里的($event.targets，或模板变量)
@@ -312,5 +311,21 @@ export class Util {
     }
   }
 
-
+  /**
+   * 判断menu列表是否存在指定的路径信息，存在返回true，不存在返回false
+   * @param {Array<any>} list 权限列表
+   * @param {string} url 需要判断的路径url
+   */
+  public static haveJurisdiction(list: Array<any>, url: string) {
+    let _this = this, isTrue = false;
+    list.forEach(item => {
+      if (item.menuUrl == url) isTrue = true;
+      else if (item.subMenuList && item.subMenuList.length > 0) {
+        item.subMenuList.forEach(ret => {
+          if (ret.menuUrl == url) isTrue = true;
+        })
+      }
+    });
+    return isTrue;
+  }
 }

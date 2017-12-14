@@ -9,7 +9,13 @@ export class Setting {
     logo: '../../../assets/img/logo.png',
     logoDark: '../../../assets/img/logo-dark.png',
     defaultImg: '../../../assets/img/dummy.png',
-    userDefaultImg: '../../../assets/img/user-default.png'
+    userDefaultImg: '../../../assets/img/user-default.png',
+    contactInformation: {
+      qq: "XXXXXXXX",
+      wx: "XXXXXXXX",
+      phone: "XXXX-XXXXXXXX",
+      email: "XXXXXXX@XX.XXX"
+    }
   };
   public static MENUS: Array<any> = new Array();      //平台菜单
   public static PAGEMSG: any = {                        //平台信息提示（公式、提示、引导等等...）
@@ -80,7 +86,7 @@ export class Setting {
   public static ENUMSTATE: any = {
     yes: 'Y',
     no: 'N',
-     //登录时获取店铺步骤状态
+    //登录时获取店铺步骤状态
     loginState: {
       enterprosewait: "ENTERPRISEWAIT",       //企业待入驻
       enterprishalf: "ENTERPRISHALF",         //企业待完善
@@ -92,7 +98,7 @@ export class Setting {
       storepending: "STOREPENDING",           //店铺审核中
       storenormal: "STORENORMAL",             //店铺已正常
       storeclose: "STORECLOSE"                //店铺关闭
-  },
+    },
     //商品状态
     goodsState: {
       normal: 'NORMAL', //已上架
