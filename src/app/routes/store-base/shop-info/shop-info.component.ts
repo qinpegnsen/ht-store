@@ -20,8 +20,6 @@ export class ShopInfoComponent implements OnInit {
 
   ngOnInit() {
     let me=this;
-    let collection = JSON.parse(localStorage.getItem('loginInfo'));//获取代理商的编码
-    me.storeCode = collection.data.storeCode;//获取代理商的编码
     me.queryShopsData();//查询店铺信息
   }
 
@@ -31,10 +29,7 @@ export class ShopInfoComponent implements OnInit {
   queryShopsData() {
     let me = this;
     me._loading = true; //锁屏
-    let data = { //查询参数
-      storeCode:me.storeCode//店铺编码
-    }
-    $.when(StoreBaseService.loadShopInfo(data)).done(data => {
+    $.when(StoreBaseService.loadShopInfo()).done(data => {
       me._loading = false //解除锁屏
       if (data) {
         me.shopsInfo = data;//店铺信息

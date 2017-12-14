@@ -21,7 +21,6 @@ export class RegisterComponent implements OnInit {
               public steps: SettleStepsComponent,
               public fb: FormBuilder) {
     this.steps.current = 0;
-    this.storeBaseService.routerSkip(this.steps.current);
     //企业注册表单项校验
     this.validateForm = this.fb.group({
       phone: ['', [Validators.required], [Util.requiredPhoneValidator]],

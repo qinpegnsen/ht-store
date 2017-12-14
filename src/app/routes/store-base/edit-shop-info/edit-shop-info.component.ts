@@ -44,8 +44,6 @@ export class EditShopInfoComponent implements OnInit {
 
   ngOnInit() {
     let me=this;
-    let collection = JSON.parse(localStorage.getItem('loginInfo'));//获取代理商的编码
-    me.storeCode = collection.data.storeCode;//获取代理商的编码
     this.loadShopData();//查询店铺信息
   }
 
@@ -54,8 +52,8 @@ export class EditShopInfoComponent implements OnInit {
    * @param data
    */
   loadShopData() {
-    let me = this, param = {storeCode: me.storeCode };
-    $.when(StoreBaseService.loadShopInfo(param)).done(data => {
+    let me = this;
+    $.when(StoreBaseService.loadShopInfo()).done(data => {
       if (data) me.validateForm = data; //店铺信息
     })
   }

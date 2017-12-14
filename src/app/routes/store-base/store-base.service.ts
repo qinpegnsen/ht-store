@@ -18,34 +18,26 @@ export class StoreBaseService {
   /**
    * 根据入驻步骤跳到相应页面
    * step （步骤名称）
-   * param，路由参数，对象形式，如{code: '1243355'}
    */
-  routerSkip(step, param?: any) {
+  routerSkip(step) {
     switch (step) {
       case 'register' ://注册
         this.router.navigate([SettingUrl.ROUTERLINK.basic.register], {replaceUrl: true})
         break;
       case 'baseInfo' ://企业基本信息
-        //添加: queryParams: {sellerCode:611111111111111111}
-        //修改: queryParams: {epCode:649255483008294912}
-        this.router.navigate([SettingUrl.ROUTERLINK.basic.baseInfo], {replaceUrl: true, queryParams: param})
+        this.router.navigate([SettingUrl.ROUTERLINK.basic.baseInfo], {replaceUrl: true})
         break;
       case 'accountInfo' ://企业银行账户信息
-        //添加/修改: queryParams: {epCode:649255483008294912}
-        this.router.navigate([SettingUrl.ROUTERLINK.basic.accountInfo], {replaceUrl: true, queryParams: param})
+        this.router.navigate([SettingUrl.ROUTERLINK.basic.accountInfo], {replaceUrl: true})
         break;
       case 'auditing' ://企业入驻已提交，待审核，审核通过，驳回
-        //queryParams: {epCode:649255483008294912}
-        this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: param})
+        this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true})
         break;
       case 'openShop' ://企业开通店铺
-        //开通: queryParams: {epCode:649255483008294912,sellerCode:611111111111111111}
-        //修改: queryParams: {storeCode:649530532714012672}
-        this.router.navigate([SettingUrl.ROUTERLINK.basic.openShop], {replaceUrl: true, queryParams: param})
+        this.router.navigate([SettingUrl.ROUTERLINK.basic.openShop], {replaceUrl: true})
         break;
       case 'done' ://开店申请已提交，待审核，驳回
-        //queryParams: {storeCode:649530532714012672}
-        this.router.navigate([SettingUrl.ROUTERLINK.basic.done], {replaceUrl: true, queryParams: param})
+        this.router.navigate([SettingUrl.ROUTERLINK.basic.done], {replaceUrl: true})
         break;
     }
   }
@@ -62,13 +54,13 @@ export class StoreBaseService {
       data: requestDate,
       success: (res) => {
         if (res.success) {
-          me.routerSkip('baseInfo', {sellerCode: res.data.sellerCode});
+          me.routerSkip('baseInfo');
         } else {
           me._notification.error(`出错了`, res.info)
         }
       },
       error: (res) => {
-        me._notification.error(`出错了`, '接口调用失败')
+        me._notification.error(`出错了`, '失败，请稍后重试')
       }
     });
   }
@@ -111,13 +103,13 @@ export class StoreBaseService {
       contentType: "application/json",
       success: (res) => {
         if (res.success) {
-          me.routerSkip('accountInfo', {epCode: res.data.epCode});
+          me.routerSkip('accountInfo');
         } else {
           me._notification.error(`错误提示`, res.info)
         }
       },
       error: (res) => {
-        me._notification.error(`错误提示`, '接口调用失败')
+        me._notification.error(`错误提示`, '失败，请稍后重试')
       }
     });
   }
@@ -135,13 +127,13 @@ export class StoreBaseService {
       contentType: "application/json",
       success: (res) => {
         if (res.success) {
-          me.routerSkip('auditing', {epCode: res.data.epCode});
+          me.routerSkip('auditing');
         } else {
           me._notification.error(`错误提示`, res.info)
         }
       },
       error: (res) => {
-        me._notification.error(`错误提示`, '接口调用失败')
+        me._notification.error(`错误提示`, '失败，请稍后重试')
       }
     });
   }
@@ -160,27 +152,25 @@ export class StoreBaseService {
       contentType: "application/json",
       success: (res) => {
         if (res.success) {
-          if (!update) me.routerSkip('done', {storeCode: res.data.storeCode});
+          if (!update) me.routerSkip('done');
         } else {
           me._notification.error(`错误提示`, res.info)
         }
       },
       error: (res) => {
-        me._notification.error(`错误提示`, '接口调用失败')
+        me._notification.error(`错误提示`, '失败，请稍后重试')
       }
     });
   }
 
   /**
    * 查询企业信息
-   * @param data （查询参数）
    */
-  static loadStoreInfo(data: any) {
+  static loadStoreInfo() {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.enterprise.load,
-      data: data,
       async: false,
       success: (data) => {
         if (data.success) defer.resolve(data.data);
@@ -193,12 +183,11 @@ export class StoreBaseService {
    * 查询店铺信息
    * @param data （查询参数）
    */
-  static loadShopInfo(data: any) {
+  static loadShopInfo() {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.store.loadShop,
-      data: data,
       success: (data) => {
         if (data.success) defer.resolve(data.data);
       }

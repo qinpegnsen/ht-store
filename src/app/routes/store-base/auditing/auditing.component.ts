@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {StoreBaseService} from "../store-base.service";
 import {SettleStepsComponent} from "../settle-steps/settle-steps.component";
-import {ActivatedRoute} from "@angular/router";
 import {Setting} from "../../../public/setting/setting";
 declare var $: any;
 
@@ -12,10 +11,8 @@ declare var $: any;
 })
 export class AuditingComponent implements OnInit {
   curState: string = 'auditing';   //当前状态
-  curParam: any = null;   //当前状态下可以跳转的路由所需参数
 
   constructor(public storeBaseService: StoreBaseService,
-              public route: ActivatedRoute,
               public steps: SettleStepsComponent) {
     this.steps.current = 3;
   }
@@ -36,10 +33,8 @@ export class AuditingComponent implements OnInit {
           me.curState = 'auditing';//待审核状态
         } else if (data.state == Setting.ENUMSTATE.enterState.normal) {
           me.curState = 'settlePass';//审核通过，入驻成功
-          me.curParam = {epCode: data.epCode, sellerCode: data.sellerCode};//开通店铺所需参数
         } else if (data.state == Setting.ENUMSTATE.enterState.reject) {
           me.curState = 'settleReject';//审核驳回
-          me.curParam = {epCode: data.epCode};//修改信息所需参数
         }
       }
     })
@@ -49,7 +44,7 @@ export class AuditingComponent implements OnInit {
    * 组件跳转
    */
   skipTo(stepName) {
-    this.storeBaseService.routerSkip(stepName, this.curParam);
+    this.storeBaseService.routerSkip(stepName);
   }
 
 }

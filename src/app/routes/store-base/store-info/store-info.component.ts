@@ -21,8 +21,6 @@ export class StoreInfoComponent implements OnInit {
 
   ngOnInit() {
     let me = this;
-    let collection = JSON.parse(localStorage.getItem('loginInfo'));//获取企业的编码
-    me.epCode = collection.data.epCode;//获取企业的编码
     me.queryStoreData();//查询企业信息
     me.bankCard();//银行卡号加密
     me.idCard();//身份证号加密
@@ -34,10 +32,7 @@ export class StoreInfoComponent implements OnInit {
   queryStoreData() {
     let me = this;
     me._loading = true; //锁屏
-    let data = { //查询参数
-      epCode: me.epCode//企业编码
-    }
-    $.when(StoreBaseService.loadStoreInfo(data)).done(data => {
+    $.when(StoreBaseService.loadStoreInfo()).done(data => {
       me._loading = false //解除锁屏
       if (data) {
         me.storeInfo = data;//企业信息

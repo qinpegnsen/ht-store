@@ -43,17 +43,16 @@ export class AccountInfoComponent implements OnInit {
 
   ngOnInit() {
     const me = this;
-    let epCode = me.route.snapshot.queryParams['epCode'];
-    if (epCode) me.loadStoreData(epCode);//查询企业信息
+    me.loadStoreData();//查询企业信息
   }
 
   /**
    * 查询企业信息
    * @param data
    */
-  loadStoreData(epCode) {
-    let me = this, param = {epCode: epCode};
-    $.when(StoreBaseService.loadStoreInfo(param)).done(data => {
+  loadStoreData() {
+    let me = this;
+    $.when(StoreBaseService.loadStoreInfo()).done(data => {
       if (data) me.validateForm = data; //企业信息
     })
   }

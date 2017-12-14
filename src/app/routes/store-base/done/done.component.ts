@@ -1,7 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {StoreBaseService} from "../store-base.service";
 import {OpenStepsComponent} from "../open-steps/open-steps.component";
-import {ActivatedRoute} from "@angular/router";
 import {Setting} from "../../../public/setting/setting";
 import {SettingUrl} from "../../../public/setting/setting_url";
 declare var $: any;
@@ -13,11 +12,9 @@ declare var $: any;
 })
 export class DoneComponent implements OnInit {
   public curState: string = 'pending';//当前店铺状态
-  public curParam: any = null;
   public routerHome:string = SettingUrl.ROUTERLINK.store.home;
 
   constructor(public storeBaseService: StoreBaseService,
-              public route: ActivatedRoute,
               public steps: OpenStepsComponent) {
     this.steps.step = 1;
   }
@@ -34,7 +31,6 @@ export class DoneComponent implements OnInit {
     let me = this;
     $.when(StoreBaseService.loadShopState()).done(data => {
       if (data) {
-        me.curParam = {storeCode: data.storeCode};
         if (data.state == Setting.ENUMSTATE.shopState.pending) {
           me.curState = 'pending';
         } else if (data.state == Setting.ENUMSTATE.shopState.reject) {
@@ -50,6 +46,6 @@ export class DoneComponent implements OnInit {
    * 组件跳转
    */
   skipTo(stepName) {
-    this.storeBaseService.routerSkip(stepName, this.curParam);
+    this.storeBaseService.routerSkip(stepName);
   }
 }

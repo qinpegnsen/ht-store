@@ -47,21 +47,16 @@ export class OpenShopComponent implements OnInit {
   }
 
   ngOnInit() {
-    let sellerCode = this.route.snapshot.queryParams['sellerCode'];
-    if (sellerCode) this.validateForm.sellerCode = sellerCode;
-    let epCode = this.route.snapshot.queryParams['epCode'];
-    if (epCode) this.validateForm.epCode = epCode;
-    let storeCode = this.route.snapshot.queryParams['storeCode'];
-    if (storeCode) this.loadShopData(storeCode);//查询店铺信息
+    this.loadShopData();//查询店铺信息
   }
 
   /**
    * 查询店铺信息
    * @param data
    */
-  loadShopData(storeCode) {
-    let me = this, param = {storeCode: storeCode};
-    $.when(StoreBaseService.loadShopInfo(param)).done(data => {
+  loadShopData() {
+    let me = this;
+    $.when(StoreBaseService.loadShopInfo()).done(data => {
       if (data) me.validateForm = data //店铺信息
     })
   }

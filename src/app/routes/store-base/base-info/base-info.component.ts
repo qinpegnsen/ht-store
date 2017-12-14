@@ -54,10 +54,6 @@ export class BaseInfoComponent implements OnInit {
 
   ngOnInit() {
     const me = this;
-    let sellerCode = me.route.snapshot.queryParams['sellerCode'];
-    if (sellerCode) me.validateForm.sellerCode = sellerCode;
-    let epCode = me.route.snapshot.queryParams['epCode'];
-    if (epCode) me.loadStoreData(epCode);//查询企业信息
     me.papersTypes = MainService.getEnumDataList(Setting.ENUM.papersType);       // 证件类型
   }
 
@@ -66,8 +62,8 @@ export class BaseInfoComponent implements OnInit {
    * @param data
    */
   loadStoreData(epCode) {
-    let me = this, param = {epCode: epCode};
-    $.when(StoreBaseService.loadStoreInfo(param)).done(data => {
+    let me = this;
+    $.when(StoreBaseService.loadStoreInfo()).done(data => {
       if (data) {
         me.validateForm = data;
         me.validateForm.idcardStartTime = new Date(me.validateForm.idcardStartTime);
