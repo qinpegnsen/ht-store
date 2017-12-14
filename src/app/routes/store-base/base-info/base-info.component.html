@@ -141,7 +141,7 @@
                   <img [src]="validateForm.taxRegistrationCertificateElectronic | imgSize: '50'" title="点击看大图"
                        nz-popover>
                   <ng-template #nzTemplate>
-                    <div><img [src]="validateForm.taxRegistrationCertificateElectronic | imgSize: '200'"></div>
+                    <div><img [src]="validateForm.taxRegistrationCertificateElectronic | imgSize: '200'" [alt]="'纳税登记证'">></div>
                   </ng-template>
                 </nz-popover>
               </div>
@@ -150,34 +150,34 @@
         </div>
         <div nz-form-item nz-row>
           <div nz-form-label nz-col [nzSpan]="8">
-            <label nz-form-item-required>组织结构代码</label>
+            <label nz-form-item-required>组织机构代码</label>
           </div>
           <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngOrganizationCode)"
                nzHasFeedback>
             <nz-input name="organizationCode" [(ngModel)]="validateForm.organizationCode" required
-                      #ngOrganizationCode="ngModel" [nzType]="'text'" [nzPlaceHolder]="'请输入组织结构代码'"
+                      #ngOrganizationCode="ngModel" [nzType]="'text'" [nzPlaceHolder]="'请输入组织机构代码'"
                       [nzSize]="'large'">
             </nz-input>
             <div nz-form-explain
                  *ngIf="ngValidateErrorMsg(ngOrganizationCode)==valitateState.empty">
-              请输入组织结构代码！
+              请输入组织机构代码！
             </div>
           </div>
         </div>
         <div nz-form-item nz-row>
           <div nz-form-label nz-col [nzSpan]="8">
-            <label nz-form-item-required>组织结构代码证电子版</label>
+            <label nz-form-item-required>组织机构代码证电子版</label>
           </div>
           <div nz-col [nzSpan]="8" nz-form-control>
             <label class="file-upload">
-              <i class="anticon anticon-cloud-upload-o"></i>上传组织结构代码电子版
+              <i class="anticon anticon-cloud-upload-o"></i>上传组织机构代码电子版
               <input class="w100" type="file" name="organizationCodeElectronic" ng2FileSelect
                      [uploader]="organizationCodeUploader"
                      accept="image/*" (change)="organizationCodeFileChangeListener()"/>
             </label>
             <div nz-form-explain
                  *ngIf="!validateForm.organizationCodeElectronic && !organizationCodeUploader.queue[0]">
-              请上传组织结构代码电子版！
+              请上传组织机构代码电子版！
             </div>
           </div>
           <div nz-col [nzSpan]="8">
@@ -199,7 +199,7 @@
                 <nz-popover [nzTrigger]="'click'">
                   <img [src]="validateForm.organizationCodeElectronic | imgSize: '50'" title="点击看大图" nz-popover>
                   <ng-template #nzTemplate>
-                    <div><img [src]="validateForm.organizationCodeElectronic | imgSize: '200'"></div>
+                    <div><img [src]="validateForm.organizationCodeElectronic | imgSize: '200'" [alt]="'组织机构代码'">></div>
                   </ng-template>
                 </nz-popover>
               </div>
@@ -455,7 +455,7 @@
               <nz-popover [nzTrigger]="'click'">
                 <img [src]="validateForm.businessLicenceNumberElectronic | imgSize: '50'" title="点击看大图" nz-popover>
                 <ng-template #nzTemplate>
-                  <div><img [src]="validateForm.businessLicenceNumberElectronic | imgSize: '200'"></div>
+                  <div><img [src]="validateForm.businessLicenceNumberElectronic | imgSize: '200'" [alt]="'营业执照'"></div>
                 </ng-template>
               </nz-popover>
             </div>

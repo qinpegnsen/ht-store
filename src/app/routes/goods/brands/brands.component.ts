@@ -24,7 +24,7 @@ export class BrandsComponent implements OnInit {
   public showTypes: any;     // 品牌展示类型
   public applyStates: any;     // 品牌申请审核状态
   public brandRecommends: any;     // 品牌申请审核状态
-  public pageMsg: any = Setting.PAGEMSG.goods.brands;           //页面提示信息
+  public pageMsg: any = Setting.PAGEMSG;           //页面提示信息
   public enumStates: any = Setting.ENUMSTATE;                     //枚举状态
   //路由
   public addBrand: string = SettingUrl.ROUTERLINK.store.addBrand;    //商品发布（此处如此写，用于路由相对进入模式）
@@ -81,9 +81,9 @@ export class BrandsComponent implements OnInit {
       applyState: me.query.applyState,    //申请状态
       showType: me.query.showType       //展示类型
     }
-    $.when(GoodsService.queryBrandsList(me.brandsList.params)).done(data => {
+    $.when(GoodsService.queryBrandsList(me.brandsList.params)).done(res => {
       me._loading = false; //解除锁屏
-      if (data) me.brandsList = data; //赋值
+      if (res.success) me.brandsList = res.data; //赋值
     })
   }
 

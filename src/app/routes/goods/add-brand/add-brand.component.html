@@ -128,7 +128,7 @@
         <td nz-col [nzSpan]="6" class="item-hd">图片：</td>
         <td nz-col [nzSpan]="18" class="item-bd mb0">
           <nz-popover [nzTrigger]="'click'">
-            <img [src]="brandInfo.brandPic | imgSize:'50'" appImgErr title="点击看大图" [alt]="brandInfo.brandName"
+            <img [src]="brandInfo.brandPic | imgSize:'50'" appImgErr title="点击看大图"
                  nz-popover>
             <ng-template #nzTemplate>
               <div><img [src]="brandInfo.brandPic | imgSize:'200'" [alt]="brandInfo.brandName"></div>

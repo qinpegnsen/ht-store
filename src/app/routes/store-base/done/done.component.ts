@@ -3,6 +3,7 @@ import {StoreBaseService} from "../store-base.service";
 import {OpenStepsComponent} from "../open-steps/open-steps.component";
 import {ActivatedRoute} from "@angular/router";
 import {Setting} from "../../../public/setting/setting";
+import {SettingUrl} from "../../../public/setting/setting_url";
 declare var $: any;
 
 @Component({
@@ -11,8 +12,9 @@ declare var $: any;
   styleUrls: ['./done.component.css']
 })
 export class DoneComponent implements OnInit {
-  curState: string = 'pending';//当前店铺状态
-  curParam: any = null;
+  public curState: string = 'pending';//当前店铺状态
+  public curParam: any = null;
+  public routerHome:string = SettingUrl.ROUTERLINK.store.home;
 
   constructor(public storeBaseService: StoreBaseService,
               public route: ActivatedRoute,
@@ -22,24 +24,23 @@ export class DoneComponent implements OnInit {
 
   ngOnInit() {
     let me = this;
-    let storeCode = me.route.snapshot.queryParams['storeCode'];
-    if (storeCode) {
-      me.curParam = {storeCode: storeCode};
-      me.loadState(storeCode);// 加载店铺状态
-    }
+    me.loadState();// 加载店铺状态
   }
 
   /**
    * 查询企业当前状态
    */
-  loadState(storeCode) {
-    let me = this, param = {storeCode: storeCode};
-    $.when(StoreBaseService.loadShopState(param)).done(data => {
+  loadState() {
+    let me = this;
+    $.when(StoreBaseService.loadShopState()).done(data => {
       if (data) {
+        me.curParam = {storeCode: data.storeCode};
         if (data.state == Setting.ENUMSTATE.shopState.pending) {
           me.curState = 'pending';
         } else if (data.state == Setting.ENUMSTATE.shopState.reject) {
           me.curState = 'reject';
+        } else if (data.state == Setting.ENUMSTATE.shopState.normal) {
+          me.curState = 'normal';
         }
       }
     })

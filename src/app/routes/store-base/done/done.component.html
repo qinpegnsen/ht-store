@@ -6,6 +6,19 @@
   </div>
 </ng-container>
 
+<!--店铺审核通过-->
+<ng-container *ngIf="curState == 'normal'">
+  <div class="success">
+    <i class="anticon anticon-check-circle-o color-green"></i>
+    <p>您已成功开通店铺</p>
+  </div>
+  <div nz-row class="text-center p-20 bt">
+    <button nz-button [nzSize]="'large'" class="btn-thc" [routerLink]="routerHome" [replaceUrl]="true">
+      <span>完成</span>
+    </button>
+  </div>
+</ng-container>
+
 <!--审核驳回-->
 <ng-container *ngIf="curState == 'reject'">
   <div class="success">

@@ -111,7 +111,7 @@
               <nz-popover [nzTrigger]="'click'">
                 <img [src]="validateForm.storeLabel | imgSize: '50'" title="点击看大图" nz-popover>
                 <ng-template #nzTemplate>
-                  <div><img [src]="validateForm.storeLabel | imgSize: '200'"></div>
+                  <div><img [src]="validateForm.storeLabel | imgSize: '200'" [alt]="'店铺logo'"></div>
                 </ng-template>
               </nz-popover>
             </div>
@@ -151,7 +151,7 @@
               <nz-popover [nzTrigger]="'click'">
                 <img [src]="validateForm.storeAvatar | imgSize: '50'" title="点击看大图" nz-popover>
                 <ng-template #nzTemplate>
-                  <div><img [src]="validateForm.storeAvatar | imgSize: '200'"></div>
+                  <div><img [src]="validateForm.storeAvatar | imgSize: '200'" [alt]="'店铺头像'"></div>
                 </ng-template>
               </nz-popover>
             </div>

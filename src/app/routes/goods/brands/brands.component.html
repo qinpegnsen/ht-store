@@ -10,7 +10,7 @@
   <div class="page-msg-red">
     <p class="title">{{pageMsg.tipTitle}}</p>
     <ul>
-      <li *ngFor="let msg of pageMsg">{{msg}}</li>
+      <li *ngFor="let msg of pageMsg.goods.brands">{{msg}}</li>
     </ul>
   </div>
   <!--页面提示信息 end-->
@@ -142,7 +142,7 @@
         <td nz-td>{{brand.brandName}}</td>
         <td nz-td>
           <nz-popover [nzTrigger]="'click'">
-            <img [src]="brand.brandPic | imgSize:'60'" appImgErr title="点击看大图" [alt]="brand.brandName" nz-popover>
+            <img [src]="brand.brandPic | imgSize:'60'" appImgErr title="点击看大图" nz-popover>
             <ng-template #nzTemplate>
               <div><img [src]="brand.brandPic | imgSize:'200'" [alt]="brand.brandName"></div>
             </ng-template>

@@ -109,9 +109,9 @@ export class ManageComponent implements OnInit {
       isOwnPlat: me.query.isOwnPlat,//是否自营
       goodsAudit: me.query.goodsAudit//审核状态
     }
-    $.when(GoodsService.queryGoodsList(me.goodsList.params)).done(data => {
+    $.when(GoodsService.queryGoodsList(me.goodsList.params)).done(res => {
       me._loading = false; //解除锁屏
-      if (data) me.goodsList = data; //赋值
+      if (res.success) me.goodsList = res.data; //赋值
     })
   }
 

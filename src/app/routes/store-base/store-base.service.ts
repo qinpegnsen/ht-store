@@ -209,13 +209,11 @@ export class StoreBaseService {
    * 查询企业入驻状态
    * @param data （查询参数）
    */
-  static loadStoreState(data: any) {
+  static loadStoreState() {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.enterprise.loadState,
-      data: data,
-      async: false,
       success: (data) => {
         if (data.success) defer.resolve(data.data);
       }
@@ -227,13 +225,11 @@ export class StoreBaseService {
    * 查询店铺状态
    * @param data （查询参数）
    */
-  static loadShopState(data: any) {
+  static loadShopState() {
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.store.loadState,
-      data: data,
-      async: false,
       success: (data) => {
         if (data.success) defer.resolve(data.data);
       }

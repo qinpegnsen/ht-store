@@ -22,16 +22,15 @@ export class AuditingComponent implements OnInit {
 
   ngOnInit() {
     let me = this;
-    let epCode = me.route.snapshot.queryParams['epCode'];
-    if (epCode) me.loadState(epCode);
+    me.loadState();
   }
 
   /**
    * 查询企业当前状态
    */
-  loadState(epCode) {
-    let me = this, param = {epCode: epCode};
-    $.when(StoreBaseService.loadStoreState(param)).done(data => {
+  loadState() {
+    let me = this;
+    $.when(StoreBaseService.loadStoreState()).done(data => {
       if (data) {
         if (data.state == Setting.ENUMSTATE.enterState.half || data.state == Setting.ENUMSTATE.enterState.audit) {
           me.curState = 'auditing';//待审核状态

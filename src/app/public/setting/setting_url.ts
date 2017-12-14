@@ -40,7 +40,7 @@ export class SettingUrl {
       save: '/enterprise/save',//保存或修改企业基本信息
       save2: '/enterprise/save2',//保存或修改企业银行账户信息
       load: '/enterprise/loadByEpCode', //(post)查询企业信息
-      loadState: '/enterprise/loadStateByEpCode',//(get)查询企业状态
+      loadState: '/enterprise/loadState',//(get)查询企业状态
       upload: "/upload/basic/enterpriseUpload"    //上传图片,需要uuid，返回全路径
     },
     /**
@@ -133,7 +133,7 @@ export class SettingUrl {
     store: {
       saveStore: "/stores/saveStore",//(post)保存或修改企业店铺信息
       loadShop: "/stores/loadByStoreCode", //(get)查询店铺基本信息
-      loadState: "/stores/loadStateByStoreCode" //(get)查询店铺状态
+      loadState: "/stores/loadState" //(get)查询店铺状态
     }
 
   }

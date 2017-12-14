@@ -20,27 +20,24 @@ export class GoodsService {
     AjaxService.get({
       url: SettingUrl.URL.goods.goodsQuery,
       data: data,
-      success: (res) => {
-        if (res.success) {
-          defer.resolve(res.data);
-        }
+      dataType: 'json',
+      complete: (res) => {
+        defer.resolve(res.responseJSON);
       }
     });
     return defer.promise(); //返回异步请求休息
   }
 
   /**
-   * 查询商品列表
+   * 查询品牌列表
    */
   static queryBrandsList(data) {
     var defer = $.Deferred(); //封装异步请求结果
     AjaxService.get({
       url: SettingUrl.URL.goods.brandsList,
       data: data,
-      success: (res) => {
-        if (res.success) {
-          defer.resolve(res.data);
-        }
+      complete: (res) => {
+        defer.resolve(res.responseJSON);
       }
     });
     return defer.promise(); //返回异步请求休息

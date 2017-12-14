@@ -65,7 +65,6 @@ export class AddBrandComponent implements OnInit {
         case "detail":
           me.brands.pageTitle = '品牌详情';
           if (brandId) me.loadBrandDataById(brandId);//获取当前品牌的数据
-          // me.brandKind = me.getBrandKinds(me.brandInfo['goodsKindList']);
           break;
       }
     });
@@ -78,7 +77,7 @@ export class AddBrandComponent implements OnInit {
   loadBrandDataById(brandId) {
     let me = this;
     $.when(GoodsService.loadBrandDataById(brandId)).done(data => {
-      if (data) me.brandInfo = data; //赋值
+      if (data) me.brandInfo = data,me.brandKind = me.getBrandKinds(me.brandInfo.goodsKindList); //赋值
     })
   }
 

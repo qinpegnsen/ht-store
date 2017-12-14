@@ -125,7 +125,7 @@
       <td nz-td class="relative w33">
         <div class="goods-img-box">
           <nz-popover [nzTrigger]="'click'">
-            <img [src]="goods.goodsImage | imgSize:'80'" appImgErr title="点击看大图" [alt]="goods.goodsName" nz-popover>
+            <img [src]="goods.goodsImage | imgSize:'80'" appImgErr title="点击看大图" nz-popover>
             <ng-template #nzTemplate>
               <div><img [src]="goods.goodsImage | imgSize:'200'" [alt]="goods.goodsName"></div>
             </ng-template>
