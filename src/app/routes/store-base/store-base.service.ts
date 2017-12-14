@@ -149,8 +149,9 @@ export class StoreBaseService {
   /**
    * 企业入驻——开通店铺
    * @param data
+   * update 是否是修改店铺
    */
-  dredgeShop(data) {
+  dredgeShop(data, update?: boolean) {
     const me = this;
     AjaxService.post({
       url: SettingUrl.URL.store.saveStore,
@@ -159,7 +160,7 @@ export class StoreBaseService {
       contentType: "application/json",
       success: (res) => {
         if (res.success) {
-          me.routerSkip('done', {storeCode: res.data.storeCode});
+          if (!update) me.routerSkip('done', {storeCode: res.data.storeCode});
         } else {
           me._notification.error(`错误提示`, res.info)
         }
