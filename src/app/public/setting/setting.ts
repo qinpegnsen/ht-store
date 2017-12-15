@@ -221,7 +221,8 @@ export class Setting {
   public static cookie:any = {
     storeInfo:"store-info-cookie",//店铺键名
     enterpriseInfo:"enterprise-info-cookie",//企业键名
-    szhLinfoStore:"SZH_LINFO_STORE" //是否已经登录，若cookie中取不出此键名对应的信息，说明未登录，反之说明已登录
+    szhLinfoStore:"SZH_LINFO_STORE", //是否已经登录，若cookie中取不出此键名对应的信息，说明未登录，反之说明已登录
+    menusInfo:"store-menus"//菜单信息
   }
 
 }

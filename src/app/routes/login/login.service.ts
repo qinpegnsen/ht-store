@@ -123,8 +123,11 @@ export class LoginService {
           localStorage.setItem(Setting.cookie.storeInfo, JSON.stringify(Setting.STOREINFO)); //店铺信息存入localStorage
           //企业基础信息
           if (res.data && res.data.epName) Setting.ENTERPTISE.name = res.data.epName; //设置企业名称
-          if (res.data && res.data.flowState) Setting.ENTERPTISE.flowState = res.data.flowState; //设置企业名称
+          if (res.data && res.data.flowState) Setting.ENTERPTISE.flowState = res.data.flowState; //设置企业状态
           localStorage.setItem(Setting.cookie.enterpriseInfo, JSON.stringify(Setting.ENTERPTISE)); //企业信息存入localStorage
+          //menus菜单
+          if (res.data && res.data.menuVOList) Setting.MENUS = res.data.menuVOList; //menus菜单
+          localStorage.setItem(Setting.cookie.menusInfo, JSON.stringify(Setting.MENUS)); //menus菜单存入localStorage
 
           //判断跳到相应的页面
           switch (res.data.flowState) {

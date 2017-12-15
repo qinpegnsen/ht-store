@@ -25,122 +25,122 @@ export class MainComponent implements OnInit {
 
   constructor(public router: Router) {
     //菜单信息
-    Setting.MENUS = [
-      {
-        menuName: "商品管理",
-        menuIcon: "gift",
-        subMenuList: [
-          {
-            menuName: "管理商品",
-            menuIcon: "",
-            menuUrl: SettingUrl.ROUTERLINK.store.goodsManage
-          },
-          {
-            menuName: "商品发布",
-            menuIcon: "",
-            menuUrl: SettingUrl.ROUTERLINK.store.goodsPublish
-          },
-          {
-            menuName: "品牌管理",
-            menuIcon: "",
-            menuUrl: SettingUrl.ROUTERLINK.store.brands
-          },
-          {
-            menuName: "运费模板",
-            menuIcon: "",
-            menuUrl: SettingUrl.ROUTERLINK.store.goodsFreightTemplate
-          }
-        ]
-      },
-      {
-        menuName: "订单管理",
-        menuIcon: "book",
-        subMenuList: [
-          {
-            menuName: "待付款",
-            menuIcon: "",
-            menuUrl: SettingUrl.ROUTERLINK.store.orderPayment
-          },
-          {
-            menuName: "待发货",
-            menuIcon: "",
-            menuUrl: SettingUrl.ROUTERLINK.store.orderPendingShipment
-          },
-          {
-            menuName: "已发货",
-            menuIcon: "",
-            menuUrl: SettingUrl.ROUTERLINK.store.orderBeenShipped
-          },
-          {
-            menuName: "已完成",
-            menuIcon: "",
-            menuUrl: SettingUrl.ROUTERLINK.store.orderComplete
-          },
-          {
-            menuName: "已取消",
-            menuIcon: "",
-            menuUrl: SettingUrl.ROUTERLINK.store.orderCancel
-          }
-        ]
-      },
-      {
-        menuName: "售前售后",
-        menuIcon: "customer-service",
-        subMenuList: [
-          {
-            menuName: "退款",
-            menuIcon: "",
-            menuUrl: SettingUrl.ROUTERLINK.store.serviceRefund
-          },
-          {
-            menuName: "退货",
-            menuIcon: "",
-            menuUrl: SettingUrl.ROUTERLINK.store.serviceReturnGoods
-          }
-        ]
-      },
-      {
-        menuName: "红包",
-        menuIcon: "red-envelope",
-        subMenuList: [
-          {
-            menuName: "红包投放记录",
-            menuIcon: "",
-            menuUrl: SettingUrl.ROUTERLINK.store.redPacketPushOrder
-          },
-          {
-            menuName: "红包统计",
-            menuIcon: "",
-            menuUrl: SettingUrl.ROUTERLINK.store.redPacketStatistics
-          }
-        ]
-      },
-      {
-        menuName: "提现与结算",
-        menuIcon: "pay-circle-o",
-        menuUrl: SettingUrl.ROUTERLINK.store.cashSettle
-      },
-      {
-        menuName: "员工管理",
-        menuIcon: "usergroup-add",
-        menuUrl: SettingUrl.ROUTERLINK.store.staff
-      },
-      {
-        menuName: "店铺信息管理",
-        menuIcon: "shop",
-        menuUrl: SettingUrl.ROUTERLINK.basic.shops
-      },
-      {
-        menuName: "企业信息（TODO）",
-        menuIcon: "smile-o",
-        menuUrl: SettingUrl.ROUTERLINK.basic.reg
-      },
-      {
-        menuName: "登录页面（TODO）",
-        menuIcon: "smile-o",
-        menuUrl: SettingUrl.ROUTERLINK.pass.login
-      },
-    ]
+    // Setting.MENUS = [
+    //   {
+    //     menuName: "商品管理",
+    //     menuIcon: "gift",
+    //     subMenuList: [
+    //       {
+    //         menuName: "管理商品",
+    //         menuIcon: "",
+    //         menuUrl: SettingUrl.ROUTERLINK.store.goodsManage
+    //       },
+    //       {
+    //         menuName: "商品发布",
+    //         menuIcon: "",
+    //         menuUrl: SettingUrl.ROUTERLINK.store.goodsPublish
+    //       },
+    //       {
+    //         menuName: "品牌管理",
+    //         menuIcon: "",
+    //         menuUrl: SettingUrl.ROUTERLINK.store.brands
+    //       },
+    //       {
+    //         menuName: "运费模板",
+    //         menuIcon: "",
+    //         menuUrl: SettingUrl.ROUTERLINK.store.goodsFreightTemplate
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     menuName: "订单管理",
+    //     menuIcon: "book",
+    //     subMenuList: [
+    //       {
+    //         menuName: "待付款",
+    //         menuIcon: "",
+    //         menuUrl: SettingUrl.ROUTERLINK.store.orderPayment
+    //       },
+    //       {
+    //         menuName: "待发货",
+    //         menuIcon: "",
+    //         menuUrl: SettingUrl.ROUTERLINK.store.orderPendingShipment
+    //       },
+    //       {
+    //         menuName: "已发货",
+    //         menuIcon: "",
+    //         menuUrl: SettingUrl.ROUTERLINK.store.orderBeenShipped
+    //       },
+    //       {
+    //         menuName: "已完成",
+    //         menuIcon: "",
+    //         menuUrl: SettingUrl.ROUTERLINK.store.orderComplete
+    //       },
+    //       {
+    //         menuName: "已取消",
+    //         menuIcon: "",
+    //         menuUrl: SettingUrl.ROUTERLINK.store.orderCancel
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     menuName: "售前售后",
+    //     menuIcon: "customer-service",
+    //     subMenuList: [
+    //       {
+    //         menuName: "退款",
+    //         menuIcon: "",
+    //         menuUrl: SettingUrl.ROUTERLINK.store.serviceRefund
+    //       },
+    //       {
+    //         menuName: "退货",
+    //         menuIcon: "",
+    //         menuUrl: SettingUrl.ROUTERLINK.store.serviceReturnGoods
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     menuName: "红包",
+    //     menuIcon: "red-envelope",
+    //     subMenuList: [
+    //       {
+    //         menuName: "红包投放记录",
+    //         menuIcon: "",
+    //         menuUrl: SettingUrl.ROUTERLINK.store.redPacketPushOrder
+    //       },
+    //       {
+    //         menuName: "红包统计",
+    //         menuIcon: "",
+    //         menuUrl: SettingUrl.ROUTERLINK.store.redPacketStatistics
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     menuName: "提现与结算",
+    //     menuIcon: "pay-circle-o",
+    //     menuUrl: SettingUrl.ROUTERLINK.store.cashSettle
+    //   },
+    //   {
+    //     menuName: "员工管理",
+    //     menuIcon: "usergroup-add",
+    //     menuUrl: SettingUrl.ROUTERLINK.store.staff
+    //   },
+    //   {
+    //     menuName: "店铺信息管理",
+    //     menuIcon: "shop",
+    //     menuUrl: SettingUrl.ROUTERLINK.basic.shops
+    //   },
+    //   {
+    //     menuName: "企业信息（TODO）",
+    //     menuIcon: "smile-o",
+    //     menuUrl: SettingUrl.ROUTERLINK.basic.reg
+    //   },
+    //   {
+    //     menuName: "登录页面（TODO）",
+    //     menuIcon: "smile-o",
+    //     menuUrl: SettingUrl.ROUTERLINK.pass.login
+    //   },
+    // ]
   }
 
   ngOnInit() {
