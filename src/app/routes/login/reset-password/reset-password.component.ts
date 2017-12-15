@@ -15,8 +15,9 @@ export class ResetPasswordComponent implements OnInit {
   isSending: boolean = false;//判断获取验证码的按钮，如果已经点击过了，就变禁用
   phoneState: string;//获取验证码时判断手机号是否输入
 
-  constructor(public loginService: LoginService, public forgetPwd: ForgetPasswordComponent) {
+  constructor(public loginService: LoginService, public forgetPwd: ForgetPasswordComponent,public forgetPasswordComponent:ForgetPasswordComponent) {
     this.validateForm = this.loginService.validateFormReset;////重置密码的表单
+    this.forgetPasswordComponent.current = 0;
   }
 
   ngOnInit() {
