@@ -87,8 +87,7 @@ export class BaseInfoComponent implements OnInit {
    * @param $event
    * @param value
    */
-  public uploadImg($event?) {
-    $event.preventDefault();
+  public uploadImg() {
     let me = this, uploadedNum = 0, allUploaders = [
       this.organizationCodeUploader,
       this.businessLicenceUploader,
@@ -137,7 +136,8 @@ export class BaseInfoComponent implements OnInit {
   /**
    * 提交表单
    */
-  submitCompleteForm() {
+  submitCompleteForm($event) {
+    $event.preventDefault();
     let me = this,hasNewImg:boolean = false, allUploaders = [
       this.organizationCodeUploader,
       this.businessLicenceUploader,
