@@ -98,7 +98,7 @@ export class Setting {
       storepending: "STOREPENDING",           //店铺审核中
       storenormal: "STORENORMAL",             //店铺已正常
       storeclose: "STORECLOSE",                //店铺关闭
-      storereject: "STOREREJECT "               //店铺驳回
+      storereject: "STOREREJECT"               //店铺驳回
     },
     //商品状态
     goodsState: {

@@ -129,37 +129,37 @@ export class LoginService {
           //判断跳到相应的页面
           switch (res.data.flowState) {
             case me.loginState.enterprosewait://企业待入驻
-              this.router.navigate([SettingUrl.ROUTERLINK.basic.baseInfo], {replaceUrl: true, queryParams: {sellerCode: res.data.sellerCode}})//跳到基础信息页面
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.baseInfo], {replaceUrl: true});//跳到基础信息页面
               break;
             case me.loginState.enterprishalf://企业待完善
-              this.router.navigate([SettingUrl.ROUTERLINK.basic.accountInfo], {replaceUrl: true, queryParams: {epCode: res.data.epCode}}) //跳到企业账户信息页面
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.accountInfo], {replaceUrl: true}); //跳到企业账户信息页面
               break;
             case me.loginState.enterpriseaudit://企业待审核
-              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode: res.data.epCode}})//跳到企业审核页面
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true});//跳到企业审核页面
               break;
             case me.loginState.enterprisempral://企业已正常
-              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode: res.data.epCode}})//跳到企业审核页面
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true});//跳到企业审核页面
               break;
             case me.loginState.enterpriseblack://企业黑名单
               me._notification.success('该店铺不存在', '该店铺不存在');
               break;
             case me.loginState.enterprisereject://企业申请驳回
-              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode: res.data.epCode}})//跳到企业审核页面
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true});//跳到企业审核页面
               break;
             case me.loginState.storewait://店铺待申请
-              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true, queryParams: {epCode: res.data.epCode}})//跳到企业审核页面
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.auditing], {replaceUrl: true});//跳到企业审核页面
               break;
             case me.loginState.storepending://店铺审核中
-              this.router.navigate([SettingUrl.ROUTERLINK.basic.done], {replaceUrl: true, queryParams: {storeCode: res.data.storeCode}})//跳到完成页面
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.done], {replaceUrl: true});//跳到完成页面
               break;
             case me.loginState.storenormal://店铺已正常
-              this.router.navigate([SettingUrl.ROUTERLINK.store.home], {replaceUrl: true, queryParams: param})//跳到首页
+              this.router.navigate([SettingUrl.ROUTERLINK.store.home], {replaceUrl: true});//跳到首页
               break;
             case me.loginState.storeclose://店铺关闭
               me._notification.success('该店铺已关闭', '该店铺已关闭');
               break;
             case me.loginState.storereject://店铺驳回
-              this.router.navigate([SettingUrl.ROUTERLINK.store.home], {replaceUrl: true, queryParams: param})//跳到首页
+              this.router.navigate([SettingUrl.ROUTERLINK.basic.done], {replaceUrl: true});//跳到完成页面
               break;
           }
           //me._notification.success('成功', res.info);
