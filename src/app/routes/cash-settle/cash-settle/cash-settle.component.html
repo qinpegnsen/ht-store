@@ -61,16 +61,16 @@
             </nz-select>
           </div>
         </div>
-        <div nz-row>
+        <div nz-form-item nz-row>
           <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
             <label nz-form-item-required>申请提现金额</label>
           </div>
           <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
                [nzValidateStatus]="ngValidateStatus(ngDrawMoney)">
             <nz-input [nzSize]="'large'" name="drawMoney" [(ngModel)]="validateForm.drawMoney" #ngDrawMoney="ngModel" required   [nzType]="'number'" [nzPlaceHolder]="'申请提现金额'" [pattern]="patternService.twodecimal"></nz-input>
-            <!--<div nz-form-explain *ngIf="ngValidateErrorMsg(ngDrawMoney) == valitateState.empty">-->
-              <!--请输入申请提现金额！-->
-            <!--</div>-->
+            <div nz-form-explain *ngIf="ngValidateErrorMsg(ngDrawMoney) == valitateState.empty">
+              请输入申请提现金额！
+            </div>
           </div>
         </div>
         <div nz-row>
@@ -84,13 +84,10 @@
       <ng-template #footer>
         <div>
           <button nz-button [nzType]="'ghost'" [nzSize]="'large'" (click)="handleCancel($event)"
-                  [nzLoading]="isConfirmLoading">
-            取消
-          </button>
+                  [nzLoading]="isConfirmLoading"> 取消</button>
           <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk($event)"
                   [nzLoading]="isConfirmLoading" [disabled]="!dredgeStoreForm.form.valid">
-            确定
-          </button>
+            确定 </button>
         </div>
       </ng-template>
     </form>

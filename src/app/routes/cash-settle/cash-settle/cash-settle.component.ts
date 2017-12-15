@@ -20,7 +20,6 @@ export class CashSettleComponent implements OnInit {
   public isConfirmLoading: boolean = false;//提现确认按钮的加载小圈默认不可见
   public _loading: boolean = false;  //查询时锁屏
   public settlePage: Page = new Page();  //结算信息
-  public storeInfo: any = {};  //企业信息
   public insertData: any = {};  //申请提现时传入的信息
   public query: any = {};    // 查询条件
   public _startDate: Date = new Date();//查询条件的开始时间
@@ -28,7 +27,7 @@ export class CashSettleComponent implements OnInit {
   public settleFormula: any = Setting.PAGEMSG.settleFormula; //结算公式
   public cachUrl: string = SettingUrl.ROUTERLINK.store.cach; //提现页面
 
-  bankDataList: Array<any> = new Array();  //银行信息
+  public bankDataList: Array<any> = new Array();  //银行信息
   public ngValidateStatus = Util.ngValidateStatus;//表单项状态
   public ngValidateErrorMsg = Util.ngValidateErrorMsg;//表单项提示状态
   public valitateState: any = Setting.valitateState;//表单验证状态
@@ -121,12 +120,11 @@ export class CashSettleComponent implements OnInit {
     $.when(me.cashSettleService.insertList(me.insertData)).done(data => {
       me._loading = false; //解除锁屏
       if (data.success) {
-        this.currentModal.destroy('onCancel');//
+        this.currentModal.destroy('onCancel');//关闭弹窗
         me.isConfirmLoading = false;
-        me.validateForm.drawMoney = null;
+        me.validateForm.drawMoney = null;//成功后清空余额
         me._notification.success('提现成功', data.info)
       } else {
-        // this.currentModal.destroy('onOk');
         me.isConfirmLoading = false;
         me._notification.error('提现失败', data.info)
       }
@@ -139,8 +137,8 @@ export class CashSettleComponent implements OnInit {
    */
   handleCancel = (e) => {
     let me = this;
-    me.validateForm.drawMoney = null;
-    me.currentModal.destroy('onCancel');
+    me.validateForm.drawMoney = null;//关闭弹窗时清空余额
+    me.currentModal.destroy('onCancel');//关闭弹窗
     me.isConfirmLoading = false;//点击确认按钮加载小圈
   }
 
