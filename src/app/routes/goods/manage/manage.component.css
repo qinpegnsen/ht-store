@@ -4,22 +4,26 @@
   display: inline-block;
 }
 
-.search-group .search-title {
-  width: 30%;
+.search-title {
+  width: 70px;
   line-height: 36px;
   text-align: right;
   display: inline-block;
 }
 
-.search-group .search-main {
-  width: 70%;
+.search-main {
+  width: 170px;
   float: right;
 }
 
 .search-term {
-  width: 360px;
+  width: 270px;
   display: inline-block;
   vertical-align: top;
+}
+
+.search-term .search-main{
+  width: 200px;
 }
 
 .relative {

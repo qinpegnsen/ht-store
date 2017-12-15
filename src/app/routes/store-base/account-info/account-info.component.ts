@@ -79,8 +79,7 @@ export class AccountInfoComponent implements OnInit {
    * @param $event
    * @param value
    */
-  public uploadImg($event?) {
-    $event.preventDefault();
+  public uploadImg() {
     let me = this, uploadedNum = 0, uploader = me.bankLicenceUploader;
     let uuid = '';//置空暗码
 
@@ -116,7 +115,8 @@ export class AccountInfoComponent implements OnInit {
   /**
    * 提交表单
    */
-  submitCompleteForm(){
+  submitCompleteForm($event){
+    $event.preventDefault();
     let me = this;
     if (me.bankLicenceUploader.queue[0]) me.uploadImg();
     else me.submitFormData();
