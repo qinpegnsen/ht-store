@@ -139,7 +139,8 @@ export class CashSettleComponent implements OnInit {
    */
   handleCancel = (e) => {
     let me = this;
-    this.currentModal.destroy('onCancel');
+    me.validateForm.drawMoney = null;
+    me.currentModal.destroy('onCancel');
     me.isConfirmLoading = false;//点击确认按钮加载小圈
   }
 
