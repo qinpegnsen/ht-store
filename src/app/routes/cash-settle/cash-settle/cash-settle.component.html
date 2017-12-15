@@ -9,7 +9,7 @@
     </button>
     <span class="main-color ml-20 cursor settle-record" [routerLink]="cachUrl"><u>提现记录</u></span>
     <!--提现记录弹窗 -- start -->
-    <form nz-form #dredgeStoreForm="ngForm">
+    <form nz-form #updateShopForm="ngForm">
       <ng-template #title>
         <span>提现申请</span>
       </ng-template>
@@ -86,7 +86,7 @@
           <button nz-button [nzType]="'ghost'" [nzSize]="'large'" (click)="handleCancel($event)"
                   [nzLoading]="isConfirmLoading"> 取消</button>
           <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk($event)"
-                  [nzLoading]="isConfirmLoading" [disabled]="!dredgeStoreForm.form.valid">
+                  [nzLoading]="isConfirmLoading" [disabled]="!updateShopForm.form.valid">
             确定 </button>
         </div>
       </ng-template>
