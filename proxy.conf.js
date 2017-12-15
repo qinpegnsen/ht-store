@@ -15,46 +15,32 @@ const ly = 'http://192.168.10.101:';  //柳阳
 const PROXY_CONFIG = [
   {
     context: [
-      "/seller",
-      "/sms",
-      "/enterprise",
-      "/login",
-      "/goodsEdit",
-      "/goodsKind",
-      "/goodsBrand",
-      "/goodsQuery",
-      "/stores",
-      "/statistical"
+      "/seller", //企业注册
+      "/sms",    //验证码
+      "/enterprise", //企业入驻
+      "/login", //登录
+      "/goodsEdit", //商品发布
+      "/goodsKind", //商品分类
+      "/goodsBrand", //品牌信息
+      "/goodsQuery", //商品查询
+      "/expressTpl", //运费模板
+      "/stores",     //店铺
+      "/rpStatistics", //红包统计
+      "/rpAccountRec", //企业投红包记录
+      "/after", //售后
+      "/finaceStoreDraw", //提现
+      "/settle", //结算
+      "/ord", //订单
+      "/statistical" //统计信息
     ],
-    target: wp + "8087",   //拦截 context配置路径，经过此地址
+    target: gh + "8087",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
     context: [
-      "/rpStatistics",
-      "/rpAccountRec",
-      "/agentOrd",
-      "/expressTpl",
-      "/storeExpressTpl",
-      "/after"
-    ],
-    target: zyg + "8084",   //拦截 context配置路径，经过此地址
-    secure: false
-  },
-  {
-    context: [
-      "/ord",
-      "/finaceDraw",
-      "/rpAccountRec"
-    ],
-    target: csj + "8085",   //拦截 context配置路径，经过此地址
-    secure: false
-  },
-  {
-    context: [
-      "/res",
-      "/basicExpress",
-      "/upload"
+      "/res", //枚举信息
+      "/basicExpress", //物流
+      "/upload" //上传
     ],
     target: csj + "8082",   //拦截 context配置路径，经过此地址
     secure: false
