@@ -35,20 +35,7 @@
           </nz-select>
         </div>
       </div>
-      <div class="search-group ml-20 mb">
-        <span class="search-title">自营：</span>
-        <div class="search-main">
-          <nz-select class="w100" name="isOwnPlat" [(ngModel)]="query.isOwnPlat" [nzSize]="'large'"
-                     (ngModelChange)="queryGoodsList(1)">
-            <nz-option
-              *ngFor="let item of isOwnPlats"
-              [nzLabel]="item.val"
-              [nzValue]="item.key">
-            </nz-option>
-          </nz-select>
-        </div>
-      </div>
-      <div class="search-group ml-20 mb clearfix">
+      <div class="search-term ml-20 mb clearfix">
         <span class="search-title">分类：</span>
         <div class="search-main">
           <nz-cascader

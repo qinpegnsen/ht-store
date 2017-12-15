@@ -25,7 +25,6 @@ export class ManageComponent implements OnInit {
   public kindList:any;      // 分类列表
   public goodsAudits: any;  // 商品审核状态列表
   public goodsState: any;  // 商品状态列表
-  public isOwnPlats: any;  //是否自营列表
   public query:any = {};    // 查询条件
   public pageMsg = Setting.PAGEMSG;                      //页面提示信息
 
@@ -46,7 +45,6 @@ export class ManageComponent implements OnInit {
     me.kindList = me.goodsService.getKindList(); //获取分类列表
     me.goodsAudits = MainService.getEnumDataList(Setting.ENUM.goodsAudits);  // 商品审核状态列表
     me.goodsState = MainService.getEnumDataList(Setting.ENUM.goodsState);  // 商品状态列表
-    me.isOwnPlats = MainService.getEnumDataList(Setting.ENUM.yesOrNo);  // 店铺是否自营
   }
 
   /**
