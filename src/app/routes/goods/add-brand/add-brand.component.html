@@ -22,54 +22,68 @@
         </div>
       </div>
 
-      <!--所属分类-->
+      <!--品牌英文名称-->
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>所属分类</label>
+          <label>品牌英文名称</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngKind)" nzHasFeedback>
-          <nz-select [(ngModel)]="brandInfo.kindId" name="kindId" [nzPlaceHolder]="'选择分类'" #ngKind="ngModel"
-                     [nzSize]="'large'">
-            <nz-option
-              *ngFor="let kind of kindList"
-              [nzLabel]="kind.kindName"
-              [nzValue]="kind.id">
-            </nz-option>
-          </nz-select>
-        </div>
-      </div>
-
-      <!--品牌首字母-->
-      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>品牌首字母</label>
-        </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBrandInitial)" nzHasFeedback>
-          <nz-input name="brandInitial" [(ngModel)]="brandInfo.brandInitial" #ngBrandInitial="ngModel"
-                    required [nzType]="'text'" [nzPlaceHolder]="'请输入品牌首字母'" [nzSize]="'large'">
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBrandName)" nzHasFeedback>
+          <nz-input name="brandName" [(ngModel)]="brandInfo.brandName" #ngBrandName="ngModel"
+                    required [nzType]="'text'" [nzPlaceHolder]="'请输入品牌英文名称'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBrandInitial)==valitateState.empty">
-            请输入品牌首字母！
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBrandName)==valitateState.empty">
+            请输入品牌英文名称！
           </div>
         </div>
       </div>
 
-      <!--品牌LOGO-->
+      <!--品牌所有人-->
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
-          <label>品牌LOGO</label>
+          <label nz-form-item-required>品牌所有人</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBrandName)" nzHasFeedback>
+          <nz-input name="brandName" [(ngModel)]="brandInfo.brandName" #ngBrandName="ngModel"
+                    required [nzType]="'text'" [nzPlaceHolder]="'请输入品牌所有人'" [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBrandName)==valitateState.empty">
+            请输入品牌所有人！
+          </div>
+        </div>
+      </div>
+
+      <!--品牌注册号-->
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>品牌注册号</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBrandInitial)" nzHasFeedback>
+          <nz-input name="brandInitial" [(ngModel)]="brandInfo.brandInitial" #ngBrandInitial="ngModel"
+                    required [nzType]="'text'" [nzPlaceHolder]="'请输入品牌注册号'" [nzSize]="'large'">
+          </nz-input>
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBrandInitial)==valitateState.empty">
+            请输入品牌注册号！
+          </div>
+        </div>
+      </div>
+
+      <!--品牌图片-->
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label>品牌图片</label>
+        </div>
+        <div nz-col [nzSpan]="4" nz-form-control>
           <label class="file-upload">
-            <i class="anticon anticon-cloud-upload-o"></i>上传品牌LOGO
+            <i class="anticon anticon-cloud-upload-o"></i>上传品牌图片
             <input class="w100" type="file" name="brandPic" ng2FileSelect [uploader]="brandLogoUploader"
                    required accept="image/*" (change)="brandLogoChangeListener()"/>
           </label>
         </div>
-        <div nz-col [nzSpan]="8">
+        <div nz-col [nzSpan]="4" class="pl-30">
           <!--上传图片的时候-->
           <ng-container *ngIf="brandLogoUploader.queue[0]">
             <div class="uploaded">
+              <div class="remove" (click)="brandLogoUploader.queue[0].remove()"><i class="anticon anticon-close"></i></div>
               <nz-popover [nzTrigger]="'click'">
                 <img [src]="brandLogoUploader.queue[0]?._file | imgPreview" height="50"
                      title="点击看大图" nz-popover>
@@ -82,17 +96,32 @@
         </div>
       </div>
 
-      <!--品牌展示类型-->
+      <!--品牌注册证/申请书-->
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
-          <label>品牌展示类型</label>
+          <label>品牌注册证</label>
         </div>
-        <div nz-form-control nz-col [nzSpan]="8">
-          <nz-radio-group name="showType" [(ngModel)]="brandInfo.showType">
-            <label *ngFor="let item of showTypes" nz-radio [nzValue]="item.key">
-              <span>{{item.val}}</span>
-            </label>
-          </nz-radio-group>
+        <div nz-col [nzSpan]="4" nz-form-control>
+          <label class="file-upload">
+            <i class="anticon anticon-cloud-upload-o"></i>上传品牌注册证
+            <input class="w100" type="file" name="brandPic" ng2FileSelect [uploader]="brandRegCardUploader"
+                   required accept="image/*" multiple/>
+          </label>
+        </div>
+        <div nz-col [nzSpan]="6" class="pl-30">
+          <!--上传图片的时候-->
+          <ng-container *ngIf="brandRegCardUploader.queue?.length>0">
+            <div class="uploaded" *ngFor="let item of brandRegCardUploader.queue">
+              <div class="remove" (click)="item.remove()"><i class="anticon anticon-close"></i></div>
+              <nz-popover [nzTrigger]="'click'">
+                <img [src]="item?._file | imgPreview" height="50"
+                     title="点击看大图" nz-popover>
+                <ng-template #nzTemplate>
+                  <div><img [src]="item?._file | imgPreview" height="200"></div>
+                </ng-template>
+              </nz-popover>
+            </div>
+          </ng-container>
         </div>
       </div>
 
@@ -113,11 +142,11 @@
   <ng-container *ngIf="path == 'detail'">
     <div class="p w60 t-items">
       <dl nz-row class="t-item">
-        <dt nz-col [nzSpan]="6" class="item-hd">品牌名称：</dt>
+        <dt nz-col [nzSpan]="6" class="item-hd">品牌中文名称：</dt>
         <dd nz-col [nzSpan]="18" class="item-bd mb0">{{brandInfo.brandName}}</dd>
       </dl>
       <dl nz-row class="t-item">
-        <dt nz-col [nzSpan]="6" class="item-hd">所属分类：</dt>
+        <dt nz-col [nzSpan]="6" class="item-hd">品牌英文名称：</dt>
         <dd nz-col [nzSpan]="18" class="item-bd mb0">{{brandKind}}</dd>
       </dl>
       <dl nz-row class="t-item">

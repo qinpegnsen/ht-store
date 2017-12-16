@@ -150,7 +150,7 @@
       <td nz-td class="text-center">{{goods.createTime}}</td>
       <td nz-td class="text-center">
         <nz-switch class="thc" [nzSize]="'large'" [ngModel]="goods.isUseCoin==enumState.yes"
-                   (change)="changeIsUseCoin(goods.isUseCoin==enumState.yes,goods.goodsBaseCode)">
+                   (ngModelChange)="changeIsUseCoin(goods.isUseCoin==enumState.yes,goods.goodsBaseCode)">
           <span checked>是</span>
           <span unchecked>否</span>
         </nz-switch>

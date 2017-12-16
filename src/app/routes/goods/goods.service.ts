@@ -219,12 +219,8 @@ export class GoodsService {
    * @param baseCode
    * @param curPage
    */
-  changeIsUseCoin(isUseCoin, baseCode) {
-    let me = this, defer = $.Deferred(), //封装异步请求结果,
-      requestData = {
-        goodsBaseCode: baseCode,
-        isUseCoin: isUseCoin
-      };
+  changeIsUseCoin(requestData) {
+    let me = this, defer = $.Deferred(); //封装异步请求结果,
     AjaxService.put({
       url: SettingUrl.URL.goods.updateIsUseCoin,
       data: requestData,

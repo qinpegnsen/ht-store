@@ -36,6 +36,12 @@ export class AddBrandComponent implements OnInit {
     itemAlias: "limitFile",
     allowedFileType: ["image"]
   }); //品牌logo,初始化上传方法
+  public brandRegCardUploader: FileUploader = new FileUploader({
+    url: SettingUrl.URL.goods.goodsUpload,
+    itemAlias: "limitFile",
+    queueLimit: 2,
+    allowedFileType: ["image"]
+  }); //品牌logo,初始化上传方法
 
   constructor(public _notification: NzNotificationService,
               public confirmServ: NzModalService,

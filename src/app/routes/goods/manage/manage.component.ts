@@ -17,21 +17,21 @@ declare var $: any;
 })
 export class ManageComponent implements OnInit {
   public goodsList: Page = new Page();
-  public _loading:boolean = false;             //查询时锁屏
-  public showList:boolean = true;             //是否显示列表页
-  public enumState:any = Setting.ENUMSTATE;     //枚举状态
-  public enums:any = Setting.ENUM;               //枚举编码
+  public _loading: boolean = false;             //查询时锁屏
+  public showList: boolean = true;             //是否显示列表页
+  public enumState: any = Setting.ENUMSTATE;     //枚举状态
+  public enums: any = Setting.ENUM;               //枚举编码
 
-  public kindList:any;      // 分类列表
+  public kindList: any;      // 分类列表
   public goodsAudits: any;  // 商品审核状态列表
   public goodsState: any;  // 商品状态列表
-  public query:any = {};    // 查询条件
+  public query: any = {};    // 查询条件
   public pageMsg = Setting.PAGEMSG;                      //页面提示信息
 
   //路由
-  public goodsManagePublish:string = SettingUrl.ROUTERLINK.store.goodsManagePublish;    //商品发布（此处如此写，用于路由相对进入模式）
-  public goodsManageUpdate:string = SettingUrl.ROUTERLINK.store.goodsManageUpdate;           //商品修改/编辑（此处如此写，用于路由相对进入模式）
-  public goodsManageEval:string = SettingUrl.ROUTERLINK.store.goodsManageEval;           //查看商品评价（此处如此写，用于路由相对进入模式）
+  public goodsManagePublish: string = SettingUrl.ROUTERLINK.store.goodsManagePublish;    //商品发布（此处如此写，用于路由相对进入模式）
+  public goodsManageUpdate: string = SettingUrl.ROUTERLINK.store.goodsManageUpdate;           //商品修改/编辑（此处如此写，用于路由相对进入模式）
+  public goodsManageEval: string = SettingUrl.ROUTERLINK.store.goodsManageEval;           //查看商品评价（此处如此写，用于路由相对进入模式）
 
   constructor(public goodsService: GoodsService,
               public modalService: NzModalService,
@@ -52,10 +52,10 @@ export class ManageComponent implements OnInit {
    */
   showSkuList(baseCode, name) {
     this.modalService.open({
-      title          : `“${name}”的所有规格`,          //弹窗标题
-      content        : SkuGoodsComponent,                 //弹窗内容组件
-      footer         : false,                             //弹窗页脚，false表示不显示
-      width          : 600,                                //弹窗宽度
+      title: `“${name}”的所有规格`,          //弹窗标题
+      content: SkuGoodsComponent,                 //弹窗内容组件
+      footer: false,                             //弹窗页脚，false表示不显示
+      width: 600,                                //弹窗宽度
       componentParams: {                                  //传参数
         baseCode: baseCode
       }
@@ -81,7 +81,7 @@ export class ManageComponent implements OnInit {
   /**
    * 重置搜索条件
    */
-  resetQuery(){
+  resetQuery() {
     let me = this;
     me.query = {};
     me.goodsList = new Page();
@@ -93,10 +93,10 @@ export class ManageComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryGoodsList(curPage?:number) {
+  public queryGoodsList(curPage?: number) {
     let me = this;
     me._loading = true; //锁屏
-    if(!isNullOrUndefined(curPage)) me.goodsList.curPage = curPage;//当有页码时，查询该页数据
+    if (!isNullOrUndefined(curPage)) me.goodsList.curPage = curPage;//当有页码时，查询该页数据
     me.goodsList.params = { //查询参数
       curPage: me.goodsList.curPage, //目标页码
       pageSize: me.goodsList.pageSize, //每页条数
@@ -129,9 +129,13 @@ export class ManageComponent implements OnInit {
    * @param curPage
    */
   changeIsUseCoin(type, baseCode) {
-    let me = this, isUseCoin;
+    let me = this, isUseCoin, requestData;
     isUseCoin = type ? 'N' : 'Y';
-    $.when(me.goodsService.changeIsUseCoin(isUseCoin,baseCode)).done(data => {
+    requestData = {
+      goodsBaseCode: baseCode,
+      isUseCoin: isUseCoin
+    };
+    $.when(me.goodsService.changeIsUseCoin(requestData)).done(data => {
       if (data.success) {
         me.queryGoodsList();
       } else {
@@ -147,7 +151,7 @@ export class ManageComponent implements OnInit {
    */
   changeState(type: string, baseCode: string) {
     let me = this;
-    $.when(me.goodsService.changeGoodsState(type,baseCode)).done(data => {
+    $.when(me.goodsService.changeGoodsState(type, baseCode)).done(data => {
       if (data) me.queryGoodsList();
     })
   }
