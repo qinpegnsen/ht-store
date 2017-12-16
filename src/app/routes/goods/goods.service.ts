@@ -292,7 +292,7 @@ export class GoodsService {
     let defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
-      url: SettingUrl.URL.goods.expressTpl,
+      url: SettingUrl.URL.template.expressTpl,
       data: data,
       success: (data) => {
         if (data.success) defer.resolve(data.data);

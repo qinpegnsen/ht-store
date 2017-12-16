@@ -95,7 +95,6 @@ export class SettingUrl {
       relieveGoods: "/goodsEdit/updateStateToNomal",//(put)解除商品禁售
       updateIsUseCoin: "/goodsEdit/updateIsUseCoin",//(put)更改是否可用重消币
       commnetGoods: "/commentGoods/queryCommnetGoodsStore",//(get)查询商品评价
-      expressTpl: " /expressTpl/queryByStoreCode",//(get)查询运费模板/模板值列表
       goodsSave: "/goodsEdit/save",      //(post)保存商品数据（发布/修改）
       brandsList: "/goodsBrand/queryMyBrandPage", //(get)查询店铺的品牌列表
       addBrand: "/goodsBrand/addBrand",     //(post)添加品牌
@@ -106,6 +105,13 @@ export class SettingUrl {
       goodsUploadRetUrl: "upload/basic/goodsUploadRetUrl" //商品 返回URL，不带HTTP
     }
     ,
+    /**
+     * 运费模板
+     */
+    template:{
+      expressTpl: " /expressTpl/queryByStoreCode",//(get)查询运费模板/模板值列表
+      delteStoreExpressTplVal: " /expressTpl/delteStoreExpressTplVal",//(deldet)删除模板值
+    },
     /**
      * 提现与账单明细
      */

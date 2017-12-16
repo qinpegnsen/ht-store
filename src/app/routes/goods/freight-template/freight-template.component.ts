@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Page} from "../../../public/util/page";
+import {Component, OnInit} from "@angular/core";
 import {GoodsService} from "../goods.service";
-import {MainService} from "../../../public/service/main.service";
 import {Setting} from "../../../public/setting/setting";
 import {SettingUrl} from "../../../public/setting/setting_url";
 declare var $: any;
@@ -16,9 +14,10 @@ export class FreightTemplateComponent implements OnInit {
   tplList: any = [];  //模板/模板值信息
   prompt: any = Setting.PAGEMSG.freightTemplate; //提示信息
   showFreightList: boolean = true;//判断子组件的显示/隐藏
-  addTemplate:string = SettingUrl.ROUTERLINK.store.addTemplate; //添加运费模板路由
+  addTemplate: string = SettingUrl.ROUTERLINK.store.addTemplate; //添加运费模板路由
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     let me = this;
@@ -51,11 +50,11 @@ export class FreightTemplateComponent implements OnInit {
     let me = this;
     me._loading = true; //锁屏
     me.tplList.params = { //查询参数
-      storeCode:'SZH_PLAT_SELF_STORE',//传参
+      storeCode: 'SZH_PLAT_SELF_STORE',//传参
     }
     $.when(GoodsService.freightList(me.tplList.params)).done(data => {
       me._loading = false //解除锁屏
-      if(data) me.tplList = data; //赋值
+      if (data) me.tplList = data; //赋值
     })
   }
 

@@ -7,6 +7,7 @@ import {CHINA_AREA} from "../../../public/util/china_area";
 import {AREA_LEVEL_1_JSON} from "../../../public/util/area_level_1";
 import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
 import {isArray} from "rxjs/util/isArray";
+import {GoodsService} from "../goods.service";
 
 @Component({
   selector: 'app-add-template',
@@ -30,7 +31,7 @@ export class AddTemplateComponent implements OnInit {
   public twe: boolean = false;//运费时按重量默认为false
   public three: boolean = false;//运费时按体积默认为false
 
-  constructor(private fb: FormBuilder,public routeInfo: ActivatedRoute,public session: SessionService) {
+  constructor(private fb: FormBuilder,public routeInfo: ActivatedRoute,public session: SessionService,public goodsService:GoodsService) {
     this.validateForm = this.fb.group({
       userName            : [ '', [ Validators.required ], [ this.userNameAsyncValidator ] ],
       radio_group         : [ 1 ],
@@ -39,6 +40,7 @@ export class AddTemplateComponent implements OnInit {
 
   ngOnInit() {
     let me = this;
+    me.getallCheckeds();
     me.linkType = this.routeInfo.snapshot.queryParams['linkType'];//获取地址栏的参数
   }
 
@@ -365,6 +367,15 @@ export class AddTemplateComponent implements OnInit {
     }
   }
 
+  /**
+   * 删除运费模板值信息
+   * @param event
+   */
+  delete(i) {
+    let me = this;
+    me.moduleList.splice(i, 1)
+    me.moduleList[i].area = '';
+  }
 
 
   submitForm = ($event, value) => {
