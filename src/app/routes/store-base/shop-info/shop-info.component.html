@@ -64,9 +64,9 @@
         </div>
         <div nz-col [nzSpan]="20" class="pl-20" [ngClass]="{'store-info-nowrite':!shopsInfo.storeAvatar}">
           <nz-popover [nzTrigger]="'click'">
-            <img [src]="shopsInfo.storeLabel | imgSize:'50'" appImgErr nz-popover>
+            <img [src]="shopsInfo.storeLabel | imgSize:'50'" height="35" appImgErr nz-popover>
             <ng-template #nzTemplate>
-              <div><img [src]="shopsInfo.storeLabel | imgSize:'400'"></div>
+              <div><img [src]="shopsInfo.storeLabel | imgSize:'400'"  alt="shopsInfo.storeName"></div>
             </ng-template>
           </nz-popover>
         </div>
