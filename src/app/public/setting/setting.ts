@@ -2,7 +2,7 @@
 export class Setting {
   public static STORE: any = {};                       //企业信息
   public user: any;                                   //保存店铺的基本信息
-  public static ajax: any = {
+  public static AJAX: any = {
     errorTip: '处理失败，请稍候重试或联系我们：XXXX-XXXXXXXX',//ajax请求错误提示信息
     failText: '服务器异常' //ajax请求失败提示信息
   };//ajax 信息

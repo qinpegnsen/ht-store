@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {NzNotificationService} from "ng-zorro-antd";
+import {Setting} from "../../public/setting/setting";
 declare var $: any;
 
 @Injectable()
@@ -9,7 +10,6 @@ export class AfterSaleService {
 
   constructor(public _notification: NzNotificationService) {
   }
-
 
   /**
    * 查询退款订单列表
@@ -118,7 +118,7 @@ export class AfterSaleService {
    * @returns {any<T>} （查询参数）
    */
   agreeRefundMoney(data: any) {
-    var defer = $.Deferred(); //封装异步请求结果
+    let defer = $.Deferred(), me = this; //封装异步请求结果
     //执行查询（异步）
     AjaxService.post({
       url: SettingUrl.URL.after.agreeRefundMoney,
@@ -126,7 +126,16 @@ export class AfterSaleService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data);
+        }else{
+          if(Setting.AJAX.failText==res.info){
+            me._notification.error(Setting.AJAX.errorTip,'');
+          }else{
+            me._notification.error(res.info,'');
+          }
         }
+      },
+      error: () => {
+        me._notification.error(Setting.AJAX.errorTip,'');
       }
     });
     return defer.promise(); //返回异步请求消息
@@ -138,7 +147,7 @@ export class AfterSaleService {
    * @returns {any<T>} （查询参数）
    */
   dealReturnGoods(data: any) {
-    var defer = $.Deferred(); //封装异步请求结果
+    let defer = $.Deferred(),me=this; //封装异步请求结果
     //执行查询（异步）
     AjaxService.post({
       url: SettingUrl.URL.after.dealReturnGoods,
@@ -146,7 +155,16 @@ export class AfterSaleService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data);
+        }else{
+          if(Setting.AJAX.failText==res.info){
+            me._notification.error(Setting.AJAX.errorTip,'');
+          }else{
+            me._notification.error(res.info,'');
+          }
         }
+      },
+      error: () => {
+        me._notification.error(Setting.AJAX.errorTip,'');
       }
     });
     return defer.promise(); //返回异步请求消息
@@ -158,7 +176,7 @@ export class AfterSaleService {
    * @returns {any<T>} （查询参数）
    */
   checkRefundGoods(data: any) {
-    var defer = $.Deferred(); //封装异步请求结果
+    let defer = $.Deferred(),me=this; //封装异步请求结果
     //执行查询（异步）
     AjaxService.post({
       url: SettingUrl.URL.after.checkRefundGoods,
@@ -166,7 +184,16 @@ export class AfterSaleService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data);
+        }else{
+          if(Setting.AJAX.failText==res.info){
+            me._notification.error(Setting.AJAX.errorTip,'');
+          }else{
+            me._notification.error(res.info,'');
+          }
         }
+      },
+      error: () => {
+        me._notification.error(Setting.AJAX.errorTip,'');
       }
     });
     return defer.promise(); //返回异步请求消息

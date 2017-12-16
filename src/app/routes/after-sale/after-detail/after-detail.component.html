@@ -79,8 +79,8 @@
     <!--平台同意申请 start-->
     <ng-container *ngIf="afterData?.state!='WAIT'">
       <div>
-        <div>
-          <legend class="m0 lengendSty font20">
+        <div class="pl-20">
+          <legend class="m0 lengendSty font20 bb0">
             {{afterData?.returnType==enumState.afterType.return?'退货申请处理':'退款申请处理'}}
           </legend>
         </div>
@@ -111,8 +111,8 @@
     <!--退货订单已发货 start-->
     <ng-container *ngIf="afterData?.returnType==enumState.afterType.return">
       <div *ngIf="afterData?.state==enumState.afterService.delivery || afterData?.state==enumState.afterService.checkFails || enumState.afterService.done">
-        <div class="">
-          <legend class="m0 lengendSty font20">退货发货信息</legend>
+        <div class="pl-20">
+          <legend class="m0 lengendSty font20 bb0">退货发货信息</legend>
         </div>
         <table class="t-items w100">
           <tr class="t-item">
@@ -169,8 +169,8 @@
 
     <!--平台验收货物之后 start-->
     <div *ngIf="afterData?.returnType==enumState.afterType.return && afterData?.state==enumState.afterService.done">
-      <div class="">
-        <legend class="m0 lengendSty font20">退货验收处理</legend>
+      <div class="pl-20">
+        <legend class="m0 lengendSty font20 bb0">退货验收处理</legend>
       </div>
       <table class="t-items w100">
         <tr class="t-item">

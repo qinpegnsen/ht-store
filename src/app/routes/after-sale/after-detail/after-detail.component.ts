@@ -66,8 +66,9 @@ export class AfterDetailComponent implements OnInit {
       opinion: me.opinion,
       isAgree: me.isAgree
     };
-    this.afterSaleService.agreeRefundMoney(data);
-    this.back();
+    $.when(this.afterSaleService.agreeRefundMoney(data)).done(() => {
+      this.back();
+    });
   }
 
   /**
@@ -80,8 +81,9 @@ export class AfterDetailComponent implements OnInit {
       opinion: me.opinion,
       isAgree: me.isAgree
     };
-    this.afterSaleService.dealReturnGoods(data);
-    this.back();
+    $.when(this.afterSaleService.dealReturnGoods(data)).done(() => {
+      this.back();
+    });
   }
 
   /**
@@ -94,8 +96,9 @@ export class AfterDetailComponent implements OnInit {
       opinion: me.opinion,
       isPass: me.isPass
     };
-    this.afterSaleService.checkRefundGoods(data);
-    this.back();
+    $.when(this.afterSaleService.checkRefundGoods(data)).done(() => {
+      this.back();
+    });
   }
 
   /**

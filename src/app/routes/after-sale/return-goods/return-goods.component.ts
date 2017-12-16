@@ -99,8 +99,7 @@ export class ReturnGoodsComponent implements OnInit {
        ordno: this.query.ordno,
        afterNo: this.query.afterNo,
        searchType: this.query.searchType,
-       returnType: this.enumState.afterType.refund,
-       storeCode:'667095608928403456',
+       returnType: this.enumState.afterType.return,
        curPage: this.refundOrderPage.curPage, //目标页码
        pageSize: this.refundOrderPage.pageSize //每页条数
      };

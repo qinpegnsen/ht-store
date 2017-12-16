@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {NzNotificationService} from "ng-zorro-antd";
+import {Setting} from "../../public/setting/setting";
 declare var $: any;
 
 @Injectable()
@@ -37,7 +38,7 @@ export class RedPacketService {
    * @returns {any<T>} （查询参数）
    */
   rpStatistics(data: any) {
-    var defer = $.Deferred(); //封装异步请求结果
+    let defer = $.Deferred(),me=this; //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.rpAccountRec.querySta,
@@ -48,6 +49,9 @@ export class RedPacketService {
         } else {
           defer.reject(res.data);
         }
+      },
+      error: () => {
+        me._notification.error(Setting.AJAX.errorTip,'');
       }
     });
     return defer.promise(); //返回异步请求消息
