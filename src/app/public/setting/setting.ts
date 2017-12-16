@@ -1,7 +1,12 @@
 /*基本属性配置*/
 export class Setting {
   public static STORE: any = {};                       //企业信息
-  public user: any;                             //保存店铺的基本信息
+  public user: any;                                   //保存店铺的基本信息
+  public static ajax: any = {
+    errorTip: '处理失败，请稍候重试或联系我们：XXXX-XXXXXXXX',//ajax请求错误提示信息
+    failText: '服务器异常' //ajax请求失败提示信息
+  };//ajax 信息
+
   public static APP: any = {                           //平台信息
     name: '三楂红网络技术-企业管理系统',
     description: '企业管理系统',
@@ -206,23 +211,23 @@ export class Setting {
   public static JURISDICTIONURL: string = "http://192.168.10.221"; //TODO上线时，修改为正确路径
 
   //店铺基础信息
-  public static STOREINFO:any = {
-    logo:"",//店铺logo
-    name:""//店铺名称
+  public static STOREINFO: any = {
+    logo: "",//店铺logo
+    name: ""//店铺名称
   }
 
   //企业基础信息
-  public static ENTERPTISE:any = {
-    name:"",//企业名称
-    flowState:""//企业状态
+  public static ENTERPTISE: any = {
+    name: "",//企业名称
+    flowState: ""//企业状态
   }
 
   //企业和店铺 存入cookie信息的键名
-  public static cookie:any = {
-    storeInfo:"store-info-cookie",//店铺键名
-    enterpriseInfo:"enterprise-info-cookie",//企业键名
-    szhLinfoStore:"SZH_LINFO_STORE", //是否已经登录，若cookie中取不出此键名对应的信息，说明未登录，反之说明已登录
-    menusInfo:"store-menus"//菜单信息
+  public static cookie: any = {
+    storeInfo: "store-info-cookie",//店铺键名
+    enterpriseInfo: "enterprise-info-cookie",//企业键名
+    szhLinfoStore: "SZH_LINFO_STORE", //是否已经登录，若cookie中取不出此键名对应的信息，说明未登录，反之说明已登录
+    menusInfo: "store-menus"//菜单信息
   }
 
 }
