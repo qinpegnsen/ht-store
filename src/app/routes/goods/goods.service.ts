@@ -50,7 +50,7 @@ export class GoodsService {
     var defer = $.Deferred(); //封装异步请求结果
     AjaxService.get({
       url: SettingUrl.URL.goods.loadBrand,
-      data: {id: brandId},
+      data: {applyCode: brandId},
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data);
@@ -344,5 +344,27 @@ export class GoodsService {
       }
     });
     return defer.promise(); //返回异步请求信息
+  }
+
+  /**
+   * 删除品牌
+   * @param data （查询参数）
+   */
+  static delBrand(data:any){
+    let  me = this;
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
+    AjaxService.del({
+      url: SettingUrl.URL.goods.delBrand,
+      data: data,
+      async:false,
+      success: (data) => {
+        defer.resolve(data);
+      },
+      error:(data) => {
+        defer.resolve(false);
+      }
+    });
+    return defer.promise(); //返回异步请求休息
   }
 }

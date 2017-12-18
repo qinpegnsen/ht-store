@@ -52,7 +52,8 @@ export class AddBrandComponent implements OnInit {
   }
 
   ngOnInit() {
-    let me = this, brandId = me.route.snapshot.queryParams['brandId'];
+    let me = this, brandId = me.route.snapshot.queryParams['applyCode'];
+    console.log("█ expr ►►►",  brandId);
     me.route.url.subscribe(urls => {
       me.path = urls[0].path;
       switch (me.path) {
@@ -187,8 +188,13 @@ export class AddBrandComponent implements OnInit {
     })
   }
 
+  /**
+   * 返回上个页面
+   */
   back() {
-    this.location.back();
+    let me=this;
+    me.location.back();//返回上个页面
+    me.brands.queryBrandsList();//刷新品牌查询列表
   }
 
 }
