@@ -14,7 +14,6 @@ export class ShopInfoComponent implements OnInit {
   public shopsInfo: any = {};//店铺信息存储
   public enumState: any = Setting.ENUMSTATE;//获取枚举状态名
   public editShop:string = SettingUrl.ROUTERLINK.basic.editShop; //修改店铺信息路由
-  public storeCode: any;//店铺编码
   constructor(public location: Location) {
   }
 

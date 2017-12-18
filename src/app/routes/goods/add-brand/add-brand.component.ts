@@ -53,7 +53,6 @@ export class AddBrandComponent implements OnInit {
 
   ngOnInit() {
     let me = this, brandId = me.route.snapshot.queryParams['applyCode'];
-    console.log("█ expr ►►►",  brandId);
     me.route.url.subscribe(urls => {
       me.path = urls[0].path;
       switch (me.path) {
@@ -184,7 +183,8 @@ export class AddBrandComponent implements OnInit {
           title: '提交成功',
           content: '申请已提交，请等待审核通过'
         });
-      }
+      };
+
     })
   }
 
