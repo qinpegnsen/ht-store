@@ -1,29 +1,18 @@
 .search-group {
-  width: 240px;
   display: inline-block;
 }
 
 .search-group .search-title {
-  width: 40%;
+  width: 100px;
   line-height: 36px;
   text-align: right;
   display: inline-block;
 }
 
 .search-group .search-main {
-  width: 60%;
+  width: 200px;
   float: right;
 }
-._special{
-  width: 350px;
-}
-._special .search-title{
-  width: 40%;
-}
-._special .search-main{
-  width: 50%;
-}
-
 .hover-big-img{
   max-width: 220px;
   max-height: 220px;
@@ -40,7 +29,19 @@
 .lineHeight>div{
   line-height: 30px;
 }
+.width100{
+  width:100px!important;
+}
+.width50{
+  width:50px!important;
+}
 .mySpan{
   height:50px;line-height: 50px;display: inline-block;
   vertical-align: top;
+}
+.cdk-overlay-pane:nth-child(1),.cdk-overlay-pane:nth-child(3){
+  width: 100px!important;
+}
+.cdk-overlay-pane:nth-child(2){
+  width: 50px!important;
 }
