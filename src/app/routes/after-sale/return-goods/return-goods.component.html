@@ -12,9 +12,9 @@
     <!--搜索 start-->
     <div class="mb-15">
       <form nz-form class="bg-white p-15">
-        <div class="search-group ml-20 mb">
+        <div class="search-group ml-20 mb ">
           <span class="search-title">售后单状态：</span>
-          <div class="search-main">
+          <div class="search-main width100">
             <nz-select class="w100" name="saleAfter" [(ngModel)]="query.state" [nzSize]="'large'"
                        (ngModelChange)="queryOrdList()">
               <ng-container *ngFor="let item of saleAfterStates">
@@ -28,7 +28,7 @@
         </div>
         <div class="search-group ml-20 mb">
           <span class="search-title">是否收到货：</span>
-          <div class="search-main">
+          <div class="search-main width50">
             <nz-select class="w100" name="isReceive" [(ngModel)]="query.isReceive" [nzSize]="'large'"
                        (ngModelChange)="queryOrdList()">
               <nz-option
@@ -39,8 +39,8 @@
             </nz-select>
           </div>
         </div>
-        <div class="search-group ml-20 mb _special">
-          <span class="search-title ml-20">
+        <div class="search-group ml-20 mb">
+          <span class="search-title ml-20 mr">
             <nz-select class="w100" name="searchType" [(ngModel)]="query.searchType" [nzSize]="'large'" #sType
                        (ngModelChange)="changeSearchType(sType.value)">
               <nz-option [nzLabel]="'退单单号'" [nzValue]="enumState.afterSearchType.afterNo"></nz-option>
