@@ -68,16 +68,12 @@
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBankAddress)"
              nzHasFeedback>
-          <nz-cascader name="bankAddress" [nzSize]="'large'"
-                       [(ngModel)]="validateForm.bankAddress"
-                       #ngBankAddress="ngModel" required
-                       [nzPlaceHolder]="'请选择'"
-                       [nzExpandTrigger]="'hover'"
-                       [nzChangeOnSelect]="true"
-                       [nzOptions]="_options">
-          </nz-cascader>
+          <nz-input name="bankAddress" [(ngModel)]="validateForm.bankAddress" #ngBankAddress="ngModel"
+                    required [nzType]="'textarea'" [nzPlaceHolder]="'开户银行地址'"
+                    [nzSize]="'large'">
+          </nz-input>
           <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankAddress)==valitateState.empty">
-            请选择开户银行地址！
+            请填写开户银行地址！
           </div>
         </div>
       </div>
@@ -203,21 +199,17 @@
       </div>
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>结算账户开户行所在地</label>
+          <label nz-form-item-required>结算账户开户行地址</label>
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngSettlementBankAddress)"
              nzHasFeedback>
-          <nz-cascader name="settlementBankAddress" [nzSize]="'large'"
-                       [(ngModel)]="validateForm.settlementBankAddress"
-                       #ngSettlementBankAddress="ngModel"
-                       required
-                       [nzPlaceHolder]="'请选择'"
-                       [nzExpandTrigger]="'hover'"
-                       [nzChangeOnSelect]="true"
-                       [nzOptions]="_options">
-          </nz-cascader>
+          <nz-input name="settlementBankAddress" [(ngModel)]="validateForm.settlementBankAddress"
+                    #ngSettlementBankAddress="ngModel" required
+                    [nzType]="'textarea'" [nzPlaceHolder]="'结算账户开户行地址'"
+                    [nzSize]="'large'">
+          </nz-input>
           <div nz-form-explain *ngIf="ngValidateErrorMsg(ngSettlementBankAddress)==valitateState.empty">
-            请选择结算账户开户行所在地！
+            请填写结算账户开户行地址！
           </div>
         </div>
       </div>
