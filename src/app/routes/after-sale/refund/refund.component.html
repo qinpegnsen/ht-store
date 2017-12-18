@@ -128,41 +128,49 @@
             <span>商品名称：</span> <span>{{data.goodsName}}</span>
           </div>
         </td>
-        <td nz-td class="text-center">
+        <td nz-td class="text-center" colspan="2">
           <div>
             <span>商品数量：</span> <span>{{data.num}}</span>
           </div>
         </td>
-        <td nz-td class="text-center">
+        <td nz-td class="text-center" colspan="2">
           <div>
             <span>手机号：</span> <span>{{data.custPhone}}</span>
-          </div>
-        </td>
-        <td nz-td class="text-center">
-          <div>
-            <span>订单编号：</span> <span>{{data.ordno}}</span>
-          </div>
-        </td>
-        <td nz-td class="text-center">
-          <div>
-            <span>商品编码：</span> <span>{{data.goodsCode}}</span>
           </div>
         </td>
       </tr>
       <tr nz-tbody-tr *ngIf="data.expand">
         <td nz-td></td>
-        <td nz-td class="text-center">
+        <td nz-td class="text-center" colspan="2">
           <div>
             <span class="mySpan">商品图片：</span>
             <nz-popover [nzTrigger]="'click'">
-              <img [src]="data.goodsImage | imgSize :'50'" appImgErr  title="点击查看大图" nz-popover>
+              <img [src]="data.goodsImage | imgSize :'50'" appImgErr title="点击查看大图" nz-popover class="middle">
               <ng-template #nzTemplate>
-              <img [src]="data.goodsImage | imgSize :'200'" appImgErr >
+                <img [src]="data.goodsImage | imgSize :'200'" appImgErr>
               </ng-template>
             </nz-popover>
           </div>
         </td>
-        <td nz-td class="text-center" colspan="5">
+        <td nz-td class="text-center" colspan="2">
+          <div>
+            <span>订单编号：</span> <span>{{data.ordno}}</span>
+          </div>
+        </td>
+        <td nz-td class="text-center" colspan="2">
+          <div>
+            <span>平台配送：</span> <span>{{data.isPlat |stateName:enums.yesOrNo}}</span>
+          </div>
+        </td>
+      </tr>
+      <tr nz-tbody-tr *ngIf="data.expand">
+        <td nz-td></td>
+        <td nz-td class="text-center" colspan="3">
+          <div>
+            <span>商品编码：</span> <span>{{data.goodsCode}}</span>
+          </div>
+        </td>
+        <td nz-td class="text-center" colspan="3">
           <div>
             <span>申请原因：</span> <span>{{data.reason}}</span>
           </div>
