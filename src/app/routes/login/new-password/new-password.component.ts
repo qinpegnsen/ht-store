@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginService} from "../login.service";
 import {ForgetPasswordComponent} from "../forget-password/forget-password.component";
+import {NzNotificationService} from "ng-zorro-antd";
 
 @Component({
   selector: 'app-new-password',
@@ -12,7 +13,7 @@ export class NewPasswordComponent implements OnInit {
 
   validateForm: FormGroup;//新密码的表单
 
-  constructor(public loginService: LoginService, public forgetPwd: ForgetPasswordComponent) {
+  constructor(public loginService: LoginService, public forgetPwd: ForgetPasswordComponent,public _notification: NzNotificationService) {
     this.validateForm = this.loginService.validateFormReset;//新密码的表单
   }
 
@@ -30,11 +31,17 @@ export class NewPasswordComponent implements OnInit {
     for (const key in this.validateForm.controls) {
       this.validateForm.controls[ key ].markAsDirty();
     }
-    console.log(value);
-    let formValue = value;
-    this.loginService.resetPassword(formValue);
-    this.forgetPwd.current += 1;
-    this.loginService.routerSkip(this.forgetPwd.current);
+    //console.log(value);
+    if(!value.newPwd||!value.confirmPwd){
+      this._notification.error("请填密码", "请填写密码");
+      return;
+    }else{
+      let formValue = value;
+      this.loginService.resetPassword(formValue);
+      this.loginService.routerSkip(this.forgetPwd.current);
+      this.forgetPwd.current += 1;
+    }
+
   };
 
   /**

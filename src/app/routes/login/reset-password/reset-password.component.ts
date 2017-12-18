@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import { FormGroup} from "@angular/forms";
 import {LoginService} from "../login.service";
 import {ForgetPasswordComponent} from "../forget-password/forget-password.component";
+import {NzNotificationService} from "ng-zorro-antd";
 
 @Component({
   selector: 'app-reset-password',
@@ -15,9 +16,9 @@ export class ResetPasswordComponent implements OnInit {
   isSending: boolean = false;//判断获取验证码的按钮，如果已经点击过了，就变禁用
   phoneState: string;//获取验证码时判断手机号是否输入
 
-  constructor(public loginService: LoginService, public forgetPwd: ForgetPasswordComponent,public forgetPasswordComponent:ForgetPasswordComponent) {
+  constructor(public loginService: LoginService, public forgetPwd: ForgetPasswordComponent,public _notification: NzNotificationService) {
     this.validateForm = this.loginService.validateFormReset;////重置密码的表单
-    this.forgetPasswordComponent.current = 0;
+    this.forgetPwd.current = 0;
   }
 
   ngOnInit() {
@@ -31,12 +32,15 @@ export class ResetPasswordComponent implements OnInit {
    */
   submitForm = ($event, value) => {
     $event.preventDefault();
-    // for (const key in this.validateForm.controls) {
-    //   this.validateForm.controls[key].markAsDirty();
-    // }
-    console.log(value);
-    this.forgetPwd.current += 1;
-    this.loginService.routerSkip(this.forgetPwd.current);
+    //console.log(value);
+    if(!value.phone||!value.code){
+      this._notification.error("请填写手机号", "请填写手机号或者验证码");
+      return;
+    }else{
+      this.forgetPwd.current += 1;
+      this.loginService.routerSkip(this.forgetPwd.current);
+    }
+
   };
 
   /**

@@ -5,6 +5,7 @@ import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {NzNotificationService} from "ng-zorro-antd";
 import {Setting} from "../../public/setting/setting";
+import {ForgetPasswordComponent} from "./forget-password/forget-password.component";
 
 @Injectable()
 export class LoginService {
@@ -231,8 +232,10 @@ export class LoginService {
       success: (res) => {
         if (res.success) {
           me._notification.success('成功', '重置密码成功');
+         /* this.forgetPwd.current += 1;
+          this.routerSkip(this.forgetPwd.current);*/
         } else {
-          me._notification.error('失败', '修改密码失败，请检查输入密码是否正确')
+          me._notification.error('失败', res.info);
         }
       },
       error: (res) => {
