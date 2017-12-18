@@ -17,7 +17,7 @@
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">申请人（买家）：</td>
-          <td class="item-bd w85 mb0">{{afterData?.custPhone}}</td>
+          <td class="item-bd w85 mb0">{{afterData?.custName}}（{{afterData?.custPhone}}）</td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">订单编号：</td>
@@ -43,7 +43,7 @@
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">退款金额：</td>
-          <td class="item-bd w85 mb0">{{afterData?.reqMoney}}</td>
+          <td class="item-bd w85 mb0 main-color">￥ {{afterData?.reqMoney |number:'1.2-2'}}</td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">是否收到货：</td>
@@ -63,9 +63,9 @@
             <ng-container *ngIf="afterData?.afterGoodsReqVouList?.length > 0">
               <div class="tag-dib imgbox text-center mr" *ngFor="let item of afterData?.afterGoodsReqVouList">
                 <nz-popover [nzTrigger]="'click'">
-                  <img  [src]="item.vpic | imgSize :'50'" class="littleImg" appImgErr  title="点击查看大图" nz-popover>
+                  <img [src]="item.vpic | imgSize :'50'" class="littleImg" appImgErr title="点击查看大图" nz-popover>
                   <ng-template #nzTemplate>
-                    <img [src]="item.vpic | imgSize :'200'" appImgErr >
+                    <img [src]="item.vpic | imgSize :'200'" appImgErr>
                   </ng-template>
                 </nz-popover>
               </div>
@@ -110,7 +110,8 @@
 
     <!--退货订单已发货 start-->
     <ng-container *ngIf="afterData?.returnType==enumState.afterType.return">
-      <div *ngIf="afterData?.state==enumState.afterService.delivery || afterData?.state==enumState.afterService.checkFails || enumState.afterService.done">
+      <div
+        *ngIf="afterData?.state==enumState.afterService.delivery || afterData?.state==enumState.afterService.checkFails || enumState.afterService.done">
         <div class="pl-20">
           <legend class="m0 lengendSty font20 bb0">退货发货信息</legend>
         </div>
@@ -197,7 +198,9 @@
   <form class="goods-audit panel panel-danger w100 m-auto mb-xl bg-f8" (keydown.Enter)="false" *ngIf="type=='deal'">
     <!--处理意见 start-->
     <fieldset class="p0 panel-body b0">
-      <legend class="m0 goods-audit-title w100">{{afterData?.state==enumState.afterService.delivery?'退还商品审核':'退款/退货申请处理'}}</legend>
+      <legend class="m0 goods-audit-title w100">
+        {{afterData?.state==enumState.afterService.delivery?'退还商品审核':'退款/退货申请处理'}}
+      </legend>
       <!--未发货商品只能同意退款-->
       <table class="w100 pl">
         <tr>
@@ -232,17 +235,20 @@
 
     <!--提交 start-->
     <fieldset class="pt-20 pb-20 m0 text-center b0">
-      <button nz-button [nzType]="'primary'" class="btn-thc" [nzSize]="'large'" *ngIf="afterData?.returnType==enumState.afterType.refund"
+      <button nz-button [nzType]="'primary'" class="btn-thc" [nzSize]="'large'"
+              *ngIf="afterData?.returnType==enumState.afterType.refund"
               (click)="auditRefund()"
               [disabled]="!opinion">
         <i class="anticon anticon-upload"></i><span>提交处理结果</span>
       </button>
       <ng-container *ngIf="afterData?.returnType==enumState.afterType.return">
-        <button nz-button [nzType]="'primary'"  [nzSize]="'large'" class="btn-thc" *ngIf="afterData?.state==enumState.afterService.wait" (click)="auditReturn()"
+        <button nz-button [nzType]="'primary'" [nzSize]="'large'" class="btn-thc"
+                *ngIf="afterData?.state==enumState.afterService.wait" (click)="auditReturn()"
                 [disabled]="!opinion">
           <i class="anticon anticon-upload"></i><span>提交处理结果</span>
         </button>
-        <button nz-button [nzType]="'primary'" class="btn-thc" [nzSize]="'large'" *ngIf="afterData?.state==enumState.afterService.delivery"
+        <button nz-button [nzType]="'primary'" class="btn-thc" [nzSize]="'large'"
+                *ngIf="afterData?.state==enumState.afterService.delivery"
                 (click)="auditReturnGoods()"
                 [disabled]="!opinion">
           <i class="anticon anticon-upload"></i><span>提交处理结果</span>
