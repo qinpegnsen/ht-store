@@ -4,6 +4,7 @@ import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {NzNotificationService} from "ng-zorro-antd";
 import {SettleStepsComponent} from "./settle-steps/settle-steps.component";
+import {Setting} from "../../public/setting/setting";
 declare var $: any;
 
 @Injectable()
@@ -85,7 +86,7 @@ export class StoreBaseService {
         }
       },
       error: (res) => {
-        me._notification.error(`接口出错了`, '接口调用失败')
+        me._notification.error(Setting.AJAX.errorTip,'')
       }
     });
     return _success;

@@ -7,12 +7,12 @@
   display: inline-block;
 }
 .pending-group .pending-title {
-  width: 40%;
+  width: 100px;
   line-height: 36px;
   display: inline-block;
 }
 .pending-group .pending-main {
-  width: 60%;
+  width: 170px;
 }
 .relative {
   position: relative;

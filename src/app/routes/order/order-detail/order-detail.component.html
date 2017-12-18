@@ -19,17 +19,17 @@
         <dt>买家留言：</dt>
         <dd>{{orderData.note}}</dd>
       </dl>
-      <dl>
+      <dl *ngIf="orderData.state!= state">
         <dt>支付方式：</dt>
         <dd>{{orderData.payWay | stateName : enum.orderPayState}}</dd>
       </dl>
-      <dl>
+      <dl *ngIf="orderData.state!= state">
         <dt>运费：</dt>
-        <dd><span>&nbsp;&yen; {{orderData.freightPrice | number:'1.2-2'}}</span></dd>
+        <dd><span>&nbsp;&yen; {{orderData.freight | number:'1.2-2'}}</span></dd>
       </dl>
       <dl>
         <dt>应付总额：</dt>
-        <dd><span>&nbsp;&yen; {{orderData.pay | number:'1.2-2'}}</span></dd>
+        <dd><span class="main-color">&nbsp;&yen; {{orderData.pay | number:'1.2-2'}}</span></dd>
       </dl>
       <dl>
         <dt>订单编号：</dt>

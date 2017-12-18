@@ -17,7 +17,7 @@
         </div>
       </div>
       <button nz-button [nzSize]="'large'" class="ml-20 btn-thc mr-20" (click)="queryPending()">
-        <i class="anticon anticon-search"></i>
+        <i class="anticon anticon-search"></i><span>搜索</span>
       </button>
     </div>
   </div>
@@ -58,19 +58,26 @@
         <tr *ngFor="let name of orders.ordItemList;let j = index">
           <td class="relative w40 p">
             <div class="mr inline-block fl">
-              <img [src]="name.goodsImage" class="goods-img" (mousemove)="showImg($event)"
-                   (mouseleave)="hideImg($event)"
-                   onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
-              <img [src]="name.goodsImage" class="hover-img"
-                   onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+              <ng-container>
+                <div class="tag-dib imgbox text-center mr">
+                  <nz-popover [nzTrigger]="'click'">
+                    <img  [src]="name.goodsImage | imgSize :'80'" appImgErr  title="点击查看大图" nz-popover>
+                    <ng-template #nzTemplate>
+                      <img [src]="name.goodsImage | imgSize :'200'" appImgErr >
+                    </ng-template>
+                  </nz-popover>
+                </div>
+              </ng-container>
             </div>
             <div class="fl pl pt">
               <p>
                 <a class="font14" href="javascript:;">{{name.goodsName}}</a>
               </p>
-              <p class="pt-20" *ngFor="let attr of name.goodsSavSet | strJson">
-                <span class="inline">{{attr.attrName}}：</span>
-                <span class="inline">{{attr.value}}</span>
+              <p class="pt-20">
+                  <span  *ngFor="let attr of name.goodsSavSet | strJson">
+                  <span class="inline">{{attr.attrName}}：</span>
+                  <span class="inline">{{attr.value}}</span>
+                </span>
               </p>
             </div>
           </td>
@@ -97,7 +104,7 @@
           </td>
           <td class="w8 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
             <p class="gray-color">{{orders.state | stateName : enum.orderState}}</p>
-            <p class="cursor p-hover" [routerLink]="orderDetail" [queryParams]="{ordno:orders.ordno}">查看详情</p>
+            <p class="cursor p-hover" [routerLink]="orderDetail" [queryParams]="{ordno:orders.ordno}"><a class="underline">查看详情</a></p>
           </td>
           <td class="w8 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
             <button nz-button [nzSize]="'large'" class="btn-danger" title="设置发货" (click)="showOrderPend(orders.ordno)">

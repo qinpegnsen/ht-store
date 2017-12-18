@@ -7,12 +7,12 @@
   display: inline-block;
 }
 .pending-group .pending-title {
-  width: 40%;
+  width: 100px;
   line-height: 36px;
   display: inline-block;
 }
 .pending-group .pending-main {
-  width: 60%;
+  width: 170px;
 }
 .relative {
   position: relative;
@@ -26,22 +26,6 @@
 }
 .tbody-tr-head span{
   line-height: 40px;
-}
-.goods-img {
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-}
-.hover-img{
-  width: 180px !important;
-  max-width: 220px;
-  max-height: 220px;
-  position: fixed;
-  z-index: 100;
-  display: none;
-  -webkit-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 2px 2px 5px 1px  rgba(0, 0, 0, 0.5);
-  box-shadow: 2px 2px 5px 1px  rgba(0, 0, 0, 0.5);
 }
 .szh-buyer-info {
   display: none;
@@ -87,3 +71,4 @@
 .p-hover:hover{
   color: #e82d4d;
 }
+

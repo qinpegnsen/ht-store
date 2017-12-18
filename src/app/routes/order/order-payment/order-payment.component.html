@@ -10,16 +10,15 @@
             <nz-input [(ngModel)]="orderquery.phone"  [nzPlaceHolder]="'请填写会员手机号'" [nzSize]="'large'"></nz-input>
           </div>
         </div>
-        <div class="pending-group ml-20 mb fl">
-          <span class="pending-title text-center">订单号：</span>
+        <div class="pending-group mb fl">
+          <span class="pending-title text-center">&nbsp;&nbsp;&nbsp;订单号：</span>
           <div class="pending-main fr">
             <nz-input [(ngModel)]="orderquery.agentOrdno"  [nzPlaceHolder]="'请填写订单号'" [nzSize]="'large'"></nz-input>
           </div>
         </div>
         <button nz-button [nzSize]="'large'" class="ml-20 btn-thc mr-20" (click)="queryPayment()">
-          <i class="anticon anticon-search"></i>
+          <i class="anticon anticon-search"></i><span>搜索</span>
         </button>
-      </div>
     </div>
   </div>
   <!--查询 end-->
@@ -57,20 +56,34 @@
           <tr *ngFor="let name of orders.ordItemList;let j = index">
             <td class="relative w40 p">
               <div class="mr inline-block fl">
-                <img [src]="name.goodsImage" class="goods-img" (mousemove)="showImg($event)"
-                     (mouseleave)="hideImg($event)"
+                <ng-container>
+                  <div class="tag-dib imgbox text-center mr">
+                    <nz-popover [nzTrigger]="'click'">
+                      <img  [src]="name.goodsImage | imgSize :'80'" appImgErr  title="点击查看大图" nz-popover>
+                      <ng-template #nzTemplate>
+                        <img [src]="name.goodsImage | imgSize :'200'" appImgErr >
+                      </ng-template>
+                    </nz-popover>
+                  </div>
+                </ng-container>
+              </div>
+             <!-- <div class="mr inline-block fl">
+                <img [src]="name.goodsImage" class="goods-img"
                      onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
                 <img [src]="name.goodsImage" class="hover-img"
                      onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
-              </div>
+              </div>-->
               <div class="fl pl pt">
                 <p>
                   <a class="font14" href="javascript:;">{{name.goodsName}}</a>
                 </p>
-                <p class="pt-20" *ngFor="let attr of name.goodsSavSet | strJson">
+                <p class="pt-20">
+                  <span  *ngFor="let attr of name.goodsSavSet | strJson">
                   <span class="inline">{{attr.attrName}}：</span>
                   <span class="inline">{{attr.value}}</span>
+                </span>
                 </p>
+
               </div>
             </td>
             <td class="w10 text-center bl">&yen; {{name.price| number:'1.2-2'}}</td>
@@ -96,7 +109,7 @@
             </td>
             <td class="w10 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
               <p class="gray-color">{{orders.state | stateName : enum.orderState}}</p>
-              <p class="cursor p-hover" [routerLink]="orderDetail" [queryParams]="{ordno:orders.ordno}">查看详情</p>
+              <p class="cursor" [routerLink]="orderDetail" [queryParams]="{ordno:orders.ordno}"><a class="underline">查看详情</a></p>
             </td>
           </tr>
         </table>
@@ -105,6 +118,7 @@
     </tbody>
   </nz-table>
   <!--table列表 end-->
+</div>
 </div>
 
 <!--路由嵌套 begin-->

@@ -213,7 +213,7 @@ export class LoginService {
         }
       },
       error: (res) => {
-        me._notification.error(`出错了`, '接口调用失败')
+        me._notification.error(Setting.AJAX.errorTip,'')
       }
     });
   }
@@ -230,13 +230,13 @@ export class LoginService {
       data: requestDate,
       success: (res) => {
         if (res.success) {
-          me._notification.success('成功', res.info);
+          me._notification.success('成功', '重置密码成功');
         } else {
           me._notification.error('失败', '修改密码失败，请检查输入密码是否正确')
         }
       },
       error: (res) => {
-        me._notification.error(`出错了`, '接口调用失败')
+        me._notification.error(Setting.AJAX.errorTip,'')
       }
     });
   }
@@ -246,9 +246,10 @@ export class LoginService {
    * @param requestDate
    */
   getSmsCode(phone: string) {
+    console.log("█ 11111 ►►►",  11111);
     const me = this;
     let _success: boolean = false;
-    AjaxService.put({
+    AjaxService.post({
       url: SettingUrl.URL.login.getSms,
       data: {phone: phone},
       async: false,
@@ -260,7 +261,7 @@ export class LoginService {
         }
       },
       error: (res) => {
-        me._notification.error(`接口出错了`, '接口调用失败')
+        me._notification.error(Setting.AJAX.errorTip,'')
       }
     });
     return _success;
