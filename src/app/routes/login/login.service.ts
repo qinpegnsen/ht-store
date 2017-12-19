@@ -165,6 +165,9 @@ export class LoginService {
             case me.loginState.storereject://店铺驳回
               this.router.navigate([SettingUrl.ROUTERLINK.basic.done], {replaceUrl: true});//跳到完成页面
               break;
+            default:
+              this.router.navigate([SettingUrl.ROUTERLINK.store.home], {replaceUrl: true});//跳到首页
+              break;
           }
           //me._notification.success('成功', res.info);
         } else {
