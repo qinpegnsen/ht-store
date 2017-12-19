@@ -100,6 +100,42 @@
         <th class="w20 text-center">订单金额</th>
      </tr>
     </thead>
+    <tbody>
+    <tr class="text-center" *ngFor="let item of orderData.ordItemList;let i=index;">
+      <td class="relative p">
+        <div class="mr inline-block fl">
+          <ng-container>
+            <div class="tag-dib imgbox text-center mr">
+              <nz-popover [nzTrigger]="'click'">
+                <img  [src]="item.goodsImage | imgSize :'80'" appImgErr  title="点击查看大图" nz-popover>
+                <ng-template #nzTemplate>
+                  <img [src]="item.goodsImage | imgSize :'200'" appImgErr >
+                </ng-template>
+              </nz-popover>
+            </div>
+          </ng-container>
+        </div>
+        <div class="fl pl pt">
+          <p>
+            <a class="font14" href="javascript:;">{{item.goodsName}}</a>
+          </p>
+          <p class="pt-20">
+                  <span  *ngFor="let attr of item.goodsSavSet | strJson">
+                  <span class="inline">{{attr.attrName}}：</span>
+                  <span class="inline">{{attr.value}}</span>
+                </span>
+          </p>
+        </div>
+      </td>
+      <td class="w10 text-center bl">&yen; {{item.price| number:'1.2-2'}}</td>
+      <td class="w10 text-center bl">{{item.num}}</td>
+      <td class="w10 text-center bl" *ngIf="i==0" [attr.rowspan]="orderData.ordItemList.length">
+        <span class="main-color">&yen; {{orderData.ordTotal | number:'1.2-2'}}</span><br>
+        <span class="font12 gray-color">运费{{orderData.freight  | number:'1.2-2'}}</span><br>
+        <span class="font12 gray-color">重消币{{orderData.coinPay | number:'1.2-2'}}</span>
+      </td>
+    </tr>
+    </tbody>
   </table>
 </div>
 <!--订单信息 end-->
