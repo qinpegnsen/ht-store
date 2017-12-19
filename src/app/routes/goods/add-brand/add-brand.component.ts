@@ -10,6 +10,7 @@ import {GoodsService} from "../goods.service";
 import {Location} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
 import {BrandsComponent} from "../brands/brands.component";
+import {PatternService} from "../../../public/service/pattern.service";
 declare var $: any;
 
 @Component({
@@ -44,6 +45,7 @@ export class AddBrandComponent implements OnInit {
 
   constructor(public _notification: NzNotificationService,
               public confirmServ: NzModalService,
+              public pattern: PatternService,
               public location: Location,
               public route: ActivatedRoute,
               public brands: BrandsComponent,
@@ -87,29 +89,12 @@ export class AddBrandComponent implements OnInit {
   }
 
   /**
-   * 获取品牌所属分类
-   * @param list
-   * @returns {string}
-   */
-  public getBrandKinds(list) {
-    let str = '';
-    if (list.length > 0) {
-      list.forEach((item) => {
-        if (!isNullOrUndefined(item)) {
-          str += item.kindName + '，'
-        }
-      })
-    }
-    return str.substring(0, str.length - 1)
-  }
-
-  /**
    * 获取添加或修改品牌所需数据
    */
   getAddBrandData() {
     let me = this;
-    me.showTypes = MainService.getEnumDataList(Setting.ENUM.showType);       // 品牌展示类型
-    me.brandStates = MainService.getEnumDataList(Setting.ENUM.brandState);       // 品牌状态
+    // me.showTypes = MainService.getEnumDataList(Setting.ENUM.showType);       // 品牌展示类型
+    // me.brandStates = MainService.getEnumDataList(Setting.ENUM.brandState);       // 品牌状态
     me.kindList = me.goodsService.getKindList(); //获取分类列表 //获取当前路由
   }
 
@@ -130,11 +115,73 @@ export class AddBrandComponent implements OnInit {
     if (me.brandLogoUploader.queue[0]) me.uploadImg();
     else me.addBrand();
   }
+  /**
+   * 上传图片之后给表单元素赋值
+   */
+  patchValues(i, uuid) {
+    switch (i) {
+      case 0:
+        this.validateForm.brandLogo = uuid;
+        break;
+      case 1:
+        this.validateForm.storeAvatar = uuid;
+        break;
+    }
+  }
+
 
   /**
    * 上传图片
    */
-  public uploadImg() {
+
+   uploadImg() {
+    let me = this, uploadedNum = 0, allUploaders = [
+      me.brandLogoUploader,
+      me.brandRegCardUploader
+    ];
+    allUploaders.forEach((uploader, i) => {
+      let uuid = '';//置空暗码
+
+      //如果该组不需要上传图片则uploadedNum+1
+      //需要上传图片的则在图片上传完成后uploadedNum+1
+      if (uploader.getNotUploadedItems().length == 0) uploadedNum += 1;
+      //上传之前，获取暗码
+      uploader.onBuildItemForm = function (fileItem, form) {
+        uuid = MainService.uploadUid();
+        form.append('uuid', uuid);
+      };
+      uploader.uploadAll();//执行上传
+      // 上传成功
+      uploader.onSuccessItem = function (item, response, status, headers) {
+        let res = JSON.parse(response);
+        if (res.success) {
+          if (uuid) me.patchValues(i, uuid);
+        } else {
+          me._notification.error(`上传失败`, '图片' + item._file.name + res.info)
+        }
+      }
+      // 上传失败
+      uploader.onErrorItem = function (item, response, status, headers) {
+        let res = JSON.parse(response);
+        me._notification.error(`上传失败`, '图片' + uploader.queue[0]._file.name + res.info)
+      };
+      // 完成上传
+      uploader.onCompleteAll = function () {
+        uploadedNum += 1;     // 该组上传完之后uploadedNum+1；
+        if (uploadedNum == allUploaders.length) {  // 当有图片上传，并且是图片组的最后一个时
+          me.addBrand()
+          // me.submitFormData()     //整理数据并且发布商品
+        }
+      }
+      // 每张图片上传结束后，判断如果是最后一组图片则发布商品，不是最后一组会进入下一个循环
+      if (uploadedNum == allUploaders.length) {  // 当有图片上传，并且是图片组的最后一个时
+        // me.submitFormData()     //整理数据并且发布商品
+        me.addBrand()
+      }
+    })
+  }
+
+  uploadImag() {
     let me = this;
     Util.showMask();//上传图片比较慢，显示遮罩层
     //上传之前
@@ -171,10 +218,25 @@ export class AddBrandComponent implements OnInit {
   }
 
   /**
+   * 监听图片选择
+   * @param $event
+   */
+  storeAvatarFileChangeListener() {
+    // 当选择了新的图片的时候，把老图片从待上传列表中移除
+    if (this.brandLogoUploader.queue.length > 1) this.brandLogoUploader.queue[0].remove();
+  }
+
+  storeLabelFileChangeListener() {
+    // 当选择了新的图片的时候，把老图片从待上传列表中移除
+    if (this.brandRegCardUploader.queue.length > 1) this.brandRegCardUploader.queue[0].remove();
+  }
+
+  /**
    * 提交表单
    */
   addBrand() {
     let me = this;
+    // let formValue = Object.assign({}, this.validateForm);
     $.when(this.goodsService.addBrand(me.validateForm)).done(res => {
       Util.hideMask();//去掉遮罩层
       if (res) {
@@ -185,8 +247,7 @@ export class AddBrandComponent implements OnInit {
       }
       ;
     });
-    me.location.back();//返回上个页面
-    me.brands.queryBrandsList();//刷新品牌查询列表
+    // me.location.back();//返回上个页面
   }
 
   /**
@@ -205,8 +266,7 @@ export class AddBrandComponent implements OnInit {
       }
       ;
     });
-    me.location.back();//返回上个页面
-    me.brands.queryBrandsList();//刷新品牌查询列表
+    // me.location.back();//返回上个页面
   }
 
   /**
