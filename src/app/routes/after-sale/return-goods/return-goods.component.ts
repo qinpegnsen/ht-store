@@ -103,9 +103,13 @@ export class ReturnGoodsComponent implements OnInit {
        curPage: this.refundOrderPage.curPage, //目标页码
        pageSize: this.refundOrderPage.pageSize //每页条数
      };
-    $.when(this.afterSaleService.queryReturnGoodsOrd(this.refundOrderPage.params)).done(data => {
+    $.when(this.afterSaleService.queryReturnGoodsOrd(this.refundOrderPage.params)).always(data => {
       this._loading = false;//解除锁屏
-      if (data) this.refundOrderPage = data; //赋值
+      if (data) {
+        this.refundOrderPage = data
+      }else{
+        this.refundOrderPage=new Page();
+      }; //赋值
     })
   }
 

@@ -17,7 +17,7 @@ export class AfterSaleService {
    * @returns {any<T>} （查询参数）
    */
   queryRefundOrd(data: any) {
-    var defer = $.Deferred(); //封装异步请求结果
+    let defer = $.Deferred(),me=this; //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.after.RefundOrd,
@@ -25,7 +25,18 @@ export class AfterSaleService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data)
+        }else {
+          if(Setting.AJAX.failText==res.info){
+            me._notification.error(Setting.AJAX.errorTip,'');
+          }else{
+            me._notification.error(res.info,'');
+          }
+          defer.reject(res.data);
         }
+      },
+      error: (res) => {
+        defer.reject(res.data);//页面不能空白，默认的数据
+        me._notification.error(Setting.AJAX.errorTip,'');
       }
     });
     return defer.promise(); //返回异步请求消息
@@ -37,7 +48,7 @@ export class AfterSaleService {
    * @returns {any<T>} （查询参数）
    */
   queryReturnGoodsOrd(data: any) {
-    var defer = $.Deferred(); //封装异步请求结果
+    let defer = $.Deferred(),me=this; //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.after.RefundOrd,
@@ -45,7 +56,18 @@ export class AfterSaleService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data)
+        }else {
+          if(Setting.AJAX.failText==res.info){
+            me._notification.error(Setting.AJAX.errorTip,'');
+          }else{
+            me._notification.error(res.info,'');
+          }
+          defer.reject(res.data);
         }
+      },
+      error: (res) => {
+        defer.reject(res.data);//页面不能空白，默认的数据
+        me._notification.error(Setting.AJAX.errorTip,'');
       }
     });
     return defer.promise(); //返回异步请求消息
@@ -58,7 +80,7 @@ export class AfterSaleService {
    * @returns {any<T>} （查询参数）
    */
   loadAfterTail(data: any) {
-    var defer = $.Deferred(); //封装异步请求结果
+    let defer = $.Deferred(),me=this; //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.after.loadAfterTail,
@@ -66,7 +88,18 @@ export class AfterSaleService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data)
+        }else {
+          if(Setting.AJAX.failText==res.info){
+            me._notification.error(Setting.AJAX.errorTip,'');
+          }else{
+            me._notification.error(res.info,'');
+          }
+          defer.reject(res.data);
         }
+      },
+      error: (res) => {
+        defer.reject(res.data);//页面不能空白，默认的数据
+        me._notification.error(Setting.AJAX.errorTip,'');
       }
     });
     return defer.promise(); //返回异步请求消息
@@ -78,7 +111,7 @@ export class AfterSaleService {
    * @returns {any<T>} （查询参数）
    */
   loadReqByAfterNo(data: any) {
-    var defer = $.Deferred(); //封装异步请求结果
+    let defer = $.Deferred(),me=this; //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.after.loadReqByAfterNo,
@@ -86,7 +119,18 @@ export class AfterSaleService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data);
+        }else {
+          if(Setting.AJAX.failText==res.info){
+            me._notification.error(Setting.AJAX.errorTip,'');
+          }else{
+            me._notification.error(res.info,'');
+          }
+          defer.reject(res.data);
         }
+      },
+      error: (res) => {
+        defer.reject(res.data);//页面不能空白，默认的数据
+        me._notification.error(Setting.AJAX.errorTip,'');
       }
     });
     return defer.promise(); //返回异步请求消息
@@ -98,7 +142,7 @@ export class AfterSaleService {
    * @returns {any<T>} （查询参数）
    */
   loadAfterTailList(data: any) {
-    var defer = $.Deferred(); //封装异步请求结果
+    let defer = $.Deferred(),me=this; //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.after.loadAfterTailList,
@@ -106,7 +150,18 @@ export class AfterSaleService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data);
+        }else {
+          if(Setting.AJAX.failText==res.info){
+            me._notification.error(Setting.AJAX.errorTip,'');
+          }else{
+            me._notification.error(res.info,'');
+          }
+          defer.reject(res.data);
         }
+      },
+      error: (res) => {
+        defer.reject(res.data);//页面不能空白，默认的数据
+        me._notification.error(Setting.AJAX.errorTip,'');
       }
     });
     return defer.promise(); //返回异步请求消息

@@ -32,9 +32,13 @@ export class RedPackPushOrderComponent implements OnInit {
       curPage: this.PushOrderPage.curPage, //目标页码
       pageSize: this.PushOrderPage.pageSize //每页条数
     };
-    $.when(this.redPacketService.pushOrDerList(this.PushOrderPage.params)).done(data => {
+    $.when(this.redPacketService.pushOrDerList(this.PushOrderPage.params)).always(data => {
       this._loading = false;//解除锁屏
-      if (data) this.PushOrderPage = data; //赋值
+      if (data) {
+        this.PushOrderPage = data
+      }else{
+        this.PushOrderPage=new Page();
+      }; //赋值
     })
   };
 }
