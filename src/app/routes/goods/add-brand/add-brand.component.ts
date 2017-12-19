@@ -24,13 +24,12 @@ export class AddBrandComponent implements OnInit {
   public enums: any = Setting.ENUM;               //枚举编码
   public enumState: any = Setting.ENUMSTATE;               //枚举编码
   public path: string; //当前路由
-  public brandInfo: any = {}; //表单数据
   public kindList: Array<any> = new Array(); //分类列表
   public showTypes: any;   //品牌展示类型
   public brandStates: any; // 品牌状态
   public uuid: any;       //图片暗码
-  public brandKind: string = '';// 品牌所属分类
-
+  public validateForm: any = {};//表单
+  public brandId: any;//修改品牌时传参
   public brandLogoUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.goods.goodsUpload,
     itemAlias: "limitFile",
@@ -83,7 +82,7 @@ export class AddBrandComponent implements OnInit {
   loadBrandDataById(brandId) {
     let me = this;
     $.when(GoodsService.loadBrandDataById(brandId)).done(data => {
-      if (data) me.brandInfo = data,me.brandKind = me.getBrandKinds(me.brandInfo.goodsKindList); //赋值
+      if (data) me.validateForm = data;
     })
   }
 
@@ -149,7 +148,7 @@ export class AddBrandComponent implements OnInit {
     me.brandLogoUploader.onSuccessItem = function (item, response, status, headers) {
       let res = JSON.parse(response);
       if (res.success) {
-        if (!isNullOrUndefined(me.uuid)) me.brandInfo.brandImageuuid = me.uuid;
+        if (!isNullOrUndefined(me.uuid)) me.validateForm.brandImageuuid = me.uuid;
       } else {
         me._notification.error(`上传失败`, '图片' + item._file.name + res.info)
       }
@@ -166,7 +165,7 @@ export class AddBrandComponent implements OnInit {
 
     //如果没有选择图片则直接提交
     if (!me.brandLogoUploader.isUploading) {   // 图片已经传过了，但是数据提交失败了，改过之后可以直接提交
-      if (!isNullOrUndefined(me.uuid)) me.brandInfo.brandImageuuid = me.uuid;
+      if (!isNullOrUndefined(me.uuid)) me.validateForm.brandImageuuid = me.uuid;
       me.addBrand();
     }
   }
@@ -176,23 +175,54 @@ export class AddBrandComponent implements OnInit {
    */
   addBrand() {
     let me = this;
-    $.when(this.goodsService.addBrand(me.brandInfo)).done(res => {
+    $.when(this.goodsService.addBrand(me.validateForm)).done(res => {
       Util.hideMask();//去掉遮罩层
       if (res) {
         this.confirmServ.success({
           title: '提交成功',
           content: '申请已提交，请等待审核通过'
         });
-      };
+      }
+      ;
+    });
+    me.location.back();//返回上个页面
+    me.brands.queryBrandsList();//刷新品牌查询列表
+  }
 
-    })
+  /**
+   * 提交表单
+   */
+  updateBrand() {
+    let me = this;
+    me.validateForm.brandId = me.brandId;
+    $.when(this.goodsService.updateBrand(me.validateForm)).done(res => {
+      Util.hideMask();//去掉遮罩层
+      if (res) {
+        this.confirmServ.success({
+          title: '提交成功',
+          content: '申请已提交，请等待审核通过'
+        });
+      }
+      ;
+    });
+    me.location.back();//返回上个页面
+    me.brands.queryBrandsList();//刷新品牌查询列表
+  }
+
+  /**
+   * 修改品牌
+   */
+  updateBrandForm() {
+    let me = this;
+    if (me.brandLogoUploader.queue[0]) me.uploadImg();
+    else me.updateBrand();
   }
 
   /**
    * 返回上个页面
    */
   back() {
-    let me=this;
+    let me = this;
     me.location.back();//返回上个页面
     me.brands.queryBrandsList();//刷新品牌查询列表
   }

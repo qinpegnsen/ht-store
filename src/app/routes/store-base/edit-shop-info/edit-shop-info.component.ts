@@ -21,7 +21,6 @@ export class EditShopInfoComponent implements OnInit {
   public ngValidateStatus = Util.ngValidateStatus;//表单项状态
   public ngValidateErrorMsg = Util.ngValidateErrorMsg;//表单项提示状态
   public valitateState: any = Setting.valitateState;//表单验证状态
-  public storeCode: any;//店铺编码
 
   public storeLabelUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.enterprise.upload,

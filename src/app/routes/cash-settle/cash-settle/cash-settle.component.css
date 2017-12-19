@@ -14,19 +14,19 @@
 }
 
 .search-group {
-  width: 240px;
+  width:300px;
   display: inline-block;
 }
 
 .search-group .search-title {
-  width: 40%;
+  width: 25%;
   line-height: 36px;
-  text-align: right;
+  text-align: left;
   display: inline-block;
 }
 
 .search-group .search-main {
-  width: 60%;
+  width: 75%;
   float: right;
 }
 

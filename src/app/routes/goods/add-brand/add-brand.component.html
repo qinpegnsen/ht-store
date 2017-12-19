@@ -1,72 +1,72 @@
-<!--返回-->
+<!--返回  start-->
 <button nz-button [nzType]="'danger'" [nzShape]="'circle'" class="page-back" (click)="back()" title="返回">
   <i class="anticon anticon-rollback font20"></i>
 </button>
-
+<!--返回  end-->
 <div class="pt">
-
+  <!--品牌申请、修改  start-->
   <ng-container *ngIf="path != 'detail'">
     <form nz-form class="p-20" #addBrandForm="ngForm">
-      <!--品牌名称-->
+      <!--品牌名称  start-->
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>品牌名称</label>
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBrandName)" nzHasFeedback>
-          <nz-input name="brandName" [(ngModel)]="brandInfo.brandName" #ngBrandName="ngModel"
-                    required [nzType]="'text'" [nzPlaceHolder]="'请输入品牌名称'" [nzSize]="'large'">
+          <nz-input name="brandName" [(ngModel)]="validateForm.brandName" #ngBrandName="ngModel" required [nzRows]="2"
+                    [nzPlaceHolder]="'请输入品牌名称！'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBrandName)==valitateState.empty">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBrandName) == valitateState.empty">
             请输入品牌名称！
           </div>
         </div>
       </div>
-
+      <!--品牌名称  end-->
       <!--品牌英文名称-->
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
-          <label>品牌英文名称</label>
+          <label nz-form-item-required>品牌英文名称</label>
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngEnglishName)" nzHasFeedback>
-          <nz-input name="englishName" [(ngModel)]="brandInfo.englishName" #ngEnglishName="ngModel"
-                    required [nzType]="'text'" [nzPlaceHolder]="'请输入品牌英文名称'" [nzSize]="'large'">
+          <nz-input name="englishName" [(ngModel)]="validateForm.englishName" #ngEnglishName="ngModel" required
+                    [nzRows]="2"
+                    [nzPlaceHolder]="'请输入品牌英文名称!'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngEnglishName)==valitateState.empty">
-            请输入品牌英文名称！
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngEnglishName) == valitateState.empty">
+            请输入品牌英文名称!
           </div>
         </div>
       </div>
-
       <!--品牌所有人-->
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>品牌所有人</label>
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBrandHolder)" nzHasFeedback>
-          <nz-input name="brandHolder" [(ngModel)]="brandInfo.brandHolder" #ngBrandHolder="ngModel"
-                    required [nzType]="'text'" [nzPlaceHolder]="'请输入品牌所有人'" [nzSize]="'large'">
+          <nz-input name="brandHolder" [(ngModel)]="validateForm.brandHolder" #ngBrandHolder="ngModel" required
+                    [nzRows]="2"
+                    [nzPlaceHolder]="'请输入品牌所有人!'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBrandHolder)==valitateState.empty">
-            请输入品牌所有人！
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBrandHolder) == valitateState.empty">
+            请输入品牌所有人!
           </div>
         </div>
       </div>
-
       <!--品牌注册号-->
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
           <label nz-form-item-required>品牌注册号</label>
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngApplyNumber)" nzHasFeedback>
-          <nz-input name="applyNumber" [(ngModel)]="brandInfo.applyNumber" #ngApplyNumber="ngModel"
-                    required [nzType]="'text'" [nzPlaceHolder]="'请输入品牌注册号'" [nzSize]="'large'">
+          <nz-input name="applyNumber" [(ngModel)]="validateForm.applyNumber" #ngApplyNumber="ngModel" required
+                    [nzRows]="2"
+                    [nzPlaceHolder]="'请输入品牌注册号!'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngApplyNumber)==valitateState.empty">
-            请输入品牌注册号！
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngApplyNumber) == valitateState.empty">
+            请输入品牌注册号!
           </div>
         </div>
       </div>
-
       <!--品牌图片-->
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
@@ -83,7 +83,8 @@
           <!--上传图片的时候-->
           <ng-container *ngIf="brandLogoUploader.queue[0]">
             <div class="uploaded">
-              <div class="remove" (click)="brandLogoUploader.queue[0].remove()"><i class="anticon anticon-close"></i></div>
+              <div class="remove" (click)="brandLogoUploader.queue[0].remove()"><i class="anticon anticon-close"></i>
+              </div>
               <nz-popover [nzTrigger]="'click'">
                 <img [src]="brandLogoUploader.queue[0]?._file | imgPreview" height="50"
                      title="点击看大图" nz-popover>
@@ -128,7 +129,11 @@
       <!--操作按钮 start-->
       <div nz-row class="text-center p-20 bt">
         <button nz-button [disabled]="!addBrandForm.form.valid" [nzSize]="'large'" class="thc-btn-w"
-                (click)="submitAddBrandForm()">
+                (click)="submitAddBrandForm()" *ngIf="path == 'addBrand'">
+          <span>提交</span>
+        </button>
+        <button nz-button [disabled]="!addBrandForm.form.valid" [nzSize]="'large'" class="thc-btn-w"
+                (click)="updateBrandForm()" *ngIf="path == 'edit'">
           <span>提交</span>
         </button>
       </div>
@@ -137,61 +142,67 @@
     <!--信息提示-->
     <ng-template #contentTpl></ng-template>
   </ng-container>
-
-  <!--详情-->
+  <!--品牌申请、修改  end-->
+  <!--品牌详情  start-->
   <ng-container *ngIf="path == 'detail'">
     <div class="p w60 t-items">
       <dl nz-row class="t-item">
         <dt nz-col [nzSpan]="6" class="item-hd">品牌名称：</dt>
-        <dd nz-col [nzSpan]="18" class="item-bd mb0">{{brandInfo.brandName}}</dd>
+        <dd nz-col [nzSpan]="18" class="item-bd mb0">{{validateForm.brandName}}</dd>
       </dl>
       <dl nz-row class="t-item">
         <dt nz-col [nzSpan]="6" class="item-hd">英文名称：</dt>
-        <dd nz-col [nzSpan]="18" class="item-bd mb0">{{brandInfo.englishName}}</dd>
+        <dd nz-col [nzSpan]="18" class="item-bd mb0">{{validateForm.englishName}}</dd>
       </dl>
       <dl nz-row class="t-item">
         <dt nz-col [nzSpan]="6" class="item-hd">品牌所有人：</dt>
-        <dd nz-col [nzSpan]="18" class="item-bd mb0">{{brandInfo.brandHolder}}</dd>
+        <dd nz-col [nzSpan]="18" class="item-bd mb0">{{validateForm.brandHolder}}</dd>
       </dl>
 
       <dl nz-row class="t-item">
         <td nz-col [nzSpan]="6" class="item-hd">审核状态：</td>
-        <td nz-col [nzSpan]="18" class="item-bd mb0">{{brandInfo.state | stateName: enums.brandsApplyState}}
+        <td nz-col [nzSpan]="18" class="item-bd mb0">{{validateForm.state | stateName: enums.brandApplyState}}
+        </td>
+      </dl>
+      <dl nz-row class="t-item" *ngIf="validateForm.reason">
+        <td nz-col [nzSpan]="6" class="item-hd">驳回原因：</td>
+        <td nz-col [nzSpan]="18" class="item-bd mb0">{{validateForm.reason}}
         </td>
       </dl>
       <dl nz-row class="t-item">
-      <td nz-col [nzSpan]="6" class="item-hd">品牌图片：</td>
-      <td nz-col [nzSpan]="18" class="item-bd mb0">
-        <nz-popover [nzTrigger]="'click'">
-          <img [src]="brandInfo.brandPic | imgSize:'50'" appImgErr title="点击看大图"
-               nz-popover>
-          <ng-template #nzTemplate>
-            <div><img [src]="brandInfo.brandPic | imgSize:'200'" [alt]="brandInfo.brandName"></div>
-          </ng-template>
-        </nz-popover>
-      </td>
-    </dl>
+        <td nz-col [nzSpan]="6" class="item-hd">品牌图片：</td>
+        <td nz-col [nzSpan]="18" class="item-bd mb0">
+          <nz-popover [nzTrigger]="'click'">
+            <img [src]="validateForm.brandPic | imgSize:'50'" appImgErr title="点击看大图"
+                 nz-popover>
+            <ng-template #nzTemplate>
+              <div><img [src]="validateForm.brandPic | imgSize:'200'" [alt]="validateForm.brandName"></div>
+            </ng-template>
+          </nz-popover>
+        </td>
+      </dl>
       <dl nz-row class="t-item">
         <td nz-col [nzSpan]="6" class="item-hd">品牌注册证：</td>
         <td nz-col [nzSpan]="18" class="item-bd mb0">
           <nz-popover [nzTrigger]="'click'">
-            <img [src]="brandInfo.brandPic | imgSize:'50'" appImgErr title="点击看大图"
+            <img [src]="validateForm.brandPic | imgSize:'50'" appImgErr title="点击看大图"
                  nz-popover>
             <ng-template #nzTemplate>
-              <div><img [src]="brandInfo.brandPic | imgSize:'200'" [alt]="brandInfo.brandName"></div>
+              <div><img [src]="validateForm.brandPic | imgSize:'200'" [alt]="validateForm.brandName"></div>
             </ng-template>
           </nz-popover>
         </td>
       </dl>
       <dl nz-row class="t-item">
         <td nz-col [nzSpan]="6" class="item-hd">创建时间：</td>
-        <td nz-col [nzSpan]="18" class="item-bd mb0">{{brandInfo.createTime}}</td>
+        <td nz-col [nzSpan]="18" class="item-bd mb0">{{validateForm.createTime}}</td>
       </dl>
       <dl nz-row class="t-item">
         <td nz-col [nzSpan]="6" class="item-hd">更新时间：</td>
-        <td nz-col [nzSpan]="18" class="item-bd mb0">{{brandInfo.updateTime}}</td>
+        <td nz-col [nzSpan]="18" class="item-bd mb0">{{validateForm.updateTime}}</td>
       </dl>
     </div>
   </ng-container>
+  <!--品牌详情  end-->
 </div>
 

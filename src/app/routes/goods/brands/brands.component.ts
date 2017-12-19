@@ -27,7 +27,8 @@ export class BrandsComponent implements OnInit {
   public brandRecommends: any;     // 品牌申请审核状态
   public pageMsg: any = Setting.PAGEMSG;           //页面提示信息
   public enumStates: any = Setting.ENUMSTATE;                     //枚举状态
-  public params:any;
+  public params:any;//品牌删除传的参数
+
   //路由
   public addBrand: string = SettingUrl.ROUTERLINK.store.addBrand;    //商品发布（此处如此写，用于路由相对进入模式）
   public editBrand: string = SettingUrl.ROUTERLINK.store.editBrand;    //商品发布（此处如此写，用于路由相对进入模式）
@@ -79,11 +80,6 @@ export class BrandsComponent implements OnInit {
       curPage: me.brandsList.curPage, //目标页码
       pageSize: me.brandsList.pageSize, //每页条数
       brandName: me.query.brandName, //品牌名称
-      // kindId: me.query.kindId, //商品分类
-      // brandInitial: me.query.brandInitial, //商品名称
-      // brandRecommend: me.query.brandRecommend,  //是否推荐
-      // applyState: me.query.applyState,    //申请状态
-      // showType: me.query.showType       //展示类型
     }
     $.when(GoodsService.queryBrandsList(me.brandsList.params)).done(res => {
       me._loading = false; //解除锁屏
@@ -130,4 +126,17 @@ export class BrandsComponent implements OnInit {
       me.queryBrandsList();//刷新查询品牌列表
     })
   };
+
+
+  // /**
+  //  * 加载品牌详情
+  //  * @param brandId
+  //  */
+  // loadBrandDataById(brandId) {
+  //   let me = this;
+  //   $.when(GoodsService.loadBrandDataById(brandId)).done(data => {
+  //     if (data) me.validateForm = data; //店铺信息
+  //     console.log("█  me.validateForm  ►►►",   me.validateForm );
+  //   })
+  // }
 }

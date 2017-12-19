@@ -1,18 +1,18 @@
 
 .search-group {
-  width: 240px;
+  width:270px;
   display: inline-block;
 }
 
 .search-group .search-title {
-  width: 30%;
+  width:20%;
   line-height: 36px;
-  text-align: right;
+  text-align: left;
   display: inline-block;
 }
 
 .search-group .search-main {
-  width: 70%;
+  width: 80%;
   float: right;
 }
 

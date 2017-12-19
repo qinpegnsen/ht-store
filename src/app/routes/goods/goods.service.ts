@@ -367,4 +367,26 @@ export class GoodsService {
     });
     return defer.promise(); //返回异步请求休息
   }
+
+  /**
+   * 修改品牌
+   */
+ updateBrand(requestData: any) {
+    let me = this, defer = $.Deferred(); //封装异步请求结果
+    AjaxService.put({
+      url: SettingUrl.URL.goods.upBrand,
+      data: requestData,
+      success: (res) => {
+        if (res.success) {
+          defer.resolve(res.success);
+        } else {
+          me._notification.error(res.status, res.statusText)
+        }
+      },
+      error: (res) => {
+        me._notification.error(res.status, res.statusText)
+      }
+    });
+    return defer.promise(); //返回异步请求信息
+  }
 }

@@ -19,7 +19,7 @@
     <!--搜索 start-->
     <form nz-form class="bg-white p-15">
       <div class="inline-block align-top">
-        <div class="search-group ml-20 mb align-top">
+        <div class="search-group mb align-top">
           <span class="search-title">品牌：</span>
           <div class="search-main">
             <nz-input name="brandName" [(ngModel)]="query.brandName" [nzPlaceHolder]="'品牌名称'"
@@ -90,9 +90,9 @@
           </nz-popover>
         </td>
         <td nz-td>
-          <ng-container *ngIf="brand.brandApply == enumStates.brandApplyState.unpass">
+          <ng-container *ngIf="brand.state == enumStates.brandsApplyState.reject">
             <button nz-button class="btn-blue" title="修改" [routerLink]="editBrand"
-                    [queryParams]="{brandId:brand.id}">
+                    [queryParams]="{applyCode:brand.applyCode}">
               <i class="anticon anticon-edit"></i>
             </button>
           </ng-container>

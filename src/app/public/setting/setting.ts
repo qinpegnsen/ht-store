@@ -85,6 +85,7 @@ export class Setting {
     cashState: 1802,  //提现详情状态
     orderState: 1019,  //订单状态类型
     orderPayState: 1017,  //订单付款类型
+    brandApplyState: 2010,  //品牌申请状态
   };
 
   //定义枚举状态名
@@ -127,6 +128,12 @@ export class Setting {
       unpass: 'UNPASS',
       pass: 'PASS',
       apply: 'APPLY'
+    },
+    //品牌申请审核状态
+    brandsApplyState: {
+      cr: 'CR',
+      pass: 'PASS',
+      reject: 'REJECT'
     },
     //营业执照类型
     papersType: {
