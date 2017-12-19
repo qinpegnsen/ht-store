@@ -40,3 +40,6 @@
 .cdk-overlay-pane:nth-child(2){
   width: 50px!important;
 }
+.afterWidth{
+  width:200px;display: inline-block;
+}

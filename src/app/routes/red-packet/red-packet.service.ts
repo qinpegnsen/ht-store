@@ -50,7 +50,8 @@ export class RedPacketService {
           defer.reject(res.data);
         }
       },
-      error: () => {
+      error: (res) => {
+        defer.reject(res.data);//页面不能空白，默认的数据
         me._notification.error(Setting.AJAX.errorTip,'');
       }
     });
