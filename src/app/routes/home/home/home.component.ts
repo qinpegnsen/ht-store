@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
   companyUrl: string = SettingUrl.ROUTERLINK.basic.company; //企业信息路由地址
   shopsUrl: string = SettingUrl.ROUTERLINK.basic.shops; //店铺信息路由地址
   shopsUrlShow: boolean = Util.haveJurisdiction(Setting.MENUS, this.shopsUrl); //是否显示店铺信息操作按钮
+  storeName: string = Setting.STOREINFO.name;//店铺名称
+  storeAvatar: string = Setting.STOREINFO.storePicture; //店铺头像
 
   constructor() {
     const _this = this;

@@ -27,6 +27,9 @@
 .tbody-tr-head span{
   line-height: 40px;
 }
+.goodsImage{
+  width: 100px;
+}
 .szh-buyer-info {
   display: none;
   width: 200px;

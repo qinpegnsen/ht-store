@@ -221,7 +221,7 @@ export class Setting {
 
   //店铺基础信息
   public static STOREINFO: any = {
-    logo: "",//店铺logo
+    storePicture: "",//店铺头像
     name: ""//店铺名称
   }
 

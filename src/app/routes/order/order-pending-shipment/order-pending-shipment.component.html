@@ -57,7 +57,7 @@
       <table class="w100 b">
         <tr *ngFor="let name of orders.ordItemList;let j = index">
           <td class="relative w40 p">
-            <div class="mr inline-block fl">
+            <div class="inline-block fl goodsImage">
               <ng-container>
                 <div class="tag-dib imgbox text-center mr">
                   <nz-popover [nzTrigger]="'click'">
@@ -69,7 +69,7 @@
                 </div>
               </ng-container>
             </div>
-            <div class="fl pl pt">
+            <div class="pl">
               <p>
                 <a class="font14" href="javascript:;">{{name.goodsName}}</a>
               </p>
@@ -85,17 +85,6 @@
           <td class="w8 text-center bl">{{name.num}}</td>
           <td class="w10 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">{{orders.phone}}</td>
           <td class="w10 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
-           <!-- <span class="cursor p-hover" (mouseenter)="showUserInfo(t)" (mouseleave)="hideBuyerInfo(t)">-->
-              {{name.storeName}}
-           <!-- </span>-->
-            <!--<div class="szh-buyer-info" #t (mouseenter)="showUserInfo(t)" (mouseleave)="hideBuyerInfo(t)">
-              <div class="info-con">
-                <p>收货人信息</p>
-                <dl class="pt-5"><dt>姓名：</dt><dd class="pl">{{orders.linkman}}</dd></dl>
-                <dl><dt>电话：</dt><dd>{{orders.mobile}}</dd></dl>
-                <dl><dt>地址：</dt><dd>{{orders.addr}}</dd></dl>
-              </div>
-            </div>-->
           </td>
           <td class="w8 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
             <span class="main-color">&yen; {{orders.ordTotal | number:'1.2-2'}}</span><br>

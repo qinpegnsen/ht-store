@@ -14,6 +14,9 @@
 .pending-group .pending-main {
   width: 170px;
 }
+.goodsImage{
+  width: 100px;
+}
 .relative {
   position: relative;
 }

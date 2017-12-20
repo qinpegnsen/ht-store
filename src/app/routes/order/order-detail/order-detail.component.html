@@ -102,25 +102,25 @@
     </thead>
     <tbody>
     <tr class="text-center" *ngFor="let item of orderData.ordItemList;let i=index;">
-      <td class="relative p">
-        <div class="mr inline-block fl">
+      <td class="relative w40 p">
+        <div class="inline-block fl goodsImage">
           <ng-container>
             <div class="tag-dib imgbox text-center mr">
               <nz-popover [nzTrigger]="'click'">
-                <img  [src]="item.goodsImage | imgSize :'80'" appImgErr  title="点击查看大图" nz-popover>
+                <img  [src]="name.goodsImage | imgSize :'80'" appImgErr  title="点击查看大图" nz-popover>
                 <ng-template #nzTemplate>
-                  <img [src]="item.goodsImage | imgSize :'200'" appImgErr >
+                  <img [src]="name.goodsImage | imgSize :'200'" appImgErr >
                 </ng-template>
               </nz-popover>
             </div>
           </ng-container>
         </div>
-        <div class="fl pl pt">
+        <div class="pl">
           <p>
-            <a class="font14" href="javascript:;">{{item.goodsName}}</a>
+            <a class="font14" href="javascript:;">{{name.goodsName}}</a>
           </p>
           <p class="pt-20">
-                  <span  *ngFor="let attr of item.goodsSavSet | strJson">
+                  <span  *ngFor="let attr of name.goodsSavSet | strJson">
                   <span class="inline">{{attr.attrName}}：</span>
                   <span class="inline">{{attr.value}}</span>
                 </span>

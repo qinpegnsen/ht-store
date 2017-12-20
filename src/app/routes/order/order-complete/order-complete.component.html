@@ -56,7 +56,7 @@
         <table class="w100 b">
           <tr *ngFor="let name of orders.ordItemList;let j = index">
             <td class="relative w40 p">
-              <div class="mr inline-block fl">
+              <div class="inline-block fl goodsImage">
                 <ng-container>
                   <div class="tag-dib imgbox text-center mr">
                     <nz-popover [nzTrigger]="'click'">
@@ -68,7 +68,7 @@
                   </div>
                 </ng-container>
               </div>
-              <div class="fl pl pt">
+              <div class="pl">
                 <p>
                   <a class="font14" href="javascript:;">{{name.goodsName}}</a>
                 </p>

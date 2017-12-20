@@ -11,6 +11,9 @@
   line-height: 36px;
   display: inline-block;
 }
+.goodsImage{
+  width: 100px;
+}
 .pending-group .pending-main {
   width: 170px;
 }

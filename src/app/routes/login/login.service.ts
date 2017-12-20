@@ -119,7 +119,7 @@ export class LoginService {
            * 登录时获取到店铺基础信息放在localStorage和setting里
            */
           //店铺基础信息
-          if (res.data && res.data.storeLabel) Setting.STOREINFO.logo = res.data.storeLabel; //设置店铺logo
+          if (res.data && res.data.storeAvatar) Setting.STOREINFO.storePicture = res.data.storeAvatar; //设置店铺头像
           if (res.data && res.data.storeName) Setting.STOREINFO.name = res.data.storeName; //设置店铺名称
           localStorage.setItem(Setting.cookie.storeInfo, JSON.stringify(Setting.STOREINFO)); //店铺信息存入localStorage
           //企业基础信息

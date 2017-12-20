@@ -38,6 +38,9 @@
 .order-state-steps{
   padding-top: 30px;
 }
+.goodsImage{
+  width: 100px;
+}
 .order-information{
   width: 98%;
   margin:10px auto;
