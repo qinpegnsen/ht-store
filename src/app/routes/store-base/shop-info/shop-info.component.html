@@ -62,7 +62,7 @@
           店铺LOGO
         </div>
         <div nz-col [nzSpan]="20" class="pl-20 shop-img">
-          <nz-popover [nzTrigger]="'click'">
+          <nz-popover [nzTrigger]="'click'" *ngIf="shopsInfo.storeLabel">
             <img [src]="shopsInfo.storeLabel" appImgErr  class="shop-img-logo"
                  nz-popover>
             <ng-template #nzTemplate>
