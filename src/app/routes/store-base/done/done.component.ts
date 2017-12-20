@@ -12,6 +12,7 @@ declare var $: any;
 })
 export class DoneComponent implements OnInit {
   public curState: string = 'pending';//当前店铺状态
+  public rejectOpinion: string = '';//驳回信息
   public routerHome:string = SettingUrl.ROUTERLINK.store.home;
 
   constructor(public storeBaseService: StoreBaseService,
@@ -35,10 +36,22 @@ export class DoneComponent implements OnInit {
           me.curState = 'pending';//审核中状态
         } else if (data.state == Setting.ENUMSTATE.shopState.reject) {
           me.curState = 'reject';//驳回状态
+          me.loadShopData(); //驳回时查看店铺信息，取驳回理由
         } else if (data.state == Setting.ENUMSTATE.shopState.normal) {
           me.curState = 'normal';//正常状态
         }
       }
+    })
+  }
+
+  /**
+   * 查询店铺信息
+   * @param data
+   */
+  loadShopData() {
+    let me = this;
+    $.when(StoreBaseService.loadShopInfo()).done(data => {
+      if (data) me.rejectOpinion = data.opinion;
     })
   }
 

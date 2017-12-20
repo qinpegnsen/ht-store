@@ -10,3 +10,10 @@
 .success .anticon {
   font-size: 50px;
 }
+
+.reject-info {
+  width: 60%;
+  margin: auto;
+  border-radius: 2px;
+  padding: 10px 15px;
+}

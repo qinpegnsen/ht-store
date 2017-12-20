@@ -104,7 +104,7 @@ export class MainService {
           }
         }
       }
-    } else if (level == 3){
+    } else if (level == 3) {
       let parentsCode = code.substring(0, 2) + '0000000000';//获取祖父级编码
       let parentCode = code.substring(0, 4) + '00000000';//获取父级编码
       for (let area of areaList) {
@@ -114,14 +114,14 @@ export class MainService {
               for (let levelThreeItem of levelTwoItem.children) {
                 if (levelThreeItem.areaCode == code) return levelThreeItem;
               }
-            };
+            }
+            ;
           }
         }
       }
-    }else {
+    } else {
       return null
     }
-
   }
 
   /**
@@ -141,6 +141,25 @@ export class MainService {
     else if (areaCode.substr(6, 6) == '000000') level = 3;
     else level = 4;
     return level;
+  }
+
+  /**
+   * 通过区域编码找到区域选择器需要的三级区域数据
+   * 参数：第三级区域编码
+   */
+  public static getAreaArrayByCode(levelThreeAreaCode: string) {
+    let levelThreeArea: any = MainService.getAreaByTwelveBitCode(levelThreeAreaCode),//获取当前区域
+      levelThreeAreaName: string = levelThreeArea.areaName,//获取当前区域名
+      levelOneAreaCode: string = levelThreeArea.province, //当前区域的省级区域编码
+      levelTwoAreaCode: string = levelThreeArea.city, //当前区域的市级区域编码
+      levelOneAreaName: string = MainService.getAreaByTwelveBitCode(levelOneAreaCode).areaName,//当前区域的省级区域名
+      levelTwoAreaName: string = MainService.getAreaByTwelveBitCode(levelTwoAreaCode).areaName,//当前区域的市级区域名
+      _value = [
+        {value: levelOneAreaCode, label: levelOneAreaName},
+        {value: levelTwoAreaCode, label: levelTwoAreaName},
+        {value: levelThreeAreaCode, label: levelThreeAreaName},
+      ];//级联选择器默认值
+    return _value;
   }
 
   /**

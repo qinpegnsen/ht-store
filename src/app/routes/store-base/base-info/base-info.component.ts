@@ -73,6 +73,7 @@ export class BaseInfoComponent implements OnInit {
         me.validateForm.idcardEndTime = new Date(me.validateForm.idcardEndTime);
         me.validateForm.businessLicenceStart = new Date(me.validateForm.businessLicenceStart);
         me.validateForm.businessLicenceEnd = new Date(me.validateForm.businessLicenceEnd);
+        me.validateForm.businessLicenceAreaCode = MainService.getAreaArrayByCode(me.validateForm.businessLicenceAreaCode)
       }//企业信息
     })
   }

@@ -55,7 +55,10 @@ export class OpenShopComponent implements OnInit {
   loadShopData() {
     let me = this;
     $.when(StoreBaseService.loadShopInfo()).done(data => {
-      if (data) me.validateForm = data //店铺信息
+      if (data) {
+        me.validateForm = data;  //店铺信息
+        me.validateForm.areaCode = MainService.getAreaArrayByCode(me.validateForm.areaCode);//店铺区域
+      }
     })
   }
 
