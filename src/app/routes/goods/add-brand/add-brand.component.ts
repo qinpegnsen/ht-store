@@ -107,14 +107,7 @@ export class AddBrandComponent implements OnInit {
     if (this.brandLogoUploader.queue.length > 1) this.brandLogoUploader.queue[0].remove();
   }
 
-  /**
-   * 提交表单
-   */
-  submitAddBrandForm() {
-    let me = this;
-    if (me.brandLogoUploader.queue[0]) me.uploadImg();
-    else me.addBrand();
-  }
+
   /**
    * 上传图片之后给表单元素赋值
    */
@@ -124,7 +117,8 @@ export class AddBrandComponent implements OnInit {
         this.validateForm.brandLogo = uuid;
         break;
       case 1:
-        this.validateForm.storeAvatar = uuid;
+        if (!this.validateForm.registration1) this.validateForm.registration1 = uuid;
+        else this.validateForm.registration2 = uuid;
         break;
     }
   }
@@ -134,7 +128,7 @@ export class AddBrandComponent implements OnInit {
    * 上传图片
    */
 
-   uploadImg() {
+  uploadImg() {
     let me = this, uploadedNum = 0, allUploaders = [
       me.brandLogoUploader,
       me.brandRegCardUploader
@@ -170,51 +164,13 @@ export class AddBrandComponent implements OnInit {
         uploadedNum += 1;     // 该组上传完之后uploadedNum+1；
         if (uploadedNum == allUploaders.length) {  // 当有图片上传，并且是图片组的最后一个时
           me.addBrand()
-          // me.submitFormData()     //整理数据并且发布商品
         }
       }
       // 每张图片上传结束后，判断如果是最后一组图片则发布商品，不是最后一组会进入下一个循环
       if (uploadedNum == allUploaders.length) {  // 当有图片上传，并且是图片组的最后一个时
-        // me.submitFormData()     //整理数据并且发布商品
         me.addBrand()
       }
     })
-  }
-
-  uploadImag() {
-    let me = this;
-    Util.showMask();//上传图片比较慢，显示遮罩层
-    //上传之前
-    me.brandLogoUploader.onBuildItemForm = function (fileItem, form) {
-      me.uuid = MainService.uploadUid();
-      form.append('uuid', me.uuid);
-    };
-    //执行上传
-    me.brandLogoUploader.uploadAll();
-    //上传成功
-    me.brandLogoUploader.onSuccessItem = function (item, response, status, headers) {
-      let res = JSON.parse(response);
-      if (res.success) {
-        if (!isNullOrUndefined(me.uuid)) me.validateForm.brandImageuuid = me.uuid;
-      } else {
-        me._notification.error(`上传失败`, '图片' + item._file.name + res.info)
-      }
-    }
-    // 上传失败
-    me.brandLogoUploader.onErrorItem = function (item, response, status, headers) {
-      let res = JSON.parse(response);
-      me._notification.error(`上传失败`, '图片' + item._file.name + res.info)
-    };
-    //上传完成，不管成功还是失败
-    me.brandLogoUploader.onCompleteAll = function () {
-      me.addBrand()
-    }
-
-    //如果没有选择图片则直接提交
-    if (!me.brandLogoUploader.isUploading) {   // 图片已经传过了，但是数据提交失败了，改过之后可以直接提交
-      if (!isNullOrUndefined(me.uuid)) me.validateForm.brandImageuuid = me.uuid;
-      me.addBrand();
-    }
   }
 
   /**
@@ -226,10 +182,6 @@ export class AddBrandComponent implements OnInit {
     if (this.brandLogoUploader.queue.length > 1) this.brandLogoUploader.queue[0].remove();
   }
 
-  storeLabelFileChangeListener() {
-    // 当选择了新的图片的时候，把老图片从待上传列表中移除
-    if (this.brandRegCardUploader.queue.length > 1) this.brandRegCardUploader.queue[0].remove();
-  }
 
   /**
    * 提交表单
@@ -267,6 +219,15 @@ export class AddBrandComponent implements OnInit {
       ;
     });
     // me.location.back();//返回上个页面
+  }
+
+  /**
+   * 提交表单
+   */
+  submitAddBrandForm() {
+    let me = this;
+    if (me.brandLogoUploader.queue[0]) me.uploadImg();
+    else me.addBrand();
   }
 
   /**

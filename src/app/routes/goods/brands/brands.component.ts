@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {isNullOrUndefined} from "util";
 import {Page} from "../../../public/util/page";
 import {Setting} from "../../../public/setting/setting";
 import {GoodsService} from "../goods.service";
 import {SettingUrl} from "../../../public/setting/setting_url";
 import {MainService} from "../../../public/service/main.service";
-import {NzMessageService, NzNotificationService} from "ng-zorro-antd";
+import {NzNotificationService} from "ng-zorro-antd";
 declare var $: any;
 
 @Component({
@@ -14,48 +14,30 @@ declare var $: any;
   styleUrls: ['./brands.component.css']
 })
 export class BrandsComponent implements OnInit {
-  public brandsList: Page = new Page();
+  public brandsList: Page = new Page();           //查询品牌列表
   public _loading: boolean = false;             //查询时锁屏
   public showList: boolean = true;             //是否显示列表页
   public pageTitle: string = '品牌管理';       //页面标题
   public enumState: any = Setting.ENUMSTATE;     //枚举状态
   public enums: any = Setting.ENUM;               //枚举编码
   public query: any = {};    //查询条件
-  public kindList: any;      // 分类列表
-  public showTypes: any;     // 品牌展示类型
-  public applyStates: any;     // 品牌申请审核状态
-  public brandRecommends: any;     // 品牌申请审核状态
   public pageMsg: any = Setting.PAGEMSG;           //页面提示信息
   public enumStates: any = Setting.ENUMSTATE;                     //枚举状态
-  public params:any;//品牌删除传的参数
+  public params: any;//品牌删除传的参数
 
   //路由
   public addBrand: string = SettingUrl.ROUTERLINK.store.addBrand;    //商品发布（此处如此写，用于路由相对进入模式）
   public editBrand: string = SettingUrl.ROUTERLINK.store.editBrand;    //商品发布（此处如此写，用于路由相对进入模式）
   public brandDetail: string = SettingUrl.ROUTERLINK.store.brandDetail;    //商品发布（此处如此写，用于路由相对进入模式）
 
-  constructor(public goodsService: GoodsService,
-              public _notification: NzNotificationService,
-              private message: NzMessageService) {
+  constructor(public goodsService: GoodsService, public _notification: NzNotificationService) {
   }
 
   ngOnInit() {
     let me = this;
     me.queryBrandsList();   //查询品牌列表
-    me.kindList = me.goodsService.getKindList(); //获取分类列表
-    me.showTypes = MainService.getEnumDataList(Setting.ENUM.showType);  // 品牌展示类型
-    me.applyStates = MainService.getEnumDataList(Setting.ENUM.brandsApplyState);  // 品牌审核状态
-    me.brandRecommends = MainService.getEnumDataList(Setting.ENUM.yesOrNo);  // 是否推荐
   }
 
-  /**
-   * 选择分类
-   * @param data  选择分类组件输出数据
-   */
-  getKind(data) {
-    this.query.kindId = data[data.length - 1];
-    this.queryBrandsList()
-  }
 
   /**
    * 重置搜索条件
@@ -72,7 +54,7 @@ export class BrandsComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryBrandsList(curPage?) {
+  queryBrandsList(curPage?) {
     let me = this;
     me._loading = true; //锁屏
     if (!isNullOrUndefined(curPage)) me.brandsList.curPage = curPage;//当有页码时，查询该页数据
@@ -115,7 +97,7 @@ export class BrandsComponent implements OnInit {
    * @param brandApplyCode
    */
   confirm = (brandApplyCode) => {
-    let me=this;
+    let me = this;
     me._loading = true; //锁屏
     me.params = { //查询参数
       applyCode: brandApplyCode, //品牌编码
@@ -127,16 +109,4 @@ export class BrandsComponent implements OnInit {
     })
   };
 
-
-  // /**
-  //  * 加载品牌详情
-  //  * @param brandId
-  //  */
-  // loadBrandDataById(brandId) {
-  //   let me = this;
-  //   $.when(GoodsService.loadBrandDataById(brandId)).done(data => {
-  //     if (data) me.validateForm = data; //店铺信息
-  //     console.log("█  me.validateForm  ►►►",   me.validateForm );
-  //   })
-  // }
 }

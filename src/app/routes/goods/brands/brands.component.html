@@ -63,6 +63,9 @@
           <span>品牌注册证</span>
         </th>
         <th nz-th class="text-center">
+          <span>审核状态</span>
+        </th>
+        <th nz-th class="text-center">
           <span>操作</span>
         </th>
       </tr>
@@ -89,6 +92,7 @@
             </ng-template>
           </nz-popover>
         </td>
+        <td nz-td>{{brand.state | stateName: enums.brandApplyState}}</td>
         <td nz-td>
           <ng-container *ngIf="brand.state == enumStates.brandsApplyState.reject">
             <button nz-button class="btn-blue" title="修改" [routerLink]="editBrand"
@@ -100,10 +104,12 @@
                   [queryParams]="{applyCode:brand.applyCode}">
             <i class="anticon anticon-eye-o"></i>
           </button>
-          <nz-popconfirm [nzTitle]="'确定要删除这个品牌吗？'" (nzOnConfirm)="confirm(brand.applyCode)" (nzOnCancel)="cancel()" [nzPlacement]="'top'">
+          <nz-popconfirm [nzTitle]="'确定要删除这个品牌吗？'" (nzOnConfirm)="confirm(brand.applyCode)" (nzOnCancel)="cancel()"
+                         [nzPlacement]="'top'">
             <button nz-popconfirm nz-button class="btn-warning"><i class="anticon anticon-delete"></i></button>
           </nz-popconfirm>
         </td>
+
       </tr>
       </tbody>
     </nz-table>

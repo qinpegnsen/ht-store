@@ -54,7 +54,7 @@
             请输入品牌所有人!
           </div>
           <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBrandHolder) == valitateState.error">
-           请输入正确的品牌所有人！
+            请输入正确的品牌所有人！
           </div>
         </div>
       </div>
@@ -126,44 +126,42 @@
           </label>
         </div>
         <div nz-col [nzSpan]="6" class="pl-30">
-          <!--上传图片的时候-->
-
-          <!--上传图片的时候-->
-          <ng-container *ngIf="brandRegCardUploader.queue?.length>0">
+          <ng-container *ngIf="validateForm.registration1">
             <div class="uploaded">
               <nz-popover [nzTrigger]="'click'">
-                <img [src]="brandRegCardUploader.queue[0]?._file | imgPreview" appImgErr height="50" nz-popover>
+                <img [src]="validateForm.registration1 | imgSize: '50'" appImgErr
+                     nz-popover>
                 <ng-template #nzTemplate>
-                  <div><img [src]="brandRegCardUploader.queue[0]?._file | imgPreview" height="200"></div>
+                  <div><img [src]="validateForm.registration1 | imgSize: '200'"></div>
                 </ng-template>
               </nz-popover>
             </div>
           </ng-container>
-          <!--修改图片的时候-->
-          <ng-container *ngIf="validateForm.registration1 && !brandRegCardUploader.queue?.length>0">
-            <div class="uploaded"  *ngFor="let item of brandRegCardUploader.queue">
+          <ng-container *ngIf="validateForm.registration2">
+            <div class="uploaded">
               <nz-popover [nzTrigger]="'click'">
-                <img [src]="item?._file | imgSize: '50'" height="50" appImgErr nz-popover>
+                <img [src]="validateForm.registration2 | imgSize: '50'" appImgErr
+                     nz-popover>
                 <ng-template #nzTemplate>
-                  <div><img [src]="item?._file | imgSize: '200'"></div>
+                  <div><img [src]="validateForm.registration2 | imgSize: '200'"></div>
                 </ng-template>
               </nz-popover>
             </div>
           </ng-container>
-
-
-          <!--<ng-container *ngIf="brandRegCardUploader.queue?.length>0">-->
-            <!--<div class="uploaded" *ngFor="let item of brandRegCardUploader.queue">-->
-              <!--<div class="remove" (click)="item.remove()"><i class="anticon anticon-close"></i></div>-->
-              <!--<nz-popover [nzTrigger]="'click'">-->
-                <!--<img [src]="item?._file | imgPreview" height="50"-->
-                     <!--title="点击看大图" nz-popover>-->
-                <!--<ng-template #nzTemplate>-->
-                  <!--<div><img [src]="item?._file | imgPreview" height="200"></div>-->
-                <!--</ng-template>-->
-              <!--</nz-popover>-->
-            <!--</div>-->
-          <!--</ng-container>-->
+          <!--修改 --start-->
+          <ng-container *ngIf="brandRegCardUploader.queue?.length>0">
+            <div class="uploaded" *ngFor="let item of brandRegCardUploader.queue">
+              <div class="remove" (click)="item.remove()"><i class="anticon anticon-close"></i></div>
+              <nz-popover [nzTrigger]="'click'">
+                <img [src]="item?._file | imgPreview" height="50"
+                     title="点击看大图" nz-popover>
+                <ng-template #nzTemplate>
+                  <div><img [src]="item?._file | imgPreview" height="200"></div>
+                </ng-template>
+              </nz-popover>
+            </div>
+          </ng-container>
+          <!--修改  end-->
         </div>
       </div>
 
