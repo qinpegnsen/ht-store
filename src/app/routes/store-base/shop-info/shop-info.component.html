@@ -14,8 +14,7 @@
       <p class="text-center mt-50">
         <nz-popover [nzTrigger]="'click'">
           <img [src]="" appImgErr="user" width="80"
-               title="点击出大图"
-               alt="" nz-popover>
+               title="点击出大图" nz-popover>
           <ng-template #nzTemplate>
             <div><img [src]="shopsInfo.storeAvatar | imgSize:'400'">
             </div>
@@ -62,11 +61,13 @@
         <div nz-col [nzSpan]="4" class="text-right pr-20 strong br-shop">
           店铺LOGO
         </div>
-        <div nz-col [nzSpan]="20" class="pl-20" [ngClass]="{'store-info-nowrite':!shopsInfo.storeAvatar}">
+        <div nz-col [nzSpan]="20" class="pl-20 shop-img">
           <nz-popover [nzTrigger]="'click'">
-            <img [src]="shopsInfo.storeLabel | imgSize:'50'" height="35" appImgErr nz-popover>
+            <img [src]="shopsInfo.storeLabel" appImgErr  class="shop-img-logo"
+                 nz-popover>
             <ng-template #nzTemplate>
-              <div><img [src]="shopsInfo.storeLabel | imgSize:'400'"  alt="shopsInfo.storeName"></div>
+              <div><img [src]="shopsInfo.storeLabel | imgSize:'400'" [alt]="shopsInfo.storeName">
+              </div>
             </ng-template>
           </nz-popover>
         </div>
