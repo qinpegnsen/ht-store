@@ -126,6 +126,7 @@ export class OpenShopComponent implements OnInit {
     let formValue = Object.assign({}, me.validateForm);
     if (typeof formValue.areaCode == 'object') { //如果是数组形式则取数组的第三个
       formValue.areaCode = formValue.areaCode[2];//取第三级编码
+      if(formValue.areaCode.value) formValue.areaCode = formValue.areaCode.value;//如果是修改信息，则区域信息可能是级联选择器赋值的对象数组
     }
     this.storeBaseService.dredgeShop(formValue);
   };

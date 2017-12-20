@@ -161,8 +161,9 @@ export class BaseInfoComponent implements OnInit {
     else formValue.isForever = 'N';
     if (typeof formValue.businessLicenceAreaCode == 'object') { //如果是数组形式则取数组的第三个
       formValue.businessLicenceAreaCode = formValue.businessLicenceAreaCode[2];//取第三级编码
+      //如果是修改信息，则区域信息可能是级联选择器赋值的对象数组
+      if(formValue.businessLicenceAreaCode.value) formValue.businessLicenceAreaCode = formValue.businessLicenceAreaCode.value;
     }
-    // console.log(JSON.stringify(formValue));
     this.storeBaseService.enterpriseBase(formValue);
   };
 
