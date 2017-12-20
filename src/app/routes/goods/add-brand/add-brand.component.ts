@@ -26,9 +26,6 @@ export class AddBrandComponent implements OnInit {
   public enumState: any = Setting.ENUMSTATE;               //枚举编码
   public path: string; //当前路由
   public kindList: Array<any> = new Array(); //分类列表
-  public showTypes: any;   //品牌展示类型
-  public brandStates: any; // 品牌状态
-  public uuid: any;       //图片暗码
   public validateForm: any = {};//表单
   public brandId: any;//修改品牌时传参
   public brandLogoUploader: FileUploader = new FileUploader({
@@ -188,7 +185,6 @@ export class AddBrandComponent implements OnInit {
    */
   addBrand() {
     let me = this;
-    // let formValue = Object.assign({}, this.validateForm);
     $.when(this.goodsService.addBrand(me.validateForm)).done(res => {
       Util.hideMask();//去掉遮罩层
       if (res) {
@@ -199,6 +195,7 @@ export class AddBrandComponent implements OnInit {
       }
       ;
     });
+
     // me.location.back();//返回上个页面
   }
 

@@ -78,17 +78,23 @@
         <td nz-td>{{brand.brandHolder}}</td>
         <td nz-td>
           <nz-popover [nzTrigger]="'click'">
-            <img [src]="brand.brandPic | imgSize:'60'" appImgErr title="点击看大图" nz-popover>
+            <img [src]="brand.brandLogo | imgSize:'60'" appImgErr title="点击看大图" nz-popover>
             <ng-template #nzTemplate>
-              <div><img [src]="brand.brandPic | imgSize:'200'" [alt]="brand.brandName"></div>
+              <div><img [src]="brand.brandLogo | imgSize:'200'" [alt]="brand.brandName"></div>
             </ng-template>
           </nz-popover>
         </td>
         <td nz-td>
-          <nz-popover [nzTrigger]="'click'">
-            <img [src]="brand.brandPic | imgSize:'60'" appImgErr title="点击看大图" nz-popover>
+          <nz-popover [nzTrigger]="'click'" *ngIf="brand.registration1">
+            <img [src]="brand.registration1 | imgSize:'60'" appImgErr title="点击看大图" nz-popover>
             <ng-template #nzTemplate>
-              <div><img [src]="brand.brandPic | imgSize:'200'" [alt]="brand.brandName"></div>
+              <div><img [src]="brand.registration1 | imgSize:'200'" [alt]="brand.brandName"></div>
+            </ng-template>
+          </nz-popover>
+          <nz-popover [nzTrigger]="'click'" *ngIf="brand.registration2">
+            <img [src]="brand.registration2 | imgSize:'60'" appImgErr title="点击看大图" nz-popover>
+            <ng-template #nzTemplate>
+              <div><img [src]="brand.registration2 | imgSize:'200'" [alt]="brand.brandName"></div>
             </ng-template>
           </nz-popover>
         </td>

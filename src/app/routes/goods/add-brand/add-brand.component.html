@@ -211,11 +211,11 @@
       <dl nz-row class="t-item">
         <td nz-col [nzSpan]="6" class="item-hd">品牌图片：</td>
         <td nz-col [nzSpan]="18" class="item-bd mb0">
-          <nz-popover [nzTrigger]="'click'">
-            <img [src]="validateForm.brandPic | imgSize:'50'" appImgErr title="点击看大图"
+          <nz-popover [nzTrigger]="'click'"*ngIf="validateForm.brandLogo">
+            <img [src]="validateForm.brandLogo | imgSize:'50'" appImgErr
                  nz-popover>
             <ng-template #nzTemplate>
-              <div><img [src]="validateForm.brandPic | imgSize:'200'" [alt]="validateForm.brandName"></div>
+              <div><img [src]="validateForm.brandLogo | imgSize:'200'"></div>
             </ng-template>
           </nz-popover>
         </td>
@@ -223,13 +223,21 @@
       <dl nz-row class="t-item">
         <td nz-col [nzSpan]="6" class="item-hd">品牌注册证：</td>
         <td nz-col [nzSpan]="18" class="item-bd mb0">
-          <nz-popover [nzTrigger]="'click'">
-            <img [src]="validateForm.brandPic | imgSize:'50'" appImgErr title="点击看大图"
+          <span *ngIf="validateForm.registration1">  <nz-popover [nzTrigger]="'click'">
+            <img [src]="validateForm.registration1 | imgSize:'50'" appImgErr
                  nz-popover>
             <ng-template #nzTemplate>
-              <div><img [src]="validateForm.brandPic | imgSize:'200'" [alt]="validateForm.brandName"></div>
+              <div><img [src]="validateForm.registration1 | imgSize:'200'"></div>
             </ng-template>
-          </nz-popover>
+          </nz-popover></span>
+          <span *ngIf="validateForm.registration2">
+          <nz-popover [nzTrigger]="'click'">
+            <img [src]="validateForm.registration2 | imgSize:'50'" appImgErr >
+            <ng-template #nzTemplate>
+              <div><img [src]="validateForm.registration2 | imgSize:'200'"></div>
+            </ng-template>
+          </nz-popover></span>
+
         </td>
       </dl>
       <dl nz-row class="t-item">
