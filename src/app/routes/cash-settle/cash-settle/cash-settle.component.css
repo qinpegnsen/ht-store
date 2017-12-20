@@ -14,7 +14,7 @@
 }
 
 .search-group {
-  width:300px;
+  width: 300px;
   display: inline-block;
 }
 
@@ -46,6 +46,10 @@
 .search-group-data .search-main {
   width: 80%;
   float: left;
+}
+
+.settle-search {
+  display: inline-block
 }
 
 .data {
