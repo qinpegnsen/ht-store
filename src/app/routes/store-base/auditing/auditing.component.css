@@ -1,10 +1,19 @@
-.ing{
+.ing {
   text-align: center;
   padding: 50px;
 }
-.ing p{
+
+.ing p {
   line-height: 3;
 }
-.ing .anticon{
-  font-size:50px;
+
+.ing .anticon {
+  font-size: 50px;
+}
+
+.reject-info {
+  width: 60%;
+  margin: auto;
+  border-radius: 2px;
+  padding: 10px 15px;
 }

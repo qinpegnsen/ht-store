@@ -7,7 +7,6 @@ import {FileUploader} from "ng2-file-upload";
 import {SettingUrl} from "../../../public/setting/setting_url";
 import {MainService} from "../../../public/service/main.service";
 import {NzNotificationService} from "ng-zorro-antd";
-import {ActivatedRoute} from "@angular/router";
 import {Setting} from "../../../public/setting/setting";
 import {PatternService} from "../../../public/service/pattern.service";
 declare var $: any;
@@ -39,8 +38,7 @@ export class OpenShopComponent implements OnInit {
   constructor(public storeBaseService: StoreBaseService,
               public steps: OpenStepsComponent,
               public patternService: PatternService,
-              public _notification: NzNotificationService,
-              public route: ActivatedRoute) {
+              public _notification: NzNotificationService) {
     this.steps.step = 0;
     Util.transAreas(AREA_LEVEL_3_JSON);//将地区数据转成联级组件需要的格式
     this._options = AREA_LEVEL_3_JSON;//地区数据

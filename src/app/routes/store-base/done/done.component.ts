@@ -32,11 +32,11 @@ export class DoneComponent implements OnInit {
     $.when(StoreBaseService.loadShopState()).done(data => {
       if (data) {
         if (data.state == Setting.ENUMSTATE.shopState.pending) {
-          me.curState = 'pending';
+          me.curState = 'pending';//审核中状态
         } else if (data.state == Setting.ENUMSTATE.shopState.reject) {
-          me.curState = 'reject';
+          me.curState = 'reject';//驳回状态
         } else if (data.state == Setting.ENUMSTATE.shopState.normal) {
-          me.curState = 'normal';
+          me.curState = 'normal';//正常状态
         }
       }
     })

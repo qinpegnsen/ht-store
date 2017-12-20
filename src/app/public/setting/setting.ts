@@ -209,6 +209,8 @@ export class Setting {
     error: "error"
   }
 
+  public static maxFixedFreight = 9999.99; //最大固定运费值
+
   //数据字典键名
   public static SETTINGINFO: any = {
     bankTypeCode: "common_use_bank_name"

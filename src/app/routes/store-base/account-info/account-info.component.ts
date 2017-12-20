@@ -7,7 +7,6 @@ import {MainService} from "../../../public/service/main.service";
 import {NzNotificationService} from "ng-zorro-antd";
 import {Util} from "../../../public/util/util";
 import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
-import {ActivatedRoute} from "@angular/router";
 import {Setting} from "../../../public/setting/setting";
 declare var $: any;
 
@@ -31,8 +30,7 @@ export class AccountInfoComponent implements OnInit {
 
   constructor(public storeBaseService: StoreBaseService,
               public steps: SettleStepsComponent,
-              public _notification: NzNotificationService,
-              public route: ActivatedRoute) {
+              public _notification: NzNotificationService) {
     this.steps.current = 2;
     Util.transAreas(AREA_LEVEL_3_JSON);//将地区数据转成联级组件需要的格式
     this._options = AREA_LEVEL_3_JSON;//地区数据

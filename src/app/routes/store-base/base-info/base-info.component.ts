@@ -9,7 +9,6 @@ import {Setting} from "../../../public/setting/setting";
 import {Util} from "../../../public/util/util";
 import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
 import {PatternService} from "../../../public/service/pattern.service";
-import {ActivatedRoute} from "@angular/router";
 declare var $: any;
 
 @Component({
@@ -45,8 +44,7 @@ export class BaseInfoComponent implements OnInit {
   constructor(public storeBaseService: StoreBaseService,
               public steps: SettleStepsComponent,
               public patternService: PatternService,
-              public _notification: NzNotificationService,
-              public route: ActivatedRoute) {
+              public _notification: NzNotificationService) {
     Util.transAreas(AREA_LEVEL_3_JSON);//将地区数据转成联级组件需要的格式
     this._options = AREA_LEVEL_3_JSON;//地区数据
     this.steps.current = 1;

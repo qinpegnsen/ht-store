@@ -49,7 +49,8 @@ export class EditComponent implements OnInit {
     autoUpload: true,   //自动上传
     allowedFileType: ["image"]  //文件类型限制
   })
-  public patterns:any;  //正则
+  public patterns: any;  //正则
+  public maxFixedFreight = Setting.maxFixedFreight;
 
   constructor(public publishComponent: PublishComponent,
               public location: Location,
@@ -277,8 +278,8 @@ export class EditComponent implements OnInit {
   public genTempGoodsImgsList() {
     let me = this, list = me.goodsEditData.goodsImagesList;
     list.forEach((item) => {
-      if (isUndefined(me.oldImgs[item.valCode])) me.oldImgs[item.valCode] = [];            // 检测对象中是否已经有了这个属性值对象，如果没有，给它一个空数组
-      if (isUndefined(me.goodsImgList[item.valCode])) me.goodsImgList[item.valCode] = [];  // 检测对象中是否已经有了这个属性值对象，如果没有，给它一个空数组
+      if (isUndefined(me.oldImgs[item.valCode])) me.oldImgs[item.valCode] = new Array();            // 检测对象中是否已经有了这个属性值对象，如果没有，给它一个空数组
+      if (isUndefined(me.goodsImgList[item.valCode])) me.goodsImgList[item.valCode] = new Array();  // 检测对象中是否已经有了这个属性值对象，如果没有，给它一个空数组
       me.oldImgs[item.valCode].push(item.goodsImage);       // 往老图片组中添加这个图片
       me.goodsImgList[item.valCode].push(item.goodsImage);  // 往总图片组中添加这个图片
     });
@@ -377,7 +378,7 @@ export class EditComponent implements OnInit {
    * @param spec
    */
   public genObject(index) {
-    let me = this, enums: any = {}, attrsList = [], checkedNum: number = 0;
+    let me = this, enums: any = {}, attrsList: Array<any> = new Array(), checkedNum: number = 0;
     let curCheckedAttr = this.saleAttrList[index];
     for (let i = 0; i < curCheckedAttr.goodsEnumValList.length; i++) {
       let checkedEnumItem = curCheckedAttr.goodsEnumValList[i];
@@ -408,7 +409,7 @@ export class EditComponent implements OnInit {
         me.publishData.goodsSkuList = data;
         me.skuAttr = data[0].attrsList;
       } else {
-        me.publishData.goodsSkuList = []
+        me.publishData.goodsSkuList = new Array()
       }   // 将数据生成易解析的新数组
     })
   }
@@ -435,7 +436,7 @@ export class EditComponent implements OnInit {
    */
   public genClearArray(skuData) {
     let me = this;
-    me.skuAttr = [];
+    me.skuAttr = new Array();
     if (skuData.length > 0) {
       me.publishData.goodsSkuList = skuData;
       let tempSkuAttr = skuData[0].attrsList;
@@ -448,7 +449,7 @@ export class EditComponent implements OnInit {
         me.skuAttr.push(obj);
       });
     } else {
-      me.publishData.goodsSkuList = [];
+      me.publishData.goodsSkuList = new Array();
     }
   }
 
@@ -642,7 +643,7 @@ export class EditComponent implements OnInit {
   public genMblItemList() {
     setTimeout(_ => {//等到页面渲染完毕再执行，可以保证jQuery获取到节点
       let me = this, doms = $('#mblHtml').children(), type, value;
-      me.mblItemList = [];
+      me.mblItemList = new Array();
       for (let i = 0; i < doms.length; i++) {
         type = doms.eq(i)[0].localName == 'p' ? 'text' : doms.eq(i)[0].localName;
         value = type == 'text' ? doms.eq(i).html() : doms.eq(i).attr('src');
@@ -655,40 +656,35 @@ export class EditComponent implements OnInit {
     }, 0);
   }
 
-
   /**
    * 审核input框的value合不合要求
    */
-  auditInputValueForNum(value,type?:string) {
+  auditInputValueForNum(value, type?: string) {
     let val = value, reg;
-    if(type == 'int') reg = val.match(/^[1-9]{1}[0-9]*/);
+    if (type == 'int') reg = val.match(/^[1-9]{1}[0-9]*/);
     else reg = val.match(/\d+(\.\d{1,2})?/);
-    if (!isNull(reg)){
+    if (!isNull(reg)) {
       val = reg[0];
-    }else {
-      val = val.substring(0,val.length-1)
+    } else {
+      val = val.substring(0, val.length - 1)
     }
-    console.log("█ target ►►►",  value);
-    // Util.auditInputValueForNum(target, type);
-    if (Number(value) > 10000) value = 9999.99
+    if (Number(value) > 10000) value = this.maxFixedFreight
   }
-
 
   /**
    * 上传图片,第一步，集成所有需要上传的uploader到一个集合里
    */
   public togetherAllUploaders() {
-    let me = this, allUploaders = [];
+    let me = this, allUploaders: Array<any> = new Array();
     // 当选择了规格时,不上传默认的图片
     if (me.skuImg.vals.length > 0) {
-      allUploaders = [];
+      allUploaders = new Array();
       me.skuImg.vals.forEach((item) => {
         allUploaders.push(item.uploader);
       });
     }
     return allUploaders;
   }
-
 
   /**
    * 商品规格图片上传
@@ -706,7 +702,7 @@ export class EditComponent implements OnInit {
             if (response.success && !isNullOrUndefined(response.data)) {
               // 图片上传成功的时候，检测图片组里该属性值对象是否已存在，不存在则添加对象
               if (isUndefined(me.goodsImgList[me.skuImg.vals[i].valCode])) {
-                me.goodsImgList[me.skuImg.vals[i].valCode] = [];
+                me.goodsImgList[me.skuImg.vals[i].valCode] = new Array();
               }
               // 将图片存入该属性值对应的对象图片数组中
               me.goodsImgList[me.skuImg.vals[i].valCode].push(response.data);
@@ -727,13 +723,12 @@ export class EditComponent implements OnInit {
     })
   }
 
-
   /**
    * 生成商品基本属性列表
    */
   public genGoodsBaseAttrList() {
     let me = this;
-    me.publishData.goodsBaseAttrList = []; // 先置空
+    me.publishData.goodsBaseAttrList = new Array(); // 先置空
     me.baseAttrList.forEach(val => {
       if (!isNullOrUndefined(val.checkedId)) {
         val.goodsEnumValList.forEach(attr => {
@@ -763,7 +758,7 @@ export class EditComponent implements OnInit {
         if (isNullOrUndefined(itemImgSrcs)) {
           me._notification.warning('缺少图片', '请上传规格为' + item.valName + '的商品的图片');
           return null;// 当某个规格没有图片时，提示必须上传
-        }else {
+        } else {
           for (let k = 0; k < itemImgSrcs.length; k++) {
             const temp: any = {attrCode: '', valCode: '', valName: '', idx: '', goodsImage: ''};
             Object.assign(temp, item);
@@ -810,14 +805,14 @@ export class EditComponent implements OnInit {
   /**
    * 判断商品详情是否编辑
    */
-  judgeDetailInfo(){
+  judgeDetailInfo() {
     let me = this;
-    if(isNullOrUndefined(me.publishData.goodsBody) || me.publishData.goodsBody == '') {
+    if (isNullOrUndefined(me.publishData.goodsBody) || me.publishData.goodsBody == '') {
       me._notification.warning('数据不完整', '请编辑PC端商品详情');
       return false
-    }else{
+    } else {
       me.publishData.mobileBody = me.genMblDetailHtml();               // 商品详情 App
-      if(isNullOrUndefined(me.publishData.mobileBody) ||me.publishData.mobileBody == ''){
+      if (isNullOrUndefined(me.publishData.mobileBody) || me.publishData.mobileBody == '') {
         me._notification.warning('数据不完整', '请编辑移动端商品详情');
         return false
       }
@@ -854,11 +849,11 @@ export class EditComponent implements OnInit {
    */
   judgeLogistics() {
     let me = this;
-    if (me.publishData.isFreight == 'Y') {
+    if (me.publishData.isFreight == me.enumState.yes) {
       let obj = me.publishData.goodsExpressInfo;
       if (!isNullOrUndefined(obj.freightType)) {
         //如果使用物流模板
-        if (obj.freightType == 'TPL') {
+        if (obj.freightType == me.enumState.freightType.tpl) {
           if (obj.expressTplId == '' || isNullOrUndefined(obj.expressTplId)) {
             me._notification.warning('数据不完整', '请选择物流模板');
             return false;

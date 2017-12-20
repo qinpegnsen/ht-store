@@ -11,19 +11,19 @@
   <div nz-row class="kind-zone">
     <div nz-col [nzSpan]="8" class="p">
       <ul>
-        <li *ngFor="let item of firstList" (click)="getKinds(item.id,item.level,this)">
+        <li *ngFor="let item of firstList" (click)="getKinds(item.id,item.level)">
           {{item.kindName}}
         </li>
       </ul>
     </div>
     <div nz-col [nzSpan]="8" class="p">
       <ul>
-        <li *ngFor="let item of secondList" (click)="getKinds(item.id,item.level,this)">{{item.kindName}}</li>
+        <li *ngFor="let item of secondList" (click)="getKinds(item.id,item.level)">{{item.kindName}}</li>
       </ul>
     </div>
     <div nz-col [nzSpan]="8" class="p">
       <ul>
-        <li *ngFor="let item of thirdList" (click)="getKinds(item.id,item.level,this)">{{item.kindName}}</li>
+        <li *ngFor="let item of thirdList" (click)="getKinds(item.id,item.level)">{{item.kindName}}</li>
       </ul>
     </div>
   </div>

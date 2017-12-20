@@ -36,10 +36,14 @@ export class ChooseKindComponent implements OnInit {
         }
         me.choosedKindStr = me.choosedKindStr.substring(0, me.choosedKindStr.length - 3)
       })
-    }, 0)
+    })
   }
 
-
+  /**
+   * 获取指定分类的下级商品分类
+   * @param id （分类id）
+   * @param level （当前级别）
+   */
   getKinds(id?, level?: number) {
     let me = this;
     switch (level) {

@@ -136,9 +136,8 @@ export class ManageComponent implements OnInit {
       isUseCoin: isUseCoin
     };
     $.when(me.goodsService.changeIsUseCoin(requestData)).done(data => {
-      if (data.success) {
+      if (!data.success) {
         me.queryGoodsList();
-      } else {
         me._notification.error(data.info, data.info)
       }
     })

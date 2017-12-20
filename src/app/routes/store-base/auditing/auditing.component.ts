@@ -11,6 +11,7 @@ declare var $: any;
 })
 export class AuditingComponent implements OnInit {
   curState: string = 'auditing';   //当前状态
+  rejectOpinion: string = '';//驳回意见
 
   constructor(public storeBaseService: StoreBaseService,
               public steps: SettleStepsComponent) {
@@ -35,8 +36,20 @@ export class AuditingComponent implements OnInit {
           me.curState = 'settlePass';//审核通过，入驻成功
         } else if (data.state == Setting.ENUMSTATE.enterState.reject) {
           me.curState = 'settleReject';//审核驳回
+          me.loadStoreData();
         }
       }
+    })
+  }
+
+  /**
+   * 查询企业信息
+   * @param data
+   */
+  loadStoreData() {
+    let me = this;
+    $.when(StoreBaseService.loadStoreInfo()).done(data => {
+      if (data) me.rejectOpinion = data.opinion;//驳回意见
     })
   }
 

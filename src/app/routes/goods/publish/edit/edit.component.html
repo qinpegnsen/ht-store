@@ -564,7 +564,7 @@
                       <nz-input name="fixedFreight" [(ngModel)]="publishData.goodsExpressInfo.fixedFreight"
                                 #ngFixedFreight="ngModel" [pattern]="patterns.twodecimal" [nzSize]="'large'"
                                 [nzType]="'number'" required
-                                (keyup)="publishData.goodsExpressInfo.fixedFreight > 9999.99? publishData.goodsExpressInfo.fixedFreight=9999.99:true">
+                                (keyup)="publishData.goodsExpressInfo.fixedFreight > maxFixedFreight? publishData.goodsExpressInfo.fixedFreight=maxFixedFreight:true">
                         <ng-template #addOnAfter>元</ng-template>
                       </nz-input>
                     </div>
@@ -668,7 +668,7 @@
                 </div>
                 <div class="inline-block has-error">
                   <p nz-form-explain *ngIf="ngValidateErrorMsg(ngVolume)==valitateState.empty">
-                  请输入商品体积！</p>
+                    请输入商品体积！</p>
                 </div>
                 <div class="inline-block has-error">
                   <p nz-form-explain *ngIf="ngValidateErrorMsg(ngVolume)==valitateState.error">
