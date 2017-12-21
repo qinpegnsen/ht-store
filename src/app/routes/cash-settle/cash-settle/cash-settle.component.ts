@@ -87,7 +87,6 @@ export class CashSettleComponent implements OnInit {
     $.when(CashSettleService.storeData()).done(data => {
       if (data) {
         me.validateForm = data;//企业信息
-        me.bankCard();//银行卡号加密
       }
     })
   };
@@ -115,10 +114,11 @@ export class CashSettleComponent implements OnInit {
    */
   handleOk = (e) => {
     let me = this;
-    if(me.validateForm.drawMoney==0){
+    if (me.validateForm.drawMoney == 0) {
       me._notification.error('提现失败', '余额不足，无法提现')
       return;
-    };
+    }
+    ;
     me.insertData = me.validateForm;
     me.isConfirmLoading = true;//点击确认按钮加载小圈
     $.when(me.cashSettleService.insertList(me.insertData)).done(data => {
@@ -156,20 +156,12 @@ export class CashSettleComponent implements OnInit {
     return this.validateForm.controls[name];
   }
 
-  /**
-   * 银行卡号加密
-   */
-  bankCard() {
-    let me = this, bank = me.validateForm.controls["balance"].value;
-    let bankCard = String(bank).substring(0, 2) + "*" + String(bank).substring(3);
-    me.validateForm.patchValue({balance: bankCard});
-  }
 
   /**
    * 全部提现
    */
   showDrawMoney() {
-    let me=this;
+    let me = this;
     let money = me.validateForm.balance;
     me.validateForm.drawMoney = money;
   }
