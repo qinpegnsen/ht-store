@@ -46,24 +46,24 @@
           证件类型：
         </div>
         <div nz-col [nzSpan]="12">
-          {{storeInfo.idType | stateName:'2002'}}
+          {{storeInfo.idType | stateName:enum.papersType}}
         </div>
       </div>
-      <div nz-row class="store-info-row" *ngIf="storeInfo.idType==enumState.goodsState.unity">
+      <div nz-row class="store-info-row" *ngIf="storeInfo.idType==enumState.papersType.unity">
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           社会信用代码：
         </div>
-        <div nz-col [nzSpan]="12">
-          {{storeInfo.creditCode}}
+        <div nz-col [nzSpan]="12" >
+          {{storeInfo.creditCode | spliceStr: [4,4]}}
         </div>
       </div>
-      <div *ngIf="storeInfo.idType==enumState.goodsState.normal" class="store-info-normal">
+      <div *ngIf="storeInfo.idType==enumState.papersType.normal" class="store-info-normal">
         <div nz-row class="store-info-row">
           <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
             税务登记证证号：
           </div>
           <div nz-col [nzSpan]="12">
-            {{storeInfo.taxRegistrationCertificate}}
+            {{storeInfo.taxRegistrationCertificate  | spliceStr: [4,4]}}
           </div>
         </div>
         <div nz-row class="store-info-row">
@@ -87,8 +87,8 @@
           <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
             组织结构代码：
           </div>
-          <div nz-col [nzSpan]="12">
-            {{storeInfo.organizationCode}}
+          <div nz-col [nzSpan]="12" >
+            {{storeInfo.organizationCode | spliceStr: [4,4]}}
           </div>
         </div>
         <div nz-row class="store-info-row">
@@ -129,8 +129,8 @@
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           法人身份证号：
         </div>
-        <div nz-col [nzSpan]="12" class="idCard">
-          {{storeInfo.legalPersonIdcard}}
+        <div nz-col [nzSpan]="12">
+          {{storeInfo.legalPersonIdcard | spliceStr: [4,4]}}
         </div>
       </div>
       <div nz-row class="store-info-row">
@@ -235,8 +235,8 @@
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           公司银行账号：
         </div>
-        <div nz-col [nzSpan]="12" class="bankCard">
-          {{storeInfo.bankAccountNumber}}
+        <div nz-col [nzSpan]="12" >
+          {{storeInfo.bankAccountNumber | spliceStr: [4,4]}}
         </div>
       </div>
       <div nz-row class="store-info-row">
@@ -252,7 +252,7 @@
           开户支行银联号：
         </div>
         <div nz-col [nzSpan]="12">
-          {{storeInfo.bankCode}}
+          {{storeInfo.bankCode | spliceStr: [4,4]}}
         </div>
       </div>
       <div nz-row class="store-info-row">
@@ -308,7 +308,7 @@
           结算银行账号：
         </div>
         <div nz-col [nzSpan]="12">
-          {{storeInfo.settlementBankAccountNumber}}
+          {{storeInfo.settlementBankAccountNumber | spliceStr: [4,4]}}
         </div>
       </div>
       <div nz-row class="store-info-row">
@@ -324,7 +324,7 @@
           结算账户开户行支行银联号：
         </div>
         <div nz-col [nzSpan]="12">
-          {{storeInfo.settlementBankCode}}
+          {{storeInfo.settlementBankCode | spliceStr: [4,4]}}
         </div>
       </div>
       <div nz-row class="store-info-row store-info-bottom">

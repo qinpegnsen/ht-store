@@ -212,6 +212,7 @@ export class AddBrandComponent implements OnInit {
           title: '提交成功',
           content: '申请已提交，请等待审核通过'
         });
+        me.location.back();//返回上个页面
       }
       ;
     });

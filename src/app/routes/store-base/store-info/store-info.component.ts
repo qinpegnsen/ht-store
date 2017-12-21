@@ -15,15 +15,12 @@ export class StoreInfoComponent implements OnInit {
   public enumState: any = Setting.ENUMSTATE;//获取枚举状态名
   public enum: any = Setting.ENUM;//获取枚举状态名
   public shops: string = SettingUrl.ROUTERLINK.basic.shops; //店铺信息路由
-  public epCode: any;//代理商编码
   constructor(public location: Location) {
   }
 
   ngOnInit() {
     let me = this;
     me.queryStoreData();//查询企业信息
-    me.bankCard();//银行卡号加密
-    me.idCard();//身份证号加密
   }
 
   /**
@@ -47,24 +44,6 @@ export class StoreInfoComponent implements OnInit {
   back() {
     let me = this;
     me.location.back();
-  }
-
-  /**
-   * 银行卡号加密
-   */
-  bankCard() {
-    let me = this, bank = me.storeInfo.bankAccountNumber;
-    let bankcard = String(bank).substr(0, 3) + '***********' + String(bank).substr(14);
-    $('.bankCard').text(bankcard)
-  }
-
-  /**
-   * 身份证号加密
-   */
-  idCard() {
-    let me = this, card = me.storeInfo.legalPersonIdcard;
-    let idcard = String(card).substr(0, 3) + '***********' + String(card).substr(14);
-    $('.idCard').text(idcard)
   }
 
 }

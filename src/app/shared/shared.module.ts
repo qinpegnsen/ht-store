@@ -13,6 +13,7 @@ import {ImgErrDirective} from "../public/directives/img-err.directive";
 import {StrJsonPipe} from "../public/pipes/str-json.pipe";
 import {CKEditorModule} from "ng2-ckeditor";
 import {CanStoreProvide} from "../public/provide/can-store-provide";
+import {SpliceStrPipe} from "../public/pipes/splice-str.pipe";
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import {CanStoreProvide} from "../public/provide/can-store-provide";
     Level2AreaNamePipe,       //12位地区编码转化地区名称管道
     GetWeekPipe,               //根据日期获取周几的管道
     ImgErrDirective,            //图片加载失败时，加载默认图片
-    StrJsonPipe                //后台返回字符转转化为json格式
+    StrJsonPipe,                //后台返回字符转转化为json格式
+    SpliceStrPipe                //字符串截取加密
   ],
   providers: [CanStoreProvide],
   exports: [
@@ -47,7 +49,8 @@ import {CanStoreProvide} from "../public/provide/can-store-provide";
     GetWeekPipe,               //根据日期获取周几的管道
     ImgErrDirective,          //图片加载失败时，加载默认图片
     CKEditorModule,         //富文本编辑器
-    StrJsonPipe               //后台返回字符转转化为json格式
+    StrJsonPipe,               //后台返回字符转转化为json格式
+    SpliceStrPipe                //字符串截取加密
   ]
 })
 export class SharedModule {
