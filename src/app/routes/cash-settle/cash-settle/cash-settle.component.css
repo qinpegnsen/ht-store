@@ -49,7 +49,8 @@
 }
 
 .settle-search {
-  display: inline-block
+  display: inline-block;
+  margin-left: -22px;
 }
 
 .data {
