@@ -39,6 +39,8 @@
         <span class="search-title">分类：</span>
         <div class="search-main">
           <nz-cascader
+            name="kind"
+            [(ngModel)]="curKinds"
             [nzPlaceHolder]="'分类'"
             [nzSize]="'large'"
             (nzChange)="getKind($event)"
@@ -144,8 +146,9 @@
         <a class="mt-5 underline" (click)="showSkuList(goods.goodsBaseCode,goods.goodsName)">查看所有规格
         </a>
       </td>
-      <td nz-td class="text-center main-color">{{goods.minPrice == goods.maxPrice?
-        '¥'+goods.maxPrice:'¥'+goods.minPrice+'∽¥'+goods.maxPrice}}
+      <td nz-td class="text-center main-color">
+        {{goods.minPrice == goods.maxPrice? '¥ '+(goods.maxPrice | number:'1.2-2'):
+        '¥ '+(goods.minPrice | number:'1.2-2')+' ∽ ¥ '+(goods.maxPrice | number:'1.2-2')}}
       </td>
       <td nz-td class="text-center">{{goods.createTime}}</td>
       <td nz-td class="text-center">
@@ -180,10 +183,10 @@
               <i class="anticon anticon-minus-circle-o"></i>
             </button>
           </nz-popconfirm>-->
-         <!-- <button nz-button *ngIf="goods.state==enumState.goodsState.stop" title="解禁" class="btn-purple"
-                  (click)="changeState('relieve',goods.goodsBaseCode)">
-            <i class="anticon anticon-check"></i>
-          </button>-->
+          <!-- <button nz-button *ngIf="goods.state==enumState.goodsState.stop" title="解禁" class="btn-purple"
+                   (click)="changeState('relieve',goods.goodsBaseCode)">
+             <i class="anticon anticon-check"></i>
+           </button>-->
         </ng-container>
 
         <!--如果是审核不通过的商品，有如下操作-->

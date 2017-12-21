@@ -259,7 +259,7 @@
       </div>
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>法人身份证有效期</label>
+          <label nz-form-item-required>{{validateForm.isForever?'法人身份证有效起始期':'法人身份证有效期'}}</label>
         </div>
         <div>
           <div nz-form-control>

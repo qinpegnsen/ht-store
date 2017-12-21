@@ -32,7 +32,7 @@
     <span *ngIf="choosedKindStr">您当前选择的分类是：{{choosedKindStr}}</span>
   </div>
   <div class="text-center mr mb-15">
-    <button nz-button [nzType]="'button'" [nzSize]="'large'" class="btn-green" [routerLink]="goodsEdit"
+    <button nz-button [nzType]="'button'" [nzSize]="'large'" class="thc-btn-w" [routerLink]="goodsEdit"
             [queryParams]="{kindId:choosedKindId,choosedKind:choosedKindStr}" [disabled]="!choosedKindId">下一步
     </button>
   </div>

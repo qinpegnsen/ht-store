@@ -2,6 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {StoreBaseService} from "../store-base.service";
 import {SettleStepsComponent} from "../settle-steps/settle-steps.component";
 import {Setting} from "../../../public/setting/setting";
+import {AjaxService} from "../../../public/service/ajax.service";
+import {SettingUrl} from "../../../public/setting/setting_url";
 declare var $: any;
 
 @Component({
@@ -32,6 +34,7 @@ export class AuditingComponent implements OnInit {
       if (data) {
         if (data.state == Setting.ENUMSTATE.enterState.half || data.state == Setting.ENUMSTATE.enterState.audit) {
           me.curState = 'auditing';//待审核状态
+          me.logout();//待审核状态下退出登录，当刷新后需要登陆，以保证当前登录信息最新
         } else if (data.state == Setting.ENUMSTATE.enterState.normal) {
           me.curState = 'settlePass';//审核通过，入驻成功
         } else if (data.state == Setting.ENUMSTATE.enterState.reject) {
@@ -40,6 +43,13 @@ export class AuditingComponent implements OnInit {
         }
       }
     })
+  }
+
+  logout(){
+    localStorage.clear(); //清空所有storage
+    AjaxService.get({
+      url: SettingUrl.URL.login.logout
+    });
   }
 
   /**

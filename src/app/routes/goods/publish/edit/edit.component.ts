@@ -23,6 +23,7 @@ export class EditComponent implements OnInit {
   public valitateState: any = Setting.valitateState;//表单验证状态
   public enumState = Setting.ENUMSTATE;   //枚举
   public path: string;                  // 当前路径
+  public changed: boolean = false;      // 是否有修改商品内容
   public saleAttrList: any;             // 所有规格数据
   public brandsList: any;               // 品牌列表
   public unitList: any;                 // 计量单位列表
@@ -918,7 +919,7 @@ export class EditComponent implements OnInit {
     $.when(this.goodsService.saveGoods(me.publishData)).done(data => {
       if (data) {
         if (me.path == 'edit') me.router.navigate([SettingUrl.ROUTERLINK.store.goodsPublished], {queryParams: {baseCode: data}});
-        if (me.path == 'update') me.location.back();
+        if (me.path == 'update') me.changed = true, me.location.back();
       }
     })
   }

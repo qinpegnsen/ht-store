@@ -27,6 +27,7 @@ export class ManageComponent implements OnInit {
   public goodsState: any;  // 商品状态列表
   public query: any = {};    // 查询条件
   public pageMsg = Setting.PAGEMSG;                      //页面提示信息
+  public curKinds;
 
   //路由
   public goodsManagePublish: string = SettingUrl.ROUTERLINK.store.goodsManagePublish;    //商品发布（此处如此写，用于路由相对进入模式）
@@ -76,6 +77,7 @@ export class ManageComponent implements OnInit {
    */
   onDeactivate(event) {
     this.showList = true;
+    if(event.changed) this.queryGoodsList();//如果子页面有修改则返回时刷新列表
   }
 
   /**
@@ -85,6 +87,7 @@ export class ManageComponent implements OnInit {
     let me = this;
     me.query = {};
     me.goodsList = new Page();
+    me.curKinds = null;
     me.queryGoodsList();
   }
 

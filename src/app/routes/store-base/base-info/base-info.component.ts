@@ -48,6 +48,12 @@ export class BaseInfoComponent implements OnInit {
     Util.transAreas(AREA_LEVEL_3_JSON);//将地区数据转成联级组件需要的格式
     this._options = AREA_LEVEL_3_JSON;//地区数据
     this.steps.current = 1;
+
+    /*将时间选择器值置为空*/
+    this.validateForm.idcardStartTime = null;
+    this.validateForm.idcardEndTime = null;
+    this.validateForm.businessLicenceStart = null;
+    this.validateForm.businessLicenceEnd = null;
   }
 
   ngOnInit() {
