@@ -35,13 +35,14 @@
         <!--操作按钮 start-->
         <div class="fr mr-15">
             <!--修改运费模板值按钮-->
-            <button nz-button title="修改"  class="btn-green">
+            <button nz-button title="修改"  class="btn-green" [routerLink]="addTemplate" [queryParams]="{linkType:'updataArticle'}">
               <i class="anticon anticon-edit"></i>
             </button>
             <!--删除运费模板值按钮-->
-            <button  nz-button class="btn-warning"  title="删除">
-              <i class="anticon anticon-delete"></i>
-            </button>
+          <nz-popconfirm [nzTitle]="'确定要删除吗？'" (nzOnConfirm)="delete(organ,i)" (nzOnCancel)="cancel()"
+                         [nzPlacement]="'top'">
+            <button nz-popconfirm nz-button class="btn-warning" title="删除"> <i class="anticon anticon-delete"></i></button>
+          </nz-popconfirm>
         </div>
         <!--操作按钮 end-->
 

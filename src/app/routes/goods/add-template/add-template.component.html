@@ -1,3 +1,4 @@
+<!--添加运费模板值begin-->
 <div class="pt-30" *ngIf="linkType=='addArticle'">
   <form nz-form [formGroup]="validateForm">
     <div nz-form-item nz-row>
@@ -122,33 +123,183 @@
           <!--操作按钮 start-->
           <td class="text-center">
             <!--修改运费模板值按钮-->
-            <button nz-button title="修改" (click)="edit(i);area_model = !area_model" class="btn-green">
-              <i class="anticon anticon-edit"></i>
+            <button nz-button title="为模板设置地区" (click)="edit(i);area_model = !area_model" class="btn-green">
+              <i class="icon icon-diqu"></i>
             </button>
             <!--删除运费模板值按钮-->
-            <button  nz-button class="btn-warning"  title="删除" (click)="delete(organ,i)">
-              <i class="anticon anticon-delete"></i>
-            </button>
+            <nz-popconfirm [nzTitle]="'确定要删除吗？'" title="删除" (nzOnConfirm)="delete(organ,i)" (nzOnCancel)="cancel()"
+                           [nzPlacement]="'top'">
+              <button nz-popconfirm nz-button class="btn-warning"><i class="anticon anticon-delete"></i></button>
+            </nz-popconfirm>w
           </td>
           <!--续费end-->
         </tr>
         </tbody>
         <tfoot>
         <button class="m" nz-button [nzType]="'danger'" [nzGhost]="true">
-          <span (click)="add()"><i class="icon icon-diqu pr"></i>新增运费模板</span>
+          <span (click)="add()"><i class="anticon anticon-plus pr"></i>新增运费模板</span>
         </button>
         </tfoot>
       </table>
       </div>
     </div>
-    <!--<div nz-form-item nz-row>
+  </form>
+</div>
+<!--添加运费模板值end-->
+
+<!--修改运费模板值begin-->
+<!--<div class="pt-30" *ngIf="linkType=='updataArticle'">
+  <form nz-form [formGroup]="validateForm">
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSpan]="3">
+        <label nz-form-item-required>运费模板名称</label>
+      </div>
+      <div nz-col [nzSpan]="16" nz-form-control [nzValidateStatus]="getFormControl('userName')" nzHasFeedback>
+        <nz-input formControlName="userName" [nzType]="'text'" [nzPlaceHolder]="'请填写运费模板名称'" [nzSize]="'large'">
+        </nz-input>
+        <div nz-form-explain *ngIf="getFormControl('userName').dirty&&getFormControl('userName').hasError('required')">请填写运费模板名称</div>
+        <div nz-form-explain *ngIf="getFormControl('userName').dirty&&getFormControl('userName').hasError('duplicated')">请填写运费模板名称</div>
+        <div nz-form-explain *ngIf="getFormControl('userName').dirty&&getFormControl('userName').pending">请填写运费模板名称</div>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSpan]="3">
+        <label> 计价方式</label>
+      </div>
+      <div nz-form-control nz-col [nzSpan]="16">
+        <nz-radio-group formControlName="radio_group">
+          <label nz-radio [nzValue]="1" (click)="number()">
+            <span>按件数 </span>
+          </label>
+          <label nz-radio [nzValue]="2" (click)="weight()">
+            <span>按重量 </span>
+          </label>
+          <label nz-radio [nzValue]="3" (click)="volume()">
+            <span>按体积 </span>
+          </label>
+        </nz-radio-group>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSpan]="3">
+        <label nz-form-item-required>详细设置</label>
+      </div>
+      <div nz-form-control nz-col [nzSpan]="16">
+        <table class="freight-table w100 b">
+          <thead>
+          <tr *ngIf="one">
+            <th class="w42 main-color text-left pl-20">
+              运送到
+            </th>
+            <th class="w10 main-color">
+              首件(件)
+            </th>
+            <th class="w12 main-color">
+              首费(元)
+            </th>
+            <th class="w10 main-color">
+              续件(件)
+            </th>
+            <th class="w12 main-color">
+              续费(元)
+            </th>
+            <th class="w12 main-color">操作</th>
+          </tr>
+          <tr *ngIf="twe">
+            <th class="w42 main-color text-left pl-20">
+              运送到
+            </th>
+            <th class="w10 main-color">
+              首重(Kg)
+            </th>
+            <th class="w12 main-color">
+              首费(元)
+            </th>
+            <th class="w10 main-color">
+              续重(Kg)
+            </th>
+            <th class="w12 main-color">
+              续费(元)
+            </th>
+            <th class="w12 main-color">操作</th>
+          </tr>
+          <tr *ngIf="three">
+            <th class="w42 main-color text-left pl-20">
+              运送到
+            </th>
+            <th class="w10 main-color">
+              首体积(㎡)
+            </th>
+            <th class="w12 main-color">
+              首费(元)
+            </th>
+            <th class="w10 main-color">
+              续体积(㎡)
+            </th>
+            <th class="w12 main-color">
+              续费(元)
+            </th>
+            <th class="w12 main-color">操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of moduleList;let i = index">
+            <td>{{item.area_cn}}</td>
+            &lt;!&ndash;首件 start&ndash;&gt;
+            <td class="text-center">
+              <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
+            </td>
+            &lt;!&ndash;首件end&ndash;&gt;
+
+            &lt;!&ndash;首费 start&ndash;&gt;
+            <td class="text-center">
+              <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
+            </td>
+            &lt;!&ndash;首费end&ndash;&gt;
+
+            &lt;!&ndash;续件 start&ndash;&gt;
+            <td class="text-center">
+              <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
+            </td>
+            &lt;!&ndash;续件end&ndash;&gt;
+
+            &lt;!&ndash;续费 start&ndash;&gt;
+            <td class="text-center">
+              <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
+            </td>
+            &lt;!&ndash;续费end&ndash;&gt;
+
+            &lt;!&ndash;操作按钮 start&ndash;&gt;
+            <td class="text-center">
+              &lt;!&ndash;修改运费模板值按钮&ndash;&gt;
+              <button nz-button title="为模板设置地区" (click)="edit(i);area_model = !area_model" class="btn-green">
+                <i class="icon icon-diqu"></i>
+              </button>
+              &lt;!&ndash;删除运费模板值按钮&ndash;&gt;
+              <button  nz-button class="btn-warning"  title="删除" (click)="delete(organ,i)">
+                <i class="anticon anticon-delete"></i>
+              </button>
+            </td>
+            &lt;!&ndash;续费end&ndash;&gt;
+          </tr>
+          </tbody>
+          <tfoot>
+          <button class="m" nz-button [nzType]="'danger'" [nzGhost]="true">
+            <span (click)="add()"><i class="anticon anticon-plus pr"></i>新增运费模板</span>
+          </button>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    &lt;!&ndash;<div nz-form-item nz-row>
       <div nz-col [nzOffset]="7" [nzSpan]="12" nz-form-control>
         <button nz-button [nzType]="'primary'" [nzSize]="'large'" [disabled]="!validateForm.valid">Submit</button>
         <button nz-button [nzSize]="'large'" (click)="resetForm($event)">Reset</button>
       </div>
-    </div>-->
+    </div>&ndash;&gt;
   </form>
-</div>
+</div>-->
+<!--修改运费模板值end-->
 
 <div class="model" *ngIf="area_model">
   <div class="mask"></div>
@@ -164,6 +315,7 @@
             <div>
               <label nz-checkbox [(ngModel)]="allCheckeds[i]['allChecked']"
                      [nzDisabled]="allCheckeds[i]['disabled']"
+                     (click)="clear()"
                      (ngModelChange)="updateAllChecked(i, null, v.provices)">
                 <span>{{v?.label}}</span>
               </label>
@@ -177,7 +329,12 @@
                        (ngModelChange)="updateAllchildChecked(i, j, name.areaCode)">
                   <span>{{name.label}}{{getCount(name.areaCode)}}</span>
                 </label>
-                <i class="icon-arrow-down mr" (click)="clear(); allCheckeds[i]['content'][j]['childChecked'] = !allCheckeds[i]['content'][j]['childChecked']"></i>
+                <i class="anticon"
+                   [ngClass]="{'anticon-down': allCheckeds[i]['content'][j]['childChecked'], 'anticon-right':
+                   !allCheckeds[i]['content'][j]['childChecked']}"
+                   (click)="clear(i, j);
+                   allCheckeds[i]['content'][j]['childChecked'] = !allCheckeds[i]['content'][j]['childChecked']">
+                </i>
                 <div class="ncsc-citys-sub"  [ngStyle]="{display: allCheckeds[i]['content'][j]['childChecked'] ? 'block': 'none'}">
                   <nz-checkbox-group [(ngModel)]="checkOptionsOnes[name.areaCode][0]"
                                      style=""
@@ -192,9 +349,13 @@
         </tbody>
       </table>
     </div>
-    <div class="model-bottom">
-      <span class="btn btn-default ml lr" (click)="close(); area_model = !area_model">放弃操作</span>
-      <button class="ml btn btn-info pull-left ml" type="button" (click)="getResult(); area_model = !area_model;" >提交信息</button>
+    <div nz-row class="model-bottom">
+      <button class="btn btn-default ml lr" nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w" [routerLink]="storeHome" (click)="close(); area_model = !area_model">
+        <span>放弃操作</span>
+      </button>
+      <button class="ml btn btn-info pull-left ml" nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w" (click)="getResult(); area_model = !area_model;">
+        <span>提交信息</span>
+      </button>
     </div>
   </div>
 </div>

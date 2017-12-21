@@ -110,7 +110,7 @@ export class SettingUrl {
      * 运费模板
      */
     template:{
-      expressTpl: " /expressTpl/queryByStoreCode",//(get)查询运费模板/模板值列表
+      expressTpl: "/expressTpl/queryByStoreCode",//(get)查询运费模板/模板值列表
       delteStoreExpressTplVal: " /expressTpl/delteStoreExpressTplVal",//(deldet)删除模板值
     },
     /**

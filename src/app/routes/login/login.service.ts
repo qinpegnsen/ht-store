@@ -121,6 +121,7 @@ export class LoginService {
           //店铺基础信息
           if (res.data && res.data.storeAvatar) Setting.STOREINFO.storePicture = res.data.storeAvatar; //设置店铺头像
           if (res.data && res.data.storeName) Setting.STOREINFO.name = res.data.storeName; //设置店铺名称
+          if (res.data && res.data.storeCode) Setting.STOREINFO.code = res.data.storeCode; //设置店铺名称
           localStorage.setItem(Setting.cookie.storeInfo, JSON.stringify(Setting.STOREINFO)); //店铺信息存入localStorage
           //企业基础信息
           if (res.data && res.data.epName) Setting.ENTERPTISE.name = res.data.epName; //设置企业名称

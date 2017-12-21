@@ -217,16 +217,19 @@ export class AddTemplateComponent implements OnInit {
   /**
    * 关闭时区域的子集框消失
    */
-  clear() {
+  clear(i?: number, j?: number) {
     let me = this;
-    me.close();
+    me.close(i, j);
   }
 
-  close() {
+  close(i?: number, j?: number) {
     let me = this;
     // allCheckeds[i]['content'][j]['childChecked']
-    me.allCheckeds.forEach(item => {
-      item['content'].forEach(value => {
+    me.allCheckeds.forEach((item, index) => {
+      item['content'].forEach((value, index1) => {
+        if (i + '' && j + '' && index === +i && index1 ===+ j) {
+          return;
+        }
         value['childChecked'] = false;
       })
     })
@@ -371,28 +374,19 @@ export class AddTemplateComponent implements OnInit {
    * 删除运费模板值信息
    * @param event
    */
-  delete(i) {
+  delete(x, i) {
     let me = this;
+    console.log(i);
     me.moduleList.splice(i, 1)
-    me.moduleList[i].area = '';
+    this.session.delData(i)
+    this.session.delCheck(i);
+    // me.moduleList[i].area = '';
   }
-
-
-  submitForm = ($event, value) => {
-    $event.preventDefault();
-    for (const key in this.validateForm.controls) {
-      this.validateForm.controls[ key ].markAsDirty();
-    }
-    console.log(value);
+  /**
+   * 删除按钮的取消按钮
+   */
+  cancel = function () {
   };
-
-  resetForm($event: MouseEvent) {
-    $event.preventDefault();
-    this.validateForm.reset();
-    for (const key in this.validateForm.controls) {
-      this.validateForm.controls[ key ].markAsPristine();
-    }
-  }
 
   userNameAsyncValidator = (control: FormControl): any => {
     return Observable.create(function (observer) {

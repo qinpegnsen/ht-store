@@ -261,7 +261,15 @@ export class SessionService {
     this.set(this.checkOptions + index, value);
   }
 
+  /* ------------------------------------删除----------------------------------------------  */
 
+  delData(index) {
+    return this.deleteIsOk(this.data + index);
+  }
+
+  delCheck(index) {
+    return this.deleteIsOk(this.checkOptions + index);
+  }
   public getData(key, type = 'json') {
     if (this.hasKey(key)) {
       const data = this.disAsyncGet(key, type);

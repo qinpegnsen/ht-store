@@ -40,6 +40,12 @@ export class FreightTemplateComponent implements OnInit {
   isDeactivate(event) {
     this.showFreightList = true;
   }
+  /**
+   * 删除按钮的取消按钮
+   */
+  cancel = function () {
+  };
+
 
   /**
    * 查询模板/模板值列表
@@ -49,9 +55,7 @@ export class FreightTemplateComponent implements OnInit {
   public queryTplList() {
     let me = this;
     me._loading = true; //锁屏
-    me.tplList.params = { //查询参数
-      storeCode: 'SZH_PLAT_SELF_STORE',//传参
-    }
+    me.tplList.params = { }//查询参数
     $.when(GoodsService.freightList(me.tplList.params)).done(data => {
       me._loading = false //解除锁屏
       if (data) me.tplList = data; //赋值
