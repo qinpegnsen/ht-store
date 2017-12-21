@@ -6,6 +6,7 @@ import {GoodsService} from "../goods.service";
 import {SettingUrl} from "../../../public/setting/setting_url";
 import {MainService} from "../../../public/service/main.service";
 import {NzNotificationService} from "ng-zorro-antd";
+import {Util} from "../../../public/util/util";
 declare var $: any;
 
 @Component({
@@ -24,11 +25,12 @@ export class BrandsComponent implements OnInit {
   public pageMsg: any = Setting.PAGEMSG;           //页面提示信息
   public enumStates: any = Setting.ENUMSTATE;                     //枚举状态
   public params: any;//品牌删除传的参数
-
   //路由
   public addBrand: string = SettingUrl.ROUTERLINK.store.addBrand;    //商品发布（此处如此写，用于路由相对进入模式）
   public editBrand: string = SettingUrl.ROUTERLINK.store.editBrand;    //商品发布（此处如此写，用于路由相对进入模式）
-  public brandDetail: string = SettingUrl.ROUTERLINK.store.brandDetail;    //商品发布（此处如此写，用于路由相对进入模式）
+  public brandDetail: string = SettingUrl.ROUTERLINK.store.brandDetail;
+  Util: any;
+  //商品发布（此处如此写，用于路由相对进入模式）
 
   constructor(public goodsService: GoodsService, public _notification: NzNotificationService) {
   }

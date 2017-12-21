@@ -335,6 +335,7 @@ export class GoodsService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.success);
+          me._notification.success('提交成功','申请已提交，请等待审核通过')
         } else {
           me._notification.error(res.status, res.statusText)
         }
@@ -379,6 +380,7 @@ export class GoodsService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.success);
+          me._notification.success('提交成功','申请已提交，请等待审核通过')
         } else {
           me._notification.error(res.status, res.statusText)
         }

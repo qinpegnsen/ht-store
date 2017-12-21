@@ -41,7 +41,6 @@ export class AddBrandComponent implements OnInit {
   }); //品牌logo,初始化上传方法
 
   constructor(public _notification: NzNotificationService,
-              public confirmServ: NzModalService,
               public pattern: PatternService,
               public location: Location,
               public route: ActivatedRoute,
@@ -181,46 +180,32 @@ export class AddBrandComponent implements OnInit {
 
 
   /**
-   * 提交表单
+   * 添加提交表单
    */
   addBrand() {
     let me = this;
     $.when(this.goodsService.addBrand(me.validateForm)).done(res => {
       Util.hideMask();//去掉遮罩层
-      if (res) {
-        this.confirmServ.success({
-          title: '提交成功',
-          content: '申请已提交，请等待审核通过'
-        });
-      }
-      ;
+      me.location.back();//返回上个页面
+      me.brands.queryBrandsList();//刷新品牌查询列表
     });
-
-    // me.location.back();//返回上个页面
   }
 
   /**
-   * 提交表单
+   * 修改提交表单
    */
   updateBrand() {
     let me = this;
     me.validateForm.brandId = me.brandId;
     $.when(this.goodsService.updateBrand(me.validateForm)).done(res => {
       Util.hideMask();//去掉遮罩层
-      if (res) {
-        this.confirmServ.success({
-          title: '提交成功',
-          content: '申请已提交，请等待审核通过'
-        });
-        me.location.back();//返回上个页面
-      }
-      ;
+      me.location.back();//返回上个页面
+      me.brands.queryBrandsList();//刷新品牌查询列表
     });
-    // me.location.back();//返回上个页面
   }
 
   /**
-   * 提交表单
+   * 添加品牌提交
    */
   submitAddBrandForm() {
     let me = this;
@@ -229,7 +214,7 @@ export class AddBrandComponent implements OnInit {
   }
 
   /**
-   * 修改品牌
+   * 修改品牌提交
    */
   updateBrandForm() {
     let me = this;

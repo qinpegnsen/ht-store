@@ -4,7 +4,7 @@
     <span><i class="anticon anticon-red-envelope mr-5 ml font18"></i>余额：
       <b class="main-color font18">￥{{validateForm.balance}}</b>
     </span>
-    <button nz-button class="ml-20 btn-thc" (click)="showModalForTemplate(title, content, footer)" *ngIf="validateForm.balance || validateForm.balance!=0">
+    <button nz-button class="ml-20 btn-thc" (click)="showModalForTemplate(title, content, footer)" *ngIf="validateForm.balance>0">
       提现
     </button>
     <span class="main-color ml-20 cursor settle-record" [routerLink]="cachUrl"><u>提现记录</u></span>
