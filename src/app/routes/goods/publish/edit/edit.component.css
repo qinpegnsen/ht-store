@@ -315,9 +315,15 @@
 .explain {
   position: absolute;
   left: 50%;
+  top: 10px;
   right: 20px;
-  bottom: 10px;
+  bottom: 0;
   margin-left: 170px;
+}
+
+.editer-tip{
+  position: absolute;
+  bottom: 0;
 }
 
 .explain dt {
