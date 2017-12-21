@@ -26,6 +26,7 @@ export class AjaxService {
       console.log('ajax调用参数不能为空');
       return;
     }
+    config.url += ".shtml"; //为所有请求带上后缀
     var async = true, method = 'post', dataType = 'json';
     if (!config.hasOwnProperty('async')) config.async = async;
     if (!config.method) config.method = method;
