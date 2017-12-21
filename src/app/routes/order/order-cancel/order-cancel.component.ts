@@ -68,21 +68,12 @@ export class OrderCancelComponent implements OnInit {
   }
 
   /**
-   * 鼠标放在图片上时大图随之移动
+   * 重置搜索条件
    */
-  showImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'block';
-    target.style.top = (event.clientY + 20) + 'px';
-    target.style.left = (event.clientX + 30) + 'px';
-  }
-
-  /**
-   * 隐藏大图
-   * @param event
-   */
-  hideImg(event) {
-    let target = event.target.nextElementSibling;
-    target.style.display = 'none';
+  public resetQuery(){
+    this.orderquery = {
+      phone: '',//收货人手机号
+      agentOrdno: ''//订单号
+    }
   }
 }

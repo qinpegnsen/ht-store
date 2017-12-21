@@ -46,6 +46,17 @@ export class OrderPaymentComponent implements OnInit {
   }
 
   /**
+   * 重置搜索条件
+   */
+  public resetQuery(){
+    this.orderquery = {
+      phone: '',//收货人手机号
+      agentOrdno: ''//订单号
+    }
+  }
+
+
+  /**
    * 查询待付款订单列表
    * @param event
    * @param curPage

@@ -252,7 +252,7 @@ export class LoginService {
    * @param requestDate
    */
   getSmsCode(phone: string) {
-    console.log("█ 11111 ►►►",  11111);
+    //console.log("█ 11111 ►►►",  11111);
     const me = this;
     let _success: boolean = false;
     AjaxService.post({
@@ -263,7 +263,7 @@ export class LoginService {
         if (res.success) {
           _success = true;
         } else {
-          me._notification.error(`出错了`, res.info)
+          me._notification.error(Setting.AJAX.errorTip,'')
         }
       },
       error: (res) => {
