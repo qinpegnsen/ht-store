@@ -114,11 +114,6 @@ export class CashSettleComponent implements OnInit {
    */
   handleOk = (e) => {
     let me = this;
-    if (me.validateForm.drawMoney == 0) {
-      me._notification.error('提现失败', '余额不足，无法提现')
-      return;
-    }
-    ;
     me.insertData = me.validateForm;
     me.isConfirmLoading = true;//点击确认按钮加载小圈
     $.when(me.cashSettleService.insertList(me.insertData)).done(data => {

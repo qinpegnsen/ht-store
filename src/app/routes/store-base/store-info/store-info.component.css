@@ -40,3 +40,8 @@
 .store-info-normal {
   height: 210px
 }
+
+.img-center {
+  height: 60px;
+  line-height: 60px
+}
