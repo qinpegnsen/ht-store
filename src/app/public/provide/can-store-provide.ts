@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from "@angular/router";
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
 import {Observable} from "rxjs/Observable";
 import {Setting} from "../setting/setting";
+import {SettingUrl} from "../setting/setting_url";
 
 @Injectable()
 export class CanStoreProvide implements CanActivate {
-  constructor() {
+  constructor(public router:Router) {
   }
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
@@ -18,6 +19,7 @@ export class CanStoreProvide implements CanActivate {
       }
       observer.next(false);
       observer.complete();
+      this.router.navigate([SettingUrl.ROUTERLINK.pass.login]); //去登录页面
     });
   }
 
