@@ -185,12 +185,13 @@ export class AddBrandComponent implements OnInit {
   addBrand() {
     let me = this;
     $.when(this.goodsService.addBrand(me.validateForm)).done(res => {
-      Util.hideMask();//去掉遮罩层
       if (res.false) {
+        Util.hideMask();//去掉遮罩层
         return;
+      } else {
+        me.location.back();//返回上个页面
+        me.brands.queryBrandsList();//刷新品牌查询列表
       }
-      me.location.back();//返回上个页面
-      me.brands.queryBrandsList();//刷新品牌查询列表
     });
   }
 
@@ -202,11 +203,12 @@ export class AddBrandComponent implements OnInit {
     me.validateForm.brandId = me.brandId;
     $.when(this.goodsService.updateBrand(me.validateForm)).done(res => {
       if (res.false) {
+        Util.hideMask();//去掉遮罩层
         return;
+      } else {
+        me.location.back();//返回上个页面
+        me.brands.queryBrandsList()//刷新品牌查询列表
       }
-      Util.hideMask();//去掉遮罩层
-      me.location.back();//返回上个页面
-      me.brands.queryBrandsList();//刷新品牌查询列表
     });
   }
 
