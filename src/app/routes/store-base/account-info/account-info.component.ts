@@ -42,11 +42,6 @@ export class AccountInfoComponent implements OnInit {
   ngOnInit() {
     const me = this;
     me.loadStoreData();//查询企业信息
-    $.when(StoreBaseService.loadStoreState()).done(data => {
-      if (data) {//如果是驳回状态，表明是修改信息，则加载已提交数据
-        if (data.state == Setting.ENUMSTATE.enterState.reject) me.loadStoreData();//查询企业信息
-      }
-    })
   }
 
   /**

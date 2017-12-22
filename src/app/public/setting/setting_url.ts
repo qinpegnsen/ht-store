@@ -148,7 +148,7 @@ export class SettingUrl {
   ;
 // 路由链接信息
   static ROUTERLINK: any = {
-      store: {
+    store: {
       home: "/store/home", //首页
       goodsManage: "/store/goods/manage", //管理商品
       goodsManageEdit: "edit",           //商品修改/编辑（此处如此写，用于路由相对进入模式）
