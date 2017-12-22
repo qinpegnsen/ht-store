@@ -7,6 +7,7 @@ import {RouterModule} from "@angular/router";
   imports: [
     SharedModule,
     RouterModule.forRoot(routes)
+    // RouterModule.forRoot(routes,{useHash: true}) //路由锚点模式
   ],
   declarations: [],
   exports: [
