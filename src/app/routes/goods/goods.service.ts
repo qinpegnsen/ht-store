@@ -106,6 +106,7 @@ export class GoodsService {
     AjaxService.get({
       url: SettingUrl.URL.goods.pageDataEdit,
       data: {goodsBaseCode: goodsBaseCode},
+      async: false,
       success: (res) => {
         if (res.success) {
           defer.resolve(res.data);
