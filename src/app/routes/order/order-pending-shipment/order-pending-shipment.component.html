@@ -35,7 +35,7 @@
       <li class="w8 fl text-center">单价</li>
       <li class="w8 fl text-center">数量</li>
       <li class="w10 fl text-center">收货人手机号</li>
-      <li class="w10 fl text-center">店铺名</li>
+      <li class="w10 fl text-center">收货人</li>
       <li class="w8 fl text-center">订单金额（元）</li>
       <li class="w8 fl text-center">交易状态</li>
       <li class="w8 fl text-center">交易操作</li>
@@ -92,6 +92,7 @@
           <td class="w8 text-center bl">{{name.num}}</td>
           <td class="w10 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">{{orders.phone}}</td>
           <td class="w10 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
+            {{orders.linkman}}
           </td>
           <td class="w8 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
             <span class="main-color">&yen; {{orders.ordTotal | number:'1.2-2'}}</span><br>

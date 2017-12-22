@@ -1,25 +1,6 @@
 .freight-table{
-border-radius: 2px;
+border-radius: 6px;
 }
-
-
-.special{
-  height:250px;
-  overflow-y: auto;
-}
-
-.dropdownToggle.btn{
-  text-align: left;
-}
-.dropdownToggle .caret{
-  margin-top: 7px;
-}
-
-:host{
-  display: block;
-  position: relative;
-}
-
 .model{
   position: absolute;
   width: 100%;
@@ -68,8 +49,6 @@ border-radius: 2px;
   padding-right: 20px;
   cursor: pointer;
 }
-
-
 .ncsc-citys-sub{
   background-color: #FFFEC6;
   white-space: normal;
@@ -84,30 +63,12 @@ border-radius: 2px;
 }
 .ncsc-province{
   font-size: 12px;
-  /*vertical-align: top;
-  letter-spacing: normal;
-  word-spacing: normal;*/
   display: inline;
   width: 130px;
   height: 30px;
   position: relative;
 }
-.ng-valid[required], .ng-valid.required  {
-  border-left: 5px solid #42A948; /* green */
-}
-.ng-invalid:not(form)  {
-  border-left: 5px solid #a94442; /* red */
-}
-.col-sm-2 i{
-  color: #a94644;
-}
-.hides{
-  height: 40px;
-  overflow: auto;
-}
-.input-group-addon{
-  padding: 1px!important;
-}
+
 .mask{
   position:fixed;
   left:0;
@@ -119,3 +80,7 @@ border-radius: 2px;
   z-index:173;
 }
 
+.freight-footer{
+  margin-top: 40px;
+  margin-left: 70%;
+}

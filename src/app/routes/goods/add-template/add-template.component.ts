@@ -8,6 +8,7 @@ import {AREA_LEVEL_1_JSON} from "../../../public/util/area_level_1";
 import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
 import {isArray} from "rxjs/util/isArray";
 import {GoodsService} from "../goods.service";
+import {SettingUrl} from "../../../public/setting/setting_url";
 
 @Component({
   selector: 'app-add-template',
@@ -25,16 +26,23 @@ export class AddTemplateComponent implements OnInit {
   area_level2 = AREA_LEVEL_3_JSON;//区域数据
   data: Array<any> = [];//存储区域数据
   checkOptionsOnes = {};
-  public staff: any = {};//获取的模板值数据
-  public area_model: boolean = false;//地区的显示框
-  public one: boolean = true//运费时首选按件数默认为true
-  public twe: boolean = false;//运费时按重量默认为false
-  public three: boolean = false;//运费时按体积默认为false
+  staff: any = {};//获取的模板值数据
+  area_model: boolean = false;//地区的显示框
+  one: boolean = true//运费时首选按件数默认为true
+  twe: boolean = false;//运费时按重量默认为false
+  three: boolean = false;//运费时按体积默认为false
+  freightTemplate: string = SettingUrl.ROUTERLINK.store.goodsFreightTemplate; //首页
+  id: any;//模板ID
+  tplName:any;//模板名称
 
   constructor(private fb: FormBuilder,public routeInfo: ActivatedRoute,public session: SessionService,public goodsService:GoodsService) {
     this.validateForm = this.fb.group({
       userName            : [ '', [ Validators.required ], [ this.userNameAsyncValidator ] ],
-      radio_group         : [ 1 ],
+      firstNum            : [ '', [ Validators.required ] ],
+      firstPrice            : [ '', [ Validators.required ] ],
+      addAttach            : [ '', [ Validators.required ] ],
+      addPrice            : [ '', [ Validators.required ] ],
+      radio_group         : [ 'NUM' ],
     });
   }
 
@@ -42,6 +50,7 @@ export class AddTemplateComponent implements OnInit {
     let me = this;
     me.getallCheckeds();
     me.linkType = this.routeInfo.snapshot.queryParams['linkType'];//获取地址栏的参数
+    me.id = this.routeInfo.snapshot.queryParams['id'];
   }
 
   /**
@@ -362,9 +371,8 @@ export class AddTemplateComponent implements OnInit {
    */
   add() {
     let me  = this;
-    //
     if(me.linkType=='addArticle'){
-      me.moduleList.push({area: '', index: me.moduleList.length + 1, firstNum: '', firstPrice: '', addAttach: '', addPrice: ''});
+      me.moduleList.push({area: '', index: me.moduleList.length + 1,firstNum: '', firstPrice: '', addAttach: '', addPrice: ''});
     }else if(me.linkType=='updataArticle'){
       me.staff.storeExpressTplValList.push({area: '', index: me.moduleList.length + 1, firstNum: '', firstPrice: '', addAttach: '', addPrice: ''});
     }
@@ -386,6 +394,29 @@ export class AddTemplateComponent implements OnInit {
    * 删除按钮的取消按钮
    */
   cancel = function () {
+  };
+
+  /**
+   * 提交表单
+   * @param $event
+   * @param value
+   */
+  submitForm = ($event, value) => {
+
+    $event.preventDefault();
+    for (const key in this.validateForm.controls) {
+      this.validateForm.controls[ key ].markAsDirty();
+    }
+    let json = {
+      tplName: this.tplName,
+      isFree: 'N',
+      valuationType: this.validateForm.value.radio_group,
+      id:this.id,
+      storeExpressTplValList: this.moduleList
+    }
+    console.log(JSON.stringify(json));
+    let formValue = JSON.stringify(json);
+    this.goodsService.addFreight(formValue);
   };
 
   userNameAsyncValidator = (control: FormControl): any => {

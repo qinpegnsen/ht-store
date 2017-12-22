@@ -1,12 +1,12 @@
 <!--添加运费模板值begin-->
 <div class="pt-30" *ngIf="linkType=='addArticle'">
-  <form nz-form [formGroup]="validateForm">
+  <form nz-form>
     <div nz-form-item nz-row>
       <div nz-form-label nz-col [nzSpan]="3">
         <label nz-form-item-required>运费模板名称</label>
       </div>
       <div nz-col [nzSpan]="16" nz-form-control [nzValidateStatus]="getFormControl('userName')" nzHasFeedback>
-        <nz-input formControlName="userName" [nzType]="'text'" [nzPlaceHolder]="'请填写运费模板名称'" [nzSize]="'large'">
+        <nz-input name="userName" [nzType]="'text'" [nzPlaceHolder]="'请填写运费模板名称'" [nzSize]="'large'" name="tplName" [(ngModel)]="tplName">
         </nz-input>
         <div nz-form-explain *ngIf="getFormControl('userName').dirty&&getFormControl('userName').hasError('required')">请填写运费模板名称</div>
         <div nz-form-explain *ngIf="getFormControl('userName').dirty&&getFormControl('userName').hasError('duplicated')">请填写运费模板名称</div>
@@ -18,14 +18,14 @@
         <label> 计价方式</label>
       </div>
       <div nz-form-control nz-col [nzSpan]="16">
-        <nz-radio-group formControlName="radio_group">
-          <label nz-radio [nzValue]="1" (click)="number()">
+        <nz-radio-group name="radio_group">
+          <label nz-radio [nzValue]="'NUM'" (click)="number()">
             <span>按件数 </span>
           </label>
-          <label nz-radio [nzValue]="2" (click)="weight()">
+          <label nz-radio [nzValue]="'WEIGHT'" (click)="weight()">
             <span>按重量 </span>
           </label>
-          <label nz-radio [nzValue]="3" (click)="volume()">
+          <label nz-radio [nzValue]="'VOLUME'" (click)="volume()">
             <span>按体积 </span>
           </label>
         </nz-radio-group>
@@ -95,28 +95,28 @@
         </thead>
         <tbody>
         <tr *ngFor="let item of moduleList;let i = index">
-          <td>{{item.area_cn}}</td>
+          <td class="pl-20">{{item.area_cn}}</td>
           <!--首件 start-->
           <td class="text-center">
-            <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
+            <nz-input  [nzType]="'text'" [nzSize]="'large'" [(ngModel)]="item.firstNum" name="firstNum"></nz-input>
           </td>
           <!--首件end-->
 
           <!--首费 start-->
           <td class="text-center">
-            <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
+            <nz-input  [nzType]="'text'" [nzSize]="'large'" [(ngModel)]="item.firstPrice" name="firstPrice"></nz-input>
           </td>
           <!--首费end-->
 
           <!--续件 start-->
           <td class="text-center">
-            <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
+            <nz-input  [nzType]="'text'" [nzSize]="'large'" name="addAttach" [(ngModel)]="item.addAttach"></nz-input>
           </td>
           <!--续件end-->
 
           <!--续费 start-->
           <td class="text-center">
-            <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
+            <nz-input  [nzType]="'text'" [nzSize]="'large'"  [(ngModel)]="item.addPrice" name="addPrice"></nz-input>
           </td>
           <!--续费end-->
 
@@ -130,7 +130,7 @@
             <nz-popconfirm [nzTitle]="'确定要删除吗？'" title="删除" (nzOnConfirm)="delete(organ,i)" (nzOnCancel)="cancel()"
                            [nzPlacement]="'top'">
               <button nz-popconfirm nz-button class="btn-warning"><i class="anticon anticon-delete"></i></button>
-            </nz-popconfirm>w
+            </nz-popconfirm>
           </td>
           <!--续费end-->
         </tr>
@@ -143,12 +143,23 @@
       </table>
       </div>
     </div>
+
+    <div nz-row class="freight-footer">
+      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w" [routerLink]="freightTemplate">
+        <span>取消</span>
+      </button>
+      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w" (click)="submitForm($event,validateForm.value)">
+        <span>提交</span>
+      </button>
+    </div>
   </form>
+
+
 </div>
 <!--添加运费模板值end-->
 
 <!--修改运费模板值begin-->
-<!--<div class="pt-30" *ngIf="linkType=='updataArticle'">
+<div class="pt-30" *ngIf="linkType=='updataArticle'">
   <form nz-form [formGroup]="validateForm">
     <div nz-form-item nz-row>
       <div nz-form-label nz-col [nzSpan]="3">
@@ -245,42 +256,42 @@
           <tbody>
           <tr *ngFor="let item of moduleList;let i = index">
             <td>{{item.area_cn}}</td>
-            &lt;!&ndash;首件 start&ndash;&gt;
+            <!--首件 start-->
             <td class="text-center">
               <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
             </td>
-            &lt;!&ndash;首件end&ndash;&gt;
+            <!--首件end-->
 
-            &lt;!&ndash;首费 start&ndash;&gt;
+            <!--首费 start-->
             <td class="text-center">
               <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
             </td>
-            &lt;!&ndash;首费end&ndash;&gt;
+            <!--首费end-->
 
-            &lt;!&ndash;续件 start&ndash;&gt;
+            <!--续件 start-->
             <td class="text-center">
               <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
             </td>
-            &lt;!&ndash;续件end&ndash;&gt;
+            <!--续件end-->
 
-            &lt;!&ndash;续费 start&ndash;&gt;
+            <!--续费 start-->
             <td class="text-center">
               <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
             </td>
-            &lt;!&ndash;续费end&ndash;&gt;
+            <!--续费end-->
 
-            &lt;!&ndash;操作按钮 start&ndash;&gt;
+            <!--操作按钮 start-->
             <td class="text-center">
-              &lt;!&ndash;修改运费模板值按钮&ndash;&gt;
+              <!--修改运费模板值按钮-->
               <button nz-button title="为模板设置地区" (click)="edit(i);area_model = !area_model" class="btn-green">
                 <i class="icon icon-diqu"></i>
               </button>
-              &lt;!&ndash;删除运费模板值按钮&ndash;&gt;
+              <!--删除运费模板值按钮-->
               <button  nz-button class="btn-warning"  title="删除" (click)="delete(organ,i)">
                 <i class="anticon anticon-delete"></i>
               </button>
             </td>
-            &lt;!&ndash;续费end&ndash;&gt;
+            <!--续费end-->
           </tr>
           </tbody>
           <tfoot>
@@ -291,14 +302,14 @@
         </table>
       </div>
     </div>
-    &lt;!&ndash;<div nz-form-item nz-row>
+    <!--<div nz-form-item nz-row>
       <div nz-col [nzOffset]="7" [nzSpan]="12" nz-form-control>
         <button nz-button [nzType]="'primary'" [nzSize]="'large'" [disabled]="!validateForm.valid">Submit</button>
         <button nz-button [nzSize]="'large'" (click)="resetForm($event)">Reset</button>
       </div>
-    </div>&ndash;&gt;
+    </div>-->
   </form>
-</div>-->
+</div>
 <!--修改运费模板值end-->
 
 <div class="model" *ngIf="area_model">

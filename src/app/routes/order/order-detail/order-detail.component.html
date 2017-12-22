@@ -79,7 +79,7 @@
 <div class="order-state">
   <div class="order-state-steps">
     <nz-steps  [(nzCurrent)]="current" class="lg thc">
-      <nz-step [nzTitle]="'待付款'"></nz-step>
+      <nz-step  [nzTitle]="'待付款'"></nz-step>
       <nz-step [nzTitle]="'待发货'"></nz-step>
       <nz-step [nzTitle]="'已发货'"></nz-step>
       <nz-step [nzTitle]="'已完成'"></nz-step>
@@ -107,9 +107,9 @@
           <ng-container>
             <div class="tag-dib imgbox text-center mr">
               <nz-popover [nzTrigger]="'click'">
-                <img  [src]="name.goodsImage | imgSize :'80'" appImgErr  title="点击查看大图" nz-popover>
+                <img  [src]="item.goodsImage | imgSize :'80'" appImgErr  title="点击查看大图" nz-popover>
                 <ng-template #nzTemplate>
-                  <img [src]="name.goodsImage | imgSize :'200'" appImgErr >
+                  <img [src]="item.goodsImage | imgSize :'200'" appImgErr >
                 </ng-template>
               </nz-popover>
             </div>
@@ -117,10 +117,10 @@
         </div>
         <div class="pl">
           <p>
-            <a class="font14" href="javascript:;">{{name.goodsName}}</a>
+            <a class="font14" href="javascript:;">{{item.goodsName}}</a>
           </p>
           <p class="pt-20">
-                  <span  *ngFor="let attr of name.goodsSavSet | strJson">
+                  <span  *ngFor="let attr of item.goodsSavSet | strJson">
                   <span class="inline">{{attr.attrName}}：</span>
                   <span class="inline">{{attr.value}}</span>
                 </span>

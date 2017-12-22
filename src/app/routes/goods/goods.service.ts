@@ -3,13 +3,16 @@ import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {NzNotificationService} from "ng-zorro-antd";
 import {isNullOrUndefined, isUndefined} from "util";
+import {Router} from "@angular/router";
+import {Setting} from "../../public/setting/setting";
+import {defer} from "rxjs/observable/defer";
 
 declare var $: any;
 
 @Injectable()
 export class GoodsService {
 
-  constructor(public _notification: NzNotificationService) {
+  constructor(public _notification: NzNotificationService, public router: Router) {
   }
 
   /**
@@ -335,7 +338,7 @@ export class GoodsService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.success);
-          me._notification.success('提交成功','申请已提交，请等待审核通过')
+          me._notification.success('提交成功', '申请已提交，请等待审核通过')
         } else {
           me._notification.error('提交失败', res.info)
         }
@@ -351,18 +354,18 @@ export class GoodsService {
    * 删除品牌
    * @param data （查询参数）
    */
-  static delBrand(data:any){
-    let  me = this;
+  static delBrand(data: any) {
+    let me = this;
     var defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.del({
       url: SettingUrl.URL.goods.delBrand,
       data: data,
-      async:false,
+      async: false,
       success: (data) => {
         defer.resolve(data);
       },
-      error:(data) => {
+      error: (data) => {
         defer.resolve(false);
       }
     });
@@ -372,7 +375,7 @@ export class GoodsService {
   /**
    * 修改品牌
    */
- updateBrand(requestData: any) {
+  updateBrand(requestData: any) {
     let me = this, defer = $.Deferred(); //封装异步请求结果
     AjaxService.put({
       url: SettingUrl.URL.goods.upBrand,
@@ -380,7 +383,7 @@ export class GoodsService {
       success: (res) => {
         if (res.success) {
           defer.resolve(res.success);
-          me._notification.success('提交成功','申请已提交，请等待审核通过')
+          me._notification.success('提交成功', '申请已提交，请等待审核通过')
         } else {
           me._notification.error('提交失败', res.info)
         }
@@ -390,5 +393,28 @@ export class GoodsService {
       }
     });
     return defer.promise(); //返回异步请求信息
+  }
+
+  /**
+   * 添加运费模板
+   * @param requestDate
+   */
+  addFreight(requestDate: any) {
+    const me = this;
+    AjaxService.post({
+      url: SettingUrl.URL.template.addStoreExpressTpl,
+      data: {storeExpressStr: requestDate},
+      success: (res) => {
+        if (res.success) {
+          me._notification.success('成功', res.info);
+          this.router.navigate([SettingUrl.ROUTERLINK.store.goodsFreightTemplate], {replaceUrl: true})
+        } else {
+          me._notification.error('失败', res.info)
+        }
+      },
+      error: (res) => {
+        me._notification.error(Setting.AJAX.errorTip, '')
+      }
+    });
   }
 }
