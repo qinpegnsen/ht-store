@@ -185,6 +185,9 @@
   <!--品牌详情  start-->
   <ng-container *ngIf="path == 'detail'">
     <div class="p w60 t-items">
+      <dl nz-row class="t-item item-head">
+          品牌信息：
+      </dl>
       <dl nz-row class="t-item">
         <dt nz-col [nzSpan]="6" class="item-hd">品牌名称：</dt>
         <dd nz-col [nzSpan]="18" class="item-bd mb0">{{validateForm.brandName}}</dd>
@@ -196,17 +199,6 @@
       <dl nz-row class="t-item">
         <dt nz-col [nzSpan]="6" class="item-hd">品牌所有人：</dt>
         <dd nz-col [nzSpan]="18" class="item-bd mb0">{{validateForm.brandHolder}}</dd>
-      </dl>
-
-      <dl nz-row class="t-item">
-        <td nz-col [nzSpan]="6" class="item-hd">审核状态：</td>
-        <td nz-col [nzSpan]="18" class="item-bd mb0">{{validateForm.state | stateName: enums.brandApplyState}}
-        </td>
-      </dl>
-      <dl nz-row class="t-item" *ngIf="validateForm.reason">
-        <td nz-col [nzSpan]="6" class="item-hd">驳回原因：</td>
-        <td nz-col [nzSpan]="18" class="item-bd mb0">{{validateForm.reason}}
-        </td>
       </dl>
       <dl nz-row class="t-item">
         <td nz-col [nzSpan]="6" class="item-hd">品牌图片：</td>
@@ -237,7 +229,6 @@
               <div><img [src]="validateForm.registration2 | imgSize:'200'"></div>
             </ng-template>
           </nz-popover></span>
-
         </td>
       </dl>
       <dl nz-row class="t-item">
@@ -247,6 +238,19 @@
       <dl nz-row class="t-item">
         <td nz-col [nzSpan]="6" class="item-hd">更新时间：</td>
         <td nz-col [nzSpan]="18" class="item-bd mb0">{{validateForm.updateTime}}</td>
+      </dl>
+      <dl nz-row class="t-item item-head">
+        审核信息：
+      </dl>
+      <dl nz-row class="t-item">
+        <td nz-col [nzSpan]="6" class="item-hd">审核状态：</td>
+        <td nz-col [nzSpan]="18" class="item-bd mb0">{{validateForm.state | stateName: enums.brandApplyState}}
+        </td>
+      </dl>
+      <dl nz-row class="t-item" *ngIf="validateForm.reason">
+        <td nz-col [nzSpan]="6" class="item-hd">驳回原因：</td>
+        <td nz-col [nzSpan]="18" class="item-bd mb0">{{validateForm.reason}}
+        </td>
       </dl>
     </div>
   </ng-container>
