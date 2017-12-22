@@ -13,6 +13,7 @@
         <span class="search-title">审核状态：</span>
         <div class="search-main">
           <nz-select class="w100" name="goodsAudit" [(ngModel)]="query.goodsAudit" [nzSize]="'large'"
+                     [nzPlaceHolder]="'审核状态'"
                      (ngModelChange)="queryGoodsList(1)">
             <nz-option
               *ngFor="let item of goodsAudits"
@@ -26,6 +27,7 @@
         <span class="search-title">商品状态：</span>
         <div class="search-main">
           <nz-select class="w100" name="state" [(ngModel)]="query.state" [nzSize]="'large'"
+                     [nzPlaceHolder]="'商品状态'"
                      (ngModelChange)="queryGoodsList(1)">
             <nz-option
               *ngFor="let item of goodsState"
