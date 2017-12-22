@@ -29,7 +29,7 @@
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngEnglishName)" nzHasFeedback>
           <nz-input name="englishName" [(ngModel)]="validateForm.englishName" #ngEnglishName="ngModel" required
-                    [nzRows]="2" [pattern]="pattern.letter"
+                    [nzRows]="2" [pattern]="pattern.letterNumber"
                     [nzPlaceHolder]="'请输入品牌英文名称!'" [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain *ngIf="ngValidateErrorMsg(ngEnglishName) == valitateState.empty">

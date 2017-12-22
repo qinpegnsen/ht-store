@@ -25,7 +25,8 @@ export class PatternService {
   public static SMS_REGEXP: RegExp = /^[0-9]{6}$/;//短信验证码
   public static PHONE_REGEXP: RegExp = /^1[0-9]{10}$/;//手机号
   public static IDCARD_REGEXP: RegExp = /^(^[1-9][0-9]{7}((0[0-9])|(1[0-2]))(([0|1|2][0-9])|3[0-1])[0-9]{3}$)|(^[1-9][0-9]{5}[1-9][0-9]{3}((0[0-9])|(1[0-2]))(([0|1|2][0-9])|3[0-1])(([0-9]{4})|[0-9]{3}[Xx])$)$/;//身份证号
-  public icCard:any;
+  public icCard:any;//银行卡正则（15~32位）
+  public letterNumber:any;//字母和符号
   constructor() {
     this.num = '^[0-9]*$'; //数字正则
     this.letter = '^[A-Za-z]*$'; //字母正则
@@ -43,6 +44,7 @@ export class PatternService {
     this.integer = '^[0-9]*[1-9][0-9]*$';   //只能正整数
     this.storage = '^[1-9]{1}[0-9]+';//库存，十以上正整数
     this.icCard= '^[0-9]{15,32}$'; //银行卡正则（15~32位）
+    this.letterNumber='^[A-Za-z]|[\s]|[/]+$';//字母和符号
   }
 
 }
