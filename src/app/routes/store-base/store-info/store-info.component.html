@@ -30,7 +30,7 @@
           联系人姓名：
         </div>
         <div nz-col [nzSpan]="12" [ngClass]="{'store-info-nowrite':!storeInfo.contactsName}">
-          {{storeInfo.contactsName || "未填写"}}
+          {{storeInfo.contactsName || "【未填写】"}}
         </div>
       </div>
       <div nz-row class="store-info-row">
@@ -38,7 +38,7 @@
           联系人手机号：
         </div>
         <div nz-col [nzSpan]="12" [ngClass]="{'store-info-nowrite':!storeInfo.contactsPhone}">
-          {{storeInfo.contactsPhone || "未填写"}}
+          {{storeInfo.contactsPhone || "【未填写】"}}
         </div>
       </div>
       <div nz-row class="store-info-row">
