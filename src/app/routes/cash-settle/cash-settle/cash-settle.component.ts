@@ -114,6 +114,9 @@ export class CashSettleComponent implements OnInit {
    */
   handleOk = (e) => {
     let me = this;
+    if (me.validateForm.balance == 0) {
+      return;
+    }
     me.insertData = me.validateForm;
     me.isConfirmLoading = true;//点击确认按钮加载小圈
     $.when(me.cashSettleService.insertList(me.insertData)).done(data => {

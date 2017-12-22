@@ -4,7 +4,7 @@
     <span><i class="anticon anticon-red-envelope mr-5 ml font18"></i>余额：
       <b class="main-color font18">￥{{validateForm.balance}}</b>
     </span>
-    <button nz-button class="ml-20 btn-thc" (click)="showModalForTemplate(title, content, footer)" >
+    <button nz-button class="ml-20 btn-thc" (click)="showModalForTemplate(title, content, footer)" *ngIf="validateForm.balance>0" >
       提现
     </button>
     <span class="main-color ml-20 cursor settle-record" [routerLink]="cachUrl"><u>提现记录</u></span>
@@ -149,7 +149,7 @@
         </div>
       </div>
       <div class="settle-search">
-        <button nz-button [nzSize]="'large'" class="ml-20 btn-thc mr-10" (click)="qeuryCashData()">
+        <button nz-button [nzSize]="'large'" class="ml-20 btn-thc mr" (click)="qeuryCashData()">
           <i class="anticon anticon-search"></i> <span>搜索</span>
         </button>
         <button nz-button [nzType]="'primary'" class="btn-thc" [nzSize]="'large'"
