@@ -9,6 +9,7 @@ import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
 import {isArray} from "rxjs/util/isArray";
 import {GoodsService} from "../goods.service";
 import {SettingUrl} from "../../../public/setting/setting_url";
+declare var $: any;
 
 @Component({
   selector: 'app-add-template',
@@ -18,6 +19,7 @@ import {SettingUrl} from "../../../public/setting/setting_url";
 export class AddTemplateComponent implements OnInit {
   validateForm: FormGroup;//添加运费模板的表单
   moduleList = [];//运费模板值列表
+  storeExpressTplValList = [];//运费模板值列表
   linkType: string;//判断是添加模板还是修改模板
   cru: number = 0;//选择地区时获取的下标
   allCheckeds = [];//全选所有的
@@ -51,7 +53,9 @@ export class AddTemplateComponent implements OnInit {
     me.getallCheckeds();
     me.linkType = this.routeInfo.snapshot.queryParams['linkType'];//获取地址栏的参数
     me.id = this.routeInfo.snapshot.queryParams['id'];
+    this.queryFormwork();//请求模板详细数据并显示
   }
+
 
   /**
    * 遍历所有的地区数据（第一级，第二级的）
@@ -397,7 +401,7 @@ export class AddTemplateComponent implements OnInit {
   };
 
   /**
-   * 提交表单
+   * 提交添加表单
    * @param $event
    * @param value
    */
@@ -418,6 +422,49 @@ export class AddTemplateComponent implements OnInit {
     let formValue = JSON.stringify(json);
     this.goodsService.addFreight(formValue);
   };
+
+  /**
+   * 提交修改表单
+   * @param $event
+   * @param value
+   */
+  submitForms = ($event, value) => {
+    $event.preventDefault();
+    for (const key in this.validateForm.controls) {
+      this.validateForm.controls[ key ].markAsDirty();
+    }
+    this.staff.storeExpressTplValList.forEach(ele => {
+      delete ele.createTimeBegin
+      delete ele.createTimeEnd
+      delete ele.updateTimeBegin
+      delete ele.updateTimeEnd
+    })
+    let json = {
+      tplName: this.tplName,
+      isFree: 'N',
+      valuationType: this.validateForm.value.radio_group,
+      id:this.id,
+      storeExpressTplValList: this.storeExpressTplValList
+    }
+    console.log(JSON.stringify(json));
+    let formValue = JSON.stringify(json);
+    this.goodsService.addFreight(formValue);
+  };
+
+  /**
+   * 请求模板详细数据并显示
+   */
+  queryFormwork() {
+      let me = this;
+      let data1= { //查询参数
+        id: me.id
+      }
+      $.when(GoodsService.queryFreightSmg(data1)).done(data => {
+        if(data) me.staff = data; //赋值
+        console.log("█  me.orderData ►►►",   me.staff);
+
+      })
+  }
 
   userNameAsyncValidator = (control: FormControl): any => {
     return Observable.create(function (observer) {

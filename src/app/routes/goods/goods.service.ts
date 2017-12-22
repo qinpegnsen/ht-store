@@ -5,7 +5,6 @@ import {NzNotificationService} from "ng-zorro-antd";
 import {isNullOrUndefined, isUndefined} from "util";
 import {Router} from "@angular/router";
 import {Setting} from "../../public/setting/setting";
-import {defer} from "rxjs/observable/defer";
 
 declare var $: any;
 
@@ -417,5 +416,25 @@ export class GoodsService {
         me._notification.error(Setting.AJAX.errorTip, '')
       }
     });
+  }
+
+
+  /**
+   * 查询模板详细信息
+   * @param data
+   * @returns {any<T>}
+   */
+  static queryFreightSmg(data:any) {
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
+    AjaxService.get({
+      url: SettingUrl.URL.template.loadStoreExpressTpl,
+      data: data,
+      async:false,
+      success: (data) => {
+        if (data.success) defer.resolve(data.data);
+      }
+    });
+    return defer.promise(); //返回异步请求休息
   }
 }

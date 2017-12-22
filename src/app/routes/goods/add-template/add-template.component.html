@@ -19,13 +19,13 @@
       </div>
       <div nz-form-control nz-col [nzSpan]="16">
         <nz-radio-group name="radio_group">
-          <label nz-radio [nzValue]="'NUM'" (click)="number()">
+          <label nz-radio [nzValue]="'NUM'" name="valuationType" (click)="number()">
             <span>按件数 </span>
           </label>
-          <label nz-radio [nzValue]="'WEIGHT'" (click)="weight()">
+          <label nz-radio [nzValue]="'WEIGHT'" name="valuationType" (click)="weight()">
             <span>按重量 </span>
           </label>
-          <label nz-radio [nzValue]="'VOLUME'" (click)="volume()">
+          <label nz-radio [nzValue]="'VOLUME'"name="valuationType"  (click)="volume()">
             <span>按体积 </span>
           </label>
         </nz-radio-group>
@@ -160,13 +160,13 @@
 
 <!--修改运费模板值begin-->
 <div class="pt-30" *ngIf="linkType=='updataArticle'">
-  <form nz-form [formGroup]="validateForm">
+  <form nz-form>
     <div nz-form-item nz-row>
       <div nz-form-label nz-col [nzSpan]="3">
         <label nz-form-item-required>运费模板名称</label>
       </div>
       <div nz-col [nzSpan]="16" nz-form-control [nzValidateStatus]="getFormControl('userName')" nzHasFeedback>
-        <nz-input formControlName="userName" [nzType]="'text'" [nzPlaceHolder]="'请填写运费模板名称'" [nzSize]="'large'">
+        <nz-input  [nzType]="'text'" [nzPlaceHolder]="'请填写运费模板名称'" [nzSize]="'large'" name="tplName" #modelname="ngModel" ngModel [(ngModel)]="staff.tplName">
         </nz-input>
         <div nz-form-explain *ngIf="getFormControl('userName').dirty&&getFormControl('userName').hasError('required')">请填写运费模板名称</div>
         <div nz-form-explain *ngIf="getFormControl('userName').dirty&&getFormControl('userName').hasError('duplicated')">请填写运费模板名称</div>
@@ -178,14 +178,14 @@
         <label> 计价方式</label>
       </div>
       <div nz-form-control nz-col [nzSpan]="16">
-        <nz-radio-group formControlName="radio_group">
-          <label nz-radio [nzValue]="1" (click)="number()">
+        <nz-radio-group >
+          <label nz-radio [nzValue]="'NUM'" (click)="number()" >
             <span>按件数 </span>
           </label>
-          <label nz-radio [nzValue]="2" (click)="weight()">
+          <label nz-radio [nzValue]="'WEIGHT'" (click)="weight()" >
             <span>按重量 </span>
           </label>
-          <label nz-radio [nzValue]="3" (click)="volume()">
+          <label nz-radio [nzValue]="'VOLUME'" (click)="volume()">
             <span>按体积 </span>
           </label>
         </nz-radio-group>
@@ -202,50 +202,25 @@
             <th class="w42 main-color text-left pl-20">
               运送到
             </th>
-            <th class="w10 main-color">
+            <th class="w10 main-color" *ngIf="staff.valuationType=='NUM'">
               首件(件)
             </th>
+            <th class="w10 main-color" *ngIf="staff.valuationType=='WEIGHT'">
+              首重(Kg)
+            </th> <th class="w10 main-color" *ngIf="staff.valuationType=='VOLUME'">
+            首体积(m³)
+          </th>
             <th class="w12 main-color">
               首费(元)
             </th>
-            <th class="w10 main-color">
+            <th class="w10 main-color" *ngIf="staff.valuationType=='NUM'">
               续件(件)
             </th>
-            <th class="w12 main-color">
-              续费(元)
-            </th>
-            <th class="w12 main-color">操作</th>
-          </tr>
-          <tr *ngIf="twe">
-            <th class="w42 main-color text-left pl-20">
-              运送到
-            </th>
-            <th class="w10 main-color">
-              首重(Kg)
-            </th>
-            <th class="w12 main-color">
-              首费(元)
-            </th>
-            <th class="w10 main-color">
+            <th class="w10 main-color" *ngIf="staff.valuationType=='WEIGHT'">
               续重(Kg)
             </th>
-            <th class="w12 main-color">
-              续费(元)
-            </th>
-            <th class="w12 main-color">操作</th>
-          </tr>
-          <tr *ngIf="three">
-            <th class="w42 main-color text-left pl-20">
-              运送到
-            </th>
-            <th class="w10 main-color">
-              首体积(㎡)
-            </th>
-            <th class="w12 main-color">
-              首费(元)
-            </th>
-            <th class="w10 main-color">
-              续体积(㎡)
+            <th class="w10 main-color" *ngIf="staff.valuationType=='VOLUME'">
+              续体积(m³)
             </th>
             <th class="w12 main-color">
               续费(元)
@@ -254,29 +229,29 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let item of moduleList;let i = index">
-            <td>{{item.area_cn}}</td>
+          <tr *ngFor="let item of staff.storeExpressTplValList;let i = index">
+            <div class="hides pl-20">{{item.area | level2AreaName}}</div>
             <!--首件 start-->
             <td class="text-center">
-              <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
+              <nz-input  [nzType]="'text'" [nzSize]="'large'" [(ngModel)]="item.firstNum" name="firstNum{{i}}" #firstNum="ngModel"></nz-input>
             </td>
             <!--首件end-->
 
             <!--首费 start-->
             <td class="text-center">
-              <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
+              <nz-input  [nzType]="'text'" [nzSize]="'large'" [(ngModel)]="item.firstPrice" name="firstPrice{{i}}" #firstPrice="ngModel"></nz-input>
             </td>
             <!--首费end-->
 
             <!--续件 start-->
             <td class="text-center">
-              <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
+              <nz-input  [nzType]="'text'" [nzSize]="'large'" name="addAttach{{i}}" [(ngModel)]="item.addAttach" #addAttach="ngModel"></nz-input>
             </td>
             <!--续件end-->
 
             <!--续费 start-->
             <td class="text-center">
-              <nz-input  [nzType]="'text'" [nzSize]="'large'"></nz-input>
+              <nz-input  [nzType]="'text'" [nzSize]="'large'" [(ngModel)]="item.addPrice" name="addPrice{{i}}" #addPrice="ngModel"></nz-input>
             </td>
             <!--续费end-->
 
@@ -302,12 +277,14 @@
         </table>
       </div>
     </div>
-    <!--<div nz-form-item nz-row>
-      <div nz-col [nzOffset]="7" [nzSpan]="12" nz-form-control>
-        <button nz-button [nzType]="'primary'" [nzSize]="'large'" [disabled]="!validateForm.valid">Submit</button>
-        <button nz-button [nzSize]="'large'" (click)="resetForm($event)">Reset</button>
-      </div>
-    </div>-->
+    <div nz-row class="freight-footer">
+      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w" [routerLink]="freightTemplate">
+        <span>取消</span>
+      </button>
+      <button nz-button [nzType]="'default'" [nzSize]="'large'" class="thc-btn-w" (click)="submitForms($event,validateForm.value)">
+        <span>提交</span>
+      </button>
+    </div>
   </form>
 </div>
 <!--修改运费模板值end-->

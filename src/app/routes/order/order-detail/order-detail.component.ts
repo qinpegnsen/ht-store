@@ -11,13 +11,13 @@ declare var $: any;
   styleUrls: ['./order-detail.component.css']
 })
 export class OrderDetailComponent implements OnInit {
-  current = 0;                   //步骤条
+  //current = 0;                   //步骤条
   _loading:boolean = false;             //查询时锁屏
   ordno:string;                        //订单号
   orderData: any;              //订单的数据
   enum = Setting.ENUM;      // 订单付款类型
   orderState :any= Setting.ENUMSTATE;               //定义枚举状态
-  state: string = this.orderState.ordState.cr;     //待付款状态的订单
+  states: string = this.orderState.ordState.cr;     //待付款状态的订单
 
   constructor(public router: Router, public routeInfo:ActivatedRoute) { }
 

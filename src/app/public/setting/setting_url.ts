@@ -113,6 +113,7 @@ export class SettingUrl {
       expressTpl: "/expressTpl/queryByStoreCode",//(get)查询运费模板/模板值列表
       delteStoreExpressTplVal: "/expressTpl/delteStoreExpressTplVal",//(deldet)删除模板值
       addStoreExpressTpl: "/expressTpl/addStoreExpressTpl",//(post)添加模板值
+      loadStoreExpressTpl: "/expressTpl/loadStoreExpressTpl",//(get)查询运费模板详细信息
     },
     /**
      * 提现与账单明细

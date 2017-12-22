@@ -11,6 +11,10 @@ border-radius: 6px;
   align-content: center;
   z-index: 4;
 }
+.hides{
+  height: 50px;
+  overflow: auto;
+}
 .model .model-main{
   width: 875px;
   background: #ffffff;
