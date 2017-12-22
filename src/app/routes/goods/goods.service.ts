@@ -337,11 +337,11 @@ export class GoodsService {
           defer.resolve(res.success);
           me._notification.success('提交成功','申请已提交，请等待审核通过')
         } else {
-          me._notification.error(res.status, res.statusText)
+          me._notification.error('提交失败', res.info)
         }
       },
       error: (res) => {
-        me._notification.error(res.status, res.statusText)
+        me._notification.error('提交失败', res.info)
       }
     });
     return defer.promise(); //返回异步请求信息
@@ -382,11 +382,11 @@ export class GoodsService {
           defer.resolve(res.success);
           me._notification.success('提交成功','申请已提交，请等待审核通过')
         } else {
-          me._notification.error(res.status, res.statusText)
+          me._notification.error('提交失败', res.info)
         }
       },
       error: (res) => {
-        me._notification.error(res.status, res.statusText)
+        me._notification.error('提交失败', res.info)
       }
     });
     return defer.promise(); //返回异步请求信息
