@@ -263,7 +263,7 @@ export class LoginService {
         if (res.success) {
           _success = true;
         } else {
-          me._notification.error(Setting.AJAX.errorTip,'')
+          me._notification.error('失败', res.info)
         }
       },
       error: (res) => {

@@ -17,7 +17,6 @@ export class ResetPasswordComponent implements OnInit {
   phoneState: string;//获取验证码时判断手机号是否输入
   phone:string; //订单号
   code:string; //快递号
-  auditsDataList:any = new Array;  //物流信息
 
   constructor(public loginService: LoginService, public forgetPwd: ForgetPasswordComponent,public _notification: NzNotificationService) {
     this.validateForm = this.loginService.validateFormReset;////重置密码的表单
