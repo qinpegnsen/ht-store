@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit} from "@angular/core";
+import {FormGroup} from "@angular/forms";
 import {Setting} from "../../../public/setting/setting";
 import {LoginService} from "../login.service";
 import {SettingUrl} from "../../../public/setting/setting_url";
+import {Util} from "../../../public/util/util";
 
 @Component({
   selector: 'app-change-password',
@@ -12,8 +13,8 @@ import {SettingUrl} from "../../../public/setting/setting_url";
 export class ChangePasswordComponent implements OnInit {
   validateForm: FormGroup;//修改密码表单
   app = Setting.APP; //平台基本信息
-  phoneState: string;//获取验证码时判断手机号是否输入
   storeHome: string = SettingUrl.ROUTERLINK.store.home; //首页
+  progressCheck: any = Util.validate; //表单验证
 
   constructor(public loginService: LoginService) {
     this.validateForm = this.loginService.changePassword;//新密码的表单

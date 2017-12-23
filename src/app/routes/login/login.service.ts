@@ -5,6 +5,7 @@ import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {NzNotificationService} from "ng-zorro-antd";
 import {Setting} from "../../public/setting/setting";
+import {Util} from "../../public/util/util";
 
 @Injectable()
 export class LoginService {
@@ -17,46 +18,19 @@ export class LoginService {
   constructor(public router: Router, public fb: FormBuilder, public _notification: NzNotificationService) {
     //重置密码的表单校验
     this.validateFormReset = this.fb.group({
-      phone: ['', [this.phoneValidator]],//手机号的校验
-      code: ['', [this.samCodeValidator]],//验证码校验
-      newPwd: ['', [Validators.required]],//密码的校验
+      phone: ['', [Validators.required], [Util.requiredPhoneValidator]],//手机号的校验
+      code: ['', [Validators.required], [Util.smsCodeValidator]],//验证码校验
+      newPwd: ['', [Util.pwdValidator]],//密码的校验
       confirmPwd: ['', [this.passwordConfirmationValidator]],//再次输入密码的校验
     });
     //修改密码的表单校验
     this.changePassword = this.fb.group({
-      oldPassword: ['', [this.samCodeValidator]],//旧密码校验
-      password: ['', [Validators.required]],//密码的校验
+      oldPassword: ['', [Util.pwdValidator]],//旧密码校验
+      password: ['', [Util.pwdValidator]],//密码的校验
       confirmPwd: ['', [this.passwordConfirmationValidator2]],//再次输入密码的校验
     });
   }
 
-  /**
-   * 验证码校验
-   * @param control
-   * @returns {any}
-   */
-  samCodeValidator = (control: FormControl): any => {
-    const SMS = /\d{6}/;
-    if (!control.value) {
-      return {required: true}
-    } else if (!SMS.test(control.value)) {
-      return {smsCode: true, error: true}
-    }
-  };
-
-  /**
-   * 手机号的校验
-   * @param control
-   * @returns {any}
-   */
-  phoneValidator = (control: FormControl): any => {
-    const PHONE = /^1[0-9]{10}$/;
-    if (!control.value) {
-      return {required: true}
-    } else if (!PHONE.test(control.value)) {
-      return {phone: true, error: true}
-    }
-  };
 
   /**
    * 忘记密码时输入密码的校验

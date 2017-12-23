@@ -3,6 +3,7 @@ import { FormGroup} from "@angular/forms";
 import {LoginService} from "../login.service";
 import {ForgetPasswordComponent} from "../forget-password/forget-password.component";
 import {NzNotificationService} from "ng-zorro-antd";
+import {Util} from "../../../public/util/util";
 declare var $: any;
 @Component({
   selector: 'app-reset-password',
@@ -17,6 +18,7 @@ export class ResetPasswordComponent implements OnInit {
   phoneState: string;//获取验证码时判断手机号是否输入
   phone:string; //订单号
   code:string; //快递号
+  valitateCheck: any = Util.validate; //表单验证
 
   constructor(public loginService: LoginService, public forgetPwd: ForgetPasswordComponent,public _notification: NzNotificationService) {
     this.validateForm = this.loginService.validateFormReset;////重置密码的表单
