@@ -38,8 +38,8 @@ export class NewPasswordComponent implements OnInit {
     }else{
       let formValue = value;
       this.loginService.resetPassword(formValue);
-      this.loginService.routerSkip(this.forgetPwd.current);
       this.forgetPwd.current += 1;
+      this.loginService.routerSkip(this.forgetPwd.current);
     }
 
   };
