@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginService} from "../login.service";
 import {ForgetPasswordComponent} from "../forget-password/forget-password.component";
 import {NzNotificationService} from "ng-zorro-antd";
+import {Util} from "../../../public/util/util";
 
 @Component({
   selector: 'app-new-password',
@@ -12,6 +13,7 @@ import {NzNotificationService} from "ng-zorro-antd";
 export class NewPasswordComponent implements OnInit {
 
   validateForm: FormGroup;//新密码的表单
+  valitatete: any = Util.validate; //表单验证
 
   constructor(public loginService: LoginService, public forgetPwd: ForgetPasswordComponent,public _notification: NzNotificationService) {
     this.validateForm = this.loginService.validateFormReset;//新密码的表单
