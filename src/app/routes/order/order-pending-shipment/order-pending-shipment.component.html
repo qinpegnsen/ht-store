@@ -149,7 +149,7 @@
           <label nz-form-item-required>选择快递公司</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="14">
-          <nz-select class="w100" formControlName="audits" name="audits" [nzSize]="'large'" [(ngModel)]="expressCode">
+          <nz-select class="w100" formControlName="audits" name="audits" [nzSize]="'large'" [(ngModel)]="expressCode" [nzPlaceHolder]="'请选择快递公司'">
             <nz-option [nzLabel]="''" [nzValue]="''"></nz-option>
             <nz-option
               *ngFor="let item of auditsDataList"

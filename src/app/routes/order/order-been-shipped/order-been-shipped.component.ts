@@ -78,5 +78,4 @@ export class OrderBeenShippedComponent implements OnInit {
       if (data) me.orderList = data; //赋值
     })
   }
-
 }

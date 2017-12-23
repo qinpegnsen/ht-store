@@ -68,7 +68,8 @@ export class OrderService {
    * @param data （查询参数）
    */
   canceslOrder(getOrdno,expressNos,expressCode) {
-    let me = this, defer = $.Deferred(), //封装异步请求结果,
+    let me = this, defer = $.Deferred();//封装异步请求结果,
+      let
       requestData = {
         'ordno': getOrdno,
         'expressNo': expressNos,
@@ -83,6 +84,7 @@ export class OrderService {
         } else {
           me._notification.error(`出错了`, res.info)
         }
+        defer.resolve(res.data)
       },
       error: (res) => {
         me._notification.error(`失败`, res.info);

@@ -92,7 +92,7 @@ export class Setting {
     saleAfterTyte: 1601,  //售后单类型
     saleAfterTrace: 1701,  //售后单跟踪类型
     cashState: 1802,  //提现详情状态
-    orderState: 1019,  //订单状态类型
+    orderState: 1029,  //企业店铺订单状态类型
     orderPayState: 1017,  //订单付款类型
     brandApplyState: 2010,  //品牌申请状态
     progressState: 1702,  //订单详情页的进度条状态

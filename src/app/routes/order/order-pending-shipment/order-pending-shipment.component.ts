@@ -114,6 +114,10 @@ export class OrderPendingShipmentComponent implements OnInit {
       me.queryPending()//查询待发货订单列表
     }, 500);
     me._loading = false //解除锁屏
+    me.validateForm = this.fb.group({
+      email: [null, [Validators.required]],
+      audits: [null, [Validators.required]],
+    });
   };
 
   /**
@@ -123,6 +127,10 @@ export class OrderPendingShipmentComponent implements OnInit {
   hideMask = (e) => {
     this.isOrderPend = false;
     this._loading = false //解除锁屏
+    this.validateForm = this.fb.group({
+      email: [null, [Validators.required]],
+      audits: [null, [Validators.required]],
+    });
   }
 
   //设置发货的表单
@@ -151,7 +159,7 @@ export class OrderPendingShipmentComponent implements OnInit {
     $.when(me.orderService.canceslOrder(this.getOrdno,this.expressNos,this.expressCode)).done(data => {
       me._loading = false //解除锁屏
       if (data) me.auditsDataList = data; //赋值
-      // me.queryPending()//查询待发货订单列表
+      me.queryPending()//查询待发货订单列表
     });
 
   }

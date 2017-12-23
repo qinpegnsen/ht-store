@@ -40,6 +40,7 @@ export class NewPasswordComponent implements OnInit {
       this.loginService.resetPassword(formValue);
       this.forgetPwd.current += 1;
       this.loginService.routerSkip(this.forgetPwd.current);
+      this.validateForm=this.loginService.validateFormReset;
     }
 
   };
