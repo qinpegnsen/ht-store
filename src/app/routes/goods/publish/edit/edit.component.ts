@@ -52,7 +52,7 @@ export class EditComponent implements OnInit {
   })
   public patterns: any;  //正则
   public maxFixedFreight = Setting.maxFixedFreight;
-  /*public ckEditerConfig = {
+  public ckEditerConfig = {
     toolbarGroups: [
       {name: 'links'},
       {name: 'insert'},
@@ -62,7 +62,7 @@ export class EditComponent implements OnInit {
     height: 420,//编辑器高度
     disallowedContent: '',
     removeButtons : 'Anchor,SpecialChar,Subscript,Superscript'
-  }*/
+  }
 
   constructor(public publishComponent: PublishComponent,
               public location: Location,
@@ -163,7 +163,7 @@ export class EditComponent implements OnInit {
             me.getTplValById(); //根据物流模板ID获取模板值
           }
           me.genClearArray(me.goodsEditData.goodsSkuList);    // 生成所选属性组合
-          me.tempMblHtml = me.goodsEditData.mobileBody;        //为了容易生成移动端详情图片文字组合，将html字符串先放入html再取
+          // me.tempMblHtml = me.goodsEditData.mobileBody;        //为了容易生成移动端详情图片文字组合，将html字符串先放入html再取
           me.genImgSku();       //已选中属性的图片组
           me.genTempGoodsImgsList();  // 将商品的图片组生成me.goodsImgList一样的数据，方便后续追加图片
           me.genMblItemList();        //将html字符串生成移动端图片文字组合
@@ -828,7 +828,7 @@ export class EditComponent implements OnInit {
       me._notification.warning('数据不完整', '请编辑PC端商品详情');
       return false
     } else {
-      me.publishData.mobileBody = me.genMblDetailHtml();               // 商品详情 App
+      // me.publishData.mobileBody = me.genMblDetailHtml();               // 商品详情 App
       if (isNullOrUndefined(me.publishData.mobileBody) || me.publishData.mobileBody == '') {
         me._notification.warning('数据不完整', '请编辑移动端商品详情');
         return false
