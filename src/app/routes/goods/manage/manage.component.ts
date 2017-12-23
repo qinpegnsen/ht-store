@@ -77,7 +77,7 @@ export class ManageComponent implements OnInit {
    */
   onDeactivate(event) {
     this.showList = true;
-    if(event.changed) this.queryGoodsList();//如果子页面有修改则返回时刷新列表
+    this.queryGoodsList();//如果子页面有修改则返回时刷新列表
   }
 
   /**
