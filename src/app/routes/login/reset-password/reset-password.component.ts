@@ -42,11 +42,10 @@ export class ResetPasswordComponent implements OnInit {
       this.forgetPwd.current += 1;
       this.loginService.routerSkip(this.forgetPwd.current);
     }*/
-    me.loginService.checkSmsCode(this.phone,this.code);
-   /* let formValue = value;
-    this.loginService.checkSmsCode(formValue);*/
-    /*this.loginService.routerSkip(this.forgetPwd.current);
-    this.forgetPwd.current += 1;*/
+    if(me.loginService.checkSmsCode(this.phone,this.code)){
+      this.forgetPwd.current += 1;
+      this.loginService.routerSkip(this.forgetPwd.current);
+    }
   };
 
   /**

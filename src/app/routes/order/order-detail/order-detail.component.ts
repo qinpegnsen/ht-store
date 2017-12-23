@@ -20,15 +20,12 @@ export class OrderDetailComponent implements OnInit {
   states: string = this.orderState.ordState.cr;     //待付款状态的订单
   flowState: any = Setting.ENUMSTATE;               //定义枚举状态
   ordState: any = this.flowState.ordState;       //订单状态
-
   constructor(public router: Router, public routeInfo:ActivatedRoute) { }
 
   ngOnInit() {
     let me = this;
     me.ordno = me.routeInfo.snapshot.queryParams['ordno'];//获取订单的详细数据传过来的订单号
     me.queryOrder();//获取订单的详细数据
-    console.log("█ this.orderData.state ►►►",  this.orderData.state);
-    console.log("█ this.orderData ►►►",  this.orderData);
 
     if(this.orderData.state == this.ordState.cr){
       this.current = 0;

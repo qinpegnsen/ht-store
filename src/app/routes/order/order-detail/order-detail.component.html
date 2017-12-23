@@ -15,7 +15,7 @@
       <span class="main-color font14 pl">订单信息</span>
     </div>
     <div class="order-main">
-      <dl *ngIf="orderData.note">
+      <dl>
         <dt>买家留言：</dt>
         <dd>{{orderData.note}}</dd>
       </dl>
@@ -26,6 +26,10 @@
       <dl *ngIf="orderData.state!= states">
         <dt>运费：</dt>
         <dd><span>&nbsp;&yen; {{orderData.freight | number:'1.2-2'}}</span></dd>
+      </dl>
+      <dl>
+        <dt>红包抵扣：</dt>
+        <dd><span>&nbsp;&yen; {{orderData.rpPay | number:'1.2-2'}}</span></dd>
       </dl>
       <dl>
         <dt>应付总额：</dt>
@@ -74,16 +78,91 @@
   </div>
 </div>
 <!--订单基本信息 end-->
-
 <!--其他状态 start-->
 <div class="order-state">
-  <div class="order-state-steps">
+  <div class="order-state-steps"  *ngIf="orderData.state == ordState.cr">
     <nz-steps  [(nzCurrent)]="current" class="lg thc">
-      <nz-step  [nzTitle]="'待付款'" [nzDescription]="'This is a description.'"></nz-step>
-      <nz-step  [nzTitle]="'待发货'" [nzDescription]="'This is a description.'"></nz-step>
-      <nz-step  [nzTitle]="'已发货'" [nzDescription]="'This is a description.'"></nz-step>
-      <nz-step  [nzTitle]="'已完成'" [nzDescription]="'This is a description.'"></nz-step>
-      <nz-step  [nzTitle]="'已取消'" [nzDescription]="'This is a description.'"></nz-step>
+      <nz-step  [nzTitle]="'提交订单'" [nzDescription]="nzDescriptio">
+          <ng-template #nzDescriptio>
+          <p>{{orderData.updateTime}}</p>
+        </ng-template>
+      </nz-step>
+      <nz-step  [nzTitle]="'已支付'">
+      </nz-step>
+      <nz-step  [nzTitle]="'已发货'">
+      </nz-step>
+      <nz-step  [nzTitle]="'已完成'" >
+      </nz-step>
+      <nz-step  [nzTitle]="'已取消'">
+      </nz-step>
+    </nz-steps>
+  </div>
+  <div class="order-state-steps"  *ngIf="orderData.state == ordState.paid">
+    <nz-steps  [(nzCurrent)]="current" class="lg thc">
+      <nz-step  [nzTitle]="'提交订单'">
+      </nz-step>
+      <nz-step  [nzTitle]="'已支付'" [nzDescription]="nzDescriptio">
+        <ng-template #nzDescriptio>
+          <p>{{orderData.updateTime}}</p>
+        </ng-template>
+      </nz-step>
+      <nz-step  [nzTitle]="'已发货'">
+      </nz-step>
+      <nz-step  [nzTitle]="'已完成'">
+      </nz-step>
+      <nz-step  [nzTitle]="'已取消'" >
+      </nz-step>
+    </nz-steps>
+  </div>
+  <div class="order-state-steps"  *ngIf="orderData.state == ordState.delivery">
+    <nz-steps  [(nzCurrent)]="current" class="lg thc">
+      <nz-step  [nzTitle]="'提交订单'">
+      </nz-step>
+      <nz-step  [nzTitle]="'已支付'" >
+      </nz-step>
+      <nz-step  [nzTitle]="'已发货'" [nzDescription]="nzDescriptio">
+        <ng-template #nzDescriptio>
+          <p>{{orderData.updateTime}}</p>
+        </ng-template>
+      </nz-step>
+      <nz-step  [nzTitle]="'已完成'" >
+      </nz-step>
+      <nz-step  [nzTitle]="'已取消'" >
+      </nz-step>
+    </nz-steps>
+  </div>
+  <div class="order-state-steps"  *ngIf="orderData.state == ordState.success">
+    <nz-steps  [(nzCurrent)]="current" class="lg thc">
+      <nz-step  [nzTitle]="'提交订单'" >
+      </nz-step>
+      <nz-step  [nzTitle]="'已支付'" >
+      </nz-step>
+      <nz-step  [nzTitle]="'已发货'" >
+      </nz-step>
+      <nz-step  [nzTitle]="'已完成'" [nzDescription]="nzDescriptio">
+        <ng-template #nzDescriptio>
+          <p>{{orderData.updateTime}}</p>
+        </ng-template>
+      </nz-step>
+      <nz-step  [nzTitle]="'已取消'" >
+      </nz-step>
+    </nz-steps>
+  </div>
+  <div class="order-state-steps"  *ngIf="orderData.state == ordState.close">
+    <nz-steps  [(nzCurrent)]="current" class="lg thc">
+      <nz-step  [nzTitle]="'提交订单'" >
+      </nz-step>
+      <nz-step  [nzTitle]="'已支付'" >
+      </nz-step>
+      <nz-step  [nzTitle]="'已发货'" >
+      </nz-step>
+      <nz-step  [nzTitle]="'已完成'" >
+      </nz-step>
+      <nz-step  [nzTitle]="'已取消'" [nzDescription]="nzDescriptio">
+        <ng-template #nzDescriptio>
+          <p>{{orderData.updateTime}}</p>
+        </ng-template>
+      </nz-step>
     </nz-steps>
   </div>
 </div>
@@ -132,11 +211,27 @@
       <td class="w10 text-center bl" *ngIf="i==0" [attr.rowspan]="orderData.ordItemList.length">
         <span class="main-color">&yen; {{orderData.ordTotal | number:'1.2-2'}}</span><br>
         <span class="font12 gray-color">运费{{orderData.freight  | number:'1.2-2'}}</span><br>
-        <span class="font12 gray-color">重消币{{orderData.coinPay | number:'1.2-2'}}</span>
+        <span class="font12 gray-color">{{orderData.payWay | stateName : enum.orderPayState}}</span>
       </td>
     </tr>
     </tbody>
+   <!-- <tfoot >
+
+    </tfoot>-->
   </table>
+<div class="order-information-footer font16">
+    <dl class="text-right">
+      <dt class=" ">商品总额：</dt>
+      <dd class=" "><span class="main-red font14">￥{{orderData.total | number:'1.2-2'}}</span></dd>
+    </dl>
+    <dl class="text-right">
+      <dt class="">运费：</dt>
+      <dd class=""><span class="main-red font14">￥{{orderData.freight | number:'1.2-2'}}</span></dd>
+    </dl>
+    <dl class="text-right">
+      <dt class="">订单总额：</dt>
+      <dd class=""><span class="main-color font20">￥{{orderData.ordTotal | number:'1.2-2'}}</span></dd>
+    </dl>
 </div>
 <!--订单信息 end-->
-
+</div>

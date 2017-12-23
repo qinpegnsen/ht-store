@@ -86,6 +86,7 @@ export class Setting {
     orderState: 1019,  //订单状态类型
     orderPayState: 1017,  //订单付款类型
     brandApplyState: 2010,  //品牌申请状态
+    progressState: 1702,  //订单详情页的进度条状态
   };
 
   //定义枚举状态名

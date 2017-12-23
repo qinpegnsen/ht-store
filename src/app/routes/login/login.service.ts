@@ -229,14 +229,14 @@ export class LoginService {
    */
   resetPassword(requestDate: any) {
     const me = this;
+    let _success: boolean = false;
     AjaxService.post({
       url: SettingUrl.URL.login.resetPassword,
       data: requestDate,
       success: (res) => {
         if (res.success) {
+          _success = true;
           me._notification.success('成功', '重置密码成功');
-         /* this.forgetPwd.current += 1;
-          this.routerSkip(this.forgetPwd.current);*/
         } else {
           me._notification.error('失败', res.info);
         }
@@ -279,10 +279,6 @@ export class LoginService {
    * @returns {boolean}
    */
   checkSmsCode(phone,code) {
-    console.log("█ phone ►►►",  phone);
-    console.log("█ code ►►►",  code);
-
-    //console.log("█ 11111 ►►►",  11111);
     const me = this;
     let _success: boolean = false;
     AjaxService.get({

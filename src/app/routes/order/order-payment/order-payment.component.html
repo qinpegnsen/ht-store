@@ -6,7 +6,8 @@
         <div class="pending-group ml-20 mb fl">
           <span class="pending-title text-center">收货人手机号：</span>
           <div class="pending-main fr">
-            <nz-input [(ngModel)]="orderquery.phone" [nzPlaceHolder]="'请填写会员手机号'" [nzSize]="'large'"></nz-input>
+            <nz-input [(ngModel)]="orderquery.phone" [nzPlaceHolder]="'请填写收货人手机号'" [nzSize]="'large'"></nz-input>
+            <nz-input [(ngModel)]="orderquery.phone" [nzPlaceHolder]="'请填写收货人手机号'" [nzSize]="'large'"></nz-input>
           </div>
         </div>
         <div class="pending-group mb fl">
@@ -94,7 +95,7 @@
               <td class="w10 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
                 <span class="main-color">&yen; {{orders.ordTotal | number:'1.2-2'}}</span><br>
                 <span class="font12 gray-color">运费{{orders.freight  | number:'1.2-2'}}</span><br>
-                <span class="font12 gray-color">重消币{{orders.coinPay | number:'1.2-2'}}</span>
+                <span class="font12 gray-color">{{orders.payWay | stateName : enum.orderPayState}}</span>
               </td>
               <td class="w10 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
                 <p class="gray-color">{{orders.state | stateName : enum.orderState}}</p>

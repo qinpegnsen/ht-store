@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Setting} from "../../../public/setting/setting";
 import {LoginService} from "../login.service";
 import {NzMessageService} from "ng-zorro-antd";
+import {SettingUrl} from "../../../public/setting/setting_url";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-forget-password',
@@ -13,7 +15,7 @@ export class ForgetPasswordComponent implements OnInit {
   app = Setting.APP; //平台基本信息
 
 
-  constructor(public loginService: LoginService, public _message: NzMessageService) {
+  constructor(public loginService: LoginService, public router:Router) {
   }
 
   ngOnInit() {
@@ -35,5 +37,8 @@ export class ForgetPasswordComponent implements OnInit {
   next() {
     this.current += 1;
     this.loginService.routerSkip(this.current);
+  }
+  back(){
+    this.router.navigate([SettingUrl.ROUTERLINK.pass.login])
   }
 }
