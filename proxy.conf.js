@@ -34,7 +34,7 @@ const PROXY_CONFIG = [
       "/statistical", //统计信息
       "/datadict" //平台信息
     ],
-    target: gh + "8087",   //拦截 context配置路径，经过此地址
+    target: ly + "8087",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {

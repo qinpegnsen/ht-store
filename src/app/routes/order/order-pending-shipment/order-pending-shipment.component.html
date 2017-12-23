@@ -138,7 +138,7 @@
       </div>
       <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
            [nzValidateStatus]="getFormControl('email')">
-        <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请快递公司快递号'" formControlName="email" [nzId]="'email'" [(ngModel)]="expressNos"></nz-input>
+        <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请添加公司快递号'" formControlName="email" [nzId]="'email'" [(ngModel)]="expressNos"></nz-input>
         <div nz-form-explain *ngIf="getFormControl('email').dirty&&getFormControl('email').hasError('email')">
           请快递公司快递号!
         </div>
