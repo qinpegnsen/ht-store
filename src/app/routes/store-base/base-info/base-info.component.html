@@ -25,7 +25,8 @@
           <label nz-form-item-required>企业邮箱</label>
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngContactsEmail)" nzHasFeedback>
-          <nz-input name="contactsEmail" [(ngModel)]="validateForm.contactsEmail" [nzPlaceHolder]="'请输入企业邮箱'"
+          <nz-input name="contactsEmail" [(ngModel)]="validateForm.contactsEmail"
+                    [nzPlaceHolder]="'请输入企业邮箱'" [pattern]="patternService.email"
                     [nzType]="'email'" [nzSize]="'large'" required #ngContactsEmail="ngModel">
           </nz-input>
           <div nz-form-explain *ngIf="ngValidateErrorMsg(ngContactsEmail) == valitateState.error">
@@ -76,12 +77,16 @@
           </div>
           <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngCreditCode)" nzHasFeedback>
             <nz-input name="creditCode" [(ngModel)]="validateForm.creditCode" #ngCreditCode="ngModel"
-                      [required]="validateForm.idType==enumStates.papersType.unity" [nzType]="'text'"
+                      [pattern]="patternService.creditCode" [nzType]="'text'" required
                       [nzPlaceHolder]="'请输入社会信用代码'" [nzSize]="'large'">
             </nz-input>
             <div nz-form-explain
                  *ngIf="ngValidateErrorMsg(ngContactsPhone) == valitateState.empty">
               请输入社会信用代码！
+            </div>
+            <div nz-form-explain
+                 *ngIf="ngValidateErrorMsg(ngContactsPhone) == valitateState.error">
+              请输入正确的社会信用代码！
             </div>
           </div>
         </div>
@@ -97,6 +102,7 @@
                nzHasFeedback>
             <nz-input name="taxRegistrationCertificate" [(ngModel)]="validateForm.taxRegistrationCertificate"
                       #ngTaxRegistrationCertificate="ngModel" [nzType]="'text'" required
+                      [pattern]="patternService.taxCode"
                       [nzPlaceHolder]="'税务登记证号'" [nzSize]="'large'">
             </nz-input>
             <div nz-form-explain
@@ -155,7 +161,8 @@
           <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngOrganizationCode)"
                nzHasFeedback>
             <nz-input name="organizationCode" [(ngModel)]="validateForm.organizationCode" required
-                      #ngOrganizationCode="ngModel" [nzType]="'text'" [nzPlaceHolder]="'请输入组织机构代码'"
+                      #ngOrganizationCode="ngModel" [nzType]="'text'"
+                      [nzPlaceHolder]="'请输入组织机构代码'" [pattern]="patternService.orgCode"
                       [nzSize]="'large'">
             </nz-input>
             <div nz-form-explain
@@ -308,9 +315,9 @@
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBusinessLicence)"
              nzHasFeedback>
-          <nz-input name="businessLicence" [(ngModel)]="validateForm.businessLicence" [nzType]="'text'"
-                    [nzPlaceHolder]="'营业执照注册号'"
-                    #ngBusinessLicence="ngModel" [nzType]="'text'" required
+          <nz-input name="businessLicence" [(ngModel)]="validateForm.businessLicence" [nzType]="'number'"
+                    [nzPlaceHolder]="'营业执照注册号'" [pattern]="patternService.buno"
+                    #ngBusinessLicence="ngModel" required
                     [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain

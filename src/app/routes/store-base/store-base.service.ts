@@ -96,11 +96,11 @@ export class StoreBaseService {
    * 企业入驻——保存基本信息
    * @param data
    */
-  enterpriseBase(data) {
+  enterpriseBase(formValue) {
     const me = this;
     AjaxService.post({
       url: SettingUrl.URL.enterprise.save,
-      data: JSON.stringify(data),
+      data: JSON.stringify(formValue),
       mask: true,
       contentType: "application/json",
       success: (res) => {
@@ -120,11 +120,11 @@ export class StoreBaseService {
    * 企业入驻——保存银行账户信息
    * @param data
    */
-  enterpriseAccount(data) {
+  enterpriseAccount(formValue) {
     const me = this;
     AjaxService.post({
       url: SettingUrl.URL.enterprise.save2,
-      data: JSON.stringify(data),
+      data: JSON.stringify(formValue),
       mask: true,
       contentType: "application/json",
       success: (res) => {
@@ -169,7 +169,6 @@ export class StoreBaseService {
   /**
    * 修改店铺信息
    */
-
   updateStore(requestData: any) {
     let me = this, defer = $.Deferred(); //封装异步请求结果
     AjaxService.get({
@@ -201,7 +200,7 @@ export class StoreBaseService {
       url: SettingUrl.URL.enterprise.load,
       async: false,
       success: (data) => {
-        if (data.success) defer.resolve(data.data);
+        defer.resolve(data.data);
       }
     });
     return defer.promise(); //返回异步请求休息
@@ -217,7 +216,7 @@ export class StoreBaseService {
     AjaxService.get({
       url: SettingUrl.URL.store.loadShop,
       success: (data) => {
-        if (data.success) defer.resolve(data.data);
+        defer.resolve(data.data);
       }
     });
     return defer.promise(); //返回异步请求休息
@@ -233,7 +232,7 @@ export class StoreBaseService {
     AjaxService.get({
       url: SettingUrl.URL.enterprise.loadState,
       success: (data) => {
-        if (data.success) defer.resolve(data.data);
+        defer.resolve(data.data);
       }
     });
     return defer.promise(); //返回异步请求休息
@@ -249,7 +248,7 @@ export class StoreBaseService {
     AjaxService.get({
       url: SettingUrl.URL.store.loadState,
       success: (data) => {
-        if (data.success) defer.resolve(data.data);
+        defer.resolve(data.data);
       }
     });
     return defer.promise(); //返回异步请求休息

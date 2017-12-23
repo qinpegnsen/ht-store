@@ -9,6 +9,7 @@ import {MainService} from "../../../public/service/main.service";
 import {NzNotificationService} from "ng-zorro-antd";
 import {Setting} from "../../../public/setting/setting";
 import {PatternService} from "../../../public/service/pattern.service";
+import {isNullOrUndefined} from "util";
 declare var $: any;
 
 @Component({
@@ -57,6 +58,10 @@ export class OpenShopComponent implements OnInit {
     $.when(StoreBaseService.loadShopInfo()).done(data => {
       if (data) {
         me.validateForm = data;  //店铺信息
+        me.validateForm.areaCode = MainService.getAreaArrayByCode(me.validateForm.areaCode);//店铺区域
+      }else{
+        let saveStoreData = localStorage.getItem('saveStoreData');
+        if(!isNullOrUndefined(saveStoreData)) me.validateForm = JSON.parse(saveStoreData);
         me.validateForm.areaCode = MainService.getAreaArrayByCode(me.validateForm.areaCode);//店铺区域
       }
     })
@@ -129,6 +134,7 @@ export class OpenShopComponent implements OnInit {
       if(formValue.areaCode.value) formValue.areaCode = formValue.areaCode.value;//如果是修改信息，则区域信息可能是级联选择器赋值的对象数组
     }
     this.storeBaseService.dredgeShop(formValue);
+    localStorage.setItem('saveStoreData', JSON.stringify(formValue));//每次点击提交时在本地保存表单数据，如果用户刷新页面可保证数据不丢失
   };
 
   /**

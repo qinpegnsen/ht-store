@@ -8,6 +8,8 @@ import {NzNotificationService} from "ng-zorro-antd";
 import {Util} from "../../../public/util/util";
 import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
 import {Setting} from "../../../public/setting/setting";
+import {isNullOrUndefined} from "util";
+import {PatternService} from "../../../public/service/pattern.service";
 declare var $: any;
 
 @Component({
@@ -30,13 +32,12 @@ export class AccountInfoComponent implements OnInit {
 
   constructor(public storeBaseService: StoreBaseService,
               public steps: SettleStepsComponent,
+              public patternService: PatternService,
               public _notification: NzNotificationService) {
     this.steps.current = 2;
     Util.transAreas(AREA_LEVEL_3_JSON);//将地区数据转成联级组件需要的格式
     this._options = AREA_LEVEL_3_JSON;//地区数据
-    this.validateForm = {
-      isSettlementAccount: true
-    }
+    this.validateForm.isSettlementAccount = true;
   }
 
   ngOnInit() {
@@ -51,9 +52,24 @@ export class AccountInfoComponent implements OnInit {
   loadStoreData() {
     let me = this;
     $.when(StoreBaseService.loadStoreInfo()).done(data => {
-      if (data) me.validateForm = data; //企业信息
+      if (data) me.validateForm = data, me.transInfo(); //企业信息
+      else {
+        let epAccountInfo = localStorage.getItem('epAccountInfo');
+        if(!isNullOrUndefined(epAccountInfo)) me.validateForm = JSON.parse(epAccountInfo);
+        me.transInfo();
+      }
     })
   }
+
+  /**
+   * 转换数据信息
+   */
+  transInfo(){
+    let me = this;
+    if(me.validateForm && me.validateForm.isSettlementAccount == Setting.ENUMSTATE.yes) me.validateForm.isSettlementAccount = true;
+    else if(me.validateForm.isSettlementAccount == Setting.ENUMSTATE.no) me.validateForm.isSettlementAccount = false;
+  }
+
 
   /**
    * 监听图片选择
@@ -122,9 +138,10 @@ export class AccountInfoComponent implements OnInit {
    */
   submitFormData = () => {
     let formValue = Object.assign({}, this.validateForm);
-    if (formValue.isSettlementAccount) formValue.isSettlementAccount = 'Y';
-    else formValue.isSettlementAccount = 'N';
+    if (formValue.isSettlementAccount) formValue.isSettlementAccount = Setting.ENUMSTATE.yes;
+    else formValue.isSettlementAccount = Setting.ENUMSTATE.no;
     this.storeBaseService.enterpriseAccount(formValue);
+    localStorage.setItem('epAccountInfo',JSON.stringify(formValue));//每次点击提交时在本地保存表单数据，如果用户刷新页面可保证数据不丢失
   };
 
   /**

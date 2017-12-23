@@ -24,7 +24,7 @@
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBankAccountNumber)"
              nzHasFeedback>
           <nz-input name="bankAccountNumber" [(ngModel)]="validateForm.bankAccountNumber" #ngBankAccountNumber="ngModel"
-                    required [nzType]="'text'" [nzPlaceHolder]="'公司银行账号'"
+                    required [nzType]="'text'" [nzPlaceHolder]="'公司银行账号'" [pattern]="patternService.backcard"
                     [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankAccountNumber)==valitateState.empty">
@@ -39,8 +39,7 @@
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngBankName)"
              nzHasFeedback>
           <nz-input name="bankName" [(ngModel)]="validateForm.bankName" #ngBankName="ngModel"
-                    required [nzType]="'text'" [nzPlaceHolder]="'开户行支行名称'"
-                    [nzSize]="'large'">
+                    required [nzType]="'text'" [nzPlaceHolder]="'开户行支行名称'" [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankName)==valitateState.empty">
             请输入开户行支行名称！
@@ -55,7 +54,7 @@
              nzHasFeedback>
           <nz-input name="bankCode" [(ngModel)]="validateForm.bankCode" #ngBankCode="ngModel"
                     required [nzType]="'text'" [nzPlaceHolder]="'开户支行联行号'"
-                    [nzSize]="'large'">
+                    [pattern]="patternService.backAffiliated" [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain *ngIf="ngValidateErrorMsg(ngBankCode)==valitateState.empty">
             请输入开户支行联行号！
@@ -156,7 +155,7 @@
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngSettlementBankAccountNumber)"
              nzHasFeedback>
           <nz-input name="settlementBankAccountNumber" [(ngModel)]="validateForm.settlementBankAccountNumber"
-                    #ngSettlementBankAccountNumber="ngModel"
+                    #ngSettlementBankAccountNumber="ngModel" [pattern]="patternService.backcard"
                     required [nzType]="'text'" [nzPlaceHolder]="'结算银行账号'"
                     [nzSize]="'large'">
           </nz-input>
@@ -188,7 +187,7 @@
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngSettlementBankCode)"
              nzHasFeedback>
           <nz-input name="settlementBankCode" [(ngModel)]="validateForm.settlementBankCode"
-                    #ngSettlementBankCode="ngModel"
+                    #ngSettlementBankCode="ngModel" [pattern]="patternService.backAffiliated"
                     required [nzType]="'text'" [nzPlaceHolder]="'结算账户开户行支行联行号'"
                     [nzSize]="'large'">
           </nz-input>
