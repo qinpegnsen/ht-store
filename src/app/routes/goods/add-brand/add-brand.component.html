@@ -122,8 +122,9 @@
         <div nz-col [nzSpan]="6" class="pl-30">
           <ng-container *ngIf="validateForm.registration1">
             <div class="uploaded">
+              <div class="remove" (click)="remove1()"><i class="anticon anticon-close"></i></div>
               <nz-popover [nzTrigger]="'click'">
-                <img [src]="validateForm.registration1 | imgSize: '50'" appImgErr
+                <img [src]="validateForm.registration1 | imgSize: '50'" appImgErr height="50"
                      nz-popover>
                 <ng-template #nzTemplate>
                   <div><img [src]="validateForm.registration1 | imgSize: '200'"></div>
@@ -133,8 +134,9 @@
           </ng-container>
           <ng-container *ngIf="validateForm.registration2">
             <div class="uploaded">
+              <div class="remove" (click)="remove2()"><i class="anticon anticon-close"></i></div>
               <nz-popover [nzTrigger]="'click'">
-                <img [src]="validateForm.registration2 | imgSize: '50'" appImgErr
+                <img [src]="validateForm.registration2 | imgSize: '50'" appImgErr height="50"
                      nz-popover>
                 <ng-template #nzTemplate>
                   <div><img [src]="validateForm.registration2 | imgSize: '200'"></div>

@@ -231,6 +231,19 @@ export class AddBrandComponent implements OnInit {
   }
 
   /**
+   *移除第一个品牌注册证（图片）
+   */
+  remove1(){
+   this.validateForm.registration1=null;
+  }
+
+  /**
+   * 移除第二个品牌注册证（图片）
+   */
+  remove2(){
+   this.validateForm.registration2=null;
+  }
+  /**
    * 返回上个页面
    */
   back() {

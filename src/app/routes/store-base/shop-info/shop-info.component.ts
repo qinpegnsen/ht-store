@@ -27,13 +27,13 @@ export class ShopInfoComponent implements OnInit {
    */
   queryShopsData() {
     let me = this;
-    me._loading = true; //锁屏
     $.when(StoreBaseService.loadShopInfo()).done(data => {
       me._loading = false //解除锁屏
       if (data) {
         me.shopsInfo = data;//店铺信息
       }
     })
+    me._loading = true; //锁屏
   };
 
 
