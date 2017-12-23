@@ -39,7 +39,7 @@
               <i class="anticon anticon-edit"></i>
             </button>
             <!--删除运费模板值按钮-->
-          <nz-popconfirm [nzTitle]="'确定要删除吗？'" (nzOnConfirm)="delete(organ,i)" (nzOnCancel)="cancel()"
+          <nz-popconfirm [nzTitle]="'确定要删除吗？'" (nzOnConfirm)="delete(organ.id)" (nzOnCancel)="cancel()"
                          [nzPlacement]="'top'">
             <button nz-popconfirm nz-button class="btn-warning" title="删除"> <i class="anticon anticon-delete"></i></button>
           </nz-popconfirm>

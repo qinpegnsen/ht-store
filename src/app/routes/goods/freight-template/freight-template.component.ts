@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {GoodsService} from "../goods.service";
 import {Setting} from "../../../public/setting/setting";
 import {SettingUrl} from "../../../public/setting/setting_url";
+import {NzNotificationService} from "ng-zorro-antd";
 declare var $: any;
 
 @Component({
@@ -15,8 +16,9 @@ export class FreightTemplateComponent implements OnInit {
   prompt: any = Setting.PAGEMSG.freightTemplate; //提示信息
   showFreightList: boolean = true;//判断子组件的显示/隐藏
   addTemplate: string = SettingUrl.ROUTERLINK.store.addTemplate; //添加运费模板路由
+  public params: any;//删除传的参数
 
-  constructor() {
+  constructor( public _notification: NzNotificationService) {
   }
 
   ngOnInit() {
@@ -61,5 +63,22 @@ export class FreightTemplateComponent implements OnInit {
       if (data) me.tplList = data; //赋值
     })
   }
+
+  /**
+   * 删除模板--确认删除
+   * @param brandApplyCode
+   */
+  delete = (id) => {
+    let me = this;
+    me._loading = true; //锁屏
+    me.params = { //查询参数
+      id: id, //品牌编码
+    }
+    $.when(GoodsService.delFreight(me.params)).done(data => {
+      me._loading = false //解除锁屏
+      me._notification.success('删除成功', data.info);
+      me.queryTplList();//刷新查询品牌列表
+    })
+  };
 
 }

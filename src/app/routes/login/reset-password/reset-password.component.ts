@@ -3,7 +3,7 @@ import { FormGroup} from "@angular/forms";
 import {LoginService} from "../login.service";
 import {ForgetPasswordComponent} from "../forget-password/forget-password.component";
 import {NzNotificationService} from "ng-zorro-antd";
-
+declare var $: any;
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
@@ -15,6 +15,9 @@ export class ResetPasswordComponent implements OnInit {
   msgCode: string = '获取验证码';
   isSending: boolean = false;//判断获取验证码的按钮，如果已经点击过了，就变禁用
   phoneState: string;//获取验证码时判断手机号是否输入
+  phone:string; //订单号
+  code:string; //快递号
+  auditsDataList:any = new Array;  //物流信息
 
   constructor(public loginService: LoginService, public forgetPwd: ForgetPasswordComponent,public _notification: NzNotificationService) {
     this.validateForm = this.loginService.validateFormReset;////重置密码的表单
@@ -30,17 +33,21 @@ export class ResetPasswordComponent implements OnInit {
    * @param $event
    * @param value
    */
-  submitForm = ($event, value) => {
-    $event.preventDefault();
+  submitForm() {
+    let me = this;
     //console.log(value);
-    if(!value.phone||!value.code){
+    /*if(!value.phone||!value.code){
       this._notification.error("请填写手机号", "请填写手机号或者验证码");
       return;
     }else{
       this.forgetPwd.current += 1;
       this.loginService.routerSkip(this.forgetPwd.current);
-    }
-
+    }*/
+    me.loginService.checkSmsCode(this.phone,this.code);
+   /* let formValue = value;
+    this.loginService.checkSmsCode(formValue);*/
+    /*this.loginService.routerSkip(this.forgetPwd.current);
+    this.forgetPwd.current += 1;*/
   };
 
   /**

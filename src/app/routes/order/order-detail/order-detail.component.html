@@ -76,15 +76,14 @@
 <!--订单基本信息 end-->
 
 <!--其他状态 start-->
-{{orderData.state}}
 <div class="order-state">
   <div class="order-state-steps">
     <nz-steps  [(nzCurrent)]="current" class="lg thc">
-      <nz-step *ngIf="orderData.state=='CR'" [nzStatus]="'process'" [nzTitle]="'待付款'"></nz-step>
-      <nz-step *ngIf="orderData.state=='PAID'" [nzStatus]="'process'" [nzTitle]="'待发货'"></nz-step>
-      <nz-step *ngIf="orderData.state=='DELIVERY'" [nzStatus]="'process'" [nzTitle]="'已发货'"></nz-step>
-      <nz-step *ngIf="orderData.state=='SUCCESS'" [nzStatus]="'process'" [nzTitle]="'已完成'"></nz-step>
-      <nz-step *ngIf="orderData.state=='CLOSE'" [nzStatus]="'process'" [nzTitle]="'已取消'"></nz-step>
+      <nz-step  [nzTitle]="'待付款'" [nzDescription]="'This is a description.'"></nz-step>
+      <nz-step  [nzTitle]="'待发货'" [nzDescription]="'This is a description.'"></nz-step>
+      <nz-step  [nzTitle]="'已发货'" [nzDescription]="'This is a description.'"></nz-step>
+      <nz-step  [nzTitle]="'已完成'" [nzDescription]="'This is a description.'"></nz-step>
+      <nz-step  [nzTitle]="'已取消'" [nzDescription]="'This is a description.'"></nz-step>
     </nz-steps>
   </div>
 </div>

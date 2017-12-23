@@ -19,7 +19,6 @@ declare var $: any;
 export class AddTemplateComponent implements OnInit {
   validateForm: FormGroup;//添加运费模板的表单
   moduleList = [];//运费模板值列表
-  storeExpressTplValList = [];//运费模板值列表
   linkType: string;//判断是添加模板还是修改模板
   cru: number = 0;//选择地区时获取的下标
   allCheckeds = [];//全选所有的
@@ -406,21 +405,49 @@ export class AddTemplateComponent implements OnInit {
    * @param value
    */
   submitForm = ($event, value) => {
+    let me = this;
 
-    $event.preventDefault();
-    for (const key in this.validateForm.controls) {
-      this.validateForm.controls[ key ].markAsDirty();
+    if (me.linkType == 'addArticle') {
+      $event.preventDefault();
+      for (const key in this.validateForm.controls) {
+        this.validateForm.controls[ key ].markAsDirty();
+      }
+      let json = {
+        tplName: this.tplName,
+        isFree: 'N',
+        valuationType: this.validateForm.value.radio_group,
+        id:this.id,
+        storeExpressTplValList: this.moduleList
+      }
+      console.log(JSON.stringify(json));
+      let formValue = JSON.stringify(json);
+      this.goodsService.addFreight(formValue);
     }
-    let json = {
-      tplName: this.tplName,
-      isFree: 'N',
-      valuationType: this.validateForm.value.radio_group,
-      id:this.id,
-      storeExpressTplValList: this.moduleList
+    //修改信息
+    else if (me.linkType == 'updataArticle') {
+      $event.preventDefault();
+      for (const key in this.validateForm.controls) {
+        this.validateForm.controls[ key ].markAsDirty();
+      }
+      this.staff.storeExpressTplValList.forEach(ele => {
+        delete ele.createTimeBegin
+        delete ele.createTimeEnd
+        delete ele.updateTimeBegin
+        delete ele.updateTimeEnd
+      })
+      let json = {
+        tplName: this.tplName,
+        isFree: 'N',
+        valuationType: this.validateForm.value.radio_group,
+        id:this.id,
+        storeExpressTplValList: this.staff.storeExpressTplValList
+      }
+      console.log(JSON.stringify(json));
+      let formValue = JSON.stringify(json);
+      this.goodsService.upFreight(formValue);
     }
-    console.log(JSON.stringify(json));
-    let formValue = JSON.stringify(json);
-    this.goodsService.addFreight(formValue);
+
+
   };
 
   /**
@@ -429,26 +456,7 @@ export class AddTemplateComponent implements OnInit {
    * @param value
    */
   submitForms = ($event, value) => {
-    $event.preventDefault();
-    for (const key in this.validateForm.controls) {
-      this.validateForm.controls[ key ].markAsDirty();
-    }
-    this.staff.storeExpressTplValList.forEach(ele => {
-      delete ele.createTimeBegin
-      delete ele.createTimeEnd
-      delete ele.updateTimeBegin
-      delete ele.updateTimeEnd
-    })
-    let json = {
-      tplName: this.tplName,
-      isFree: 'N',
-      valuationType: this.validateForm.value.radio_group,
-      id:this.id,
-      storeExpressTplValList: this.storeExpressTplValList
-    }
-    console.log(JSON.stringify(json));
-    let formValue = JSON.stringify(json);
-    this.goodsService.addFreight(formValue);
+
   };
 
   /**

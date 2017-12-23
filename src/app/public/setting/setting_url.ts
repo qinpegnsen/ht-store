@@ -30,6 +30,7 @@ export class SettingUrl {
       getSms: ' /sms/forgetPasswordSMS',//（post）获取验证码
       resetPassword: ' /seller/resetPassword',//（post）忘记密码
       updateSellerPwd: ' /seller/updateSellerPwd',//（post）修改密码
+      checkSmsCode: ' /sms/checkSmsCode',//（get）验证码的校验
     },
     /**
      * 企业入驻
@@ -113,7 +114,9 @@ export class SettingUrl {
       expressTpl: "/expressTpl/queryByStoreCode",//(get)查询运费模板/模板值列表
       delteStoreExpressTplVal: "/expressTpl/delteStoreExpressTplVal",//(deldet)删除模板值
       addStoreExpressTpl: "/expressTpl/addStoreExpressTpl",//(post)添加模板值
+      updateStoreExpressTpl: "/expressTpl/updateStoreExpressTpl",//(put)修改模板值
       loadStoreExpressTpl: "/expressTpl/loadStoreExpressTpl",//(get)查询运费模板详细信息
+      delteStoreExpressTpl: "/expressTpl/delteStoreExpressTpl",//(put)删除运费模板
     },
     /**
      * 提现与账单明细

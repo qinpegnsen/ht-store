@@ -5,7 +5,6 @@ import {AjaxService} from "../../public/service/ajax.service";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {NzNotificationService} from "ng-zorro-antd";
 import {Setting} from "../../public/setting/setting";
-import {ForgetPasswordComponent} from "./forget-password/forget-password.component";
 
 @Injectable()
 export class LoginService {
@@ -274,5 +273,35 @@ export class LoginService {
     return _success;
   }
 
+  /**
+   * 手机验证的校验
+   * @param requestDate
+   * @returns {boolean}
+   */
+  checkSmsCode(phone,code) {
+    console.log("█ phone ►►►",  phone);
+    console.log("█ code ►►►",  code);
 
+    //console.log("█ 11111 ►►►",  11111);
+    const me = this;
+    let _success: boolean = false;
+    AjaxService.get({
+      url: SettingUrl.URL.login.checkSmsCode,
+      data: {
+        phone:phone,
+        code: code},
+      async: false,
+      success: (res) => {
+        if (res.success) {
+          _success = true;
+        } else {
+          me._notification.error('失败', res.info);
+        }
+      },
+      error: (res) => {
+        me._notification.error(Setting.AJAX.errorTip,'')
+      }
+    });
+    return _success;
+  }
 }

@@ -418,6 +418,29 @@ export class GoodsService {
     });
   }
 
+  /**
+   * 修改运费模板
+   * @param requestDate
+   */
+  upFreight(requestDate: any) {
+    const me = this;
+    AjaxService.put({
+      url: SettingUrl.URL.template.updateStoreExpressTpl,
+      data: {storeExpressStr: requestDate},
+      success: (res) => {
+        if (res.success) {
+          me._notification.success('成功', res.info);
+          this.router.navigate([SettingUrl.ROUTERLINK.store.goodsFreightTemplate], {replaceUrl: true})
+        } else {
+          me._notification.error('失败', res.info)
+        }
+      },
+      error: (res) => {
+        me._notification.error(Setting.AJAX.errorTip, '')
+      }
+    });
+  }
+
 
   /**
    * 查询模板详细信息
@@ -433,6 +456,28 @@ export class GoodsService {
       async:false,
       success: (data) => {
         if (data.success) defer.resolve(data.data);
+      }
+    });
+    return defer.promise(); //返回异步请求休息
+  }
+
+  /**
+   * 删除运费模板
+   * @param data （查询参数）
+   */
+  static delFreight(data: any) {
+    let me = this;
+    var defer = $.Deferred(); //封装异步请求结果
+    //执行查询（异步）
+    AjaxService.del({
+      url: SettingUrl.URL.template.delteStoreExpressTpl,
+      data: data,
+      async: false,
+      success: (data) => {
+        defer.resolve(data);
+      },
+      error: (data) => {
+        defer.resolve(false);
       }
     });
     return defer.promise(); //返回异步请求休息
