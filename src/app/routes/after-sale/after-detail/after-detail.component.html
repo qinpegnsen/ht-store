@@ -111,13 +111,13 @@
     <!--退货订单已发货 start-->
     <ng-container *ngIf="afterData?.returnType==enumState.afterType.return">
       <div
-        *ngIf="afterData?.state==enumState.afterService.delivery || afterData?.state==enumState.afterService.checkFails || enumState.afterService.done">
+        *ngIf="afterData?.state==enumState.afterService.delivery || afterData?.state==enumState.afterService.checkFails || afterData?.state==enumState.afterService.done">
         <div class="pl-20">
           <legend class="m0 lengendSty font20 bb0">退货发货信息</legend>
         </div>
         <table class="t-items w100">
           <tr class="t-item">
-            <td class="item-hd w15 bt">退货跟踪：</td>
+            <td class="item-hd w15 bt">退货跟踪：{{afterData?.state}}</td>
             <td class="item-bd w85 mb0 bt">
               <div class="order-track">
                 <nz-timeline class="timeline-alt pb0 mb0">
