@@ -159,12 +159,12 @@ export class AddBrandComponent implements OnInit {
       uploader.onCompleteAll = function () {
         uploadedNum += 1;     // 该组上传完之后uploadedNum+1；
         if (uploadedNum == allUploaders.length) {  // 当有图片上传，并且是图片组的最后一个时
-          me.addBrand()
+         if(me.path == 'addBrand'){me.addBrand()} else{me.updateBrand()}
         }
       }
       // 每张图片上传结束后，判断如果是最后一组图片则发布商品，不是最后一组会进入下一个循环
       if (uploadedNum == allUploaders.length) {  // 当有图片上传，并且是图片组的最后一个时
-        me.addBrand()
+        if(me.path == 'addBrand'){me.addBrand()} else{me.updateBrand()}
       }
     })
   }
@@ -226,23 +226,27 @@ export class AddBrandComponent implements OnInit {
    */
   updateBrandForm() {
     let me = this;
-    if (me.brandLogoUploader.queue[0]) me.uploadImg();
+    if (me.brandLogoUploader.queue[0] || me.brandRegCardUploader.queue[0]) me.uploadImg();
     else me.updateBrand();
   }
 
   /**
    *移除第一个品牌注册证（图片）
    */
-  remove1(){
-   this.validateForm.registration1=null;
+  remove1() {
+    let me=this;
+    me.validateForm.registration1 = null;
   }
 
   /**
    * 移除第二个品牌注册证（图片）
    */
-  remove2(){
-   this.validateForm.registration2=null;
+  remove2() {
+    let me=this;
+    me.validateForm.registration2 = null;
+
   }
+
   /**
    * 返回上个页面
    */
