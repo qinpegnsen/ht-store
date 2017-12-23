@@ -9,7 +9,8 @@ export class SettingUrl {
     home: {
       storeOrdCustomerStatistics: '/statistical/storeOrdCustomerStatistics', //首页呼吸孔信息统计
       storeStatistics: '/statistical/storeStatistics', //首页总体信息统计
-      storeTreeGraphStatistics: '/statistical/storeTreeGraphStatistics' //首页图表信息
+      storeTreeGraphStatistics: '/statistical/storeTreeGraphStatistics', //首页图表信息
+      storeInfo:"/datadict/loadInfoByCode" //平台基础信息
     },
     /**
      * 基础路径配置

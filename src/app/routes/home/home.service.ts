@@ -124,4 +124,23 @@ export class HomeService {
     return ret; //返回请求信息
   }
 
+  /**
+   * 获取企业基础信息
+   * @param {string} code
+   * @returns {any}
+   */
+  static loadInfoByCode(code: string) {
+    let ret = null;
+    //执行查询
+    AjaxService.get({
+      url: SettingUrl.URL.home.storeInfo,
+      data: {code: code},
+      async: false,
+      success: (res) => {
+        if (res.success) ret = res.data;
+      }
+    });
+    return ret; //返回请求信息
+  }
+
 }

@@ -31,7 +31,8 @@ const PROXY_CONFIG = [
       "/finaceStoreDraw", //提现
       "/settle", //结算
       "/ord", //订单
-      "/statistical" //统计信息
+      "/statistical", //统计信息
+      "/datadict" //平台信息
     ],
     target: ly + "8087",   //拦截 context配置路径，经过此地址
     secure: false

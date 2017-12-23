@@ -3,7 +3,7 @@ export class Setting {
   public static STORE: any = {};                       //企业信息
   public user: any;                                   //保存店铺的基本信息
   public static AJAX: any = {
-    errorTip: '处理失败，请稍候重试或联系我们：XXXX-XXXXXXXX',//ajax请求错误提示信息
+    errorTip: '处理失败，请稍候重试或联系我们：',//ajax请求错误提示信息
     failText: '服务器异常' //ajax请求失败提示信息
   };//ajax 信息
 
@@ -16,10 +16,19 @@ export class Setting {
     defaultImg: '../../../assets/img/dummy.png',
     userDefaultImg: '../../../assets/img/user-default.png',
     contactInformation: {
-      qq: "XXXXXXXX",
-      wx: "XXXXXXXX",
-      phone: "XXXX-XXXXXXXX",
-      email: "XXXXXXX@XX.XXX"
+      qq: "",
+      wx: "",
+      phone: "",
+      email: ""
+    },
+    /**
+     * 企业店铺相关配置（数据字典获取信息的key）
+     */
+    storeSettings: {
+      phone: "store_service_plat_phone",//针对企业店铺的平台服务电话
+      address: "store_service_plat_address",//针对企业店铺的平台服务地址
+      email: "store_service_plat_email",//针对企业店铺的平台服务邮件
+      name: "store_system_name"//企业店铺系统的名称
     }
   };
   public static MENUS: Array<any> = new Array();      //平台菜单

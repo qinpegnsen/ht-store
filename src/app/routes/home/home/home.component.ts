@@ -11,7 +11,6 @@ import {Util} from "../../../public/util/util";
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
-  defaultImg: string = Setting.APP.defaultImg; //默认显示的图片
   chartOption: any = {}; //订单流量图表配置项
   contactUs: Array<any> = new Array(); //联系我们的信息内容
   commonFunctions: Array<any> = new Array(); //常见功能的信息内容
@@ -23,26 +22,6 @@ export class HomeComponent implements OnInit {
   storeAvatar: string = Setting.STOREINFO.storePicture; //店铺头像
 
   constructor() {
-    const _this = this;
-    //设置联系我们的信息内容
-    _this.contactUs = [
-      {
-        icon: "anticon anticon-phone color-pink",
-        info: "电话：" + Setting.APP.contactInformation.phone
-      },
-      {
-        icon: "icon icon-weixin color-success",
-        info: "微信：" + Setting.APP.contactInformation.wx
-      },
-      {
-        icon: "icon icon-qq color-blue",
-        info: "QQ：" + Setting.APP.contactInformation.qq
-      },
-      {
-        icon: "icon icon-email color-blue",
-        info: "Email：" + Setting.APP.contactInformation.email
-      }
-    ];
   }
 
   ngOnInit() {
@@ -108,6 +87,8 @@ export class HomeComponent implements OnInit {
     ];
     //绘制订单浏览的图表
     _this.storeTreeGraphStatistics();
+    //设置联系我们的信息内容
+    _this.contactUsInfo();
   }
 
   /**
@@ -148,6 +129,27 @@ export class HomeComponent implements OnInit {
       }
     ];
   };
+
+  /**
+   * 设置联系我们的信息内容
+   */
+  contactUsInfo() {
+    let me = this;
+    //联系我们的信息内容
+    Setting.APP.contactInformation.email = HomeService.loadInfoByCode(Setting.APP.storeSettings.email);
+    Setting.APP.contactInformation.phone = HomeService.loadInfoByCode(Setting.APP.storeSettings.phone);
+    Setting.AJAX.errorTip += Setting.APP.contactInformation.phone;
+    me.contactUs = [
+      {
+        icon: "anticon anticon-phone color-pink",
+        info: "电话：" + Setting.APP.contactInformation.phone
+      },
+      {
+        icon: "icon icon-email color-blue",
+        info: "Email：" + Setting.APP.contactInformation.email
+      }
+    ];
+  }
 
   /**
    * 查询近一周订单的信息统计（已完成、退款、退货）

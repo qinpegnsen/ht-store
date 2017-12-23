@@ -15,7 +15,8 @@
             <span class="nav-text">{{menu.menuName}}</span>
           </span>
             <ul>
-              <li nz-menu-item *ngFor="let child of menu.subMenuList" (click)="goUrl(child.menuUrl)">
+              <li nz-menu-item *ngFor="let child of menu.subMenuList" [ngClass]="{'ant-menu-item-selected':child.isSel}"
+                  (click)="goUrl(child.menuUrl)">
                 {{child.menuName}}
               </li>
             </ul>
