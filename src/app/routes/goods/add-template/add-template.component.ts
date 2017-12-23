@@ -9,6 +9,8 @@ import {AREA_LEVEL_3_JSON} from "../../../public/util/area_level_3";
 import {isArray} from "rxjs/util/isArray";
 import {GoodsService} from "../goods.service";
 import {SettingUrl} from "../../../public/setting/setting_url";
+import {FreightTemplateComponent} from "../freight-template/freight-template.component";
+import {PatternService} from "../../../public/service/pattern.service";
 declare var $: any;
 
 @Component({
@@ -36,7 +38,7 @@ export class AddTemplateComponent implements OnInit {
   id: any;//模板ID
   tplName:any;//模板名称
 
-  constructor(private fb: FormBuilder,public routeInfo: ActivatedRoute,public session: SessionService,public goodsService:GoodsService) {
+  constructor(private fb: FormBuilder,public routeInfo: ActivatedRoute,public session: SessionService,public goodsService:GoodsService,public freightTemplateComponent:FreightTemplateComponent,public patterns: PatternService) {
     this.validateForm = this.fb.group({
       userName            : [ '', [ Validators.required ], [ this.userNameAsyncValidator ] ],
       firstNum            : [ '', [ Validators.required ] ],
@@ -418,10 +420,14 @@ export class AddTemplateComponent implements OnInit {
         valuationType: this.validateForm.value.radio_group,
         id:this.id,
         storeExpressTplValList: this.moduleList
-      }
+      };
       console.log(JSON.stringify(json));
       let formValue = JSON.stringify(json);
-      this.goodsService.addFreight(formValue);
+      $.when(this.goodsService.addFreight(formValue)).done(data => {
+       this.freightTemplateComponent.queryTplList();
+      });
+
+
     }
     //修改信息
     else if (me.linkType == 'updataArticle') {
@@ -436,7 +442,7 @@ export class AddTemplateComponent implements OnInit {
         delete ele.updateTimeEnd
       })
       let json = {
-        tplName: this.tplName,
+        tplName: this.staff.tplName,
         isFree: 'N',
         valuationType: this.validateForm.value.radio_group,
         id:this.id,
@@ -444,7 +450,9 @@ export class AddTemplateComponent implements OnInit {
       }
       console.log(JSON.stringify(json));
       let formValue = JSON.stringify(json);
-      this.goodsService.upFreight(formValue);
+      $.when(this.goodsService.upFreight(formValue)).done(data => {
+        this.freightTemplateComponent.queryTplList();
+      });
     }
 
 

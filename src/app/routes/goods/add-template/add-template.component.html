@@ -98,25 +98,25 @@
           <td class="pl-20">{{item.area_cn}}</td>
           <!--首件 start-->
           <td class="text-center">
-            <nz-input  [nzType]="'text'" [nzSize]="'large'" [(ngModel)]="item.firstNum" name="firstNum"></nz-input>
+            <nz-input  [nzType]="'number'" [nzSize]="'large'" [(ngModel)]="item.firstNum" name="firstNum"></nz-input>
           </td>
           <!--首件end-->
 
           <!--首费 start-->
           <td class="text-center">
-            <nz-input  [nzType]="'text'" [nzSize]="'large'" [(ngModel)]="item.firstPrice" name="firstPrice"></nz-input>
+            <nz-input  [nzType]="'number'" [nzSize]="'large'" [(ngModel)]="item.firstPrice" name="firstPrice"></nz-input>
           </td>
           <!--首费end-->
 
           <!--续件 start-->
           <td class="text-center">
-            <nz-input  [nzType]="'text'" [nzSize]="'large'" name="addAttach" [(ngModel)]="item.addAttach"></nz-input>
+            <nz-input  [nzType]="'number'" [nzSize]="'large'" name="addAttach" [(ngModel)]="item.addAttach"></nz-input>
           </td>
           <!--续件end-->
 
           <!--续费 start-->
           <td class="text-center">
-            <nz-input  [nzType]="'text'" [nzSize]="'large'"  [(ngModel)]="item.addPrice" name="addPrice"></nz-input>
+            <nz-input  [nzType]="'number'" [nzSize]="'large'"  [(ngModel)]="item.addPrice" name="addPrice"></nz-input>
           </td>
           <!--续费end-->
 
@@ -233,25 +233,25 @@
             <div class="hides pl-20">{{item.area | level2AreaName}}</div>
             <!--首件 start-->
             <td class="text-center">
-              <nz-input  [nzType]="'text'" [nzSize]="'large'" [(ngModel)]="item.firstNum" name="firstNum{{i}}" #firstNum="ngModel"></nz-input>
+              <nz-input  [nzType]="'number'" [nzSize]="'large'" [(ngModel)]="item.firstNum" name="firstNum{{i}}" #firstNum="ngModel"></nz-input>
             </td>
             <!--首件end-->
 
             <!--首费 start-->
             <td class="text-center">
-              <nz-input  [nzType]="'text'" [nzSize]="'large'" [(ngModel)]="item.firstPrice" name="firstPrice{{i}}" #firstPrice="ngModel"></nz-input>
+              <nz-input  [nzType]="'number'" [nzSize]="'large'" [(ngModel)]="item.firstPrice" name="firstPrice{{i}}" #firstPrice="ngModel"></nz-input>
             </td>
             <!--首费end-->
 
             <!--续件 start-->
             <td class="text-center">
-              <nz-input  [nzType]="'text'" [nzSize]="'large'" name="addAttach{{i}}" [(ngModel)]="item.addAttach" #addAttach="ngModel"></nz-input>
+              <nz-input  [nzType]="'number'" [nzSize]="'large'" name="addAttach{{i}}" [(ngModel)]="item.addAttach" #addAttach="ngModel"></nz-input>
             </td>
             <!--续件end-->
 
             <!--续费 start-->
             <td class="text-center">
-              <nz-input  [nzType]="'text'" [nzSize]="'large'" [(ngModel)]="item.addPrice" name="addPrice{{i}}" #addPrice="ngModel"></nz-input>
+              <nz-input  [nzType]="'number'" [nzSize]="'large'" [(ngModel)]="item.addPrice" name="addPrice{{i}}" #addPrice="ngModel"></nz-input>
             </td>
             <!--续费end-->
 

@@ -400,7 +400,7 @@ export class GoodsService {
    * @param requestDate
    */
   addFreight(requestDate: any) {
-    const me = this;
+    const me = this, defer = $.Deferred();
     AjaxService.post({
       url: SettingUrl.URL.template.addStoreExpressTpl,
       data: {storeExpressStr: requestDate},
@@ -411,11 +411,13 @@ export class GoodsService {
         } else {
           me._notification.error('失败', res.info)
         }
+        defer.resolve(res.data)
       },
       error: (res) => {
         me._notification.error(Setting.AJAX.errorTip, '')
       }
     });
+    return defer.promise(); //返回异步请求信息
   }
 
   /**
@@ -423,7 +425,7 @@ export class GoodsService {
    * @param requestDate
    */
   upFreight(requestDate: any) {
-    const me = this;
+    const me = this, defer = $.Deferred();
     AjaxService.put({
       url: SettingUrl.URL.template.updateStoreExpressTpl,
       data: {storeExpressStr: requestDate},
@@ -434,11 +436,13 @@ export class GoodsService {
         } else {
           me._notification.error('失败', res.info)
         }
+        defer.resolve(res.data)
       },
       error: (res) => {
         me._notification.error(Setting.AJAX.errorTip, '')
       }
     });
+    return defer.promise(); //返回异步请求信息
   }
 
 
