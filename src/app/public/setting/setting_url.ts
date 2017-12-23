@@ -145,7 +145,8 @@ export class SettingUrl {
     store: {
       saveStore: "/stores/saveStore",//(post)保存或修改企业店铺信息
       loadShop: "/stores/loadStore", //(get)查询店铺基本信息
-      loadState: "/stores/loadState" //(get)查询店铺状态
+      loadState: "/stores/loadState",//(get)查询店铺状态
+      updateStore:"/stores/updateStore"//(get)修改店铺信息
     }
 
   }

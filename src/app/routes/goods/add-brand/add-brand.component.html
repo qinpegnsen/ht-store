@@ -28,16 +28,10 @@
           <label nz-form-item-required>品牌英文名称</label>
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngEnglishName)" nzHasFeedback>
-          <nz-input name="englishName" [(ngModel)]="validateForm.englishName" #ngEnglishName="ngModel" required
+          <nz-input name="englishName" [(ngModel)]="validateForm.englishName" #ngEnglishName="ngModel"
                     [nzRows]="2" [pattern]="pattern.letterNumber"
                     [nzPlaceHolder]="'请输入品牌英文名称!'" [nzSize]="'large'">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngEnglishName) == valitateState.empty">
-            请输入品牌英文名称!
-          </div>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngEnglishName) == valitateState.error">
-            请输入正确的品牌英文名称！
-          </div>
         </div>
       </div>
       <!--品牌所有人-->

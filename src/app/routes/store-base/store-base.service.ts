@@ -167,6 +167,30 @@ export class StoreBaseService {
   }
 
   /**
+   * 修改店铺信息
+   */
+
+  updateStore(requestData: any) {
+    let me = this, defer = $.Deferred(); //封装异步请求结果
+    AjaxService.get({
+      url: SettingUrl.URL.store.updateStore,
+      data: requestData,
+      success: (res) => {
+        if (res.success) {
+          defer.resolve(res.success);
+          me._notification.success('提交成功', '修改店铺信息成功')
+        } else {
+          me._notification.error('提交失败', res.info)
+        }
+      },
+      error: (res) => {
+        me._notification.error('提交失败', res.info)
+      }
+    });
+    return defer.promise(); //返回异步请求信息
+  }
+
+  /**
    * 查询企业信息
    * @param data （查询参数）
    */

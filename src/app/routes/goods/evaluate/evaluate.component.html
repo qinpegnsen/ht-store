@@ -28,10 +28,10 @@
           <tr>
             <!--买家信息 --start -->
             <td class="w6 text-center" [attr.rowspan]="data.commentGoodsPicList.length">
-              <span class="">
-                <img src="" appImgErr="user" width="50" alt="">
+              <span>
+                <img [src]="data.custAvatar" appImgErr="user" width="50" alt="">
               </span><br>
-              <span class="">{{data.custName}}</span>
+              <span>{{data.custName}}</span>
             </td>
             <!--买家信息  --end  -->
             <td class="relative w40 p bl">
@@ -57,14 +57,13 @@
                 <!--追评内容 --start -->
                 <div>
                   <p class="pt-10">追评内容：</p>
-                  <p class="pb-5"><span>{{data.commentTextAfter || "[空]"}}</span></p>
+                  <p class="pb-5"><span>{{data.commentTextAfter || "【空】"}}</span></p>
                   <p><span *ngFor="let eval of data.commentGoodsPicList;">
                      <nz-popover [nzTrigger]="'click'">
                        <img [src]="eval.pic | imgSize:'50'" appImgErr title="点击出大图"
-                            *ngIf="eval.isAfter==enumState.yes" nz-popover>
+                            *ngIf="eval.isAfter==enumState.yes" nz-popover class="mr-5">
                         <ng-template #nzTemplate>
-                          <div>  <img [src]="eval.pic | imgSize:'400'" *ngIf="eval.isAfter==enumState.yes">
-                          </div>
+                          <div> <img [src]="eval.pic | imgSize:'400'" *ngIf="eval.isAfter==enumState.yes"> </div>
                         </ng-template>
                         </nz-popover>
                   </span></p>

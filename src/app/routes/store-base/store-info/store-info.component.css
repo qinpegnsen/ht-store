@@ -42,6 +42,10 @@
 }
 
 .img-center {
+  height:50px;
+  line-height: 50px
+}
+
+.img-store{
   height: 60px;
-  line-height: 60px
 }
