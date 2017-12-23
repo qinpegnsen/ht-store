@@ -84,14 +84,14 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label>QQ</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngStoreQQ)" nzHasFeedback>
-          <nz-input name="storeQQ" [nzType]="'text'" [(ngModel)]="validateForm.storeQQ" #ngStoreQQ="ngModel"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngStoreQq)" nzHasFeedback>
+          <nz-input name="storeQq" [nzType]="'text'" [(ngModel)]="validateForm.storeQq" #ngStoreQq="ngModel"
                     [nzPlaceHolder]="'QQ'" [nzSize]="'large'" minlength="6">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreQQ) == valitateState.empty">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreQq) == valitateState.empty">
             请输入店铺QQ！
           </div>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreQQ) == valitateState.error">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreQq) == valitateState.error">
             请输入正确的QQ！
           </div>
         </div>
@@ -100,14 +100,14 @@
         <div nz-form-label nz-col [nzSpan]="8">
           <label>阿里旺旺账号</label>
         </div>
-        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngStoreWW)" nzHasFeedback>
-          <nz-input name="storeWW" [(ngModel)]="validateForm.storeWW" #ngStoreWW="ngModel" [nzType]="'text'"
+        <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngStoreWw)" nzHasFeedback>
+          <nz-input name="storeWw" [(ngModel)]="validateForm.storeWw" #ngStoreWw="ngModel" [nzType]="'text'"
                     [nzPlaceHolder]="'阿里旺旺账号'" [nzSize]="'large'" minlength="6">
           </nz-input>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreWW) == valitateState.empty">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreWw) == valitateState.empty">
             请输入店铺阿里旺旺账号！
           </div>
-          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreWW) == valitateState.error">
+          <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreWw) == valitateState.error">
             请输入正确的阿里旺旺账号！
           </div>
         </div>
