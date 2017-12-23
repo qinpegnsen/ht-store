@@ -426,8 +426,8 @@
       <dd nz-col [nzSpan]="20">
         <div class="w100 app-box">
           <div class="app-wrap">
-            <!--<ckeditor name="mobileBody" [(ngModel)]="publishData.mobileBody" [config]="ckEditerConfig"></ckeditor>-->
-            <div class="app-control">
+            <ckeditor name="mobileBody" [(ngModel)]="publishData.mobileBody" [config]="ckEditerConfig"></ckeditor>
+            <!--<div class="app-control">
               <div class="app-content">
                 <div class="app-img-box" *ngFor="let item of mblItemList;let i=index;">
                   <div class="_edit hide">
@@ -490,7 +490,7 @@
               <li class="w50 fl p-5" (click)="showEdit($event.target)">
                 <i class="anticon anticon-edit"></i><br>文字
               </li>
-            </ul>
+            </ul>-->
           </div>
           <div class="explain">
             <!--<button nz-button class="thc-btn-w mb" (click)="syncGoodsBody()">
