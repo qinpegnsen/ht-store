@@ -242,6 +242,7 @@ export class AddBrandComponent implements OnInit {
    * 移除第二个品牌注册证（图片）
    */
   remove2() {
+    console.log("█ 11111 ►►►",  11111);
     let me=this;
     me.validateForm.registration2 = null;
 
