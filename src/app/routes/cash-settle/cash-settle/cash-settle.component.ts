@@ -34,6 +34,7 @@ export class CashSettleComponent implements OnInit {
   public validateForm: any = {};//表单
   public drawMoney: any;//提现金额（余额）
   public currentModal: any;//弹窗默认不显示
+  public info: any = Setting.PAGEMSG;//引导语
 
   constructor(public _notification: NzNotificationService,
               public patternService: PatternService,
