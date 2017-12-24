@@ -16,7 +16,7 @@
           <span class="search-title">售后单状态：</span>
           <div class="search-main width100">
             <nz-select class="w100" name="saleAfter" [(ngModel)]="query.state" [nzSize]="'large'"
-                       (ngModelChange)="queryOrdList()">
+                       (ngModelChange)="queryOrdList()" nzPlaceHolder="">
               <ng-container *ngFor="let item of saleAfterStates">
                 <nz-option
                   [nzLabel]="item.val"
@@ -30,7 +30,7 @@
           <span class="search-title">是否收到货：</span>
           <div class="search-main width50">
             <nz-select class="w100" name="isReceive" [(ngModel)]="query.isReceive" [nzSize]="'large'"
-                       (ngModelChange)="queryOrdList()">
+                       (ngModelChange)="queryOrdList()" nzPlaceHolder="">
               <nz-option
                 *ngFor="let item of isReceiveList"
                 [nzLabel]="item.val"
