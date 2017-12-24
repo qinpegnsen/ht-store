@@ -30,6 +30,7 @@ export class OrderPendingShipmentComponent implements OnInit {
   enum = Setting.ENUM;  // 订单状态类型
   orderState :any= Setting.ENUMSTATE;               //定义枚举状态
   state: string = this.orderState.ordState.prepare;     //待发货状态的订单
+  refund: string = Setting.APP.refundImg; //已退货的图片
 
   constructor(public fb: FormBuilder,public orderService:OrderService) { }
 

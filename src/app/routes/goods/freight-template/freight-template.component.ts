@@ -16,7 +16,7 @@ export class FreightTemplateComponent implements OnInit {
   prompt: any = Setting.PAGEMSG.freightTemplate; //提示信息
   showFreightList: boolean = true;//判断子组件的显示/隐藏
   addTemplate: string = SettingUrl.ROUTERLINK.store.addTemplate; //添加运费模板路由
-  public params: any;//删除传的参数
+  params: any;//删除传的参数
 
   constructor( public _notification: NzNotificationService) {
   }

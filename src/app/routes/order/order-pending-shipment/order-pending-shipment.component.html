@@ -31,14 +31,15 @@
   <table class="w100">
     <thead class="table-head">
     <ul >
-      <li class="w40 fl text-center">商品</li>
-      <li class="w8 fl text-center">单价</li>
-      <li class="w8 fl text-center">数量</li>
-      <li class="w10 fl text-center">收货人手机号</li>
-      <li class="w10 fl text-center">店铺名</li>
+      <li class="w39 fl text-center">商品</li>
+      <li class="w7 fl text-center">单价</li>
+      <li class="w7 fl text-center">数量</li>
+      <li class="w8 fl text-center">收货人手机号</li>
+      <li class="w8 fl text-center">异常状态</li>
+      <li class="w8 fl text-center">收货人</li>
       <li class="w8 fl text-center">订单金额（元）</li>
       <li class="w8 fl text-center">交易状态</li>
-      <li class="w8 fl text-center">交易操作</li>
+      <li class="w7 fl text-center">交易操作</li>
     </ul>
     </thead>
   </table>
@@ -63,7 +64,8 @@
       </div>
       <table class="w100 b">
         <tr *ngFor="let name of orders.ordItemList;let j = index">
-          <td class="relative w40 p">
+          <td class="relative w39 p">
+            <div class="cover" *ngIf="orders.returnNum > 0"></div>
             <div class="inline-block fl goodsImage">
               <ng-container>
                 <div class="tag-dib imgbox text-center mr">
@@ -88,13 +90,19 @@
               </p>
             </div>
           </td>
-          <td class="w8 text-center bl">&yen; {{name.price| number:'1.2-2'}}</td>
-          <td class="w8 text-center bl">{{name.num}}</td>
-          <td class="w10 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">{{orders.phone}}</td>
-          <td class="w10 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
+          <td class="w7 text-center bl"><div class="cover" *ngIf="orders.returnNum > 0"></div>&yen; {{name.price| number:'1.2-2'}}</td>
+          <td class="w7 text-center bl"><div class="cover" *ngIf="orders.returnNum > 0"></div>{{name.num}}</td>
+          <td class="w8 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length"><div class="cover" *ngIf="orders.returnNum > 0"></div>{{orders.phone}}</td>
+          <td class="w8 text-center bl">
+            <div *ngIf="orders.returnNum > 0">
+              <img width="66%" [src]="refund" alt="">
+            </div>
           </td>
           <td class="w8 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
-            <span class="main-color">&yen; {{orders.ordTotal | number:'1.2-2'}}</span><br>
+            {{orders.linkman}}
+          </td>
+          <td class="w8 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
+            <span class="main-color">&yen; {{orders.total | number:'1.2-2'}}</span><br>
             <span class="font12 gray-color">运费{{orders.freight  | number:'1.2-2'}}</span><br>
             <span class="font12 gray-color">{{orders.payWay | stateName : enum.orderPayState}}</span>
           </td>
@@ -102,10 +110,12 @@
             <p class="gray-color">{{orders.state | stateName : enum.orderState}}</p>
             <p class="cursor p-hover" [routerLink]="orderDetail" [queryParams]="{ordno:orders.ordno}"><a class="underline">查看详情</a></p>
           </td>
-          <td class="w8 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
-            <button nz-button [nzSize]="'large'" class="btn-danger" title="设置发货" (click)="showOrderPend(orders.ordno)">
-              <i class="anticon anticon-car"></i>
-            </button>
+          <td class="w7 text-center bl" *ngIf="j==0" [attr.rowspan]="orders.ordItemList.length">
+            <div *ngIf="orders.canDelivery">
+              <button nz-button [nzSize]="'large'" class="btn-danger" title="设置发货" (click)="showOrderPend(orders.ordno)">
+                <i class="anticon anticon-car"></i>
+              </button>
+            </div>
           </td>
         </tr>
       </table>

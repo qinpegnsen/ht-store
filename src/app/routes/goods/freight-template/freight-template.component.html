@@ -1,7 +1,7 @@
 <!--顶部信息 start-->
 <div class="mb page-title">
   <h3 class="fl">运费模板管理</h3>
-  <button class="fr m btn-danger" nz-button [nzGhost]="true" [routerLink]="addTemplate" [queryParams]="{linkType:'addArticle'}">
+  <button class="fr m btn-danger" nz-button [nzGhost]="true" [routerLink]="addTemplate" [queryParams]="{linkType:'addArticle'}" *ngIf="showFreightList">
     <span>新增运费模板</span>
   </button>
 </div>
