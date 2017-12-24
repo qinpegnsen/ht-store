@@ -81,11 +81,11 @@
                       [nzPlaceHolder]="'请输入社会信用代码'" [nzSize]="'large'">
             </nz-input>
             <div nz-form-explain
-                 *ngIf="ngValidateErrorMsg(ngContactsPhone) == valitateState.empty">
+                 *ngIf="ngValidateErrorMsg(ngCreditCode) == valitateState.empty">
               请输入社会信用代码！
             </div>
             <div nz-form-explain
-                 *ngIf="ngValidateErrorMsg(ngContactsPhone) == valitateState.error">
+                 *ngIf="ngValidateErrorMsg(ngCreditCode) == valitateState.error">
               请输入18位的社会信用代码！
             </div>
           </div>
