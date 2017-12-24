@@ -73,10 +73,9 @@ export class BaseInfoComponent implements OnInit {
       if (data) {
         me.validateForm = data;
         me.transInfo(); //转换信息
-      }else{
+      } else {
         let epBaseInfo = localStorage.getItem('epBaseInfo');
-        if(!isNullOrUndefined(epBaseInfo)) me.validateForm = JSON.parse(epBaseInfo);
-        me.transInfo(); //转换信息
+        if (!isNullOrUndefined(epBaseInfo)) me.validateForm = JSON.parse(epBaseInfo), me.transInfo(); //转换信息;
       }//企业信息
     })
   }
@@ -84,16 +83,16 @@ export class BaseInfoComponent implements OnInit {
   /**
    * 转换信息
    */
-  transInfo(){
+  transInfo() {
     let me = this;
-    if(!isNullOrUndefined(me.validateForm)) return;
-    if(!isNullOrUndefined(me.validateForm.idcardStartTime)) me.validateForm.idcardStartTime = new Date(me.validateForm.idcardStartTime);
-    if(!isNullOrUndefined(me.validateForm.idcardEndTime)) me.validateForm.idcardEndTime = new Date(me.validateForm.idcardEndTime);
-    if(!isNullOrUndefined(me.validateForm.businessLicenceStart)) me.validateForm.businessLicenceStart = new Date(me.validateForm.businessLicenceStart);
-    if(!isNullOrUndefined(me.validateForm.businessLicenceEnd)) me.validateForm.businessLicenceEnd = new Date(me.validateForm.businessLicenceEnd);
-    if(!isNullOrUndefined(me.validateForm.businessLicenceAreaCode)) me.validateForm.businessLicenceAreaCode = MainService.getAreaArrayByCode(me.validateForm.businessLicenceAreaCode)
-    if(me.validateForm.isForever == Setting.ENUMSTATE.yes) me.validateForm.isForever = true;
-    else if(me.validateForm.isForever == Setting.ENUMSTATE.no) me.validateForm.isForever = false;
+    if (isNullOrUndefined(me.validateForm)) return;
+    if (!isNullOrUndefined(me.validateForm.idcardStartTime)) me.validateForm.idcardStartTime = new Date(me.validateForm.idcardStartTime);
+    if (!isNullOrUndefined(me.validateForm.idcardEndTime)) me.validateForm.idcardEndTime = new Date(me.validateForm.idcardEndTime);
+    if (!isNullOrUndefined(me.validateForm.businessLicenceStart)) me.validateForm.businessLicenceStart = new Date(me.validateForm.businessLicenceStart);
+    if (!isNullOrUndefined(me.validateForm.businessLicenceEnd)) me.validateForm.businessLicenceEnd = new Date(me.validateForm.businessLicenceEnd);
+    if (!isNullOrUndefined(me.validateForm.businessLicenceAreaCode)) me.validateForm.businessLicenceAreaCode = MainService.getAreaArrayByCode(me.validateForm.businessLicenceAreaCode)
+    if (me.validateForm.isForever == Setting.ENUMSTATE.yes) me.validateForm.isForever = true;
+    else if (me.validateForm.isForever == Setting.ENUMSTATE.no) me.validateForm.isForever = false;
   }
 
 
@@ -156,7 +155,7 @@ export class BaseInfoComponent implements OnInit {
    */
   submitCompleteForm($event) {
     $event.preventDefault();
-    let me = this,hasNewImg:boolean = false, allUploaders = [
+    let me = this, hasNewImg: boolean = false, allUploaders = [
       this.organizationCodeUploader,
       this.businessLicenceUploader,
       this.taxRegistrationUploader
@@ -181,10 +180,10 @@ export class BaseInfoComponent implements OnInit {
     if (typeof formValue.businessLicenceAreaCode == 'object') { //如果是数组形式则取数组的第三个
       formValue.businessLicenceAreaCode = formValue.businessLicenceAreaCode[2];//取第三级编码
       //如果是修改信息，则区域信息可能是级联选择器赋值的对象数组
-      if(formValue.businessLicenceAreaCode.value) formValue.businessLicenceAreaCode = formValue.businessLicenceAreaCode.value;
+      if (formValue.businessLicenceAreaCode.value) formValue.businessLicenceAreaCode = formValue.businessLicenceAreaCode.value;
     }
     this.storeBaseService.enterpriseBase(formValue);
-    localStorage.setItem('epBaseInfo',JSON.stringify(formValue));//每次点击提交时在本地保存表单数据，如果用户刷新页面可保证数据不丢失
+    localStorage.setItem('epBaseInfo', JSON.stringify(formValue));//每次点击提交时在本地保存表单数据，如果用户刷新页面可保证数据不丢失
   };
 
   /**
