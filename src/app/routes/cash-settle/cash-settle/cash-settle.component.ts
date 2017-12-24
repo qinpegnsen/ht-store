@@ -126,7 +126,8 @@ export class CashSettleComponent implements OnInit {
         this.currentModal.destroy('onCancel');//关闭弹窗
         me.isConfirmLoading = false;
         me.validateForm.drawMoney = null;//成功后清空余额
-        me._notification.success('提现成功', data.info)
+        me._notification.success('提现成功', data.info);
+       me.qeuryAgentData();//刷新企业余额
       } else {
         me.isConfirmLoading = false;
         me._notification.error('提现失败', data.info)
