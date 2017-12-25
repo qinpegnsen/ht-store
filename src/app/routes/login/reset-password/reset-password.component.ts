@@ -16,8 +16,8 @@ export class ResetPasswordComponent implements OnInit {
   msgCode: string = '获取验证码';
   isSending: boolean = false;//判断获取验证码的按钮，如果已经点击过了，就变禁用
   phoneState: string;//获取验证码时判断手机号是否输入
-  phone:string; //订单号
-  code:string; //快递号
+  phone:string; //手机号
+  code:string; //验证码
   valitateCheck: any = Util.validate; //表单验证
 
   constructor(public loginService: LoginService, public forgetPwd: ForgetPasswordComponent,public _notification: NzNotificationService) {
@@ -47,7 +47,7 @@ export class ResetPasswordComponent implements OnInit {
     if(me.loginService.checkSmsCode(this.phone,this.code)){
       this.forgetPwd.current += 1;
       this.loginService.routerSkip(this.forgetPwd.current);
-      this.loginService.validateForm();
+      this.validateForm=this.loginService.validateFormReset;
     }
   };
 
