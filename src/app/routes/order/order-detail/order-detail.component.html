@@ -28,10 +28,6 @@
         <dd><span>&nbsp;&yen; {{orderData.freight | number:'1.2-2'}}</span></dd>
       </dl>
       <dl>
-        <dt>红包抵扣：</dt>
-        <dd><span>&nbsp;&yen; {{orderData.rpPay | number:'1.2-2'}}</span></dd>
-      </dl>
-      <dl>
         <dt>应付总额：</dt>
         <dd><span class="main-color">&nbsp;&yen; {{orderData.pay | number:'1.2-2'}}</span></dd>
       </dl>
@@ -253,19 +249,27 @@
 <div class="order-information-footer font16">
     <dl class="text-right">
       <dt class=" ">商品总额：</dt>
-      <dd class=" "><span class="main-red font14">￥{{orderData.total | number:'1.2-2'}}</span></dd>
+      <dd class=" "><span class="main-red font14"><span>+</span>￥{{orderData.total | number:'1.2-2'}}</span></dd>
     </dl>
     <dl class="text-right">
       <dt class="">运费：</dt>
-      <dd class=""><span class="main-red font14">￥{{orderData.freight | number:'1.2-2'}}</span></dd>
+      <dd class=""><span class="main-red font14"><span>+</span>￥{{orderData.freight | number:'1.2-2'}}</span></dd>
     </dl>
   <dl class="text-right">
+    <dt class="">应付金额：</dt>
+    <dd class=""><span class="main-red font14">￥{{orderData.ordTotal | number:'1.2-2'}}</span></dd>
+  </dl>
+  <dl class="text-right">
     <dt class=" ">红包抵扣：</dt>
-    <dd class=" "><span class="main-red font14">￥{{orderData.rpPay | number:'1.2-2'}}</span></dd>
+    <dd class=" "><span class="main-red font14"><em>-</em>￥{{orderData.rpPay | number:'1.2-2'}}</span></dd>
+  </dl>
+  <dl class="text-right">
+    <dt class=" ">重消币抵扣：</dt>
+    <dd class=" "><span class="main-red font14"><em>-</em>￥{{orderData.coinPay | number:'1.2-2'}}</span></dd>
   </dl>
     <dl class="text-right">
       <dt class="">实付金额：</dt>
-      <dd class=""><span class="main-color font20">￥{{orderData.ordTotal | number:'1.2-2'}}</span></dd>
+      <dd class=""><span class="main-color font20">￥{{orderData.pay | number:'1.2-2'}}</span></dd>
     </dl>
 </div>
 <!--订单信息 end-->

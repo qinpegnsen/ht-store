@@ -47,7 +47,7 @@ export class ResetPasswordComponent implements OnInit {
     if(me.loginService.checkSmsCode(this.phone,this.code)){
       this.forgetPwd.current += 1;
       this.loginService.routerSkip(this.forgetPwd.current);
-      this.validateForm=this.loginService.validateFormReset;
+      this.loginService.validateForm();
     }
   };
 

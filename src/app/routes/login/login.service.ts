@@ -17,12 +17,7 @@ export class LoginService {
 
   constructor(public router: Router, public fb: FormBuilder, public _notification: NzNotificationService) {
     //重置密码的表单校验
-    this.validateFormReset = this.fb.group({
-      phone: ['', [Validators.required], [Util.requiredPhoneValidator]],//手机号的校验
-      code: ['', [Validators.required], [Util.smsCodeValidator]],//验证码校验
-      newPwd: ['', [Util.pwdValidator]],//密码的校验
-      confirmPwd: ['', [this.passwordConfirmationValidator]],//再次输入密码的校验
-    });
+    this.validateForm()
     //修改密码的表单校验
     this.changePassword = this.fb.group({
       oldPassword: ['', [Util.pwdValidator]],//旧密码校验
@@ -30,7 +25,14 @@ export class LoginService {
       confirmPwd: ['', [this.passwordConfirmationValidator2]],//再次输入密码的校验
     });
   }
-
+  validateForm(){
+    this.validateFormReset = this.fb.group({
+      phone: ['', [Validators.required], [Util.requiredPhoneValidator]],//手机号的校验
+      code: ['', [Validators.required], [Util.smsCodeValidator]],//验证码校验
+      newPwd: ['', [Util.pwdValidator]],//密码的校验
+      confirmPwd: ['', [this.passwordConfirmationValidator]],//再次输入密码的校验
+    });
+  }
 
   /**
    * 忘记密码时输入密码的校验
