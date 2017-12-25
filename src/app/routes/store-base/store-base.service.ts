@@ -201,7 +201,7 @@ export class StoreBaseService {
       url: SettingUrl.URL.enterprise.load,
       async: false,
       success: (data) => {
-        if (data.success) defer.resolve(data.data);
+        defer.resolve(data.data);
       }
     });
     return defer.promise(); //返回异步请求休息
@@ -217,7 +217,7 @@ export class StoreBaseService {
     AjaxService.get({
       url: SettingUrl.URL.store.loadShop,
       success: (data) => {
-        if (data.success) defer.resolve(data.data);
+        defer.resolve(data.data);
       }
     });
     return defer.promise(); //返回异步请求休息
@@ -233,7 +233,7 @@ export class StoreBaseService {
     AjaxService.get({
       url: SettingUrl.URL.enterprise.loadState,
       success: (data) => {
-        if (data.success) defer.resolve(data.data);
+        defer.resolve(data.data);
       }
     });
     return defer.promise(); //返回异步请求休息
@@ -249,7 +249,7 @@ export class StoreBaseService {
     AjaxService.get({
       url: SettingUrl.URL.store.loadState,
       success: (data) => {
-        if (data.success) defer.resolve(data.data);
+        defer.resolve(data.data);
       }
     });
     return defer.promise(); //返回异步请求休息
