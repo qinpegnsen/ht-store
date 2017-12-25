@@ -148,9 +148,9 @@
             <ng-container *ngIf="validateForm.taxRegistrationCertificateElectronicPreview && !taxRegistrationUploader.queue[0]">
               <div class="uploaded">
                 <nz-popover [nzTrigger]="'click'">
-                  <img [src]="validateForm.taxRegistrationCertificateElectronicPreview" title="点击看大图"  height="50" nz-popover>
+                  <img [src]="validateForm.taxRegistrationCertificateElectronicPreview | imgSize: '50'" title="点击看大图" nz-popover>
                   <ng-template #nzTemplate>
-                    <div><img [src]="validateForm.taxRegistrationCertificateElectronicPreview" [alt]="'营业执照'"  height="200"></div>
+                    <div><img [src]="validateForm.taxRegistrationCertificateElectronicPreview | imgSize: '200'" [alt]="'营业执照'"></div>
                   </ng-template>
                 </nz-popover>
               </div>
@@ -224,9 +224,9 @@
             <ng-container *ngIf="validateForm.organizationCodeElectronicPreview && !organizationCodeUploader.queue[0]">
               <div class="uploaded">
                 <nz-popover [nzTrigger]="'click'">
-                  <img [src]="validateForm.organizationCodeElectronicPreview" title="点击看大图"  height="50" nz-popover>
+                  <img [src]="validateForm.organizationCodeElectronicPreview | imgSize: '50'" title="点击看大图" nz-popover>
                   <ng-template #nzTemplate>
-                    <div><img [src]="validateForm.organizationCodeElectronicPreview" [alt]="'营业执照'"  height="200"></div>
+                    <div><img [src]="validateForm.organizationCodeElectronicPreview | imgSize: '200'" [alt]="'营业执照'"></div>
                   </ng-template>
                 </nz-popover>
               </div>
@@ -492,9 +492,9 @@
           <ng-container *ngIf="validateForm.businessLicenceNumberElectronicPreview && !businessLicenceUploader.queue[0]">
             <div class="uploaded">
               <nz-popover [nzTrigger]="'click'">
-                <img [src]="validateForm.businessLicenceNumberElectronicPreview" title="点击看大图"  height="50" nz-popover>
+                <img [src]="validateForm.businessLicenceNumberElectronicPreview | imgSize: '50'" title="点击看大图" nz-popover>
                 <ng-template #nzTemplate>
-                  <div><img [src]="validateForm.businessLicenceNumberElectronicPreview" [alt]="'营业执照'"  height="200"></div>
+                  <div><img [src]="validateForm.businessLicenceNumberElectronicPreview | imgSize: '200'" [alt]="'营业执照'"></div>
                 </ng-template>
               </nz-popover>
             </div>
