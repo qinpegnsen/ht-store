@@ -144,8 +144,20 @@
                 </nz-popover>
               </div>
             </ng-container>
-            <!--修改图片的时候-->
-            <ng-container *ngIf="validateForm.taxRegistrationCertificateElectronic && !taxRegistrationUploader.queue[0]">
+            <!--修改图片的时候，如果有本地预览图-->
+            <ng-container *ngIf="validateForm.taxRegistrationCertificateElectronicPreview && !taxRegistrationUploader.queue[0]">
+              <div class="uploaded">
+                <nz-popover [nzTrigger]="'click'">
+                  <img [src]="validateForm.taxRegistrationCertificateElectronicPreview" title="点击看大图"  height="50" nz-popover>
+                  <ng-template #nzTemplate>
+                    <div><img [src]="validateForm.taxRegistrationCertificateElectronicPreview" [alt]="'营业执照'"  height="200"></div>
+                  </ng-template>
+                </nz-popover>
+              </div>
+            </ng-container>
+            <!--修改图片的时候,如果没有本地预览图-->
+            <ng-container
+              *ngIf="validateForm.taxRegistrationCertificateElectronic && !validateForm.taxRegistrationCertificateElectronicPreview && !taxRegistrationUploader.queue[0]">
               <div class="uploaded">
                 <nz-popover [nzTrigger]="'click'">
                   <img [src]="validateForm.taxRegistrationCertificateElectronic | imgSize: '50'" title="点击看大图"
@@ -208,8 +220,20 @@
                 </nz-popover>
               </div>
             </ng-container>
-            <!--修改图片的时候-->
-            <ng-container *ngIf="validateForm.organizationCodeElectronic && !organizationCodeUploader.queue[0]">
+            <!--修改图片的时候，如果有本地预览图-->
+            <ng-container *ngIf="validateForm.organizationCodeElectronicPreview && !organizationCodeUploader.queue[0]">
+              <div class="uploaded">
+                <nz-popover [nzTrigger]="'click'">
+                  <img [src]="validateForm.organizationCodeElectronicPreview" title="点击看大图"  height="50" nz-popover>
+                  <ng-template #nzTemplate>
+                    <div><img [src]="validateForm.organizationCodeElectronicPreview" [alt]="'营业执照'"  height="200"></div>
+                  </ng-template>
+                </nz-popover>
+              </div>
+            </ng-container>
+            <!--修改图片的时候，如果没有本地预览图-->
+            <ng-container
+              *ngIf="validateForm.organizationCodeElectronic && !validateForm.organizationCodeElectronicPreview && !organizationCodeUploader.queue[0]">
               <div class="uploaded">
                 <nz-popover [nzTrigger]="'click'">
                   <img [src]="validateForm.organizationCodeElectronic | imgSize: '50'" title="点击看大图" nz-popover>
@@ -464,8 +488,20 @@
               </nz-popover>
             </div>
           </ng-container>
-          <!--修改图片的时候-->
-          <ng-container *ngIf="validateForm.businessLicenceNumberElectronic && !businessLicenceUploader.queue[0]">
+          <!--修改图片的时候，如果有本地预览图-->
+          <ng-container *ngIf="validateForm.businessLicenceNumberElectronicPreview && !businessLicenceUploader.queue[0]">
+            <div class="uploaded">
+              <nz-popover [nzTrigger]="'click'">
+                <img [src]="validateForm.businessLicenceNumberElectronicPreview" title="点击看大图"  height="50" nz-popover>
+                <ng-template #nzTemplate>
+                  <div><img [src]="validateForm.businessLicenceNumberElectronicPreview" [alt]="'营业执照'"  height="200"></div>
+                </ng-template>
+              </nz-popover>
+            </div>
+          </ng-container>
+          <!--如果没有本地预览图-->
+          <ng-container
+            *ngIf="validateForm.businessLicenceNumberElectronic && !validateForm.organizationCodeElectronicPreview && !businessLicenceUploader.queue[0]">
             <div class="uploaded">
               <nz-popover [nzTrigger]="'click'">
                 <img [src]="validateForm.businessLicenceNumberElectronic | imgSize: '50'" title="点击看大图" nz-popover>

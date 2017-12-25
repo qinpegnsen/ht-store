@@ -25,6 +25,7 @@ export class BaseInfoComponent implements OnInit {
   ngValidateStatus = Util.ngValidateStatus;//表单项状态
   ngValidateErrorMsg = Util.ngValidateErrorMsg;//表单项提示状态
   valitateState: any = Setting.valitateState;//表单验证状态
+  localDataSave: any = {};//本地预览图片路径保存
 
   public organizationCodeUploader: FileUploader = new FileUploader({
     url: SettingUrl.URL.enterprise.upload,
@@ -126,7 +127,7 @@ export class BaseInfoComponent implements OnInit {
       uploader.onSuccessItem = function (item, response, status, headers) {
         let res = JSON.parse(response);
         if (res.success) {
-          if (uuid) me.patchValues(i, uuid);
+          if (uuid) me.patchValues(i, uuid,res.data);
         } else {
           me._notification.error(`上传失败`, '图片' + item._file.name + res.info)
         }
@@ -183,22 +184,26 @@ export class BaseInfoComponent implements OnInit {
       if (formValue.businessLicenceAreaCode.value) formValue.businessLicenceAreaCode = formValue.businessLicenceAreaCode.value;
     }
     this.storeBaseService.enterpriseBase(formValue);
-    localStorage.setItem('epBaseInfo', JSON.stringify(formValue));//每次点击提交时在本地保存表单数据，如果用户刷新页面可保证数据不丢失
+    let localData = Object.assign({},formValue, this.localDataSave);
+    localStorage.setItem('epBaseInfo', JSON.stringify(localData));//每次点击提交时在本地保存表单数据，如果用户刷新页面可保证数据不丢失
   };
 
   /**
    * 上传图片之后给表单元素赋值
    */
-  patchValues(i, uuid) {
+  patchValues(i, uuid, src) {
     switch (i) {
       case 0:
         this.validateForm.organizationCodeElectronic = uuid;
+        this.localDataSave.organizationCodeElectronicPreview = src;//将此图片全路径存到本地
         break;
       case 1:
         this.validateForm.businessLicenceNumberElectronic = uuid;
+        this.localDataSave.businessLicenceNumberElectronicPreview = src;//将此图片全路径存到本地
         break;
       case 2:
         this.validateForm.taxRegistrationCertificateElectronic = uuid;
+        this.localDataSave.taxRegistrationCertificateElectronicPreview = src;//将此图片全路径存到本地
         break;
     }
   }
