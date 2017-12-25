@@ -47,7 +47,7 @@ export class MainComponent implements OnInit {
   selMenu(menuList: Array<any>, url: string) {
     let _this = this;
     menuList.forEach(ret => {
-      if (ret.menuUrl == url) ret.isSel = true;
+      if ((url).indexOf(ret.menuUrl) == 0) ret.isSel = true;
       else ret.isSel = false;
       if (ret.subMenuList && ret.subMenuList.length > 0) {
         _this.selMenu(ret.subMenuList, url);
