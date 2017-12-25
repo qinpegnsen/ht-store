@@ -333,15 +333,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "130100000000",
     "areaName": "石家庄市",
     "children": [{
-      "areaCode": "130101000000",
-      "areaName": "市辖区",
-      "city": "130100000000",
-      "county": "130101000000",
-      "fullName": "河北省石家庄市市辖区",
-      "level": 3,
-      "province": "130000000000",
-      "town": "130101000000"
-    }, {
       "areaCode": "130102000000",
       "areaName": "长安区",
       "city": "130100000000",
@@ -541,15 +532,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "130200000000",
     "areaName": "唐山市",
     "children": [{
-      "areaCode": "130201000000",
-      "areaName": "市辖区",
-      "city": "130200000000",
-      "county": "130201000000",
-      "fullName": "河北省唐山市市辖区",
-      "level": 3,
-      "province": "130000000000",
-      "town": "130201000000"
-    }, {
       "areaCode": "130202000000",
       "areaName": "路南区",
       "city": "130200000000",
@@ -686,15 +668,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "130300000000",
     "areaName": "秦皇岛市",
     "children": [{
-      "areaCode": "130301000000",
-      "areaName": "市辖区",
-      "city": "130300000000",
-      "county": "130301000000",
-      "fullName": "河北省秦皇岛市市辖区",
-      "level": 3,
-      "province": "130000000000",
-      "town": "130301000000"
-    }, {
       "areaCode": "130302000000",
       "areaName": "海港区",
       "city": "130300000000",
@@ -768,15 +741,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "130400000000",
     "areaName": "邯郸市",
     "children": [{
-      "areaCode": "130401000000",
-      "areaName": "市辖区",
-      "city": "130400000000",
-      "county": "130401000000",
-      "fullName": "河北省邯郸市市辖区",
-      "level": 3,
-      "province": "130000000000",
-      "town": "130401000000"
-    }, {
       "areaCode": "130402000000",
       "areaName": "邯山区",
       "city": "130400000000",
@@ -958,15 +922,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "130500000000",
     "areaName": "邢台市",
     "children": [{
-      "areaCode": "130501000000",
-      "areaName": "市辖区",
-      "city": "130500000000",
-      "county": "130501000000",
-      "fullName": "河北省邢台市市辖区",
-      "level": 3,
-      "province": "130000000000",
-      "town": "130501000000"
-    }, {
       "areaCode": "130502000000",
       "areaName": "桥东区",
       "city": "130500000000",
@@ -1148,15 +1103,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "130600000000",
     "areaName": "保定市",
     "children": [{
-      "areaCode": "130601000000",
-      "areaName": "市辖区",
-      "city": "130600000000",
-      "county": "130601000000",
-      "fullName": "河北省保定市市辖区",
-      "level": 3,
-      "province": "130000000000",
-      "town": "130601000000"
-    }, {
       "areaCode": "130602000000",
       "areaName": "竞秀区",
       "city": "130600000000",
@@ -1374,15 +1320,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "130700000000",
     "areaName": "张家口市",
     "children": [{
-      "areaCode": "130701000000",
-      "areaName": "市辖区",
-      "city": "130700000000",
-      "county": "130701000000",
-      "fullName": "河北省张家口市市辖区",
-      "level": 3,
-      "province": "130000000000",
-      "town": "130701000000"
-    }, {
       "areaCode": "130702000000",
       "areaName": "桥东区",
       "city": "130700000000",
@@ -1537,15 +1474,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "130800000000",
     "areaName": "承德市",
     "children": [{
-      "areaCode": "130801000000",
-      "areaName": "市辖区",
-      "city": "130800000000",
-      "county": "130801000000",
-      "fullName": "河北省承德市市辖区",
-      "level": 3,
-      "province": "130000000000",
-      "town": "130801000000"
-    }, {
       "areaCode": "130802000000",
       "areaName": "双桥区",
       "city": "130800000000",
@@ -1655,15 +1583,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "130900000000",
     "areaName": "沧州市",
     "children": [{
-      "areaCode": "130901000000",
-      "areaName": "市辖区",
-      "city": "130900000000",
-      "county": "130901000000",
-      "fullName": "河北省沧州市市辖区",
-      "level": 3,
-      "province": "130000000000",
-      "town": "130901000000"
-    }, {
       "areaCode": "130902000000",
       "areaName": "新华区",
       "city": "130900000000",
@@ -1818,15 +1737,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "131000000000",
     "areaName": "廊坊市",
     "children": [{
-      "areaCode": "131001000000",
-      "areaName": "市辖区",
-      "city": "131000000000",
-      "county": "131001000000",
-      "fullName": "河北省廊坊市市辖区",
-      "level": 3,
-      "province": "130000000000",
-      "town": "131001000000"
-    }, {
       "areaCode": "131002000000",
       "areaName": "安次区",
       "city": "131000000000",
@@ -1927,15 +1837,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "131100000000",
     "areaName": "衡水市",
     "children": [{
-      "areaCode": "131101000000",
-      "areaName": "市辖区",
-      "city": "131100000000",
-      "county": "131101000000",
-      "fullName": "河北省衡水市市辖区",
-      "level": 3,
-      "province": "130000000000",
-      "town": "131101000000"
-    }, {
       "areaCode": "131102000000",
       "areaName": "桃城区",
       "city": "131100000000",
@@ -2083,15 +1984,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "140100000000",
     "areaName": "太原市",
     "children": [{
-      "areaCode": "140101000000",
-      "areaName": "市辖区",
-      "city": "140100000000",
-      "county": "140101000000",
-      "fullName": "山西省太原市市辖区",
-      "level": 3,
-      "province": "140000000000",
-      "town": "140101000000"
-    }, {
       "areaCode": "140105000000",
       "areaName": "小店区",
       "city": "140100000000",
@@ -2192,15 +2084,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "140200000000",
     "areaName": "大同市",
     "children": [{
-      "areaCode": "140201000000",
-      "areaName": "市辖区",
-      "city": "140200000000",
-      "county": "140201000000",
-      "fullName": "山西省大同市市辖区",
-      "level": 3,
-      "province": "140000000000",
-      "town": "140201000000"
-    }, {
       "areaCode": "140202000000",
       "areaName": "城区",
       "city": "140200000000",
@@ -2310,15 +2193,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "140300000000",
     "areaName": "阳泉市",
     "children": [{
-      "areaCode": "140301000000",
-      "areaName": "市辖区",
-      "city": "140300000000",
-      "county": "140301000000",
-      "fullName": "山西省阳泉市市辖区",
-      "level": 3,
-      "province": "140000000000",
-      "town": "140301000000"
-    }, {
       "areaCode": "140302000000",
       "areaName": "城区",
       "city": "140300000000",
@@ -2374,15 +2248,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "140400000000",
     "areaName": "长治市",
     "children": [{
-      "areaCode": "140401000000",
-      "areaName": "市辖区",
-      "city": "140400000000",
-      "county": "140401000000",
-      "fullName": "山西省长治市市辖区",
-      "level": 3,
-      "province": "140000000000",
-      "town": "140401000000"
-    }, {
       "areaCode": "140402000000",
       "areaName": "城区",
       "city": "140400000000",
@@ -2510,15 +2375,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "140500000000",
     "areaName": "晋城市",
     "children": [{
-      "areaCode": "140501000000",
-      "areaName": "市辖区",
-      "city": "140500000000",
-      "county": "140501000000",
-      "fullName": "山西省晋城市市辖区",
-      "level": 3,
-      "province": "140000000000",
-      "town": "140501000000"
-    }, {
       "areaCode": "140502000000",
       "areaName": "城区",
       "city": "140500000000",
@@ -2583,15 +2439,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "140600000000",
     "areaName": "朔州市",
     "children": [{
-      "areaCode": "140601000000",
-      "areaName": "市辖区",
-      "city": "140600000000",
-      "county": "140601000000",
-      "fullName": "山西省朔州市市辖区",
-      "level": 3,
-      "province": "140000000000",
-      "town": "140601000000"
-    }, {
       "areaCode": "140602000000",
       "areaName": "朔城区",
       "city": "140600000000",
@@ -2656,15 +2503,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "140700000000",
     "areaName": "晋中市",
     "children": [{
-      "areaCode": "140701000000",
-      "areaName": "市辖区",
-      "city": "140700000000",
-      "county": "140701000000",
-      "fullName": "山西省晋中市市辖区",
-      "level": 3,
-      "province": "140000000000",
-      "town": "140701000000"
-    }, {
       "areaCode": "140702000000",
       "areaName": "榆次区",
       "city": "140700000000",
@@ -2774,15 +2612,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "140800000000",
     "areaName": "运城市",
     "children": [{
-      "areaCode": "140801000000",
-      "areaName": "市辖区",
-      "city": "140800000000",
-      "county": "140801000000",
-      "fullName": "山西省运城市市辖区",
-      "level": 3,
-      "province": "140000000000",
-      "town": "140801000000"
-    }, {
       "areaCode": "140802000000",
       "areaName": "盐湖区",
       "city": "140800000000",
@@ -2910,15 +2739,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "140900000000",
     "areaName": "忻州市",
     "children": [{
-      "areaCode": "140901000000",
-      "areaName": "市辖区",
-      "city": "140900000000",
-      "county": "140901000000",
-      "fullName": "山西省忻州市市辖区",
-      "level": 3,
-      "province": "140000000000",
-      "town": "140901000000"
-    }, {
       "areaCode": "140902000000",
       "areaName": "忻府区",
       "city": "140900000000",
@@ -3055,15 +2875,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "141000000000",
     "areaName": "临汾市",
     "children": [{
-      "areaCode": "141001000000",
-      "areaName": "市辖区",
-      "city": "141000000000",
-      "county": "141001000000",
-      "fullName": "山西省临汾市市辖区",
-      "level": 3,
-      "province": "140000000000",
-      "town": "141001000000"
-    }, {
       "areaCode": "141002000000",
       "areaName": "尧都区",
       "city": "141000000000",
@@ -3227,15 +3038,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "141100000000",
     "areaName": "吕梁市",
     "children": [{
-      "areaCode": "141101000000",
-      "areaName": "市辖区",
-      "city": "141100000000",
-      "county": "141101000000",
-      "fullName": "山西省吕梁市市辖区",
-      "level": 3,
-      "province": "140000000000",
-      "town": "141101000000"
-    }, {
       "areaCode": "141102000000",
       "areaName": "离石区",
       "city": "141100000000",
@@ -3368,20 +3170,11 @@ export const AREA_LEVEL_3_JSON = [{
   "town": "140000000000"
 }, {
   "areaCode": "150000000000",
-  "areaName": "内蒙古自治区",
+  "areaName": "内蒙古",
   "children": [{
     "areaCode": "150100000000",
     "areaName": "呼和浩特市",
     "children": [{
-      "areaCode": "150101000000",
-      "areaName": "市辖区",
-      "city": "150100000000",
-      "county": "150101000000",
-      "fullName": "内蒙古自治区呼和浩特市市辖区",
-      "level": 3,
-      "province": "150000000000",
-      "town": "150101000000"
-    }, {
       "areaCode": "150102000000",
       "areaName": "新城区",
       "city": "150100000000",
@@ -3473,15 +3266,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "150200000000",
     "areaName": "包头市",
     "children": [{
-      "areaCode": "150201000000",
-      "areaName": "市辖区",
-      "city": "150200000000",
-      "county": "150201000000",
-      "fullName": "内蒙古自治区包头市市辖区",
-      "level": 3,
-      "province": "150000000000",
-      "town": "150201000000"
-    }, {
       "areaCode": "150202000000",
       "areaName": "东河区",
       "city": "150200000000",
@@ -3573,15 +3357,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "150300000000",
     "areaName": "乌海市",
     "children": [{
-      "areaCode": "150301000000",
-      "areaName": "市辖区",
-      "city": "150300000000",
-      "county": "150301000000",
-      "fullName": "内蒙古自治区乌海市市辖区",
-      "level": 3,
-      "province": "150000000000",
-      "town": "150301000000"
-    }, {
       "areaCode": "150302000000",
       "areaName": "海勃湾区",
       "city": "150300000000",
@@ -3619,15 +3394,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "150400000000",
     "areaName": "赤峰市",
     "children": [{
-      "areaCode": "150401000000",
-      "areaName": "市辖区",
-      "city": "150400000000",
-      "county": "150401000000",
-      "fullName": "内蒙古自治区赤峰市市辖区",
-      "level": 3,
-      "province": "150000000000",
-      "town": "150401000000"
-    }, {
       "areaCode": "150402000000",
       "areaName": "红山区",
       "city": "150400000000",
@@ -3746,15 +3512,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "150500000000",
     "areaName": "通辽市",
     "children": [{
-      "areaCode": "150501000000",
-      "areaName": "市辖区",
-      "city": "150500000000",
-      "county": "150501000000",
-      "fullName": "内蒙古自治区通辽市市辖区",
-      "level": 3,
-      "province": "150000000000",
-      "town": "150501000000"
-    }, {
       "areaCode": "150502000000",
       "areaName": "科尔沁区",
       "city": "150500000000",
@@ -3837,15 +3594,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "150600000000",
     "areaName": "鄂尔多斯市",
     "children": [{
-      "areaCode": "150601000000",
-      "areaName": "市辖区",
-      "city": "150600000000",
-      "county": "150601000000",
-      "fullName": "内蒙古自治区鄂尔多斯市市辖区",
-      "level": 3,
-      "province": "150000000000",
-      "town": "150601000000"
-    }, {
       "areaCode": "150602000000",
       "areaName": "东胜区",
       "city": "150600000000",
@@ -3937,15 +3685,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "150700000000",
     "areaName": "呼伦贝尔市",
     "children": [{
-      "areaCode": "150701000000",
-      "areaName": "市辖区",
-      "city": "150700000000",
-      "county": "150701000000",
-      "fullName": "内蒙古自治区呼伦贝尔市市辖区",
-      "level": 3,
-      "province": "150000000000",
-      "town": "150701000000"
-    }, {
       "areaCode": "150702000000",
       "areaName": "海拉尔区",
       "city": "150700000000",
@@ -4082,15 +3821,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "150800000000",
     "areaName": "巴彦淖尔市",
     "children": [{
-      "areaCode": "150801000000",
-      "areaName": "市辖区",
-      "city": "150800000000",
-      "county": "150801000000",
-      "fullName": "内蒙古自治区巴彦淖尔市市辖区",
-      "level": 3,
-      "province": "150000000000",
-      "town": "150801000000"
-    }, {
       "areaCode": "150802000000",
       "areaName": "临河区",
       "city": "150800000000",
@@ -4164,15 +3894,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "150900000000",
     "areaName": "乌兰察布市",
     "children": [{
-      "areaCode": "150901000000",
-      "areaName": "市辖区",
-      "city": "150900000000",
-      "county": "150901000000",
-      "fullName": "内蒙古自治区乌兰察布市市辖区",
-      "level": 3,
-      "province": "150000000000",
-      "town": "150901000000"
-    }, {
       "areaCode": "150902000000",
       "areaName": "集宁区",
       "city": "150900000000",
@@ -4511,15 +4232,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "210100000000",
     "areaName": "沈阳市",
     "children": [{
-      "areaCode": "210101000000",
-      "areaName": "市辖区",
-      "city": "210100000000",
-      "county": "210101000000",
-      "fullName": "辽宁省沈阳市市辖区",
-      "level": 3,
-      "province": "210000000000",
-      "town": "210101000000"
-    }, {
       "areaCode": "210102000000",
       "areaName": "和平区",
       "city": "210100000000",
@@ -4647,15 +4359,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "210200000000",
     "areaName": "大连市",
     "children": [{
-      "areaCode": "210201000000",
-      "areaName": "市辖区",
-      "city": "210200000000",
-      "county": "210201000000",
-      "fullName": "辽宁省大连市市辖区",
-      "level": 3,
-      "province": "210000000000",
-      "town": "210201000000"
-    }, {
       "areaCode": "210202000000",
       "areaName": "中山区",
       "city": "210200000000",
@@ -4756,15 +4459,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "210300000000",
     "areaName": "鞍山市",
     "children": [{
-      "areaCode": "210301000000",
-      "areaName": "市辖区",
-      "city": "210300000000",
-      "county": "210301000000",
-      "fullName": "辽宁省鞍山市市辖区",
-      "level": 3,
-      "province": "210000000000",
-      "town": "210301000000"
-    }, {
       "areaCode": "210302000000",
       "areaName": "铁东区",
       "city": "210300000000",
@@ -4838,15 +4532,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "210400000000",
     "areaName": "抚顺市",
     "children": [{
-      "areaCode": "210401000000",
-      "areaName": "市辖区",
-      "city": "210400000000",
-      "county": "210401000000",
-      "fullName": "辽宁省抚顺市市辖区",
-      "level": 3,
-      "province": "210000000000",
-      "town": "210401000000"
-    }, {
       "areaCode": "210402000000",
       "areaName": "新抚区",
       "city": "210400000000",
@@ -4920,15 +4605,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "210500000000",
     "areaName": "本溪市",
     "children": [{
-      "areaCode": "210501000000",
-      "areaName": "市辖区",
-      "city": "210500000000",
-      "county": "210501000000",
-      "fullName": "辽宁省本溪市市辖区",
-      "level": 3,
-      "province": "210000000000",
-      "town": "210501000000"
-    }, {
       "areaCode": "210502000000",
       "areaName": "平山区",
       "city": "210500000000",
@@ -4993,15 +4669,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "210600000000",
     "areaName": "丹东市",
     "children": [{
-      "areaCode": "210601000000",
-      "areaName": "市辖区",
-      "city": "210600000000",
-      "county": "210601000000",
-      "fullName": "辽宁省丹东市市辖区",
-      "level": 3,
-      "province": "210000000000",
-      "town": "210601000000"
-    }, {
       "areaCode": "210602000000",
       "areaName": "元宝区",
       "city": "210600000000",
@@ -5066,15 +4733,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "210700000000",
     "areaName": "锦州市",
     "children": [{
-      "areaCode": "210701000000",
-      "areaName": "市辖区",
-      "city": "210700000000",
-      "county": "210701000000",
-      "fullName": "辽宁省锦州市市辖区",
-      "level": 3,
-      "province": "210000000000",
-      "town": "210701000000"
-    }, {
       "areaCode": "210702000000",
       "areaName": "古塔区",
       "city": "210700000000",
@@ -5148,15 +4806,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "210800000000",
     "areaName": "营口市",
     "children": [{
-      "areaCode": "210801000000",
-      "areaName": "市辖区",
-      "city": "210800000000",
-      "county": "210801000000",
-      "fullName": "辽宁省营口市市辖区",
-      "level": 3,
-      "province": "210000000000",
-      "town": "210801000000"
-    }, {
       "areaCode": "210802000000",
       "areaName": "站前区",
       "city": "210800000000",
@@ -5221,15 +4870,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "210900000000",
     "areaName": "阜新市",
     "children": [{
-      "areaCode": "210901000000",
-      "areaName": "市辖区",
-      "city": "210900000000",
-      "county": "210901000000",
-      "fullName": "辽宁省阜新市市辖区",
-      "level": 3,
-      "province": "210000000000",
-      "town": "210901000000"
-    }, {
       "areaCode": "210902000000",
       "areaName": "海州区",
       "city": "210900000000",
@@ -5303,15 +4943,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "211000000000",
     "areaName": "辽阳市",
     "children": [{
-      "areaCode": "211001000000",
-      "areaName": "市辖区",
-      "city": "211000000000",
-      "county": "211001000000",
-      "fullName": "辽宁省辽阳市市辖区",
-      "level": 3,
-      "province": "210000000000",
-      "town": "211001000000"
-    }, {
       "areaCode": "211002000000",
       "areaName": "白塔区",
       "city": "211000000000",
@@ -5385,15 +5016,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "211100000000",
     "areaName": "盘锦市",
     "children": [{
-      "areaCode": "211101000000",
-      "areaName": "市辖区",
-      "city": "211100000000",
-      "county": "211101000000",
-      "fullName": "辽宁省盘锦市市辖区",
-      "level": 3,
-      "province": "210000000000",
-      "town": "211101000000"
-    }, {
       "areaCode": "211102000000",
       "areaName": "双台子区",
       "city": "211100000000",
@@ -5440,15 +5062,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "211200000000",
     "areaName": "铁岭市",
     "children": [{
-      "areaCode": "211201000000",
-      "areaName": "市辖区",
-      "city": "211200000000",
-      "county": "211201000000",
-      "fullName": "辽宁省铁岭市市辖区",
-      "level": 3,
-      "province": "210000000000",
-      "town": "211201000000"
-    }, {
       "areaCode": "211202000000",
       "areaName": "银州区",
       "city": "211200000000",
@@ -5522,15 +5135,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "211300000000",
     "areaName": "朝阳市",
     "children": [{
-      "areaCode": "211301000000",
-      "areaName": "市辖区",
-      "city": "211300000000",
-      "county": "211301000000",
-      "fullName": "辽宁省朝阳市市辖区",
-      "level": 3,
-      "province": "210000000000",
-      "town": "211301000000"
-    }, {
       "areaCode": "211302000000",
       "areaName": "双塔区",
       "city": "211300000000",
@@ -5604,15 +5208,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "211400000000",
     "areaName": "葫芦岛市",
     "children": [{
-      "areaCode": "211401000000",
-      "areaName": "市辖区",
-      "city": "211400000000",
-      "county": "211401000000",
-      "fullName": "辽宁省葫芦岛市市辖区",
-      "level": 3,
-      "province": "210000000000",
-      "town": "211401000000"
-    }, {
       "areaCode": "211402000000",
       "areaName": "连山区",
       "city": "211400000000",
@@ -5687,15 +5282,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "220100000000",
     "areaName": "长春市",
     "children": [{
-      "areaCode": "220101000000",
-      "areaName": "市辖区",
-      "city": "220100000000",
-      "county": "220101000000",
-      "fullName": "吉林省长春市市辖区",
-      "level": 3,
-      "province": "220000000000",
-      "town": "220101000000"
-    }, {
       "areaCode": "220102000000",
       "areaName": "南关区",
       "city": "220100000000",
@@ -5796,15 +5382,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "220200000000",
     "areaName": "吉林市",
     "children": [{
-      "areaCode": "220201000000",
-      "areaName": "市辖区",
-      "city": "220200000000",
-      "county": "220201000000",
-      "fullName": "吉林省吉林市市辖区",
-      "level": 3,
-      "province": "220000000000",
-      "town": "220201000000"
-    }, {
       "areaCode": "220202000000",
       "areaName": "昌邑区",
       "city": "220200000000",
@@ -5896,15 +5473,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "220300000000",
     "areaName": "四平市",
     "children": [{
-      "areaCode": "220301000000",
-      "areaName": "市辖区",
-      "city": "220300000000",
-      "county": "220301000000",
-      "fullName": "吉林省四平市市辖区",
-      "level": 3,
-      "province": "220000000000",
-      "town": "220301000000"
-    }, {
       "areaCode": "220302000000",
       "areaName": "铁西区",
       "city": "220300000000",
@@ -5969,15 +5537,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "220400000000",
     "areaName": "辽源市",
     "children": [{
-      "areaCode": "220401000000",
-      "areaName": "市辖区",
-      "city": "220400000000",
-      "county": "220401000000",
-      "fullName": "吉林省辽源市市辖区",
-      "level": 3,
-      "province": "220000000000",
-      "town": "220401000000"
-    }, {
       "areaCode": "220402000000",
       "areaName": "龙山区",
       "city": "220400000000",
@@ -6024,15 +5583,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "220500000000",
     "areaName": "通化市",
     "children": [{
-      "areaCode": "220501000000",
-      "areaName": "市辖区",
-      "city": "220500000000",
-      "county": "220501000000",
-      "fullName": "吉林省通化市市辖区",
-      "level": 3,
-      "province": "220000000000",
-      "town": "220501000000"
-    }, {
       "areaCode": "220502000000",
       "areaName": "东昌区",
       "city": "220500000000",
@@ -6106,15 +5656,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "220600000000",
     "areaName": "白山市",
     "children": [{
-      "areaCode": "220601000000",
-      "areaName": "市辖区",
-      "city": "220600000000",
-      "county": "220601000000",
-      "fullName": "吉林省白山市市辖区",
-      "level": 3,
-      "province": "220000000000",
-      "town": "220601000000"
-    }, {
       "areaCode": "220602000000",
       "areaName": "浑江区",
       "city": "220600000000",
@@ -6179,15 +5720,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "220700000000",
     "areaName": "松原市",
     "children": [{
-      "areaCode": "220701000000",
-      "areaName": "市辖区",
-      "city": "220700000000",
-      "county": "220701000000",
-      "fullName": "吉林省松原市市辖区",
-      "level": 3,
-      "province": "220000000000",
-      "town": "220701000000"
-    }, {
       "areaCode": "220702000000",
       "areaName": "宁江区",
       "city": "220700000000",
@@ -6243,15 +5775,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "220800000000",
     "areaName": "白城市",
     "children": [{
-      "areaCode": "220801000000",
-      "areaName": "市辖区",
-      "city": "220800000000",
-      "county": "220801000000",
-      "fullName": "吉林省白城市市辖区",
-      "level": 3,
-      "province": "220000000000",
-      "town": "220801000000"
-    }, {
       "areaCode": "220802000000",
       "areaName": "洮北区",
       "city": "220800000000",
@@ -6399,15 +5922,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "230100000000",
     "areaName": "哈尔滨市",
     "children": [{
-      "areaCode": "230101000000",
-      "areaName": "市辖区",
-      "city": "230100000000",
-      "county": "230101000000",
-      "fullName": "黑龙江省哈尔滨市市辖区",
-      "level": 3,
-      "province": "230000000000",
-      "town": "230101000000"
-    }, {
       "areaCode": "230102000000",
       "areaName": "道里区",
       "city": "230100000000",
@@ -6580,15 +6094,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "230200000000",
     "areaName": "齐齐哈尔市",
     "children": [{
-      "areaCode": "230201000000",
-      "areaName": "市辖区",
-      "city": "230200000000",
-      "county": "230201000000",
-      "fullName": "黑龙江省齐齐哈尔市市辖区",
-      "level": 3,
-      "province": "230000000000",
-      "town": "230201000000"
-    }, {
       "areaCode": "230202000000",
       "areaName": "龙沙区",
       "city": "230200000000",
@@ -6743,15 +6248,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "230300000000",
     "areaName": "鸡西市",
     "children": [{
-      "areaCode": "230301000000",
-      "areaName": "市辖区",
-      "city": "230300000000",
-      "county": "230301000000",
-      "fullName": "黑龙江省鸡西市市辖区",
-      "level": 3,
-      "province": "230000000000",
-      "town": "230301000000"
-    }, {
       "areaCode": "230302000000",
       "areaName": "鸡冠区",
       "city": "230300000000",
@@ -6843,15 +6339,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "230400000000",
     "areaName": "鹤岗市",
     "children": [{
-      "areaCode": "230401000000",
-      "areaName": "市辖区",
-      "city": "230400000000",
-      "county": "230401000000",
-      "fullName": "黑龙江省鹤岗市市辖区",
-      "level": 3,
-      "province": "230000000000",
-      "town": "230401000000"
-    }, {
       "areaCode": "230402000000",
       "areaName": "向阳区",
       "city": "230400000000",
@@ -6934,15 +6421,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "230500000000",
     "areaName": "双鸭山市",
     "children": [{
-      "areaCode": "230501000000",
-      "areaName": "市辖区",
-      "city": "230500000000",
-      "county": "230501000000",
-      "fullName": "黑龙江省双鸭山市市辖区",
-      "level": 3,
-      "province": "230000000000",
-      "town": "230501000000"
-    }, {
       "areaCode": "230502000000",
       "areaName": "尖山区",
       "city": "230500000000",
@@ -7025,15 +6503,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "230600000000",
     "areaName": "大庆市",
     "children": [{
-      "areaCode": "230601000000",
-      "areaName": "市辖区",
-      "city": "230600000000",
-      "county": "230601000000",
-      "fullName": "黑龙江省大庆市市辖区",
-      "level": 3,
-      "province": "230000000000",
-      "town": "230601000000"
-    }, {
       "areaCode": "230602000000",
       "areaName": "萨尔图区",
       "city": "230600000000",
@@ -7125,15 +6594,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "230700000000",
     "areaName": "伊春市",
     "children": [{
-      "areaCode": "230701000000",
-      "areaName": "市辖区",
-      "city": "230700000000",
-      "county": "230701000000",
-      "fullName": "黑龙江省伊春市市辖区",
-      "level": 3,
-      "province": "230000000000",
-      "town": "230701000000"
-    }, {
       "areaCode": "230702000000",
       "areaName": "伊春区",
       "city": "230700000000",
@@ -7297,15 +6757,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "230800000000",
     "areaName": "佳木斯市",
     "children": [{
-      "areaCode": "230801000000",
-      "areaName": "市辖区",
-      "city": "230800000000",
-      "county": "230801000000",
-      "fullName": "黑龙江省佳木斯市市辖区",
-      "level": 3,
-      "province": "230000000000",
-      "town": "230801000000"
-    }, {
       "areaCode": "230803000000",
       "areaName": "向阳区",
       "city": "230800000000",
@@ -7406,15 +6857,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "230900000000",
     "areaName": "七台河市",
     "children": [{
-      "areaCode": "230901000000",
-      "areaName": "市辖区",
-      "city": "230900000000",
-      "county": "230901000000",
-      "fullName": "黑龙江省七台河市市辖区",
-      "level": 3,
-      "province": "230000000000",
-      "town": "230901000000"
-    }, {
       "areaCode": "230902000000",
       "areaName": "新兴区",
       "city": "230900000000",
@@ -7461,15 +6903,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "231000000000",
     "areaName": "牡丹江市",
     "children": [{
-      "areaCode": "231001000000",
-      "areaName": "市辖区",
-      "city": "231000000000",
-      "county": "231001000000",
-      "fullName": "黑龙江省牡丹江市市辖区",
-      "level": 3,
-      "province": "230000000000",
-      "town": "231001000000"
-    }, {
       "areaCode": "231002000000",
       "areaName": "东安区",
       "city": "231000000000",
@@ -7570,15 +7003,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "231100000000",
     "areaName": "黑河市",
     "children": [{
-      "areaCode": "231101000000",
-      "areaName": "市辖区",
-      "city": "231100000000",
-      "county": "231101000000",
-      "fullName": "黑龙江省黑河市市辖区",
-      "level": 3,
-      "province": "230000000000",
-      "town": "231101000000"
-    }, {
       "areaCode": "231102000000",
       "areaName": "爱辉区",
       "city": "231100000000",
@@ -7643,15 +7067,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "231200000000",
     "areaName": "绥化市",
     "children": [{
-      "areaCode": "231201000000",
-      "areaName": "市辖区",
-      "city": "231200000000",
-      "county": "231201000000",
-      "fullName": "黑龙江省绥化市市辖区",
-      "level": 3,
-      "province": "230000000000",
-      "town": "231201000000"
-    }, {
       "areaCode": "231202000000",
       "areaName": "北林区",
       "city": "231200000000",
@@ -7963,15 +7378,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "320100000000",
     "areaName": "南京市",
     "children": [{
-      "areaCode": "320101000000",
-      "areaName": "市辖区",
-      "city": "320100000000",
-      "county": "320101000000",
-      "fullName": "江苏省南京市市辖区",
-      "level": 3,
-      "province": "320000000000",
-      "town": "320101000000"
-    }, {
       "areaCode": "320102000000",
       "areaName": "玄武区",
       "city": "320100000000",
@@ -8081,15 +7487,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "320200000000",
     "areaName": "无锡市",
     "children": [{
-      "areaCode": "320201000000",
-      "areaName": "市辖区",
-      "city": "320200000000",
-      "county": "320201000000",
-      "fullName": "江苏省无锡市市辖区",
-      "level": 3,
-      "province": "320000000000",
-      "town": "320201000000"
-    }, {
       "areaCode": "320205000000",
       "areaName": "锡山区",
       "city": "320200000000",
@@ -8163,15 +7560,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "320300000000",
     "areaName": "徐州市",
     "children": [{
-      "areaCode": "320301000000",
-      "areaName": "市辖区",
-      "city": "320300000000",
-      "county": "320301000000",
-      "fullName": "江苏省徐州市市辖区",
-      "level": 3,
-      "province": "320000000000",
-      "town": "320301000000"
-    }, {
       "areaCode": "320302000000",
       "areaName": "鼓楼区",
       "city": "320300000000",
@@ -8272,15 +7660,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "320400000000",
     "areaName": "常州市",
     "children": [{
-      "areaCode": "320401000000",
-      "areaName": "市辖区",
-      "city": "320400000000",
-      "county": "320401000000",
-      "fullName": "江苏省常州市市辖区",
-      "level": 3,
-      "province": "320000000000",
-      "town": "320401000000"
-    }, {
       "areaCode": "320402000000",
       "areaName": "天宁区",
       "city": "320400000000",
@@ -8345,15 +7724,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "320500000000",
     "areaName": "苏州市",
     "children": [{
-      "areaCode": "320501000000",
-      "areaName": "市辖区",
-      "city": "320500000000",
-      "county": "320501000000",
-      "fullName": "江苏省苏州市市辖区",
-      "level": 3,
-      "province": "320000000000",
-      "town": "320501000000"
-    }, {
       "areaCode": "320505000000",
       "areaName": "虎丘区",
       "city": "320500000000",
@@ -8445,15 +7815,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "320600000000",
     "areaName": "南通市",
     "children": [{
-      "areaCode": "320601000000",
-      "areaName": "市辖区",
-      "city": "320600000000",
-      "county": "320601000000",
-      "fullName": "江苏省南通市市辖区",
-      "level": 3,
-      "province": "320000000000",
-      "town": "320601000000"
-    }, {
       "areaCode": "320602000000",
       "areaName": "崇川区",
       "city": "320600000000",
@@ -8536,15 +7897,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "320700000000",
     "areaName": "连云港市",
     "children": [{
-      "areaCode": "320701000000",
-      "areaName": "市辖区",
-      "city": "320700000000",
-      "county": "320701000000",
-      "fullName": "江苏省连云港市市辖区",
-      "level": 3,
-      "province": "320000000000",
-      "town": "320701000000"
-    }, {
       "areaCode": "320703000000",
       "areaName": "连云区",
       "city": "320700000000",
@@ -8609,15 +7961,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "320800000000",
     "areaName": "淮安市",
     "children": [{
-      "areaCode": "320801000000",
-      "areaName": "市辖区",
-      "city": "320800000000",
-      "county": "320801000000",
-      "fullName": "江苏省淮安市市辖区",
-      "level": 3,
-      "province": "320000000000",
-      "town": "320801000000"
-    }, {
       "areaCode": "320803000000",
       "areaName": "淮安区",
       "city": "320800000000",
@@ -8691,15 +8034,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "320900000000",
     "areaName": "盐城市",
     "children": [{
-      "areaCode": "320901000000",
-      "areaName": "市辖区",
-      "city": "320900000000",
-      "county": "320901000000",
-      "fullName": "江苏省盐城市市辖区",
-      "level": 3,
-      "province": "320000000000",
-      "town": "320901000000"
-    }, {
       "areaCode": "320902000000",
       "areaName": "亭湖区",
       "city": "320900000000",
@@ -8791,15 +8125,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "321000000000",
     "areaName": "扬州市",
     "children": [{
-      "areaCode": "321001000000",
-      "areaName": "市辖区",
-      "city": "321000000000",
-      "county": "321001000000",
-      "fullName": "江苏省扬州市市辖区",
-      "level": 3,
-      "province": "320000000000",
-      "town": "321001000000"
-    }, {
       "areaCode": "321002000000",
       "areaName": "广陵区",
       "city": "321000000000",
@@ -8864,15 +8189,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "321100000000",
     "areaName": "镇江市",
     "children": [{
-      "areaCode": "321101000000",
-      "areaName": "市辖区",
-      "city": "321100000000",
-      "county": "321101000000",
-      "fullName": "江苏省镇江市市辖区",
-      "level": 3,
-      "province": "320000000000",
-      "town": "321101000000"
-    }, {
       "areaCode": "321102000000",
       "areaName": "京口区",
       "city": "321100000000",
@@ -8937,15 +8253,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "321200000000",
     "areaName": "泰州市",
     "children": [{
-      "areaCode": "321201000000",
-      "areaName": "市辖区",
-      "city": "321200000000",
-      "county": "321201000000",
-      "fullName": "江苏省泰州市市辖区",
-      "level": 3,
-      "province": "320000000000",
-      "town": "321201000000"
-    }, {
       "areaCode": "321202000000",
       "areaName": "海陵区",
       "city": "321200000000",
@@ -9010,15 +8317,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "321300000000",
     "areaName": "宿迁市",
     "children": [{
-      "areaCode": "321301000000",
-      "areaName": "市辖区",
-      "city": "321300000000",
-      "county": "321301000000",
-      "fullName": "江苏省宿迁市市辖区",
-      "level": 3,
-      "province": "320000000000",
-      "town": "321301000000"
-    }, {
       "areaCode": "321302000000",
       "areaName": "宿城区",
       "city": "321300000000",
@@ -9084,15 +8382,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "330100000000",
     "areaName": "杭州市",
     "children": [{
-      "areaCode": "330101000000",
-      "areaName": "市辖区",
-      "city": "330100000000",
-      "county": "330101000000",
-      "fullName": "浙江省杭州市市辖区",
-      "level": 3,
-      "province": "330000000000",
-      "town": "330101000000"
-    }, {
       "areaCode": "330102000000",
       "areaName": "上城区",
       "city": "330100000000",
@@ -9220,15 +8509,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "330200000000",
     "areaName": "宁波市",
     "children": [{
-      "areaCode": "330201000000",
-      "areaName": "市辖区",
-      "city": "330200000000",
-      "county": "330201000000",
-      "fullName": "浙江省宁波市市辖区",
-      "level": 3,
-      "province": "330000000000",
-      "town": "330201000000"
-    }, {
       "areaCode": "330203000000",
       "areaName": "海曙区",
       "city": "330200000000",
@@ -9338,15 +8618,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "330300000000",
     "areaName": "温州市",
     "children": [{
-      "areaCode": "330301000000",
-      "areaName": "市辖区",
-      "city": "330300000000",
-      "county": "330301000000",
-      "fullName": "浙江省温州市市辖区",
-      "level": 3,
-      "province": "330000000000",
-      "town": "330301000000"
-    }, {
       "areaCode": "330302000000",
       "areaName": "鹿城区",
       "city": "330300000000",
@@ -9456,15 +8727,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "330400000000",
     "areaName": "嘉兴市",
     "children": [{
-      "areaCode": "330401000000",
-      "areaName": "市辖区",
-      "city": "330400000000",
-      "county": "330401000000",
-      "fullName": "浙江省嘉兴市市辖区",
-      "level": 3,
-      "province": "330000000000",
-      "town": "330401000000"
-    }, {
       "areaCode": "330402000000",
       "areaName": "南湖区",
       "city": "330400000000",
@@ -9538,15 +8800,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "330500000000",
     "areaName": "湖州市",
     "children": [{
-      "areaCode": "330501000000",
-      "areaName": "市辖区",
-      "city": "330500000000",
-      "county": "330501000000",
-      "fullName": "浙江省湖州市市辖区",
-      "level": 3,
-      "province": "330000000000",
-      "town": "330501000000"
-    }, {
       "areaCode": "330502000000",
       "areaName": "吴兴区",
       "city": "330500000000",
@@ -9602,15 +8855,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "330600000000",
     "areaName": "绍兴市",
     "children": [{
-      "areaCode": "330601000000",
-      "areaName": "市辖区",
-      "city": "330600000000",
-      "county": "330601000000",
-      "fullName": "浙江省绍兴市市辖区",
-      "level": 3,
-      "province": "330000000000",
-      "town": "330601000000"
-    }, {
       "areaCode": "330602000000",
       "areaName": "越城区",
       "city": "330600000000",
@@ -9675,15 +8919,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "330700000000",
     "areaName": "金华市",
     "children": [{
-      "areaCode": "330701000000",
-      "areaName": "市辖区",
-      "city": "330700000000",
-      "county": "330701000000",
-      "fullName": "浙江省金华市市辖区",
-      "level": 3,
-      "province": "330000000000",
-      "town": "330701000000"
-    }, {
       "areaCode": "330702000000",
       "areaName": "婺城区",
       "city": "330700000000",
@@ -9775,15 +9010,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "330800000000",
     "areaName": "衢州市",
     "children": [{
-      "areaCode": "330801000000",
-      "areaName": "市辖区",
-      "city": "330800000000",
-      "county": "330801000000",
-      "fullName": "浙江省衢州市市辖区",
-      "level": 3,
-      "province": "330000000000",
-      "town": "330801000000"
-    }, {
       "areaCode": "330802000000",
       "areaName": "柯城区",
       "city": "330800000000",
@@ -9848,15 +9074,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "330900000000",
     "areaName": "舟山市",
     "children": [{
-      "areaCode": "330901000000",
-      "areaName": "市辖区",
-      "city": "330900000000",
-      "county": "330901000000",
-      "fullName": "浙江省舟山市市辖区",
-      "level": 3,
-      "province": "330000000000",
-      "town": "330901000000"
-    }, {
       "areaCode": "330902000000",
       "areaName": "定海区",
       "city": "330900000000",
@@ -9903,15 +9120,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "331000000000",
     "areaName": "台州市",
     "children": [{
-      "areaCode": "331001000000",
-      "areaName": "市辖区",
-      "city": "331000000000",
-      "county": "331001000000",
-      "fullName": "浙江省台州市市辖区",
-      "level": 3,
-      "province": "330000000000",
-      "town": "331001000000"
-    }, {
       "areaCode": "331002000000",
       "areaName": "椒江区",
       "city": "331000000000",
@@ -10003,15 +9211,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "331100000000",
     "areaName": "丽水市",
     "children": [{
-      "areaCode": "331101000000",
-      "areaName": "市辖区",
-      "city": "331100000000",
-      "county": "331101000000",
-      "fullName": "浙江省丽水市市辖区",
-      "level": 3,
-      "province": "330000000000",
-      "town": "331101000000"
-    }, {
       "areaCode": "331102000000",
       "areaName": "莲都区",
       "city": "331100000000",
@@ -10113,15 +9312,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "340100000000",
     "areaName": "合肥市",
     "children": [{
-      "areaCode": "340101000000",
-      "areaName": "市辖区",
-      "city": "340100000000",
-      "county": "340101000000",
-      "fullName": "安徽省合肥市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "340101000000"
-    }, {
       "areaCode": "340102000000",
       "areaName": "瑶海区",
       "city": "340100000000",
@@ -10213,15 +9403,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "340200000000",
     "areaName": "芜湖市",
     "children": [{
-      "areaCode": "340201000000",
-      "areaName": "市辖区",
-      "city": "340200000000",
-      "county": "340201000000",
-      "fullName": "安徽省芜湖市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "340201000000"
-    }, {
       "areaCode": "340202000000",
       "areaName": "镜湖区",
       "city": "340200000000",
@@ -10304,15 +9485,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "340300000000",
     "areaName": "蚌埠市",
     "children": [{
-      "areaCode": "340301000000",
-      "areaName": "市辖区",
-      "city": "340300000000",
-      "county": "340301000000",
-      "fullName": "安徽省蚌埠市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "340301000000"
-    }, {
       "areaCode": "340302000000",
       "areaName": "龙子湖区",
       "city": "340300000000",
@@ -10386,15 +9558,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "340400000000",
     "areaName": "淮南市",
     "children": [{
-      "areaCode": "340401000000",
-      "areaName": "市辖区",
-      "city": "340400000000",
-      "county": "340401000000",
-      "fullName": "安徽省淮南市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "340401000000"
-    }, {
       "areaCode": "340402000000",
       "areaName": "大通区",
       "city": "340400000000",
@@ -10468,15 +9631,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "340500000000",
     "areaName": "马鞍山市",
     "children": [{
-      "areaCode": "340501000000",
-      "areaName": "市辖区",
-      "city": "340500000000",
-      "county": "340501000000",
-      "fullName": "安徽省马鞍山市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "340501000000"
-    }, {
       "areaCode": "340503000000",
       "areaName": "花山区",
       "city": "340500000000",
@@ -10541,15 +9695,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "340600000000",
     "areaName": "淮北市",
     "children": [{
-      "areaCode": "340601000000",
-      "areaName": "市辖区",
-      "city": "340600000000",
-      "county": "340601000000",
-      "fullName": "安徽省淮北市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "340601000000"
-    }, {
       "areaCode": "340602000000",
       "areaName": "杜集区",
       "city": "340600000000",
@@ -10596,15 +9741,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "340700000000",
     "areaName": "铜陵市",
     "children": [{
-      "areaCode": "340701000000",
-      "areaName": "市辖区",
-      "city": "340700000000",
-      "county": "340701000000",
-      "fullName": "安徽省铜陵市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "340701000000"
-    }, {
       "areaCode": "340705000000",
       "areaName": "铜官区",
       "city": "340700000000",
@@ -10651,15 +9787,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "340800000000",
     "areaName": "安庆市",
     "children": [{
-      "areaCode": "340801000000",
-      "areaName": "市辖区",
-      "city": "340800000000",
-      "county": "340801000000",
-      "fullName": "安徽省安庆市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "340801000000"
-    }, {
       "areaCode": "340802000000",
       "areaName": "迎江区",
       "city": "340800000000",
@@ -10760,15 +9887,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "341000000000",
     "areaName": "黄山市",
     "children": [{
-      "areaCode": "341001000000",
-      "areaName": "市辖区",
-      "city": "341000000000",
-      "county": "341001000000",
-      "fullName": "安徽省黄山市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "341001000000"
-    }, {
       "areaCode": "341002000000",
       "areaName": "屯溪区",
       "city": "341000000000",
@@ -10842,15 +9960,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "341100000000",
     "areaName": "滁州市",
     "children": [{
-      "areaCode": "341101000000",
-      "areaName": "市辖区",
-      "city": "341100000000",
-      "county": "341101000000",
-      "fullName": "安徽省滁州市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "341101000000"
-    }, {
       "areaCode": "341102000000",
       "areaName": "琅琊区",
       "city": "341100000000",
@@ -10933,15 +10042,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "341200000000",
     "areaName": "阜阳市",
     "children": [{
-      "areaCode": "341201000000",
-      "areaName": "市辖区",
-      "city": "341200000000",
-      "county": "341201000000",
-      "fullName": "安徽省阜阳市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "341201000000"
-    }, {
       "areaCode": "341202000000",
       "areaName": "颍州区",
       "city": "341200000000",
@@ -11024,15 +10124,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "341300000000",
     "areaName": "宿州市",
     "children": [{
-      "areaCode": "341301000000",
-      "areaName": "市辖区",
-      "city": "341300000000",
-      "county": "341301000000",
-      "fullName": "安徽省宿州市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "341301000000"
-    }, {
       "areaCode": "341302000000",
       "areaName": "埇桥区",
       "city": "341300000000",
@@ -11088,15 +10179,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "341500000000",
     "areaName": "六安市",
     "children": [{
-      "areaCode": "341501000000",
-      "areaName": "市辖区",
-      "city": "341500000000",
-      "county": "341501000000",
-      "fullName": "安徽省六安市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "341501000000"
-    }, {
       "areaCode": "341502000000",
       "areaName": "金安区",
       "city": "341500000000",
@@ -11170,15 +10252,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "341600000000",
     "areaName": "亳州市",
     "children": [{
-      "areaCode": "341601000000",
-      "areaName": "市辖区",
-      "city": "341600000000",
-      "county": "341601000000",
-      "fullName": "安徽省亳州市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "341601000000"
-    }, {
       "areaCode": "341602000000",
       "areaName": "谯城区",
       "city": "341600000000",
@@ -11225,15 +10298,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "341700000000",
     "areaName": "池州市",
     "children": [{
-      "areaCode": "341701000000",
-      "areaName": "市辖区",
-      "city": "341700000000",
-      "county": "341701000000",
-      "fullName": "安徽省池州市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "341701000000"
-    }, {
       "areaCode": "341702000000",
       "areaName": "贵池区",
       "city": "341700000000",
@@ -11280,15 +10344,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "341800000000",
     "areaName": "宣城市",
     "children": [{
-      "areaCode": "341801000000",
-      "areaName": "市辖区",
-      "city": "341800000000",
-      "county": "341801000000",
-      "fullName": "安徽省宣城市市辖区",
-      "level": 3,
-      "province": "340000000000",
-      "town": "341801000000"
-    }, {
       "areaCode": "341802000000",
       "areaName": "宣州区",
       "city": "341800000000",
@@ -11372,15 +10427,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "350100000000",
     "areaName": "福州市",
     "children": [{
-      "areaCode": "350101000000",
-      "areaName": "市辖区",
-      "city": "350100000000",
-      "county": "350101000000",
-      "fullName": "福建省福州市市辖区",
-      "level": 3,
-      "province": "350000000000",
-      "town": "350101000000"
-    }, {
       "areaCode": "350102000000",
       "areaName": "鼓楼区",
       "city": "350100000000",
@@ -11508,15 +10554,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "350200000000",
     "areaName": "厦门市",
     "children": [{
-      "areaCode": "350201000000",
-      "areaName": "市辖区",
-      "city": "350200000000",
-      "county": "350201000000",
-      "fullName": "福建省厦门市市辖区",
-      "level": 3,
-      "province": "350000000000",
-      "town": "350201000000"
-    }, {
       "areaCode": "350203000000",
       "areaName": "思明区",
       "city": "350200000000",
@@ -11581,15 +10618,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "350300000000",
     "areaName": "莆田市",
     "children": [{
-      "areaCode": "350301000000",
-      "areaName": "市辖区",
-      "city": "350300000000",
-      "county": "350301000000",
-      "fullName": "福建省莆田市市辖区",
-      "level": 3,
-      "province": "350000000000",
-      "town": "350301000000"
-    }, {
       "areaCode": "350302000000",
       "areaName": "城厢区",
       "city": "350300000000",
@@ -11645,15 +10673,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "350400000000",
     "areaName": "三明市",
     "children": [{
-      "areaCode": "350401000000",
-      "areaName": "市辖区",
-      "city": "350400000000",
-      "county": "350401000000",
-      "fullName": "福建省三明市市辖区",
-      "level": 3,
-      "province": "350000000000",
-      "town": "350401000000"
-    }, {
       "areaCode": "350402000000",
       "areaName": "梅列区",
       "city": "350400000000",
@@ -11772,15 +10791,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "350500000000",
     "areaName": "泉州市",
     "children": [{
-      "areaCode": "350501000000",
-      "areaName": "市辖区",
-      "city": "350500000000",
-      "county": "350501000000",
-      "fullName": "福建省泉州市市辖区",
-      "level": 3,
-      "province": "350000000000",
-      "town": "350501000000"
-    }, {
       "areaCode": "350502000000",
       "areaName": "鲤城区",
       "city": "350500000000",
@@ -11899,15 +10909,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "350600000000",
     "areaName": "漳州市",
     "children": [{
-      "areaCode": "350601000000",
-      "areaName": "市辖区",
-      "city": "350600000000",
-      "county": "350601000000",
-      "fullName": "福建省漳州市市辖区",
-      "level": 3,
-      "province": "350000000000",
-      "town": "350601000000"
-    }, {
       "areaCode": "350602000000",
       "areaName": "芗城区",
       "city": "350600000000",
@@ -12017,15 +11018,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "350700000000",
     "areaName": "南平市",
     "children": [{
-      "areaCode": "350701000000",
-      "areaName": "市辖区",
-      "city": "350700000000",
-      "county": "350701000000",
-      "fullName": "福建省南平市市辖区",
-      "level": 3,
-      "province": "350000000000",
-      "town": "350701000000"
-    }, {
       "areaCode": "350702000000",
       "areaName": "延平区",
       "city": "350700000000",
@@ -12126,15 +11118,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "350800000000",
     "areaName": "龙岩市",
     "children": [{
-      "areaCode": "350801000000",
-      "areaName": "市辖区",
-      "city": "350800000000",
-      "county": "350801000000",
-      "fullName": "福建省龙岩市市辖区",
-      "level": 3,
-      "province": "350000000000",
-      "town": "350801000000"
-    }, {
       "areaCode": "350802000000",
       "areaName": "新罗区",
       "city": "350800000000",
@@ -12208,15 +11191,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "350900000000",
     "areaName": "宁德市",
     "children": [{
-      "areaCode": "350901000000",
-      "areaName": "市辖区",
-      "city": "350900000000",
-      "county": "350901000000",
-      "fullName": "福建省宁德市市辖区",
-      "level": 3,
-      "province": "350000000000",
-      "town": "350901000000"
-    }, {
       "areaCode": "350902000000",
       "areaName": "蕉城区",
       "city": "350900000000",
@@ -12318,15 +11292,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "360100000000",
     "areaName": "南昌市",
     "children": [{
-      "areaCode": "360101000000",
-      "areaName": "市辖区",
-      "city": "360100000000",
-      "county": "360101000000",
-      "fullName": "江西省南昌市市辖区",
-      "level": 3,
-      "province": "360000000000",
-      "town": "360101000000"
-    }, {
       "areaCode": "360102000000",
       "areaName": "东湖区",
       "city": "360100000000",
@@ -12418,15 +11383,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "360200000000",
     "areaName": "景德镇市",
     "children": [{
-      "areaCode": "360201000000",
-      "areaName": "市辖区",
-      "city": "360200000000",
-      "county": "360201000000",
-      "fullName": "江西省景德镇市市辖区",
-      "level": 3,
-      "province": "360000000000",
-      "town": "360201000000"
-    }, {
       "areaCode": "360202000000",
       "areaName": "昌江区",
       "city": "360200000000",
@@ -12473,15 +11429,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "360300000000",
     "areaName": "萍乡市",
     "children": [{
-      "areaCode": "360301000000",
-      "areaName": "市辖区",
-      "city": "360300000000",
-      "county": "360301000000",
-      "fullName": "江西省萍乡市市辖区",
-      "level": 3,
-      "province": "360000000000",
-      "town": "360301000000"
-    }, {
       "areaCode": "360302000000",
       "areaName": "安源区",
       "city": "360300000000",
@@ -12537,15 +11484,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "360400000000",
     "areaName": "九江市",
     "children": [{
-      "areaCode": "360401000000",
-      "areaName": "市辖区",
-      "city": "360400000000",
-      "county": "360401000000",
-      "fullName": "江西省九江市市辖区",
-      "level": 3,
-      "province": "360000000000",
-      "town": "360401000000"
-    }, {
       "areaCode": "360402000000",
       "areaName": "濂溪区",
       "city": "360400000000",
@@ -12673,15 +11611,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "360500000000",
     "areaName": "新余市",
     "children": [{
-      "areaCode": "360501000000",
-      "areaName": "市辖区",
-      "city": "360500000000",
-      "county": "360501000000",
-      "fullName": "江西省新余市市辖区",
-      "level": 3,
-      "province": "360000000000",
-      "town": "360501000000"
-    }, {
       "areaCode": "360502000000",
       "areaName": "渝水区",
       "city": "360500000000",
@@ -12710,15 +11639,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "360600000000",
     "areaName": "鹰潭市",
     "children": [{
-      "areaCode": "360601000000",
-      "areaName": "市辖区",
-      "city": "360600000000",
-      "county": "360601000000",
-      "fullName": "江西省鹰潭市市辖区",
-      "level": 3,
-      "province": "360000000000",
-      "town": "360601000000"
-    }, {
       "areaCode": "360602000000",
       "areaName": "月湖区",
       "city": "360600000000",
@@ -12756,15 +11676,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "360700000000",
     "areaName": "赣州市",
     "children": [{
-      "areaCode": "360701000000",
-      "areaName": "市辖区",
-      "city": "360700000000",
-      "county": "360701000000",
-      "fullName": "江西省赣州市市辖区",
-      "level": 3,
-      "province": "360000000000",
-      "town": "360701000000"
-    }, {
       "areaCode": "360702000000",
       "areaName": "章贡区",
       "city": "360700000000",
@@ -12937,15 +11848,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "360800000000",
     "areaName": "吉安市",
     "children": [{
-      "areaCode": "360801000000",
-      "areaName": "市辖区",
-      "city": "360800000000",
-      "county": "360801000000",
-      "fullName": "江西省吉安市市辖区",
-      "level": 3,
-      "province": "360000000000",
-      "town": "360801000000"
-    }, {
       "areaCode": "360802000000",
       "areaName": "吉州区",
       "city": "360800000000",
@@ -13073,15 +11975,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "360900000000",
     "areaName": "宜春市",
     "children": [{
-      "areaCode": "360901000000",
-      "areaName": "市辖区",
-      "city": "360900000000",
-      "county": "360901000000",
-      "fullName": "江西省宜春市市辖区",
-      "level": 3,
-      "province": "360000000000",
-      "town": "360901000000"
-    }, {
       "areaCode": "360902000000",
       "areaName": "袁州区",
       "city": "360900000000",
@@ -13182,15 +12075,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "361000000000",
     "areaName": "抚州市",
     "children": [{
-      "areaCode": "361001000000",
-      "areaName": "市辖区",
-      "city": "361000000000",
-      "county": "361001000000",
-      "fullName": "江西省抚州市市辖区",
-      "level": 3,
-      "province": "360000000000",
-      "town": "361001000000"
-    }, {
       "areaCode": "361002000000",
       "areaName": "临川区",
       "city": "361000000000",
@@ -13300,15 +12184,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "361100000000",
     "areaName": "上饶市",
     "children": [{
-      "areaCode": "361101000000",
-      "areaName": "市辖区",
-      "city": "361100000000",
-      "county": "361101000000",
-      "fullName": "江西省上饶市市辖区",
-      "level": 3,
-      "province": "360000000000",
-      "town": "361101000000"
-    }, {
       "areaCode": "361102000000",
       "areaName": "信州区",
       "city": "361100000000",
@@ -13437,15 +12312,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "370100000000",
     "areaName": "济南市",
     "children": [{
-      "areaCode": "370101000000",
-      "areaName": "市辖区",
-      "city": "370100000000",
-      "county": "370101000000",
-      "fullName": "山东省济南市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "370101000000"
-    }, {
       "areaCode": "370102000000",
       "areaName": "历下区",
       "city": "370100000000",
@@ -13546,15 +12412,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "370200000000",
     "areaName": "青岛市",
     "children": [{
-      "areaCode": "370201000000",
-      "areaName": "市辖区",
-      "city": "370200000000",
-      "county": "370201000000",
-      "fullName": "山东省青岛市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "370201000000"
-    }, {
       "areaCode": "370202000000",
       "areaName": "市南区",
       "city": "370200000000",
@@ -13655,15 +12512,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "370300000000",
     "areaName": "淄博市",
     "children": [{
-      "areaCode": "370301000000",
-      "areaName": "市辖区",
-      "city": "370300000000",
-      "county": "370301000000",
-      "fullName": "山东省淄博市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "370301000000"
-    }, {
       "areaCode": "370302000000",
       "areaName": "淄川区",
       "city": "370300000000",
@@ -13746,15 +12594,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "370400000000",
     "areaName": "枣庄市",
     "children": [{
-      "areaCode": "370401000000",
-      "areaName": "市辖区",
-      "city": "370400000000",
-      "county": "370401000000",
-      "fullName": "山东省枣庄市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "370401000000"
-    }, {
       "areaCode": "370402000000",
       "areaName": "市中区",
       "city": "370400000000",
@@ -13819,15 +12658,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "370500000000",
     "areaName": "东营市",
     "children": [{
-      "areaCode": "370501000000",
-      "areaName": "市辖区",
-      "city": "370500000000",
-      "county": "370501000000",
-      "fullName": "山东省东营市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "370501000000"
-    }, {
       "areaCode": "370502000000",
       "areaName": "东营区",
       "city": "370500000000",
@@ -13883,15 +12713,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "370600000000",
     "areaName": "烟台市",
     "children": [{
-      "areaCode": "370601000000",
-      "areaName": "市辖区",
-      "city": "370600000000",
-      "county": "370601000000",
-      "fullName": "山东省烟台市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "370601000000"
-    }, {
       "areaCode": "370602000000",
       "areaName": "芝罘区",
       "city": "370600000000",
@@ -14010,15 +12831,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "370700000000",
     "areaName": "潍坊市",
     "children": [{
-      "areaCode": "370701000000",
-      "areaName": "市辖区",
-      "city": "370700000000",
-      "county": "370701000000",
-      "fullName": "山东省潍坊市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "370701000000"
-    }, {
       "areaCode": "370702000000",
       "areaName": "潍城区",
       "city": "370700000000",
@@ -14137,15 +12949,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "370800000000",
     "areaName": "济宁市",
     "children": [{
-      "areaCode": "370801000000",
-      "areaName": "市辖区",
-      "city": "370800000000",
-      "county": "370801000000",
-      "fullName": "山东省济宁市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "370801000000"
-    }, {
       "areaCode": "370811000000",
       "areaName": "任城区",
       "city": "370800000000",
@@ -14255,15 +13058,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "370900000000",
     "areaName": "泰安市",
     "children": [{
-      "areaCode": "370901000000",
-      "areaName": "市辖区",
-      "city": "370900000000",
-      "county": "370901000000",
-      "fullName": "山东省泰安市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "370901000000"
-    }, {
       "areaCode": "370902000000",
       "areaName": "泰山区",
       "city": "370900000000",
@@ -14328,15 +13122,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "371000000000",
     "areaName": "威海市",
     "children": [{
-      "areaCode": "371001000000",
-      "areaName": "市辖区",
-      "city": "371000000000",
-      "county": "371001000000",
-      "fullName": "山东省威海市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "371001000000"
-    }, {
       "areaCode": "371002000000",
       "areaName": "环翠区",
       "city": "371000000000",
@@ -14383,15 +13168,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "371100000000",
     "areaName": "日照市",
     "children": [{
-      "areaCode": "371101000000",
-      "areaName": "市辖区",
-      "city": "371100000000",
-      "county": "371101000000",
-      "fullName": "山东省日照市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "371101000000"
-    }, {
       "areaCode": "371102000000",
       "areaName": "东港区",
       "city": "371100000000",
@@ -14438,15 +13214,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "371200000000",
     "areaName": "莱芜市",
     "children": [{
-      "areaCode": "371201000000",
-      "areaName": "市辖区",
-      "city": "371200000000",
-      "county": "371201000000",
-      "fullName": "山东省莱芜市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "371201000000"
-    }, {
       "areaCode": "371202000000",
       "areaName": "莱城区",
       "city": "371200000000",
@@ -14475,15 +13242,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "371300000000",
     "areaName": "临沂市",
     "children": [{
-      "areaCode": "371301000000",
-      "areaName": "市辖区",
-      "city": "371300000000",
-      "county": "371301000000",
-      "fullName": "山东省临沂市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "371301000000"
-    }, {
       "areaCode": "371302000000",
       "areaName": "兰山区",
       "city": "371300000000",
@@ -14602,15 +13360,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "371400000000",
     "areaName": "德州市",
     "children": [{
-      "areaCode": "371401000000",
-      "areaName": "市辖区",
-      "city": "371400000000",
-      "county": "371401000000",
-      "fullName": "山东省德州市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "371401000000"
-    }, {
       "areaCode": "371402000000",
       "areaName": "德城区",
       "city": "371400000000",
@@ -14720,15 +13469,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "371500000000",
     "areaName": "聊城市",
     "children": [{
-      "areaCode": "371501000000",
-      "areaName": "市辖区",
-      "city": "371500000000",
-      "county": "371501000000",
-      "fullName": "山东省聊城市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "371501000000"
-    }, {
       "areaCode": "371502000000",
       "areaName": "东昌府区",
       "city": "371500000000",
@@ -14811,15 +13551,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "371600000000",
     "areaName": "滨州市",
     "children": [{
-      "areaCode": "371601000000",
-      "areaName": "市辖区",
-      "city": "371600000000",
-      "county": "371601000000",
-      "fullName": "山东省滨州市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "371601000000"
-    }, {
       "areaCode": "371602000000",
       "areaName": "滨城区",
       "city": "371600000000",
@@ -14893,15 +13624,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "371700000000",
     "areaName": "菏泽市",
     "children": [{
-      "areaCode": "371701000000",
-      "areaName": "市辖区",
-      "city": "371700000000",
-      "county": "371701000000",
-      "fullName": "山东省菏泽市市辖区",
-      "level": 3,
-      "province": "370000000000",
-      "town": "371701000000"
-    }, {
       "areaCode": "371702000000",
       "areaName": "牡丹区",
       "city": "371700000000",
@@ -15003,15 +13725,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "410100000000",
     "areaName": "郑州市",
     "children": [{
-      "areaCode": "410101000000",
-      "areaName": "市辖区",
-      "city": "410100000000",
-      "county": "410101000000",
-      "fullName": "河南省郑州市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "410101000000"
-    }, {
       "areaCode": "410102000000",
       "areaName": "中原区",
       "city": "410100000000",
@@ -15130,15 +13843,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "410200000000",
     "areaName": "开封市",
     "children": [{
-      "areaCode": "410201000000",
-      "areaName": "市辖区",
-      "city": "410200000000",
-      "county": "410201000000",
-      "fullName": "河南省开封市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "410201000000"
-    }, {
       "areaCode": "410202000000",
       "areaName": "龙亭区",
       "city": "410200000000",
@@ -15239,15 +13943,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "410300000000",
     "areaName": "洛阳市",
     "children": [{
-      "areaCode": "410301000000",
-      "areaName": "市辖区",
-      "city": "410300000000",
-      "county": "410301000000",
-      "fullName": "河南省洛阳市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "410301000000"
-    }, {
       "areaCode": "410302000000",
       "areaName": "老城区",
       "city": "410300000000",
@@ -15393,15 +14088,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "410400000000",
     "areaName": "平顶山市",
     "children": [{
-      "areaCode": "410401000000",
-      "areaName": "市辖区",
-      "city": "410400000000",
-      "county": "410401000000",
-      "fullName": "河南省平顶山市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "410401000000"
-    }, {
       "areaCode": "410402000000",
       "areaName": "新华区",
       "city": "410400000000",
@@ -15502,15 +14188,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "410500000000",
     "areaName": "安阳市",
     "children": [{
-      "areaCode": "410501000000",
-      "areaName": "市辖区",
-      "city": "410500000000",
-      "county": "410501000000",
-      "fullName": "河南省安阳市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "410501000000"
-    }, {
       "areaCode": "410502000000",
       "areaName": "文峰区",
       "city": "410500000000",
@@ -15602,15 +14279,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "410600000000",
     "areaName": "鹤壁市",
     "children": [{
-      "areaCode": "410601000000",
-      "areaName": "市辖区",
-      "city": "410600000000",
-      "county": "410601000000",
-      "fullName": "河南省鹤壁市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "410601000000"
-    }, {
       "areaCode": "410602000000",
       "areaName": "鹤山区",
       "city": "410600000000",
@@ -15666,15 +14334,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "410700000000",
     "areaName": "新乡市",
     "children": [{
-      "areaCode": "410701000000",
-      "areaName": "市辖区",
-      "city": "410700000000",
-      "county": "410701000000",
-      "fullName": "河南省新乡市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "410701000000"
-    }, {
       "areaCode": "410702000000",
       "areaName": "红旗区",
       "city": "410700000000",
@@ -15793,15 +14452,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "410800000000",
     "areaName": "焦作市",
     "children": [{
-      "areaCode": "410801000000",
-      "areaName": "市辖区",
-      "city": "410800000000",
-      "county": "410801000000",
-      "fullName": "河南省焦作市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "410801000000"
-    }, {
       "areaCode": "410802000000",
       "areaName": "解放区",
       "city": "410800000000",
@@ -15902,15 +14552,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "410900000000",
     "areaName": "濮阳市",
     "children": [{
-      "areaCode": "410901000000",
-      "areaName": "市辖区",
-      "city": "410900000000",
-      "county": "410901000000",
-      "fullName": "河南省濮阳市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "410901000000"
-    }, {
       "areaCode": "410902000000",
       "areaName": "华龙区",
       "city": "410900000000",
@@ -15975,15 +14616,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "411000000000",
     "areaName": "许昌市",
     "children": [{
-      "areaCode": "411001000000",
-      "areaName": "市辖区",
-      "city": "411000000000",
-      "county": "411001000000",
-      "fullName": "河南省许昌市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "411001000000"
-    }, {
       "areaCode": "411002000000",
       "areaName": "魏都区",
       "city": "411000000000",
@@ -16048,15 +14680,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "411100000000",
     "areaName": "漯河市",
     "children": [{
-      "areaCode": "411101000000",
-      "areaName": "市辖区",
-      "city": "411100000000",
-      "county": "411101000000",
-      "fullName": "河南省漯河市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "411101000000"
-    }, {
       "areaCode": "411102000000",
       "areaName": "源汇区",
       "city": "411100000000",
@@ -16112,15 +14735,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "411200000000",
     "areaName": "三门峡市",
     "children": [{
-      "areaCode": "411201000000",
-      "areaName": "市辖区",
-      "city": "411200000000",
-      "county": "411201000000",
-      "fullName": "河南省三门峡市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "411201000000"
-    }, {
       "areaCode": "411202000000",
       "areaName": "湖滨区",
       "city": "411200000000",
@@ -16185,15 +14799,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "411300000000",
     "areaName": "南阳市",
     "children": [{
-      "areaCode": "411301000000",
-      "areaName": "市辖区",
-      "city": "411300000000",
-      "county": "411301000000",
-      "fullName": "河南省南阳市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "411301000000"
-    }, {
       "areaCode": "411302000000",
       "areaName": "宛城区",
       "city": "411300000000",
@@ -16321,15 +14926,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "411400000000",
     "areaName": "商丘市",
     "children": [{
-      "areaCode": "411401000000",
-      "areaName": "市辖区",
-      "city": "411400000000",
-      "county": "411401000000",
-      "fullName": "河南省商丘市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "411401000000"
-    }, {
       "areaCode": "411402000000",
       "areaName": "梁园区",
       "city": "411400000000",
@@ -16421,15 +15017,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "411500000000",
     "areaName": "信阳市",
     "children": [{
-      "areaCode": "411501000000",
-      "areaName": "市辖区",
-      "city": "411500000000",
-      "county": "411501000000",
-      "fullName": "河南省信阳市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "411501000000"
-    }, {
       "areaCode": "411502000000",
       "areaName": "浉河区",
       "city": "411500000000",
@@ -16530,15 +15117,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "411600000000",
     "areaName": "周口市",
     "children": [{
-      "areaCode": "411601000000",
-      "areaName": "市辖区",
-      "city": "411600000000",
-      "county": "411601000000",
-      "fullName": "河南省周口市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "411601000000"
-    }, {
       "areaCode": "411602000000",
       "areaName": "川汇区",
       "city": "411600000000",
@@ -16639,15 +15217,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "411700000000",
     "areaName": "驻马店市",
     "children": [{
-      "areaCode": "411701000000",
-      "areaName": "市辖区",
-      "city": "411700000000",
-      "county": "411701000000",
-      "fullName": "河南省驻马店市市辖区",
-      "level": 3,
-      "province": "410000000000",
-      "town": "411701000000"
-    }, {
       "areaCode": "411702000000",
       "areaName": "驿城区",
       "city": "411700000000",
@@ -16777,15 +15346,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "420100000000",
     "areaName": "武汉市",
     "children": [{
-      "areaCode": "420101000000",
-      "areaName": "市辖区",
-      "city": "420100000000",
-      "county": "420101000000",
-      "fullName": "湖北省武汉市市辖区",
-      "level": 3,
-      "province": "420000000000",
-      "town": "420101000000"
-    }, {
       "areaCode": "420102000000",
       "areaName": "江岸区",
       "city": "420100000000",
@@ -16913,15 +15473,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "420200000000",
     "areaName": "黄石市",
     "children": [{
-      "areaCode": "420201000000",
-      "areaName": "市辖区",
-      "city": "420200000000",
-      "county": "420201000000",
-      "fullName": "湖北省黄石市市辖区",
-      "level": 3,
-      "province": "420000000000",
-      "town": "420201000000"
-    }, {
       "areaCode": "420202000000",
       "areaName": "黄石港区",
       "city": "420200000000",
@@ -16986,15 +15537,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "420300000000",
     "areaName": "十堰市",
     "children": [{
-      "areaCode": "420301000000",
-      "areaName": "市辖区",
-      "city": "420300000000",
-      "county": "420301000000",
-      "fullName": "湖北省十堰市市辖区",
-      "level": 3,
-      "province": "420000000000",
-      "town": "420301000000"
-    }, {
       "areaCode": "420302000000",
       "areaName": "茅箭区",
       "city": "420300000000",
@@ -17077,15 +15619,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "420500000000",
     "areaName": "宜昌市",
     "children": [{
-      "areaCode": "420501000000",
-      "areaName": "市辖区",
-      "city": "420500000000",
-      "county": "420501000000",
-      "fullName": "湖北省宜昌市市辖区",
-      "level": 3,
-      "province": "420000000000",
-      "town": "420501000000"
-    }, {
       "areaCode": "420502000000",
       "areaName": "西陵区",
       "city": "420500000000",
@@ -17213,15 +15746,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "420600000000",
     "areaName": "襄阳市",
     "children": [{
-      "areaCode": "420601000000",
-      "areaName": "市辖区",
-      "city": "420600000000",
-      "county": "420601000000",
-      "fullName": "湖北省襄阳市市辖区",
-      "level": 3,
-      "province": "420000000000",
-      "town": "420601000000"
-    }, {
       "areaCode": "420602000000",
       "areaName": "襄城区",
       "city": "420600000000",
@@ -17313,15 +15837,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "420700000000",
     "areaName": "鄂州市",
     "children": [{
-      "areaCode": "420701000000",
-      "areaName": "市辖区",
-      "city": "420700000000",
-      "county": "420701000000",
-      "fullName": "湖北省鄂州市市辖区",
-      "level": 3,
-      "province": "420000000000",
-      "town": "420701000000"
-    }, {
       "areaCode": "420702000000",
       "areaName": "梁子湖区",
       "city": "420700000000",
@@ -17359,15 +15874,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "420800000000",
     "areaName": "荆门市",
     "children": [{
-      "areaCode": "420801000000",
-      "areaName": "市辖区",
-      "city": "420800000000",
-      "county": "420801000000",
-      "fullName": "湖北省荆门市市辖区",
-      "level": 3,
-      "province": "420000000000",
-      "town": "420801000000"
-    }, {
       "areaCode": "420802000000",
       "areaName": "东宝区",
       "city": "420800000000",
@@ -17423,15 +15929,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "420900000000",
     "areaName": "孝感市",
     "children": [{
-      "areaCode": "420901000000",
-      "areaName": "市辖区",
-      "city": "420900000000",
-      "county": "420901000000",
-      "fullName": "湖北省孝感市市辖区",
-      "level": 3,
-      "province": "420000000000",
-      "town": "420901000000"
-    }, {
       "areaCode": "420902000000",
       "areaName": "孝南区",
       "city": "420900000000",
@@ -17505,15 +16002,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "421000000000",
     "areaName": "荆州市",
     "children": [{
-      "areaCode": "421001000000",
-      "areaName": "市辖区",
-      "city": "421000000000",
-      "county": "421001000000",
-      "fullName": "湖北省荆州市市辖区",
-      "level": 3,
-      "province": "420000000000",
-      "town": "421001000000"
-    }, {
       "areaCode": "421002000000",
       "areaName": "沙市区",
       "city": "421000000000",
@@ -17596,15 +16084,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "421100000000",
     "areaName": "黄冈市",
     "children": [{
-      "areaCode": "421101000000",
-      "areaName": "市辖区",
-      "city": "421100000000",
-      "county": "421101000000",
-      "fullName": "湖北省黄冈市市辖区",
-      "level": 3,
-      "province": "420000000000",
-      "town": "421101000000"
-    }, {
       "areaCode": "421102000000",
       "areaName": "黄州区",
       "city": "421100000000",
@@ -17705,15 +16184,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "421200000000",
     "areaName": "咸宁市",
     "children": [{
-      "areaCode": "421201000000",
-      "areaName": "市辖区",
-      "city": "421200000000",
-      "county": "421201000000",
-      "fullName": "湖北省咸宁市市辖区",
-      "level": 3,
-      "province": "420000000000",
-      "town": "421201000000"
-    }, {
       "areaCode": "421202000000",
       "areaName": "咸安区",
       "city": "421200000000",
@@ -17778,15 +16248,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "421300000000",
     "areaName": "随州市",
     "children": [{
-      "areaCode": "421301000000",
-      "areaName": "市辖区",
-      "city": "421300000000",
-      "county": "421301000000",
-      "fullName": "湖北省随州市市辖区",
-      "level": 3,
-      "province": "420000000000",
-      "town": "421301000000"
-    }, {
       "areaCode": "421303000000",
       "areaName": "曾都区",
       "city": "421300000000",
@@ -17962,15 +16423,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "430100000000",
     "areaName": "长沙市",
     "children": [{
-      "areaCode": "430101000000",
-      "areaName": "市辖区",
-      "city": "430100000000",
-      "county": "430101000000",
-      "fullName": "湖南省长沙市市辖区",
-      "level": 3,
-      "province": "430000000000",
-      "town": "430101000000"
-    }, {
       "areaCode": "430102000000",
       "areaName": "芙蓉区",
       "city": "430100000000",
@@ -18062,15 +16514,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "430200000000",
     "areaName": "株洲市",
     "children": [{
-      "areaCode": "430201000000",
-      "areaName": "市辖区",
-      "city": "430200000000",
-      "county": "430201000000",
-      "fullName": "湖南省株洲市市辖区",
-      "level": 3,
-      "province": "430000000000",
-      "town": "430201000000"
-    }, {
       "areaCode": "430202000000",
       "areaName": "荷塘区",
       "city": "430200000000",
@@ -18162,15 +16605,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "430300000000",
     "areaName": "湘潭市",
     "children": [{
-      "areaCode": "430301000000",
-      "areaName": "市辖区",
-      "city": "430300000000",
-      "county": "430301000000",
-      "fullName": "湖南省湘潭市市辖区",
-      "level": 3,
-      "province": "430000000000",
-      "town": "430301000000"
-    }, {
       "areaCode": "430302000000",
       "areaName": "雨湖区",
       "city": "430300000000",
@@ -18226,15 +16660,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "430400000000",
     "areaName": "衡阳市",
     "children": [{
-      "areaCode": "430401000000",
-      "areaName": "市辖区",
-      "city": "430400000000",
-      "county": "430401000000",
-      "fullName": "湖南省衡阳市市辖区",
-      "level": 3,
-      "province": "430000000000",
-      "town": "430401000000"
-    }, {
       "areaCode": "430405000000",
       "areaName": "珠晖区",
       "city": "430400000000",
@@ -18353,15 +16778,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "430500000000",
     "areaName": "邵阳市",
     "children": [{
-      "areaCode": "430501000000",
-      "areaName": "市辖区",
-      "city": "430500000000",
-      "county": "430501000000",
-      "fullName": "湖南省邵阳市市辖区",
-      "level": 3,
-      "province": "430000000000",
-      "town": "430501000000"
-    }, {
       "areaCode": "430502000000",
       "areaName": "双清区",
       "city": "430500000000",
@@ -18480,15 +16896,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "430600000000",
     "areaName": "岳阳市",
     "children": [{
-      "areaCode": "430601000000",
-      "areaName": "市辖区",
-      "city": "430600000000",
-      "county": "430601000000",
-      "fullName": "湖南省岳阳市市辖区",
-      "level": 3,
-      "province": "430000000000",
-      "town": "430601000000"
-    }, {
       "areaCode": "430602000000",
       "areaName": "岳阳楼区",
       "city": "430600000000",
@@ -18580,15 +16987,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "430700000000",
     "areaName": "常德市",
     "children": [{
-      "areaCode": "430701000000",
-      "areaName": "市辖区",
-      "city": "430700000000",
-      "county": "430701000000",
-      "fullName": "湖南省常德市市辖区",
-      "level": 3,
-      "province": "430000000000",
-      "town": "430701000000"
-    }, {
       "areaCode": "430702000000",
       "areaName": "武陵区",
       "city": "430700000000",
@@ -18680,15 +17078,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "430800000000",
     "areaName": "张家界市",
     "children": [{
-      "areaCode": "430801000000",
-      "areaName": "市辖区",
-      "city": "430800000000",
-      "county": "430801000000",
-      "fullName": "湖南省张家界市市辖区",
-      "level": 3,
-      "province": "430000000000",
-      "town": "430801000000"
-    }, {
       "areaCode": "430802000000",
       "areaName": "永定区",
       "city": "430800000000",
@@ -18735,15 +17124,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "430900000000",
     "areaName": "益阳市",
     "children": [{
-      "areaCode": "430901000000",
-      "areaName": "市辖区",
-      "city": "430900000000",
-      "county": "430901000000",
-      "fullName": "湖南省益阳市市辖区",
-      "level": 3,
-      "province": "430000000000",
-      "town": "430901000000"
-    }, {
       "areaCode": "430902000000",
       "areaName": "资阳区",
       "city": "430900000000",
@@ -18808,15 +17188,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "431000000000",
     "areaName": "郴州市",
     "children": [{
-      "areaCode": "431001000000",
-      "areaName": "市辖区",
-      "city": "431000000000",
-      "county": "431001000000",
-      "fullName": "湖南省郴州市市辖区",
-      "level": 3,
-      "province": "430000000000",
-      "town": "431001000000"
-    }, {
       "areaCode": "431002000000",
       "areaName": "北湖区",
       "city": "431000000000",
@@ -18926,15 +17297,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "431100000000",
     "areaName": "永州市",
     "children": [{
-      "areaCode": "431101000000",
-      "areaName": "市辖区",
-      "city": "431100000000",
-      "county": "431101000000",
-      "fullName": "湖南省永州市市辖区",
-      "level": 3,
-      "province": "430000000000",
-      "town": "431101000000"
-    }, {
       "areaCode": "431102000000",
       "areaName": "零陵区",
       "city": "431100000000",
@@ -19044,15 +17406,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "431200000000",
     "areaName": "怀化市",
     "children": [{
-      "areaCode": "431201000000",
-      "areaName": "市辖区",
-      "city": "431200000000",
-      "county": "431201000000",
-      "fullName": "湖南省怀化市市辖区",
-      "level": 3,
-      "province": "430000000000",
-      "town": "431201000000"
-    }, {
       "areaCode": "431202000000",
       "areaName": "鹤城区",
       "city": "431200000000",
@@ -19171,15 +17524,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "431300000000",
     "areaName": "娄底市",
     "children": [{
-      "areaCode": "431301000000",
-      "areaName": "市辖区",
-      "city": "431300000000",
-      "county": "431301000000",
-      "fullName": "湖南省娄底市市辖区",
-      "level": 3,
-      "province": "430000000000",
-      "town": "431301000000"
-    }, {
       "areaCode": "431302000000",
       "areaName": "娄星区",
       "city": "431300000000",
@@ -19327,15 +17671,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "440100000000",
     "areaName": "广州市",
     "children": [{
-      "areaCode": "440101000000",
-      "areaName": "市辖区",
-      "city": "440100000000",
-      "county": "440101000000",
-      "fullName": "广东省广州市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "440101000000"
-    }, {
       "areaCode": "440103000000",
       "areaName": "荔湾区",
       "city": "440100000000",
@@ -19445,15 +17780,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "440200000000",
     "areaName": "韶关市",
     "children": [{
-      "areaCode": "440201000000",
-      "areaName": "市辖区",
-      "city": "440200000000",
-      "county": "440201000000",
-      "fullName": "广东省韶关市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "440201000000"
-    }, {
       "areaCode": "440203000000",
       "areaName": "武江区",
       "city": "440200000000",
@@ -19554,15 +17880,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "440300000000",
     "areaName": "深圳市",
     "children": [{
-      "areaCode": "440301000000",
-      "areaName": "市辖区",
-      "city": "440300000000",
-      "county": "440301000000",
-      "fullName": "广东省深圳市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "440301000000"
-    }, {
       "areaCode": "440303000000",
       "areaName": "罗湖区",
       "city": "440300000000",
@@ -19627,15 +17944,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "440400000000",
     "areaName": "珠海市",
     "children": [{
-      "areaCode": "440401000000",
-      "areaName": "市辖区",
-      "city": "440400000000",
-      "county": "440401000000",
-      "fullName": "广东省珠海市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "440401000000"
-    }, {
       "areaCode": "440402000000",
       "areaName": "香洲区",
       "city": "440400000000",
@@ -19673,15 +17981,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "440500000000",
     "areaName": "汕头市",
     "children": [{
-      "areaCode": "440501000000",
-      "areaName": "市辖区",
-      "city": "440500000000",
-      "county": "440501000000",
-      "fullName": "广东省汕头市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "440501000000"
-    }, {
       "areaCode": "440507000000",
       "areaName": "龙湖区",
       "city": "440500000000",
@@ -19755,15 +18054,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "440600000000",
     "areaName": "佛山市",
     "children": [{
-      "areaCode": "440601000000",
-      "areaName": "市辖区",
-      "city": "440600000000",
-      "county": "440601000000",
-      "fullName": "广东省佛山市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "440601000000"
-    }, {
       "areaCode": "440604000000",
       "areaName": "禅城区",
       "city": "440600000000",
@@ -19819,15 +18109,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "440700000000",
     "areaName": "江门市",
     "children": [{
-      "areaCode": "440701000000",
-      "areaName": "市辖区",
-      "city": "440700000000",
-      "county": "440701000000",
-      "fullName": "广东省江门市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "440701000000"
-    }, {
       "areaCode": "440703000000",
       "areaName": "蓬江区",
       "city": "440700000000",
@@ -19901,15 +18182,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "440800000000",
     "areaName": "湛江市",
     "children": [{
-      "areaCode": "440801000000",
-      "areaName": "市辖区",
-      "city": "440800000000",
-      "county": "440801000000",
-      "fullName": "广东省湛江市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "440801000000"
-    }, {
       "areaCode": "440802000000",
       "areaName": "赤坎区",
       "city": "440800000000",
@@ -20001,15 +18273,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "440900000000",
     "areaName": "茂名市",
     "children": [{
-      "areaCode": "440901000000",
-      "areaName": "市辖区",
-      "city": "440900000000",
-      "county": "440901000000",
-      "fullName": "广东省茂名市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "440901000000"
-    }, {
       "areaCode": "440902000000",
       "areaName": "茂南区",
       "city": "440900000000",
@@ -20065,15 +18328,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "441200000000",
     "areaName": "肇庆市",
     "children": [{
-      "areaCode": "441201000000",
-      "areaName": "市辖区",
-      "city": "441200000000",
-      "county": "441201000000",
-      "fullName": "广东省肇庆市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "441201000000"
-    }, {
       "areaCode": "441202000000",
       "areaName": "端州区",
       "city": "441200000000",
@@ -20156,15 +18410,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "441300000000",
     "areaName": "惠州市",
     "children": [{
-      "areaCode": "441301000000",
-      "areaName": "市辖区",
-      "city": "441300000000",
-      "county": "441301000000",
-      "fullName": "广东省惠州市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "441301000000"
-    }, {
       "areaCode": "441302000000",
       "areaName": "惠城区",
       "city": "441300000000",
@@ -20220,15 +18465,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "441400000000",
     "areaName": "梅州市",
     "children": [{
-      "areaCode": "441401000000",
-      "areaName": "市辖区",
-      "city": "441400000000",
-      "county": "441401000000",
-      "fullName": "广东省梅州市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "441401000000"
-    }, {
       "areaCode": "441402000000",
       "areaName": "梅江区",
       "city": "441400000000",
@@ -20311,15 +18547,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "441500000000",
     "areaName": "汕尾市",
     "children": [{
-      "areaCode": "441501000000",
-      "areaName": "市辖区",
-      "city": "441500000000",
-      "county": "441501000000",
-      "fullName": "广东省汕尾市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "441501000000"
-    }, {
       "areaCode": "441502000000",
       "areaName": "城区",
       "city": "441500000000",
@@ -20366,15 +18593,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "441600000000",
     "areaName": "河源市",
     "children": [{
-      "areaCode": "441601000000",
-      "areaName": "市辖区",
-      "city": "441600000000",
-      "county": "441601000000",
-      "fullName": "广东省河源市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "441601000000"
-    }, {
       "areaCode": "441602000000",
       "areaName": "源城区",
       "city": "441600000000",
@@ -20439,15 +18657,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "441700000000",
     "areaName": "阳江市",
     "children": [{
-      "areaCode": "441701000000",
-      "areaName": "市辖区",
-      "city": "441700000000",
-      "county": "441701000000",
-      "fullName": "广东省阳江市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "441701000000"
-    }, {
       "areaCode": "441702000000",
       "areaName": "江城区",
       "city": "441700000000",
@@ -20494,15 +18703,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "441800000000",
     "areaName": "清远市",
     "children": [{
-      "areaCode": "441801000000",
-      "areaName": "市辖区",
-      "city": "441800000000",
-      "county": "441801000000",
-      "fullName": "广东省清远市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "441801000000"
-    }, {
       "areaCode": "441802000000",
       "areaName": "清城区",
       "city": "441800000000",
@@ -20605,15 +18805,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "445100000000",
     "areaName": "潮州市",
     "children": [{
-      "areaCode": "445101000000",
-      "areaName": "市辖区",
-      "city": "445100000000",
-      "county": "445101000000",
-      "fullName": "广东省潮州市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "445101000000"
-    }, {
       "areaCode": "445102000000",
       "areaName": "湘桥区",
       "city": "445100000000",
@@ -20651,15 +18842,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "445200000000",
     "areaName": "揭阳市",
     "children": [{
-      "areaCode": "445201000000",
-      "areaName": "市辖区",
-      "city": "445200000000",
-      "county": "445201000000",
-      "fullName": "广东省揭阳市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "445201000000"
-    }, {
       "areaCode": "445202000000",
       "areaName": "榕城区",
       "city": "445200000000",
@@ -20715,15 +18897,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "445300000000",
     "areaName": "云浮市",
     "children": [{
-      "areaCode": "445301000000",
-      "areaName": "市辖区",
-      "city": "445300000000",
-      "county": "445301000000",
-      "fullName": "广东省云浮市市辖区",
-      "level": 3,
-      "province": "440000000000",
-      "town": "445301000000"
-    }, {
       "areaCode": "445302000000",
       "areaName": "云城区",
       "city": "445300000000",
@@ -20784,20 +18957,11 @@ export const AREA_LEVEL_3_JSON = [{
   "town": "440000000000"
 }, {
   "areaCode": "450000000000",
-  "areaName": "广西壮族自治区",
+  "areaName": "广西",
   "children": [{
     "areaCode": "450100000000",
     "areaName": "南宁市",
     "children": [{
-      "areaCode": "450101000000",
-      "areaName": "市辖区",
-      "city": "450100000000",
-      "county": "450101000000",
-      "fullName": "广西壮族自治区南宁市市辖区",
-      "level": 3,
-      "province": "450000000000",
-      "town": "450101000000"
-    }, {
       "areaCode": "450102000000",
       "areaName": "兴宁区",
       "city": "450100000000",
@@ -20916,15 +19080,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "450200000000",
     "areaName": "柳州市",
     "children": [{
-      "areaCode": "450201000000",
-      "areaName": "市辖区",
-      "city": "450200000000",
-      "county": "450201000000",
-      "fullName": "广西壮族自治区柳州市市辖区",
-      "level": 3,
-      "province": "450000000000",
-      "town": "450201000000"
-    }, {
       "areaCode": "450202000000",
       "areaName": "城中区",
       "city": "450200000000",
@@ -21025,15 +19180,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "450300000000",
     "areaName": "桂林市",
     "children": [{
-      "areaCode": "450301000000",
-      "areaName": "市辖区",
-      "city": "450300000000",
-      "county": "450301000000",
-      "fullName": "广西壮族自治区桂林市市辖区",
-      "level": 3,
-      "province": "450000000000",
-      "town": "450301000000"
-    }, {
       "areaCode": "450302000000",
       "areaName": "秀峰区",
       "city": "450300000000",
@@ -21197,15 +19343,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "450400000000",
     "areaName": "梧州市",
     "children": [{
-      "areaCode": "450401000000",
-      "areaName": "市辖区",
-      "city": "450400000000",
-      "county": "450401000000",
-      "fullName": "广西壮族自治区梧州市市辖区",
-      "level": 3,
-      "province": "450000000000",
-      "town": "450401000000"
-    }, {
       "areaCode": "450403000000",
       "areaName": "万秀区",
       "city": "450400000000",
@@ -21279,15 +19416,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "450500000000",
     "areaName": "北海市",
     "children": [{
-      "areaCode": "450501000000",
-      "areaName": "市辖区",
-      "city": "450500000000",
-      "county": "450501000000",
-      "fullName": "广西壮族自治区北海市市辖区",
-      "level": 3,
-      "province": "450000000000",
-      "town": "450501000000"
-    }, {
       "areaCode": "450502000000",
       "areaName": "海城区",
       "city": "450500000000",
@@ -21334,15 +19462,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "450600000000",
     "areaName": "防城港市",
     "children": [{
-      "areaCode": "450601000000",
-      "areaName": "市辖区",
-      "city": "450600000000",
-      "county": "450601000000",
-      "fullName": "广西壮族自治区防城港市市辖区",
-      "level": 3,
-      "province": "450000000000",
-      "town": "450601000000"
-    }, {
       "areaCode": "450602000000",
       "areaName": "港口区",
       "city": "450600000000",
@@ -21389,15 +19508,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "450700000000",
     "areaName": "钦州市",
     "children": [{
-      "areaCode": "450701000000",
-      "areaName": "市辖区",
-      "city": "450700000000",
-      "county": "450701000000",
-      "fullName": "广西壮族自治区钦州市市辖区",
-      "level": 3,
-      "province": "450000000000",
-      "town": "450701000000"
-    }, {
       "areaCode": "450702000000",
       "areaName": "钦南区",
       "city": "450700000000",
@@ -21444,15 +19554,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "450800000000",
     "areaName": "贵港市",
     "children": [{
-      "areaCode": "450801000000",
-      "areaName": "市辖区",
-      "city": "450800000000",
-      "county": "450801000000",
-      "fullName": "广西壮族自治区贵港市市辖区",
-      "level": 3,
-      "province": "450000000000",
-      "town": "450801000000"
-    }, {
       "areaCode": "450802000000",
       "areaName": "港北区",
       "city": "450800000000",
@@ -21508,15 +19609,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "450900000000",
     "areaName": "玉林市",
     "children": [{
-      "areaCode": "450901000000",
-      "areaName": "市辖区",
-      "city": "450900000000",
-      "county": "450901000000",
-      "fullName": "广西壮族自治区玉林市市辖区",
-      "level": 3,
-      "province": "450000000000",
-      "town": "450901000000"
-    }, {
       "areaCode": "450902000000",
       "areaName": "玉州区",
       "city": "450900000000",
@@ -21590,15 +19682,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "451000000000",
     "areaName": "百色市",
     "children": [{
-      "areaCode": "451001000000",
-      "areaName": "市辖区",
-      "city": "451000000000",
-      "county": "451001000000",
-      "fullName": "广西壮族自治区百色市市辖区",
-      "level": 3,
-      "province": "450000000000",
-      "town": "451001000000"
-    }, {
       "areaCode": "451002000000",
       "areaName": "右江区",
       "city": "451000000000",
@@ -21717,15 +19800,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "451100000000",
     "areaName": "贺州市",
     "children": [{
-      "areaCode": "451101000000",
-      "areaName": "市辖区",
-      "city": "451100000000",
-      "county": "451101000000",
-      "fullName": "广西壮族自治区贺州市市辖区",
-      "level": 3,
-      "province": "450000000000",
-      "town": "451101000000"
-    }, {
       "areaCode": "451102000000",
       "areaName": "八步区",
       "city": "451100000000",
@@ -21781,15 +19855,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "451200000000",
     "areaName": "河池市",
     "children": [{
-      "areaCode": "451201000000",
-      "areaName": "市辖区",
-      "city": "451200000000",
-      "county": "451201000000",
-      "fullName": "广西壮族自治区河池市市辖区",
-      "level": 3,
-      "province": "450000000000",
-      "town": "451201000000"
-    }, {
       "areaCode": "451202000000",
       "areaName": "金城江区",
       "city": "451200000000",
@@ -21899,15 +19964,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "451300000000",
     "areaName": "来宾市",
     "children": [{
-      "areaCode": "451301000000",
-      "areaName": "市辖区",
-      "city": "451300000000",
-      "county": "451301000000",
-      "fullName": "广西壮族自治区来宾市市辖区",
-      "level": 3,
-      "province": "450000000000",
-      "town": "451301000000"
-    }, {
       "areaCode": "451302000000",
       "areaName": "兴宾区",
       "city": "451300000000",
@@ -21972,15 +20028,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "451400000000",
     "areaName": "崇左市",
     "children": [{
-      "areaCode": "451401000000",
-      "areaName": "市辖区",
-      "city": "451400000000",
-      "county": "451401000000",
-      "fullName": "广西壮族自治区崇左市市辖区",
-      "level": 3,
-      "province": "450000000000",
-      "town": "451401000000"
-    }, {
       "areaCode": "451402000000",
       "areaName": "江州区",
       "city": "451400000000",
@@ -22064,15 +20111,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "460100000000",
     "areaName": "海口市",
     "children": [{
-      "areaCode": "460101000000",
-      "areaName": "市辖区",
-      "city": "460100000000",
-      "county": "460101000000",
-      "fullName": "海南省海口市市辖区",
-      "level": 3,
-      "province": "460000000000",
-      "town": "460101000000"
-    }, {
       "areaCode": "460105000000",
       "areaName": "秀英区",
       "city": "460100000000",
@@ -22748,15 +20786,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "510100000000",
     "areaName": "成都市",
     "children": [{
-      "areaCode": "510101000000",
-      "areaName": "市辖区",
-      "city": "510100000000",
-      "county": "510101000000",
-      "fullName": "四川省成都市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "510101000000"
-    }, {
       "areaCode": "510104000000",
       "areaName": "锦江区",
       "city": "510100000000",
@@ -22947,15 +20976,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "510300000000",
     "areaName": "自贡市",
     "children": [{
-      "areaCode": "510301000000",
-      "areaName": "市辖区",
-      "city": "510300000000",
-      "county": "510301000000",
-      "fullName": "四川省自贡市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "510301000000"
-    }, {
       "areaCode": "510302000000",
       "areaName": "自流井区",
       "city": "510300000000",
@@ -23020,15 +21040,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "510400000000",
     "areaName": "攀枝花市",
     "children": [{
-      "areaCode": "510401000000",
-      "areaName": "市辖区",
-      "city": "510400000000",
-      "county": "510401000000",
-      "fullName": "四川省攀枝花市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "510401000000"
-    }, {
       "areaCode": "510402000000",
       "areaName": "东区",
       "city": "510400000000",
@@ -23084,15 +21095,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "510500000000",
     "areaName": "泸州市",
     "children": [{
-      "areaCode": "510501000000",
-      "areaName": "市辖区",
-      "city": "510500000000",
-      "county": "510501000000",
-      "fullName": "四川省泸州市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "510501000000"
-    }, {
       "areaCode": "510502000000",
       "areaName": "江阳区",
       "city": "510500000000",
@@ -23166,15 +21168,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "510600000000",
     "areaName": "德阳市",
     "children": [{
-      "areaCode": "510601000000",
-      "areaName": "市辖区",
-      "city": "510600000000",
-      "county": "510601000000",
-      "fullName": "四川省德阳市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "510601000000"
-    }, {
       "areaCode": "510603000000",
       "areaName": "旌阳区",
       "city": "510600000000",
@@ -23239,15 +21232,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "510700000000",
     "areaName": "绵阳市",
     "children": [{
-      "areaCode": "510701000000",
-      "areaName": "市辖区",
-      "city": "510700000000",
-      "county": "510701000000",
-      "fullName": "四川省绵阳市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "510701000000"
-    }, {
       "areaCode": "510703000000",
       "areaName": "涪城区",
       "city": "510700000000",
@@ -23339,15 +21323,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "510800000000",
     "areaName": "广元市",
     "children": [{
-      "areaCode": "510801000000",
-      "areaName": "市辖区",
-      "city": "510800000000",
-      "county": "510801000000",
-      "fullName": "四川省广元市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "510801000000"
-    }, {
       "areaCode": "510802000000",
       "areaName": "利州区",
       "city": "510800000000",
@@ -23421,15 +21396,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "510900000000",
     "areaName": "遂宁市",
     "children": [{
-      "areaCode": "510901000000",
-      "areaName": "市辖区",
-      "city": "510900000000",
-      "county": "510901000000",
-      "fullName": "四川省遂宁市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "510901000000"
-    }, {
       "areaCode": "510903000000",
       "areaName": "船山区",
       "city": "510900000000",
@@ -23485,15 +21451,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "511000000000",
     "areaName": "内江市",
     "children": [{
-      "areaCode": "511001000000",
-      "areaName": "市辖区",
-      "city": "511000000000",
-      "county": "511001000000",
-      "fullName": "四川省内江市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "511001000000"
-    }, {
       "areaCode": "511002000000",
       "areaName": "市中区",
       "city": "511000000000",
@@ -23549,15 +21506,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "511100000000",
     "areaName": "乐山市",
     "children": [{
-      "areaCode": "511101000000",
-      "areaName": "市辖区",
-      "city": "511100000000",
-      "county": "511101000000",
-      "fullName": "四川省乐山市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "511101000000"
-    }, {
       "areaCode": "511102000000",
       "areaName": "市中区",
       "city": "511100000000",
@@ -23667,15 +21615,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "511300000000",
     "areaName": "南充市",
     "children": [{
-      "areaCode": "511301000000",
-      "areaName": "市辖区",
-      "city": "511300000000",
-      "county": "511301000000",
-      "fullName": "四川省南充市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "511301000000"
-    }, {
       "areaCode": "511302000000",
       "areaName": "顺庆区",
       "city": "511300000000",
@@ -23767,15 +21706,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "511400000000",
     "areaName": "眉山市",
     "children": [{
-      "areaCode": "511401000000",
-      "areaName": "市辖区",
-      "city": "511400000000",
-      "county": "511401000000",
-      "fullName": "四川省眉山市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "511401000000"
-    }, {
       "areaCode": "511402000000",
       "areaName": "东坡区",
       "city": "511400000000",
@@ -23840,15 +21770,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "511500000000",
     "areaName": "宜宾市",
     "children": [{
-      "areaCode": "511501000000",
-      "areaName": "市辖区",
-      "city": "511500000000",
-      "county": "511501000000",
-      "fullName": "四川省宜宾市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "511501000000"
-    }, {
       "areaCode": "511502000000",
       "areaName": "翠屏区",
       "city": "511500000000",
@@ -23949,15 +21870,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "511600000000",
     "areaName": "广安市",
     "children": [{
-      "areaCode": "511601000000",
-      "areaName": "市辖区",
-      "city": "511600000000",
-      "county": "511601000000",
-      "fullName": "四川省广安市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "511601000000"
-    }, {
       "areaCode": "511602000000",
       "areaName": "广安区",
       "city": "511600000000",
@@ -24022,15 +21934,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "511700000000",
     "areaName": "达州市",
     "children": [{
-      "areaCode": "511701000000",
-      "areaName": "市辖区",
-      "city": "511700000000",
-      "county": "511701000000",
-      "fullName": "四川省达州市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "511701000000"
-    }, {
       "areaCode": "511702000000",
       "areaName": "通川区",
       "city": "511700000000",
@@ -24104,15 +22007,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "511800000000",
     "areaName": "雅安市",
     "children": [{
-      "areaCode": "511801000000",
-      "areaName": "市辖区",
-      "city": "511800000000",
-      "county": "511801000000",
-      "fullName": "四川省雅安市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "511801000000"
-    }, {
       "areaCode": "511802000000",
       "areaName": "雨城区",
       "city": "511800000000",
@@ -24195,15 +22089,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "511900000000",
     "areaName": "巴中市",
     "children": [{
-      "areaCode": "511901000000",
-      "areaName": "市辖区",
-      "city": "511900000000",
-      "county": "511901000000",
-      "fullName": "四川省巴中市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "511901000000"
-    }, {
       "areaCode": "511902000000",
       "areaName": "巴州区",
       "city": "511900000000",
@@ -24259,15 +22144,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "512000000000",
     "areaName": "资阳市",
     "children": [{
-      "areaCode": "512001000000",
-      "areaName": "市辖区",
-      "city": "512000000000",
-      "county": "512001000000",
-      "fullName": "四川省资阳市市辖区",
-      "level": 3,
-      "province": "510000000000",
-      "town": "512001000000"
-    }, {
       "areaCode": "512002000000",
       "areaName": "雁江区",
       "city": "512000000000",
@@ -24777,15 +22653,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "520100000000",
     "areaName": "贵阳市",
     "children": [{
-      "areaCode": "520101000000",
-      "areaName": "市辖区",
-      "city": "520100000000",
-      "county": "520101000000",
-      "fullName": "贵州省贵阳市市辖区",
-      "level": 3,
-      "province": "520000000000",
-      "town": "520101000000"
-    }, {
       "areaCode": "520102000000",
       "areaName": "南明区",
       "city": "520100000000",
@@ -24932,15 +22799,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "520300000000",
     "areaName": "遵义市",
     "children": [{
-      "areaCode": "520301000000",
-      "areaName": "市辖区",
-      "city": "520300000000",
-      "county": "520301000000",
-      "fullName": "贵州省遵义市市辖区",
-      "level": 3,
-      "province": "520000000000",
-      "town": "520301000000"
-    }, {
       "areaCode": "520302000000",
       "areaName": "红花岗区",
       "city": "520300000000",
@@ -25077,15 +22935,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "520400000000",
     "areaName": "安顺市",
     "children": [{
-      "areaCode": "520401000000",
-      "areaName": "市辖区",
-      "city": "520400000000",
-      "county": "520401000000",
-      "fullName": "贵州省安顺市市辖区",
-      "level": 3,
-      "province": "520000000000",
-      "town": "520401000000"
-    }, {
       "areaCode": "520402000000",
       "areaName": "西秀区",
       "city": "520400000000",
@@ -25150,15 +22999,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "520500000000",
     "areaName": "毕节市",
     "children": [{
-      "areaCode": "520501000000",
-      "areaName": "市辖区",
-      "city": "520500000000",
-      "county": "520501000000",
-      "fullName": "贵州省毕节市市辖区",
-      "level": 3,
-      "province": "520000000000",
-      "town": "520501000000"
-    }, {
       "areaCode": "520502000000",
       "areaName": "七星关区",
       "city": "520500000000",
@@ -25241,15 +23081,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "520600000000",
     "areaName": "铜仁市",
     "children": [{
-      "areaCode": "520601000000",
-      "areaName": "市辖区",
-      "city": "520600000000",
-      "county": "520601000000",
-      "fullName": "贵州省铜仁市市辖区",
-      "level": 3,
-      "province": "520000000000",
-      "town": "520601000000"
-    }, {
       "areaCode": "520602000000",
       "areaName": "碧江区",
       "city": "520600000000",
@@ -25714,15 +23545,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "530100000000",
     "areaName": "昆明市",
     "children": [{
-      "areaCode": "530101000000",
-      "areaName": "市辖区",
-      "city": "530100000000",
-      "county": "530101000000",
-      "fullName": "云南省昆明市市辖区",
-      "level": 3,
-      "province": "530000000000",
-      "town": "530101000000"
-    }, {
       "areaCode": "530102000000",
       "areaName": "五华区",
       "city": "530100000000",
@@ -25859,15 +23681,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "530300000000",
     "areaName": "曲靖市",
     "children": [{
-      "areaCode": "530301000000",
-      "areaName": "市辖区",
-      "city": "530300000000",
-      "county": "530301000000",
-      "fullName": "云南省曲靖市市辖区",
-      "level": 3,
-      "province": "530000000000",
-      "town": "530301000000"
-    }, {
       "areaCode": "530302000000",
       "areaName": "麒麟区",
       "city": "530300000000",
@@ -25959,15 +23772,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "530400000000",
     "areaName": "玉溪市",
     "children": [{
-      "areaCode": "530401000000",
-      "areaName": "市辖区",
-      "city": "530400000000",
-      "county": "530401000000",
-      "fullName": "云南省玉溪市市辖区",
-      "level": 3,
-      "province": "530000000000",
-      "town": "530401000000"
-    }, {
       "areaCode": "530402000000",
       "areaName": "红塔区",
       "city": "530400000000",
@@ -26059,15 +23863,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "530500000000",
     "areaName": "保山市",
     "children": [{
-      "areaCode": "530501000000",
-      "areaName": "市辖区",
-      "city": "530500000000",
-      "county": "530501000000",
-      "fullName": "云南省保山市市辖区",
-      "level": 3,
-      "province": "530000000000",
-      "town": "530501000000"
-    }, {
       "areaCode": "530502000000",
       "areaName": "隆阳区",
       "city": "530500000000",
@@ -26123,15 +23918,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "530600000000",
     "areaName": "昭通市",
     "children": [{
-      "areaCode": "530601000000",
-      "areaName": "市辖区",
-      "city": "530600000000",
-      "county": "530601000000",
-      "fullName": "云南省昭通市市辖区",
-      "level": 3,
-      "province": "530000000000",
-      "town": "530601000000"
-    }, {
       "areaCode": "530602000000",
       "areaName": "昭阳区",
       "city": "530600000000",
@@ -26241,15 +24027,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "530700000000",
     "areaName": "丽江市",
     "children": [{
-      "areaCode": "530701000000",
-      "areaName": "市辖区",
-      "city": "530700000000",
-      "county": "530701000000",
-      "fullName": "云南省丽江市市辖区",
-      "level": 3,
-      "province": "530000000000",
-      "town": "530701000000"
-    }, {
       "areaCode": "530702000000",
       "areaName": "古城区",
       "city": "530700000000",
@@ -26305,15 +24082,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "530800000000",
     "areaName": "普洱市",
     "children": [{
-      "areaCode": "530801000000",
-      "areaName": "市辖区",
-      "city": "530800000000",
-      "county": "530801000000",
-      "fullName": "云南省普洱市市辖区",
-      "level": 3,
-      "province": "530000000000",
-      "town": "530801000000"
-    }, {
       "areaCode": "530802000000",
       "areaName": "思茅区",
       "city": "530800000000",
@@ -26414,15 +24182,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "530900000000",
     "areaName": "临沧市",
     "children": [{
-      "areaCode": "530901000000",
-      "areaName": "市辖区",
-      "city": "530900000000",
-      "county": "530901000000",
-      "fullName": "云南省临沧市市辖区",
-      "level": 3,
-      "province": "530000000000",
-      "town": "530901000000"
-    }, {
       "areaCode": "530902000000",
       "areaName": "临翔区",
       "city": "530900000000",
@@ -27112,20 +24871,11 @@ export const AREA_LEVEL_3_JSON = [{
   "town": "530000000000"
 }, {
   "areaCode": "540000000000",
-  "areaName": "西藏自治区",
+  "areaName": "西藏",
   "children": [{
     "areaCode": "540100000000",
     "areaName": "拉萨市",
     "children": [{
-      "areaCode": "540101000000",
-      "areaName": "市辖区",
-      "city": "540100000000",
-      "county": "540101000000",
-      "fullName": "西藏自治区拉萨市市辖区",
-      "level": 3,
-      "province": "540000000000",
-      "town": "540101000000"
-    }, {
       "areaCode": "540102000000",
       "areaName": "城关区",
       "city": "540100000000",
@@ -27562,15 +25312,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "540500000000",
     "areaName": "山南市",
     "children": [{
-      "areaCode": "540501000000",
-      "areaName": "市辖区",
-      "city": "540500000000",
-      "county": "540501000000",
-      "fullName": "西藏自治区山南市市辖区",
-      "level": 3,
-      "province": "540000000000",
-      "town": "540501000000"
-    }, {
       "areaCode": "540502000000",
       "areaName": "乃东区",
       "city": "540500000000",
@@ -27881,15 +25622,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "610100000000",
     "areaName": "西安市",
     "children": [{
-      "areaCode": "610101000000",
-      "areaName": "市辖区",
-      "city": "610100000000",
-      "county": "610101000000",
-      "fullName": "陕西省西安市市辖区",
-      "level": 3,
-      "province": "610000000000",
-      "town": "610101000000"
-    }, {
       "areaCode": "610102000000",
       "areaName": "新城区",
       "city": "610100000000",
@@ -28017,15 +25749,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "610200000000",
     "areaName": "铜川市",
     "children": [{
-      "areaCode": "610201000000",
-      "areaName": "市辖区",
-      "city": "610200000000",
-      "county": "610201000000",
-      "fullName": "陕西省铜川市市辖区",
-      "level": 3,
-      "province": "610000000000",
-      "town": "610201000000"
-    }, {
       "areaCode": "610202000000",
       "areaName": "王益区",
       "city": "610200000000",
@@ -28072,15 +25795,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "610300000000",
     "areaName": "宝鸡市",
     "children": [{
-      "areaCode": "610301000000",
-      "areaName": "市辖区",
-      "city": "610300000000",
-      "county": "610301000000",
-      "fullName": "陕西省宝鸡市市辖区",
-      "level": 3,
-      "province": "610000000000",
-      "town": "610301000000"
-    }, {
       "areaCode": "610302000000",
       "areaName": "渭滨区",
       "city": "610300000000",
@@ -28199,15 +25913,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "610400000000",
     "areaName": "咸阳市",
     "children": [{
-      "areaCode": "610401000000",
-      "areaName": "市辖区",
-      "city": "610400000000",
-      "county": "610401000000",
-      "fullName": "陕西省咸阳市市辖区",
-      "level": 3,
-      "province": "610000000000",
-      "town": "610401000000"
-    }, {
       "areaCode": "610402000000",
       "areaName": "秦都区",
       "city": "610400000000",
@@ -28344,15 +26049,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "610500000000",
     "areaName": "渭南市",
     "children": [{
-      "areaCode": "610501000000",
-      "areaName": "市辖区",
-      "city": "610500000000",
-      "county": "610501000000",
-      "fullName": "陕西省渭南市市辖区",
-      "level": 3,
-      "province": "610000000000",
-      "town": "610501000000"
-    }, {
       "areaCode": "610502000000",
       "areaName": "临渭区",
       "city": "610500000000",
@@ -28462,15 +26158,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "610600000000",
     "areaName": "延安市",
     "children": [{
-      "areaCode": "610601000000",
-      "areaName": "市辖区",
-      "city": "610600000000",
-      "county": "610601000000",
-      "fullName": "陕西省延安市市辖区",
-      "level": 3,
-      "province": "610000000000",
-      "town": "610601000000"
-    }, {
       "areaCode": "610602000000",
       "areaName": "宝塔区",
       "city": "610600000000",
@@ -28598,15 +26285,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "610700000000",
     "areaName": "汉中市",
     "children": [{
-      "areaCode": "610701000000",
-      "areaName": "市辖区",
-      "city": "610700000000",
-      "county": "610701000000",
-      "fullName": "陕西省汉中市市辖区",
-      "level": 3,
-      "province": "610000000000",
-      "town": "610701000000"
-    }, {
       "areaCode": "610702000000",
       "areaName": "汉台区",
       "city": "610700000000",
@@ -28716,15 +26394,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "610800000000",
     "areaName": "榆林市",
     "children": [{
-      "areaCode": "610801000000",
-      "areaName": "市辖区",
-      "city": "610800000000",
-      "county": "610801000000",
-      "fullName": "陕西省榆林市市辖区",
-      "level": 3,
-      "province": "610000000000",
-      "town": "610801000000"
-    }, {
       "areaCode": "610802000000",
       "areaName": "榆阳区",
       "city": "610800000000",
@@ -28843,15 +26512,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "610900000000",
     "areaName": "安康市",
     "children": [{
-      "areaCode": "610901000000",
-      "areaName": "市辖区",
-      "city": "610900000000",
-      "county": "610901000000",
-      "fullName": "陕西省安康市市辖区",
-      "level": 3,
-      "province": "610000000000",
-      "town": "610901000000"
-    }, {
       "areaCode": "610902000000",
       "areaName": "汉滨区",
       "city": "610900000000",
@@ -28952,15 +26612,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "611000000000",
     "areaName": "商洛市",
     "children": [{
-      "areaCode": "611001000000",
-      "areaName": "市辖区",
-      "city": "611000000000",
-      "county": "611001000000",
-      "fullName": "陕西省商洛市市辖区",
-      "level": 3,
-      "province": "610000000000",
-      "town": "611001000000"
-    }, {
       "areaCode": "611002000000",
       "areaName": "商州区",
       "city": "611000000000",
@@ -29044,15 +26695,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "620100000000",
     "areaName": "兰州市",
     "children": [{
-      "areaCode": "620101000000",
-      "areaName": "市辖区",
-      "city": "620100000000",
-      "county": "620101000000",
-      "fullName": "甘肃省兰州市市辖区",
-      "level": 3,
-      "province": "620000000000",
-      "town": "620101000000"
-    }, {
       "areaCode": "620102000000",
       "areaName": "城关区",
       "city": "620100000000",
@@ -29154,15 +26796,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "620300000000",
     "areaName": "金昌市",
     "children": [{
-      "areaCode": "620301000000",
-      "areaName": "市辖区",
-      "city": "620300000000",
-      "county": "620301000000",
-      "fullName": "甘肃省金昌市市辖区",
-      "level": 3,
-      "province": "620000000000",
-      "town": "620301000000"
-    }, {
       "areaCode": "620302000000",
       "areaName": "金川区",
       "city": "620300000000",
@@ -29191,15 +26824,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "620400000000",
     "areaName": "白银市",
     "children": [{
-      "areaCode": "620401000000",
-      "areaName": "市辖区",
-      "city": "620400000000",
-      "county": "620401000000",
-      "fullName": "甘肃省白银市市辖区",
-      "level": 3,
-      "province": "620000000000",
-      "town": "620401000000"
-    }, {
       "areaCode": "620402000000",
       "areaName": "白银区",
       "city": "620400000000",
@@ -29255,15 +26879,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "620500000000",
     "areaName": "天水市",
     "children": [{
-      "areaCode": "620501000000",
-      "areaName": "市辖区",
-      "city": "620500000000",
-      "county": "620501000000",
-      "fullName": "甘肃省天水市市辖区",
-      "level": 3,
-      "province": "620000000000",
-      "town": "620501000000"
-    }, {
       "areaCode": "620502000000",
       "areaName": "秦州区",
       "city": "620500000000",
@@ -29337,15 +26952,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "620600000000",
     "areaName": "武威市",
     "children": [{
-      "areaCode": "620601000000",
-      "areaName": "市辖区",
-      "city": "620600000000",
-      "county": "620601000000",
-      "fullName": "甘肃省武威市市辖区",
-      "level": 3,
-      "province": "620000000000",
-      "town": "620601000000"
-    }, {
       "areaCode": "620602000000",
       "areaName": "凉州区",
       "city": "620600000000",
@@ -29392,15 +26998,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "620700000000",
     "areaName": "张掖市",
     "children": [{
-      "areaCode": "620701000000",
-      "areaName": "市辖区",
-      "city": "620700000000",
-      "county": "620701000000",
-      "fullName": "甘肃省张掖市市辖区",
-      "level": 3,
-      "province": "620000000000",
-      "town": "620701000000"
-    }, {
       "areaCode": "620702000000",
       "areaName": "甘州区",
       "city": "620700000000",
@@ -29465,15 +27062,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "620800000000",
     "areaName": "平凉市",
     "children": [{
-      "areaCode": "620801000000",
-      "areaName": "市辖区",
-      "city": "620800000000",
-      "county": "620801000000",
-      "fullName": "甘肃省平凉市市辖区",
-      "level": 3,
-      "province": "620000000000",
-      "town": "620801000000"
-    }, {
       "areaCode": "620802000000",
       "areaName": "崆峒区",
       "city": "620800000000",
@@ -29547,15 +27135,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "620900000000",
     "areaName": "酒泉市",
     "children": [{
-      "areaCode": "620901000000",
-      "areaName": "市辖区",
-      "city": "620900000000",
-      "county": "620901000000",
-      "fullName": "甘肃省酒泉市市辖区",
-      "level": 3,
-      "province": "620000000000",
-      "town": "620901000000"
-    }, {
       "areaCode": "620902000000",
       "areaName": "肃州区",
       "city": "620900000000",
@@ -29629,15 +27208,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "621000000000",
     "areaName": "庆阳市",
     "children": [{
-      "areaCode": "621001000000",
-      "areaName": "市辖区",
-      "city": "621000000000",
-      "county": "621001000000",
-      "fullName": "甘肃省庆阳市市辖区",
-      "level": 3,
-      "province": "620000000000",
-      "town": "621001000000"
-    }, {
       "areaCode": "621002000000",
       "areaName": "西峰区",
       "city": "621000000000",
@@ -29720,15 +27290,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "621100000000",
     "areaName": "定西市",
     "children": [{
-      "areaCode": "621101000000",
-      "areaName": "市辖区",
-      "city": "621100000000",
-      "county": "621101000000",
-      "fullName": "甘肃省定西市市辖区",
-      "level": 3,
-      "province": "620000000000",
-      "town": "621101000000"
-    }, {
       "areaCode": "621102000000",
       "areaName": "安定区",
       "city": "621100000000",
@@ -29802,15 +27363,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "621200000000",
     "areaName": "陇南市",
     "children": [{
-      "areaCode": "621201000000",
-      "areaName": "市辖区",
-      "city": "621200000000",
-      "county": "621201000000",
-      "fullName": "甘肃省陇南市市辖区",
-      "level": 3,
-      "province": "620000000000",
-      "town": "621201000000"
-    }, {
       "areaCode": "621202000000",
       "areaName": "武都区",
       "city": "621200000000",
@@ -30076,15 +27628,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "630100000000",
     "areaName": "西宁市",
     "children": [{
-      "areaCode": "630101000000",
-      "areaName": "市辖区",
-      "city": "630100000000",
-      "county": "630101000000",
-      "fullName": "青海省西宁市市辖区",
-      "level": 3,
-      "province": "630000000000",
-      "town": "630101000000"
-    }, {
       "areaCode": "630102000000",
       "areaName": "城东区",
       "city": "630100000000",
@@ -30557,20 +28100,11 @@ export const AREA_LEVEL_3_JSON = [{
   "town": "630000000000"
 }, {
   "areaCode": "640000000000",
-  "areaName": "宁夏回族自治区",
+  "areaName": "宁夏",
   "children": [{
     "areaCode": "640100000000",
     "areaName": "银川市",
     "children": [{
-      "areaCode": "640101000000",
-      "areaName": "市辖区",
-      "city": "640100000000",
-      "county": "640101000000",
-      "fullName": "宁夏回族自治区银川市市辖区",
-      "level": 3,
-      "province": "640000000000",
-      "town": "640101000000"
-    }, {
       "areaCode": "640104000000",
       "areaName": "兴庆区",
       "city": "640100000000",
@@ -30635,15 +28169,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "640200000000",
     "areaName": "石嘴山市",
     "children": [{
-      "areaCode": "640201000000",
-      "areaName": "市辖区",
-      "city": "640200000000",
-      "county": "640201000000",
-      "fullName": "宁夏回族自治区石嘴山市市辖区",
-      "level": 3,
-      "province": "640000000000",
-      "town": "640201000000"
-    }, {
       "areaCode": "640202000000",
       "areaName": "大武口区",
       "city": "640200000000",
@@ -30681,15 +28206,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "640300000000",
     "areaName": "吴忠市",
     "children": [{
-      "areaCode": "640301000000",
-      "areaName": "市辖区",
-      "city": "640300000000",
-      "county": "640301000000",
-      "fullName": "宁夏回族自治区吴忠市市辖区",
-      "level": 3,
-      "province": "640000000000",
-      "town": "640301000000"
-    }, {
       "areaCode": "640302000000",
       "areaName": "利通区",
       "city": "640300000000",
@@ -30745,15 +28261,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "640400000000",
     "areaName": "固原市",
     "children": [{
-      "areaCode": "640401000000",
-      "areaName": "市辖区",
-      "city": "640400000000",
-      "county": "640401000000",
-      "fullName": "宁夏回族自治区固原市市辖区",
-      "level": 3,
-      "province": "640000000000",
-      "town": "640401000000"
-    }, {
       "areaCode": "640402000000",
       "areaName": "原州区",
       "city": "640400000000",
@@ -30809,15 +28316,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "640500000000",
     "areaName": "中卫市",
     "children": [{
-      "areaCode": "640501000000",
-      "areaName": "市辖区",
-      "city": "640500000000",
-      "county": "640501000000",
-      "fullName": "宁夏回族自治区中卫市市辖区",
-      "level": 3,
-      "province": "640000000000",
-      "town": "640501000000"
-    }, {
       "areaCode": "640502000000",
       "areaName": "沙坡头区",
       "city": "640500000000",
@@ -30860,20 +28358,11 @@ export const AREA_LEVEL_3_JSON = [{
   "town": "640000000000"
 }, {
   "areaCode": "650000000000",
-  "areaName": "新疆维吾尔自治区",
+  "areaName": "新疆",
   "children": [{
     "areaCode": "650100000000",
     "areaName": "乌鲁木齐市",
     "children": [{
-      "areaCode": "650101000000",
-      "areaName": "市辖区",
-      "city": "650100000000",
-      "county": "650101000000",
-      "fullName": "新疆维吾尔自治区乌鲁木齐市市辖区",
-      "level": 3,
-      "province": "650000000000",
-      "town": "650101000000"
-    }, {
       "areaCode": "650102000000",
       "areaName": "天山区",
       "city": "650100000000",
@@ -30956,15 +28445,6 @@ export const AREA_LEVEL_3_JSON = [{
     "areaCode": "650200000000",
     "areaName": "克拉玛依市",
     "children": [{
-      "areaCode": "650201000000",
-      "areaName": "市辖区",
-      "city": "650200000000",
-      "county": "650201000000",
-      "fullName": "新疆维吾尔自治区克拉玛依市市辖区",
-      "level": 3,
-      "province": "650000000000",
-      "town": "650201000000"
-    }, {
       "areaCode": "650202000000",
       "areaName": "独山子区",
       "city": "650200000000",

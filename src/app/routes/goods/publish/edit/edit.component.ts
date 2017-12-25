@@ -60,8 +60,8 @@ export class EditComponent implements OnInit {
       {name: 'basicstyles', groups: ['basicstyles']}
     ],
     height: 420,//编辑器高度
-    disallowedContent: '',
-    removeButtons : 'Anchor,SpecialChar,Subscript,Superscript'
+    removeButtons: 'Anchor,SpecialChar,Subscript,Superscript',
+    contentsCss: 'body img{max-width: 100%;}'
   }
 
   constructor(public publishComponent: PublishComponent,
@@ -119,6 +119,7 @@ export class EditComponent implements OnInit {
           $('.app-img-box ._edit').addClass('hide');
         } //关闭选框
       });
+      $(document).find('.cke_wysiwyg_frame body img').css({'max-width': '100%'});
     })
   }
 
@@ -806,8 +807,8 @@ export class EditComponent implements OnInit {
    * 返回事件，由于富文本编辑器是一个iframe窗口，所以单纯的back可能不能一次性返回，因此直接指定了返回路径
    */
   back() {
-    if(this.path == 'update') this.router.navigate([SettingUrl.ROUTERLINK.store.goodsManage],{replaceUrl:true});
-    else if(this.path == 'edit') this.router.navigate([SettingUrl.ROUTERLINK.store.goodsPublish],{replaceUrl:true});
+    if (this.path == 'update') this.router.navigate([SettingUrl.ROUTERLINK.store.goodsManage], {replaceUrl: true});
+    else if (this.path == 'edit') this.router.navigate([SettingUrl.ROUTERLINK.store.goodsPublish], {replaceUrl: true});
     else this.location.back();
   }
 
@@ -928,7 +929,7 @@ export class EditComponent implements OnInit {
   /**
    * 同步PC端详情
    */
-  syncGoodsBody(){
+  syncGoodsBody() {
     this.publishData.mobileBody = this.publishData.goodsBody;
   }
 

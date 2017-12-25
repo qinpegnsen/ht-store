@@ -40,18 +40,18 @@
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngContactsName)" nzHasFeedback>
           <nz-input [nzType]="'text'" name="contactsName" [(ngModel)]="validateForm.contactsName"
-                    #ngContactsName="ngModel" [nzPlaceHolder]="'请输入联系人姓名'" [nzSize]="'large'">
+                    #ngContactsName="ngModel" [nzPlaceHolder]="'请输入负责人姓名'" [nzSize]="'large'">
           </nz-input>
         </div>
       </div>
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
-          <label>负责人电话</label>
+          <label>负责人手机号</label>
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngContactsPhone)" nzHasFeedback>
           <nz-input name="contactsPhone" [(ngModel)]="validateForm.contactsPhone"
                     [nzType]="'tel'" [pattern]="patternService.phone"
-                    #ngContactsPhone="ngModel" [nzPlaceHolder]="'联系人手机号'" [nzSize]="'large'">
+                    #ngContactsPhone="ngModel" [nzPlaceHolder]="'负责人手机号'" [nzSize]="'large'">
           </nz-input>
           <div nz-form-explain *ngIf="ngValidateErrorMsg(ngContactsPhone) == valitateState.error">手机号码不正确！
           </div>
