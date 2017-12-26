@@ -142,7 +142,7 @@ export class EditComponent implements OnInit {
             fixedFreight: null,
             expressTplId: null,
             weight: 1.00,
-            volume: 1.00,
+            volume: 1.00
           }
         }
       })
@@ -158,7 +158,9 @@ export class EditComponent implements OnInit {
             me.publishData.goodsExpressInfo = {
               freightType: null,
               fixedFreight: null,
-              expressTplId: null
+              expressTplId: null,
+              weight: 1.00,
+              volume: 1.00
             };
           } else if (!isNullOrUndefined(me.publishData.goodsExpressInfo.expressTplId)) {
             me.getTplValById(); //根据物流模板ID获取模板值
@@ -240,7 +242,9 @@ export class EditComponent implements OnInit {
       me.publishData.goodsExpressInfo = {
         freightType: null,
         fixedFreight: null,
-        expressTplId: null
+        expressTplId: null,
+        weight: 1.00,
+        volume: 1.00
       };
     }
   }

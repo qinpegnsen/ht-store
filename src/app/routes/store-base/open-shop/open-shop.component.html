@@ -15,6 +15,9 @@
           <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreName) == valitateState.empty">
             请输入店铺名称！
           </div>
+          <div nz-form-explain *ngIf="ngStoreName.value.length > 50">
+            店铺名称过长！
+          </div>
         </div>
       </div>
       <div nz-form-item nz-row>
