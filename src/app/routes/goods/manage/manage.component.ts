@@ -108,7 +108,8 @@ export class ManageComponent implements OnInit {
       brandName: me.query.brandName, //品牌名称
       state: me.query.state, //商品状态
       isOwnPlat: me.query.isOwnPlat,//是否自营
-      goodsAudit: me.query.goodsAudit//审核状态
+      goodsAudit: me.query.goodsAudit,//审核状态
+      sortColumns: 'create_time DESC' //倒序排列
     }
     $.when(GoodsService.queryGoodsList(me.goodsList.params)).done(res => {
       me._loading = false; //解除锁屏
