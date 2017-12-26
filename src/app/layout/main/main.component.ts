@@ -1,13 +1,13 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from "@angular/core";
 import {Setting} from "../../public/setting/setting";
-import {NavigationEnd, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {SettingUrl} from "../../public/setting/setting_url";
 import {HomeService} from "../../routes/home/home.service";
 import {AjaxService} from "../../public/service/ajax.service";
 import {Util} from "../../public/util/util";
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
+import "rxjs/add/operator/filter";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/mergeMap";
 
 declare var $: any;
 
@@ -34,25 +34,6 @@ export class MainComponent implements OnInit {
     _this.menus = Setting.MENUS; //菜单信息
     //设置消息通知
     _this.storeOrdCustomerStatistics();
-    //监听路由变化，反选menu信息
-    this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event) => {
-      _this.selMenu(_this.menus, event["url"]);
-    });
-  }
-
-  /**
-   * 反选中menu
-   * @param {string} url
-   */
-  selMenu(menuList: Array<any>, url: string) {
-    let _this = this;
-    menuList.forEach(ret => {
-      if ((url).indexOf(ret.menuUrl) == 0) ret.isSel = true;
-      else ret.isSel = false;
-      if (ret.subMenuList && ret.subMenuList.length > 0) {
-        _this.selMenu(ret.subMenuList, url);
-      }
-    })
   }
 
   /**

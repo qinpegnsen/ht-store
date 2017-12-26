@@ -34,6 +34,7 @@ export class Setting {
   };
   public static MENUS: Array<any> = new Array();      //平台菜单
   public static PAGEMSG: any = {                        //平台信息提示（公式、提示、引导等等...）
+    noAuthTip: "您的权限不足",
     tipTitle: "操作提示",
     settleFormula: {
       one: "入账 =（订单总额 - 订单退款）× 10%",

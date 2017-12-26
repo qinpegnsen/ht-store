@@ -293,6 +293,7 @@ export class GoodsService {
     AjaxService.get({
       url: SettingUrl.URL.template.expressTpl,
       data: data,
+      async: false,
       success: (data) => {
         if (data.success) defer.resolve(data.data);
       }
