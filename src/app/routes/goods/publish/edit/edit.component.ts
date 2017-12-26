@@ -214,9 +214,7 @@ export class EditComponent implements OnInit {
    */
   getExpressTpl() {
     let me = this;
-    //TODO，登录后根据登录店铺编码获取相关运费模板,，目前所用是自营店铺的编码
-    let data = {storeCode: 'SZH_PLAT_SELF_STORE'};
-    $.when(GoodsService.freightList(data)).done(res => {
+    $.when(GoodsService.freightList()).done(res => {
       if (res) me.logistics = res; //赋值
     })
   }

@@ -284,15 +284,13 @@ export class GoodsService {
 
   /**
    * 查询模板/模板值列表
-   * @param data
    * @returns {any<T>}
    */
-  static freightList(data: any) {
+  static freightList(data?: any) {
     let defer = $.Deferred(); //封装异步请求结果
     //执行查询（异步）
     AjaxService.get({
       url: SettingUrl.URL.template.expressTpl,
-      data: data,
       async: false,
       success: (data) => {
         if (data.success) defer.resolve(data.data);
