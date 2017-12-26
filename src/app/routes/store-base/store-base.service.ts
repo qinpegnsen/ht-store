@@ -69,7 +69,7 @@ export class StoreBaseService {
 
   /**
    * 企业注册获取验证码
-   * @param requestDate
+   * @param phone（手机号）
    */
   getSmsCode(phone: string) {
     const me = this;
@@ -83,6 +83,30 @@ export class StoreBaseService {
           _success = true;
         } else {
           me._notification.error(`出错了`, res.info)
+        }
+      },
+      error: (res) => {
+        me._notification.error(Setting.AJAX.errorTip,'')
+      }
+    });
+    return _success;
+  }
+
+  /**
+   * 获取验证码时验证手机号是否被注册，未被注册返回true，已被注册返回false
+   * @param phone（手机号）
+   */
+  checkPhone(phone: string) {
+    let me = this, _success: boolean = false;
+    AjaxService.post({
+      url: SettingUrl.URL.seller.checkPhone,
+      data: {phone: phone},
+      async: false,
+      success: (res) => {
+        if (res.success) {
+          _success = true;
+        } else {
+          me._notification.error(`提示`, res.info)
         }
       },
       error: (res) => {

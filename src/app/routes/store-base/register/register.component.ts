@@ -93,9 +93,8 @@ export class RegisterComponent implements OnInit {
    */
   getCaptcha() {
     let me = this, phone = me.validateForm.controls['phone'].value;
-    if (!me.isSending && PatternService.PHONE_REGEXP.test(phone)) {
-      let res = me.storeBaseService.getSmsCode(phone);
-      if (res) {
+    if (!me.isSending && PatternService.PHONE_REGEXP.test(phone) && me.storeBaseService.checkPhone(phone)) {
+      if (me.storeBaseService.getSmsCode(phone)) {
         me.isSending = true;
         let second = 60;
         let timer = setInterval(() => {

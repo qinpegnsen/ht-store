@@ -50,11 +50,12 @@ export class SettingUrl {
      */
     seller: {
       add: '/seller/addSeller',//(post)注册商户
-      load: '/seller/loadSellerById',//加载基本商户信息
+      load: '/seller/loadSellerById',//(get)加载基本商户信息
       queryAccount: '/seller/querySellerBySellerAcc',//判断账户是否已存在
       queryAllSellers: '/seller/querySellersByShopCode',//根据店铺编码查询店铺下所有商家账户
       update: '/seller/updateSellerCommon',//修改商家账户基本信息
       updatePwd: '/seller/updateSellerPwd',//修改商家账户密码
+      checkPhone: '/seller/checkPhone'    //(post)检测手机号是否被注册
     },
     /**
      * 企业红包账户投资记录的操作
