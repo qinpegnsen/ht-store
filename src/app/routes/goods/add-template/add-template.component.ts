@@ -40,7 +40,7 @@ export class AddTemplateComponent implements OnInit {
 
   constructor(private fb: FormBuilder,public routeInfo: ActivatedRoute,public session: SessionService,public goodsService:GoodsService,public freightTemplateComponent:FreightTemplateComponent,public patterns: PatternService) {
     this.validateForm = this.fb.group({
-      userName            : [ '', [ Validators.required ], [ this.userNameAsyncValidator ] ],
+      userName            : [ '', [ this.userNameAsyncValidator ] ],
       firstNum            : [ '', [ Validators.required ] ],
       firstPrice            : [ '', [ Validators.required ] ],
       addAttach            : [ '', [ Validators.required ] ],
