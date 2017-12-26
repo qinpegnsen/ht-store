@@ -259,11 +259,11 @@
     <dt class="">应付金额：</dt>
     <dd class=""><span class="main-red font14">￥{{orderData.ordTotal | number:'1.2-2'}}</span></dd>
   </dl>
-  <dl class="text-right">
+  <dl class="text-right" *ngIf="orderData.rpPay">
     <dt class=" ">红包抵扣：</dt>
     <dd class=" "><span class="main-red font14"><em>-</em>￥{{orderData.rpPay | number:'1.2-2'}}</span></dd>
   </dl>
-  <dl class="text-right">
+  <dl class="text-right" *ngIf="orderData.coinPay">
     <dt class=" ">重消币抵扣：</dt>
     <dd class=" "><span class="main-red font14"><em>-</em>￥{{orderData.coinPay | number:'1.2-2'}}</span></dd>
   </dl>

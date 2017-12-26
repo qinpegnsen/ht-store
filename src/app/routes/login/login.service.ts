@@ -10,27 +10,33 @@ import {Util} from "../../public/util/util";
 @Injectable()
 export class LoginService {
   validateFormReset: FormGroup;          //重置密码的表单校验
-  changePassword: FormGroup;          //修改表单校验
+  changePassword: FormGroup;          //修改密码表单校验
   flowState: any = Setting.ENUMSTATE;               //定义枚举状态
   loginState: any = this.flowState.loginState;       //登录时获取跳转的状态
 
 
   constructor(public router: Router, public fb: FormBuilder, public _notification: NzNotificationService) {
-    //重置密码的表单校验
-    this.validateForm()
-    //修改密码的表单校验
-    this.changePassword = this.fb.group({
-      oldPassword: ['', [Util.pwdValidator]],//旧密码校验
-      password: ['', [Util.pwdValidator]],//密码的校验
-      confirmPwd: ['', [this.passwordConfirmationValidator2]],//再次输入密码的校验
-    });
+    //重置密码的表单
+    this.validateForm();
+    //修改密码的表单
+    this.changeForm();
   }
+
+  //重置密码的表单
   validateForm(){
     this.validateFormReset = this.fb.group({
       phone: ['', [Validators.required], [Util.requiredPhoneValidator]],//手机号的校验
       code: ['', [Validators.required], [Util.smsCodeValidator]],//验证码校验
       newPwd: ['', [Util.pwdValidator]],//密码的校验
       confirmPwd: ['', [this.passwordConfirmationValidator]],//再次输入密码的校验
+    });
+  }
+  //修改密码的表单
+  changeForm(){
+    this.changePassword = this.fb.group({
+      oldPassword: ['', [Util.pwdValidator]],//旧密码校验
+      password: ['', [Util.pwdValidator]],//密码的校验
+      confirmPwd: ['', [this.passwordConfirmationValidator2]],//再次输入密码的校验
     });
   }
 

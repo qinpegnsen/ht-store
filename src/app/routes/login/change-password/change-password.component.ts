@@ -45,5 +45,6 @@ export class ChangePasswordComponent implements OnInit {
     console.log(value);
     let formValue = value;
     this.loginService.updateSellerPwd(formValue);
+    this.loginService.changeForm();
   };
 }
