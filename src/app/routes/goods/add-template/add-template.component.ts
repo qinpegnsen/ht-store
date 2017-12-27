@@ -37,16 +37,16 @@ export class AddTemplateComponent implements OnInit {
   freightTemplate: string = SettingUrl.ROUTERLINK.store.goodsFreightTemplate; //首页
   id: any;//模板ID
   tplName:any;//模板名称
-
+  valuationTypea:any;
   constructor(private fb: FormBuilder,public routeInfo: ActivatedRoute,public session: SessionService,public goodsService:GoodsService,public freightTemplateComponent:FreightTemplateComponent,public patterns: PatternService) {
-    this.validateForm = this.fb.group({
+    /*this.validateForm = this.fb.group({
       userName            : [ '', [ this.userNameAsyncValidator ] ],
       firstNum            : [ '', [ Validators.required ] ],
       firstPrice            : [ '', [ Validators.required ] ],
       addAttach            : [ '', [ Validators.required ] ],
       addPrice            : [ '', [ Validators.required ] ],
       radio_group         : [ 'NUM' ],
-    });
+    });*/
   }
 
   ngOnInit() {
@@ -54,6 +54,7 @@ export class AddTemplateComponent implements OnInit {
     me.getallCheckeds();
     me.linkType = this.routeInfo.snapshot.queryParams['linkType'];//获取地址栏的参数
     me.id = this.routeInfo.snapshot.queryParams['id'];
+    this.valuationTypea='NUM';
     this.queryFormwork();//请求模板详细数据并显示
   }
 
@@ -406,18 +407,13 @@ export class AddTemplateComponent implements OnInit {
    * @param $event
    * @param value
    */
-  submitForm = ($event, value) => {
+  addFormwork(formData){
     let me = this;
-
     if (me.linkType == 'addArticle') {
-      $event.preventDefault();
-      for (const key in this.validateForm.controls) {
-        this.validateForm.controls[ key ].markAsDirty();
-      }
       let json = {
         tplName: this.tplName,
         isFree: 'N',
-        valuationType: this.validateForm.value.radio_group,
+        valuationType: formData.value.valuationType,
         id:this.id,
         storeExpressTplValList: this.moduleList
       };
@@ -426,15 +422,9 @@ export class AddTemplateComponent implements OnInit {
       $.when(this.goodsService.addFreight(formValue)).done(data => {
        this.freightTemplateComponent.queryTplList();
       });
-
-
     }
     //修改信息
     else if (me.linkType == 'updataArticle') {
-      $event.preventDefault();
-      for (const key in this.validateForm.controls) {
-        this.validateForm.controls[ key ].markAsDirty();
-      }
       this.staff.storeExpressTplValList.forEach(ele => {
         delete ele.createTimeBegin
         delete ele.createTimeEnd
@@ -444,7 +434,7 @@ export class AddTemplateComponent implements OnInit {
       let json = {
         tplName: this.staff.tplName,
         isFree: 'N',
-        valuationType: this.validateForm.value.radio_group,
+        valuationType:  formData.value.valuationType,
         id:this.id,
         storeExpressTplValList: this.staff.storeExpressTplValList
       }
@@ -478,7 +468,7 @@ export class AddTemplateComponent implements OnInit {
       $.when(GoodsService.queryFreightSmg(data1)).done(data => {
         if(data) me.staff = data; //赋值
         console.log("█  me.orderData ►►►",   me.staff);
-
+me.valuationTypea=me.staff.valuationType;
       })
   }
 
@@ -495,8 +485,8 @@ export class AddTemplateComponent implements OnInit {
     });
   };
 
-  getFormControl(name) {
+ /* getFormControl(name) {
     return this.validateForm.controls[ name ];
-  }
+  }*/
 
 }
