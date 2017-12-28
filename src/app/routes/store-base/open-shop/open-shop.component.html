@@ -10,12 +10,12 @@
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngStoreName)" nzHasFeedback>
           <nz-input name="storeName" [(ngModel)]="validateForm.storeName" #ngStoreName="ngModel" required
-                    [nzType]="'text'" [nzPlaceHolder]="'店铺名称'" [nzSize]="'large'" maxlength="50">
+                    [nzType]="'text'" [nzPlaceHolder]="'店铺名称'" [nzSize]="'large'" maxlength="20">
           </nz-input>
           <div nz-form-explain *ngIf="ngValidateErrorMsg(ngStoreName) == valitateState.empty">
             请输入店铺名称！
           </div>
-          <div nz-form-explain *ngIf="ngStoreName.value.length > 50">
+          <div nz-form-explain *ngIf="validateForm.storeName?.length > 20">
             店铺名称过长！
           </div>
         </div>

@@ -425,7 +425,18 @@
       </div>
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>营业执照有效期</label>
+          <label nz-form-item-required>是否长期有效</label>
+        </div>
+        <div nz-col [nzSpan]="8" nz-form-control>
+          <nz-switch name="businessLicenceIsForever" class="thc lg" [nzSize]="'large'" [(ngModel)]="validateForm.businessLicenceIsForever">
+            <span checked>是</span>
+            <span unchecked>否</span>
+          </nz-switch>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="8">
+          <label nz-form-item-required>{{validateForm.businessLicenceIsForever?'营业执照有效起始日期':'营业执照有效期'}}</label>
         </div>
         <div>
           <div nz-form-control>
@@ -442,20 +453,22 @@
                 </div>
               </div>
             </div>
-            <span class="fl pl-5 pr-5">-</span>
-            <div nz-col [nzSpan]="4">
-              <div nz-form-item nz-row>
-                <div>
-                  <div nz-form-control [nzValidateStatus]="ngValidateStatus(ngBusinessLicenceEnd)"
-                       nzHasFeedback>
-                    <nz-datepicker name="businessLicenceEnd" [(ngModel)]="validateForm.businessLicenceEnd"
-                                   [nzSize]="'large'" #ngBusinessLicenceEnd="ngModel" required
-                                   [nzDisabledDate]="_disabledBusinessLicenceEndDate"
-                                   [nzPlaceHolder]="'结束日期'"></nz-datepicker>
+            <ng-container *ngIf="!validateForm.businessLicenceIsForever">
+              <span class="fl pl-5 pr-5">-</span>
+              <div nz-col [nzSpan]="4">
+                <div nz-form-item nz-row>
+                  <div>
+                    <div nz-form-control [nzValidateStatus]="ngValidateStatus(ngBusinessLicenceEnd)"
+                         nzHasFeedback>
+                      <nz-datepicker name="businessLicenceEnd" [(ngModel)]="validateForm.businessLicenceEnd"
+                                     [nzSize]="'large'" #ngBusinessLicenceEnd="ngModel" required
+                                     [nzDisabledDate]="_disabledBusinessLicenceEndDate"
+                                     [nzPlaceHolder]="'结束日期'"></nz-datepicker>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </ng-container>
           </div>
         </div>
       </div>
@@ -501,7 +514,7 @@
           </ng-container>
           <!--如果没有本地预览图-->
           <ng-container
-            *ngIf="validateForm.businessLicenceNumberElectronic && !validateForm.organizationCodeElectronicPreview && !businessLicenceUploader.queue[0]">
+            *ngIf="validateForm.businessLicenceNumberElectronic && !validateForm.businessLicenceNumberElectronicPreview && !businessLicenceUploader.queue[0]">
             <div class="uploaded">
               <nz-popover [nzTrigger]="'click'">
                 <img [src]="validateForm.businessLicenceNumberElectronic | imgSize: '50'" title="点击看大图" nz-popover>

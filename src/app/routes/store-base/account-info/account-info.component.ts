@@ -107,13 +107,13 @@ export class AccountInfoComponent implements OnInit {
       if (res.success) {
         if (uuid) me.validateForm.bankLicenceElectronic = uuid;//上传成功将暗码赋值给相应字段
       } else {
-        me._notification.error(`上传失败`, '图片' + item._file.name + res.info)
+        me._notification.error(`上传失败`, '图片' + item._file.name + '上传失败，请重新选择图片并上传')
       }
     }
     // 上传失败
     uploader.onErrorItem = function (item, response, status, headers) {
       let res = JSON.parse(response);
-      me._notification.error(`上传失败`, '图片' + uploader.queue[0]._file.name + res.info)
+      me._notification.error(`上传失败`, '图片' + uploader.queue[0]._file.name + '上传失败，请重新选择图片并上传')
     };
     // 完成上传
     uploader.onCompleteAll = function () {
