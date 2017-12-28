@@ -111,7 +111,7 @@
           <nz-row-expand-icon [(nzExpand)]="data.expand"></nz-row-expand-icon>
         </td>
         <td nz-td class="text-center">{{data.afterNo}}</td>
-        <td nz-td class="text-center  main-color">￥ {{data.reqMoney | number:'1.2-2'}}</td>
+        <td nz-td class="text-center  main-color">￥ {{data.reqMoney ||0 | number:'1.2-2'}}</td>
         <td nz-td class="text-center">{{data.custPhone}}</td>
         <td nz-td class="text-center">{{data.createTime}}</td>
         <td nz-td class="text-center">{{data.state | stateName:enums.saleAfterState}}</td>
