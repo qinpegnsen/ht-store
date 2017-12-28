@@ -104,10 +104,10 @@
       </ng-template>
       <ng-template #footer>
         <div>
-          <button nz-button [nzType]="'ghost'" [nzSize]="'large'" (click)="handleCancel($event)"
+          <button nz-button [nzType]="'ghost'" [nzSize]="'large'" (click)="handleCancel()"
                   [nzLoading]="isConfirmLoading"> 取消
           </button>
-          <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk($event)"
+          <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk()"
                   [nzLoading]="isConfirmLoading" [disabled]="!updateShopForm.form.valid">
             确定
           </button>

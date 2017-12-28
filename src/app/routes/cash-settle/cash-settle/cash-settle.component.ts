@@ -20,7 +20,6 @@ export class CashSettleComponent implements OnInit {
   public isConfirmLoading: boolean = false;//提现确认按钮的加载小圈默认不可见
   public _loading: boolean = false;  //查询时锁屏
   public settlePage: Page = new Page();  //结算信息
-  public insertData: any = {};  //申请提现时传入的信息
   public query: any = {};    // 查询条件
   public _startDate: Date = new Date();//查询条件的开始时间
   public _endDate: Date = new Date();//查询条件的结束时间
@@ -39,7 +38,7 @@ export class CashSettleComponent implements OnInit {
   constructor(public _notification: NzNotificationService,
               public patternService: PatternService,
               public cashSettleService: CashSettleService,
-              private modalService: NzModalService,) {
+              private modalService: NzModalService) {
   }
 
   ngOnInit() {
@@ -105,6 +104,10 @@ export class CashSettleComponent implements OnInit {
       content: contentTpl,
       footer: footerTpl,
       maskClosable: false,
+      onCancel: () => {
+        me.validateForm.drawMoney = null;//关闭弹窗时清空余额
+        me.isConfirmLoading = false;//点击确认按钮加载小圈
+      }
     });
     me.seletAllByTypeCode();//查询银行
   }
@@ -113,21 +116,20 @@ export class CashSettleComponent implements OnInit {
    * 确认提现---确认关闭提现弹窗
    * @param e
    */
-  handleOk = (e) => {
+  handleOk = () => {
     let me = this;
     if (me.validateForm.balance == 0) {
       return;
     }
-    me.insertData = me.validateForm;
     me.isConfirmLoading = true;//点击确认按钮加载小圈
-    $.when(me.cashSettleService.insertList(me.insertData)).done(data => {
+    $.when(me.cashSettleService.insertList(me.validateForm)).done(data => {
       me._loading = false; //解除锁屏
       if (data.success) {
-        this.currentModal.destroy('onCancel');//关闭弹窗
+        me.handleCancel(); //关闭弹框
         me.isConfirmLoading = false;
         me.validateForm.drawMoney = null;//成功后清空余额
         me._notification.success('提现成功', data.info);
-       me.qeuryAgentData();//刷新企业余额
+        me.qeuryAgentData();//刷新企业余额
       } else {
         me.isConfirmLoading = false;
         me._notification.error('提现失败', data.info)
@@ -139,11 +141,8 @@ export class CashSettleComponent implements OnInit {
    * 取消关闭提现弹窗
    * @param e
    */
-  handleCancel = (e) => {
-    let me = this;
-    me.validateForm.drawMoney = null;//关闭弹窗时清空余额
-    me.currentModal.destroy('onCancel');//关闭弹窗
-    me.isConfirmLoading = false;//点击确认按钮加载小圈
+  handleCancel = () => {
+    this.currentModal.destroy('onCancel');//关闭弹窗
   }
 
 
