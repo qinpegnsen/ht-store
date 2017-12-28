@@ -11,6 +11,8 @@ import {GoodsService} from "../goods.service";
 import {SettingUrl} from "../../../public/setting/setting_url";
 import {FreightTemplateComponent} from "../freight-template/freight-template.component";
 import {PatternService} from "../../../public/service/pattern.service";
+import {Util} from "../../../public/util/util";
+import {Setting} from "../../../public/setting/setting";
 declare var $: any;
 
 @Component({
@@ -38,7 +40,12 @@ export class AddTemplateComponent implements OnInit {
   id: any;//模板ID
   tplName:any;//模板名称
   valuationTypea:any;
-  constructor(private fb: FormBuilder,public routeInfo: ActivatedRoute,public session: SessionService,public goodsService:GoodsService,public freightTemplateComponent:FreightTemplateComponent,public patterns: PatternService) {
+  ngValidateStatus = Util.ngValidateStatus;
+  ngValidateErrorMsg = Util.ngValidateErrorMsg;//表单项提示状态
+  valitateState: any = Setting.valitateState;//表单验证状态
+
+
+  constructor(private fb: FormBuilder,public routeInfo: ActivatedRoute,public session: SessionService,public goodsService:GoodsService,public freightTemplateComponent:FreightTemplateComponent,public patternService: PatternService) {
     /*this.validateForm = this.fb.group({
       userName            : [ '', [ this.userNameAsyncValidator ] ],
       firstNum            : [ '', [ Validators.required ] ],
@@ -390,11 +397,16 @@ export class AddTemplateComponent implements OnInit {
    */
   delete(x, i) {
     let me = this;
-    console.log(i);
-    me.moduleList.splice(i, 1)
-    this.session.delData(i)
-    this.session.delCheck(i);
-    // me.moduleList[i].area = '';
+    //console.log(i);
+    if(me.linkType=='addArticle'){
+      me.moduleList.splice(i, 1);
+      this.session.delData(i);
+      this.session.delCheck(i);
+    }else if(me.linkType=='updataArticle'){
+      me.staff.storeExpressTplValList.splice(i, 1);
+      this.session.delData(i);
+      this.session.delCheck(i);
+    }
   }
   /**
    * 删除按钮的取消按钮

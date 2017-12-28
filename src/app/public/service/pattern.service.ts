@@ -23,6 +23,7 @@ export class PatternService {
   public doubleDigit: string; // 两位为整数（0-99）
   public _URL: string; //网址
   public twodecimal: string;//两位小数
+  public threedecimal: string;//三位小数
   public integer: string;//正整数
   public storage: string;//库存，十以上正整数
   public static EMAIL_REGEXP: RegExp = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;//邮箱
@@ -50,6 +51,7 @@ export class PatternService {
     this._URL = '^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$'; //网址
     this.decimals = '^(0\.[0-9]*[1-9]$)|^0$';　　//0-1小数，包含0,不包含1
     this.twodecimal = '^[0-9]+(.[0-9]{1,2})?$';    //两位小数
+    this.threedecimal = '^[0-9]+(.[0-9]{1,3})?$';    //两位小数
     this.doubleDigit = '^[0-9]{1,2}$';      // 两位整数（0-99）
     this.integer = '^[0-9]*[1-9][0-9]*$';   //只能正整数
     this.storage = '^[1-9]{1}[0-9]+';//库存，十以上正整数
