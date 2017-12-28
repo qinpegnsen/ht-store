@@ -12,11 +12,11 @@ export class CanStoreProvide implements CanActivate, OnInit {
 
   constructor(public router: Router,
               public _notification: NzNotificationService) {
+    this.menus = Setting.MENUS; //菜单信息
   }
 
   ngOnInit(): void {
     const _this = this;
-    _this.menus = Setting.MENUS; //菜单信息
     //设置消息通知
     //监听路由变化，反选menu信息
     this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event) => {
@@ -38,15 +38,17 @@ export class CanStoreProvide implements CanActivate, OnInit {
         observer.next(false);
         observer.complete();
         me.router.navigate([SettingUrl.ROUTERLINK.pass.login]); //去登录页面
-      }else if(me.isPermission(state.url)){
-        observer.next(true);
-        observer.complete();
         return;
-      }else{
+      }else if(!me.isPermission(state.url)){
         observer.next(false);
         observer.complete();
         me._notification.error(Setting.PAGEMSG.noAuthTip, '');
         me.router.navigate([SettingUrl.ROUTERLINK.store.home]); //去首页
+        return;
+      }else{
+        observer.next(true);
+        observer.complete();
+        return;
       }
     });
   }

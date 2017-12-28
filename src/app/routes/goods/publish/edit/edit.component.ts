@@ -24,11 +24,11 @@ export class EditComponent implements OnInit {
   public enumState = Setting.ENUMSTATE;   //枚举
   public path: string;                  // 当前路径
   public changed: boolean = false;      // 是否有修改商品内容
-  public saleAttrList: any;             // 所有规格数据
   public brandsList: any;               // 品牌列表
   public unitList: any;                 // 计量单位列表
-  public baseAttrList: any;             // 商品基本属性列表
   public goodsBaseCode: string;         //商品基本编码
+  public baseAttrList: any;             // 商品基本属性列表
+  public saleAttrList: any;             // 所有规格数据,商品销售属性列表
   public skuAttr: Array<any> = new Array();//属性列表
   public logistics: any;                  // 物流规则列表
   public tplVals: any;                    // 运费模板内容
@@ -39,17 +39,9 @@ export class EditComponent implements OnInit {
   public goodsImgList: any = {};          // 商品上传图片列表
   public oldImgs: any = {};               // 商品已经有的图片列表
   public mblItemList: Array<any> = new Array();//手机端上传后的图片集合
-  public tempMblHtml: string;           // 修改商品时临时用的移动端详情
   public set: any = {};                   //批量设置
-  public goodsBody: any;                //商品详情
   public goodsEditData: any;           // 修改商品时商品的原有数据
   public publishData: any = {};         // 商品发布数据
-  public mobileUploader: FileUploader = new FileUploader({
-    url: SettingUrl.URL.goods.goodsUploadRetHttpURL,  //上传地址
-    itemAlias: "limitFile",//上传文件名
-    autoUpload: true,   //自动上传
-    allowedFileType: ["image"]  //文件类型限制
-  })
   public patterns: any;  //正则
   public maxFixedFreight = Setting.maxFixedFreight;
   public ckEditerConfig = {
@@ -93,33 +85,11 @@ export class EditComponent implements OnInit {
 
   ngOnInit() {
     const me = this;
-    me.jqueryEvent();//jquery事件
-    me.mobileImgUploaded();//手机端上传图片成功处理
-  }
-
-  /**
-   * jquery事件
-   */
-  jqueryEvent() {
-    let me = this;
     $(function () {
       //当点击批量修改价格的按钮时
       $('.sku-table').on('click', '.s-menu', function () {
         $(this).next().slideToggle(50)
       });
-
-      //当点击移动端编辑图片的时候
-      $('.app-control').on('click', '.app-img-box', function () {
-        let target = this;
-        me.editMblImg(target);
-      })
-      //当点击窗口时如果不是移动端详情图片则隐藏所有编辑块
-      $('body').click(function (e) {
-        if (!$(e.target).parents().hasClass('app-img-box')) {
-          $('.app-img-box ._edit').addClass('hide');
-        } //关闭选框
-      });
-      $(document).find('.cke_wysiwyg_frame body img').css({'max-width': '100%'});
     })
   }
 
@@ -166,10 +136,8 @@ export class EditComponent implements OnInit {
             me.getTplValById(); //根据物流模板ID获取模板值
           }
           me.genClearArray(me.goodsEditData.goodsSkuList);    // 生成所选属性组合
-          // me.tempMblHtml = me.goodsEditData.mobileBody;        //为了容易生成移动端详情图片文字组合，将html字符串先放入html再取
           me.genImgSku();       //已选中属性的图片组
           me.genTempGoodsImgsList();  // 将商品的图片组生成me.goodsImgList一样的数据，方便后续追加图片
-          me.genMblItemList();        //将html字符串生成移动端图片文字组合
         }
       })
     }
@@ -188,7 +156,7 @@ export class EditComponent implements OnInit {
   }
 
   /**
-   * update 已选中的基本属性
+   * update 修改时 选中已选中的基本属性
    */
   checkedBaseAttr() {
     let me = this;
@@ -259,30 +227,6 @@ export class EditComponent implements OnInit {
     for (let tpl of me.logistics) {
       if (tpl.id == tplId) {
         return tpl;
-      }
-    }
-  }
-
-  /**
-   * 手机端上传图片成功处理
-   * @param item 信息集合
-   * @param response 返回结果
-   * @param status 状态码
-   * @param headers 头信息
-   */
-  mobileImgUploaded() {
-    let me = this;
-    me.mobileUploader.onSuccessItem = function (item, response: any, status, headers) {
-      if (!isNullOrUndefined(response)) {
-        response = JSON.parse(response);
-        if (response.success) {
-          let img = response.data;
-          let obj = {
-            type: 'img',
-            value: img
-          };
-          me.mblItemList.push(obj);
-        }
       }
     }
   }
@@ -513,165 +457,6 @@ export class EditComponent implements OnInit {
     }
   }
 
-  /****************************移动端详情编辑******************************/
-
-  /**
-   * 替换图片
-   * @param e 选择图片事件
-   * @param i 需要替换掉的图片的索引值
-   */
-  mblReplaceImg(e, i) {
-    let _this = this, file = e.target.files[0], img = _this.goodsService.uploadImg(file);
-    let obj = {
-      type: 'img',
-      value: img
-    };
-    _this.mblItemList[i] = obj;
-  }
-
-  /**
-   * 编辑移动端详情的图片或文本
-   * @param target
-   */
-  public editMblImg(target) {
-    if ($(target).find('.mobile-edit-area').length > 0 && !$(target).find('.mobile-edit-area').hasClass('hide')) return;// 当是修改文本的时候，点击当前板块不显示编辑工具
-    let editState = !$(target).find('._edit').hasClass('hide');//编辑状态：true-编辑状态，false-普通状态
-    if (editState) {
-      $(target).find('._edit').addClass('hide');
-    } else {
-      $(target).find('._edit').removeClass('hide');
-      $(target).siblings().find('._edit').addClass('hide');
-    }
-  }
-
-  /**
-   * 输入框计数器
-   */
-  public counter(target) {
-    let obj = $(target);
-    let hadLength = obj.val().length;
-    let leaveLength = 500 - hadLength;
-    obj.parents('.mea-text').find('.counter').html(leaveLength);
-    return hadLength;
-  }
-
-  /**
-   * 显示移动端文本编辑框
-   * @param target
-   */
-  showEdit(target) {
-    $('.app-img-box ._edit').addClass('hide');
-    $('.app-box .mobile-edit-area.new-text').removeClass('hide');
-    this.counter(target);
-    this.scrollBottom();//使移动端详情编辑滚动条一直保持在最底部
-  }
-
-  /**
-   * 隐藏移动端文本编辑框
-   * @param target
-   */
-  public hideEdit(target?) {
-    if (!isUndefined(target)) {
-      $(target).parents('.app-img-box').find('.mobile-edit-area').addClass('hide');//隐藏编辑框
-      $(target).parents('.app-img-box').find('.text').show();//取消编辑展示原本文
-      $(target).parents('.app-img-box').find('._edit').addClass('hide');//隐藏编辑组
-    } else {
-      $('.mobile-edit-area').addClass('hide');
-    }
-  }
-
-  /**
-   * 使移动端详情编辑滚动条一直保持在最底部
-   */
-  public scrollBottom() {
-    $('.app-control')[0].scrollTop = $('.app-control')[0].scrollHeight;// 编辑文本时使滚动条一直保持在最底部
-  }
-
-  /**
-   * 插入文本
-   * @param target
-   * @param index
-   */
-  insertMblText(target?, index?) {
-    let me = this, textArea;
-    if (!isUndefined(target)) {
-      $(target).parents('.app-img-box').find('.text').remove();//确认编辑移除原本文
-      $(target).parents('.app-img-box').find('._edit').addClass('hide');
-      textArea = $(target).parents('.mobile-edit-area').find('.textarea');
-    } else {
-      $('.new-text').addClass('hide');
-      textArea = $('.new-text').find('.textarea');
-    }
-    if (textArea.val().length > 0) {
-      let obj = {
-        type: 'text',
-        value: textArea.val()
-      };
-      if (!isUndefined(index)) me.mblItemList[index] = obj;
-      else me.mblItemList.push(obj);
-      textArea.val('');// 清除文本区域内容
-      me.hideEdit();// 隐藏文本编辑区域
-    }
-  }
-
-  /**
-   * 手机端详情编辑编辑文本
-   * @param target（编辑对象）
-   * @param quondamText（原文本）
-   */
-  mblReplaceText(target, quondamText) {
-    $('.mobile-edit-area .textarea').html(quondamText);
-    $(target).parents('.app-img-box').find('.text').hide();
-    $(target).parents('.app-img-box').find('.mobile-edit-area').removeClass('hide');
-    $(target).parents('.app-img-box').find('._edit').addClass('hide');
-  }
-
-  /**
-   * 移动端详情编辑向上移动图片
-   * @param index
-   * @param type
-   * @param item
-   */
-  moveImg(index, type, item) {
-    let me = this, prevItem = me.mblItemList[index - 1], nextItem = me.mblItemList[index + 1];
-    if (type == 'up') {
-      me.mblItemList[index - 1] = item;
-      me.mblItemList[index] = prevItem;
-    } else if (type == 'down') {
-      me.mblItemList[index] = nextItem;
-      me.mblItemList[index + 1] = item;
-    }
-    $('.app-content').find('._edit').addClass('hide');
-  }
-
-  /**
-   * 移动端详情移除图片
-   * @param index
-   */
-  removeItem(index) {
-    let me = this;
-    me.mblItemList.splice(index, 1);
-  }
-
-  /**
-   * update修改商品时将移动端详情html字符串生成图片与文字组合
-   */
-  public genMblItemList() {
-    setTimeout(_ => {//等到页面渲染完毕再执行，可以保证jQuery获取到节点
-      let me = this, doms = $('#mblHtml').children(), type, value;
-      me.mblItemList = new Array();
-      for (let i = 0; i < doms.length; i++) {
-        type = doms.eq(i)[0].localName == 'p' ? 'text' : doms.eq(i)[0].localName;
-        value = type == 'text' ? doms.eq(i).html() : doms.eq(i).attr('src');
-        let obj = {
-          type: type,
-          value: value
-        };
-        me.mblItemList.push(obj);
-      }
-    }, 0);
-  }
-
   /**
    * 审核input框的value合不合要求
    */
@@ -831,7 +616,6 @@ export class EditComponent implements OnInit {
       me._notification.warning('数据不完整', '请编辑PC端商品详情');
       return false
     } else {
-      // me.publishData.mobileBody = me.genMblDetailHtml();               // 商品详情 App
       if (isNullOrUndefined(me.publishData.mobileBody) || me.publishData.mobileBody == '') {
         me._notification.warning('数据不完整', '请编辑移动端商品详情');
         return false

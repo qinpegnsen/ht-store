@@ -301,7 +301,6 @@
                   <ng-template #addOnAfter>元</ng-template>
                 </nz-input>
               </div>
-              <!--<span [hidden]="ngMarketPrice.value != 0" class="color-red font12"> 市场价>0 </span>-->
             </td>
             <td>
               <div nz-form-control class="sku-item" [nzValidateStatus]="ngValidateStatus(ngPrice)">
@@ -310,12 +309,6 @@
                   <ng-template #addOnAfter>元</ng-template>
                 </nz-input>
               </div>
-              <!--<ng-container *ngIf="ngMarketPrice.value > 0 && ngPrice.value >0">
-                <span [hidden]="compareNumber(ngPrice.value,ngMarketPrice.value)"
-                      class="color-red font12"> 销售价<=市场价
-                </span>
-              </ng-container>
-              <span [hidden]="ngPrice.value != 0" class="color-red font12"> 销售价>0 </span>-->
             </td>
             <td>
               <div nz-form-control class="sku-item" [nzValidateStatus]="ngValidateStatus(ngMemberPrice)">
@@ -324,12 +317,6 @@
                   <ng-template #addOnAfter>元</ng-template>
                 </nz-input>
               </div>
-              <!--<ng-container *ngIf="ngPrice.value > 0 && ngMemberPrice.value>0">
-                <span [hidden]="compareNumber(ngMemberPrice.value,ngPrice.value)"
-                      class="color-red font12"> 会员价<=销售价
-                </span>
-              </ng-container>
-              <span [hidden]="ngMemberPrice.value != 0" class="color-red font12"> 会员价>0 </span>-->
             </td>
             <td>
               <div nz-form-control class="sku-item" [nzValidateStatus]="ngValidateStatus(ngStorageNum)">
@@ -337,9 +324,6 @@
                           required [pattern]="patterns.storage" #ngStorageNum="ngModel">
                 </nz-input>
               </div>
-              <!--<span [hidden]="!ngStorageNum.value || ngStorageNum.value > 9"
-                    class="color-red font12"> 库存>=10
-              </span>-->
             </td>
           </tr>
           </tbody>
@@ -427,70 +411,6 @@
         <div class="w100 app-box">
           <div class="app-wrap">
             <ckeditor name="mobileBody" [(ngModel)]="publishData.mobileBody" [config]="ckEditerConfig"></ckeditor>
-            <!--<div class="app-control">
-              <div class="app-content">
-                <div class="app-img-box" *ngFor="let item of mblItemList;let i=index;">
-                  <div class="_edit hide">
-                    <ul class="tools fr">
-                      <li class="p0 mr-5 ant-btn" *ngIf="i != 0" (click)="moveImg(i,'up',item)">上移</li>
-                      <li class="p0 mr-5 ant-btn" *ngIf="i != mblItemList.length-1"
-                          (click)="moveImg(i,'down',item)">下移
-                      </li>
-                      <li class="p0 mr-5 ant-btn btn-purple" *ngIf="item.type== 'img'">
-                        <label class="file-upload p0 mb0 w100 h100">替换
-                          <input class="w100" type="file" accept="image/*" name="appPic"
-                                 (change)="mblReplaceImg($event,i)"/>
-                        </label>
-                      </li>
-                      <li class="p0 mr-5 ant-btn btn-green" *ngIf="item.type== 'text'"
-                          (click)="mblReplaceText($event.target,item.value)">编辑
-                      </li>
-                      <li class="p0 mr-5 ant-btn btn-blue" (click)="removeItem(i)">移除</li>
-                    </ul>
-                  </div>
-                  <img width="100%" *ngIf="item.type== 'img'" [src]="item.value">
-                  <div class="text mb0" style="line-height: 1.6" *ngIf="item.type== 'text'">{{item.value}}</div>
-                  <div class="mobile-edit-area hide" *ngIf="item.type== 'text'">
-                    <div class="mea-text">
-                      <p class="text-tip">还可以输入 <i class="main-color counter">500</i>字 </p>
-                      <div class="pl pr">
-                        <textarea class="textarea" rows="3" maxlength="500"
-                                  (keyup)="counter($event.target)"></textarea>
-                      </div>
-                      <div class="button">
-                        <button nz-button [nzSize]="'small'" (click)="insertMblText($event.target,i)">确认</button>
-                        <button nz-button [nzSize]="'small'" class="ml" (click)="hideEdit($event.target)">取消</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="mobile-edit-area new-text hide">
-                <div class="mea-text">
-                  <p class="text-tip">还可以输入 <i class="main-color counter">500</i>字 </p>
-                  <div class="pl pr">
-                    <textarea class="textarea" rows="3" maxlength="500"
-                              (keyup)="counter($event.target)"></textarea>
-                  </div>
-                  <div class="button">
-                    <button nz-button [nzSize]="'small'" class="btn-green" (click)="insertMblText()">确认</button>
-                    <button nz-button [nzSize]="'small'" class="ml" (click)="hideEdit()">取消</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <ul class="app-add">
-              <li class="w50 fl br">
-                <label class="file-upload w100 h100 b0">
-                  <i class="anticon anticon-picture"></i><br>图片
-                  <input class="w100" type="file" accept="image/*" name="appPic" ng2FileSelect
-                         [uploader]="mobileUploader" multiple/>
-                </label>
-              </li>
-              <li class="w50 fl p-5" (click)="showEdit($event.target)">
-                <i class="anticon anticon-edit"></i><br>文字
-              </li>
-            </ul>-->
           </div>
           <div class="explain">
             <button nz-button class="thc-btn-w mb" (click)="syncGoodsBody()">
@@ -521,9 +441,6 @@
     </dl>
   </div>
   <!--商品详情描述 end-->
-
-  <!--临时节点，修改商品时用来存储移动端详情的图片和文本，通过节点的取值，方便处理成详情展示和修改需要的数据-->
-  <div class="hide" id="mblHtml" [innerHtml]="tempMblHtml"></div>
 
   <!--商品物流信息 start-->
   <div class="fieldset logistics">
