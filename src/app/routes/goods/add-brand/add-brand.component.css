@@ -48,3 +48,8 @@
   word-wrap: break-word;
   border-left: 1px solid #e1e1e1;
 }
+
+
+.brand-null{
+  color: rgba(160, 160, 160, 0.74)
+}

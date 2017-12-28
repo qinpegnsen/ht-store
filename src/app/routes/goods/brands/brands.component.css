@@ -38,11 +38,7 @@
   vertical-align: middle;
 }
 
-/*.goods-img-box{*/
-  /*width: 80px;*/
-  /*text-align: center;*/
-/*}*/
+.brand-null{
+  color: rgba(160, 160, 160, 0.74)
+}
 
-/*.goods-img-box img{*/
-  /*vertical-align: middle;*/
-/*}*/

@@ -18,8 +18,6 @@ declare var $: any;
   providers:[ShopInfoComponent]
 })
 export class EditShopInfoComponent implements OnInit {
-  // public validateForm: any = {};//表单
-  public _options: any;//三级联动区域数据
   public ngValidateStatus = Util.ngValidateStatus;//表单项状态
   public ngValidateErrorMsg = Util.ngValidateErrorMsg;//表单项提示状态
   public valitateState: any = Setting.valitateState;//表单验证状态

@@ -38,7 +38,7 @@ export class AddBrandComponent implements OnInit {
     itemAlias: "limitFile",
     queueLimit: 2,
     allowedFileType: ["image"]
-  }); //品牌logo,初始化上传方法
+  }); //品牌注册证,初始化上传方法
 
   constructor(public _notification: NzNotificationService,
               public pattern: PatternService,
@@ -56,12 +56,12 @@ export class AddBrandComponent implements OnInit {
         //新增品牌
         case "addBrand":
           me.brands.pageTitle = '添加品牌';
-          me.getAddBrandData();//获取添加或修改品牌所需数据
+          // me.getAddBrandData();//获取添加或修改品牌所需数据
           break;
         //修改品牌
         case "edit":
           me.brands.pageTitle = '修改品牌';
-          me.getAddBrandData();//获取添加或修改品牌所需数据
+          // me.getAddBrandData();//获取添加或修改品牌所需数据
           if (brandId) me.loadBrandDataById(brandId);//获取当前品牌的数据
           break;
         //查看品牌详情
@@ -89,9 +89,7 @@ export class AddBrandComponent implements OnInit {
    */
   getAddBrandData() {
     let me = this;
-    // me.showTypes = MainService.getEnumDataList(Setting.ENUM.showType);       // 品牌展示类型
-    // me.brandStates = MainService.getEnumDataList(Setting.ENUM.brandState);       // 品牌状态
-    me.kindList = me.goodsService.getKindList(); //获取分类列表 //获取当前路由
+    // me.kindList = me.goodsService.getKindList(); //获取分类列表 //获取当前路由
   }
 
   /**
@@ -233,6 +231,13 @@ export class AddBrandComponent implements OnInit {
   /**
    *移除第一个品牌注册证（图片）
    */
+  remove() {
+    let me=this;
+    me.validateForm.brandLogo = null;
+  }
+  /**
+   *移除第一个品牌注册证（图片）
+   */
   remove1() {
     let me=this;
     me.validateForm.registration1 = null;
@@ -242,7 +247,6 @@ export class AddBrandComponent implements OnInit {
    * 移除第二个品牌注册证（图片）
    */
   remove2() {
-    console.log("█ 11111 ►►►",  11111);
     let me=this;
     me.validateForm.registration2 = null;
 

@@ -25,7 +25,7 @@
       <!--品牌英文名称-->
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="8">
-          <label nz-form-item-required>品牌英文名称</label>
+          <label>品牌英文名称</label>
         </div>
         <div nz-col [nzSpan]="8" nz-form-control [nzValidateStatus]="ngValidateStatus(ngEnglishName)" nzHasFeedback>
           <nz-input name="englishName" [(ngModel)]="validateForm.englishName" #ngEnglishName="ngModel"
@@ -96,6 +96,7 @@
           <!--修改图片的时候-->
           <ng-container *ngIf="validateForm.brandLogo && !brandLogoUploader.queue[0]">
             <div class="uploaded">
+              <div class="remove" (click)="remove()"><i class="anticon anticon-close"></i></div>
               <nz-popover [nzTrigger]="'click'">
                 <img [src]="validateForm.brandLogo | imgSize: '50'" height="50" appImgErr nz-popover>
                 <ng-template #nzTemplate>
@@ -199,6 +200,7 @@
       <dl nz-row class="t-item">
         <td nz-col [nzSpan]="6" class="item-hd">品牌图片：</td>
         <td nz-col [nzSpan]="18" class="item-bd mb0">
+          <span *ngIf="!validateForm.brandLogo"  class="brand-null">【未上传】</span>
           <nz-popover [nzTrigger]="'click'"*ngIf="validateForm.brandLogo">
             <img [src]="validateForm.brandLogo | imgSize:'50'" appImgErr
                  nz-popover>
@@ -211,6 +213,7 @@
       <dl nz-row class="t-item">
         <td nz-col [nzSpan]="6" class="item-hd">品牌注册证：</td>
         <td nz-col [nzSpan]="18" class="item-bd mb0">
+          <span *ngIf="!validateForm.registration2 && !validateForm.registration1" class="brand-null">【未上传】</span>
           <span *ngIf="validateForm.registration1">  <nz-popover [nzTrigger]="'click'">
             <img [src]="validateForm.registration1 | imgSize:'50'" appImgErr
                  nz-popover>

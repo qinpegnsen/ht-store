@@ -53,7 +53,7 @@
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           社会信用代码：
         </div>
-        <div nz-col [nzSpan]="12" >
+        <div nz-col [nzSpan]="12">
           {{storeInfo.creditCode | spliceStr: [4,4]}}
         </div>
       </div>
@@ -63,7 +63,7 @@
             税务登记证证号：
           </div>
           <div nz-col [nzSpan]="12">
-            {{storeInfo.taxRegistrationCertificate  | spliceStr: [4,4]}}
+            {{storeInfo.taxRegistrationCertificate | spliceStr: [4,4]}}
           </div>
         </div>
         <div nz-row class="store-info-row img-store">
@@ -87,7 +87,7 @@
           <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
             组织结构代码：
           </div>
-          <div nz-col [nzSpan]="12" >
+          <div nz-col [nzSpan]="12">
             {{storeInfo.organizationCode | spliceStr: [4,4]}}
           </div>
         </div>
@@ -137,7 +137,8 @@
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           是否长期有效：
         </div>
-        <div nz-col [nzSpan]="12" [ngClass]="{'color-success':storeInfo.isForever==enumState.yes,'color-red':storeInfo.isForever==enumState.no}">
+        <div nz-col [nzSpan]="12"
+             [ngClass]="{'color-success':storeInfo.isForever==enumState.yes,'color-red':storeInfo.isForever==enumState.no}">
           {{storeInfo.isForever | stateName:enum.yesOrNo}}
         </div>
       </div>
@@ -196,9 +197,12 @@
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           营业执照有效期：
         </div>
-        <div nz-col [nzSpan]="12">
-          {{storeInfo.businessLicenceStart | date:"yyyy-MM-dd"}}&nbsp;&nbsp;至&nbsp;&nbsp;{{storeInfo.businessLicenceEnd
-          | date:"yyyy-MM-dd"}}
+        <div nz-col [nzSpan]="12" *ngIf="storeInfo.businessLicenceEnd">
+          {{storeInfo.businessLicenceStart| date:"yyyy-MM-dd"}}&nbsp;&nbsp;-&nbsp;&nbsp;{{storeInfo.businessLicenceEnd|
+          date:"yyyy-MM-dd"}}
+        </div>
+        <div nz-col [nzSpan]="12" *ngIf="!storeInfo.businessLicenceEnd">
+          {{storeInfo.businessLicenceStart| date:"yyyy-MM-dd"}}&nbsp;&nbsp;-&nbsp;&nbsp;长期
         </div>
       </div>
       <div nz-row class="store-info-row img-bottom">
@@ -235,7 +239,7 @@
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           公司银行账号：
         </div>
-        <div nz-col [nzSpan]="12" >
+        <div nz-col [nzSpan]="12">
           {{storeInfo.bankAccountNumber | spliceStr: [4,4]}}
         </div>
       </div>
@@ -284,7 +288,8 @@
         <div nz-col [nzSpan]="12" class="text-right pr-5 strong">
           是否为结算账户：
         </div>
-        <div nz-col [nzSpan]="12" [ngClass]="{'color-success':storeInfo.isSettlementAccount==enumState.yes,'color-red':storeInfo.isSettlementAccount==enumState.no}">
+        <div nz-col [nzSpan]="12"
+             [ngClass]="{'color-success':storeInfo.isSettlementAccount==enumState.yes,'color-red':storeInfo.isSettlementAccount==enumState.no}">
           {{storeInfo.isSettlementAccount | stateName:enum.yesOrNo}}
         </div>
       </div>
