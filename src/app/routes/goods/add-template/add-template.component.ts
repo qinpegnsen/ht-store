@@ -47,13 +47,13 @@ export class AddTemplateComponent implements OnInit {
 
   constructor(private fb: FormBuilder,public routeInfo: ActivatedRoute,public session: SessionService,public goodsService:GoodsService,public freightTemplateComponent:FreightTemplateComponent,public patternService: PatternService) {
     /*this.validateForm = this.fb.group({
-      userName            : [ '', [ this.userNameAsyncValidator ] ],
-      firstNum            : [ '', [ Validators.required ] ],
-      firstPrice            : [ '', [ Validators.required ] ],
-      addAttach            : [ '', [ Validators.required ] ],
-      addPrice            : [ '', [ Validators.required ] ],
-      radio_group         : [ 'NUM' ],
-    });*/
+     userName            : [ '', [ this.userNameAsyncValidator ] ],
+     firstNum            : [ '', [ Validators.required ] ],
+     firstPrice            : [ '', [ Validators.required ] ],
+     addAttach            : [ '', [ Validators.required ] ],
+     addPrice            : [ '', [ Validators.required ] ],
+     radio_group         : [ 'NUM' ],
+     });*/
   }
 
   ngOnInit() {
@@ -206,10 +206,10 @@ export class AddTemplateComponent implements OnInit {
       tempResult = tempResult.concat(temp);
       tempAreaCode = tempAreaCode.concat(tempe)
     }
-    if(me.linkType=='addArticle'){
+    if (me.linkType == 'addArticle') {
       me.moduleList[me.cru].area = tempAreaCode.join(',');
       me.moduleList[me.cru].area_cn = tempResult.join(',');
-    }else if(me.linkType=='updataArticle'){
+    } else if (me.linkType == 'updataArticle') {
       me.staff.storeExpressTplValList[me.cru].area = tempAreaCode.join(',');
       me.staff.storeExpressTplValList[me.cru].area_cn = tempResult.join(',');
     }
@@ -249,7 +249,7 @@ export class AddTemplateComponent implements OnInit {
     // allCheckeds[i]['content'][j]['childChecked']
     me.allCheckeds.forEach((item, index) => {
       item['content'].forEach((value, index1) => {
-        if (i + '' && j + '' && index === +i && index1 ===+ j) {
+        if (i + '' && j + '' && index === +i && index1 === +j) {
           return;
         }
         value['childChecked'] = false;
@@ -262,7 +262,7 @@ export class AddTemplateComponent implements OnInit {
     let me = this;
     me.cru = index;
     me.close();
-    switch (me.linkType){
+    switch (me.linkType) {
       case 'addArticle':
         if (me.moduleList[this.cru].area) {
           const temp = me.session.getDatas(me.moduleList.length - 1);
@@ -306,7 +306,8 @@ export class AddTemplateComponent implements OnInit {
             });
           }
 
-        };
+        }
+        ;
         break;
       case 'updataArticle':
         if (me.staff.storeExpressTplValList[this.cru].area) {
@@ -348,7 +349,8 @@ export class AddTemplateComponent implements OnInit {
             });
           }
 
-        };
+        }
+        ;
         break;
     }
 
@@ -383,10 +385,12 @@ export class AddTemplateComponent implements OnInit {
    * 添加运费模板值的时候table数组增加
    */
   add() {
-    let me  = this;
-    if(me.linkType=='addArticle'){
-      me.moduleList.push({area: '', index: me.moduleList.length + 1,firstNum: '', firstPrice: '', addAttach: '', addPrice: ''});
-    }else if(me.linkType=='updataArticle'){
+    let me = this;
+    if (me.linkType == 'addArticle') {
+      me.moduleList.push({area: '', index: me.moduleList.length + 1, firstNum: '', firstPrice: '', addAttach: '', addPrice: ''});
+      console.log("█ me.moduleList ►►►",  me.moduleList);
+
+    } else if (me.linkType == 'updataArticle') {
       me.staff.storeExpressTplValList.push({area: '', index: me.moduleList.length + 1, firstNum: '', firstPrice: '', addAttach: '', addPrice: ''});
     }
   }
@@ -398,16 +402,17 @@ export class AddTemplateComponent implements OnInit {
   delete(x, i) {
     let me = this;
     //console.log(i);
-    if(me.linkType=='addArticle'){
+    if (me.linkType == 'addArticle') {
       me.moduleList.splice(i, 1);
       this.session.delData(i);
       this.session.delCheck(i);
-    }else if(me.linkType=='updataArticle'){
+    } else if (me.linkType == 'updataArticle') {
       me.staff.storeExpressTplValList.splice(i, 1);
       this.session.delData(i);
       this.session.delCheck(i);
     }
   }
+
   /**
    * 删除按钮的取消按钮
    */
@@ -419,20 +424,20 @@ export class AddTemplateComponent implements OnInit {
    * @param $event
    * @param value
    */
-  addFormwork(formData){
+  addFormwork(formData) {
     let me = this;
     if (me.linkType == 'addArticle') {
       let json = {
         tplName: this.tplName,
         isFree: 'N',
         valuationType: formData.value.valuationType,
-        id:this.id,
+        id: this.id,
         storeExpressTplValList: this.moduleList
       };
       console.log(JSON.stringify(json));
       let formValue = JSON.stringify(json);
       $.when(this.goodsService.addFreight(formValue)).done(data => {
-       this.freightTemplateComponent.queryTplList();
+        this.freightTemplateComponent.queryTplList();
       });
     }
     //修改信息
@@ -446,8 +451,8 @@ export class AddTemplateComponent implements OnInit {
       let json = {
         tplName: this.staff.tplName,
         isFree: 'N',
-        valuationType:  formData.value.valuationType,
-        id:this.id,
+        valuationType: formData.value.valuationType,
+        id: this.id,
         storeExpressTplValList: this.staff.storeExpressTplValList
       }
       console.log(JSON.stringify(json));
@@ -473,22 +478,22 @@ export class AddTemplateComponent implements OnInit {
    * 请求模板详细数据并显示
    */
   queryFormwork() {
-      let me = this;
-      let data1= { //查询参数
-        id: me.id
-      }
-      $.when(GoodsService.queryFreightSmg(data1)).done(data => {
-        if(data) me.staff = data; //赋值
-        console.log("█  me.orderData ►►►",   me.staff);
-me.valuationTypea=me.staff.valuationType;
-      })
+    let me = this;
+    let data1 = { //查询参数
+      id: me.id
+    }
+    $.when(GoodsService.queryFreightSmg(data1)).done(data => {
+      if (data) me.staff = data; //赋值
+      //console.log("█  me.orderData ►►►",   me.staff);
+      me.valuationTypea = me.staff.valuationType;
+    })
   }
 
   userNameAsyncValidator = (control: FormControl): any => {
     return Observable.create(function (observer) {
       setTimeout(() => {
         if (control.value === 'JasonWood') {
-          observer.next({ error: true, duplicated: true });
+          observer.next({error: true, duplicated: true});
         } else {
           observer.next(null);
         }
@@ -497,8 +502,8 @@ me.valuationTypea=me.staff.valuationType;
     });
   };
 
- /* getFormControl(name) {
-    return this.validateForm.controls[ name ];
-  }*/
+  /* getFormControl(name) {
+   return this.validateForm.controls[ name ];
+   }*/
 
 }
