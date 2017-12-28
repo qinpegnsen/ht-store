@@ -23,7 +23,6 @@ export class AfterDetailComponent implements OnInit {
   public afterTailList: any;       //查看售后单跟踪信息
   public opinion: string;          //审核意见
   public goodsAudits: any;         //商品审核是否通过枚举
-  public isPass: string = this.enumState.yes;     //是否同意退货
   public isAgree: string = this.enumState.yes;    //是否同意退货
   public enums:any = Setting.ENUM;                 //枚举
 
@@ -94,7 +93,7 @@ export class AfterDetailComponent implements OnInit {
     let data = {
       afterNo: me.afterData.afterNo,
       opinion: me.opinion,
-      isPass: me.isPass
+      isPass: me.isAgree
     };
     $.when(this.afterSaleService.checkRefundGoods(data)).done(() => {
       this.back();
