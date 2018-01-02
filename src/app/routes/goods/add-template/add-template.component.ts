@@ -45,15 +45,7 @@ export class AddTemplateComponent implements OnInit {
   valitateState: any = Setting.valitateState;//表单验证状态
 
 
-  constructor(private fb: FormBuilder,public routeInfo: ActivatedRoute,public session: SessionService,public goodsService:GoodsService,public freightTemplateComponent:FreightTemplateComponent,public patternService: PatternService) {
-    /*this.validateForm = this.fb.group({
-     userName            : [ '', [ this.userNameAsyncValidator ] ],
-     firstNum            : [ '', [ Validators.required ] ],
-     firstPrice            : [ '', [ Validators.required ] ],
-     addAttach            : [ '', [ Validators.required ] ],
-     addPrice            : [ '', [ Validators.required ] ],
-     radio_group         : [ 'NUM' ],
-     });*/
+  constructor(public routeInfo: ActivatedRoute,public session: SessionService,public goodsService:GoodsService,public freightTemplateComponent:FreightTemplateComponent,public patternService: PatternService) {
   }
 
   ngOnInit() {
