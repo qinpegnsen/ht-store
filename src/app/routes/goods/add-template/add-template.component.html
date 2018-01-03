@@ -19,13 +19,13 @@
       </div>
       <div  nz-col [nzSpan]="16">
         <nz-radio-group name="valuationType" [(ngModel)]="valuationTypea">
-          <label nz-radio [nzValue]="'NUM'"  (click)="number()">
+          <label nz-radio [nzValue]="'NUM'"  (click)="type('number')">
             <span>按件数 </span>
           </label>
-          <label nz-radio [nzValue]="'WEIGHT'" (click)="weight()">
+          <label nz-radio [nzValue]="'WEIGHT'" (click)="type('weight')">
             <span>按重量 </span>
           </label>
-          <label nz-radio [nzValue]="'VOLUME'" (click)="volume()">
+          <label nz-radio [nzValue]="'VOLUME'" (click)="type('volume')">
             <span>按体积 </span>
           </label>
         </nz-radio-group>
@@ -98,13 +98,23 @@
           <td class="pl-20">{{item.area_cn}}</td>
           <!--首件 start-->
           <td class="text-center" *ngIf="one">
-            <nz-input  [nzType]="'number'" [nzSize]="'large'" [(ngModel)]="item.firstNum" name="firstNum"  required [pattern]="patternService.integer" #firstNum="ngModel"></nz-input>
+            <nz-input  [nzType]="'number'"
+                       [nzSize]="'large'"
+                       [(ngModel)]="item.firstNum"
+                       name="firstNum"  required
+                       [pattern]="patternService.integer" #firstNum="ngModel"></nz-input>
             <div nz-form-explain *ngIf="ngValidateErrorMsg(firstNum)==valitateState.error">
             请输入正整数
           </div>
           </td>
           <td class="text-center" *ngIf="twe">
-            <nz-input  [nzType]="'number'" [nzSize]="'large'" [(ngModel)]="item.firstNum" name="firstNum"  required [pattern]="patternService.twodecimal" #firstNum="ngModel"></nz-input>
+            <nz-input  [nzType]="'number'"
+                       [nzSize]="'large'"
+                       [(ngModel)]="item.firstNum"
+                       name="firstNum"
+                       required
+                       [pattern]="patternService.twodecimal"
+                       #firstNum="ngModel"></nz-input>
             <div nz-form-explain *ngIf="ngValidateErrorMsg(firstNum)==valitateState.error">
               最多保留两位
             </div>
@@ -129,7 +139,13 @@
 
           <!--续件 start-->
           <td class="text-center" *ngIf="one">
-            <nz-input  [nzType]="'number'" [nzSize]="'large'" name="addAttach" [(ngModel)]="item.addAttach" required [pattern]="patternService.integer" #firstNum="ngModel"></nz-input>
+            <nz-input  [nzType]="'number'"
+                       [nzSize]="'large'"
+                       name="addAttach"
+                       [(ngModel)]="item.addAttach"
+                       required
+                       [pattern]="patternService.integer"
+                       #firstNum="ngModel"></nz-input>
             <div nz-form-explain *ngIf="ngValidateErrorMsg(firstNum)==valitateState.error">
               请输入正整数
             </div>

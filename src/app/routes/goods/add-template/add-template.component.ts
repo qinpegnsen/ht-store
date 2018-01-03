@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
 import {ActivatedRoute} from "@angular/router";
@@ -38,14 +38,19 @@ export class AddTemplateComponent implements OnInit {
   three: boolean = false;//运费时按体积默认为false
   freightTemplate: string = SettingUrl.ROUTERLINK.store.goodsFreightTemplate; //首页
   id: any;//模板ID
-  tplName:any;//模板名称
-  valuationTypea:any;
+  tplName: any;//模板名称
+  valuationTypea: any;
   ngValidateStatus = Util.ngValidateStatus;
   ngValidateErrorMsg = Util.ngValidateErrorMsg;//表单项提示状态
   valitateState: any = Setting.valitateState;//表单验证状态
 
 
-  constructor(public routeInfo: ActivatedRoute,public session: SessionService,public goodsService:GoodsService,public freightTemplateComponent:FreightTemplateComponent,public patternService: PatternService) {
+  constructor(private routeInfo: ActivatedRoute,
+              private session: SessionService,
+              private goodsService: GoodsService,
+              private freightTemplateComponent: FreightTemplateComponent,
+              private patternService: PatternService,
+              private _cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -53,7 +58,7 @@ export class AddTemplateComponent implements OnInit {
     me.getallCheckeds();
     me.linkType = this.routeInfo.snapshot.queryParams['linkType'];//获取地址栏的参数
     me.id = this.routeInfo.snapshot.queryParams['id'];
-    this.valuationTypea='NUM';
+    this.valuationTypea = 'NUM';
     this.queryFormwork();//请求模板详细数据并显示
   }
 
@@ -351,11 +356,19 @@ export class AddTemplateComponent implements OnInit {
   /**
    * 判断计量方式(按件数，重量，体积)
    */
+
+  type(type: string) {
+    this.moduleList = [];
+    switch (type) {
+      case 'number': return this.number();
+      case 'weight': return this.weight();
+      case 'volume': return this.volume();
+    }
+  }
   number() {
-    let me = this;
-    me.one = true;
-    me.twe = false;
-    me.three = false;
+    this.one = true;
+    this.twe = false;
+    this.three = false;
   }
 
   weight() {
@@ -379,8 +392,9 @@ export class AddTemplateComponent implements OnInit {
   add() {
     let me = this;
     if (me.linkType == 'addArticle') {
-      me.moduleList.push({area: '', index: me.moduleList.length + 1, firstNum: '', firstPrice: '', addAttach: '', addPrice: ''});
-      console.log("█ me.moduleList ►►►",  me.moduleList);
+      this.moduleList.push({area: '', index: me.moduleList.length + 1, firstNum: '', firstPrice: '', addAttach: '', addPrice: ''});
+      this.moduleList = [...this.moduleList];
+      this._cd.detectChanges();
 
     } else if (me.linkType == 'updataArticle') {
       me.staff.storeExpressTplValList.push({area: '', index: me.moduleList.length + 1, firstNum: '', firstPrice: '', addAttach: '', addPrice: ''});
