@@ -22,13 +22,13 @@
         <tr class="t-item">
           <td class="item-hd w15">订单编号：</td>
           <td class="item-bd w85 mb0">
-            {{afterData?.ordno}}
+            <a class="myLink" [routerLink]="routerLink" title="查看订单详情" [queryParams]="{ordno: afterData.ordno}">{{afterData?.ordno}}</a>
           </td>
         </tr>
         <tr class="t-item">
           <td class="item-hd w15">商品名称：</td>
           <td class="item-bd w85 mb0">
-            {{afterData?.goodsName}}
+           {{afterData?.goodsName}}
           </td>
         </tr>
         <tr class="t-item">

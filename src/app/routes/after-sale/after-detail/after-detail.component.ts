@@ -5,6 +5,7 @@ import {isNullOrUndefined} from "util";
 import {MainService} from "../../../public/service/main.service";
 import {Setting} from "../../../public/setting/setting";
 import {AfterSaleService} from "../after-sale.service";
+import {SettingUrl} from "../../../public/setting/setting_url";
 declare var $: any;
 
 @Component({
@@ -25,7 +26,7 @@ export class AfterDetailComponent implements OnInit {
   public goodsAudits: any;         //商品审核是否通过枚举
   public isAgree: string = this.enumState.yes;    //是否同意退货
   public enums:any = Setting.ENUM;                 //枚举
-
+  public routerLink:string=SettingUrl.ROUTERLINK.store.orderPendingShipment+'/orderDetail';//跳转到的订单详情
   constructor(public router: Router,
               public location: Location,
               public afterSaleService:AfterSaleService,
