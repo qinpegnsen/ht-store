@@ -63,7 +63,9 @@ export class RedPackStatisticsComponent implements OnInit {
           _this.select.week = ele;//获取默认周
         } else if (now == start || now == end) {
           _this.select.week = ele;//获取默认周
-        } else if (now > start || now < end) {//两个月的交界处
+        } else if ((start<now&&now>end)&&(Math.abs(start-end)!=6)) {//两个月的交界处 28  29  3
+          _this.select.week = ele;//获取默认周
+        }else if(start>now&&now<end&&(Math.abs(start-end)!=6)){//两个月的交界处 28 3 2
           _this.select.week = ele;//获取默认周
         }
       });
@@ -96,7 +98,7 @@ export class RedPackStatisticsComponent implements OnInit {
    */
   changeStaType() {
     this.select.year = new Date().getFullYear().toString();//获取默认年
-    this.select.month = (new Date().getMonth() + 1).toString();//获取默认月
+    this.select.month = '0'+(new Date().getMonth() + 1);//获取默认月
     this.getWeekListByMonth();
     if (this.staType == "MONTH") this.showType = {DAY: false, WEEK: false, MONTH: true};
     else if (this.staType == "WEEK") this.showType = {DAY: false, WEEK: true, MONTH: false};
