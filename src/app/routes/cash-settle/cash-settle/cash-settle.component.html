@@ -127,7 +127,18 @@
       <span nz-popover class="main-color cursor"><u>结算公式</u></span>
       <ng-template #nzTemplate>
         <div><p>{{settleFormula.one}}</p>
-          <p>{{settleFormula.two}}</p></div>
+          <p>{{settleFormula.two}}</p>
+          <p>{{settleFormula.three}}</p>
+          <p>{{settleFormula.four}}</p>
+          <p>{{settleFormula.five}}</p>
+          <p>{{settleFormula.six}}</p>
+          <p>{{settleFormula.seven}}</p>
+          <p>{{settleFormula.eight}}</p>
+          <p>{{settleFormula.nine}}</p>
+          <p>{{settleFormula.ten}}</p>
+          <p>{{settleFormula.eleven}}</p>
+          <p>{{settleFormula.twelve}}</p>
+        </div>
       </ng-template>
     </nz-popover>
     <!--结算公式 -- end -->
@@ -191,12 +202,16 @@
     <thead nz-thead>
     <tr>
       <th nz-th class="w5 text-center"><span>序号</span></th>
-      <th nz-th class="w15 text-center"><span>订单号</span></th>
-      <th nz-th class="w16 text-center"><span>订单总额（元）</span></th>
-      <th nz-th class="w16 text-center"><span>订单退款（元）</span></th>
-      <th nz-th class="w16 text-center"><span>结算比例</span></th>
-      <th nz-th class="w16 text-center"><span>应结款（元）</span></th>
-      <th nz-th class="w16 text-center"><span>结算时间</span></th>
+      <th nz-th class="w10 text-center"><span>订单号</span></th>
+      <th nz-th class="w10 text-center"><span>订单总额（元）</span></th>
+      <th nz-th class="w10 text-center"><span>订单退款（元）</span></th>
+      <th nz-th class="w7 text-center"><span>结算比例</span></th>
+      <!--<th nz-th class="w7 text-center"><span>分红抽取比例</span></th>-->
+      <!--<th nz-th class="w10 text-center"><span>分红金额</span></th>-->
+      <!--<th nz-th class="w10 text-center"><span>税费</span></th>-->
+      <!--<th nz-th class="w10 text-center"><span>净利润</span></th>-->
+      <th nz-th class="w10 text-center"><span>应结款（元）</span></th>
+      <th nz-th class="w11 text-center"><span>结算时间</span></th>
     </tr>
     </thead>
     <!--结算头部 --end -->
@@ -208,6 +223,10 @@
       <td nz-td class="main-color">￥&nbsp;{{data.ordPay | number:'1.2-2'}}</td>
       <td nz-td>￥&nbsp;{{data.ordRefundPay | number:'1.2-2'}}</td>
       <td nz-td>{{data.settleRate}}%</td>
+      <!--<td nz-td>{{data.settleRate}}%</td>-->
+      <!--<td nz-td>{{data.settleRate}}%</td>-->
+      <!--<td nz-td>{{data.settleRate}}%</td>-->
+      <!--<td nz-td>{{data.settleRate}}%</td>-->
       <td nz-td>￥&nbsp;{{data.settle | number:'1.2-2'}}</td>
       <td nz-td>{{data.createTime}}</td>
     </tr>
