@@ -41,6 +41,10 @@
           <td class="item-hd w15">售后类型：</td>
           <td class="item-bd w85 mb0">{{afterData?.returnType | stateName:enums.saleAfterTyte}}</td>
         </tr>
+        <tr class="t-item"  *ngIf="afterData.state=='DONE'">
+          <td class="item-hd w15">退回方式：</td>
+          <td class="item-bd w85 mb0">{{afterData?.payType | stateName:'1017'}}</td>
+        </tr>
         <tr class="t-item">
           <td class="item-hd w15">退款金额：</td>
           <td class="item-bd w85 mb0 main-color">￥ {{afterData?.reqMoney |number:'1.2-2'}}</td>
