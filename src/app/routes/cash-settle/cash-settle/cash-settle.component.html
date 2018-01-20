@@ -206,10 +206,10 @@
       <th nz-th class="w10 text-center"><span>订单总额（元）</span></th>
       <th nz-th class="w10 text-center"><span>订单退款（元）</span></th>
       <th nz-th class="w7 text-center"><span>结算比例</span></th>
-      <!--<th nz-th class="w7 text-center"><span>分红抽取比例</span></th>-->
-      <!--<th nz-th class="w10 text-center"><span>分红金额</span></th>-->
-      <!--<th nz-th class="w10 text-center"><span>税费</span></th>-->
-      <!--<th nz-th class="w10 text-center"><span>净利润</span></th>-->
+      <th nz-th class="w7 text-center"><span>分红抽取比例</span></th>
+      <th nz-th class="w10 text-center"><span>分红金额</span></th>
+      <th nz-th class="w10 text-center"><span>税费</span></th>
+      <th nz-th class="w10 text-center"><span>净利润</span></th>
       <th nz-th class="w10 text-center"><span>应结款（元）</span></th>
       <th nz-th class="w11 text-center"><span>结算时间</span></th>
     </tr>
@@ -223,10 +223,10 @@
       <td nz-td class="main-color">￥&nbsp;{{data.ordPay | number:'1.2-2'}}</td>
       <td nz-td>￥&nbsp;{{data.ordRefundPay | number:'1.2-2'}}</td>
       <td nz-td>{{data.settleRate}}%</td>
-      <!--<td nz-td>{{data.settleRate}}%</td>-->
-      <!--<td nz-td>{{data.settleRate}}%</td>-->
-      <!--<td nz-td>{{data.settleRate}}%</td>-->
-      <!--<td nz-td>{{data.settleRate}}%</td>-->
+      <td nz-td>{{data.bonusRate}}%</td>
+      <td nz-td>{{data.bonus}}</td>
+      <td nz-td>{{data.taxPrice}}</td>
+      <td nz-td>{{data.profits}}</td>
       <td nz-td>￥&nbsp;{{data.settle | number:'1.2-2'}}</td>
       <td nz-td>{{data.createTime}}</td>
     </tr>
