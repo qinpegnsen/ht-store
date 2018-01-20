@@ -223,11 +223,14 @@
       <td nz-td class="main-color">￥&nbsp;{{data.ordPay | number:'1.2-2'}}</td>
       <td nz-td>￥&nbsp;{{data.ordRefundPay | number:'1.2-2'}}</td>
       <td nz-td>{{data.settleRate}}%</td>
-      <td nz-td>{{data.bonusRate}}%</td>
-      <td nz-td>{{data.bonus}}</td>
-      <td nz-td>{{data.taxPrice}}</td>
-      <td nz-td>{{data.profits}}</td>
-      <td nz-td>￥&nbsp;{{data.settle | number:'1.2-2'}}</td>
+      <td nz-td>
+        <span *ngIf="data.bonusRate">{{data.bonusRate}}%</span>
+        <span *ngIf="!data.bonusRate">-</span>
+      </td>
+      <td nz-td>￥&nbsp;{{(data.bonus | number:'1.2-2')||0}}</td>
+      <td nz-td>￥&nbsp;{{(data.taxPrice | number:'1.2-2')||0}}</td>
+      <td nz-td>￥&nbsp;{{(data.profits | number:'1.2-2')||0}}</td>
+      <td nz-td>￥&nbsp;{{(data.settle | number:'1.2-2')||0}}</td>
       <td nz-td>{{data.createTime}}</td>
     </tr>
     </tbody>
