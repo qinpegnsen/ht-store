@@ -21,8 +21,8 @@ export class CashSettleComponent implements OnInit {
   public _loading: boolean = false;  //查询时锁屏
   public settlePage: Page = new Page();  //结算信息
   public query: any = {};    // 查询条件
-  public _startDate: Date = new Date();//查询条件的开始时间
-  public _endDate: Date = new Date();//查询条件的结束时间
+  public _startDate=null;//查询条件的开始时间
+  public _endDate=null;//查询条件的结束时间
   public settleFormula: any = Setting.PAGEMSG.settleFormula; //结算公式
   public cachUrl: string = SettingUrl.ROUTERLINK.store.cach; //提现页面
 
@@ -61,9 +61,12 @@ export class CashSettleComponent implements OnInit {
    * 查询账单明细数据
    */
   qeuryCashData() {
-    let me = this;
-    let startDate = Util.dataFormat(me._startDate, "yyyy-MM-dd");//查询条件的开始时间
-    let endDate = Util.dataFormat(me._endDate, "yyyy-MM-dd");//查询条件的结束时间
+    let me = this,startDate, endDate;
+    if(me._startDate){
+      startDate = Util.dataFormat(me._startDate, "yyyy-MM-dd");//查询条件的开始时间
+    }if(me._endDate){
+      endDate = Util.dataFormat(me._endDate, "yyyy-MM-dd");//查询条件的结束时间
+    }
     me._loading = true; //锁屏
     me.settlePage.params = { //查询参数
       curPage: me.settlePage.curPage, //目标页码
