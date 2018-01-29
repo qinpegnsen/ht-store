@@ -53,7 +53,8 @@ export class CashSettleComponent implements OnInit {
   resetSearch() {
     let me = this;
     me.query = {};
-    me.settlePage = new Page();
+    me._startDate = null;
+    me._endDate = null;
     me.qeuryCashData();
   }
 
